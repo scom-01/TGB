@@ -80,7 +80,7 @@ public class CharacterFSM : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W) && GlobalValue.Instance.GetJump())
         {
-            rb.velocity = Vector2.up * 10f;
+            rb.velocity = Vector2.up * 10f /*Jump Param*/;
             Debug.Log("Jump");
             GlobalValue.Instance.SetJump(false);
             return true;
