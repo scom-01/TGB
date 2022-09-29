@@ -92,8 +92,11 @@ public class CharacterFSM : MonoBehaviour
     bool CanMove()
     {
         //움직임이 가능한 상태
-
-        return true;
+        if (GlobalValue.Instance.GetMove())
+        {
+            return true;
+        }
+        return false;
     }
 
     bool CanJump()
@@ -111,18 +114,30 @@ public class CharacterFSM : MonoBehaviour
     bool CanAttack()
     {
         //공격이 가능한 상태
-        return true;
+        if (GlobalValue.Instance.GetAttack())
+        {
+            return true;
+        }
+        return false;
     }
 
     bool Death()
     {
         //사망 상태 판단
+        if (GlobalValue.Instance.GetDeath())
+        {
+            return true;
+        }
         return false;
     }
 
     bool Pause()
     {
         //환경설정 및 게임 정지 상태
+        if(GlobalValue.Instance.GetPause())
+        {
+            return true;
+        }
         return false;
     }
 }
