@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 512643826}
   - component: {fileID: 512643825}
   - component: {fileID: 512643824}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -344,7 +344,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 9.9697275
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -385,9 +385,9 @@ GameObject:
   m_Component:
   - component: {fileID: 572381052}
   - component: {fileID: 572381051}
+  - component: {fileID: 572381048}
   - component: {fileID: 572381050}
   - component: {fileID: 572381049}
-  - component: {fileID: 572381048}
   m_Layer: 0
   m_Name: Test Char
   m_TagString: Untagged
@@ -407,6 +407,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9fab178a49dcf34e96957a563aaf635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  platformsLayerMask:
+    serializedVersion: 2
+    m_Bits: 32768
 --- !u!50 &572381049
 Rigidbody2D:
   serializedVersion: 4
@@ -422,12 +425,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!61 &572381050
 BoxCollider2D:
   m_ObjectHideFlags: 0

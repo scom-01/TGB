@@ -1,10 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class CharacterFSM : MonoBehaviour
 {
+    [SerializeField] private LayerMask platformsLayerMask;
     private Rigidbody2D rb = null;
+    private BoxCollider2D boxcollider2d = null;
+
+    private int JumpCount = 1;
+    private float DefaultMoveSpeed = 7.0f;
+    private float DefaultJumpPower = 20.0f;
 
     private void Awake()
     {
@@ -14,7 +21,7 @@ public class CharacterFSM : MonoBehaviour
     private bool Init()
     {
         rb = this.GetComponent<Rigidbody2D>();
-
+        boxcollider2d = this.GetComponent<BoxCollider2D>();
         return true;
     }
 
@@ -25,8 +32,13 @@ public class CharacterFSM : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            CharacterValue.Instance.ShowDebug();
+        }
+
         if (Pause())
         {
             return;
@@ -50,47 +62,71 @@ public class CharacterFSM : MonoBehaviour
             //공격가능
         }
 
+        
+    }
+
+    private void LateUpdate()
+    {
         if (CanJump())
         {
-            //점프가능
-            Jump();
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                Debug.Log("W");
+                //점프가능
+                //Jump();
+                JumpCal();
+            }
+            Debug.Log("CanJump true");
         }
 
     }
 
     bool MoveChar()
     {
-        if (Input.GetKey(KeyCode.A))
+        float dirX = Input.GetAxis("Horizontal");
+
+        rb.velocity = new Vector2(dirX * DefaultMoveSpeed *  CharacterValue.Instance.GetMoveSpeed(), rb.velocity.y);
+        if (rb.velocity.magnitude > 0.0f)
         {
-            this.transform.Translate(Vector3.left * 0.01f);
             return true;
         }
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            this.transform.Translate(Vector3.right * 0.01f);
-            return true;
-        }
-
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            CharacterValue.Instance.ShowDebug();
-        }
-
         return false;
     }
 
     //점프 상태일 때 True
+
+    void JumpCal()
+    {
+        if (CharacterValue.Instance.GetJump())
+        {
+            if (JumpCount > 0) 
+            { 
+                Jump();
+                if(JumpCount == 2)
+                {
+                    Debug.Log("Jump");
+                }
+                else if(JumpCount == 1)
+                {
+                    Debug.Log("Double Jump");
+                }
+                JumpCount--;
+            }
+            else
+            {
+                CharacterValue.Instance.SetJump(false);
+            }
+        }
+    }
     bool Jump()
     {
-        if (Input.GetKeyDown(KeyCode.W) && CharacterValue.Instance.GetJump())
+        if (CharacterValue.Instance.GetJump())
         {
-            rb.velocity = Vector2.up * 10f /*Jump Param*/;
-            Debug.Log("Jump");
-            CharacterValue.Instance.SetJump(false);
+            rb.velocity = Vector2.up * DefaultJumpPower* CharacterValue.Instance.GetJumpPower();
+            //rb.AddForce(transform.up * DefaultJumpPower * CharacterValue.Instance.GetJumpPower());
+
             return true;
         }
-
         return false;
     }
 
@@ -107,13 +143,32 @@ public class CharacterFSM : MonoBehaviour
     bool CanJump()
     {
         //점프가 가능한 상태
-        if (Mathf.Abs(rb.velocity.y) <= 0.01f)
+        if(CharacterValue.Instance.GetJump())
         {
+            //JumpCount = 2;
             CharacterValue.Instance.SetJump(true);
             return true;
         }
 
         return false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 15)
+        {
+            JumpCount = 2;
+            CharacterValue.Instance.SetJump(true);
+            Debug.Log("Coll layer 15");
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if(boxcollider2d != null)
+        {
+            Gizmos.DrawCube(boxcollider2d.bounds.center + Vector3.down *0.01f, boxcollider2d.bounds.size);
+        }
     }
 
     bool CanAttack()
