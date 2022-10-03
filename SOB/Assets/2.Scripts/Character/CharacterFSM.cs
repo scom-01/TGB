@@ -72,17 +72,22 @@ public class CharacterFSM : MonoBehaviour
             return true;
         }
 
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            CharacterValue.Instance.ShowDebug();
+        }
+
         return false;
     }
 
     //점프 상태일 때 True
     bool Jump()
     {
-        if (Input.GetKeyDown(KeyCode.W) && GlobalValue.Instance.GetJump())
+        if (Input.GetKeyDown(KeyCode.W) && CharacterValue.Instance.GetJump())
         {
             rb.velocity = Vector2.up * 10f /*Jump Param*/;
             Debug.Log("Jump");
-            GlobalValue.Instance.SetJump(false);
+            CharacterValue.Instance.SetJump(false);
             return true;
         }
 
@@ -92,7 +97,7 @@ public class CharacterFSM : MonoBehaviour
     bool CanMove()
     {
         //움직임이 가능한 상태
-        if (GlobalValue.Instance.GetMove())
+        if (CharacterValue.Instance.GetMove())
         {
             return true;
         }
@@ -104,7 +109,7 @@ public class CharacterFSM : MonoBehaviour
         //점프가 가능한 상태
         if (Mathf.Abs(rb.velocity.y) <= 0.01f)
         {
-            GlobalValue.Instance.SetJump(true);
+            CharacterValue.Instance.SetJump(true);
             return true;
         }
 
@@ -114,7 +119,7 @@ public class CharacterFSM : MonoBehaviour
     bool CanAttack()
     {
         //공격이 가능한 상태
-        if (GlobalValue.Instance.GetAttack())
+        if (CharacterValue.Instance.GetAttack())
         {
             return true;
         }
@@ -124,7 +129,7 @@ public class CharacterFSM : MonoBehaviour
     bool Death()
     {
         //사망 상태 판단
-        if (GlobalValue.Instance.GetDeath())
+        if (CharacterValue.Instance.GetDeath())
         {
             return true;
         }
