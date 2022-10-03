@@ -9,9 +9,9 @@ public class CharacterFSM : MonoBehaviour
     private Rigidbody2D rb = null;
     private BoxCollider2D boxcollider2d = null;
 
-    private int JumpCount = 1;
-    private float DefaultMoveSpeed = 7.0f;
-    private float DefaultJumpPower = 20.0f;
+    private int     JumpCount = 1;
+    private float   DefaultMoveSpeed = 7.0f;
+    private float   DefaultJumpPower = 20.0f;
 
     private void Awake()
     {
@@ -123,7 +123,6 @@ public class CharacterFSM : MonoBehaviour
         if (CharacterValue.Instance.GetJump())
         {
             rb.velocity = Vector2.up * DefaultJumpPower* CharacterValue.Instance.GetJumpPower();
-            //rb.AddForce(transform.up * DefaultJumpPower * CharacterValue.Instance.GetJumpPower());
 
             return true;
         }
@@ -145,7 +144,6 @@ public class CharacterFSM : MonoBehaviour
         //점프가 가능한 상태
         if(CharacterValue.Instance.GetJump())
         {
-            //JumpCount = 2;
             CharacterValue.Instance.SetJump(true);
             return true;
         }
@@ -157,6 +155,7 @@ public class CharacterFSM : MonoBehaviour
     {
         if (collision.gameObject.layer == 15)
         {
+            //점프를 Boxcast로 구현하였더니 점프 하는 그 순간 0.01정도 떠 있을 때도 CanJump로 인식하여 더블 점프를 구현하는데 까다로워 변경함
             JumpCount = 2;
             CharacterValue.Instance.SetJump(true);
             Debug.Log("Coll layer 15");
@@ -196,6 +195,37 @@ public class CharacterFSM : MonoBehaviour
         //환경설정 및 게임 정지 상태
         if(GlobalValue.Instance.GetPause())
         {
+            return true;
+        }
+        return false;
+    }
+
+    bool CanTakeDamage()
+    {
+        if(CharacterValue.Instance.GetCanTakeDamage())
+        {
+            return true;
+        }
+        return false;
+    }
+
+    bool TakeDamage(int damage)
+    {
+        if(CanTakeDamage())
+        {
+            if (damage >= CharacterValue.Instance.GetHealth())
+            {
+                CharacterValue.Instance.SetHealth(0);
+                CharacterValue.Instance.SetDeath(true);
+                //사망 애니메이션 호출
+            }
+            else
+            {
+                CharacterValue.Instance.SetHealth(CharacterValue.Instance.GetHealth() + damage);
+
+                //데미지 피격 애니메이션 호출
+            }
+            CharacterValue.Instance.SetCanTakeDamage(false);    //피격 후에는 일정 시간 피격받지 않도록
             return true;
         }
         return false;

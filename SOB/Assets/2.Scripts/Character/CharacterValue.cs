@@ -14,6 +14,7 @@ public class CharacterValue : MonoBehaviour
     private static bool     CanMove     = true;
     private static bool     CanAttack   = true;
     private static bool     Death       = false;
+    private static bool     CanTakeDamage   = true;
 
     private static float    JumpPower   = 1.0f;     /*Max = 5.0,    Min = 0.0*/
     private static float    MoveSpeed   = 1.0f;     /*Max = 3.0,    Min = 0.0*/
@@ -124,6 +125,15 @@ public class CharacterValue : MonoBehaviour
         if (Death != death)
         {
             Death = death;
+        }
+    }
+
+    public bool GetCanTakeDamage() { return CanTakeDamage; }
+    public void SetCanTakeDamage(bool cantakedamage)
+    {
+        if(CanTakeDamage != cantakedamage)
+        {
+            CanTakeDamage = cantakedamage;
         }
     }
     /*~func*/
