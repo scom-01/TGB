@@ -62,7 +62,7 @@ public class CharacterValue : MonoBehaviour
     public float GetJumpPower() { return JumpPower; }
     public void SetJumpPower(float jumppower)
     {
-        JumpPower = jumppower;
+        JumpPower = Mathf.Clamp(jumppower, 0, 5.0f);
     }
 
     public bool GetMove() { return CanMove; }
@@ -77,7 +77,7 @@ public class CharacterValue : MonoBehaviour
     public float GetMoveSpeed() { return MoveSpeed; }
     public void SetMoveSpeed(float movespeed)
     {
-        MoveSpeed = movespeed;
+        MoveSpeed = Mathf.Clamp(movespeed, 0, 3.0f);
     }
 
     public bool GetAttack() { return CanAttack; }
@@ -92,30 +92,30 @@ public class CharacterValue : MonoBehaviour
     public float GetAttackSpeed() { return AttackSpeed; }
     public void SetAttackSpeed(float attackspeed)
     {
-        AttackSpeed = attackspeed;
+        AttackSpeed = Mathf.Clamp(attackspeed, 0, 10.0f);
     }
     public int GetAttackDamage() { return AttackDamage; }
     public void SetAttackDamage(int attackdamage)
     {
-        AttackDamage = attackdamage;
+        AttackDamage = Mathf.Clamp(attackdamage, 0, 5);
     }
 
     public int GetHealth() { return Health; }
     public void SetHealth(int health)
     {
-        Health = health;
+        Health = Mathf.Clamp(health, 0, 100);
     }
 
     public float GetCriticalPer() { return CriticalPer; }
     public void SetCriticalPer(float criticalper)
     {
-        CriticalPer = criticalper;
+        CriticalPer = Mathf.Clamp(criticalper, 0, 100.0f);
     }
 
     public float GetEnhancePer() { return EnhancePer; }
     public void SetEnhancePer(float enhanceper)
     {
-        EnhancePer = enhanceper;
+        EnhancePer = Mathf.Clamp(enhanceper, 0, 100.0f);
     }
 
     public bool GetDeath() { return Death; }
