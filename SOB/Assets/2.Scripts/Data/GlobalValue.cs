@@ -9,6 +9,9 @@ public class GlobalValue : MonoBehaviour
     /*Param*/
     private static bool GV_Pause = false;
 
+    private static float GV_SystemDeltatime = 0.02f;
+    private static float GV_CharacterDeltatime = 0.02f;
+
     /*~Param*/
 
     private void Awake()
@@ -45,6 +48,24 @@ public class GlobalValue : MonoBehaviour
             GV_Pause = pause;
         }
     }
+
+    public float GetSystemDelta() { return GV_SystemDeltatime; }
+    public void SetSystemDelta(float deltatime)
+    {
+        if (GV_SystemDeltatime != deltatime)
+        {
+            GV_SystemDeltatime = deltatime;
+        }
+    }
+    public float GetCharacterDelta() { return GV_CharacterDeltatime; }
+    public void SetCharacterDelta(float deltatime)
+    {
+        if(GV_CharacterDeltatime != deltatime)
+        {
+            GV_CharacterDeltatime = deltatime;
+        }
+    }
+    
     /*~func*/
 }
 
