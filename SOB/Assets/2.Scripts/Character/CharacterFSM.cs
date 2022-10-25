@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,6 +13,9 @@ public class CharacterFSM : MonoBehaviour
     private int     JumpCount = 1;
     private float   DefaultMoveSpeed = 7.0f;
     private float   DefaultJumpPower = 20.0f;
+
+    private float   PauseVelocityX = 0.0f;
+    private float   PauseVelocityY = 0.0f;
 
     private void Awake()
     {
@@ -31,6 +35,14 @@ public class CharacterFSM : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (Pause())
+        {
+            return;
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -39,7 +51,7 @@ public class CharacterFSM : MonoBehaviour
             CharacterValue.Instance.ShowDebug();
         }
 
-        if (Pause())
+        if(GlobalValue.Instance.GetPause())
         {
             return;
         }
@@ -122,7 +134,7 @@ public class CharacterFSM : MonoBehaviour
     {
         if (CharacterValue.Instance.GetJump())
         {
-            rb.velocity = Vector2.up * DefaultJumpPower* CharacterValue.Instance.GetJumpPower();
+            rb.velocity = Vector2.up * DefaultJumpPower * CharacterValue.Instance.GetJumpPower();
 
             return true;
         }
@@ -132,11 +144,7 @@ public class CharacterFSM : MonoBehaviour
     bool CanMove()
     {
         //움직임이 가능한 상태
-        if (CharacterValue.Instance.GetMove())
-        {
-            return true;
-        }
-        return false;
+        return CharacterValue.Instance.GetMove();
     }
 
     bool CanJump()
@@ -166,47 +174,61 @@ public class CharacterFSM : MonoBehaviour
     {
         if(boxcollider2d != null)
         {
-            Gizmos.DrawCube(boxcollider2d.bounds.center + Vector3.down *0.01f, boxcollider2d.bounds.size);
+            Gizmos.DrawCube(boxcollider2d.bounds.center + Vector3.down * 0.01f, boxcollider2d.bounds.size);
         }
     }
 
     bool CanAttack()
     {
-        //공격이 가능한 상태
-        if (CharacterValue.Instance.GetAttack())
-        {
-            return true;
-        }
-        return false;
+        //공격이 가능한 상태        
+        return CharacterValue.Instance.GetAttack();
     }
 
     bool Death()
     {
-        //사망 상태 판단
-        if (CharacterValue.Instance.GetDeath())
-        {
-            return true;
-        }
-        return false;
+        //사망 상태 판단        
+        return CharacterValue.Instance.GetDeath();
     }
 
     bool Pause()
     {
-        //환경설정 및 게임 정지 상태
-        if(GlobalValue.Instance.GetPause())
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            return true;
+            Debug.Log("Pause");
+            /*GlobalValue.Instance.SetCharacterDelta((GlobalValue.Instance.GetCharacterDelta() == 0.02f) ? 0.0f : 0.02f);
+            GlobalValue.Instance.SetPause(GlobalValue.Instance.GetCharacterDelta() == 0.0f ? false : true);*/
+            if(rb != null)
+            {
+                if(GlobalValue.Instance.GetCharacterDelta() == 0.02f)
+                {
+                    GlobalValue.Instance.SetCharacterDelta(0.0f);
+                    GlobalValue.Instance.SetPause(true);
+                    PauseVelocityX = rb.velocity.x;
+                    PauseVelocityY = rb.velocity.y; 
+                    rb.bodyType = RigidbodyType2D.Static;
+                } 
+                else
+                {
+                    GlobalValue.Instance.SetCharacterDelta(0.02f);
+                    GlobalValue.Instance.SetPause(false);
+                    rb.bodyType = RigidbodyType2D.Dynamic;
+                    rb.velocity = new Vector3(PauseVelocityX, PauseVelocityY, 0f);
+                }
+            }
         }
-        return false;
+
+        return IsPause();
+    }
+
+    bool IsPause()
+    {
+        //환경설정 및 게임 정지 상태        
+        return GlobalValue.Instance.GetPause();
     }
 
     bool CanTakeDamage()
-    {
-        if(CharacterValue.Instance.GetCanTakeDamage())
-        {
-            return true;
-        }
-        return false;
+    {        
+        return CharacterValue.Instance.GetCanTakeDamage();
     }
 
     bool TakeDamage(int damage)
