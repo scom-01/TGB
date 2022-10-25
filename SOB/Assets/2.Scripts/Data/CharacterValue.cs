@@ -5,29 +5,34 @@ using UnityEngine;
 
 public class CharacterValue : MonoBehaviour
 {
-    private static CharacterValue Inst = null;
+    private CharacterValue Inst = null;
 
-    private static string DebugStr = "";
+    private string DebugStr = "";
 
     /*Param~*/
-    private static bool     CanJump     = true;
-    private static bool     CanMove     = true;
-    private static bool     CanAttack   = true;
-    private static bool     Death       = false;
-    private static bool     CanTakeDamage   = true;
+    [SerializeField]
+    private bool     CanJump     = true;
+    [SerializeField]
+    private bool     CanMove     = true;
+    [SerializeField]
+    private bool     CanAttack   = true;
+    [SerializeField]
+    private bool     Death       = false;
+    [SerializeField]
+    private bool     CanTakeDamage   = true;
 
-    private static float    JumpPower   = 1.0f;     /*Max = 5.0,    Min = 0.0*/
-    private static float    MoveSpeed   = 1.0f;     /*Max = 3.0,    Min = 0.0*/
-    private static float    AttackSpeed = 1.0f;     /*Max = 10.0,   Min = 0.0*/
-    private static int      AttackDamage = 5;       /*Min = 0*/
-    private static int      Health      = 5;        /*Max = 100,    Min = 0*/
-    private static float    CriticalPer = 10.0f;    /*Max = 100.0,  Min = 0.0*/
-    private static float    EnhancePer  = 100.0f;   /*Max = 100.0,    Min = 0.0*/
+    private float    JumpPower   = 1.0f;     /*Max = 5.0,    Min = 0.0*/
+    private float    MoveSpeed   = 1.0f;     /*Max = 3.0,    Min = 0.0*/
+    private float    AttackSpeed = 1.0f;     /*Max = 10.0,   Min = 0.0*/
+    private int      AttackDamage = 5;       /*Min = 0*/
+    private int      Health      = 5;        /*Max = 100,    Min = 0*/
+    private float    CriticalPer = 10.0f;    /*Max = 100.0,  Min = 0.0*/
+    private float    EnhancePer  = 100.0f;   /*Max = 100.0,    Min = 0.0*/
     /*~Param*/
 
     private void Awake()
     {
-        if (Inst == null)
+/*        if (Inst == null)
         {
             Inst = this;
             DontDestroyOnLoad(this.gameObject);
@@ -35,10 +40,10 @@ public class CharacterValue : MonoBehaviour
         else
         {
             Destroy(this.gameObject);
-        }
+        }*/
     }
 
-    public static CharacterValue Instance
+/*    public CharacterValue Instance
     {
         get
         {
@@ -48,7 +53,7 @@ public class CharacterValue : MonoBehaviour
             }
             return Inst;
         }
-    }
+    }*/
 
     /*func~*/
     public bool GetJump() { return CanJump; }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEditor;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class CharacterFSM : MonoBehaviour
     [SerializeField] private LayerMask platformsLayerMask;
     private Rigidbody2D rb = null;
     private BoxCollider2D boxcollider2d = null;
+    private RaycastHit2D raycastbox;
+    private CharacterValue CV = null;
 
     private int     JumpCount = 1;
     private float   DefaultMoveSpeed = 7.0f;
@@ -25,6 +28,7 @@ public class CharacterFSM : MonoBehaviour
     private bool Init()
     {
         rb = this.GetComponent<Rigidbody2D>();
+        CV = this.GetComponent<CharacterValue>(); 
         boxcollider2d = this.GetComponent<BoxCollider2D>();
         return true;
     }
@@ -48,7 +52,7 @@ public class CharacterFSM : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            CharacterValue.Instance.ShowDebug();
+            CV.ShowDebug();
         }
 
         if(GlobalValue.Instance.GetPause())
@@ -91,13 +95,18 @@ public class CharacterFSM : MonoBehaviour
             Debug.Log("CanJump true");
         }
 
+        if(Input.GetKeyDown(KeyCode.B))
+        {
+            transform.position = Vector3.zero;
+        }
+
     }
 
     bool MoveChar()
     {
         float dirX = Input.GetAxis("Horizontal");
 
-        rb.velocity = new Vector2(dirX * DefaultMoveSpeed *  CharacterValue.Instance.GetMoveSpeed(), rb.velocity.y);
+        rb.velocity = new Vector2(dirX * DefaultMoveSpeed * CV.GetMoveSpeed(), rb.velocity.y);
         if (rb.velocity.magnitude > 0.0f)
         {
             return true;
@@ -109,7 +118,7 @@ public class CharacterFSM : MonoBehaviour
 
     void JumpCal()
     {
-        if (CharacterValue.Instance.GetJump())
+        if (CV.GetJump())
         {
             if (JumpCount > 0) 
             { 
@@ -123,18 +132,21 @@ public class CharacterFSM : MonoBehaviour
                     Debug.Log("Double Jump");
                 }
                 JumpCount--;
+
+                
             }
-            else
+
+            if (JumpCount == 0)
             {
-                CharacterValue.Instance.SetJump(false);
+                CV.SetJump(false);
             }
         }
     }
     bool Jump()
     {
-        if (CharacterValue.Instance.GetJump())
+        if (CV.GetJump())
         {
-            rb.velocity = Vector2.up * DefaultJumpPower * CharacterValue.Instance.GetJumpPower();
+            rb.velocity = Vector2.up * DefaultJumpPower * CV.GetJumpPower();
 
             return true;
         }
@@ -144,31 +156,33 @@ public class CharacterFSM : MonoBehaviour
     bool CanMove()
     {
         //움직임이 가능한 상태
-        return CharacterValue.Instance.GetMove();
+        return CV.GetMove();
     }
 
     bool CanJump()
     {
         //점프가 가능한 상태
-        if(CharacterValue.Instance.GetJump())
+        RaycastHit2D hit = Physics2D.BoxCast(boxcollider2d.bounds.center, boxcollider2d.bounds.size, 0f, Vector2.down, .1f,LayerMask.GetMask("Ground"));
+        
+        if (hit.collider != null)
         {
-            CharacterValue.Instance.SetJump(true);
+            Debug.DrawRay(transform.position, new Vector3(0, -1, 0) * 0.1f, new Color(0, 1, 0), LayerMask.GetMask("Ground"));
+            Debug.Log("RayCastHit");
+            JumpCount = 2;
+            CV.SetJump(true);
+            return true;
+        }
+
+        if(CV.GetJump())
+        {
+            CV.SetJump(true);
             return true;
         }
 
         return false;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == 15)
-        {
-            //점프를 Boxcast로 구현하였더니 점프 하는 그 순간 0.01정도 떠 있을 때도 CanJump로 인식하여 더블 점프를 구현하는데 까다로워 변경함
-            JumpCount = 2;
-            CharacterValue.Instance.SetJump(true);
-            Debug.Log("Coll layer 15");
-        }
-    }
+    
 
     private void OnDrawGizmos()
     {
@@ -181,13 +195,13 @@ public class CharacterFSM : MonoBehaviour
     bool CanAttack()
     {
         //공격이 가능한 상태        
-        return CharacterValue.Instance.GetAttack();
+        return CV.GetAttack();
     }
 
     bool Death()
     {
         //사망 상태 판단        
-        return CharacterValue.Instance.GetDeath();
+        return CV.GetDeath();
     }
 
     bool Pause()
@@ -228,28 +242,64 @@ public class CharacterFSM : MonoBehaviour
 
     bool CanTakeDamage()
     {        
-        return CharacterValue.Instance.GetCanTakeDamage();
+        return CV.GetCanTakeDamage();
     }
 
     bool TakeDamage(int damage)
     {
         if(CanTakeDamage())
         {
-            if (damage >= CharacterValue.Instance.GetHealth())
+            if (damage >= CV.GetHealth())
             {
-                CharacterValue.Instance.SetHealth(0);
-                CharacterValue.Instance.SetDeath(true);
+                CV.SetHealth(0);
+                CV.SetDeath(true);
                 //사망 애니메이션 호출
             }
             else
             {
-                CharacterValue.Instance.SetHealth(CharacterValue.Instance.GetHealth() + damage);
+                CV.SetHealth(CV.GetHealth() + damage);
 
                 //데미지 피격 애니메이션 호출
             }
-            CharacterValue.Instance.SetCanTakeDamage(false);    //피격 후에는 일정 시간 피격받지 않도록
+            CV.SetCanTakeDamage(false);    //피격 후에는 일정 시간 피격받지 않도록
             return true;
         }
         return false;
     }
+
+    //Physics~    
+    private void OnCollisionEnter2D(Collision2D coll)
+    {
+        /*if (coll.gameObject.layer == 15)
+        {
+            //점프를 Boxcast로 구현하였더니 점프 하는 그 순간 0.01정도 떠 있을 때도 CanJump로 인식하여 더블 점프를 구현하는데 까다로워 변경함
+            JumpCount = 2;
+            CV.SetJump(true);
+            Debug.Log("Coll layer 15");
+        }*/
+    }
+
+    private void OnCollisionExit2D(Collision2D coll)
+    {
+        
+    }
+
+    private void OnCollisionStay2D(Collision2D coll)
+    {
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D coll)
+    {
+        
+    }
+
+    private void OnTriggerStay2D(Collider2D coll)
+    {
+        if (coll.gameObject.layer == 16)
+        {
+            Debug.Log("SlowGround");
+        }
+    }
+    //~Physics
 }
