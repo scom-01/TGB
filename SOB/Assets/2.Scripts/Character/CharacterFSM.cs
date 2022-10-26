@@ -13,6 +13,10 @@ public class CharacterFSM : MonoBehaviour
     private RaycastHit2D raycastbox;
     private CharacterValue CV = null;
 
+    public Animator Anim { get; private set; }
+
+
+
     private int     JumpCount = 1;
     private float   DefaultMoveSpeed = 7.0f;
     private float   DefaultJumpPower = 20.0f;
@@ -36,7 +40,7 @@ public class CharacterFSM : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Anim = GetComponent<Animator>();
     }
 
     private void Update()
@@ -50,10 +54,10 @@ public class CharacterFSM : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        /*if (Input.GetKeyDown(KeyCode.P))
         {
             CV.ShowDebug();
-        }
+        }*/
 
         if(GlobalValue.Instance.GetPause())
         {
@@ -83,7 +87,7 @@ public class CharacterFSM : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (CanJump())
+        /*if (CanJump())
         {
             if (Input.GetKeyDown(KeyCode.W))
             {
@@ -98,15 +102,15 @@ public class CharacterFSM : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.B))
         {
             transform.position = Vector3.zero;
-        }
+        }*/
 
     }
 
     bool MoveChar()
     {
-        float dirX = Input.GetAxis("Horizontal");
+        //float dirX = Input.GetAxis("Horizontal");
 
-        rb.velocity = new Vector2(dirX * DefaultMoveSpeed * CV.GetMoveSpeed(), rb.velocity.y);
+        //rb.velocity = new Vector2(dirX * DefaultMoveSpeed * CV.GetMoveSpeed(), rb.velocity.y);
         if (rb.velocity.magnitude > 0.0f)
         {
             return true;
@@ -206,11 +210,11 @@ public class CharacterFSM : MonoBehaviour
 
     bool Pause()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        /*if (Input.GetKeyDown(KeyCode.P))
         {
             Debug.Log("Pause");
-            /*GlobalValue.Instance.SetCharacterDelta((GlobalValue.Instance.GetCharacterDelta() == 0.02f) ? 0.0f : 0.02f);
-            GlobalValue.Instance.SetPause(GlobalValue.Instance.GetCharacterDelta() == 0.0f ? false : true);*/
+            *//*GlobalValue.Instance.SetCharacterDelta((GlobalValue.Instance.GetCharacterDelta() == 0.02f) ? 0.0f : 0.02f);
+            GlobalValue.Instance.SetPause(GlobalValue.Instance.GetCharacterDelta() == 0.0f ? false : true);*//*
             if(rb != null)
             {
                 if(GlobalValue.Instance.GetCharacterDelta() == 0.02f)
@@ -229,7 +233,7 @@ public class CharacterFSM : MonoBehaviour
                     rb.velocity = new Vector3(PauseVelocityX, PauseVelocityY, 0f);
                 }
             }
-        }
+        }*/
 
         return IsPause();
     }
