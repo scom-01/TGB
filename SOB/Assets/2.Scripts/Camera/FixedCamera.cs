@@ -9,12 +9,15 @@ public class FixedCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(MainChar != null)
+        {
+            this.transform.position = new Vector3(MainChar.transform.position.x, MainChar.transform.position.y,-10);  
+        }
     }
 }
