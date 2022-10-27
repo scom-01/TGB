@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
     
     public PlayerIdleState IdleState { get; private set; }   
     public PlayerMoveState MoveState { get; private set; }
+    public PlayerJumpState JumpState { get; private set; }
+    public PlayerInAirState InAirState { get; private set; }
+    public PlayerLandState LandState { get; private set; }
 
     [SerializeField]
     private PlayerData playerData;
@@ -18,6 +21,11 @@ public class Player : MonoBehaviour
     public Animator Anim { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
     public Rigidbody2D RB { get; private set; }
+    #endregion
+
+    #region Check Transforms
+    [SerializeField]
+    private Transform groundCheck;
     #endregion
 
     #region Other Variables
@@ -34,6 +42,9 @@ public class Player : MonoBehaviour
 
         IdleState = new PlayerIdleState(this, fsm, playerData, "idle");
         MoveState = new PlayerMoveState(this, fsm, playerData, "move");
+        JumpState = new PlayerJumpState(this, fsm, playerData, "inAir");    //점프하는 순간 공중상태이므로
+        InAirState = new PlayerInAirState(this, fsm, playerData, "inAir");
+        LandState = new PlayerLandState(this, fsm, playerData, "land");
     }
 
     private void Start()
@@ -66,10 +77,23 @@ public class Player : MonoBehaviour
         RB.velocity = workspace;
         CurrentVelocity = workspace;
     }
+    public void  SetVelocityY(float velocity)
+    {
+        workspace.Set(CurrentVelocity.x, velocity);
+        RB.velocity = workspace;
+        CurrentVelocity = workspace;
+    }
 
     #endregion
 
     #region Check Func
+
+    public bool CheckIfGrounded()
+    {
+
+        return Physics2D.OverlapCircle(groundCheck.position,playerData.groundCheckRadius,playerData.whatIsGround);
+    }
+
     public void CheckIfShouldFlip(int xInput)
     {
         if(xInput != 0 && xInput != FancingDirection)
@@ -81,6 +105,10 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Other Func
+
+    private void AnimationTrigger() => fsm.CurrentState.AnimationTrigger();
+
+    private void AnimationFinishTrigger() => fsm.CurrentState.AnimationFinishTrigger();
     private void Flip()
     {
         FancingDirection *= -1;

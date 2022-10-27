@@ -8,4 +8,14 @@ public class PlayerData : ScriptableObject
     [Header("Move State")]
     public float movementVelocity = 10f;
 
+    [Header("Jump State")]
+    public float jumpVelocity = 15f;
+    public int amountOfJumps = 1;
+
+    [Header("In Air State")]
+    public float coyeteTime = 0.2f;
+
+    [Header("Check Variables")]
+    public float groundCheckRadius = 0.3f;
+    public LayerMask whatIsGround;
 }
