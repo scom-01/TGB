@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -12,6 +13,11 @@ public class Player : MonoBehaviour
     public PlayerJumpState JumpState { get; private set; }
     public PlayerInAirState InAirState { get; private set; }
     public PlayerLandState LandState { get; private set; }
+    public PlayerWallSlideState WallSlideState { get; private set; }
+    public PlayerWallGrabState WallGrabState { get; private set; }
+    public PlayerWallClimbState WallClimbState { get; private set; }
+
+
 
     [SerializeField]
     private PlayerData playerData;
@@ -21,11 +27,14 @@ public class Player : MonoBehaviour
     public Animator Anim { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
     public Rigidbody2D RB { get; private set; }
+    public BoxCollider2D BC2D { get; private set; }
     #endregion
 
     #region Check Transforms
     [SerializeField]
     private Transform groundCheck;
+    [SerializeField]
+    private Transform wallCheck;
     #endregion
 
     #region Other Variables
@@ -45,6 +54,9 @@ public class Player : MonoBehaviour
         JumpState = new PlayerJumpState(this, fsm, playerData, "inAir");    //점프하는 순간 공중상태이므로
         InAirState = new PlayerInAirState(this, fsm, playerData, "inAir");
         LandState = new PlayerLandState(this, fsm, playerData, "land");
+        WallSlideState = new PlayerWallSlideState(this, fsm, playerData, "wallSlide");
+        WallGrabState = new PlayerWallGrabState(this, fsm, playerData, "wallGrab");
+        WallClimbState = new PlayerWallClimbState(this, fsm, playerData, "wallClimb");
     }
 
     private void Start()
@@ -52,6 +64,7 @@ public class Player : MonoBehaviour
         Anim = GetComponent<Animator>();
         InputHandler = GetComponent<PlayerInputHandler>();
         RB = GetComponent<Rigidbody2D>();
+        BC2D = GetComponent<BoxCollider2D>();
 
         FancingDirection = 1;
 
@@ -87,11 +100,17 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Check Func
-
+        
     public bool CheckIfGrounded()
     {
+        return Physics2D.OverlapBox(groundCheck.position, new Vector2(BC2D.bounds.size.x * 0.8f, BC2D.bounds.size.y * playerData.groundCheckRadius), 0f, playerData.whatIsGround);
+        //return Physics2D.OverlapCircle(groundCheck.position,playerData.groundCheckRadius,playerData.whatIsGround);
+    }
 
-        return Physics2D.OverlapCircle(groundCheck.position,playerData.groundCheckRadius,playerData.whatIsGround);
+    public bool CheckIfTouchingWall()
+    {
+        Debug.DrawRay(wallCheck.position, Vector2.right * FancingDirection * playerData.wallCheckDistance);        
+        return Physics2D.Raycast(wallCheck.position, Vector2.right * FancingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
     }
 
     public void CheckIfShouldFlip(int xInput)

@@ -6,8 +6,12 @@ public class PlayerInAirState : PlayerState
 {
     private int xInput;
     private bool isGrounded;
+    private bool isTouchingWall;
     private bool JumpInput;
+    private bool JumpInputStop;
     private bool coyoteTime;
+    private bool isJumping;
+    private bool grabInput;
 
     public PlayerInAirState(Player player, PlayerFSM fSM, PlayerData playerData, string animBoolName) : base(player, fSM, playerData, animBoolName)
     {
@@ -18,6 +22,7 @@ public class PlayerInAirState : PlayerState
         base.DoChecks();
 
         isGrounded = player.CheckIfGrounded();
+        isTouchingWall = player.CheckIfTouchingWall(); 
     }
 
     public override void Enter()
@@ -38,22 +43,50 @@ public class PlayerInAirState : PlayerState
 
         xInput = player.InputHandler.NormInputX;
         JumpInput = player.InputHandler.JumpInput;
+        JumpInputStop = player.InputHandler.JumpInputStop;
+        grabInput = player.InputHandler.GrabInput;
+
+        CheckJumpMultiplier();
 
         if (isGrounded && player.CurrentVelocity.y < 0.01f)
         {
             FSM.ChangeState(player.LandState);
         }
         else if(JumpInput && player.JumpState.CanJump())
-        {
+        {            
             FSM.ChangeState(player.JumpState);
+        }
+        else if(isTouchingWall && grabInput)
+        {
+            FSM.ChangeState(player.WallGrabState);
+        }
+        else if(isTouchingWall && xInput == player.FancingDirection && player.CurrentVelocity.y <= 0f)
+        {
+            FSM.ChangeState(player.WallSlideState);
         }
         else
         {
             player.CheckIfShouldFlip(xInput);
             player.SetVelocityX(playerData.movementVelocity * xInput);
 
-            player.Anim.SetFloat("yVelocity", Mathf.Clamp(player.CurrentVelocity.y,-3,13));
+            player.Anim.SetFloat("yVelocity", Mathf.Clamp(player.CurrentVelocity.y, -3, 13));
             player.Anim.SetFloat("xVelocity", Mathf.Abs(player.CurrentVelocity.x));
+        }
+    }
+
+    private void CheckJumpMultiplier()
+    {
+        if (isJumping)
+        {
+            if (JumpInputStop)
+            {
+                player.SetVelocityY(player.CurrentVelocity.y * playerData.variableJumpHeightMultiplier);
+                isJumping = false;
+            }
+            else if (player.CurrentVelocity.y <= 0f)
+            {
+                isJumping = false;
+            }
         }
     }
 
@@ -72,4 +105,5 @@ public class PlayerInAirState : PlayerState
     }
 
     public void StartCoyoteTime() => coyoteTime = true;
+    public void SetIsJumping() => isJumping = true;
 }
