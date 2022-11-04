@@ -27,7 +27,7 @@ public class PlayerIdleState : PlayerGroundedState
     {
         base.LogicUpdate();
 
-        if(xInput != 0f)
+        if(xInput != 0f && !isExitingState)
         {
             FSM.ChangeState(player.MoveState);
         }

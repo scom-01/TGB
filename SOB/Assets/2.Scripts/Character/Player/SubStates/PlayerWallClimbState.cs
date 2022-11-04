@@ -13,10 +13,14 @@ public class PlayerWallClimbState : PlayerTouchingWallState
         base.LogicUpdate();
 
         player.SetVelocityY(playerData.wallClimbVelocity);
-
-        if(yInput != 1)
+        
+        if(yInput != 1 && grabInput && !isExitingState)
         {
             FSM.ChangeState(player.WallGrabState);
+        }
+        else if(yInput != 1 || !grabInput)
+        {
+            FSM.ChangeState(player.WallSlideState);
         }
     }
 }
