@@ -16,6 +16,7 @@ public class PlayerInAirState : PlayerState
     private bool wallJumpCoyoteTime;
     private bool isJumping;
     private bool grabInput;
+    private bool isTouchingLedge;
 
     private float startWallJumpCoyoteTime;
     public PlayerInAirState(Player player, PlayerFSM fSM, PlayerData playerData, string animBoolName) : base(player, fSM, playerData, animBoolName)
@@ -32,12 +33,16 @@ public class PlayerInAirState : PlayerState
         isGrounded = player.CheckIfGrounded();
         isTouchingWall = player.CheckIfTouchingWall();
         isTouchingWallBack = player.CheckIfTouchingWallBack();
+        isTouchingLedge = player.CheckIfTouchingLedge();
+
+        if(isTouchingWall && !isTouchingLedge)
+        {
+            player.LedgeClimbState.SetDetectedPosition(player.transform.position);
+        }
 
         if (!wallJumpCoyoteTime && !isTouchingWall && !isTouchingWallBack && (oldIsTouchingWall || oldIsTouchingWallBack))
         {
-            Debug.Log("WallCoyoteTime");
             StartWallJumpCoyoteTime();
-
         }
     }
 
@@ -73,6 +78,10 @@ public class PlayerInAirState : PlayerState
         if (isGrounded && player.CurrentVelocity.y < 0.01f)
         {
             FSM.ChangeState(player.LandState);
+        }
+        else if(isTouchingWall && !isTouchingLedge)
+        {
+            FSM.ChangeState(player.LedgeClimbState);
         }
         else if(JumpInput && (isTouchingWall || isTouchingWallBack || wallJumpCoyoteTime))
         {
