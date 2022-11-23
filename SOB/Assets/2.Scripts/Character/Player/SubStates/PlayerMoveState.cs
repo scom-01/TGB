@@ -31,7 +31,7 @@ public class PlayerMoveState : PlayerGroundedState
         player.CheckIfShouldFlip(xInput);
 
         player.SetVelocityX(playerData.movementVelocity * xInput);
-
+        
         if(xInput == 0f && !isExitingState)
         {
             FSM.ChangeState(player.IdleState);

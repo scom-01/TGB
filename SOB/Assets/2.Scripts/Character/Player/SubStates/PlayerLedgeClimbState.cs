@@ -11,6 +11,7 @@ public class PlayerLedgeClimbState : PlayerState
 
     private bool isHanging;
     private bool isClimbing;
+    private bool jumpInput;
 
     private int xInput;
     private int yInput;
@@ -72,6 +73,7 @@ public class PlayerLedgeClimbState : PlayerState
         {
             xInput = player.InputHandler.NormInputX;
             yInput = player.InputHandler.NormInputY;
+            jumpInput = player.InputHandler.JumpInput;
 
             player.SetVelocityZero();
             player.transform.position = startPos;
@@ -84,6 +86,12 @@ public class PlayerLedgeClimbState : PlayerState
             else if (yInput == -1 && isHanging && !isClimbing)
             {
                 FSM.ChangeState(player.InAirState);
+            }
+            //매달리기 상태에서 벽 점프
+            else if(jumpInput && !isClimbing && isHanging)
+            {
+                player.WallJumpState.DetermineWallJumpDirection(true);
+                FSM.ChangeState(player.WallJumpState);
             }
         }
     }

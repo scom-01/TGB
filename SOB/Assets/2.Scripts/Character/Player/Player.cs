@@ -14,10 +14,11 @@ public class Player : MonoBehaviour
     public PlayerInAirState InAirState { get; private set; }
     public PlayerLandState LandState { get; private set; }
     public PlayerWallSlideState WallSlideState { get; private set; }
-    public PlayerWallGrabState WallGrabState { get; private set; }
-    public PlayerWallClimbState WallClimbState { get; private set; }
+    //public PlayerWallGrabState WallGrabState { get; private set; }
+    //public PlayerWallClimbState WallClimbState { get; private set; }
     public PlayerWallJumpState WallJumpState { get; private set; }
-    public PlayerLedgeClimbState LedgeClimbState { get; private set; }
+    //public PlayerLedgeClimbState LedgeClimbState { get; private set; }
+    public PlayerDashState DashState { get; private set; }
 
 
     [SerializeField]
@@ -52,16 +53,18 @@ public class Player : MonoBehaviour
     {
         fsm = new PlayerFSM();
 
+        //각 State 생성
         IdleState = new PlayerIdleState(this, fsm, playerData, "idle");
         MoveState = new PlayerMoveState(this, fsm, playerData, "move");
         JumpState = new PlayerJumpState(this, fsm, playerData, "inAir");    //점프하는 순간 공중상태이므로
         InAirState = new PlayerInAirState(this, fsm, playerData, "inAir");
         LandState = new PlayerLandState(this, fsm, playerData, "land");
         WallSlideState = new PlayerWallSlideState(this, fsm, playerData, "wallSlide");
-        WallGrabState = new PlayerWallGrabState(this, fsm, playerData, "wallGrab");
-        WallClimbState = new PlayerWallClimbState(this, fsm, playerData, "wallClimb");
+        //WallGrabState = new PlayerWallGrabState(this, fsm, playerData, "wallGrab");
+        //WallClimbState = new PlayerWallClimbState(this, fsm, playerData, "wallClimb");
         WallJumpState= new PlayerWallJumpState(this, fsm, playerData, "inAir");
-        LedgeClimbState = new PlayerLedgeClimbState(this, fsm, playerData, "ledgeClimbState");
+        //LedgeClimbState = new PlayerLedgeClimbState(this, fsm, playerData, "ledgeClimbState");
+        DashState = new PlayerDashState(this, fsm, playerData, "inAir");
     }
 
     private void Start()
@@ -97,7 +100,7 @@ public class Player : MonoBehaviour
     public void SetVelocity(float velocity, Vector2 angle, int direction)
     {
         angle.Normalize();
-        workspace.Set(angle.x * velocity * direction, angle.y * velocity);
+        workspace.Set(angle.x * velocity * direction, Mathf.Clamp(angle.y * velocity,-3,13));
         RB.velocity = workspace;
         CurrentVelocity = workspace;
     }
@@ -153,11 +156,14 @@ public class Player : MonoBehaviour
 
     #region Other Func
 
+    //Ledge를 위한 Corner Check 및 Position 계산
     public Vector2 DetermineCornerPosition()
     {
+        //x RayCast를 통한 캐릭터 전방 wallCheck
         RaycastHit2D xHit = Physics2D.Raycast(wallCheck.position, Vector2.right * FancingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
         float xDist = xHit.distance;
         workspace.Set((xDist + 0.015f) * FancingDirection, 0f);
+        //y RayCast를 통한 Corner와 ledgeCheck Position과의 차 계산
         RaycastHit2D yHit = Physics2D.Raycast(ledgeCheck.position + (Vector3)(workspace), Vector2.down, ledgeCheck.position.y - wallCheck.position.y + 0.015f, playerData.whatIsGround);
         float yDist = yHit.distance;
 
@@ -167,6 +173,8 @@ public class Player : MonoBehaviour
     private void AnimationTrigger() => fsm.CurrentState.AnimationTrigger();
 
     private void AnimationFinishTrigger() => fsm.CurrentState.AnimationFinishTrigger();
+
+    //2D Filp
     private void Flip()
     {
         FancingDirection *= -1;

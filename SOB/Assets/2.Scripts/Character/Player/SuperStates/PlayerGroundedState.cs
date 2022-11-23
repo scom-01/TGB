@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerGroundedState : PlayerState
 {
-    protected int xInput;
+    protected int xInput;           //x축 이동 입력값
     
-    private bool JumpInput;
-    private bool grabInput;
-    private bool isGrounded;
-    private bool isTouchingWall;
-
+    private bool JumpInput;         //점프 입력값
+    private bool grabInput;         //grab 입력값
+    private bool isGrounded;        //Grounded 체크
+    private bool isTouchingWall;    //벽 체크 
+    private bool isTouchingLedge;   //Ledge체크
     public PlayerGroundedState(Player player, PlayerFSM fSM, PlayerData playerData, string animBoolName) : base(player, fSM, playerData, animBoolName)
     {
     }
@@ -21,6 +21,7 @@ public class PlayerGroundedState : PlayerState
 
         isGrounded = player.CheckIfGrounded();
         isTouchingWall = player.CheckIfTouchingWall();
+        isTouchingLedge = player.CheckIfTouchingLedge(); 
     }
 
     public override void Enter()
@@ -51,10 +52,10 @@ public class PlayerGroundedState : PlayerState
             player.InAirState.StartCoyoteTime();
             FSM.ChangeState(player.InAirState);
         }
-        else if(isTouchingWall && grabInput)
+        /*else if(isTouchingWall && grabInput && isTouchingLedge)
         {
             FSM.ChangeState(player.WallGrabState);
-        }
+        }*/
     }
 
     public override void PhysicsUpdate()

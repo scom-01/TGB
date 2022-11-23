@@ -23,6 +23,7 @@ public class PlayerState
         this.animBoolName = animBoolName;
     }
 
+    //State변경 시 생성자함수 다음으로 호출되는 함수
     public virtual void Enter()
     {
         DoChecks();
@@ -33,17 +34,20 @@ public class PlayerState
         isExitingState = false;
     }
 
+    //State변경 시 제일 마지막에 호출되는 함수
     public virtual void Exit()
     {
         player.Anim.SetBool(animBoolName, false);
         isExitingState = true;
     }
     
+    //Update
     public virtual void LogicUpdate()
     {
 
     }
 
+    //FixedUpdate
     public virtual void PhysicsUpdate()
     {
         DoChecks();

@@ -34,10 +34,10 @@ public class PlayerTouchingWallState : PlayerState
         isTouchingWall = player.CheckIfTouchingWall();
         isTouchingLedge = player.CheckIfTouchingLedge();
 
-        if(isTouchingWall && !isTouchingLedge)
+        /*if(isTouchingWall && !isTouchingLedge)
         {
             player.LedgeClimbState.SetDetectedPosition(player.transform.position);
-        }
+        }*/
     }
 
     public override void Enter()
@@ -72,10 +72,10 @@ public class PlayerTouchingWallState : PlayerState
         {
             FSM.ChangeState(player.InAirState);
         }    
-        else if(isTouchingWall && !isTouchingLedge)
+        /*else if(isTouchingWall && !isTouchingLedge)
         {
             FSM.ChangeState(player.LedgeClimbState);
-        }
+        }*/
     }
 
     public override void PhysicsUpdate()

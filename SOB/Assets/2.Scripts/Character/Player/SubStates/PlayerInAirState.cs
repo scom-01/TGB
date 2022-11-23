@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class PlayerInAirState : PlayerState
 {
-    private int xInput;
-    private bool isGrounded;
-    private bool isTouchingWall;
-    private bool isTouchingWallBack;
-    private bool oldIsTouchingWall;
-    private bool oldIsTouchingWallBack;
-    private bool JumpInput;
-    private bool JumpInputStop;
-    private bool coyoteTime;
-    private bool wallJumpCoyoteTime;
-    private bool isJumping;
-    private bool grabInput;
-    private bool isTouchingLedge;
+    private int xInput;                 //좌우 입력값
+    private bool isGrounded;            //바닥 체크
+    private bool isTouchingWall;        //전방 벽과 붙어있는지 체크
+    private bool isTouchingWallBack;    //후방 벽과 붙어있는지 체크
+    private bool oldIsTouchingWall;     //Old 전방 벽과 붙어있는지 체크
+    private bool oldIsTouchingWallBack; //Old 후방 벽과 붙어있는지 체크
+    private bool JumpInput;             //점프 입력값
+    private bool JumpInputStop;         //점프 입력 해체 값
+    private bool coyoteTime;            //코요테 타임
+    private bool wallJumpCoyoteTime;    //벽 점프 코요테 타임
+    private bool isJumping;             //점프 중인지 확인
+    private bool grabInput;             //그랩 입력값
+    private bool isTouchingLedge;       //LedgeCheck오브젝트가 벽을 체크하는지
 
     private float startWallJumpCoyoteTime;
     public PlayerInAirState(Player player, PlayerFSM fSM, PlayerData playerData, string animBoolName) : base(player, fSM, playerData, animBoolName)
@@ -35,10 +35,10 @@ public class PlayerInAirState : PlayerState
         isTouchingWallBack = player.CheckIfTouchingWallBack();
         isTouchingLedge = player.CheckIfTouchingLedge();
 
-        if(isTouchingWall && !isTouchingLedge)
+        /*if(isTouchingWall && !isTouchingLedge)
         {
             player.LedgeClimbState.SetDetectedPosition(player.transform.position);
-        }
+        }*/
 
         if (!wallJumpCoyoteTime && !isTouchingWall && !isTouchingWallBack && (oldIsTouchingWall || oldIsTouchingWallBack))
         {
@@ -79,10 +79,10 @@ public class PlayerInAirState : PlayerState
         {
             FSM.ChangeState(player.LandState);
         }
-        else if(isTouchingWall && !isTouchingLedge)
+        /*else if(isTouchingWall && !isTouchingLedge && !isGrounded)
         {
             FSM.ChangeState(player.LedgeClimbState);
-        }
+        }*/
         else if(JumpInput && (isTouchingWall || isTouchingWallBack || wallJumpCoyoteTime))
         {
             StopWallJumpCoyoteTime();
@@ -95,10 +95,10 @@ public class PlayerInAirState : PlayerState
             coyoteTime = false; 
             FSM.ChangeState(player.JumpState);
         }
-        else if(isTouchingWall && grabInput)
+        /*else if(isTouchingWall && grabInput && isTouchingLedge)
         {
             FSM.ChangeState(player.WallGrabState);
-        }
+        }*/
         else if(isTouchingWall && xInput == player.FancingDirection && player.CurrentVelocity.y <= 0f)
         {
             FSM.ChangeState(player.WallSlideState);

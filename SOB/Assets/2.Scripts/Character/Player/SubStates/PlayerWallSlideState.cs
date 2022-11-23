@@ -16,9 +16,9 @@ public class PlayerWallSlideState : PlayerTouchingWallState
 
         player.SetVelocityY(-playerData.wallSlideVelocity);
 
-        if (grabInput && yInput >= 0 && !isExitingState)
+        /*if (grabInput && yInput >= 0 && !isExitingState)
         {
             FSM.ChangeState(player.WallGrabState);
-        }
+        }*/
     }
 }

@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c35bcfc08813c4e8bfc3cf5ddf894f, type: 3}
   m_Name: playerData
   m_EditorClassIdentifier: 
-  movementVelocity: 10
-  jumpVelocity: 15
   amountOfJumps: 2
   wallJumpVelocity: 20
   wallJumpTime: 0.2
@@ -22,8 +20,8 @@ MonoBehaviour:
   variableJumpHeightMultiplier: 0.5
   wallSlideVelocity: 3
   wallClimbVelocity: 6
-  startOffset: {x: 2, y: 2}
-  stopOffset: {x: 0, y: 0}
+  startOffset: {x: 0.34, y: -0.8}
+  stopOffset: {x: 0.5, y: 2}
   groundCheckRadius: 0.01
   wallCheckDistance: 0.4
   whatIsGround:

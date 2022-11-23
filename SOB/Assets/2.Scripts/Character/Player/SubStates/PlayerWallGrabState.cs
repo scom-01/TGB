@@ -47,7 +47,7 @@ public class PlayerWallGrabState : PlayerTouchingWallState
         HoldPosition();
         if (yInput > 0)
         {
-            FSM.ChangeState(player.WallClimbState);
+            //FSM.ChangeState(player.WallClimbState);
         }
         else if (yInput < 0 || !grabInput)
         {
