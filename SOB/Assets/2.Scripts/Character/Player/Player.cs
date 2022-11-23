@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
         //WallClimbState = new PlayerWallClimbState(this, fsm, playerData, "wallClimb");
         WallJumpState= new PlayerWallJumpState(this, fsm, playerData, "inAir");
         //LedgeClimbState = new PlayerLedgeClimbState(this, fsm, playerData, "ledgeClimbState");
-        DashState = new PlayerDashState(this, fsm, playerData, "inAir");
+        DashState = new PlayerDashState(this, fsm, playerData, "dash");
     }
 
     private void Start()

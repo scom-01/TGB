@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class PlayerInAirState : PlayerState
 {
+    //Input
     private int xInput;                 //좌우 입력값
+    private bool JumpInput;             //점프 입력값
+    private bool JumpInputStop;         //점프 입력 해체 값
+    private bool grabInput;             //그랩 입력값
+    private bool dashInput;             //Dash 키 입력값
+
+    //Checks
     private bool isGrounded;            //바닥 체크
     private bool isTouchingWall;        //전방 벽과 붙어있는지 체크
     private bool isTouchingWallBack;    //후방 벽과 붙어있는지 체크
     private bool oldIsTouchingWall;     //Old 전방 벽과 붙어있는지 체크
     private bool oldIsTouchingWallBack; //Old 후방 벽과 붙어있는지 체크
-    private bool JumpInput;             //점프 입력값
-    private bool JumpInputStop;         //점프 입력 해체 값
-    private bool coyoteTime;            //코요테 타임
-    private bool wallJumpCoyoteTime;    //벽 점프 코요테 타임
-    private bool isJumping;             //점프 중인지 확인
-    private bool grabInput;             //그랩 입력값
     private bool isTouchingLedge;       //LedgeCheck오브젝트가 벽을 체크하는지
+
+    private bool coyoteTime;            //코요테 타임 체크
+    private bool wallJumpCoyoteTime;    //벽 점프 코요테 타임 체크
+    private bool isJumping;             //점프 중인지 체크
 
     private float startWallJumpCoyoteTime;
     public PlayerInAirState(Player player, PlayerFSM fSM, PlayerData playerData, string animBoolName) : base(player, fSM, playerData, animBoolName)
@@ -72,6 +77,7 @@ public class PlayerInAirState : PlayerState
         JumpInput = player.InputHandler.JumpInput;
         JumpInputStop = player.InputHandler.JumpInputStop;
         grabInput = player.InputHandler.GrabInput;
+        dashInput = player.InputHandler.DashInput;
 
         CheckJumpMultiplier();
 
@@ -102,6 +108,13 @@ public class PlayerInAirState : PlayerState
         else if(isTouchingWall && xInput == player.FancingDirection && player.CurrentVelocity.y <= 0f)
         {
             FSM.ChangeState(player.WallSlideState);
+        }
+        else if(dashInput && player.DashState.CheckIfCanDash())
+        {
+            if(player.DashState.DashCount > 0)
+            {
+                FSM.ChangeState(player.DashState);
+            }
         }
         else
         {

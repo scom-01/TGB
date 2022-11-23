@@ -58,6 +58,15 @@ public class PlayerData : ScriptableObject
     [Tooltip("벽 오르기 시 종료 지점")]
     public Vector2 stopOffset;
 
+    [Header("Dash State")]
+    public float dashCooldown = 0.5f;
+    public float dashTime = 0.2f;
+    public float dashVelocity = 30f;
+    public int dashCount = 1;
+    public float drag = 10f;
+    public float dashEndYMultiplier = 0.2f;
+    public float distBetweenAfterImages = 0.5f;
+
     [Header("Check Variables")]
     [Tooltip("바닥 체크 Radius 반지름값")]
     public float groundCheckRadius = 0.3f;
