@@ -15,6 +15,8 @@ MonoBehaviour:
   movementVelocity: 10
   jumpVelocity: 15
   amountOfJumps: 2
+  standColliderHeight: 1.35
+  dashColliderHeight: 0.93
   wallJumpVelocity: 20
   wallJumpTime: 0.2
   wallJumpAngle: {x: 1, y: 2}
@@ -24,7 +26,7 @@ MonoBehaviour:
   wallClimbVelocity: 6
   startOffset: {x: 0.34, y: -0.8}
   stopOffset: {x: 0.5, y: 2.3}
-  dashCooldown: 0.5
+  dashCooldown: 0.01
   dashTime: 0.2
   dashVelocity: 30
   dashCount: 2

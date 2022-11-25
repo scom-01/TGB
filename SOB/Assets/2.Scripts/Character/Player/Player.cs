@@ -92,6 +92,24 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Set Func
+
+    public void SetColliderHeight(float height)
+    {
+        if(BC2D ==null)
+        {
+            Debug.Log("BoxCollider is null");
+            return;
+        }
+
+        Vector2 center = BC2D.offset;
+        workspace.Set(BC2D.size.x, height);
+
+        center.y += (height - BC2D.size.y) / 2;
+
+        BC2D.size = workspace;
+        BC2D.offset = center;
+    }
+
     public void SetVelocityZero()
     {
         RB.velocity = Vector2.zero;

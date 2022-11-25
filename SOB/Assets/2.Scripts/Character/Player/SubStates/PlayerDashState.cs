@@ -17,6 +17,9 @@ public class PlayerDashState : PlayerAbilityState
     {
         base.Enter();
 
+        //콜라이더 크기 변경
+        player.SetColliderHeight(playerData.dashColliderHeight);
+
         CanDash = false;
         player.InputHandler.UseDashInput();
         player.SetVelocityY(0f);
@@ -28,6 +31,7 @@ public class PlayerDashState : PlayerAbilityState
     public override void Exit()
     {
         base.Exit();
+        player.SetColliderHeight(playerData.standColliderHeight);
     }
 
     public override void LogicUpdate()

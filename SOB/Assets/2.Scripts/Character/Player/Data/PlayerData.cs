@@ -25,10 +25,14 @@ public class PlayerData : ScriptableObject
     [Header("Jump State")]
     [Tooltip("점프 Velocity")]
     public float jumpVelocity = 15f;
-
-    [Header("Jump")]
     [Tooltip("점프 가능 횟수")]
     public int amountOfJumps = 1;
+
+    [Header("Collider")]
+    [Tooltip("기본 콜라이더 크기")]
+    public float standColliderHeight;
+    [Tooltip("대쉬 콜라이더 크기")]
+    public float dashColliderHeight;
 
     [Header("Wall Jump State")]
     [Tooltip("벽 점프 Velocity")]
@@ -73,5 +77,5 @@ public class PlayerData : ScriptableObject
     [Tooltip("전방 벽 체크 Distance")]
     public float wallCheckDistance = 0.5f;
     [Tooltip("벽 체크 LayerMask")]
-    public LayerMask whatIsGround;
+    public LayerMask whatIsGround;    
 }
