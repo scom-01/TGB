@@ -93,21 +93,35 @@ public class Player : MonoBehaviour
 
     #region Set Func
 
-    public void SetColliderHeight(float height)
+    public void SetColliderHeight(float height , bool pivot = true)
     {
-        if(BC2D ==null)
+        if(BC2D == null)
         {
             Debug.Log("BoxCollider is null");
             return;
         }
 
-        Vector2 center = BC2D.offset;
-        workspace.Set(BC2D.size.x, height);
+        //pivot = true -> offset 고정하고 Height 변경, false -> offset 무시하고 Height 변경
+        if (pivot)
+        {
+            Vector2 center = BC2D.offset;
+            workspace.Set(BC2D.size.x, height);
 
-        center.y += (height - BC2D.size.y) / 2;
+            center.y += (height - BC2D.size.y) / 2;
 
-        BC2D.size = workspace;
-        BC2D.offset = center;
+            BC2D.size = workspace;
+            BC2D.offset = center;
+        }
+        else
+        {
+            Vector2 center = BC2D.offset;
+            workspace.Set(BC2D.size.x, height);
+
+            //center.y += (height - BC2D.size.y) / 2;
+
+            BC2D.size = workspace;
+            BC2D.offset = center;
+        }        
     }
 
     public void SetVelocityZero()

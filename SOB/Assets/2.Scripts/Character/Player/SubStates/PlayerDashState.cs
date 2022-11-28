@@ -7,6 +7,7 @@ public class PlayerDashState : PlayerAbilityState
     public bool CanDash { get; private set; }
     public int DashCount { get; private set; }
     private float lastDashTime;
+    private bool IsGrounded = true;
 
     private Vector2 lastAIPos;
     public PlayerDashState(Player player, PlayerFSM fSM, PlayerData playerData, string animBoolName) : base(player, fSM, playerData, animBoolName)
@@ -17,8 +18,18 @@ public class PlayerDashState : PlayerAbilityState
     {
         base.Enter();
 
-        //콜라이더 크기 변경
-        player.SetColliderHeight(playerData.dashColliderHeight);
+        IsGrounded = player.CheckIfGrounded();
+        if (IsGrounded)
+        {
+            //콜라이더 크기 변경
+            player.SetColliderHeight(playerData.dashColliderHeight);
+        }
+        else
+        {
+            //콜라이더 크기 변경
+            player.SetColliderHeight(playerData.dashColliderHeight, false);            
+        }
+        
 
         CanDash = false;
         player.InputHandler.UseDashInput();
@@ -31,7 +42,18 @@ public class PlayerDashState : PlayerAbilityState
     public override void Exit()
     {
         base.Exit();
-        player.SetColliderHeight(playerData.standColliderHeight);
+        player.RB.gravityScale = 5f;
+
+        if (IsGrounded)
+        {
+            //콜라이더 크기 변경
+            player.SetColliderHeight(playerData.standColliderHeight);
+        }
+        else
+        {
+            //콜라이더 크기 변경
+            player.SetColliderHeight(playerData.standColliderHeight, false);
+        }
     }
 
     public override void LogicUpdate()
@@ -46,12 +68,12 @@ public class PlayerDashState : PlayerAbilityState
             //if(Time.time >= startTime + playerData.dashti)
             if (Time.time >= startTime + playerData.dashTime)
             {
-                if(DashCount>0)
+                if(DashCount > 0)
                 {
                     CanDash = true;
                 }
 
-                player.RB.gravityScale = 5f;
+                //player.RB.gravityScale = 5f;
                 player.SetVelocityX(0f);
                 isAbilityDone = true;
                 lastDashTime = Time.time;
