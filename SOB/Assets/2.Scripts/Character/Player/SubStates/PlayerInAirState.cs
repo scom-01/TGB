@@ -60,6 +60,9 @@ public class PlayerInAirState : PlayerState
     {
         base.Exit();
 
+        player.Anim.SetFloat("yVelocity", 0);
+        player.Anim.SetFloat("xVelocity", 0);
+
         oldIsTouchingWall = false;
         oldIsTouchingWallBack = false;
         isTouchingWall = false;

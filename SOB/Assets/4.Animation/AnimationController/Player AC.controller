@@ -14,7 +14,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_ExitTime: 0
   m_HasExitTime: 1
@@ -99,7 +99,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: d8bb7d17c128e7045b807746dc8c8e01, type: 2}
     m_Threshold: 0.42857143
-    m_Position: {x: 1, y: 13}
+    m_Position: {x: 10, y: 13}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
@@ -107,7 +107,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 565a6eb3622079a4988642b30a35fc3f, type: 2}
     m_Threshold: 0.5714286
-    m_Position: {x: 1, y: 8}
+    m_Position: {x: 10, y: 8}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
@@ -115,7 +115,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 80bf26e41ef5fbf4b9eef5b172479501, type: 2}
     m_Threshold: 0.71428573
-    m_Position: {x: 1, y: 0}
+    m_Position: {x: 10, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
@@ -131,7 +131,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: a1349e5462452d842a1192358c59c001, type: 2}
     m_Threshold: 1
-    m_Position: {x: 1, y: -3}
+    m_Position: {x: 10, y: -3}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
@@ -339,16 +339,16 @@ AnimatorStateMachine:
     m_Position: {x: 400, y: 700, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5517328314547148320}
-    m_Position: {x: 435, y: 765, z: 0}
+    m_Position: {x: 410, y: 1010, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4130569917156657979}
-    m_Position: {x: 470, y: 830, z: 0}
+    m_Position: {x: 450, y: 1070, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6007746551063905659}
-    m_Position: {x: 505, y: 895, z: 0}
+    m_Position: {x: 480, y: 1140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5042103279365755218}
-    m_Position: {x: 540, y: 960, z: 0}
+    m_Position: {x: 520, y: 1200, z: 0}
   m_ChildStateMachines:
   - serializedVersion: 1
     m_StateMachine: {fileID: 8169884134000276567}
@@ -528,7 +528,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_ExitTime: 0
   m_HasExitTime: 1

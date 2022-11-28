@@ -141,7 +141,7 @@ public class Player : MonoBehaviour
         
     public bool CheckIfGrounded()
     {
-        return Physics2D.OverlapBox(groundCheck.position, new Vector2(BC2D.bounds.size.x * 0.8f, BC2D.bounds.size.y * playerData.groundCheckRadius), 0f, playerData.whatIsGround);
+        return Physics2D.OverlapBox(groundCheck.position, new Vector2(BC2D.bounds.size.x*0.95f, BC2D.bounds.size.y * playerData.groundCheckRadius), 0f, playerData.whatIsGround);
         //return Physics2D.OverlapCircle(groundCheck.position,playerData.groundCheckRadius,playerData.whatIsGround);
     }
 
