@@ -26,15 +26,23 @@ MonoBehaviour:
   wallClimbVelocity: 6
   startOffset: {x: 0.34, y: -0.8}
   stopOffset: {x: 0.5, y: 2.3}
-  dashCooldown: 0.01
-  dashTime: 0.1
+  dashCooldown: 0.1
+  dashTime: 0.2
   dashVelocity: 30
   dashCount: 2
   drag: 10
   dashEndYMultiplier: 0.2
   distBetweenAfterImages: 0.5
+  blockTime: 1
+  blockCooldown: 2
   groundCheckRadius: 0.1
   wallCheckDistance: 0.4
   whatIsGround:
     serializedVersion: 2
     m_Bits: 32768
+  playerAttackMask:
+    serializedVersion: 2
+    m_Bits: 33554432
+  enemyAttackMask:
+    serializedVersion: 2
+    m_Bits: 67108864

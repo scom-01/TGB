@@ -16,6 +16,8 @@ public class PlayerInputHandler : MonoBehaviour
 
     public bool Skill1Input { get; private set; }
     public bool Skill2Input { get; private set; }
+    public bool BlockInput { get; private set; }
+    public bool BlockInputStop { get; private set; }
 
 
     [SerializeField]
@@ -23,11 +25,21 @@ public class PlayerInputHandler : MonoBehaviour
 
     private float jumpInputStartTime;
     private float dashInputStartTime;
+    private float blockInputStartTime;
 
     private void Update()
     {
-        CheckJumpInputHoldTime();
-        CheckDashInputHoldTime();
+        bool jumpInput = JumpInput;
+        bool dashInput = DashInput;
+        bool blockInput = BlockInput;
+
+        CheckHoldTime(ref jumpInput, ref jumpInputStartTime);
+        CheckHoldTime(ref dashInput, ref dashInputStartTime);
+        CheckHoldTime(ref blockInput, ref blockInputStartTime);
+
+        JumpInput = jumpInput;
+        DashInput = dashInput;
+        BlockInput = blockInput;
     }
 
     //움직임 Input
@@ -107,12 +119,36 @@ public class PlayerInputHandler : MonoBehaviour
             Skill2Input = true;
         }
     }
+
+    public void OnBlockInput(InputAction.CallbackContext context)
+    {
+        if(context.started)
+        {
+            BlockInput = true;
+            BlockInputStop = false;
+            blockInputStartTime = Time.time;
+        }
+        else if(context.canceled)
+        {
+            BlockInputStop = true;
+        }
+    }
     public void UseJumpInput() => JumpInput = false;
     public void UseDashInput() => DashInput = false;
     public void UseSkill1Input() => Skill1Input = false;
     public void UseSkill2Input() => Skill2Input = false;
-    //점프 홀드 시간
-    private void CheckJumpInputHoldTime()
+    public void UseBlockInput() => BlockInput = false;
+
+    //홀드 시간
+
+    private void CheckHoldTime(ref bool input, ref float inputStartTime)
+    {
+        if (Time.time >= inputStartTime + inputHoldTime)
+        {
+            input = false;
+        }
+    }
+/*    private void CheckJumpInputHoldTime()
     {
         if(Time.time >= jumpInputStartTime + inputHoldTime)
         {
@@ -126,5 +162,5 @@ public class PlayerInputHandler : MonoBehaviour
         {
             DashInput = false;
         }
-    }
+    }*/
 }

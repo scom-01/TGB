@@ -71,11 +71,19 @@ public class PlayerData : ScriptableObject
     public float dashEndYMultiplier = 0.2f;
     public float distBetweenAfterImages = 0.5f;
 
+    [Header("Block State")]
+    public float blockTime = 1f;
+    public float blockCooldown = 2f;
+
     [Header("Check Variables")]
     [Tooltip("바닥 체크 Radius 반지름값")]
     public float groundCheckRadius = 0.3f;
     [Tooltip("전방 벽 체크 Distance")]
     public float wallCheckDistance = 0.5f;
     [Tooltip("벽 체크 LayerMask")]
-    public LayerMask whatIsGround;    
+    public LayerMask whatIsGround;
+    [Tooltip("Player Attack LayerMask")]
+    public LayerMask playerAttackMask;
+    [Tooltip("적 공격 LayerMask")]
+    public LayerMask enemyAttackMask;
 }

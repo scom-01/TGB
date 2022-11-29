@@ -8,17 +8,26 @@ public class Player : MonoBehaviour
     #region State Variables
     public PlayerFSM fsm { get; private set; }
     
+    //PlayerState
+    public PlayerInAirState InAirState { get; private set; }
+
+    //PlayerGroundedState
     public PlayerIdleState IdleState { get; private set; }   
     public PlayerMoveState MoveState { get; private set; }
-    public PlayerJumpState JumpState { get; private set; }
-    public PlayerInAirState InAirState { get; private set; }
     public PlayerLandState LandState { get; private set; }
+
+    //PlayerAbilityState
+    public PlayerJumpState JumpState { get; private set; }
+    public PlayerWallJumpState WallJumpState { get; private set; }
+    public PlayerDashState DashState { get; private set; }
+    public PlayerBlockState BlockState { get; private set; }
+
+    //PlayerTouchingWallState
     public PlayerWallSlideState WallSlideState { get; private set; }
+
     //public PlayerWallGrabState WallGrabState { get; private set; }
     //public PlayerWallClimbState WallClimbState { get; private set; }
-    public PlayerWallJumpState WallJumpState { get; private set; }
     //public PlayerLedgeClimbState LedgeClimbState { get; private set; }
-    public PlayerDashState DashState { get; private set; }
 
 
     [SerializeField]
@@ -65,6 +74,7 @@ public class Player : MonoBehaviour
         WallJumpState= new PlayerWallJumpState(this, fsm, playerData, "inAir");
         //LedgeClimbState = new PlayerLedgeClimbState(this, fsm, playerData, "ledgeClimbState");
         DashState = new PlayerDashState(this, fsm, playerData, "dash");
+        BlockState = new PlayerBlockState(this, fsm, playerData, "block");
     }
 
     private void Start()
@@ -213,4 +223,10 @@ public class Player : MonoBehaviour
         transform.Rotate(0.0f, 180.0f, 0.0f);
     }
     #endregion
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(transform.position + new Vector3(BC2D.size.x, 0, 0) * FancingDirection, BC2D.size);
+    }
 }

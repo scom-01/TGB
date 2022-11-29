@@ -10,6 +10,7 @@ public class PlayerGroundedState : PlayerState
     private bool JumpInput;         //점프 입력값
     private bool grabInput;         //grab 입력값
     private bool dashInput;         //Dash 입력값
+    private bool blockInput;        //Block 입력값
     
     //Checks
     private bool isGrounded;        //Grounded 체크
@@ -34,6 +35,7 @@ public class PlayerGroundedState : PlayerState
         base.Enter();
         player.JumpState.ResetAmountOfJumpsLeft();
         player.DashState.ResetCanDash();
+        player.BlockState.ResetCanBlock();
     }
 
     public override void Exit()
@@ -49,6 +51,7 @@ public class PlayerGroundedState : PlayerState
         JumpInput = player.InputHandler.JumpInput;
         grabInput = player.InputHandler.GrabInput;
         dashInput = player.InputHandler.DashInput;
+        blockInput = player.InputHandler.BlockInput;
 
         if (JumpInput && player.JumpState.CanJump())
         {
@@ -62,6 +65,10 @@ public class PlayerGroundedState : PlayerState
         else if (dashInput && player.DashState.CheckIfCanDash())
         {
             FSM.ChangeState(player.DashState);
+        }
+        else if(blockInput && player.BlockState.CheckIfCanBlock())
+        {
+            FSM.ChangeState(player.BlockState);
         }
         /*else if(isTouchingWall && grabInput && isTouchingLedge)
         {
