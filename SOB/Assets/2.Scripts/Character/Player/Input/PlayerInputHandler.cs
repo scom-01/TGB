@@ -19,27 +19,35 @@ public class PlayerInputHandler : MonoBehaviour
     public bool BlockInput { get; private set; }
     public bool BlockInputStop { get; private set; }
 
-
     [SerializeField]
     private float inputHoldTime = 0.2f;
 
     private float jumpInputStartTime;
     private float dashInputStartTime;
+    private float skill1InputStartTime;
+    private float skill2InputStartTime;
     private float blockInputStartTime;
+    
 
     private void Update()
     {
         bool jumpInput = JumpInput;
         bool dashInput = DashInput;
         bool blockInput = BlockInput;
+        //bool skill1Input = Skill1Input;
+        //bool skill2Input = Skill2Input;
 
         CheckHoldTime(ref jumpInput, ref jumpInputStartTime);
         CheckHoldTime(ref dashInput, ref dashInputStartTime);
         CheckHoldTime(ref blockInput, ref blockInputStartTime);
+        //CheckHoldTime(ref skill1Input, ref skill1InputStartTime);
+        //CheckHoldTime(ref skill2Input, ref skill2InputStartTime);
 
         JumpInput = jumpInput;
         DashInput = dashInput;
         BlockInput = blockInput;
+        //Skill1Input = skill1Input;
+        //Skill2Input = skill2Input;
     }
 
     //¿òÁ÷ÀÓ Input
@@ -105,7 +113,6 @@ public class PlayerInputHandler : MonoBehaviour
         if(context.started)
         {
             Debug.Log("OnSkill 1 Input");
-            Debug.Log(context.action.bindings);
             Skill1Input = true;
         }
     }
@@ -115,7 +122,6 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.started)
         {
             Debug.Log("OnSkill 2 Input");
-            Debug.Log(context.action.bindings);
             Skill2Input = true;
         }
     }

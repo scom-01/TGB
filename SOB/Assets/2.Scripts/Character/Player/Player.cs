@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     public PlayerWallJumpState WallJumpState { get; private set; }
     public PlayerDashState DashState { get; private set; }
     public PlayerBlockState BlockState { get; private set; }
+    public PlayerAttackState AttackState {get; private set; }
 
     //PlayerTouchingWallState
     public PlayerWallSlideState WallSlideState { get; private set; }
@@ -75,6 +76,7 @@ public class Player : MonoBehaviour
         //LedgeClimbState = new PlayerLedgeClimbState(this, fsm, playerData, "ledgeClimbState");
         DashState = new PlayerDashState(this, fsm, playerData, "dash");
         BlockState = new PlayerBlockState(this, fsm, playerData, "block");
+        AttackState = new PlayerAttackState(this, fsm, playerData, "attack");
     }
 
     private void Start()
@@ -221,6 +223,33 @@ public class Player : MonoBehaviour
     {
         FancingDirection *= -1;
         transform.Rotate(0.0f, 180.0f, 0.0f);
+    }
+
+    public void Attack()
+    {
+        InputHandler.UseSkill1Input();
+
+        Collider2D[] targets = Physics2D.OverlapBoxAll(this.gameObject.transform.position + new Vector3(BC2D.size.x, 0, 0) * FancingDirection, BC2D.size, 0f);
+        
+        //범위 내 공격 대상 체크
+        if (targets.Length > 0)
+        {
+            for(int i = 0; i < targets.Length; i++)
+            {
+                if(targets[i].gameObject.layer >=16 && targets[i].gameObject.layer <=18)
+                {
+                    Debug.Log(targets.ToString());
+                }
+            }            
+        }
+    }
+
+    public void ComoboCheck()
+    {
+        if(!InputHandler.Skill1Input)
+        {
+            AttackState.ComboCheck();
+        }
     }
     #endregion
 
