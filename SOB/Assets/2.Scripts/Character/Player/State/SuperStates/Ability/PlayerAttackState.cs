@@ -26,8 +26,8 @@ public class PlayerAttackState : PlayerAbilityState
 
     public override void LogicUpdate()
     {
-        player.SetVelocityX(0f);
         base.LogicUpdate();
+        player.SetVelocityX(0f);
     }
 
     public void ComboCheck()

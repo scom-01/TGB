@@ -10,6 +10,8 @@ public class PlayerInAirState : PlayerState
     private bool JumpInputStop;         //점프 입력 해체 값
     private bool grabInput;             //그랩 입력값
     private bool dashInput;             //Dash 키 입력값
+    private bool skill1Input;           //skill1키 입력값
+    private bool skill2Input;           //skill2키 입력값
 
     //Checks
     private bool isGrounded;            //바닥 체크
@@ -79,12 +81,18 @@ public class PlayerInAirState : PlayerState
         xInput = player.InputHandler.NormInputX;
         JumpInput = player.InputHandler.JumpInput;
         JumpInputStop = player.InputHandler.JumpInputStop;
-        grabInput = player.InputHandler.GrabInput;
-        dashInput = player.InputHandler.DashInput;
-
         CheckJumpMultiplier();
 
-        if (isGrounded && player.CurrentVelocity.y < 0.01f)
+        grabInput = player.InputHandler.GrabInput;
+        dashInput = player.InputHandler.DashInput;
+        skill1Input = player.InputHandler.Skill1Input;
+        skill2Input = player.InputHandler.Skill2Input;
+
+        if (skill1Input && !isGrounded)
+        {
+            FSM.ChangeState(player.AirAttackState);
+        }
+        else if(isGrounded && player.CurrentVelocity.y < 0.01f)
         {
             FSM.ChangeState(player.LandState);
         }
@@ -112,6 +120,7 @@ public class PlayerInAirState : PlayerState
         {
             FSM.ChangeState(player.WallSlideState);
         }
+        
         else if(dashInput && player.DashState.CheckIfCanDash())
         {
             if(player.DashState.DashCount > 0)
