@@ -235,6 +235,7 @@ public class Player : MonoBehaviour
     {
         InputHandler.UseSkill1Input();
 
+        Debug.Log("Attack");
         Collider2D[] targets = Physics2D.OverlapBoxAll(this.gameObject.transform.position + new Vector3(BC2D.size.x, 0, 0) * FancingDirection, BC2D.size, 0f);
 
         //범위 내 공격 대상 체크

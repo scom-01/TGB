@@ -30,16 +30,16 @@ public class PlayerAirAttackState : PlayerAbilityState
 
     public override void LogicUpdate()
     {
+
+        base.LogicUpdate();
+        player.SetVelocityZero();
+
         if (player.CheckIfGrounded())
         {
             Debug.Log("Grounded!");
             player.RB.gravityScale = 5f;
             isAbilityDone = true;
         }
-
-        base.LogicUpdate();
-        player.SetVelocityZero();
-
         
     }
 
