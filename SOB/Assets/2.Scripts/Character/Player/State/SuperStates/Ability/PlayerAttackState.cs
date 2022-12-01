@@ -32,6 +32,6 @@ public class PlayerAttackState : PlayerAbilityState
 
     public void ComboCheck()
     {
-        isAbilityDone = true;
+        EndAbility();
     }
 }

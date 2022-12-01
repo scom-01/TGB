@@ -15,7 +15,9 @@ public class PlayerInputHandler : MonoBehaviour
     public bool DashInputStop { get; private set; }
 
     public bool Skill1Input { get; private set; }
+    public bool Skill1InputStop { get; private set; }
     public bool Skill2Input { get; private set; }
+    public bool Skill2InputStop { get; private set; }
     public bool BlockInput { get; private set; }
     public bool BlockInputStop { get; private set; }
 
@@ -114,6 +116,11 @@ public class PlayerInputHandler : MonoBehaviour
         {
             Debug.Log("OnSkill 1 Input");
             Skill1Input = true;
+            Skill1InputStop = false;
+        }
+        else if (context.canceled)
+        {
+            Skill1InputStop = true;
         }
     }
 
@@ -123,6 +130,11 @@ public class PlayerInputHandler : MonoBehaviour
         {
             Debug.Log("OnSkill 2 Input");
             Skill2Input = true;
+            Skill2InputStop = false;
+        }
+        else if(context.canceled)
+        {
+            Skill2InputStop = true;
         }
     }
 

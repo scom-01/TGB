@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     public PlayerBlockState BlockState { get; private set; }
     public PlayerAttackState AttackState {get; private set; }
     public PlayerAirAttackState AirAttackState {get; private set; }
+    public PlayerHeavyAttackState HeavyAttackState {get; private set; }
 
     //PlayerTouchingWallState
     public PlayerWallSlideState WallSlideState { get; private set; }
@@ -79,6 +80,7 @@ public class Player : MonoBehaviour
         BlockState = new PlayerBlockState(this, fsm, playerData, "block");
         AttackState = new PlayerAttackState(this, fsm, playerData, "attack");
         AirAttackState = new PlayerAirAttackState(this, fsm, playerData, "airAttack");
+        HeavyAttackState = new PlayerHeavyAttackState(this, fsm, playerData, "heavyAttack");
     }
 
     private void Start()
@@ -253,10 +255,15 @@ public class Player : MonoBehaviour
 
     public void Push(float power)
     {
-        if (!Physics2D.Raycast(groundCheck.position, Vector2.right * FancingDirection, BC2D.size.x / 2 + power, playerData.whatIsGround))
+        if (Physics2D.OverlapBox(transform.position + new Vector3((BC2D.size.x * FancingDirection + power) / 2, BC2D.offset.y, 0), new Vector2(BC2D.bounds.size.x * power, BC2D.bounds.size.y), 0f, playerData.whatIsGround))
         {
             this.transform.Translate(new Vector3(power, 0, 0));
         }
+
+        /*if (!Physics2D.Raycast(groundCheck.position, Vector2.right * FancingDirection, BC2D.size.x / 2 + power, playerData.whatIsGround))
+        {
+            this.transform.Translate(new Vector3(power, 0, 0));
+        }*/
     }
 
     public void ComoboCheck()
@@ -273,6 +280,15 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+    public void EventCheckfalse()
+    {
+        if(!InputHandler.Skill2InputStop)
+        {
+            HeavyAttackState.Hold = false;
+        }
+    }
+
     #endregion
 
     private void OnDrawGizmos()

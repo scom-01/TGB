@@ -12,6 +12,7 @@ public class PlayerGroundedState : PlayerState
     private bool dashInput;         //Dash 입력값
     private bool blockInput;        //Block 입력값
     private bool skill1Input;       //Skill1 입력값
+    private bool skill2Input;       //Skill2 입력값
     //Checks
     private bool isGrounded;        //Grounded 체크
     private bool isTouchingWall;    //벽 체크 
@@ -53,6 +54,7 @@ public class PlayerGroundedState : PlayerState
         dashInput = player.InputHandler.DashInput;
         blockInput = player.InputHandler.BlockInput;
         skill1Input = player.InputHandler.Skill1Input;
+        skill2Input = player.InputHandler.Skill2Input;
 
         if (JumpInput && player.JumpState.CanJump())
         {
@@ -70,6 +72,10 @@ public class PlayerGroundedState : PlayerState
         else if(skill1Input)
         {
             FSM.ChangeState(player.AttackState);
+        }
+        else if (skill2Input)
+        {
+            FSM.ChangeState(player.HeavyAttackState);
         }
         else if(blockInput && player.BlockState.CheckIfCanBlock())
         {
