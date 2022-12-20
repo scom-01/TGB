@@ -64,6 +64,7 @@ public class PlayerDashState : PlayerAbilityState
         {
             //player.RB.drag = playerData.drag;
             player.SetVelocityX(playerData.dashVelocity * player.FancingDirection);
+            player.SetVelocityY(0);
             CheckIfShouldPlaceAfterImage();
             //if(Time.time >= startTime + playerData.dashti)
             if (Time.time >= startTime + playerData.dashTime)

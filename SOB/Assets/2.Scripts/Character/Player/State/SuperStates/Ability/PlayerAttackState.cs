@@ -27,6 +27,13 @@ public class PlayerAttackState : PlayerAbilityState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        
+        if (player.InputHandler.DashInput)
+        {
+            FSM.ChangeState(player.DashState);
+            return;
+        }
+
         player.SetVelocityX(0f);
     }
 

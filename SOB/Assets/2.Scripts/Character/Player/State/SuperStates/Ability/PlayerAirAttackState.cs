@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class PlayerAirAttackState : PlayerAbilityState
 {
+    public bool CanAirAttack = true;
+
     public PlayerAirAttackState(Player player, PlayerFSM fSM, PlayerData playerData, string animBoolName) : base(player, fSM, playerData, animBoolName)
     {
     }
@@ -11,14 +14,14 @@ public class PlayerAirAttackState : PlayerAbilityState
     public override void Enter()
     {
         base.Enter();
-
-        if(player.CheckIfGrounded())
+        CanAirAttack = false;
+        if (player.CheckIfGrounded())
         {
             isAbilityDone = true;
             return;
         }
 
-        player.RB.gravityScale = 0f;
+        //player.RB.gravityScale = 0f;
         player.InputHandler.UseSkill1Input();
         startTime = Time.time;
     }
@@ -32,13 +35,26 @@ public class PlayerAirAttackState : PlayerAbilityState
     {
 
         base.LogicUpdate();
-        player.SetVelocityZero();
+        //player.SetVelocityZero();
 
-        if (player.CheckIfGrounded())
+        if(player.InputHandler.DashInput)
+        {
+            FSM.ChangeState(player.DashState);
+            return;
+        }
+
+        if (isGrounded)
         {
             Debug.Log("Grounded!");
-            player.RB.gravityScale = 5f;
+            //player.RB.gravityScale = 5f;
             EndAbility();
+        }
+        else
+        {
+            player.CheckIfShouldFlip(player.InputHandler.NormInputX);
+            player.SetVelocityX(playerData.movementVelocity * player.InputHandler.NormInputX);
+            player.Anim.SetFloat("yVelocity", Mathf.Clamp(player.CurrentVelocity.y, -3, 13));
+            player.Anim.SetFloat("xVelocity", Mathf.Abs(player.CurrentVelocity.x));
         }
         
     }
