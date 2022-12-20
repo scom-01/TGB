@@ -38,9 +38,10 @@ public class PlayerBlockState : PlayerAbilityState
             {
                 //Block Effect
                 Debug.Log("Block!");
+                player.KnockBack(1);
             }
 
-            if (Time.time >= startTime + playerData.blockCooldown)
+            if (Time.time >= startTime + playerData.blockTime)
             {
                 isAbilityDone = true;
                 lastBlockTime = Time.time;
