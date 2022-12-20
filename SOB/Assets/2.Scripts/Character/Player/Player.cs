@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -42,6 +43,8 @@ public class Player : MonoBehaviour
     public PlayerInputHandler InputHandler { get; private set; }
     public Rigidbody2D RB { get; private set; }
     public BoxCollider2D BC2D { get; private set; }
+
+    public SpriteRenderer SR { get; private set; }
     #endregion
 
     #region Check Transforms
@@ -58,6 +61,8 @@ public class Player : MonoBehaviour
     public int FancingDirection { get; private set; }
     
     private Vector2 workspace;
+
+    public float invincibleTime;
     #endregion
 
     #region Unity Callback Func
@@ -84,11 +89,21 @@ public class Player : MonoBehaviour
     }
 
     private void Start()
-    {
+    {        
         Anim = GetComponent<Animator>();
+        if(Anim == null)    Anim = this.GameObject().AddComponent<Animator>();
+
         InputHandler = GetComponent<PlayerInputHandler>();
+        if (InputHandler == null) InputHandler = this.GameObject().AddComponent<PlayerInputHandler>();
+
         RB = GetComponent<Rigidbody2D>();
+        if (RB == null)     RB = this.GameObject().AddComponent<Rigidbody2D>();
+
         BC2D = GetComponent<BoxCollider2D>();
+        if (BC2D == null)  BC2D = this.GameObject().AddComponent<BoxCollider2D>();
+
+        SR = GetComponent<SpriteRenderer>();
+        if (SR == null)     SR = this.GameObject().AddComponent<SpriteRenderer>();
 
         FancingDirection = 1;
 
@@ -98,6 +113,15 @@ public class Player : MonoBehaviour
     private void Update()
     {
         CurrentVelocity = RB.velocity;
+        if (invincibleTime > 0.0f)
+        {
+            invincibleTime -= Time.deltaTime;
+
+            if (invincibleTime <= 0.0f)
+            {
+                invincibleTime = 0f;
+            }
+        }
         fsm.CurrentState.LogicUpdate();
     }
 
@@ -253,6 +277,21 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Hit(float damage)
+    {
+        if (SR == null) SR = this.GameObject().AddComponent<SpriteRenderer>();
+
+        Debug.Log("Hit");
+        StartCoroutine(HitEffect());
+    }
+
+    IEnumerator HitEffect()
+    {
+        SR.color = Color.red;
+        yield return new WaitForSeconds(0.5f);
+        SR.color = Color.white;
+    }
+
     public void Push(float power)
     {
         if (Physics2D.OverlapBox(transform.position + new Vector3((BC2D.size.x * FancingDirection + power) / 2, BC2D.offset.y, 0), new Vector2(BC2D.bounds.size.x * power, BC2D.bounds.size.y), 0f, playerData.whatIsGround))
@@ -264,6 +303,13 @@ public class Player : MonoBehaviour
         {
             this.transform.Translate(new Vector3(power, 0, 0));
         }*/
+    }
+    public void KnockBack(float power)
+    {
+        if (Physics2D.OverlapBox(transform.position + new Vector3((BC2D.size.x * -FancingDirection + power) / 2, BC2D.offset.y, 0), new Vector2(BC2D.bounds.size.x * power, BC2D.bounds.size.y), 0f, playerData.whatIsGround))
+        {
+            this.transform.Translate(new Vector3(-FancingDirection * power, 0, 0));
+        }
     }
 
     public void ComoboCheck()
@@ -295,5 +341,17 @@ public class Player : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position + new Vector3(BC2D.size.x, 0, 0) * FancingDirection, BC2D.size);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 23)   //Trap
+        {
+            if (invincibleTime == 0f)
+            {
+                Hit(5);
+                invincibleTime = 1.5f;
+            }
+        }
     }
 }

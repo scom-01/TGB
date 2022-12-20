@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAbilityState : PlayerState
 {
     protected bool isAbilityDone;
-    private bool isGrounded;
+    protected bool isGrounded;
 
     public PlayerAbilityState(Player player, PlayerFSM fSM, PlayerData playerData, string animBoolName) : base(player, fSM, playerData, animBoolName)
     {

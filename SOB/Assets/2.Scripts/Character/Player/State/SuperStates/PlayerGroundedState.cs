@@ -56,14 +56,15 @@ public class PlayerGroundedState : PlayerState
         skill1Input = player.InputHandler.Skill1Input;
         skill2Input = player.InputHandler.Skill2Input;
 
-        if (JumpInput && player.JumpState.CanJump())
-        {
-            FSM.ChangeState(player.JumpState);
-        }
-        else if(!isGrounded)
+
+        if (!isGrounded)
         {
             player.InAirState.StartCoyoteTime();
             FSM.ChangeState(player.InAirState);
+        }
+        else if (JumpInput && player.JumpState.CanJump())
+        {
+            FSM.ChangeState(player.JumpState);        
         }
         else if (dashInput && player.DashState.CheckIfCanDash())
         {
