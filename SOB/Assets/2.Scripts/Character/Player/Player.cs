@@ -294,7 +294,8 @@ public class Player : MonoBehaviour
 
     public void Push(float power)
     {
-        if (Physics2D.OverlapBox(transform.position + new Vector3((BC2D.size.x * FancingDirection + power) / 2, BC2D.offset.y, 0), new Vector2(BC2D.bounds.size.x * power, BC2D.bounds.size.y), 0f, playerData.whatIsGround))
+        if (!Physics2D.OverlapBox(transform.position + new Vector3((FancingDirection * power) / 2, BC2D.offset.y, 0),
+                                new Vector2(BC2D.bounds.size.x / 2 + power, BC2D.bounds.size.y * 0.95f), 0f, playerData.whatIsGround)) 
         {
             this.transform.Translate(new Vector3(power, 0, 0));
         }
@@ -306,7 +307,8 @@ public class Player : MonoBehaviour
     }
     public void KnockBack(float power)
     {
-        if (Physics2D.OverlapBox(transform.position + new Vector3((BC2D.size.x * -FancingDirection + power) / 2, BC2D.offset.y, 0), new Vector2(BC2D.bounds.size.x * power, BC2D.bounds.size.y), 0f, playerData.whatIsGround))
+        if (!Physics2D.OverlapBox(transform.position + new Vector3((-FancingDirection * power) / 2, BC2D.offset.y, 0),
+                                new Vector2(BC2D.bounds.size.x / 2 + power, BC2D.bounds.size.y * 0.95f), 0f, playerData.whatIsGround))
         {
             this.transform.Translate(new Vector3(-FancingDirection * power, 0, 0));
         }
@@ -322,6 +324,7 @@ public class Player : MonoBehaviour
             }
             else
             {
+                AttackState.ComboCheck();
                 AirAttackState.ComboCheck();
             }
         }
