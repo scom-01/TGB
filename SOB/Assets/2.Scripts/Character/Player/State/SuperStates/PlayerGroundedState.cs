@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static PlayerInputHandler;
 
 public class PlayerGroundedState : PlayerState
 {
@@ -53,18 +54,26 @@ public class PlayerGroundedState : PlayerState
         grabInput = player.InputHandler.GrabInput;
         dashInput = player.InputHandler.DashInput;
         blockInput = player.InputHandler.BlockInput;
-        skill1Input = player.InputHandler.Skill1Input;
-        skill2Input = player.InputHandler.Skill2Input;
+        //skill1Input = player.InputHandler.Skill1Input;
+        //skill2Input = player.InputHandler.Skill2Input;
 
-
-        if (!isGrounded)
+        
+        if (player.InputHandler.AttackInputs[(int)CombatInputs.primary])
         {
-            player.InAirState.StartCoyoteTime();
-            FSM.ChangeState(player.InAirState);
+            FSM.ChangeState(player.PrimaryAttackState);
+        }
+        else if(player.InputHandler.AttackInputs[(int)CombatInputs.secondary])
+        {
+            FSM.ChangeState(player.SecondaryAttackState);
         }
         else if (JumpInput && player.JumpState.CanJump())
         {
             FSM.ChangeState(player.JumpState);        
+        }
+        else if (!isGrounded)
+        {
+            player.InAirState.StartCoyoteTime();
+            FSM.ChangeState(player.InAirState);
         }
         else if (dashInput && player.DashState.CheckIfCanDash())
         {

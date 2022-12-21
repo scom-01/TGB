@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static PlayerInputHandler;
 
 public class PlayerInAirState : PlayerState
 {
@@ -87,8 +88,15 @@ public class PlayerInAirState : PlayerState
         dashInput = player.InputHandler.DashInput;
         skill1Input = player.InputHandler.Skill1Input;
         skill2Input = player.InputHandler.Skill2Input;
-
-        if (skill1Input && !isGrounded)
+        if (player.InputHandler.AttackInputs[(int)CombatInputs.primary])
+        {
+            FSM.ChangeState(player.PrimaryAttackState);
+        }
+        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondary])
+        {
+            FSM.ChangeState(player.SecondaryAttackState);
+        }
+        else if (skill1Input && !isGrounded)
         {
             FSM.ChangeState(player.AirAttackState);
         }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
+    private PlayerInput playerInput;
+    private Camera cam;
     public Vector2 RawMovementInput { get; private set; }
     public int NormInputX { get; private set; } 
     public int NormInputY { get; private set; }
@@ -14,6 +17,7 @@ public class PlayerInputHandler : MonoBehaviour
     public bool DashInput { get; private set; }
     public bool DashInputStop { get; private set; }
 
+    public bool[] AttackInputs { get; private set; }
     public bool Skill1Input { get; private set; }
     public bool Skill1InputStop { get; private set; }
     public bool Skill2Input { get; private set; }
@@ -29,7 +33,15 @@ public class PlayerInputHandler : MonoBehaviour
     private float skill1InputStartTime;
     private float skill2InputStartTime;
     private float blockInputStartTime;
-    
+
+
+    private void Start()
+    {
+        playerInput = GetComponent<PlayerInput>();
+        int count = Enum.GetValues(typeof(CombatInputs)).Length;
+        AttackInputs = new bool[count];
+        cam = Camera.main;
+    }
 
     private void Update()
     {
@@ -115,11 +127,14 @@ public class PlayerInputHandler : MonoBehaviour
         if(context.started)
         {
             Debug.Log("OnSkill 1 Input");
+            AttackInputs[(int)CombatInputs.primary] = true;
             Skill1Input = true;
             Skill1InputStop = false;
         }
-        else if (context.canceled)
+        
+        if (context.canceled)
         {
+            AttackInputs[(int)CombatInputs.primary] = false;
             Skill1InputStop = true;
         }
     }
@@ -129,11 +144,14 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.started)
         {
             Debug.Log("OnSkill 2 Input");
+            AttackInputs[(int)CombatInputs.secondary] = true;
             Skill2Input = true;
             Skill2InputStop = false;
         }
-        else if(context.canceled)
+        
+        if(context.canceled)
         {
+            AttackInputs[(int)CombatInputs.secondary] = false;
             Skill2InputStop = true;
         }
     }
@@ -165,6 +183,12 @@ public class PlayerInputHandler : MonoBehaviour
         {
             input = false;
         }
+    }
+
+    public enum CombatInputs
+    {
+        primary,
+        secondary,
     }
 /*    private void CheckJumpInputHoldTime()
     {

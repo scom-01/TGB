@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using static PlayerInputHandler;
 
 public class Player : MonoBehaviour
 {
@@ -22,6 +24,9 @@ public class Player : MonoBehaviour
     public PlayerWallJumpState WallJumpState { get; private set; }
     public PlayerDashState DashState { get; private set; }
     public PlayerBlockState BlockState { get; private set; }
+
+    public PlayerAttackState PrimaryAttackState { get; private set; }
+    public PlayerAttackState SecondaryAttackState { get; private set; }
     public PlayerAttackState AttackState {get; private set; }
     public PlayerAirAttackState AirAttackState {get; private set; }
     public PlayerHeavyAttackState HeavyAttackState {get; private set; }
@@ -83,6 +88,8 @@ public class Player : MonoBehaviour
         //LedgeClimbState = new PlayerLedgeClimbState(this, fsm, playerData, "ledgeClimbState");
         DashState = new PlayerDashState(this, fsm, playerData, "dash");
         BlockState = new PlayerBlockState(this, fsm, playerData, "block");
+        PrimaryAttackState = new PlayerAttackState(this, fsm, playerData, "attack");
+        SecondaryAttackState = new PlayerAttackState(this, fsm, playerData, "attack");
         AttackState = new PlayerAttackState(this, fsm, playerData, "attack");
         AirAttackState = new PlayerAirAttackState(this, fsm, playerData, "airAttack");
         HeavyAttackState = new PlayerHeavyAttackState(this, fsm, playerData, "heavyAttack");
@@ -104,6 +111,7 @@ public class Player : MonoBehaviour
 
         SR = GetComponent<SpriteRenderer>();
         if (SR == null)     SR = this.GameObject().AddComponent<SpriteRenderer>();
+                
 
         FancingDirection = 1;
 
