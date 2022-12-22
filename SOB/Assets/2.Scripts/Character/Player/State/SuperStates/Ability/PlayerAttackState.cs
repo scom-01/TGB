@@ -8,6 +8,13 @@ public class PlayerAttackState : PlayerAbilityState
 
     private Weapon weapon;
 
+    private int xInput;
+
+    private float velocityToSet;
+
+    private bool setVelocity;
+    private bool shouldCheckFlip;
+
     public PlayerAttackState(Player player, PlayerFSM fSM, PlayerData playerData, string animBoolName) : base(player, fSM, playerData, animBoolName)
     {
     }
@@ -15,7 +22,9 @@ public class PlayerAttackState : PlayerAbilityState
     public override void Enter()
     {
         base.Enter();
-        
+
+        setVelocity = false;
+
         weapon.EnterWeapon();
 
         CanAttack = false;
@@ -30,18 +39,30 @@ public class PlayerAttackState : PlayerAbilityState
 
         weapon.ExitWeapon();
     }
-
+    
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        
+
+        xInput = player.InputHandler.NormInputX;
+
+        if(shouldCheckFlip)
+        {
+            player.CheckIfShouldFlip(xInput);
+        }
+
+        if (setVelocity)
+        {
+            player.SetVelocityX(velocityToSet * player.FancingDirection);
+        }
+
         if (player.InputHandler.DashInput)
         {
             FSM.ChangeState(player.DashState);
             return;
         }
 
-        player.SetVelocityX(0f);
+        //player.SetVelocityX(0f);
     }
 
     public void ComboCheck()
@@ -55,6 +76,17 @@ public class PlayerAttackState : PlayerAbilityState
         weapon.InitializeWeapon(this);
     }
 
+    public void SetPlayerVelocity(float velocity)
+    {
+        player.SetVelocityX(velocity * player.FancingDirection);
+        velocityToSet = velocity;
+        setVelocity = true;
+    }
+
+    public void SetFlipCheck(bool value)
+    {
+        shouldCheckFlip = value;
+    }
     #region Animation Triggers
     public override void AnimationFinishTrigger()
     {

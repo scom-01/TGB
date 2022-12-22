@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    [SerializeField] private SO_WeaponData weaponData;
+
     protected Animator baseAnimator;
     protected Animator WeaponAnimator;
+
+    protected int attackCounter;
 
     protected PlayerAttackState state;
     protected virtual void Start()
@@ -18,20 +22,33 @@ public class Weapon : MonoBehaviour
     {
         gameObject.SetActive(true);
 
+        if(attackCounter >= weaponData.movementSpeed.Length)
+        {
+            attackCounter = 0;
+        }
+
         if (baseAnimator != null)
+        {
             baseAnimator.SetBool("attack", true);
+            baseAnimator.SetInteger("attackCounter", attackCounter);
+        }
         else
         {
             baseAnimator = transform.Find("Base").GetComponent<Animator>();
             baseAnimator.SetBool("attack", true);
+            baseAnimator.SetInteger("attackCounter", attackCounter);
         }
 
         if (WeaponAnimator != null)
+        {
             WeaponAnimator.SetBool("attack", true);
+            WeaponAnimator.SetInteger("attackCounter", attackCounter);
+        }
         else
         {
             WeaponAnimator = transform.Find("Weapon").GetComponent<Animator>();
             WeaponAnimator.SetBool("attack", true);
+            WeaponAnimator.SetInteger("attackCounter", attackCounter);
         }
     }
 
@@ -53,6 +70,8 @@ public class Weapon : MonoBehaviour
             WeaponAnimator.SetBool("attack", false);
         }
 
+        attackCounter++;
+
         gameObject.SetActive(false);
     }
 
@@ -61,6 +80,27 @@ public class Weapon : MonoBehaviour
     {
         state.AnimationFinishTrigger();
     }
+
+    public virtual void AnimationStartMovementTrigger()
+    {
+        state.SetPlayerVelocity(weaponData.movementSpeed[attackCounter]);
+    }
+
+    public virtual void AnimationStopMovementTrigger()
+    {
+        state.SetPlayerVelocity(0f);
+    }
+
+    public virtual void AnimationTurnOnFlipTrigger()
+    {
+        state.SetFlipCheck(true);
+    }
+
+    public virtual void AnimationTurnOffFlipTrigger()
+    {
+        state.SetFlipCheck(false);
+    }
+    
     #endregion
 
     public void InitializeWeapon(PlayerAttackState state)
