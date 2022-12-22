@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerAttackState : PlayerAbilityState
 {
     public bool CanAttack { get; private set; }
+
+    private Weapon weapon;
+
     public PlayerAttackState(Player player, PlayerFSM fSM, PlayerData playerData, string animBoolName) : base(player, fSM, playerData, animBoolName)
     {
     }
@@ -12,6 +15,8 @@ public class PlayerAttackState : PlayerAbilityState
     public override void Enter()
     {
         base.Enter();
+        
+        weapon.EnterWeapon();
 
         CanAttack = false;
         
@@ -22,6 +27,8 @@ public class PlayerAttackState : PlayerAbilityState
     public override void Exit()
     {
         base.Exit();
+
+        weapon.ExitWeapon();
     }
 
     public override void LogicUpdate()
@@ -41,4 +48,20 @@ public class PlayerAttackState : PlayerAbilityState
     {
         EndAbility();
     }
+
+    public void SetWeapon(Weapon weapon)
+    {
+        this.weapon = weapon;
+        weapon.InitializeWeapon(this);
+    }
+
+    #region Animation Triggers
+    public override void AnimationFinishTrigger()
+    {
+        base.AnimationFinishTrigger();
+
+        isAbilityDone = true;
+    }
+
+    #endregion
 }

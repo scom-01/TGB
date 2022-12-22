@@ -50,6 +50,8 @@ public class Player : MonoBehaviour
     public BoxCollider2D BC2D { get; private set; }
 
     public SpriteRenderer SR { get; private set; }
+
+    public PlayerInventory Inventory { get; private set; }
     #endregion
 
     #region Check Transforms
@@ -111,7 +113,12 @@ public class Player : MonoBehaviour
 
         SR = GetComponent<SpriteRenderer>();
         if (SR == null)     SR = this.GameObject().AddComponent<SpriteRenderer>();
-                
+
+        Inventory = GetComponent<PlayerInventory>();
+        if (Inventory == null) Inventory = this.GameObject().AddComponent<PlayerInventory>();
+
+        PrimaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.primary]);
+        //SecondaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.secondary]);
 
         FancingDirection = 1;
 
