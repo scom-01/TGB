@@ -28,6 +28,10 @@ public class PlayerData : ScriptableObject
     [Tooltip("점프 가능 횟수")]
     public int amountOfJumps = 1;
 
+    [Header("InvincibleTime")]
+    [Tooltip("피격 쿨타임")]
+    public float invincibleTime = 1f;
+
     [Header("Collider")]
     [Tooltip("기본 콜라이더 크기")]
     public float standColliderHeight;

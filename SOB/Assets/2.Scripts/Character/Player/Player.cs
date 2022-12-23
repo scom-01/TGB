@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
     
     private Vector2 workspace;
 
-    public float invincibleTime;
+    //public float invincibleTime;
     #endregion
 
     #region Unity Callback Func
@@ -128,13 +128,13 @@ public class Player : MonoBehaviour
     private void Update()
     {
         CurrentVelocity = RB.velocity;
-        if (invincibleTime > 0.0f)
+        if (playerData.invincibleTime > 0.0f)
         {
-            invincibleTime -= Time.deltaTime;
+            playerData.invincibleTime -= Time.deltaTime;
 
-            if (invincibleTime <= 0.0f)
+            if (playerData.invincibleTime <= 0.0f)
             {
-                invincibleTime = 0f;
+                playerData.invincibleTime = 0f;
             }
         }
         fsm.CurrentState.LogicUpdate();
@@ -365,10 +365,10 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.layer == 23)   //Trap
         {
-            if (invincibleTime == 0f)
+            if (playerData.invincibleTime == 0f)
             {
                 Hit(5);
-                invincibleTime = 1.5f;
+                playerData.invincibleTime = 1.5f;
             }
         }
     }
