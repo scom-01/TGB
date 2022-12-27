@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
 
     #region Components
 
-    public Core Core { get; private set; }
+    public EnemyCore enemyCore { get; private set; }
     public Animator Anim { get; private set; }
     public Rigidbody2D RB { get; private set; }
     public BoxCollider2D BC2D { get; private set; }
@@ -34,12 +34,13 @@ public class Enemy : MonoBehaviour
     #region Other Variables
     public Vector2 CurrentVelocity { get; private set; }
     public int FancingDirection { get; private set; }
+    public EnemyData EnemyData { get => enemyData; set => enemyData = value; }
     #endregion
 
     #region Unity Callback Func
     private void Awake()
     {
-        Core = GetComponentInChildren<Core>();
+        enemyCore = GetComponentInChildren<EnemyCore>();
 
         fsm = new EnemyFSM();
 
@@ -64,19 +65,13 @@ public class Enemy : MonoBehaviour
         SR = GetComponent<SpriteRenderer>();
         if (SR == null) SR = this.GameObject().AddComponent<SpriteRenderer>();
 
-
-        //PrimaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.primary]);
-        //SecondaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.secondary]);
-
-        FancingDirection = 1;
-
         fsm.Initialize(IdleState);
     }
 
     // Update is called once per frame
     private void Update()
     {
-        Core.LogicUpdate();
+        enemyCore.LogicUpdate();
         if (enemyData.invincibleTime > 0.0f)
         {
             enemyData.invincibleTime -= Time.deltaTime;

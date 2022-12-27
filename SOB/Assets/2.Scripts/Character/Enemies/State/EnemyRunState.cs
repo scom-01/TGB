@@ -27,17 +27,19 @@ public class EnemyRunState : EnemyState
     {
         base.LogicUpdate();
 
-        CheckIfCliff();
+        if(!enemy.enemyCore.CollisionSenses.CheckIfCliff || enemy.enemyCore.CollisionSenses.CheckIfTouchingWall || enemy.enemyCore.CollisionSenses.CheckIfTouching)
+        {
+            enemy.enemyCore.Movement.Flip();
+        }
+        else
+        {
+            enemy.enemyCore.Movement.SetVelocityX(enemyData.movementVelocity * enemy.enemyCore.Movement.FancingDirection);
+        }
+        //CheckIfCliff();
     }
 
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-    }
-
-    //절벽 체크
-    public void CheckIfCliff()
-    {
-
     }
 }

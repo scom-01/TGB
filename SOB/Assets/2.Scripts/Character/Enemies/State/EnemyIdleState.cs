@@ -26,6 +26,11 @@ public class EnemyIdleState : EnemyState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
+        if(enemy.enemyCore.CollisionSenses.PlayerDectected)
+        {
+            FSM.ChangeState(enemy.RunState);
+        }
     }
 
     public override void PhysicsUpdate()

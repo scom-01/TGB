@@ -12,19 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 789ccafd0a6fa6b488c550d87e922e3c, type: 3}
   m_Name: Enemy1Data
   m_EditorClassIdentifier: 
-  movementVelocity: 10
+  movementVelocity: 2
   jumpVelocity: 15
+  invincibleTime: 0
   standColliderHeight: 0
   dashColliderHeight: 0
   coyeteTime: 0.2
   variableJumpHeightMultiplier: 0.5
   blockTime: 1
   blockCooldown: 2
-  groundCheckRadius: 0.3
-  wallCheckDistance: 0.5
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 0
+  playerDetectedDistance: 5
   playerAttackMask:
     serializedVersion: 2
     m_Bits: 0

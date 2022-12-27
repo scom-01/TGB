@@ -35,12 +35,8 @@ public class EnemyData : ScriptableObject
     public float blockCooldown = 2f;
 
     [Header("Check Variables")]
-    [Tooltip("바닥 체크 Radius 반지름값")]
-    public float groundCheckRadius = 0.3f;
-    [Tooltip("전방 벽 체크 Distance")]
-    public float wallCheckDistance = 0.5f;
-    [Tooltip("벽 체크 LayerMask")]
-    public LayerMask whatIsGround;
+    [Tooltip("플레이어 감지 거리")]
+    public float playerDetectedDistance = 5f;
     [Tooltip("Player Attack LayerMask")]
     public LayerMask playerAttackMask;
     [Tooltip("적 공격 LayerMask")]
