@@ -162,8 +162,6 @@ public class Player : MonoBehaviour
             Vector2 center = BC2D.offset;
             workspace.Set(BC2D.size.x, height);
 
-            //center.y += (height - BC2D.size.y) / 2;
-
             BC2D.size = workspace;
             BC2D.offset = center;
         }        
@@ -216,7 +214,7 @@ public class Player : MonoBehaviour
         SR.color = Color.white;
     }
 
-    public void Push(float power)
+    /*public void Push(float power)
     {
         if (!Physics2D.OverlapBox(transform.position + new Vector3((Core.Movement.FancingDirection * power) / 2, BC2D.offset.y, 0),
                                 new Vector2(BC2D.bounds.size.x / 2 + power, BC2D.bounds.size.y * 0.95f), 0f, Core.CollisionSenses.WhatIsGround)) 
@@ -224,11 +222,11 @@ public class Player : MonoBehaviour
             this.transform.Translate(new Vector3(power, 0, 0));
         }
 
-        /*if (!Physics2D.Raycast(groundCheck.position, Vector2.right * FancingDirection, BC2D.size.x / 2 + power, playerData.whatIsGround))
+        *//*if (!Physics2D.Raycast(groundCheck.position, Vector2.right * FancingDirection, BC2D.size.x / 2 + power, playerData.whatIsGround))
         {
             this.transform.Translate(new Vector3(power, 0, 0));
-        }*/
-    }
+        }*//*
+    }*/
     public void KnockBack(float power)
     {
         if (!Physics2D.OverlapBox(transform.position + new Vector3((-Core.Movement.FancingDirection * power) / 2, BC2D.offset.y, 0),

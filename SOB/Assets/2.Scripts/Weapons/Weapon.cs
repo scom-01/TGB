@@ -11,6 +11,8 @@ public class Weapon : MonoBehaviour
 
     protected int attackCounter;
 
+    public bool InAir;
+
     protected PlayerAttackState state;
     protected virtual void Start()
     {

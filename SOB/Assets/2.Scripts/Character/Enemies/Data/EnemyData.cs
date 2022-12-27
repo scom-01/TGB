@@ -13,6 +13,13 @@ public class EnemyData : ScriptableObject
     [Tooltip("점프 Velocity")]
     public float jumpVelocity = 15f;
 
+    [Header("Status")]
+    [Tooltip("체력")]
+    public float maxHealth;
+    [Tooltip("넉백지속시간")]
+    public float knockBackDuration;
+    [Tooltip("넉백 속도")]
+    public float knockBackSpeed;
 
     [Header("InvincibleTime")]
     [Tooltip("피격 쿨타임")]

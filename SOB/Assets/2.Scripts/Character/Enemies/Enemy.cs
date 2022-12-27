@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     public EnemyRunState RunState { get; private set; }
     public EnemyAttackState AttackState { get; private set; }
     public EnemyHitState HitState { get; private set; }
+    public EnemyDeadState DeadState { get; private set; }
 
 
 
@@ -32,8 +33,9 @@ public class Enemy : MonoBehaviour
     #endregion
 
     #region Other Variables
-    public Vector2 CurrentVelocity { get; private set; }
-    public int FancingDirection { get; private set; }
+
+    private float currentHealth;
+    public float damageDirection { get; private set; }
     public EnemyData EnemyData { get => enemyData; set => enemyData = value; }
     #endregion
 
@@ -48,6 +50,7 @@ public class Enemy : MonoBehaviour
         RunState = new EnemyRunState(this, fsm, enemyData, "run");
         AttackState = new EnemyAttackState(this, fsm, enemyData, "attack");
         HitState = new EnemyHitState(this, fsm, enemyData, "hit");
+        DeadState = new EnemyDeadState(this, fsm, enemyData, "dead");
     }
 
     // Start is called before the first frame update
@@ -88,4 +91,41 @@ public class Enemy : MonoBehaviour
         fsm.CurrentState.PhysicsUpdate();
     }
     #endregion
+
+    #region Other Func
+    public void Damage(float[] attackDetails)
+    {
+        currentHealth -= attackDetails[0];
+
+        if (attackDetails[1]>this.transform.position.x)
+        {
+            damageDirection = -1;
+        }
+        else
+        {
+            damageDirection = 1;
+        }
+
+        //Hit Particle
+
+        if (currentHealth > 0.0f)
+        {
+            fsm.ChangeState(HitState);
+        }
+        else if (currentHealth <= 0.0f) 
+        {
+            fsm.ChangeState(DeadState);
+        }
+    }
+    #endregion
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(enemyCore.CollisionSenses.GroundCheck.position, enemyCore.CollisionSenses.GroundCheck.position + Vector3.down * enemyCore.CollisionSenses.GroundCheckRadius);
+        Gizmos.DrawLine(enemyCore.CollisionSenses.WallCheck.position, enemyCore.CollisionSenses.WallCheck.position + Vector3.right * enemyCore.Movement.FancingDirection * enemyCore.CollisionSenses.WallCheckDistance);
+        Gizmos.DrawLine(enemyCore.CollisionSenses.WallCheck.position, enemyCore.CollisionSenses.WallCheck.position+ Vector3.right * -enemyCore.Movement.FancingDirection * enemyCore.CollisionSenses.WallCheckDistance);
+        Gizmos.DrawLine(enemyCore.CollisionSenses.transform.position, enemyCore.CollisionSenses.transform.position + Vector3.right * 1.1f * enemyCore.Movement.FancingDirection);
+        Gizmos.DrawCube(transform.position + new Vector3((BC2D.offset.x + 0.1f) * enemyCore.Movement.FancingDirection, BC2D.offset.y), new Vector2(BC2D.bounds.size.x, BC2D.bounds.size.y * 0.95f)); // enemyCore.CollisionSenses.GroundCheck.position + new Vector3(BC2D.offset.x + BC2D.size.x / 2, 0, 0) * enemyCore.Movement.FancingDirection + Vector3.down);
+        Gizmos.DrawLine(enemyCore.CollisionSenses.transform.position, enemyCore.CollisionSenses.transform.position + Vector3.right * enemyCore.Movement.FancingDirection * enemyCore.GetComponentInParent<Enemy>().EnemyData.playerDetectedDistance);
+    }
 }
