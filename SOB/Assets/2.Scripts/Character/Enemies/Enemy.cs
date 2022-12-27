@@ -22,18 +22,13 @@ public class Enemy : MonoBehaviour
     #endregion
 
     #region Components
+
+    public Core Core { get; private set; }
     public Animator Anim { get; private set; }
     public Rigidbody2D RB { get; private set; }
     public BoxCollider2D BC2D { get; private set; }
 
     public SpriteRenderer SR { get; private set; }
-    #endregion
-
-    #region Check Transforms
-    [SerializeField]
-    private Transform groundCheck;
-    [SerializeField]
-    private Transform wallCheck;
     #endregion
 
     #region Other Variables
@@ -44,6 +39,10 @@ public class Enemy : MonoBehaviour
     #region Unity Callback Func
     private void Awake()
     {
+        Core = GetComponentInChildren<Core>();
+
+        fsm = new EnemyFSM();
+
         IdleState = new EnemyIdleState(this, fsm, enemyData, "idle");
         RunState = new EnemyRunState(this, fsm, enemyData, "run");
         AttackState = new EnemyAttackState(this, fsm, enemyData, "attack");
@@ -77,7 +76,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        CurrentVelocity = RB.velocity;
+        Core.LogicUpdate();
         if (enemyData.invincibleTime > 0.0f)
         {
             enemyData.invincibleTime -= Time.deltaTime;
@@ -94,30 +93,4 @@ public class Enemy : MonoBehaviour
         fsm.CurrentState.PhysicsUpdate();
     }
     #endregion
-    #region Check Func
-
-    public bool CheckIfGrounded()
-    {
-        return Physics2D.OverlapBox(groundCheck.position, new Vector2(BC2D.bounds.size.x * 0.95f, BC2D.bounds.size.y * enemyData.groundCheckRadius), 0f, enemyData.whatIsGround);
-        //return Physics2D.OverlapCircle(groundCheck.position,enemyData.groundCheckRadius,enemyData.whatIsGround);
-    }
-
-    public bool CheckIfTouchingWall()
-    {
-        Debug.DrawRay(wallCheck.position, Vector2.right * FancingDirection * enemyData.wallCheckDistance, Color.green);
-        return Physics2D.Raycast(wallCheck.position, Vector2.right * FancingDirection, enemyData.wallCheckDistance, enemyData.whatIsGround);
-    }
-
-    public bool CheckIfTouchingWallBack()
-    {
-        Debug.DrawRay(wallCheck.position, Vector2.right * -FancingDirection * enemyData.wallCheckDistance, Color.red);
-        return Physics2D.Raycast(wallCheck.position, Vector2.right * -FancingDirection, enemyData.wallCheckDistance, enemyData.whatIsGround);
-    }
-    #endregion
-
-    public void Flip()
-    {
-        FancingDirection *= -1;
-        transform.Rotate(0.0f, 180.0f, 0.0f);
-    }
 }

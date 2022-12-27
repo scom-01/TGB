@@ -169,57 +169,9 @@ public class Player : MonoBehaviour
         }        
     }
 
-/*    public void SetVelocityZero()
-    {
-        RB.velocity = Vector2.zero;
-        CurrentVelocity = Vector2.zero;
-    }
-    public void SetVelocity(float velocity, Vector2 angle, int direction)
-    {
-        angle.Normalize();
-        workspace.Set(angle.x * velocity * direction, Mathf.Clamp(angle.y * velocity,-3,13));
-        RB.velocity = workspace;
-        CurrentVelocity = workspace;
-    }
-    public void SetVelocityX(float velocity)
-    {
-        workspace.Set(velocity, CurrentVelocity.y);
-        RB.velocity = workspace;
-        CurrentVelocity = workspace;
-    }
-    public void  SetVelocityY(float velocity)
-    {
-        workspace.Set(CurrentVelocity.x, velocity);
-        RB.velocity = workspace;
-        CurrentVelocity = workspace;
-    }*/
-
-    #endregion
-
-    #region Check Func
-        
-    
-
-    
-
     #endregion
 
     #region Other Func
-
-    //Ledge를 위한 Corner Check 및 Position 계산
-    /*public Vector2 DetermineCornerPosition()
-    {
-        //x RayCast를 통한 캐릭터 전방 wallCheck
-        RaycastHit2D xHit = Physics2D.Raycast(wallCheck.position, Vector2.right * Core.Movement.FancingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
-        float xDist = xHit.distance;
-        workspace.Set((xDist + 0.015f) * Core.Movement.FancingDirection, 0f);
-        //y RayCast를 통한 Corner와 ledgeCheck Position과의 차 계산
-        RaycastHit2D yHit = Physics2D.Raycast(ledgeCheck.position + (Vector3)(workspace), Vector2.down, ledgeCheck.position.y - wallCheck.position.y + 0.015f, playerData.whatIsGround);
-        float yDist = yHit.distance;
-
-        workspace.Set(wallCheck.position.x + (xDist * Core.Movement.FancingDirection), ledgeCheck.position.y - yDist);
-        return workspace;
-    }*/
 
     private void AnimationTrigger() => fsm.CurrentState.AnimationTrigger();
 
@@ -290,7 +242,7 @@ public class Player : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position + new Vector3(BC2D.size.x, 0, 0) * Core.Movement.FancingDirection, BC2D.size);
+        Gizmos.DrawCube(transform.position + new Vector3(BC2D.size.x, 0, 0) * Core.Movement.FancingDirection, BC2D.size);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
