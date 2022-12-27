@@ -28,8 +28,8 @@ public class Player : MonoBehaviour
     public PlayerAttackState PrimaryAttackState { get; private set; }
     public PlayerAttackState SecondaryAttackState { get; private set; }
     public PlayerAttackState AttackState {get; private set; }
-    public PlayerAirAttackState AirAttackState {get; private set; }
-    public PlayerHeavyAttackState HeavyAttackState {get; private set; }
+    //public PlayerAirAttackState AirAttackState {get; private set; }
+    //public PlayerHeavyAttackState HeavyAttackState {get; private set; }
 
     //PlayerTouchingWallState
     public PlayerWallSlideState WallSlideState { get; private set; }
@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Components
+    public Core Core { get; private set; }
     public Animator Anim { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
     public Rigidbody2D RB { get; private set; }
@@ -54,27 +55,18 @@ public class Player : MonoBehaviour
     public PlayerInventory Inventory { get; private set; }
     #endregion
 
-    #region Check Transforms
-    [SerializeField]
-    private Transform groundCheck;
-    [SerializeField]
-    private Transform wallCheck;
-    [SerializeField]
-    private Transform ledgeCheck;
-    #endregion
-
-    #region Other Variables
-    public Vector2 CurrentVelocity { get; private set; }
-    public int FancingDirection { get; private set; }
     
-    private Vector2 workspace;
 
+    #region Other Variables            
+    private Vector2 workspace;
     //public float invincibleTime;
     #endregion
 
     #region Unity Callback Func
     private void Awake()
     {
+        Core = GetComponentInChildren<Core>();
+
         fsm = new PlayerFSM();
 
         //각 State 생성
@@ -93,8 +85,8 @@ public class Player : MonoBehaviour
         PrimaryAttackState = new PlayerAttackState(this, fsm, playerData, "attack");
         SecondaryAttackState = new PlayerAttackState(this, fsm, playerData, "attack");
         AttackState = new PlayerAttackState(this, fsm, playerData, "attack");
-        AirAttackState = new PlayerAirAttackState(this, fsm, playerData, "airAttack");
-        HeavyAttackState = new PlayerHeavyAttackState(this, fsm, playerData, "heavyAttack");
+        //AirAttackState = new PlayerAirAttackState(this, fsm, playerData, "airAttack");
+        //HeavyAttackState = new PlayerHeavyAttackState(this, fsm, playerData, "heavyAttack");
     }
 
     private void Start()
@@ -120,14 +112,12 @@ public class Player : MonoBehaviour
         PrimaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.primary]);
         //SecondaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.secondary]);
 
-        FancingDirection = 1;
-
         fsm.Initialize(IdleState);
     }
 
     private void Update()
     {
-        CurrentVelocity = RB.velocity;
+        Core.LogicUpdate();
         if (playerData.invincibleTime > 0.0f)
         {
             playerData.invincibleTime -= Time.deltaTime;
@@ -179,7 +169,7 @@ public class Player : MonoBehaviour
         }        
     }
 
-    public void SetVelocityZero()
+/*    public void SetVelocityZero()
     {
         RB.velocity = Vector2.zero;
         CurrentVelocity = Vector2.zero;
@@ -202,73 +192,40 @@ public class Player : MonoBehaviour
         workspace.Set(CurrentVelocity.x, velocity);
         RB.velocity = workspace;
         CurrentVelocity = workspace;
-    }
+    }*/
 
     #endregion
 
     #region Check Func
         
-    public bool CheckIfGrounded()
-    {
-        return Physics2D.OverlapBox(groundCheck.position, new Vector2(BC2D.bounds.size.x*0.95f, BC2D.bounds.size.y * playerData.groundCheckRadius), 0f, playerData.whatIsGround);
-        //return Physics2D.OverlapCircle(groundCheck.position,playerData.groundCheckRadius,playerData.whatIsGround);
-    }
+    
 
-    public bool CheckIfTouchingWall()
-    {
-        Debug.DrawRay(wallCheck.position, Vector2.right * FancingDirection * playerData.wallCheckDistance, Color.green);
-        return Physics2D.Raycast(wallCheck.position, Vector2.right * FancingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
-    }
-
-    public bool CheckIfTouchingLedge()
-    {
-        return Physics2D.Raycast(ledgeCheck.position, Vector2.right * FancingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
-    }
-
-    public bool CheckIfTouchingWallBack()
-    {
-        Debug.DrawRay(wallCheck.position, Vector2.right * -FancingDirection * playerData.wallCheckDistance, Color.red);
-        return Physics2D.Raycast(wallCheck.position, Vector2.right * -FancingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
-    }
-
-    public void CheckIfShouldFlip(int xInput)
-    {
-        if(xInput != 0 && xInput != FancingDirection)
-        {
-            Flip();
-        }
-    }
+    
 
     #endregion
 
     #region Other Func
 
     //Ledge를 위한 Corner Check 및 Position 계산
-    public Vector2 DetermineCornerPosition()
+    /*public Vector2 DetermineCornerPosition()
     {
         //x RayCast를 통한 캐릭터 전방 wallCheck
-        RaycastHit2D xHit = Physics2D.Raycast(wallCheck.position, Vector2.right * FancingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
+        RaycastHit2D xHit = Physics2D.Raycast(wallCheck.position, Vector2.right * Core.Movement.FancingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
         float xDist = xHit.distance;
-        workspace.Set((xDist + 0.015f) * FancingDirection, 0f);
+        workspace.Set((xDist + 0.015f) * Core.Movement.FancingDirection, 0f);
         //y RayCast를 통한 Corner와 ledgeCheck Position과의 차 계산
         RaycastHit2D yHit = Physics2D.Raycast(ledgeCheck.position + (Vector3)(workspace), Vector2.down, ledgeCheck.position.y - wallCheck.position.y + 0.015f, playerData.whatIsGround);
         float yDist = yHit.distance;
 
-        workspace.Set(wallCheck.position.x + (xDist * FancingDirection), ledgeCheck.position.y - yDist);
+        workspace.Set(wallCheck.position.x + (xDist * Core.Movement.FancingDirection), ledgeCheck.position.y - yDist);
         return workspace;
-    }
+    }*/
+
     private void AnimationTrigger() => fsm.CurrentState.AnimationTrigger();
 
     private void AnimationFinishTrigger() => fsm.CurrentState.AnimationFinishTrigger();
 
-    //2D Filp
-    private void Flip()
-    {
-        FancingDirection *= -1;
-        transform.Rotate(0.0f, 180.0f, 0.0f);
-    }
-
-
+   
     #endregion
 
     #region Anim Event Func
@@ -277,7 +234,7 @@ public class Player : MonoBehaviour
         InputHandler.UseSkill1Input();
 
         Debug.Log("Attack");
-        Collider2D[] targets = Physics2D.OverlapBoxAll(this.gameObject.transform.position + new Vector3(BC2D.size.x, 0, 0) * FancingDirection, BC2D.size, 0f);
+        Collider2D[] targets = Physics2D.OverlapBoxAll(this.gameObject.transform.position + new Vector3(BC2D.size.x, 0, 0) * Core.Movement.FancingDirection, BC2D.size, 0f);
 
         //범위 내 공격 대상 체크
         if (targets.Length > 0)
@@ -309,8 +266,8 @@ public class Player : MonoBehaviour
 
     public void Push(float power)
     {
-        if (!Physics2D.OverlapBox(transform.position + new Vector3((FancingDirection * power) / 2, BC2D.offset.y, 0),
-                                new Vector2(BC2D.bounds.size.x / 2 + power, BC2D.bounds.size.y * 0.95f), 0f, playerData.whatIsGround)) 
+        if (!Physics2D.OverlapBox(transform.position + new Vector3((Core.Movement.FancingDirection * power) / 2, BC2D.offset.y, 0),
+                                new Vector2(BC2D.bounds.size.x / 2 + power, BC2D.bounds.size.y * 0.95f), 0f, Core.CollisionSenses.WhatIsGround)) 
         {
             this.transform.Translate(new Vector3(power, 0, 0));
         }
@@ -322,43 +279,18 @@ public class Player : MonoBehaviour
     }
     public void KnockBack(float power)
     {
-        if (!Physics2D.OverlapBox(transform.position + new Vector3((-FancingDirection * power) / 2, BC2D.offset.y, 0),
-                                new Vector2(BC2D.bounds.size.x / 2 + power, BC2D.bounds.size.y * 0.95f), 0f, playerData.whatIsGround))
+        if (!Physics2D.OverlapBox(transform.position + new Vector3((-Core.Movement.FancingDirection * power) / 2, BC2D.offset.y, 0),
+                                new Vector2(BC2D.bounds.size.x / 2 + power, BC2D.bounds.size.y * 0.95f), 0f, Core.CollisionSenses.WhatIsGround))
         {
-            this.transform.Translate(new Vector3(-FancingDirection * power, 0, 0));
+            this.transform.Translate(new Vector3(-Core.Movement.FancingDirection * power, 0, 0));
         }
     }
-
-    public void ComoboCheck()
-    {
-        if (!InputHandler.Skill1Input)
-        {
-            if (CheckIfGrounded())
-            {
-                AttackState.ComboCheck();
-            }
-            else
-            {
-                AttackState.ComboCheck();
-                AirAttackState.ComboCheck();
-            }
-        }
-    }
-
-    public void EventCheckfalse()
-    {
-        if(!InputHandler.Skill2InputStop)
-        {
-            HeavyAttackState.Hold = false;
-        }
-    }
-
     #endregion
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position + new Vector3(BC2D.size.x, 0, 0) * FancingDirection, BC2D.size);
+        Gizmos.DrawWireCube(transform.position + new Vector3(BC2D.size.x, 0, 0) * Core.Movement.FancingDirection, BC2D.size);
     }
 
     private void OnTriggerStay2D(Collider2D collision)

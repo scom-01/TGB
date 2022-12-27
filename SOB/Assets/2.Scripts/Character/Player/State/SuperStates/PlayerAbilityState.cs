@@ -15,7 +15,7 @@ public class PlayerAbilityState : PlayerState
     {
         base.DoChecks();
 
-        isGrounded = player.CheckIfGrounded();
+        isGrounded = player.Core.CollisionSenses.CheckIfGrounded;
     }
 
     public override void Enter()
@@ -36,7 +36,7 @@ public class PlayerAbilityState : PlayerState
 
         if(isAbilityDone)
         {
-            if (isGrounded && player.CurrentVelocity.y < 0.01f)
+            if (isGrounded && player.Core.Movement.CurrentVelocity.y < 0.01f)
             {
                 FSM.ChangeState(player.IdleState);
             }

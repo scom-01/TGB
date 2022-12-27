@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
-using static PlayerInputHandler;
 
 public class Enemy : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class Enemy : MonoBehaviour
 
     #region Other Variables
     public Vector2 CurrentVelocity { get; private set; }
-    public int FancingDirection { get; private set; }        
+    public int FancingDirection { get; private set; }
     #endregion
 
     #region Unity Callback Func

@@ -16,7 +16,7 @@ public class PlayerMoveState : PlayerGroundedState
     public override void Enter()
     {
         base.Enter();
-        player.SetVelocityX(0f);
+        player.Core.Movement.SetVelocityX(0f);
     }
 
     public override void Exit()
@@ -28,11 +28,11 @@ public class PlayerMoveState : PlayerGroundedState
     {
         base.LogicUpdate();
 
-        player.CheckIfShouldFlip(xInput);
+        player.Core.Movement.CheckIfShouldFlip(xInput);
 
         if (isExitingState) return;
 
-        player.SetVelocityX(playerData.movementVelocity * xInput);
+        player.Core.Movement.SetVelocityX(playerData.movementVelocity * xInput);
         
         if(xInput == 0f && !isExitingState)
         {

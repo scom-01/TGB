@@ -18,7 +18,7 @@ public class PlayerDashState : PlayerAbilityState
     {
         base.Enter();
 
-        IsGrounded = player.CheckIfGrounded();
+        IsGrounded = player.Core.CollisionSenses.CheckIfGrounded;
         if (IsGrounded)
         {
             //콜라이더 크기 변경
@@ -33,7 +33,7 @@ public class PlayerDashState : PlayerAbilityState
 
         CanDash = false;
         player.InputHandler.UseDashInput();
-        player.SetVelocityY(0f);
+        player.Core.Movement.SetVelocityY(0f);
         player.RB.gravityScale = 0f;
         DecreaseDashCount();
         startTime = Time.time;
@@ -63,8 +63,8 @@ public class PlayerDashState : PlayerAbilityState
         if (!isExitingState)
         {
             //player.RB.drag = playerData.drag;
-            player.SetVelocityX(playerData.dashVelocity * player.FancingDirection);
-            player.SetVelocityY(0);
+            player.Core.Movement.SetVelocityX(playerData.dashVelocity * player.Core.Movement.FancingDirection);
+            player.Core.Movement.SetVelocityY(0);
             CheckIfShouldPlaceAfterImage();
             //if(Time.time >= startTime + playerData.dashti)
             if (Time.time >= startTime + playerData.dashTime)
@@ -75,7 +75,7 @@ public class PlayerDashState : PlayerAbilityState
                 }
 
                 //player.RB.gravityScale = 5f;
-                player.SetVelocityX(0f);
+                player.Core.Movement.SetVelocityX(0f);
                 isAbilityDone = true;
                 lastDashTime = Time.time;
             }

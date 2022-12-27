@@ -27,9 +27,9 @@ public class PlayerGroundedState : PlayerState
     {
         base.DoChecks();
 
-        isGrounded = player.CheckIfGrounded();
-        isTouchingWall = player.CheckIfTouchingWall();
-        isTouchingLedge = player.CheckIfTouchingLedge(); 
+        isGrounded = player.Core.CollisionSenses.CheckIfGrounded;
+        isTouchingWall = player.Core.CollisionSenses.CheckIfTouchingWall;
+        isTouchingLedge = player.Core.CollisionSenses.CheckIfTouchingLedge; 
     }
 
     public override void Enter()
@@ -85,7 +85,7 @@ public class PlayerGroundedState : PlayerState
         }
         else if (skill2Input)
         {
-            FSM.ChangeState(player.HeavyAttackState);
+            //FSM.ChangeState(player.HeavyAttackState);
         }
         else if(blockInput && player.BlockState.CheckIfCanBlock())
         {

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerState
 {
+    protected Core core;
+
     protected Player player;
     protected PlayerFSM FSM;
     protected PlayerData playerData;
@@ -21,6 +23,7 @@ public class PlayerState
         this.FSM = fSM;
         this.playerData = playerData;
         this.animBoolName = animBoolName;
+        core = player.Core;
     }
 
     //State변경 시 생성자함수 다음으로 호출되는 함수

@@ -32,7 +32,7 @@ public class PlayerBlockState : PlayerAbilityState
 
         if (!isExitingState)
         {
-            player.SetVelocityX(0f);
+            player.Core.Movement.SetVelocityX(0f);
 
             if (CheckHit())
             {
@@ -53,7 +53,7 @@ public class PlayerBlockState : PlayerAbilityState
 
     private bool CheckHit()
     {
-        return Physics2D.OverlapBox(player.gameObject.transform.position + new Vector3(player.BC2D.size.x, 0, 0) * player.FancingDirection, player.BC2D.size, 0f, playerData.enemyAttackMask);
+        return Physics2D.OverlapBox(player.gameObject.transform.position + new Vector3(player.BC2D.size.x, 0, 0) * player.Core.Movement.FancingDirection, player.BC2D.size, 0f, playerData.enemyAttackMask);
     }
 
     public bool CheckIfCanBlock()

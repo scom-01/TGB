@@ -15,7 +15,7 @@ public class PlayerAirAttackState : PlayerAbilityState
     {
         base.Enter();
         CanAirAttack = false;
-        if (player.CheckIfGrounded())
+        if (player.Core.CollisionSenses.CheckIfGrounded)
         {
             isAbilityDone = true;
             return;
@@ -51,10 +51,10 @@ public class PlayerAirAttackState : PlayerAbilityState
         }
         else
         {
-            player.CheckIfShouldFlip(player.InputHandler.NormInputX);
-            player.SetVelocityX(playerData.movementVelocity * player.InputHandler.NormInputX);
-            player.Anim.SetFloat("yVelocity", Mathf.Clamp(player.CurrentVelocity.y, -3, 13));
-            player.Anim.SetFloat("xVelocity", Mathf.Abs(player.CurrentVelocity.x));
+            player.Core.Movement.CheckIfShouldFlip(player.InputHandler.NormInputX);
+            player.Core.Movement.SetVelocityX(playerData.movementVelocity * player.InputHandler.NormInputX);
+            player.Anim.SetFloat("yVelocity", Mathf.Clamp(player.Core.Movement.CurrentVelocity.y, -3, 13));
+            player.Anim.SetFloat("xVelocity", Mathf.Abs(player.Core.Movement.CurrentVelocity.x));
         }
         
     }

@@ -13,6 +13,8 @@ public class PlayerLedgeClimbState : PlayerState
     private bool isClimbing;
     private bool jumpInput;
 
+    private Vector2 workspace;
+
     private int xInput;
     private int yInput;
 
@@ -38,12 +40,12 @@ public class PlayerLedgeClimbState : PlayerState
     {
         base.Enter();
 
-        player.SetVelocityZero();
+        player.Core.Movement.SetVelocityZero();
         player.transform.position = detectedPos;
-        cornerPos = player.DetermineCornerPosition();
+        cornerPos = DetermineCornerPosition();
 
-        startPos.Set(cornerPos.x - (player.FancingDirection * playerData.startOffset.x), cornerPos.y - (playerData.startOffset.y));
-        stopPos.Set(cornerPos.x + (player.FancingDirection * playerData.stopOffset.x), cornerPos.y + (playerData.stopOffset.y));
+        startPos.Set(cornerPos.x - (player.Core.Movement.FancingDirection * playerData.startOffset.x), cornerPos.y - (playerData.startOffset.y));
+        stopPos.Set(cornerPos.x + (player.Core.Movement.FancingDirection * playerData.stopOffset.x), cornerPos.y + (playerData.stopOffset.y));
 
         player.transform.position = startPos;
     }
@@ -75,10 +77,10 @@ public class PlayerLedgeClimbState : PlayerState
             yInput = player.InputHandler.NormInputY;
             jumpInput = player.InputHandler.JumpInput;
 
-            player.SetVelocityZero();
+            player.Core.Movement.SetVelocityZero();
             player.transform.position = startPos;
 
-            if (xInput == player.FancingDirection && isHanging && !isClimbing)
+            if (xInput == player.Core.Movement.FancingDirection && isHanging && !isClimbing)
             {
                 isClimbing = true;
                 player.Anim.SetBool("climbLedge", true);
@@ -95,6 +97,18 @@ public class PlayerLedgeClimbState : PlayerState
             }
         }
     }
+    public Vector2 DetermineCornerPosition()
+    {
+        //x RayCast를 통한 캐릭터 전방 wallCheck
+        RaycastHit2D xHit = Physics2D.Raycast(core.CollisionSenses.GroundCheck.position, Vector2.right * core.Movement.FancingDirection, core.CollisionSenses.WallCheckDistance, core.CollisionSenses.WhatIsGround);
+        float xDist = xHit.distance;
+        workspace.Set((xDist + 0.015f) * core.Movement.FancingDirection, 0f);
+        //y RayCast를 통한 Corner와 ledgeCheck Position과의 차 계산
+        RaycastHit2D yHit = Physics2D.Raycast(core.CollisionSenses.LedgeCheck.position + (Vector3)(workspace), Vector2.down, core.CollisionSenses.LedgeCheck.position.y - core.CollisionSenses.WallCheck.position.y + 0.015f, core.CollisionSenses.WhatIsGround);
+        float yDist = yHit.distance;
 
+        workspace.Set(core.CollisionSenses.WallCheck.position.x + (xDist * core.Movement.FancingDirection), core.CollisionSenses.LedgeCheck.position.y - yDist);
+        return workspace;
+    }
     public void SetDetectedPosition(Vector2 pos) => detectedPos = pos;
 }

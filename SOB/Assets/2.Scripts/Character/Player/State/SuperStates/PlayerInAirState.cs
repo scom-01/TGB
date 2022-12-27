@@ -38,10 +38,11 @@ public class PlayerInAirState : PlayerState
         oldIsTouchingWall = isTouchingWall;
         oldIsTouchingWallBack = isTouchingWallBack;
 
-        isGrounded = player.CheckIfGrounded();
-        isTouchingWall = player.CheckIfTouchingWall();
-        isTouchingWallBack = player.CheckIfTouchingWallBack();
-        isTouchingLedge = player.CheckIfTouchingLedge();
+        isGrounded = player.Core.CollisionSenses.CheckIfGrounded;
+        Debug.Log("isGrounded = "+isGrounded);
+        isTouchingWall = player.Core.CollisionSenses.CheckIfTouchingWall;
+        isTouchingWallBack = player.Core.CollisionSenses.CheckIfTouchingWallBack;
+        isTouchingLedge = player.Core.CollisionSenses.CheckIfTouchingLedge;
 
         /*if(isTouchingWall && !isTouchingLedge)
         {
@@ -98,9 +99,9 @@ public class PlayerInAirState : PlayerState
         }
         else if (skill1Input && !isGrounded)
         {
-            FSM.ChangeState(player.AirAttackState);
+            //FSM.ChangeState(player.AirAttackState);
         }
-        else if(isGrounded && player.CurrentVelocity.y < 0.01f)
+        else if(isGrounded && player.Core.Movement.CurrentVelocity.y < 0.01f)
         {
             FSM.ChangeState(player.LandState);
         }
@@ -111,7 +112,7 @@ public class PlayerInAirState : PlayerState
         else if(JumpInput && (isTouchingWall || isTouchingWallBack || wallJumpCoyoteTime))
         {
             StopWallJumpCoyoteTime();
-            isTouchingWall = player.CheckIfTouchingWall();
+            isTouchingWall = player.Core.CollisionSenses.CheckIfTouchingWall;
             player.WallJumpState.DetermineWallJumpDirection(isTouchingWall);
             FSM.ChangeState(player.WallJumpState);
         }
@@ -124,7 +125,7 @@ public class PlayerInAirState : PlayerState
         {
             FSM.ChangeState(player.WallGrabState);
         }*/
-        else if(isTouchingWall && xInput == player.FancingDirection && player.CurrentVelocity.y <= 0f)
+        else if(isTouchingWall && xInput == player.Core.Movement.FancingDirection && player.Core.Movement.CurrentVelocity.y <= 0f)
         {
             FSM.ChangeState(player.WallSlideState);
         }
@@ -138,11 +139,11 @@ public class PlayerInAirState : PlayerState
         }
         else
         {
-            player.CheckIfShouldFlip(xInput);
-            player.SetVelocityX(playerData.movementVelocity * xInput);
+            player.Core.Movement.CheckIfShouldFlip(xInput);
+            player.Core.Movement.SetVelocityX(playerData.movementVelocity * xInput);
 
-            player.Anim.SetFloat("yVelocity", Mathf.Clamp(player.CurrentVelocity.y, -3, 13));
-            player.Anim.SetFloat("xVelocity", Mathf.Abs(player.CurrentVelocity.x));
+            player.Anim.SetFloat("yVelocity", Mathf.Clamp(player.Core.Movement.CurrentVelocity.y, -3, 13));
+            player.Anim.SetFloat("xVelocity", Mathf.Abs(player.Core.Movement.CurrentVelocity.x));
         }
     }
 
@@ -152,10 +153,10 @@ public class PlayerInAirState : PlayerState
         {
             if (JumpInputStop)
             {
-                player.SetVelocityY(player.CurrentVelocity.y * playerData.variableJumpHeightMultiplier);
+                player.Core.Movement.SetVelocityY(player.Core.Movement.CurrentVelocity.y * playerData.variableJumpHeightMultiplier);
                 isJumping = false;
             }
-            else if (player.CurrentVelocity.y <= 0f)
+            else if (player.Core.Movement.CurrentVelocity.y <= 0f)
             {
                 isJumping = false;
             }
