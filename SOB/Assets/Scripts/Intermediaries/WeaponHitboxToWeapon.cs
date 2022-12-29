@@ -13,13 +13,11 @@ public class WeaponHitboxToWeapon : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D coll)
     {
-        Debug.Log("AddToDetected");
         weapon.AddToDetected(coll);
     }
 
     private void OnTriggerExit2D(Collider2D coll)
     {
-        Debug.Log("RemoveFromDetected = " + coll);
         weapon.RemoveFromDetected(coll);
     }
 }

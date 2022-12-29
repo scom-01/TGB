@@ -39,7 +39,6 @@ public class PlayerInAirState : PlayerState
         oldIsTouchingWallBack = isTouchingWallBack;
 
         isGrounded = player.Core.CollisionSenses.CheckIfGrounded;
-        Debug.Log("isGrounded = "+isGrounded);
         isTouchingWall = player.Core.CollisionSenses.CheckIfTouchingWall;
         isTouchingWallBack = player.Core.CollisionSenses.CheckIfTouchingWallBack;
         isTouchingLedge = player.Core.CollisionSenses.CheckIfTouchingLedge;
@@ -128,8 +127,7 @@ public class PlayerInAirState : PlayerState
         else if(isTouchingWall && xInput == player.Core.Movement.FancingDirection && player.Core.Movement.CurrentVelocity.y <= 0f)
         {
             FSM.ChangeState(player.WallSlideState);
-        }
-        
+        }        
         else if(dashInput && player.DashState.CheckIfCanDash())
         {
             if(player.DashState.DashCount > 0)

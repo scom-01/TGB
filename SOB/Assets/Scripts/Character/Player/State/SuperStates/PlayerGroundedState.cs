@@ -49,6 +49,11 @@ public class PlayerGroundedState : PlayerState
     {
         base.LogicUpdate();
 
+        if(player.DashState.CheckIfResetDash())
+        {
+            player.DashState.ResetDash(playerData.dashCount);
+        }
+
         xInput = player.InputHandler.NormInputX;
         JumpInput = player.InputHandler.JumpInput;
         grabInput = player.InputHandler.GrabInput;

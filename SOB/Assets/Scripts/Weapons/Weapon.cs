@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] protected SO_WeaponData weaponData;
+    [SerializeField]
+    public SO_WeaponData weaponData;
+
+    [Tooltip("°ø°Ý È½¼ö")]
+    public int attackCounter;
 
     protected Animator baseAnimator;
     protected Animator WeaponAnimator;
 
-    protected int attackCounter;
+    [HideInInspector]
+    private WeaponManager weaponManager;
 
+    [HideInInspector]
     public bool InAir;
 
     protected PlayerAttackState state;
@@ -18,6 +24,8 @@ public class Weapon : MonoBehaviour
     {
         baseAnimator = transform.Find("Base").GetComponent<Animator>();
         WeaponAnimator = transform.Find("Weapon").GetComponent<Animator>();
+
+        weaponManager = GetComponentInParent<WeaponManager>();
     }
 
     public virtual void EnterWeapon()
@@ -63,6 +71,8 @@ public class Weapon : MonoBehaviour
             WeaponAnimator.SetBool("attack", true);
             WeaponAnimator.SetInteger("attackCounter", attackCounter);
         }
+
+        weaponManager.lastAttackTime = Time.time;
     }
 
     public virtual void ExitWeapon()

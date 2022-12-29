@@ -31,6 +31,8 @@ public class PlayerData : ScriptableObject
     [Header("InvincibleTime")]
     [Tooltip("피격 쿨타임")]
     public float invincibleTime = 1f;
+    [Tooltip("터치 피격 쿨타임")]
+    public float touchDamageinvincibleTime = 1f;
 
     [Header("Collider")]
     [Tooltip("기본 콜라이더 크기")]
@@ -67,12 +69,19 @@ public class PlayerData : ScriptableObject
     public Vector2 stopOffset;
 
     [Header("Dash State")]
+    [Tooltip("대쉬 쿨타임")]
     public float dashCooldown = 0.5f;
+    [Tooltip("대쉬 초기화 쿨타임")]
+    public float dashResetCooldown = 0.8f;
+    [Tooltip("대쉬시간")]
     public float dashTime = 0.2f;
+    [Tooltip("대쉬 속도")]
     public float dashVelocity = 30f;
+    [Tooltip("대쉬 사용가능 횟수")]
     public int dashCount = 1;
     public float drag = 10f;
     public float dashEndYMultiplier = 0.2f;
+    [Tooltip("잔상 간의 거리")]
     public float distBetweenAfterImages = 0.5f;
 
     [Header("Block State")]

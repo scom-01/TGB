@@ -41,7 +41,7 @@ public class AggressiveWeapon : Weapon
 
     public void AddToDetected(Collider2D coll)
     {
-        Debug.Log("AddToDetected = " + coll);
+        Debug.Log("AddToDetected = " + coll.name);
         IDamagable damagable = coll.GetComponent<IDamagable>();
 
         if (damagable != null)

@@ -7,7 +7,6 @@ public class PlayerDashState : PlayerAbilityState
     public bool CanDash { get; private set; }
     public int DashCount { get; private set; }
     private float lastDashTime;
-    private float lastResetDashTime;
     private bool IsGrounded = true;
 
     private Vector2 lastAIPos;
@@ -63,13 +62,11 @@ public class PlayerDashState : PlayerAbilityState
 
         if (!isExitingState)
         {
-            //player.RB.drag = playerData.drag;
             player.Core.Movement.SetVelocityX(playerData.dashVelocity * player.Core.Movement.FancingDirection);
             player.Core.Movement.SetVelocityY(0);
             
             CheckIfShouldPlaceAfterImage();
 
-            //if(Time.time >= startTime + playerData.dashTime)
             if (Time.time >= startTime + playerData.dashTime)
             {
                 if(DashCount > 0)
@@ -77,7 +74,6 @@ public class PlayerDashState : PlayerAbilityState
                     CanDash = true;
                 }
 
-                //player.RB.gravityScale = 5f;
                 player.Core.Movement.SetVelocityX(0f);
                 isAbilityDone = true;
                 lastDashTime = Time.time;                

@@ -47,6 +47,12 @@ public class PlayerAttackState : PlayerAbilityState
 
         xInput = player.InputHandler.NormInputX;
         
+        //공중에서 공격 후 착지상태
+        if(weapon.InAir&& player.Core.CollisionSenses.CheckIfGrounded)
+        {
+            FSM.ChangeState(player.LandState);
+            return;
+        }
 
         if(shouldCheckFlip)
         {
@@ -71,6 +77,7 @@ public class PlayerAttackState : PlayerAbilityState
     {
         this.weapon = weapon;
         weapon.InitializeWeapon(this);
+        this.weapon.GetComponentInParent<WeaponManager>().weapon = weapon;
     }
 
     public void SetPlayerVelocity(float velocity)

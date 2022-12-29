@@ -15,6 +15,8 @@ MonoBehaviour:
   movementVelocity: 10
   jumpVelocity: 15
   amountOfJumps: 4
+  invincibleTime: 0.36782074
+  touchDamageinvincibleTime: 1
   standColliderHeight: 1.3
   dashColliderHeight: 0.93
   wallJumpVelocity: 20
@@ -32,14 +34,9 @@ MonoBehaviour:
   dashCount: 2
   drag: 10
   dashEndYMultiplier: 0.2
-  distBetweenAfterImages: 0.5
+  distBetweenAfterImages: 0.75
   blockTime: 1
   blockCooldown: 0.5
-  groundCheckRadius: 0.1
-  wallCheckDistance: 0.4
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 32768
   playerAttackMask:
     serializedVersion: 2
     m_Bits: 33554432
