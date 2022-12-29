@@ -39,6 +39,7 @@ public class Enemy : MonoBehaviour
     public EnemyData EnemyData { get => enemyData; set => enemyData = value; }
     #endregion
 
+    
     #region Unity Callback Func
     private void Awake()
     {
@@ -56,7 +57,7 @@ public class Enemy : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         Anim = GetComponent<Animator>();
         if (Anim == null) Anim = this.GameObject().AddComponent<Animator>();
@@ -77,6 +78,8 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         enemyCore.LogicUpdate();
+
+        //Anim.SetFloat("yVelocity", enemyCore.Movement.RB.velocity.y);
         if (enemyData.invincibleTime > 0.0f)
         {
             enemyData.invincibleTime -= Time.deltaTime;

@@ -54,9 +54,6 @@ public class PlayerGroundedState : PlayerState
         grabInput = player.InputHandler.GrabInput;
         dashInput = player.InputHandler.DashInput;
         blockInput = player.InputHandler.BlockInput;
-        //skill1Input = player.InputHandler.Skill1Input;
-        //skill2Input = player.InputHandler.Skill2Input;
-
         
         if (player.InputHandler.AttackInputs[(int)CombatInputs.primary])
         {
@@ -78,14 +75,6 @@ public class PlayerGroundedState : PlayerState
         else if (dashInput && player.DashState.CheckIfCanDash())
         {
             FSM.ChangeState(player.DashState);
-        }
-        else if(skill1Input)
-        {
-            FSM.ChangeState(player.AttackState);
-        }
-        else if (skill2Input)
-        {
-            //FSM.ChangeState(player.HeavyAttackState);
         }
         else if(blockInput && player.BlockState.CheckIfCanBlock())
         {

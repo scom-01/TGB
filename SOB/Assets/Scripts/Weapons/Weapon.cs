@@ -24,7 +24,18 @@ public class Weapon : MonoBehaviour
     {
         gameObject.SetActive(true);
 
-        if(attackCounter >= weaponData.amountOfAttacks)
+        if (InAir)
+        {
+            baseAnimator.SetBool("inAir", true);
+            WeaponAnimator.SetBool("inAir", true);
+        }
+        else
+        {
+            baseAnimator.SetBool("inAir", false);
+            WeaponAnimator.SetBool("inAir", false);
+        }
+
+        if (attackCounter >= weaponData.amountOfAttacks)
         {
             attackCounter = 0;
         }

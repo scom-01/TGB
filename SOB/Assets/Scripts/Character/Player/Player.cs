@@ -27,9 +27,6 @@ public class Player : MonoBehaviour
 
     public PlayerAttackState PrimaryAttackState { get; private set; }
     public PlayerAttackState SecondaryAttackState { get; private set; }
-    public PlayerAttackState AttackState {get; private set; }
-    //public PlayerAirAttackState AirAttackState {get; private set; }
-    //public PlayerHeavyAttackState HeavyAttackState {get; private set; }
 
     //PlayerTouchingWallState
     public PlayerWallSlideState WallSlideState { get; private set; }
@@ -81,12 +78,11 @@ public class Player : MonoBehaviour
         WallJumpState= new PlayerWallJumpState(this, fsm, playerData, "inAir");
         //LedgeClimbState = new PlayerLedgeClimbState(this, fsm, playerData, "ledgeClimbState");
         DashState = new PlayerDashState(this, fsm, playerData, "dash");
+
         BlockState = new PlayerBlockState(this, fsm, playerData, "block");
+
         PrimaryAttackState = new PlayerAttackState(this, fsm, playerData, "attack");
         SecondaryAttackState = new PlayerAttackState(this, fsm, playerData, "attack");
-        AttackState = new PlayerAttackState(this, fsm, playerData, "attack");
-        //AirAttackState = new PlayerAirAttackState(this, fsm, playerData, "airAttack");
-        //HeavyAttackState = new PlayerHeavyAttackState(this, fsm, playerData, "heavyAttack");
     }
 
     private void Start()

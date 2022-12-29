@@ -7,6 +7,7 @@ public class EnemyState
     protected Enemy enemy;
     protected EnemyFSM FSM;
     protected EnemyData enemyData;
+    protected EnemyCore core;
 
     protected bool isAnimationFinished;
     protected bool isExitingState;
@@ -20,6 +21,7 @@ public class EnemyState
         this.FSM = fSM;
         this.enemyData = enemyData;
         this.animBoolName = animBoolName;
+        this.core = enemy.enemyCore;
     }
 
     //State변경 시 생성자함수 다음으로 호출되는 함수

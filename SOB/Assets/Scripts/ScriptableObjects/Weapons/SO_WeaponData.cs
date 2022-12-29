@@ -6,5 +6,6 @@ using UnityEngine;
 public class SO_WeaponData : ScriptableObject
 {
     public int amountOfAttacks;
+    public float comboResetTime;
     public float[] movementSpeed { get; protected set; }
 }

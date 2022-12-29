@@ -25,6 +25,7 @@ public class PlayerAttackState : PlayerAbilityState
 
         setVelocity = false;
 
+        weapon.InAir = !player.Core.CollisionSenses.CheckIfGrounded;
         weapon.EnterWeapon();
 
         CanAttack = false;
@@ -45,7 +46,8 @@ public class PlayerAttackState : PlayerAbilityState
         base.LogicUpdate();
 
         xInput = player.InputHandler.NormInputX;
-        weapon.InAir = !player.Core.CollisionSenses.CheckIfGrounded;
+        
+
         if(shouldCheckFlip)
         {
             player.Core.Movement.CheckIfShouldFlip(xInput);
