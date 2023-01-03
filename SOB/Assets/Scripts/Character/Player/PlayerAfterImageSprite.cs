@@ -10,6 +10,10 @@ public class PlayerAfterImageSprite : MonoBehaviour
     private float alpha;
     [SerializeField]
     private float alphaSet = 0.8f;
+
+    [SerializeField]
+    private Vector3 colorRGB;
+
     [SerializeField]
     private float alphaDecay = 10.0f;
 
@@ -35,7 +39,9 @@ public class PlayerAfterImageSprite : MonoBehaviour
     private void Update()
     {
         alpha -= alphaDecay * Time.deltaTime;
-        color = new Color(1f, 1f, 1f, alpha);
+        color = new Color(Mathf.Clamp01(colorRGB.x), 
+                            Mathf.Clamp01(colorRGB.y), 
+                            Mathf.Clamp01(colorRGB.z), alpha);
 
         SR.color = color;
         if(Time.time>=(timeActivated + activeTime))

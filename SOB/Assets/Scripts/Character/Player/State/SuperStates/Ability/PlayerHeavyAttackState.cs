@@ -36,13 +36,13 @@ public class PlayerHeavyAttackState : PlayerAbilityState
         {
             if(Hold)
             {
-                EndAbility();
+                AnimationFinishTrigger();
             }
         }
 
         if(isAnimationFinished)
         {
-            EndAbility();
+            AnimationFinishTrigger();
         }
     }
 }

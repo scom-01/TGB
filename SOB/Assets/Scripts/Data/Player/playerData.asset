@@ -15,7 +15,7 @@ MonoBehaviour:
   movementVelocity: 10
   jumpVelocity: 15
   amountOfJumps: 4
-  invincibleTime: 0.36782074
+  invincibleTime: 0
   touchDamageinvincibleTime: 1
   standColliderHeight: 1.3
   dashColliderHeight: 0.93
@@ -29,6 +29,7 @@ MonoBehaviour:
   startOffset: {x: 0.34, y: -0.8}
   stopOffset: {x: 0.5, y: 2.3}
   dashCooldown: 0.1
+  dashResetCooldown: 0.5
   dashTime: 0.2
   dashVelocity: 30
   dashCount: 2

@@ -6,7 +6,7 @@ public class PlayerBlockState : PlayerAbilityState
 {
     public bool CanBlock { get; private set; }
     private float lastBlockTime;
-    private bool IsGrounded = true;
+    //private bool IsGrounded = true;
 
     public PlayerBlockState(Player player, PlayerFSM fSM, PlayerData playerData, string animBoolName) : base(player, fSM, playerData, animBoolName)
     {

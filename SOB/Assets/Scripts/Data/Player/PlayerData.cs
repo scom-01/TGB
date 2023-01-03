@@ -55,11 +55,11 @@ public class PlayerData : ScriptableObject
     public float variableJumpHeightMultiplier = 0.5f;
 
     [Header("Wall Slide State")]
-    [Tooltip("점프 슬라이딩 Velocity")]
+    [Tooltip("벽 슬라이딩 Velocity")]
     public float wallSlideVelocity = 3f;
 
     [Header("Wall Climb State")]
-    [Tooltip("점프 Climb Velocity")]
+    [Tooltip("벽 Climb Velocity")]
     public float wallClimbVelocity = 3f;
 
     [Header("Ledge Climb State")]

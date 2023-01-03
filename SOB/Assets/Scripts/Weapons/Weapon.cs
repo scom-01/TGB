@@ -7,6 +7,8 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     public SO_WeaponData weaponData;
 
+    public string weaponAnimBoolStr;
+
     [Tooltip("°ø°Ý È½¼ö")]
     public int attackCounter;
 
@@ -14,12 +16,12 @@ public class Weapon : MonoBehaviour
     protected Animator WeaponAnimator;
 
     [HideInInspector]
-    private WeaponManager weaponManager;
+    protected WeaponManager weaponManager;
 
     [HideInInspector]
     public bool InAir;
 
-    protected PlayerAttackState state;
+    protected PlayerWeaponState state;
     protected virtual void Awake()
     {
         baseAnimator = transform.Find("Base").GetComponent<Animator>();
@@ -34,42 +36,11 @@ public class Weapon : MonoBehaviour
 
         if (InAir)
         {
-            baseAnimator.SetBool("inAir", true);
-            WeaponAnimator.SetBool("inAir", true);
+            SetBoolName("inAir", true);
         }
         else
         {
-            baseAnimator.SetBool("inAir", false);
-            WeaponAnimator.SetBool("inAir", false);
-        }
-
-        if (attackCounter >= weaponData.amountOfAttacks)
-        {
-            attackCounter = 0;
-        }
-
-        if (baseAnimator != null)
-        {
-            baseAnimator.SetBool("attack", true);
-            baseAnimator.SetInteger("attackCounter", attackCounter);
-        }
-        else
-        {
-            baseAnimator = transform.Find("Base").GetComponent<Animator>();
-            baseAnimator.SetBool("attack", true);
-            baseAnimator.SetInteger("attackCounter", attackCounter);
-        }
-
-        if (WeaponAnimator != null)
-        {
-            WeaponAnimator.SetBool("attack", true);
-            WeaponAnimator.SetInteger("attackCounter", attackCounter);
-        }
-        else
-        {
-            WeaponAnimator = transform.Find("Weapon").GetComponent<Animator>();
-            WeaponAnimator.SetBool("attack", true);
-            WeaponAnimator.SetInteger("attackCounter", attackCounter);
+            SetBoolName("inAir", false);
         }
 
         weaponManager.lastAttackTime = Time.time;
@@ -77,26 +48,19 @@ public class Weapon : MonoBehaviour
 
     public virtual void ExitWeapon()
     {
-        if (baseAnimator != null)
-            baseAnimator.SetBool("attack", false);
-        else
-        {
-            baseAnimator = transform.Find("Base").GetComponent<Animator>();
-            baseAnimator.SetBool("attack", false);
-        }
-
-        if (WeaponAnimator != null)
-            WeaponAnimator.SetBool("attack", false);
-        else
-        {
-            WeaponAnimator = transform.Find("Weapon").GetComponent<Animator>();
-            WeaponAnimator.SetBool("attack", false);
-        }
-
-        attackCounter++;
-
         gameObject.SetActive(false);
     }
+
+    #region Set Func
+    
+    public virtual void SetBoolName(string name, bool setbool)
+    {
+        weaponAnimBoolStr = name;
+        
+        baseAnimator.SetBool(name, setbool);
+        WeaponAnimator.SetBool(name, setbool);
+    }
+    #endregion
 
     #region Animation Triggers
     public virtual void AnimationFinishTrigger()
@@ -131,7 +95,7 @@ public class Weapon : MonoBehaviour
     
     #endregion
 
-    public void InitializeWeapon(PlayerAttackState state)
+    public void InitializeWeapon(PlayerWeaponState state)
     {
         this.state = state;
     }

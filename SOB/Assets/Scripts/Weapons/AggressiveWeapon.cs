@@ -23,6 +23,32 @@ public class AggressiveWeapon : Weapon
         }
     }
 
+    public override void EnterWeapon()
+    {
+        base.EnterWeapon();
+
+        if (attackCounter >= weaponData.amountOfAttacks)
+        {
+            attackCounter = 0;
+        }
+
+        SetBoolName("attack", true);
+
+        baseAnimator.SetInteger("attackCounter", attackCounter);
+        WeaponAnimator.SetInteger("attackCounter", attackCounter);
+    }
+
+    public override void ExitWeapon()
+    {
+        base.ExitWeapon();
+
+        SetBoolName("attack", false);
+
+        attackCounter++;
+
+        gameObject.SetActive(false);
+    }
+
     public override void AnimationActionTrigger()
     {
         base.AnimationActionTrigger();

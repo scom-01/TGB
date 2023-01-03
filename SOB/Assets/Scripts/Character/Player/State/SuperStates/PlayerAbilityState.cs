@@ -52,5 +52,10 @@ public class PlayerAbilityState : PlayerState
         base.PhysicsUpdate();
     }
 
-    public virtual void EndAbility() => isAbilityDone = true;
+    public override void AnimationFinishTrigger()
+    {
+        base.AnimationFinishTrigger();
+
+        isAbilityDone = true;
+    }
 }

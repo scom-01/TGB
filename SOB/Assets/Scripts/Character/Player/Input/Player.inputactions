@@ -60,9 +60,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Block",
+                    "name": "Primary",
                     "type": "Button",
-                    "id": "a5327eae-465b-4421-86f2-71bc55e87a76",
+                    "id": "b5e1f0d3-8a1c-4c72-929f-053003735d4c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Secondary",
+                    "type": "Button",
+                    "id": "62f09e07-e18f-45bf-9d3a-9e0cb0df973d",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -182,12 +191,23 @@
                 },
                 {
                     "name": "",
-                    "id": "812fec8e-184e-469b-baa0-c2c46d22afc0",
+                    "id": "994e0bc5-3c8e-4344-a143-ad8910edece0",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Primary",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4d564be0-fd03-4c82-9427-5085594a5b46",
                     "path": "<Keyboard>/v",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Block",
+                    "action": "Secondary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

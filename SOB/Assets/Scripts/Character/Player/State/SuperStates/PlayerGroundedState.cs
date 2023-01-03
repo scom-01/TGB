@@ -37,7 +37,7 @@ public class PlayerGroundedState : PlayerState
         base.Enter();
         player.JumpState.ResetAmountOfJumpsLeft();
         player.DashState.ResetCanDash();
-        player.BlockState.ResetCanBlock();
+        //player.BlockState.ResetCanBlock();
     }
 
     public override void Exit()
@@ -81,7 +81,7 @@ public class PlayerGroundedState : PlayerState
         {
             FSM.ChangeState(player.DashState);
         }
-        else if(blockInput && player.BlockState.CheckIfCanBlock())
+        else if(blockInput)
         {
             FSM.ChangeState(player.BlockState);
         }

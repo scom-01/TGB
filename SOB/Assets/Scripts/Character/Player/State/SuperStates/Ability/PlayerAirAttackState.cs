@@ -47,7 +47,7 @@ public class PlayerAirAttackState : PlayerAbilityState
         {
             Debug.Log("Grounded!");
             //player.RB.gravityScale = 5f;
-            EndAbility();
+            AnimationFinishTrigger();
         }
         else
         {
@@ -62,6 +62,6 @@ public class PlayerAirAttackState : PlayerAbilityState
     public void ComboCheck()
     {
         player.RB.gravityScale = 5f;
-        EndAbility();
+        AnimationFinishTrigger();
     }
 }

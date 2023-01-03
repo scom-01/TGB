@@ -88,6 +88,7 @@ public class PlayerInAirState : PlayerState
         dashInput = player.InputHandler.DashInput;
         skill1Input = player.InputHandler.Skill1Input;
         skill2Input = player.InputHandler.Skill2Input;
+
         if (player.InputHandler.AttackInputs[(int)CombatInputs.primary])
         {
             FSM.ChangeState(player.PrimaryAttackState);
@@ -95,10 +96,6 @@ public class PlayerInAirState : PlayerState
         else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondary])
         {
             FSM.ChangeState(player.SecondaryAttackState);
-        }
-        else if (skill1Input && !isGrounded)
-        {
-            //FSM.ChangeState(player.AirAttackState);
         }
         else if(isGrounded && player.Core.Movement.CurrentVelocity.y < 0.01f)
         {

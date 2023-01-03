@@ -23,10 +23,10 @@ public class Player : MonoBehaviour
     public PlayerJumpState JumpState { get; private set; }
     public PlayerWallJumpState WallJumpState { get; private set; }
     public PlayerDashState DashState { get; private set; }
-    public PlayerBlockState BlockState { get; private set; }
+    public PlayerWeaponState BlockState { get; private set; }
 
-    public PlayerAttackState PrimaryAttackState { get; private set; }
-    public PlayerAttackState SecondaryAttackState { get; private set; }
+    public PlayerWeaponState PrimaryAttackState { get; private set; }
+    public PlayerWeaponState SecondaryAttackState { get; private set; }
 
     //PlayerTouchingWallState
     public PlayerWallSlideState WallSlideState { get; private set; }
@@ -79,10 +79,10 @@ public class Player : MonoBehaviour
         //LedgeClimbState = new PlayerLedgeClimbState(this, fsm, playerData, "ledgeClimbState");
         DashState = new PlayerDashState(this, fsm, playerData, "dash");
 
-        BlockState = new PlayerBlockState(this, fsm, playerData, "block");
+        BlockState = new PlayerWeaponState(this, fsm, playerData, "weapon");
 
-        PrimaryAttackState = new PlayerAttackState(this, fsm, playerData, "attack");
-        SecondaryAttackState = new PlayerAttackState(this, fsm, playerData, "attack");
+        PrimaryAttackState = new PlayerWeaponState(this, fsm, playerData, "weapon");
+        SecondaryAttackState = new PlayerWeaponState(this, fsm, playerData, "weapon");
     }
 
     private void Start()

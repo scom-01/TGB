@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
+    [HideInInspector]
     public float lastAttackTime;
 
     [HideInInspector] public Weapon weapon;

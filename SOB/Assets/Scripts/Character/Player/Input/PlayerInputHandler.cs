@@ -22,6 +22,8 @@ public class PlayerInputHandler : MonoBehaviour
     public bool Skill1InputStop { get; private set; }
     public bool Skill2Input { get; private set; }
     public bool Skill2InputStop { get; private set; }
+    public bool PrimaryInput { get; private set; }
+    public bool PrimaryStop { get; private set; }
     public bool BlockInput { get; private set; }
     public bool BlockInputStop { get; private set; }
 
@@ -48,20 +50,20 @@ public class PlayerInputHandler : MonoBehaviour
         bool jumpInput = JumpInput;
         bool dashInput = DashInput;
         bool blockInput = BlockInput;
-        //bool skill1Input = Skill1Input;
-        //bool skill2Input = Skill2Input;
+        bool skill1Input = Skill1Input;
+        bool skill2Input = Skill2Input;
 
         CheckHoldTime(ref jumpInput, ref jumpInputStartTime);
         CheckHoldTime(ref dashInput, ref dashInputStartTime);
         CheckHoldTime(ref blockInput, ref blockInputStartTime);
-        //CheckHoldTime(ref skill1Input, ref skill1InputStartTime);
-        //CheckHoldTime(ref skill2Input, ref skill2InputStartTime);
+        CheckHoldTime(ref skill1Input, ref skill1InputStartTime);
+        CheckHoldTime(ref skill2Input, ref skill2InputStartTime);
 
         JumpInput = jumpInput;
         DashInput = dashInput;
         BlockInput = blockInput;
-        //Skill1Input = skill1Input;
-        //Skill2Input = skill2Input;
+        Skill1Input = skill1Input;
+        Skill2Input = skill2Input;
     }
 
     //¿òÁ÷ÀÓ Input
@@ -132,14 +134,12 @@ public class PlayerInputHandler : MonoBehaviour
         if(context.started)
         {
             Debug.Log("OnSkill 1 Input");
-            AttackInputs[(int)CombatInputs.primary] = true;
             Skill1Input = true;
             Skill1InputStop = false;
         }
         
         if (context.canceled)
         {
-            AttackInputs[(int)CombatInputs.primary] = false;
             Skill1InputStop = true;
         }
     }
@@ -149,15 +149,41 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.started)
         {
             Debug.Log("OnSkill 2 Input");
-            AttackInputs[(int)CombatInputs.secondary] = true;
             Skill2Input = true;
             Skill2InputStop = false;
         }
         
         if(context.canceled)
         {
-            AttackInputs[(int)CombatInputs.secondary] = false;
             Skill2InputStop = true;
+        }
+    }
+
+    public void OnPrimaryInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Debug.Log((int)CombatInputs.primary + " Input");
+            AttackInputs[(int)CombatInputs.primary] = true;
+        }
+
+        if (context.canceled)
+        {
+            AttackInputs[(int)CombatInputs.primary] = false;
+        }
+    }
+
+    public void OnSecondaryInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Debug.Log((int)CombatInputs.secondary + " Input");
+            AttackInputs[(int)CombatInputs.secondary] = true;
+        }
+
+        if (context.canceled)
+        {
+            AttackInputs[(int)CombatInputs.secondary] = false;
         }
     }
 
