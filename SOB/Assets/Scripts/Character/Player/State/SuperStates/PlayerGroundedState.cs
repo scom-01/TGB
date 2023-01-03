@@ -66,7 +66,15 @@ public class PlayerGroundedState : PlayerState
         }
         else if(player.InputHandler.AttackInputs[(int)CombatInputs.secondary])
         {
-            FSM.ChangeState(player.SecondaryAttackState);
+            FSM.ChangeState(player.SecondaryAttackState);            
+        }
+        if (player.InputHandler.Skill1Input)
+        {
+            //FSM.ChangeState(player.PrimaryAttackState);
+        }
+        else if (player.InputHandler.Skill2Input)
+        {
+            //FSM.ChangeState(player.SecondaryAttackState);
         }
         else if (JumpInput && player.JumpState.CanJump())
         {

@@ -79,8 +79,6 @@ public class Player : MonoBehaviour
         //LedgeClimbState = new PlayerLedgeClimbState(this, fsm, playerData, "ledgeClimbState");
         DashState = new PlayerDashState(this, fsm, playerData, "dash");
 
-        BlockState = new PlayerWeaponState(this, fsm, playerData, "weapon");
-
         PrimaryAttackState = new PlayerWeaponState(this, fsm, playerData, "weapon");
         SecondaryAttackState = new PlayerWeaponState(this, fsm, playerData, "weapon");
     }
@@ -106,6 +104,7 @@ public class Player : MonoBehaviour
         if (Inventory == null) Inventory = this.GameObject().AddComponent<PlayerInventory>();
 
         PrimaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.primary]);
+        SecondaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.secondary]);
         //SecondaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.secondary]);
 
         fsm.Initialize(IdleState);

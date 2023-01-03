@@ -13,14 +13,14 @@ public class DefensiveWeapon : Weapon
     {
         base.EnterWeapon();
 
-        SetBoolName("attack", true);
+        SetBoolName("block", true);
     }
 
     public override void ExitWeapon()
     {
         base.ExitWeapon();
 
-        SetBoolName("attack", false);
+        SetBoolName("block", false);
 
         gameObject.SetActive(false);
     }

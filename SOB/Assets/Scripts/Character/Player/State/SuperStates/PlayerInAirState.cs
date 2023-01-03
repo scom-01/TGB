@@ -95,7 +95,7 @@ public class PlayerInAirState : PlayerState
         }
         else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondary])
         {
-            FSM.ChangeState(player.SecondaryAttackState);
+            FSM.ChangeState(player.SecondaryAttackState);            
         }
         else if(isGrounded && player.Core.Movement.CurrentVelocity.y < 0.01f)
         {

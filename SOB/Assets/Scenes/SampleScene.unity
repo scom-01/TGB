@@ -2418,7 +2418,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 748526042}
         m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
-        m_MethodName: OnBlockInput
+        m_MethodName: OnPrimaryInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2428,8 +2428,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: a5327eae-465b-4421-86f2-71bc55e87a76
-    m_ActionName: GamePlay/Block[/Keyboard/v]
+    m_ActionId: b5e1f0d3-8a1c-4c72-929f-053003735d4c
+    m_ActionName: GamePlay/New action
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 748526042}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnSecondaryInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 62f09e07-e18f-45bf-9d3a-9e0cb0df973d
+    m_ActionName: GamePlay/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: GamePlay
@@ -2598,6 +2614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapons:
   - {fileID: 724713817}
+  - {fileID: 2134487234}
 --- !u!1 &749720746
 GameObject:
   m_ObjectHideFlags: 0
@@ -13200,7 +13217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2134487233
 Transform:
   m_ObjectHideFlags: 0
@@ -13230,7 +13247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e12e4481b24add45ace3325c3437f3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponData: {fileID: 0}
+  weaponData: {fileID: 11400000, guid: edacb9685ffdf25468c882101941661d, type: 2}
   weaponAnimBoolStr: 
   attackCounter: 0
   InAir: 0
