@@ -27,6 +27,12 @@ public class EnemyRunState : EnemyState
     {
         base.LogicUpdate();
 
+        if(enemy.enemyCore.Movement.knockback)
+        {
+            Debug.Log(enemy.name + " ³Ë¹é»óÅÂ");
+            return;
+        }
+
         if(!enemy.enemyCore.CollisionSenses.CheckIfCliff || enemy.enemyCore.CollisionSenses.CheckIfTouchingWall || enemy.enemyCore.CollisionSenses.CheckIfTouching)
         {
             enemy.enemyCore.Movement.Flip();

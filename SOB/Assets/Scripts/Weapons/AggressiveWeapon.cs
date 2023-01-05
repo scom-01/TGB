@@ -7,6 +7,16 @@ public class AggressiveWeapon : Weapon
 {
     protected SO_AggressiveWeaponData aggressiveWeaponData;
 
+    [Tooltip("°ø°Ý È½¼ö")]
+    public int CurrentAttackCounter
+    {
+        get => currentAttackCounter;
+        private set => currentAttackCounter = value >= weaponData.amountOfAttacks ? 0 : value;
+    }
+
+    private int currentAttackCounter;
+
+
     private List<IDamagable> detectedDamagable = new List<IDamagable>();
 
     protected override void Awake()
@@ -27,15 +37,10 @@ public class AggressiveWeapon : Weapon
     {
         base.EnterWeapon();
 
-        if (attackCounter >= weaponData.amountOfAttacks)
-        {
-            attackCounter = 0;
-        }
-
         SetBoolName("attack", true);
 
-        baseAnimator.SetInteger("attackCounter", attackCounter);
-        WeaponAnimator.SetInteger("attackCounter", attackCounter);
+        baseAnimator.SetInteger("attackCounter", CurrentAttackCounter);
+        WeaponAnimator.SetInteger("attackCounter", CurrentAttackCounter);
     }
 
     public override void ExitWeapon()
@@ -44,7 +49,7 @@ public class AggressiveWeapon : Weapon
 
         SetBoolName("attack", false);
 
-        attackCounter++;
+        CurrentAttackCounter++;
 
         gameObject.SetActive(false);
     }
@@ -57,12 +62,17 @@ public class AggressiveWeapon : Weapon
 
     private void CheckMeleeAttack()
     {
-        WeaponAttackDetails details = aggressiveWeaponData.AttackDetails[attackCounter];
+        WeaponAttackDetails details = aggressiveWeaponData.AttackDetails[CurrentAttackCounter];
 
         foreach(IDamagable item in detectedDamagable.ToList())
         {
             item.Damage(details.damageAmount);
         }
+    }
+    
+    public void ResetAttackCounter()
+    {
+        CurrentAttackCounter = 0;
     }
 
     public void AddToDetected(Collider2D coll)
@@ -85,5 +95,16 @@ public class AggressiveWeapon : Weapon
         {
             detectedDamagable.Remove(damagable);
         }
+    }
+
+    public override void AnimationStartMovementTrigger()
+    {
+        base.AnimationStartMovementTrigger();
+        state.SetPlayerVelocity(weaponData.movementSpeed[currentAttackCounter]);
+    }
+
+    public override void AnimationStopMovementTrigger()
+    {
+        base.AnimationStopMovementTrigger();
     }
 }

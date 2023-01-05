@@ -10,7 +10,10 @@ public class EnemyMovement : EnemyCoreComponent
 
     private Vector2 workspace;
 
-
+    public bool knockback;
+    public float knockbackDuration;
+    public float knockbackStartTime;
+    public Vector2 knockbackSpeed;
 
     protected override void Awake()
     {
@@ -52,7 +55,26 @@ public class EnemyMovement : EnemyCoreComponent
     //2D Filp
     public void Flip()
     {
-        FancingDirection *= -1;
-        RB.transform.Rotate(0.0f, 180.0f, 0.0f);
+        if(!knockback)
+        {
+            FancingDirection *= -1;
+            RB.transform.Rotate(0.0f, 180.0f, 0.0f);
+        }
+    }
+
+    public void KnockBack()
+    {
+        knockback = true;
+        knockbackStartTime = Time.time;
+        RB.velocity = new Vector2(knockbackSpeed.x * -FancingDirection, knockbackSpeed.y);
+    }
+
+    public void CheckKnockBack()
+    {
+        if (Time.time >= knockbackStartTime + knockbackDuration)
+        {
+            knockback = false;
+            RB.velocity = new Vector2(0.0f, RB.velocity.y);
+        }
     }
 }

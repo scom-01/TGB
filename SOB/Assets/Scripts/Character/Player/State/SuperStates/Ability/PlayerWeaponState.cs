@@ -77,7 +77,14 @@ public class PlayerWeaponState : PlayerAbilityState
     {
         this.weapon = weapon;
         weapon.InitializeWeapon(this);
-        this.weapon.GetComponentInParent<WeaponManager>().weapon = weapon;
+        if(weapon.GetComponent<AggressiveWeapon>() != null)
+        {
+            this.weapon.GetComponentInParent<WeaponManager>().aggressiveweapon = (AggressiveWeapon)weapon;
+        }
+        else
+        {
+            this.weapon.GetComponentInParent<WeaponManager>().defensiveweapon = (DefensiveWeapon)weapon;
+        }
     }
 
     public void SetPlayerVelocity(float velocity)

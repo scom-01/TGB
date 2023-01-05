@@ -9,11 +9,12 @@ public class Weapon : MonoBehaviour
 
     public string weaponAnimBoolStr;
 
-    [Tooltip("°ø°Ý È½¼ö")]
-    public int attackCounter;
+    
 
     protected Animator baseAnimator;
+    public GameObject BaseGameObject { get; private set; }
     protected Animator WeaponAnimator;
+    public GameObject WeaponSpriteGameObject { get; private set; }
 
     [HideInInspector]
     protected WeaponManager weaponManager;
@@ -24,6 +25,8 @@ public class Weapon : MonoBehaviour
     protected PlayerWeaponState state;
     protected virtual void Awake()
     {
+        BaseGameObject = transform.Find("Base").gameObject;
+        WeaponSpriteGameObject = transform.Find("Weapon").gameObject;
         baseAnimator = transform.Find("Base").GetComponent<Animator>();
         WeaponAnimator = transform.Find("Weapon").GetComponent<Animator>();
 
@@ -70,7 +73,7 @@ public class Weapon : MonoBehaviour
 
     public virtual void AnimationStartMovementTrigger()
     {
-        state.SetPlayerVelocity(weaponData.movementSpeed[attackCounter]);
+        //state.SetPlayerVelocity(weaponData.movementSpeed[CurrentAttackCounter]);
     }
 
     public virtual void AnimationStopMovementTrigger()

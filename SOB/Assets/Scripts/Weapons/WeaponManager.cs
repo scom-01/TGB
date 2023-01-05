@@ -7,7 +7,8 @@ public class WeaponManager : MonoBehaviour
     [HideInInspector]
     public float lastAttackTime;
 
-    [HideInInspector] public Weapon weapon;
+    [HideInInspector] public AggressiveWeapon aggressiveweapon;
+    [HideInInspector] public DefensiveWeapon defensiveweapon;
 
     // Start is called before the first frame update
     protected void Start()
@@ -18,12 +19,12 @@ public class WeaponManager : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-        if(weapon != null)
+        if(aggressiveweapon != null)
         {
             //Debug.Log("lastAttackTime = " + lastAttackTime);
-            if (Time.time >= lastAttackTime + weapon.weaponData.comboResetTime)
+            if (Time.time >= lastAttackTime + aggressiveweapon.weaponData.comboResetTime)
             {
-                weapon.attackCounter = 0;
+                aggressiveweapon.ResetAttackCounter();
             }
         }
     }

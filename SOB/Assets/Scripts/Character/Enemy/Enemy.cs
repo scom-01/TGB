@@ -26,8 +26,11 @@ public class Enemy : MonoBehaviour
 
     public EnemyCore enemyCore { get; private set; }
     public Animator Anim { get; private set; }
+
     public Rigidbody2D RB { get; private set; }
     public BoxCollider2D BC2D { get; private set; }
+
+    public int lastDamageDirection { get; private set; }
 
     public SpriteRenderer SR { get; private set; }
     #endregion
@@ -37,6 +40,7 @@ public class Enemy : MonoBehaviour
     private float currentHealth;
     public float damageDirection { get; private set; }
     public EnemyData EnemyData { get => enemyData; set => enemyData = value; }
+    
     #endregion
 
     
@@ -122,6 +126,9 @@ public class Enemy : MonoBehaviour
             fsm.ChangeState(DeadState);
         }
     }
+
+    
+
     #endregion
 
     private void OnDrawGizmos()
