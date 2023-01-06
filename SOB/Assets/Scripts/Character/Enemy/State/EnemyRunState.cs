@@ -39,7 +39,7 @@ public class EnemyRunState : EnemyState
         }
         else
         {
-            enemy.enemyCore.Movement.SetVelocityX(enemyData.movementVelocity * enemy.enemyCore.Movement.FancingDirection);
+            enemy.enemyCore.Movement.SetVelocityX(enemyData.commonStats.movementVelocity * enemy.enemyCore.Movement.FancingDirection);
         }
         //CheckIfCliff();
     }

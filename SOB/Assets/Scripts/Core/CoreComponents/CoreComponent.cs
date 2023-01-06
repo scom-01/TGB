@@ -16,4 +16,9 @@ public class CoreComponent : MonoBehaviour
         }
 
     }
+
+    protected virtual void Start()
+    {
+
+    }
 }

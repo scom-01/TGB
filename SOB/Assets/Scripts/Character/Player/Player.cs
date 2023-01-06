@@ -34,25 +34,24 @@ public class Player : MonoBehaviour
     //public PlayerWallGrabState WallGrabState { get; private set; }
     //public PlayerWallClimbState WallClimbState { get; private set; }
     //public PlayerLedgeClimbState LedgeClimbState { get; private set; }
-
-
-    [SerializeField]
-    private PlayerData playerData;
     #endregion
 
     #region Components
     public Core Core { get; private set; }
     public Animator Anim { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
+
+    public PlayerStats PS { get; private set; }
     public Rigidbody2D RB { get; private set; }
     public BoxCollider2D BC2D { get; private set; }
 
     public SpriteRenderer SR { get; private set; }
 
     public PlayerInventory Inventory { get; private set; }
+    public PlayerData playerData;
     #endregion
 
-    
+
 
     #region Other Variables            
     private Vector2 workspace;
@@ -102,6 +101,9 @@ public class Player : MonoBehaviour
 
         Inventory = GetComponent<PlayerInventory>();
         if (Inventory == null) Inventory = this.GameObject().AddComponent<PlayerInventory>();
+
+        PS = GetComponent<PlayerStats>();
+        if (PS == null) PS = this.GameObject().AddComponent<PlayerStats>();
 
         PrimaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.primary]);
         SecondaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.secondary]);

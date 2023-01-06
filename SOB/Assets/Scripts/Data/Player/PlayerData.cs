@@ -18,9 +18,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "newPlayerData",menuName ="Data/Player Data/Base Data")]
 public class PlayerData : ScriptableObject
 {
-    [Header("Move State")]
-    [Tooltip("움직임 Velocity")]
-    public float movementVelocity = 10f;
+    [Header("Status")]
+    [Tooltip("기본 Status")]
+    public CommonData commonstats;
+    [Tooltip("넉백지속시간")]
+    public float knockBackDuration;
+    [Tooltip("넉백 속도")]
+    public Vector2 knockBackSpeed;
 
     [Header("Jump State")]
     [Tooltip("점프 Velocity")]
@@ -89,6 +93,13 @@ public class PlayerData : ScriptableObject
     public float blockCooldown = 2f;
 
     [Header("Check Variables")]
+    [Tooltip("지면 감지 거리")]
+    public float groundCheckRadius = 0.1f;
+    [Tooltip("벽면 감지 거리")]
+    public float wallCheckDistance = 0.5f;
+    [Tooltip("지면 LayerMask")]
+    public LayerMask whatIsGround;
+
     [Tooltip("Player Attack LayerMask")]
     public LayerMask playerAttackMask;
     [Tooltip("적 공격 LayerMask")]

@@ -11,9 +11,9 @@ public class EnemyMovement : EnemyCoreComponent
     private Vector2 workspace;
 
     public bool knockback;
-    public float knockbackDuration;
     public float knockbackStartTime;
-    public Vector2 knockbackSpeed;
+    public float knockbackDuration { get => core.Enemy.EnemyData.knockBackDuration; set => core.Enemy.EnemyData.knockBackDuration = value; }
+    public Vector2 knockbackSpeed { get => core.Enemy.EnemyData.knockBackSpeed; set => core.Enemy.EnemyData.knockBackSpeed = value; }
 
     protected override void Awake()
     {

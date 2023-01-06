@@ -13,19 +13,14 @@ public class CollisionSenses : CoreComponent
     public Transform WallCheck { get => wallCheck; private set => wallCheck = value; }
     public Transform LedgeCheck { get => ledgeCheck; private set => ledgeCheck = value; }
 
-    public float GroundCheckRadius { get => groundCheckRadius; set => groundCheckRadius = value; }
-    public float WallCheckDistance { get => wallCheckDistance; set => wallCheckDistance = value; }
+    public float GroundCheckRadius { get => core.Player.playerData.groundCheckRadius; set => core.Player.playerData.groundCheckRadius = value; }
+    public float WallCheckDistance { get => core.Player.playerData.wallCheckDistance; set => core.Player.playerData.wallCheckDistance = value; }
 
-    public LayerMask WhatIsGround { get => whatIsGround; set => whatIsGround = value; }
+    public LayerMask WhatIsGround { get => core.Player.playerData.whatIsGround; set => core.Player.playerData.whatIsGround = value; }
 
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform wallCheck;
     [SerializeField] private Transform ledgeCheck;
-
-    [SerializeField] private float groundCheckRadius;
-    [SerializeField] private float wallCheckDistance;
-
-    [SerializeField] private LayerMask whatIsGround;
     #endregion
     protected override void Awake()
     {
@@ -35,24 +30,24 @@ public class CollisionSenses : CoreComponent
 
     public bool CheckIfGrounded
     {
-        get => Physics2D.OverlapBox(groundCheck.position, new Vector2(BC2D.bounds.size.x * 0.95f, BC2D.bounds.size.y * groundCheckRadius), 0f, whatIsGround);
+        get => Physics2D.OverlapBox(groundCheck.position, new Vector2(BC2D.bounds.size.x * 0.95f, BC2D.bounds.size.y * GroundCheckRadius), 0f, WhatIsGround);
         //get => Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
     }
 
     public bool CheckIfTouchingWall
     {
         //Debug.DrawRay(wallCheck.position, Vector2.right * core.Movement.FancingDirection * wallCheckDistance, Color.green);
-        get => Physics2D.Raycast(wallCheck.position, Vector2.right * core.Movement.FancingDirection, wallCheckDistance, whatIsGround);
+        get => Physics2D.Raycast(wallCheck.position, Vector2.right * core.Movement.FancingDirection, WallCheckDistance, WhatIsGround);
     }
 
     public bool CheckIfTouchingLedge
     {
-        get => Physics2D.Raycast(ledgeCheck.position, Vector2.right * core.Movement.FancingDirection, wallCheckDistance, whatIsGround);
+        get => Physics2D.Raycast(ledgeCheck.position, Vector2.right * core.Movement.FancingDirection, WallCheckDistance, WhatIsGround);
     }
 
     public bool CheckIfTouchingWallBack
     {
         //Debug.DrawRay(wallCheck.position, Vector2.right * -core.Movement.FancingDirection * wallCheckDistance, Color.red);
-        get => Physics2D.Raycast(wallCheck.position, Vector2.right * -core.Movement.FancingDirection, wallCheckDistance, whatIsGround);
+        get => Physics2D.Raycast(wallCheck.position, Vector2.right * -core.Movement.FancingDirection, WallCheckDistance, WhatIsGround);
     }
 }

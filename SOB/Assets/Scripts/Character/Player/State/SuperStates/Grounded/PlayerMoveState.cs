@@ -32,7 +32,7 @@ public class PlayerMoveState : PlayerGroundedState
 
         if (isExitingState) return;
 
-        player.Core.Movement.SetVelocityX(playerData.movementVelocity * xInput);
+        player.Core.Movement.SetVelocityX(playerData.commonstats.movementVelocity * xInput);
         
         if(xInput == 0f && !isExitingState)
         {
