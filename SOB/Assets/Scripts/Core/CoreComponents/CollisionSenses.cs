@@ -28,6 +28,11 @@ public class CollisionSenses : CoreComponent
         BC2D = GetComponentInParent<BoxCollider2D>();
     }
 
+    public void LogicUpdate()
+    {
+
+    }
+
     public bool CheckIfGrounded
     {
         get => Physics2D.OverlapBox(groundCheck.position, new Vector2(BC2D.bounds.size.x * 0.95f, BC2D.bounds.size.y * GroundCheckRadius), 0f, WhatIsGround);

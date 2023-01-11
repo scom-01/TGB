@@ -12,7 +12,7 @@ public class EnemyHitState : EnemyState
     {
         base.Enter();
 
-        enemy.enemyCore.Movement.SetVelocityX(enemyData.knockBackSpeed * enemy.damageDirection);
+        enemy.enemyCore.Movement.SetVelocityX(enemyData.knockBackSpeed.x * enemy.damageDirection);
         startTime = Time.time;
     }
 

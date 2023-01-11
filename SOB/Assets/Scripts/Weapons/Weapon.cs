@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Timers;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -7,9 +9,21 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     public SO_WeaponData weaponData;
 
-    public string weaponAnimBoolStr;
+    [HideInInspector]
+    protected string weaponAnimBoolStr;
 
-    
+    [Tooltip("°ø°Ý È½¼ö")]
+    public int CurrentAttackCounter
+    {
+        get => currentAttackCounter;
+        private set => currentAttackCounter = value >= weaponData.amountOfAttacks ? 0 : value;
+    }
+
+    private int currentAttackCounter;
+    private Timer attackCounterResetTimer;
+
+    public event Action OnEnter;
+    public event Action OnExit;
 
     protected Animator baseAnimator;
     public GameObject BaseGameObject { get; private set; }
@@ -37,6 +51,8 @@ public class Weapon : MonoBehaviour
     {
         gameObject.SetActive(true);
 
+        //attackCounterResetTimer.StopTimer();
+
         if (InAir)
         {
             SetBoolName("inAir", true);
@@ -46,16 +62,30 @@ public class Weapon : MonoBehaviour
             SetBoolName("inAir", false);
         }
 
+        OnEnter?.Invoke();
+
         weaponManager.lastAttackTime = Time.time;
     }
 
     public virtual void ExitWeapon()
     {
         gameObject.SetActive(false);
+
+        OnExit?.Invoke();
+    }
+
+    public void ChangeAttackCounter(int value)
+    {
+        CurrentAttackCounter = value;
+    }
+
+    public void ResetAttackCounter()
+    {
+        CurrentAttackCounter = 0;
     }
 
     #region Set Func
-    
+
     public virtual void SetBoolName(string name, bool setbool)
     {
         weaponAnimBoolStr = name;

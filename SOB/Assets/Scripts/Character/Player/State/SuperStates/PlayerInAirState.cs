@@ -91,10 +91,12 @@ public class PlayerInAirState : PlayerState
 
         if (player.InputHandler.AttackInputs[(int)CombatInputs.primary])
         {
+            player.PrimaryAttackState.SetWeapon(player.Inventory.weapons[(int)CombatInputs.primary]);
             FSM.ChangeState(player.PrimaryAttackState);
         }
         else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondary])
         {
+            player.SecondaryAttackState.SetWeapon(player.Inventory.weapons[(int)CombatInputs.secondary]);
             FSM.ChangeState(player.SecondaryAttackState);            
         }
         else if(isGrounded && player.Core.Movement.CurrentVelocity.y < 0.01f)

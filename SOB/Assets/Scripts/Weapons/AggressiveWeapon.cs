@@ -7,16 +7,6 @@ public class AggressiveWeapon : Weapon
 {
     protected SO_AggressiveWeaponData aggressiveWeaponData;
 
-    [Tooltip("°ø°Ý È½¼ö")]
-    public int CurrentAttackCounter
-    {
-        get => currentAttackCounter;
-        private set => currentAttackCounter = value >= weaponData.amountOfAttacks ? 0 : value;
-    }
-
-    private int currentAttackCounter;
-
-
     private List<IDamagable> detectedDamagable = new List<IDamagable>();
 
     protected override void Awake()
@@ -49,7 +39,7 @@ public class AggressiveWeapon : Weapon
 
         SetBoolName("attack", false);
 
-        CurrentAttackCounter++;
+        ChangeAttackCounter(CurrentAttackCounter + 1);
 
         gameObject.SetActive(false);
     }
@@ -70,10 +60,7 @@ public class AggressiveWeapon : Weapon
         }
     }
     
-    public void ResetAttackCounter()
-    {
-        CurrentAttackCounter = 0;
-    }
+    
 
     public void AddToDetected(Collider2D coll)
     {
@@ -100,7 +87,7 @@ public class AggressiveWeapon : Weapon
     public override void AnimationStartMovementTrigger()
     {
         base.AnimationStartMovementTrigger();
-        state.SetPlayerVelocity(weaponData.movementSpeed[currentAttackCounter]);
+        state.SetPlayerVelocity(weaponData.movementSpeed[CurrentAttackCounter]);
     }
 
     public override void AnimationStopMovementTrigger()

@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
 
         fsm = new EnemyFSM();
 
-        currentHealth = enemyData.maxHealth;
+        currentHealth = enemyData.commonStats.maxHealth;
 
         IdleState = new EnemyIdleState(this, fsm, enemyData, "idle");
         RunState = new EnemyRunState(this, fsm, enemyData, "run");

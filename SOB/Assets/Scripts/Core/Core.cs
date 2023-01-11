@@ -27,5 +27,6 @@ public class Core : MonoBehaviour
     public void LogicUpdate()
     {
         Movement.LogicUpdate();
+        CollisionSenses.LogicUpdate();
     }
 }

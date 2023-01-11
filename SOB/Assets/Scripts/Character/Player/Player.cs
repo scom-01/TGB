@@ -105,8 +105,8 @@ public class Player : MonoBehaviour
         PS = GetComponent<PlayerStats>();
         if (PS == null) PS = this.GameObject().AddComponent<PlayerStats>();
 
-        PrimaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.primary]);
-        SecondaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.secondary]);
+        //PrimaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.primary]);
+        //SecondaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.secondary]);
         //SecondaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.secondary]);
 
         fsm.Initialize(IdleState);
