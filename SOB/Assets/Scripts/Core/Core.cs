@@ -5,13 +5,13 @@ using UnityEngine;
 public class Core : MonoBehaviour
 {
     public Movement Movement { get; private set; }
-    public Player Player { get; private set; }
+    public Unit Unit { get; private set; }
     public CollisionSenses CollisionSenses { get; private set; }
-    private void Awake()
+    public virtual void Awake()
     {
         Movement = GetComponentInChildren<Movement>();
         CollisionSenses = GetComponentInChildren<CollisionSenses>();
-        Player = GetComponentInParent<Player>();
+        Unit = GetComponentInParent<Unit>();
 
         if (!Movement)
         {
@@ -24,7 +24,7 @@ public class Core : MonoBehaviour
         }
     }
 
-    public void LogicUpdate()
+    public virtual void LogicUpdate()
     {
         Movement.LogicUpdate();
         CollisionSenses.LogicUpdate();

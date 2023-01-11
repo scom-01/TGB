@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyHitState : EnemyState
 {
-    public EnemyHitState(Enemy enemy, EnemyFSM fSM, EnemyData enemyData, string animBoolName) : base(enemy, fSM, enemyData, animBoolName)
+    public EnemyHitState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
     }
 
@@ -12,7 +12,7 @@ public class EnemyHitState : EnemyState
     {
         base.Enter();
 
-        enemy.enemyCore.Movement.SetVelocityX(enemyData.knockBackSpeed.x * enemy.damageDirection);
+        enemy.Core.Movement.SetVelocityX(enemy.enemyData.knockBackSpeed.x * enemy.damageDirection);
         startTime = Time.time;
     }
 
@@ -24,9 +24,9 @@ public class EnemyHitState : EnemyState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if(Time.time >= enemyData.knockBackDuration + startTime)
+        if(Time.time >= enemy.enemyData.knockBackDuration + startTime)
         {
-            FSM.ChangeState(enemy.RunState);
+            enemy.FSM.ChangeState(enemy.RunState);
         }
     }
 

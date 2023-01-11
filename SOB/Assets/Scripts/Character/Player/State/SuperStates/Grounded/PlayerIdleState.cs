@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerIdleState : PlayerGroundedState
 {
-    public PlayerIdleState(Player player, PlayerFSM fSM, PlayerData playerData, string animBoolName) : base(player, fSM, playerData, animBoolName)
+    public PlayerIdleState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
     }
 
@@ -31,7 +31,7 @@ public class PlayerIdleState : PlayerGroundedState
 
         if(xInput != 0f && !isExitingState)
         {
-            FSM.ChangeState(player.MoveState);
+            player.FSM.ChangeState(player.MoveState);
         }
     }
 

@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerWallGrabState : PlayerTouchingWallState
 {
     private Vector2 holdPosition;
-    public PlayerWallGrabState(Player player, PlayerFSM fSM, PlayerData playerData, string animBoolName) : base(player, fSM, playerData, animBoolName)
+    
+    public PlayerWallGrabState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
     }
 
@@ -51,7 +52,7 @@ public class PlayerWallGrabState : PlayerTouchingWallState
         }
         else if (yInput < 0 || !grabInput)
         {
-            FSM.ChangeState(player.WallSlideState);
+            player.FSM.ChangeState(player.WallSlideState);
         }
     }
     private void HoldPosition()

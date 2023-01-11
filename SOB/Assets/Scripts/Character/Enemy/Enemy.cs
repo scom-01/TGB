@@ -5,84 +5,59 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Unit
 {
     #region State Variables
-    public EnemyFSM fsm { get; private set; }
-
     public EnemyIdleState IdleState { get; private set; }
     public EnemyRunState RunState { get; private set; }
     public EnemyAttackState AttackState { get; private set; }
     public EnemyHitState HitState { get; private set; }
     public EnemyDeadState DeadState { get; private set; }
 
-
-
-    [SerializeField]
-    private EnemyData enemyData;
+    [HideInInspector]
+    public EnemyCore core;
+    [HideInInspector]
+    public EnemyData enemyData;
     #endregion
 
     #region Components
 
-    public EnemyCore enemyCore { get; private set; }
-    public Animator Anim { get; private set; }
-
-    public Rigidbody2D RB { get; private set; }
-    public BoxCollider2D BC2D { get; private set; }
-
     public int lastDamageDirection { get; private set; }
-
-    public SpriteRenderer SR { get; private set; }
     #endregion
 
     #region Other Variables
 
     private float currentHealth;
     public float damageDirection { get; private set; }
-    public EnemyData EnemyData { get => enemyData; set => enemyData = value; }
-    
     #endregion
 
-    
+
     #region Unity Callback Func
-    private void Awake()
+    protected override void Awake()
     {
-        enemyCore = GetComponentInChildren<EnemyCore>();
-
-        fsm = new EnemyFSM();
-
+        base.Awake();
+        core = Core as EnemyCore;
+        enemyData = UnitData as EnemyData;
         currentHealth = enemyData.commonStats.maxHealth;
 
-        IdleState = new EnemyIdleState(this, fsm, enemyData, "idle");
-        RunState = new EnemyRunState(this, fsm, enemyData, "run");
-        AttackState = new EnemyAttackState(this, fsm, enemyData, "attack");
-        HitState = new EnemyHitState(this, fsm, enemyData, "hit");
-        DeadState = new EnemyDeadState(this, fsm, enemyData, "dead");
+        IdleState = new EnemyIdleState(this, "idle");
+        RunState = new EnemyRunState(this, "run");
+        AttackState = new EnemyAttackState(this, "attack");
+        HitState = new EnemyHitState(this, "hit");
+        DeadState = new EnemyDeadState(this, "dead");
     }
 
     // Start is called before the first frame update
-    private void Start()
+    protected override void Start()
     {
-        Anim = GetComponent<Animator>();
-        if (Anim == null) Anim = this.GameObject().AddComponent<Animator>();
-
-        RB = GetComponent<Rigidbody2D>();
-        if (RB == null) RB = this.GameObject().AddComponent<Rigidbody2D>();
-
-        BC2D = GetComponent<BoxCollider2D>();
-        if (BC2D == null) BC2D = this.GameObject().AddComponent<BoxCollider2D>();
-
-        SR = GetComponent<SpriteRenderer>();
-        if (SR == null) SR = this.GameObject().AddComponent<SpriteRenderer>();
-
-        fsm.Initialize(IdleState);
+        base.Start();
+        FSM.Initialize(IdleState);
     }
 
     // Update is called once per frame
-    private void Update()
+    protected override void Update()
     {
-        enemyCore.LogicUpdate();
-
+        base.Update();
         //Anim.SetFloat("yVelocity", enemyCore.Movement.RB.velocity.y);
         if (enemyData.invincibleTime > 0.0f)
         {
@@ -92,12 +67,11 @@ public class Enemy : MonoBehaviour
             {
                 enemyData.invincibleTime = 0f;
             }
-        }
-        fsm.CurrentState.LogicUpdate();
+        }        
     }
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
-        fsm.CurrentState.PhysicsUpdate();
+        base.FixedUpdate();
     }
     #endregion
 
@@ -119,11 +93,11 @@ public class Enemy : MonoBehaviour
 
         if (currentHealth > 0.0f)
         {
-            fsm.ChangeState(HitState);
+            FSM.ChangeState(HitState);
         }
         else if (currentHealth <= 0.0f) 
         {
-            fsm.ChangeState(DeadState);
+            FSM.ChangeState(DeadState);
         }
     }
 
@@ -133,11 +107,11 @@ public class Enemy : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawLine(enemyCore.CollisionSenses.GroundCheck.position, enemyCore.CollisionSenses.GroundCheck.position + Vector3.down * enemyCore.CollisionSenses.GroundCheckRadius);
-        Gizmos.DrawLine(enemyCore.CollisionSenses.WallCheck.position, enemyCore.CollisionSenses.WallCheck.position + Vector3.right * enemyCore.Movement.FancingDirection * enemyCore.CollisionSenses.WallCheckDistance);
-        Gizmos.DrawLine(enemyCore.CollisionSenses.WallCheck.position, enemyCore.CollisionSenses.WallCheck.position+ Vector3.right * -enemyCore.Movement.FancingDirection * enemyCore.CollisionSenses.WallCheckDistance);
-        Gizmos.DrawLine(enemyCore.CollisionSenses.transform.position, enemyCore.CollisionSenses.transform.position + Vector3.right * 1.1f * enemyCore.Movement.FancingDirection);
-        Gizmos.DrawCube(transform.position + new Vector3((BC2D.offset.x + 0.1f) * enemyCore.Movement.FancingDirection, BC2D.offset.y), new Vector2(BC2D.bounds.size.x, BC2D.bounds.size.y * 0.95f)); // enemyCore.CollisionSenses.GroundCheck.position + new Vector3(BC2D.offset.x + BC2D.size.x / 2, 0, 0) * enemyCore.Movement.FancingDirection + Vector3.down);
-        Gizmos.DrawLine(enemyCore.CollisionSenses.transform.position, enemyCore.CollisionSenses.transform.position + Vector3.right * enemyCore.Movement.FancingDirection * enemyCore.GetComponentInParent<Enemy>().EnemyData.playerDetectedDistance);
+        Gizmos.DrawLine(Core.CollisionSenses.GroundCheck.position, Core.CollisionSenses.GroundCheck.position + Vector3.down * Core.CollisionSenses.GroundCheckRadius);
+        Gizmos.DrawLine(Core.CollisionSenses.WallCheck.position, Core.CollisionSenses.WallCheck.position + Vector3.right * Core.Movement.FancingDirection * Core.CollisionSenses.WallCheckDistance);
+        Gizmos.DrawLine(Core.CollisionSenses.WallCheck.position, Core.CollisionSenses.WallCheck.position+ Vector3.right * -Core.Movement.FancingDirection * Core.CollisionSenses.WallCheckDistance);
+        Gizmos.DrawLine(Core.CollisionSenses.transform.position, Core.CollisionSenses.transform.position + Vector3.right * 1.1f * Core.Movement.FancingDirection);
+        Gizmos.DrawCube(transform.position + new Vector3((BC2D.offset.x + 0.1f) * Core.Movement.FancingDirection, BC2D.offset.y), new Vector2(BC2D.bounds.size.x, BC2D.bounds.size.y * 0.95f)); // enemyCore.CollisionSenses.GroundCheck.position + new Vector3(BC2D.offset.x + BC2D.size.x / 2, 0, 0) * enemyCore.Movement.FancingDirection + Vector3.down);
+        Gizmos.DrawLine(Core.CollisionSenses.transform.position, Core.CollisionSenses.transform.position + Vector3.right * Core.Movement.FancingDirection * enemyData.playerDetectedDistance);
     }
 }

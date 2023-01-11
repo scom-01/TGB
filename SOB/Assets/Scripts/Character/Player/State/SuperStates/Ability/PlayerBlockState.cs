@@ -8,7 +8,8 @@ public class PlayerBlockState : PlayerAbilityState
     private float lastBlockTime;
     //private bool IsGrounded = true;
 
-    public PlayerBlockState(Player player, PlayerFSM fSM, PlayerData playerData, string animBoolName) : base(player, fSM, playerData, animBoolName)
+
+    public PlayerBlockState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
     }
 
@@ -41,7 +42,7 @@ public class PlayerBlockState : PlayerAbilityState
                 player.KnockBack(1);
             }
 
-            if (Time.time >= startTime + playerData.blockTime)
+            if (Time.time >= startTime + player.playerData.blockTime)
             {
                 isAbilityDone = true;
                 lastBlockTime = Time.time;
@@ -53,12 +54,12 @@ public class PlayerBlockState : PlayerAbilityState
 
     private bool CheckHit()
     {
-        return Physics2D.OverlapBox(player.gameObject.transform.position + new Vector3(player.BC2D.size.x, 0, 0) * player.Core.Movement.FancingDirection, player.BC2D.size, 0f, playerData.enemyAttackMask);
+        return Physics2D.OverlapBox(player.gameObject.transform.position + new Vector3(player.BC2D.size.x, 0, 0) * player.Core.Movement.FancingDirection, player.BC2D.size, 0f, player.playerData.enemyAttackMask);
     }
 
     public bool CheckIfCanBlock()
     {
-        return CanBlock && Time.time >= lastBlockTime + playerData.blockCooldown;
+        return CanBlock && Time.time >= lastBlockTime + player.playerData.blockCooldown;
     }
     public void ResetCanBlock() => CanBlock = true;
 }

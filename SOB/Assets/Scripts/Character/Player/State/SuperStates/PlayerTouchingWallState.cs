@@ -12,9 +12,11 @@ public class PlayerTouchingWallState : PlayerState
 
     protected int xInput;
     protected int yInput;
-    public PlayerTouchingWallState(Player player, PlayerFSM fSM, PlayerData playerData, string animBoolName) : base(player, fSM, playerData, animBoolName)
+
+    public PlayerTouchingWallState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
     }
+    
 
     public override void AnimationFinishTrigger()
     {
@@ -62,15 +64,15 @@ public class PlayerTouchingWallState : PlayerState
         if(jumpInput)
         {
             player.WallJumpState.DetermineWallJumpDirection(isTouchingWall);
-            FSM.ChangeState(player.WallJumpState);
+            player.FSM.ChangeState(player.WallJumpState);
         }
         else if (isGrounded && !grabInput)
         {
-            FSM.ChangeState(player.IdleState);
+            player.FSM.ChangeState(player.IdleState);
         }
         else if(!isTouchingWall || (xInput != player.Core.Movement.FancingDirection && !grabInput))
         {
-            FSM.ChangeState(player.InAirState);
+            player.FSM.ChangeState(player.InAirState);
         }    
         /*else if(isTouchingWall && !isTouchingLedge)
         {

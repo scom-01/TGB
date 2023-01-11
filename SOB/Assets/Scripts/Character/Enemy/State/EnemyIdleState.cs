@@ -8,7 +8,7 @@ public class EnemyIdleState : EnemyState
 
     protected float idleTime;
 
-    public EnemyIdleState(Enemy enemy, EnemyFSM fSM, EnemyData enemyData, string animBoolName) : base(enemy, fSM, enemyData, animBoolName)
+    public EnemyIdleState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
     }
 
@@ -20,7 +20,7 @@ public class EnemyIdleState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        enemy.enemyCore.Movement.SetVelocityX(0f);
+        enemy.Core.Movement.SetVelocityX(0f);
         isIdleTimeOver = false;
         SetRandomIdleTime();
     }
@@ -34,9 +34,9 @@ public class EnemyIdleState : EnemyState
     {
         base.LogicUpdate();
 
-        if(enemy.enemyCore.CollisionSenses.PlayerDectected)
+        if(enemy.core.enemyCollisionSenses.PlayerDectected)
         {
-            FSM.ChangeState(enemy.RunState);
+            enemy.FSM.ChangeState(enemy.RunState);
         }
 
         if(Time.time >= startTime + idleTime)
@@ -52,6 +52,6 @@ public class EnemyIdleState : EnemyState
 
     private void SetRandomIdleTime()
     {
-        idleTime = Random.Range(enemyData.minIdleTime, enemyData.maxIdleTime);
+        idleTime = Random.Range(enemy.enemyData.minIdleTime, enemy.enemyData.maxIdleTime);
     }
 }

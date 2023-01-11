@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMoveState : PlayerGroundedState
 {
-    public PlayerMoveState(Player player, PlayerFSM fSM, PlayerData playerData, string animBoolName) : base(player, fSM, playerData, animBoolName)
+    public PlayerMoveState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
     }
 
@@ -32,11 +32,11 @@ public class PlayerMoveState : PlayerGroundedState
 
         if (isExitingState) return;
 
-        player.Core.Movement.SetVelocityX(playerData.commonstats.movementVelocity * xInput);
+        player.Core.Movement.SetVelocityX(player.playerData.commonStats.movementVelocity * xInput);
         
         if(xInput == 0f && !isExitingState)
         {
-            FSM.ChangeState(player.IdleState);
+            player.FSM.ChangeState(player.IdleState);
         }
     }
 

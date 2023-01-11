@@ -7,7 +7,8 @@ public class PlayerAirAttackState : PlayerAbilityState
 {
     public bool CanAirAttack = true;
 
-    public PlayerAirAttackState(Player player, PlayerFSM fSM, PlayerData playerData, string animBoolName) : base(player, fSM, playerData, animBoolName)
+
+    public PlayerAirAttackState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
     }
 
@@ -39,7 +40,7 @@ public class PlayerAirAttackState : PlayerAbilityState
 
         if(player.InputHandler.DashInput)
         {
-            FSM.ChangeState(player.DashState);
+            player.FSM.ChangeState(player.DashState);
             return;
         }
 
@@ -52,7 +53,7 @@ public class PlayerAirAttackState : PlayerAbilityState
         else
         {
             player.Core.Movement.CheckIfShouldFlip(player.InputHandler.NormInputX);
-            player.Core.Movement.SetVelocityX(playerData.commonstats.movementVelocity * player.InputHandler.NormInputX);
+            player.Core.Movement.SetVelocityX(player.playerData.commonStats.movementVelocity * player.InputHandler.NormInputX);
             player.Anim.SetFloat("yVelocity", Mathf.Clamp(player.Core.Movement.CurrentVelocity.y, -3, 13));
             player.Anim.SetFloat("xVelocity", Mathf.Abs(player.Core.Movement.CurrentVelocity.x));
         }

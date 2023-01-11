@@ -15,7 +15,7 @@ public class PlayerWeaponState : PlayerAbilityState
     private bool setVelocity;
     private bool shouldCheckFlip;
 
-    public PlayerWeaponState(Player player, PlayerFSM fSM, PlayerData playerData, string animBoolName) : base(player, fSM, playerData, animBoolName)
+    public PlayerWeaponState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
     }
 
@@ -50,7 +50,7 @@ public class PlayerWeaponState : PlayerAbilityState
         //공중에서 공격 후 착지상태
         if(weapon.InAir&& player.Core.CollisionSenses.CheckIfGrounded)
         {
-            FSM.ChangeState(player.LandState);
+            player.FSM.ChangeState(player.LandState);
             return;
         }
 
@@ -66,7 +66,7 @@ public class PlayerWeaponState : PlayerAbilityState
 
         if (player.InputHandler.DashInput && player.DashState.CheckIfCanDash())
         {
-            FSM.ChangeState(player.DashState);
+            player.FSM.ChangeState(player.DashState);
             return;
         }
 

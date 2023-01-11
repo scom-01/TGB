@@ -7,7 +7,8 @@ public class PlayerHeavyAttackState : PlayerAbilityState
     public bool Hold;
     private bool Skill2Input;
     private bool Skill2InputStop;
-    public PlayerHeavyAttackState(Player player, PlayerFSM fSM, PlayerData playerData, string animBoolName) : base(player, fSM, playerData, animBoolName)
+
+    public PlayerHeavyAttackState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
     }
 

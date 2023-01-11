@@ -16,15 +16,9 @@ using UnityEngine;
 }*/
 
 [CreateAssetMenu(fileName = "newPlayerData",menuName ="Data/Player Data/Base Data")]
-public class PlayerData : ScriptableObject
+public class PlayerData : UnitData
 {
-    [Header("Status")]
-    [Tooltip("기본 Status")]
-    public CommonData commonstats;
-    [Tooltip("넉백지속시간")]
-    public float knockBackDuration;
-    [Tooltip("넉백 속도")]
-    public Vector2 knockBackSpeed;
+ 
 
     [Header("Jump State")]
     [Tooltip("점프 Velocity")]
@@ -32,15 +26,9 @@ public class PlayerData : ScriptableObject
     [Tooltip("점프 가능 횟수")]
     public int amountOfJumps = 1;
 
-    [Header("InvincibleTime")]
-    [Tooltip("피격 쿨타임")]
-    public float invincibleTime = 1f;
-    [Tooltip("터치 피격 쿨타임")]
-    public float touchDamageinvincibleTime = 1f;
+
 
     [Header("Collider")]
-    [Tooltip("기본 콜라이더 크기")]
-    public float standColliderHeight;
     [Tooltip("대쉬 콜라이더 크기")]
     public float dashColliderHeight;
 
@@ -92,13 +80,6 @@ public class PlayerData : ScriptableObject
     public float blockTime = 1f;
     public float blockCooldown = 2f;
 
-    [Header("Check Variables")]
-    [Tooltip("지면 감지 거리")]
-    public float groundCheckRadius = 0.1f;
-    [Tooltip("벽면 감지 거리")]
-    public float wallCheckDistance = 0.5f;
-    [Tooltip("지면 LayerMask")]
-    public LayerMask whatIsGround;
 
     [Tooltip("Player Attack LayerMask")]
     public LayerMask playerAttackMask;

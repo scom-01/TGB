@@ -19,7 +19,7 @@ public class PlayerGroundedState : PlayerState
     private bool isTouchingWall;    //벽 체크 
     private bool isTouchingLedge;   //Ledge체크
 
-    public PlayerGroundedState(Player player, PlayerFSM fSM, PlayerData playerData, string animBoolName) : base(player, fSM, playerData, animBoolName)
+    public PlayerGroundedState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
     }
 
@@ -51,7 +51,7 @@ public class PlayerGroundedState : PlayerState
 
         if(player.DashState.CheckIfResetDash())
         {
-            player.DashState.ResetDash(playerData.dashCount);
+            player.DashState.ResetDash(player.playerData.dashCount);
         }
 
         xInput = player.InputHandler.NormInputX;
@@ -63,12 +63,12 @@ public class PlayerGroundedState : PlayerState
         if (player.InputHandler.AttackInputs[(int)CombatInputs.primary])
         {
             player.PrimaryAttackState.SetWeapon(player.Inventory.weapons[(int)CombatInputs.primary]);
-            FSM.ChangeState(player.PrimaryAttackState);
+            player.FSM.ChangeState(player.PrimaryAttackState);
         }
         else if(player.InputHandler.AttackInputs[(int)CombatInputs.secondary])
         {
             player.SecondaryAttackState.SetWeapon(player.Inventory.weapons[(int)CombatInputs.secondary]);
-            FSM.ChangeState(player.SecondaryAttackState);            
+            player.FSM.ChangeState(player.SecondaryAttackState);            
         }
         if (player.InputHandler.Skill1Input)
         {
@@ -80,20 +80,20 @@ public class PlayerGroundedState : PlayerState
         }
         else if (JumpInput && player.JumpState.CanJump())
         {
-            FSM.ChangeState(player.JumpState);        
+            player.FSM.ChangeState(player.JumpState);        
         }
         else if (!isGrounded)
         {
             player.InAirState.StartCoyoteTime();
-            FSM.ChangeState(player.InAirState);
+            player.FSM.ChangeState(player.InAirState);
         }
         else if (dashInput && player.DashState.CheckIfCanDash())
         {
-            FSM.ChangeState(player.DashState);
+            player.FSM.ChangeState(player.DashState);
         }
         else if(blockInput)
         {
-            FSM.ChangeState(player.BlockState);
+            player.FSM.ChangeState(player.BlockState);
         }
         /*else if(isTouchingWall && grabInput && isTouchingLedge)
         {

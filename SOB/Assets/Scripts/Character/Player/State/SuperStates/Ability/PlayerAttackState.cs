@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAttackState : PlayerWeaponState
 {
-    public PlayerAttackState(Player player, PlayerFSM fSM, PlayerData playerData, string animBoolName) : base(player, fSM, playerData, animBoolName)
+    public PlayerAttackState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
     }
 

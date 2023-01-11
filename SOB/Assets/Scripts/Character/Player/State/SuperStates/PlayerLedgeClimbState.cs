@@ -18,9 +18,9 @@ public class PlayerLedgeClimbState : PlayerState
     private int xInput;
     private int yInput;
 
-    public PlayerLedgeClimbState(Player player, PlayerFSM fSM, PlayerData playerData, string animBoolName) : base(player, fSM, playerData, animBoolName)
-    {
 
+    public PlayerLedgeClimbState(Unit unit, string animBoolName) : base(unit, animBoolName)
+    {
     }
 
     public override void AnimationFinishTrigger()
@@ -44,8 +44,8 @@ public class PlayerLedgeClimbState : PlayerState
         player.transform.position = detectedPos;
         cornerPos = DetermineCornerPosition();
 
-        startPos.Set(cornerPos.x - (player.Core.Movement.FancingDirection * playerData.startOffset.x), cornerPos.y - (playerData.startOffset.y));
-        stopPos.Set(cornerPos.x + (player.Core.Movement.FancingDirection * playerData.stopOffset.x), cornerPos.y + (playerData.stopOffset.y));
+        startPos.Set(cornerPos.x - (player.Core.Movement.FancingDirection * player.playerData.startOffset.x), cornerPos.y - (player.playerData.startOffset.y));
+        stopPos.Set(cornerPos.x + (player.Core.Movement.FancingDirection * player.playerData.stopOffset.x), cornerPos.y + (player.playerData.stopOffset.y));
 
         player.transform.position = startPos;
     }
@@ -69,7 +69,7 @@ public class PlayerLedgeClimbState : PlayerState
 
         if(isAnimationFinished)
         {
-            FSM.ChangeState(player.IdleState);
+            player.FSM.ChangeState(player.IdleState);
         }
         else
         {
@@ -87,27 +87,27 @@ public class PlayerLedgeClimbState : PlayerState
             }
             else if (yInput == -1 && isHanging && !isClimbing)
             {
-                FSM.ChangeState(player.InAirState);
+                player.FSM.ChangeState(player.InAirState);
             }
             //매달리기 상태에서 벽 점프
             else if(jumpInput && !isClimbing && isHanging)
             {
                 player.WallJumpState.DetermineWallJumpDirection(true);
-                FSM.ChangeState(player.WallJumpState);
+                player.FSM.ChangeState(player.WallJumpState);
             }
         }
     }
     public Vector2 DetermineCornerPosition()
     {
         //x RayCast를 통한 캐릭터 전방 wallCheck
-        RaycastHit2D xHit = Physics2D.Raycast(core.CollisionSenses.GroundCheck.position, Vector2.right * core.Movement.FancingDirection, core.CollisionSenses.WallCheckDistance, core.CollisionSenses.WhatIsGround);
+        RaycastHit2D xHit = Physics2D.Raycast(player.Core.CollisionSenses.GroundCheck.position, Vector2.right * player.Core.Movement.FancingDirection, player.Core.CollisionSenses.WallCheckDistance, player.Core.CollisionSenses.WhatIsGround);
         float xDist = xHit.distance;
-        workspace.Set((xDist + 0.015f) * core.Movement.FancingDirection, 0f);
+        workspace.Set((xDist + 0.015f) * player.Core.Movement.FancingDirection, 0f);
         //y RayCast를 통한 Corner와 ledgeCheck Position과의 차 계산
-        RaycastHit2D yHit = Physics2D.Raycast(core.CollisionSenses.LedgeCheck.position + (Vector3)(workspace), Vector2.down, core.CollisionSenses.LedgeCheck.position.y - core.CollisionSenses.WallCheck.position.y + 0.015f, core.CollisionSenses.WhatIsGround);
+        RaycastHit2D yHit = Physics2D.Raycast(player.Core.CollisionSenses.LedgeCheck.position + (Vector3)(workspace), Vector2.down, player.Core.CollisionSenses.LedgeCheck.position.y - player.Core.CollisionSenses.WallCheck.position.y + 0.015f, player.Core.CollisionSenses.WhatIsGround);
         float yDist = yHit.distance;
 
-        workspace.Set(core.CollisionSenses.WallCheck.position.x + (xDist * core.Movement.FancingDirection), core.CollisionSenses.LedgeCheck.position.y - yDist);
+        workspace.Set(player.Core.CollisionSenses.WallCheck.position.x + (xDist * player.Core.Movement.FancingDirection), player.Core.CollisionSenses.LedgeCheck.position.y - yDist);
         return workspace;
     }
     public void SetDetectedPosition(Vector2 pos) => detectedPos = pos;

@@ -10,7 +10,8 @@ public class PlayerDashState : PlayerAbilityState
     private bool IsGrounded = true;
 
     private Vector2 lastAIPos;
-    public PlayerDashState(Player player, PlayerFSM fSM, PlayerData playerData, string animBoolName) : base(player, fSM, playerData, animBoolName)
+    
+    public PlayerDashState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
     }
 
@@ -22,12 +23,12 @@ public class PlayerDashState : PlayerAbilityState
         if (IsGrounded)
         {
             //콜라이더 크기 변경
-            player.SetColliderHeight(playerData.dashColliderHeight);
+            player.SetColliderHeight(player.playerData.dashColliderHeight);
         }
         else
         {
             //콜라이더 크기 변경
-            player.SetColliderHeight(playerData.dashColliderHeight, false);            
+            player.SetColliderHeight(player.playerData.dashColliderHeight, false);            
         }
         
 
@@ -47,12 +48,12 @@ public class PlayerDashState : PlayerAbilityState
         if (IsGrounded)
         {
             //콜라이더 크기 변경
-            player.SetColliderHeight(playerData.standColliderHeight);
+            player.SetColliderHeight(player.playerData.standColliderHeight);
         }
         else
         {
             //콜라이더 크기 변경
-            player.SetColliderHeight(playerData.standColliderHeight, false);
+            player.SetColliderHeight(player.playerData.standColliderHeight, false);
         }
     }
 
@@ -62,12 +63,12 @@ public class PlayerDashState : PlayerAbilityState
 
         if (!isExitingState)
         {
-            player.Core.Movement.SetVelocityX(playerData.dashVelocity * player.Core.Movement.FancingDirection);
+            player.Core.Movement.SetVelocityX(player.playerData.dashVelocity * player.Core.Movement.FancingDirection);
             player.Core.Movement.SetVelocityY(0);
             
             CheckIfShouldPlaceAfterImage();
 
-            if (Time.time >= startTime + playerData.dashTime)
+            if (Time.time >= startTime + player.playerData.dashTime)
             {
                 if(DashCount > 0)
                 {
@@ -83,7 +84,7 @@ public class PlayerDashState : PlayerAbilityState
 
     private void CheckIfShouldPlaceAfterImage()
     {
-        if(Vector2.Distance(player.transform.position, lastAIPos) >= playerData.distBetweenAfterImages)
+        if(Vector2.Distance(player.transform.position, lastAIPos) >= player.playerData.distBetweenAfterImages)
         {
             PlaceAfterImage();
         }
@@ -98,13 +99,13 @@ public class PlayerDashState : PlayerAbilityState
     public bool CheckIfCanDash()
     {
 
-        return CanDash && Time.time >= lastDashTime + playerData.dashCooldown && DashCount > 0;
+        return CanDash && Time.time >= lastDashTime + player.playerData.dashCooldown && DashCount > 0;
     }
 
     public void DecreaseDashCount() => DashCount--;
     public bool CheckIfResetDash()
     {
-        return Time.time >= lastDashTime + playerData.dashResetCooldown;
+        return Time.time >= lastDashTime + player.playerData.dashResetCooldown;
     }
     public void ResetCanDash() => CanDash = true;        
 

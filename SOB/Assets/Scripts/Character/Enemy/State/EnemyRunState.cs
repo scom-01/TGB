@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyRunState : EnemyState
 {
-    public EnemyRunState(Enemy enemy, EnemyFSM fSM, EnemyData enemyData, string animBoolName) : base(enemy, fSM, enemyData, animBoolName)
+    public EnemyRunState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
     }
 
@@ -27,19 +27,19 @@ public class EnemyRunState : EnemyState
     {
         base.LogicUpdate();
 
-        if(enemy.enemyCore.Movement.knockback)
+        if(enemy.core.enemyMovement.knockback)
         {
             Debug.Log(enemy.name + " ³Ë¹é»óÅÂ");
             return;
         }
 
-        if(!enemy.enemyCore.CollisionSenses.CheckIfCliff || enemy.enemyCore.CollisionSenses.CheckIfTouchingWall || enemy.enemyCore.CollisionSenses.CheckIfTouching)
+        if(!enemy.core.enemyCollisionSenses.CheckIfCliff || enemy.Core.CollisionSenses.CheckIfTouchingWall || enemy.core.enemyCollisionSenses.CheckIfTouching)
         {
-            enemy.enemyCore.Movement.Flip();
+            enemy.Core.Movement.Flip();
         }
         else
         {
-            enemy.enemyCore.Movement.SetVelocityX(enemyData.commonStats.movementVelocity * enemy.enemyCore.Movement.FancingDirection);
+            enemy.core.enemyMovement.SetVelocityX(enemy.enemyData.commonStats.movementVelocity * enemy.core.enemyMovement.FancingDirection);
         }
         //CheckIfCliff();
     }

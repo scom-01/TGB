@@ -13,14 +13,14 @@ public class CollisionSenses : CoreComponent
     public Transform WallCheck { get => wallCheck; private set => wallCheck = value; }
     public Transform LedgeCheck { get => ledgeCheck; private set => ledgeCheck = value; }
 
-    public float GroundCheckRadius { get => core.Player.playerData.groundCheckRadius; set => core.Player.playerData.groundCheckRadius = value; }
-    public float WallCheckDistance { get => core.Player.playerData.wallCheckDistance; set => core.Player.playerData.wallCheckDistance = value; }
+    public float GroundCheckRadius { get => core.Unit.UnitData.groundCheckRadius; set => core.Unit.UnitData.groundCheckRadius = value; }
+    public float WallCheckDistance { get => core.Unit.UnitData.wallCheckDistance; set => core.Unit.UnitData.wallCheckDistance = value; }
 
-    public LayerMask WhatIsGround { get => core.Player.playerData.whatIsGround; set => core.Player.playerData.whatIsGround = value; }
+    public LayerMask WhatIsGround { get => core.Unit.UnitData.whatIsGround; set => core.Unit.UnitData.whatIsGround = value; }
 
-    [SerializeField] private Transform groundCheck;
-    [SerializeField] private Transform wallCheck;
-    [SerializeField] private Transform ledgeCheck;
+    [SerializeField] protected Transform groundCheck;
+    [SerializeField] protected Transform wallCheck;
+    [SerializeField] protected Transform ledgeCheck;
     #endregion
     protected override void Awake()
     {

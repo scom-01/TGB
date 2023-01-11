@@ -6,10 +6,9 @@ using UnityEditor;
 using UnityEngine;
 using static PlayerInputHandler;
 
-public class Player : MonoBehaviour
+public class Player : Unit
 {
     #region State Variables
-    public PlayerFSM fsm { get; private set; }
     
     //PlayerState
     public PlayerInAirState InAirState { get; private set; }
@@ -30,24 +29,11 @@ public class Player : MonoBehaviour
 
     //PlayerTouchingWallState
     public PlayerWallSlideState WallSlideState { get; private set; }
-
-    //public PlayerWallGrabState WallGrabState { get; private set; }
-    //public PlayerWallClimbState WallClimbState { get; private set; }
-    //public PlayerLedgeClimbState LedgeClimbState { get; private set; }
     #endregion
 
     #region Components
-    public Core Core { get; private set; }
-    public Animator Anim { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
-
-    public PlayerStats PS { get; private set; }
-    public Rigidbody2D RB { get; private set; }
-    public BoxCollider2D BC2D { get; private set; }
-
-    public SpriteRenderer SR { get; private set; }
-
-    public PlayerInventory Inventory { get; private set; }
+    [HideInInspector]
     public PlayerData playerData;
     #endregion
 
@@ -59,62 +45,37 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Unity Callback Func
-    private void Awake()
+    protected override void Awake()
     {
-        Core = GetComponentInChildren<Core>();
-
-        fsm = new PlayerFSM();
-
+        base.Awake();
+        playerData = UnitData as PlayerData;
         //각 State 생성
-        IdleState = new PlayerIdleState(this, fsm, playerData, "idle");
-        MoveState = new PlayerMoveState(this, fsm, playerData, "move");
-        JumpState = new PlayerJumpState(this, fsm, playerData, "inAir");    //점프하는 순간 공중상태이므로
-        InAirState = new PlayerInAirState(this, fsm, playerData, "inAir");
-        LandState = new PlayerLandState(this, fsm, playerData, "land");
-        WallSlideState = new PlayerWallSlideState(this, fsm, playerData, "wallSlide");
-        //WallGrabState = new PlayerWallGrabState(this, fsm, playerData, "wallGrab");
-        //WallClimbState = new PlayerWallClimbState(this, fsm, playerData, "wallClimb");
-        WallJumpState= new PlayerWallJumpState(this, fsm, playerData, "inAir");
-        //LedgeClimbState = new PlayerLedgeClimbState(this, fsm, playerData, "ledgeClimbState");
-        DashState = new PlayerDashState(this, fsm, playerData, "dash");
-
-        PrimaryAttackState = new PlayerWeaponState(this, fsm, playerData, "weapon");
-        SecondaryAttackState = new PlayerWeaponState(this, fsm, playerData, "weapon");
+        IdleState = new PlayerIdleState(this, "idle");
+        MoveState = new PlayerMoveState(this, "move");
+        JumpState = new PlayerJumpState(this, "inAir");    //점프하는 순간 공중상태이므로
+        InAirState = new PlayerInAirState(this, "inAir");
+        LandState = new PlayerLandState(this, "land");
+        WallSlideState = new PlayerWallSlideState(this, "wallSlide");        
+        WallJumpState= new PlayerWallJumpState(this, "inAir");
+        DashState = new PlayerDashState(this, "dash");
+        PrimaryAttackState = new PlayerWeaponState(this, "weapon");
+        SecondaryAttackState = new PlayerWeaponState(this, "weapon");
     }
 
-    private void Start()
-    {        
-        Anim = GetComponent<Animator>();
-        if(Anim == null)    Anim = this.GameObject().AddComponent<Animator>();
-
+    protected override void Start()
+    {
+        base.Start();
+        
         InputHandler = GetComponent<PlayerInputHandler>();
         if (InputHandler == null) InputHandler = this.GameObject().AddComponent<PlayerInputHandler>();
-
-        RB = GetComponent<Rigidbody2D>();
-        if (RB == null)     RB = this.GameObject().AddComponent<Rigidbody2D>();
-
-        BC2D = GetComponent<BoxCollider2D>();
-        if (BC2D == null)  BC2D = this.GameObject().AddComponent<BoxCollider2D>();
-
-        SR = GetComponent<SpriteRenderer>();
-        if (SR == null)     SR = this.GameObject().AddComponent<SpriteRenderer>();
-
-        Inventory = GetComponent<PlayerInventory>();
-        if (Inventory == null) Inventory = this.GameObject().AddComponent<PlayerInventory>();
-
-        PS = GetComponent<PlayerStats>();
-        if (PS == null) PS = this.GameObject().AddComponent<PlayerStats>();
-
-        //PrimaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.primary]);
-        //SecondaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.secondary]);
-        //SecondaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.secondary]);
-
-        fsm.Initialize(IdleState);
+        
+        FSM.Initialize(IdleState);
     }
 
-    private void Update()
+    protected override void Update()
     {
-        Core.LogicUpdate();
+        base.Update();
+        //Core.LogicUpdate();
         if (playerData.invincibleTime > 0.0f)
         {
             playerData.invincibleTime -= Time.deltaTime;
@@ -124,12 +85,13 @@ public class Player : MonoBehaviour
                 playerData.invincibleTime = 0f;
             }
         }
-        fsm.CurrentState.LogicUpdate();
+        //fsm.CurrentState.LogicUpdate();
     }
 
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
-        fsm.CurrentState.PhysicsUpdate();
+        base.FixedUpdate();
+        //fsm.CurrentState.PhysicsUpdate();
     }
     #endregion
 
@@ -168,9 +130,9 @@ public class Player : MonoBehaviour
 
     #region Other Func
 
-    private void AnimationTrigger() => fsm.CurrentState.AnimationTrigger();
+    private void AnimationTrigger() => FSM.CurrentState.AnimationTrigger();
 
-    private void AnimationFinishTrigger() => fsm.CurrentState.AnimationFinishTrigger();
+    private void AnimationFinishTrigger() => FSM.CurrentState.AnimationFinishTrigger();
 
    
     #endregion
@@ -198,7 +160,7 @@ public class Player : MonoBehaviour
 
     public void Hit(float damage)
     {
-        if (SR == null) SR = this.GameObject().AddComponent<SpriteRenderer>();
+        //if (SR == null) SR = this.GameObject().AddComponent<SpriteRenderer>();
 
         Debug.Log("Hit");
         StartCoroutine(HitEffect());

@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyCore : MonoBehaviour
+public class EnemyCore : Core
 {
-    public EnemyMovement Movement { get; private set; }
     public Enemy Enemy { get; private set; }
-    public EnemyCollisionSenses CollisionSenses { get; private set; }
-    private void Awake()
+    public EnemyMovement enemyMovement { get; private set; }
+    public EnemyCollisionSenses enemyCollisionSenses { get; private set; }
+    public override void Awake()
     {
-        Movement = GetComponentInChildren<EnemyMovement>();
-        CollisionSenses = GetComponentInChildren<EnemyCollisionSenses>();
-        Enemy = GetComponentInParent<Enemy>();
+        base.Awake();
+        enemyMovement = Movement as EnemyMovement;
+        enemyCollisionSenses = CollisionSenses as EnemyCollisionSenses;
+        Enemy = Unit as Enemy;
 
         if (!Movement)
         {
@@ -24,7 +25,7 @@ public class EnemyCore : MonoBehaviour
         }
     }
 
-    public void LogicUpdate()
+    public override void LogicUpdate()
     {
         Movement.LogicUpdate();
     }

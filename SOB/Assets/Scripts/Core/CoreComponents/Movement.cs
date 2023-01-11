@@ -8,9 +8,7 @@ public class Movement : CoreComponent
     public int FancingDirection { get; private set; }
     public Vector2 CurrentVelocity { get; private set; }
 
-    private Vector2 workspace;
-
-    
+    protected Vector2 workspace;
 
     protected override void Awake()
     {
@@ -58,7 +56,7 @@ public class Movement : CoreComponent
     }
 
     //2D Filp
-    private void Flip()
+    public void Flip()
     {
         FancingDirection *= -1;
         RB.transform.Rotate(0.0f, 180.0f, 0.0f);
