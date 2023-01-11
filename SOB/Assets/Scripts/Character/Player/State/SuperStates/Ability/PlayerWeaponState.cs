@@ -64,7 +64,7 @@ public class PlayerWeaponState : PlayerAbilityState
             player.Core.Movement.SetVelocityX(velocityToSet * player.Core.Movement.FancingDirection);
         }
 
-        if (player.InputHandler.DashInput)
+        if (player.InputHandler.DashInput && player.DashState.CheckIfCanDash())
         {
             FSM.ChangeState(player.DashState);
             return;

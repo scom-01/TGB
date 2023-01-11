@@ -129,9 +129,9 @@ public class PlayerInAirState : PlayerState
         }        
         else if(dashInput && player.DashState.CheckIfCanDash())
         {
+            FSM.ChangeState(player.DashState);
             if(player.DashState.DashCount > 0)
             {
-                FSM.ChangeState(player.DashState);
             }
         }
         else
