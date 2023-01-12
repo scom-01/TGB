@@ -6,7 +6,9 @@ using System.Linq;
 public class AggressiveWeapon : Weapon
 {
     protected SO_AggressiveWeaponData aggressiveWeaponData;
-
+    [SerializeField]
+    [Tooltip("Animator Param Bool Name")]
+    protected string boolname;
     private List<IDamagable> detectedDamagable = new List<IDamagable>();
 
     protected override void Awake()
@@ -19,7 +21,7 @@ public class AggressiveWeapon : Weapon
         }
         else
         {
-            Debug.LogError("Wrong data for the weapon");
+            Debug.LogError($"Wrong data for the weapon, this weaponType is {aggressiveWeaponData.GetType()}");
         }
     }
 
@@ -27,7 +29,7 @@ public class AggressiveWeapon : Weapon
     {
         base.EnterWeapon();
 
-        SetBoolName("attack", true);
+        SetBoolName(boolname, true);
 
         baseAnimator.SetInteger("attackCounter", CurrentAttackCounter);
         WeaponAnimator.SetInteger("attackCounter", CurrentAttackCounter);
@@ -37,7 +39,7 @@ public class AggressiveWeapon : Weapon
     {
         base.ExitWeapon();
 
-        SetBoolName("attack", false);
+        SetBoolName(boolname, false);
 
         ChangeAttackCounter(CurrentAttackCounter + 1);
 
