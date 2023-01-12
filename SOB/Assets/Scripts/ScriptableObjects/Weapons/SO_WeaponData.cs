@@ -11,4 +11,9 @@ public class SO_WeaponData : ScriptableObject
     public float attackCounterResetCooldown;
     [Tooltip("공격 시 VelocityX movement 값")]
     public float[] movementSpeed { get; protected set; }
+
+
+    [Header("Skill polymorphism")]
+    [Tooltip("공격중 점프 가능")]
+    public bool CanJump;
 }

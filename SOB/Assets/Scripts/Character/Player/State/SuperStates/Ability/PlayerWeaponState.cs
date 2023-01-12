@@ -49,8 +49,8 @@ public class PlayerWeaponState : PlayerAbilityState
 
         xInput = player.InputHandler.NormInputX;
         JumpInput = player.InputHandler.JumpInput;
-
-        if (JumpInput && player.JumpState.CanJump())
+        
+        if (JumpInput && player.JumpState.CanJump() && weapon.weaponData.CanJump)
         {
             player.FSM.ChangeState(player.JumpState);
         }
