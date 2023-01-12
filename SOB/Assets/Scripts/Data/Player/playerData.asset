@@ -12,18 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c35bcfc08813c4e8bfc3cf5ddf894f, type: 3}
   m_Name: playerData
   m_EditorClassIdentifier: 
-  commonstats:
+  commonStats:
     maxHealth: 100
     movementVelocity: 10
     AttackPower: 10
     DefendsivePower: 1
   knockBackDuration: 0
   knockBackSpeed: {x: 0, y: 0}
-  jumpVelocity: 15
-  amountOfJumps: 4
   invincibleTime: 0
   touchDamageinvincibleTime: 1
   standColliderHeight: 1.3
+  groundCheckRadius: 0.1
+  wallCheckDistance: 0.4
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 128
+  jumpVelocity: 15
+  amountOfJumps: 4
   dashColliderHeight: 0.93
   wallJumpVelocity: 20
   wallJumpTime: 0.2
@@ -44,11 +49,6 @@ MonoBehaviour:
   distBetweenAfterImages: 0.75
   blockTime: 1
   blockCooldown: 0.5
-  groundCheckRadius: 0.1
-  wallCheckDistance: 0.4
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 128
   playerAttackMask:
     serializedVersion: 2
     m_Bits: 33554432

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static PlayerInputHandler;
 
 public class PlayerWeaponState : PlayerAbilityState
 {
@@ -9,6 +10,7 @@ public class PlayerWeaponState : PlayerAbilityState
     private Weapon weapon;
 
     private int xInput;
+    private bool JumpInput;
 
     private float velocityToSet;
 
@@ -46,9 +48,15 @@ public class PlayerWeaponState : PlayerAbilityState
         base.LogicUpdate();
 
         xInput = player.InputHandler.NormInputX;
-        
+        JumpInput = player.InputHandler.JumpInput;
+
+        if (JumpInput && player.JumpState.CanJump())
+        {
+            player.FSM.ChangeState(player.JumpState);
+        }
+
         //공중에서 공격 후 착지상태
-        if(weapon.InAir&& player.Core.CollisionSenses.CheckIfGrounded)
+        if (weapon.InAir&& player.Core.CollisionSenses.CheckIfGrounded)
         {
             player.FSM.ChangeState(player.LandState);
             return;
