@@ -7058,6 +7058,7 @@ GameObject:
   - component: {fileID: 1515776356}
   - component: {fileID: 1515776357}
   - component: {fileID: 1515776358}
+  - component: {fileID: 1515776359}
   m_Layer: 0
   m_Name: Sword1 (1)
   m_TagString: Untagged
@@ -7109,7 +7110,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e51464ec659c57c479b31fa05eeff879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponSpeed: 2
+  WeaponSpeed: 1
+--- !u!114 &1515776359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515776355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb803558d86c29f40a6891b1ff3cb548, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GroundedWeaponSprites:
+  - <Sprites>k__BackingField:
+    - {fileID: 1433230625, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+    - {fileID: 1805210951, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+    - {fileID: 277646980, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+    - {fileID: 970946481, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+    - {fileID: 622053077, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+  - <Sprites>k__BackingField:
+    - {fileID: -1575140979, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+    - {fileID: 542500942, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+    - {fileID: 360467885, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+    - {fileID: -2141200257, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+    - {fileID: 1762517732, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+  - <Sprites>k__BackingField:
+    - {fileID: 1190113757, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+    - {fileID: -1937832525, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+    - {fileID: 207459841, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+    - {fileID: -2097710950, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+    - {fileID: -438660922, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+  InAirWeaponSprites:
+  - <Sprites>k__BackingField:
+    - {fileID: 648612261, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+    - {fileID: 1591889717, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+    - {fileID: 1017945547, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+    - {fileID: 1505583640, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+    - {fileID: -118192930, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+    - {fileID: 813284989, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+  - <Sprites>k__BackingField:
+    - {fileID: 243659706, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+    - {fileID: -1895856038, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+    - {fileID: 2055020914, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+    - {fileID: -389562703, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+    - {fileID: 1626861925, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+  - <Sprites>k__BackingField:
+    - {fileID: -859760171, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+    - {fileID: -2062899245, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+    - {fileID: 2006328060, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+    - {fileID: 590085780, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+    - {fileID: -502706545, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
 --- !u!1 &1602492054
 GameObject:
   m_ObjectHideFlags: 0
@@ -7408,7 +7460,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1686296792}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: dbe9d6cce0aa5d54eb44f10417bc1cd6, type: 2}
   m_CullingMode: 0
