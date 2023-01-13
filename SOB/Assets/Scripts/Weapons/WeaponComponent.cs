@@ -1,37 +1,70 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class WeaponComponent : MonoBehaviour
+namespace SOB.Weapons.Components
 {
-    protected Weapon weapon;
 
-    protected bool isAttackActive;
-
-    protected virtual void Awake()
+    public abstract class WeaponComponent : MonoBehaviour
     {
-        weapon = GetComponent<Weapon>();
-    }
+        protected Weapon weapon;
+        protected AnimationEventHandler eventHandler;
+        protected Core core => weapon.core;
+        protected bool isAttackActive;
 
-    protected virtual void HandleEnter()
-    {
-        isAttackActive = true;
-    }
+        protected virtual void Awake()
+        {
+            weapon = GetComponent<Weapon>();
 
-    protected virtual void HandleExit()
-    {
-        isAttackActive = false;
-    }
+            eventHandler = GetComponentInChildren<AnimationEventHandler>();
+        }
 
-    protected virtual void OnEnable()
-    {
-        weapon.OnEnter += HandleEnter;
-        weapon.OnExit += HandleExit;
-    }
-    protected virtual void OnDisable()
-    {
-        weapon.OnEnter -= HandleEnter;
-        weapon.OnExit -= HandleExit;        
-    }
+        protected virtual void Start()
+        {
 
+        }
+
+        protected virtual void HandleEnter()
+        {
+            isAttackActive = true;
+        }
+
+        protected virtual void HandleExit()
+        {
+            isAttackActive = false;
+        }
+
+        protected virtual void OnEnable()
+        {
+            weapon.OnEnter += HandleEnter;
+            weapon.OnExit += HandleExit;
+        }
+        protected virtual void OnDisable()
+        {
+            weapon.OnEnter -= HandleEnter;
+            weapon.OnExit -= HandleExit;
+        }
+
+
+    }
+    public abstract class WeaponComponent<T1, T2> : WeaponComponent where T1 : ComponentData<T2> where T2 : AttackData
+    {
+        protected T1 data;
+        protected T2 currentAttackData;
+
+        protected override void HandleEnter()
+        {
+            base.HandleEnter();
+
+            currentAttackData = data.AttackData[weapon.CurrentAttackCounter];
+        }
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            data = weapon.weaponData.GetData<T1>();
+        }
+    }
 }

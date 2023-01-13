@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace SOB.Weapons.Components
-{
-    public class ActionHitBoxData : ComponentData<AttackActionHitBox>
-    {
-    
+{ 
+    public class WeaponSpriteData : ComponentData<AttackSprites>
+    {   
     }
 }

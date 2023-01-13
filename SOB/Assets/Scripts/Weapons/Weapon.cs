@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField]
-    public SO_WeaponData weaponData;
+    [field: SerializeField] public SO_WeaponData weaponData { get; private set; }
+    [SerializeField] private float attackCounterResetCooldown;
 
     [HideInInspector]
     protected string weaponAnimBoolStr;
@@ -19,6 +19,8 @@ public class Weapon : MonoBehaviour
         private set => currentAttackCounter = value >= weaponData.amountOfAttacks ? 0 : value;
     }
 
+    public Core core { get; private set; }
+
     private int currentAttackCounter;
     private Timer attackCounterResetTimer;
 
@@ -29,6 +31,8 @@ public class Weapon : MonoBehaviour
     public GameObject BaseGameObject { get; private set; }    
     protected Animator WeaponAnimator;
     public GameObject WeaponSpriteGameObject { get; private set; }
+
+    public AnimationEventHandler EventHandler { get; private set; }
 
     [HideInInspector]
     protected WeaponManager weaponManager;
@@ -45,6 +49,24 @@ public class Weapon : MonoBehaviour
         WeaponAnimator = transform.Find("Weapon").GetComponent<Animator>();
 
         weaponManager = GetComponentInParent<WeaponManager>();
+        //attackCounterResetTimer = new Timer(attackCounterResetCooldown);
+    }
+
+    private void Update()
+    {
+        //attackCounterResetTimer.Tick();
+    }
+
+    private void OnEnable()
+    {
+        EventHandler.OnFinish += ExitWeapon;
+        //attackCounterResetTimer.OnTimerDone += ResetAttackCounter;
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.OnFinish -= ExitWeapon;
+        //attackCounterResetTimer.OnTimerDone -= ResetAttackCounter;
     }
 
     /// <summary>

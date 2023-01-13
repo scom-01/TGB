@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using SOB.Weapons.Components;
 public class WeaponSprite : WeaponComponent
 {
     private SpriteRenderer baseSpriteRenderer;
@@ -11,8 +11,8 @@ public class WeaponSprite : WeaponComponent
     private GameObject baseObject;
 
     [SerializeField]
-    private WeaponSprites[] GroundedWeaponSprites,
-                            InAirWeaponSprites;
+    private WeaponSpriteData GroundedWeaponSprites;
+    private WeaponSpriteData InAirWeaponSprites;
 
     private int currentWeaponSpriteIndex;
     protected override void HandleEnter()
@@ -32,13 +32,13 @@ public class WeaponSprite : WeaponComponent
 
         if (baseObject.GetComponent<Animator>().GetBool("inAir"))
         {
-            if(InAirWeaponSprites.Length> 0)
-                currentAttackSprite = InAirWeaponSprites[weapon.CurrentAttackCounter].Sprites;
+            if(InAirWeaponSprites.AttackData.Length> 0)
+                currentAttackSprite = InAirWeaponSprites.AttackData[weapon.CurrentAttackCounter].Sprites;
         }
         else
         {
-            if (GroundedWeaponSprites.Length > 0)
-                currentAttackSprite = GroundedWeaponSprites[weapon.CurrentAttackCounter].Sprites;
+            if (GroundedWeaponSprites.AttackData.Length > 0)
+                currentAttackSprite = GroundedWeaponSprites.AttackData[weapon.CurrentAttackCounter].Sprites;
         }
 
         if (currentAttackSprite.Length < 0)
@@ -80,11 +80,3 @@ public class WeaponSprite : WeaponComponent
         weapon.OnEnter -= HandleEnter;
     }
 }
-
-[Serializable]
-public class WeaponSprites
-{ 
-    [field: SerializeField]
-    public Sprite[] Sprites { get; private set; }
-}
-
