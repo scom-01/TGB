@@ -4,29 +4,42 @@ using UnityEngine;
 
 public class Core : MonoBehaviour
 {
-    public Movement Movement { get; private set; }
-    public Unit Unit { get; private set; }
-    public CollisionSenses CollisionSenses { get; private set; }
+    public Movement Movement 
+    { 
+        get => GenericNotImplementedError<Movement>.TryGet(movement, transform.parent.name);
+        private set => movement = value;
+    }
+    public Unit Unit
+    {
+        get => GenericNotImplementedError<Unit>.TryGet(unit, transform.parent.name);
+        private set => unit = value;
+    }
+    public CollisionSenses CollisionSenses
+    {
+        get => GenericNotImplementedError<CollisionSenses>.TryGet(collisionSenses, transform.parent.name);
+        private set => collisionSenses = value;
+    }
+    public Combat Combat
+    {
+        get => GenericNotImplementedError<Combat>.TryGet(combat, transform.parent.name);
+        private set => combat = value;
+    }
+
+    private Movement movement;
+    private Unit unit;
+    private CollisionSenses collisionSenses;
+    private Combat combat;
     public virtual void Awake()
     {
-        Movement = GetComponentInChildren<Movement>();
-        CollisionSenses = GetComponentInChildren<CollisionSenses>();
-        Unit = GetComponentInParent<Unit>();
-
-        if (!Movement)
-        {
-            Debug.LogError("Missing Movement Core Componenet");
-        }
-        
-        if(!CollisionSenses)
-        {
-            Debug.LogError("Missing CollisionSenses Core Componenet");
-        }
+        movement = GetComponentInChildren<Movement>();
+        collisionSenses = GetComponentInChildren<CollisionSenses>();
+        unit = GetComponentInParent<Unit>();
+        combat = GetComponentInParent<Combat>();
     }
 
     public virtual void LogicUpdate()
     {
-        Movement.LogicUpdate();
-        CollisionSenses.LogicUpdate();
+        movement.LogicUpdate();
+        collisionSenses.LogicUpdate();
     }
 }

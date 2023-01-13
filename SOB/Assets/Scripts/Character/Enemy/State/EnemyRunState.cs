@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyRunState : EnemyState
 {
+    private bool checkifCliff;
+    private bool checkifTouching;
+    private bool checkifTouchingWall;
     public EnemyRunState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
     }
@@ -11,6 +14,10 @@ public class EnemyRunState : EnemyState
     public override void DoChecks()
     {
         base.DoChecks();
+
+        checkifCliff = enemy.core.enemyCollisionSenses.CheckIfCliff;
+        checkifTouchingWall = enemy.Core.CollisionSenses.CheckIfTouchingWall;
+        checkifTouching = enemy.core.enemyCollisionSenses.CheckIfTouching;
     }
 
     public override void Enter()
@@ -33,7 +40,7 @@ public class EnemyRunState : EnemyState
             return;
         }
 
-        if(!enemy.core.enemyCollisionSenses.CheckIfCliff || enemy.Core.CollisionSenses.CheckIfTouchingWall || enemy.core.enemyCollisionSenses.CheckIfTouching)
+        if (!checkifCliff || checkifTouching || checkifTouchingWall )
         {
             enemy.Core.Movement.Flip();
         }

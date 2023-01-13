@@ -9,7 +9,7 @@ public class AggressiveWeapon : Weapon
     [SerializeField]
     [Tooltip("Animator Param Bool Name")]
     protected string boolname;
-    private List<IDamagable> detectedDamagable = new List<IDamagable>();
+    private List<IDamageable> detectedDamagable = new List<IDamageable>();
 
     protected override void Awake()
     {
@@ -56,7 +56,7 @@ public class AggressiveWeapon : Weapon
     {
         WeaponAttackDetails details = aggressiveWeaponData.AttackDetails[CurrentAttackCounter];
 
-        foreach(IDamagable item in detectedDamagable.ToList())
+        foreach(IDamageable item in detectedDamagable.ToList())
         {
             item.Damage(details.damageAmount);
         }
@@ -67,7 +67,7 @@ public class AggressiveWeapon : Weapon
     public void AddToDetected(Collider2D coll)
     {
         Debug.Log("AddToDetected = " + coll.name);
-        IDamagable damagable = coll.GetComponent<IDamagable>();
+        IDamageable damagable = coll.GetComponent<IDamageable>();
 
         if (damagable != null)
         {
@@ -78,7 +78,7 @@ public class AggressiveWeapon : Weapon
     public void RemoveFromDetected(Collider2D coll)
     {
         Debug.Log("RemoveFromDetected = " + coll.name);
-        IDamagable damagable = coll.GetComponent<IDamagable>();
+        IDamageable damagable = coll.GetComponent<IDamageable>();
 
         if (damagable != null)
         {

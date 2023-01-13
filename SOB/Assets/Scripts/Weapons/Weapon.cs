@@ -47,6 +47,9 @@ public class Weapon : MonoBehaviour
         weaponManager = GetComponentInParent<WeaponManager>();
     }
 
+    /// <summary>
+    /// PlayerWeaponState Enter 에서 호출되는 함수
+    /// </summary>
     public virtual void EnterWeapon()
     {
         gameObject.SetActive(true);
@@ -55,7 +58,7 @@ public class Weapon : MonoBehaviour
 
         if (InAir)
         {
-            SetBoolName("inAir", true);
+            SetBoolName("inAir", true);            
         }
         else
         {
@@ -67,6 +70,9 @@ public class Weapon : MonoBehaviour
         weaponManager.lastAttackTime = Time.time;
     }
 
+    /// <summary>
+    /// PlayerWeaponState Exit 에서 호출되는 함수
+    /// </summary>
     public virtual void ExitWeapon()
     {
         BaseGameObject.GetComponent<SpriteRenderer>().sprite = null;
@@ -88,10 +94,14 @@ public class Weapon : MonoBehaviour
 
     #region Set Func
 
+    /// <summary>
+    /// Animator Parameter Set Func
+    /// </summary>
+    /// <param name="name"> Param Name</param>
+    /// <param name="setbool">T, F</param>
     public virtual void SetBoolName(string name, bool setbool)
     {
         weaponAnimBoolStr = name;
-        
         baseAnimator.SetBool(name, setbool);
         //WeaponAnimator.SetBool(name, setbool);
     }
@@ -130,6 +140,10 @@ public class Weapon : MonoBehaviour
     
     #endregion
 
+    /// <summary>
+    /// 초기 State 설정
+    /// </summary>
+    /// <param name="state"></param>
     public void InitializeWeapon(PlayerWeaponState state)
     {
         this.state = state;

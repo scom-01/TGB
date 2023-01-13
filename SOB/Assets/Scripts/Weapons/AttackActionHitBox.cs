@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDamagable
+public class AttackActionHitBox : MonoBehaviour
 {
-    void Damage(float amount = 0.0f);
-
+    
 }
