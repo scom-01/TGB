@@ -211,8 +211,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: edacb9685ffdf25468c882101941661d, type: 2}
-  weaponAnimBoolStr: 
   InAir: 0
+  boolname: 
 --- !u!1 &1814915039021121166
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,7 +254,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1814915039151479869}
   - component: {fileID: 1814915039151479867}
-  - component: {fileID: 1814915039151479866}
   - component: {fileID: 1814915039151479864}
   - component: {fileID: 1814915039151479865}
   - component: {fileID: 1814915039151479862}
@@ -332,26 +331,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &1814915039151479866
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1814915039151479868}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: dbe9d6cce0aa5d54eb44f10417bc1cd6, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1814915039151479864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -703,7 +682,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1814915040008639153}
   - component: {fileID: 1814915040008639114}
-  - component: {fileID: 1814915040008639117}
   - component: {fileID: 1814915040008639116}
   - component: {fileID: 1814915040008639119}
   - component: {fileID: 1814915040008639118}
@@ -781,26 +759,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &1814915040008639117
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1814915040008639152}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d7dddf025d2cbf34099c9599759d251b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1814915040008639116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -898,8 +856,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 49cab4bb3c798f64e9554579de91c305, type: 2}
-  weaponAnimBoolStr: 
   InAir: 0
+  boolname: 
 --- !u!1 &1814915040170595878
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,6 +1233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea4697895990f0d409243616bbf1f4c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UnitData: {fileID: 0}
   playerData: {fileID: 11400000, guid: ae3d62f76bc500849819fd1f7f2f1900, type: 2}
 --- !u!114 &1814915040244378509
 MonoBehaviour:

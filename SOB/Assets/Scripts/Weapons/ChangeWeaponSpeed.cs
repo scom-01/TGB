@@ -17,6 +17,6 @@ public class ChangeWeaponSpeed : MonoBehaviour
     private void Update()
     {
         baseObject.GetComponent<Animator>().speed = WeaponSpeed;
-        weaponObject.GetComponent<Animator>().speed = WeaponSpeed;
+        //weaponObject.GetComponent<Animator>().speed = WeaponSpeed;
     }
 }

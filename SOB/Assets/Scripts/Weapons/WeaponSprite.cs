@@ -23,34 +23,34 @@ public class WeaponSprite : WeaponComponent
 
     private void HandleBaseSpriteChange(SpriteRenderer sr)
     {
-        Debug.Log("Enter HandleBaseSpriteChange");
         if(!isAttackActive)
         {
             weaponSpriteRenderer.sprite = null;
             return;
         }
-        Sprite[] currentAttackSprite;
+        Sprite[] currentAttackSprite = new Sprite[0];
 
-        Debug.Log("baseObject name = "+baseObject.name);
-
-        Debug.Log("baseObject getbool = "+baseObject.GetComponent<Animator>().GetBool("inAir"));
         if (baseObject.GetComponent<Animator>().GetBool("inAir"))
         {
-            currentAttackSprite = InAirWeaponSprites[weapon.CurrentAttackCounter].Sprites;
+            if(InAirWeaponSprites.Length> 0)
+                currentAttackSprite = InAirWeaponSprites[weapon.CurrentAttackCounter].Sprites;
         }
         else
-        {            
-            currentAttackSprite = GroundedWeaponSprites[weapon.CurrentAttackCounter].Sprites;
+        {
+            if (GroundedWeaponSprites.Length > 0)
+                currentAttackSprite = GroundedWeaponSprites[weapon.CurrentAttackCounter].Sprites;
         }
-        
+
+        if (currentAttackSprite.Length < 0)
+            return;
+
         if(currentWeaponSpriteIndex >= currentAttackSprite.Length)
         {
             Debug.Log($"{weapon.name} weapon sprite length mismatch");
             return;
         }
 
-        weaponSpriteRenderer.sprite = currentAttackSprite[currentWeaponSpriteIndex];
-        Debug.Log($"weaponSpriteRenderer.sprite = {currentAttackSprite[currentWeaponSpriteIndex]}");
+        weaponSpriteRenderer.sprite = currentAttackSprite[currentWeaponSpriteIndex];        
         currentWeaponSpriteIndex++;
     }
 

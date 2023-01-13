@@ -27,7 +27,7 @@ public class PlayerInAirState : PlayerState
     private bool isJumping;             //점프 중인지 체크
 
     private float startWallJumpCoyoteTime;
-    
+
     public PlayerInAirState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
     }
@@ -90,17 +90,17 @@ public class PlayerInAirState : PlayerState
         skill1Input = player.InputHandler.Skill1Input;
         skill2Input = player.InputHandler.Skill2Input;
 
-        if (player.InputHandler.AttackInputs[(int)CombatInputs.primary])
+        if (player.InputHandler.AttackInputs[(int)CombatInputs.primary] && player.Inventory.weapons[(int)CombatInputs.primary].weaponData.CanAirAttack)
         {
             player.PrimaryAttackState.SetWeapon(player.Inventory.weapons[(int)CombatInputs.primary]);
             player.FSM.ChangeState(player.PrimaryAttackState);
         }
-        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondary])
+        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondary] && player.Inventory.weapons[(int)CombatInputs.secondary].weaponData.CanAirAttack)
         {
             player.SecondaryAttackState.SetWeapon(player.Inventory.weapons[(int)CombatInputs.secondary]);
-            player.FSM.ChangeState(player.SecondaryAttackState);            
+            player.FSM.ChangeState(player.SecondaryAttackState);
         }
-        else if(isGrounded && player.Core.Movement.CurrentVelocity.y < 0.01f)
+        else if (isGrounded && player.Core.Movement.CurrentVelocity.y < 0.01f)
         {
             player.FSM.ChangeState(player.LandState);
         }
@@ -108,14 +108,14 @@ public class PlayerInAirState : PlayerState
         {
             FSM.ChangeState(player.LedgeClimbState);
         }*/
-        else if(JumpInput && (isTouchingWall || isTouchingWallBack || wallJumpCoyoteTime))
+        else if (JumpInput && (isTouchingWall || isTouchingWallBack || wallJumpCoyoteTime))
         {
             StopWallJumpCoyoteTime();
             isTouchingWall = player.Core.CollisionSenses.CheckIfTouchingWall;
             player.WallJumpState.DetermineWallJumpDirection(isTouchingWall);
             player.FSM.ChangeState(player.WallJumpState);
         }
-        else if(JumpInput && player.JumpState.CanJump())
+        else if (JumpInput && player.JumpState.CanJump())
         {
             coyoteTime = false;
             player.FSM.ChangeState(player.JumpState);
@@ -124,14 +124,14 @@ public class PlayerInAirState : PlayerState
         {
             FSM.ChangeState(player.WallGrabState);
         }*/
-        else if(isTouchingWall && xInput == player.Core.Movement.FancingDirection && player.Core.Movement.CurrentVelocity.y <= 0f)
+        else if (isTouchingWall && xInput == player.Core.Movement.FancingDirection && player.Core.Movement.CurrentVelocity.y <= 0f)
         {
             player.FSM.ChangeState(player.WallSlideState);
-        }        
-        else if(dashInput && player.DashState.CheckIfCanDash())
+        }
+        else if (dashInput && player.DashState.CheckIfCanDash())
         {
             player.FSM.ChangeState(player.DashState);
-            if(player.DashState.DashCount > 0)
+            if (player.DashState.DashCount > 0)
             {
             }
         }
@@ -175,20 +175,20 @@ public class PlayerInAirState : PlayerState
         }
     }
 
-    private void  CheckWallJumpCoyoteTime()
+    private void CheckWallJumpCoyoteTime()
     {
-        if(wallJumpCoyoteTime && Time.time > startWallJumpCoyoteTime + player.playerData.coyeteTime)
+        if (wallJumpCoyoteTime && Time.time > startWallJumpCoyoteTime + player.playerData.coyeteTime)
         {
             wallJumpCoyoteTime = false;
         }
     }
     public void StartCoyoteTime() => coyoteTime = true;
 
-    public void StartWallJumpCoyoteTime() 
+    public void StartWallJumpCoyoteTime()
     {
         wallJumpCoyoteTime = true;
         startWallJumpCoyoteTime = Time.time;
-    } 
+    }
     public void StopWallJumpCoyoteTime() => wallJumpCoyoteTime = false;
     public void SetIsJumping() => isJumping = true;
 }

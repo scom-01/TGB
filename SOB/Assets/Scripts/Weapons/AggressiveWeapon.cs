@@ -32,7 +32,7 @@ public class AggressiveWeapon : Weapon
         SetBoolName(boolname, true);
 
         baseAnimator.SetInteger("attackCounter", CurrentAttackCounter);
-        WeaponAnimator.SetInteger("attackCounter", CurrentAttackCounter);
+        //WeaponAnimator.SetInteger("attackCounter", CurrentAttackCounter);
     }
 
     public override void ExitWeapon()

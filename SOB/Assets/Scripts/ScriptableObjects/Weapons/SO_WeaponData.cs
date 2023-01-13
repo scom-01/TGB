@@ -14,6 +14,8 @@ public class SO_WeaponData : ScriptableObject
 
 
     [Header("Skill polymorphism")]
-    [Tooltip("공격중 점프 가능")]
+    [Tooltip("공격 중 점프")]
     public bool CanJump;
+    [Tooltip("공중 공격")]
+    public bool CanAirAttack;
 }

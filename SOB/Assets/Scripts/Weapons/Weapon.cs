@@ -26,7 +26,7 @@ public class Weapon : MonoBehaviour
     public event Action OnExit;
 
     protected Animator baseAnimator;
-    public GameObject BaseGameObject { get; private set; }
+    public GameObject BaseGameObject { get; private set; }    
     protected Animator WeaponAnimator;
     public GameObject WeaponSpriteGameObject { get; private set; }
 
@@ -69,6 +69,8 @@ public class Weapon : MonoBehaviour
 
     public virtual void ExitWeapon()
     {
+        BaseGameObject.GetComponent<SpriteRenderer>().sprite = null;
+        WeaponSpriteGameObject.GetComponent<SpriteRenderer>().sprite = null;
         gameObject.SetActive(false);
 
         OnExit?.Invoke();
@@ -91,7 +93,7 @@ public class Weapon : MonoBehaviour
         weaponAnimBoolStr = name;
         
         baseAnimator.SetBool(name, setbool);
-        WeaponAnimator.SetBool(name, setbool);
+        //WeaponAnimator.SetBool(name, setbool);
     }
     #endregion
 
