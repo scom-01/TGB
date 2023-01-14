@@ -59,7 +59,7 @@ public class Player : Unit
         WallJumpState= new PlayerWallJumpState(this, "inAir");
         DashState = new PlayerDashState(this, "dash");
         PrimaryAttackState = new PlayerWeaponState(this, "weapon");
-        SecondaryAttackState = new PlayerWeaponState(this, "weapon");
+        SecondaryAttackState = new PlayerWeaponState(this, "weapon");        
     }
 
     protected override void Start()

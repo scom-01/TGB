@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using SOB.CoreSystem;
 public class EnemyCore : Core
 {
     public Enemy Enemy { get; private set; }
@@ -23,10 +23,5 @@ public class EnemyCore : Core
         {
             Debug.LogError("Missing EnemyCollisionSenses Core Componenet");
         }
-    }
-
-    public override void LogicUpdate()
-    {
-        Movement.LogicUpdate();
     }
 }

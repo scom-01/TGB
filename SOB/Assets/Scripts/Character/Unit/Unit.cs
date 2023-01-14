@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
-
+using SOB.CoreSystem;
 public class Unit : MonoBehaviour
 {
     public Core Core { get; private set; }

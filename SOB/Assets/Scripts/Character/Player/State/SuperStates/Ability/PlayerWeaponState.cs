@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static PlayerInputHandler;
-
+using SOB.Weapons;
 public class PlayerWeaponState : PlayerAbilityState
 {
     public bool CanAttack { get; private set; }
@@ -85,7 +85,8 @@ public class PlayerWeaponState : PlayerAbilityState
     {
         this.weapon = weapon;
         weapon.InitializeWeapon(this);
-        this.weapon.GetComponentInParent<WeaponManager>().weapon = weapon;
+        this.weapon.SetCore(this.weapon.WeaponCore);
+        //this.weapon.GetComponentInParent<WeaponManager>().weapon = weapon;
     }
 
     public void SetPlayerVelocity(float velocity)
