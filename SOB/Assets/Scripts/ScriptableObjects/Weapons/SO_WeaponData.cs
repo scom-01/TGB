@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using SOB.Weapons.Components;
-[CreateAssetMenu(fileName ="newWeaponData",menuName ="Data/Weapon Data/SO Weapon Data",order = 0)]
+[CreateAssetMenu(fileName ="newWeaponData",menuName ="Data/Weapon Data/Basic Weapon Data",order = 0)]
 public class SO_WeaponData : ScriptableObject
 {
     [field: SerializeField]
@@ -21,7 +21,7 @@ public class SO_WeaponData : ScriptableObject
     [Tooltip("공중 공격")]
     public bool CanAirAttack;
 
-    [field: SerializeReference] public List<ComponentData> ComponentData { get; private set; }
+    /*[field: SerializeReference] public List<ComponentData> ComponentData { get; private set; }
 
     public T GetData<T>()
     {
@@ -36,5 +36,5 @@ public class SO_WeaponData : ScriptableObject
         }
 
         ComponentData.Add(data);
-    }
+    }*/
 }

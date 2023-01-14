@@ -2,15 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SOB.CoreSystem;
 
 namespace SOB.Weapons.Components
 {
-
     public abstract class WeaponComponent : MonoBehaviour
     {
         protected Weapon weapon;
         protected AnimationEventHandler eventHandler;
-        protected Core core => weapon.core;
+        protected Core core => weapon.WeaponCore;
         protected bool isAttackActive;
 
         protected virtual void Awake()

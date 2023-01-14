@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using SOB.Weapons;
+using SOB.Weapons.Components;
 
 public class AggressiveWeapon : Weapon
 {
-    protected SO_AggressiveWeaponData aggressiveWeaponData;
+    protected WeaponDataSO aggressiveWeaponData;
     [SerializeField]
     [Tooltip("Animator Param Bool Name")]
     protected string boolname;
@@ -15,9 +17,9 @@ public class AggressiveWeapon : Weapon
     {
         base.Awake();
 
-        if(weaponData.GetType() == typeof(SO_AggressiveWeaponData))
+        if(weaponData.GetType() == typeof(WeaponDataSO))
         {
-            aggressiveWeaponData = (SO_AggressiveWeaponData)weaponData;
+            aggressiveWeaponData = weaponData;
         }
         else
         {
@@ -46,20 +48,14 @@ public class AggressiveWeapon : Weapon
         gameObject.SetActive(false);
     }
 
-    public override void AnimationActionTrigger()
-    {
-        base.AnimationActionTrigger();
-        CheckMeleeAttack();
-    }
-
     private void CheckMeleeAttack()
     {
-        WeaponAttackDetails details = aggressiveWeaponData.AttackDetails[CurrentAttackCounter];
+        /*WeaponAttackDetails details = aggressiveWeaponData.AttackDetails[CurrentAttackCounter];
 
         foreach(IDamageable item in detectedDamagable.ToList())
         {
             item.Damage(details.damageAmount);
-        }
+        }*/
     }
     
     
@@ -84,16 +80,5 @@ public class AggressiveWeapon : Weapon
         {
             detectedDamagable.Remove(damagable);
         }
-    }
-
-    public override void AnimationStartMovementTrigger()
-    {
-        base.AnimationStartMovementTrigger();
-        state.SetPlayerVelocity(weaponData.movementSpeed[CurrentAttackCounter]);
-    }
-
-    public override void AnimationStopMovementTrigger()
-    {
-        base.AnimationStopMovementTrigger();
     }
 }

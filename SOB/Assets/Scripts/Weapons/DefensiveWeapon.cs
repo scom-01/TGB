@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SOB.Weapons;
 
 public class DefensiveWeapon : Weapon
 {
-    protected SO_DefensiveWeaponData defensiveWeaponData;
+    protected WeaponDataSO defensiveWeaponData;
     [SerializeField]
     [Tooltip("Animator Param Bool Name")]
     protected string boolname;
@@ -13,9 +14,9 @@ public class DefensiveWeapon : Weapon
     {
         base.Awake();
 
-        if (weaponData.GetType() == typeof(SO_DefensiveWeaponData))
+        if (weaponData.GetType() == typeof(WeaponDataSO))
         {
-            defensiveWeaponData = (SO_DefensiveWeaponData)weaponData;
+            defensiveWeaponData = weaponData;
         }
         else
         {
@@ -37,12 +38,5 @@ public class DefensiveWeapon : Weapon
         SetBoolName(boolname, false);
 
         gameObject.SetActive(false);
-    }
-
-    
-
-    public override void AnimationActionTrigger()
-    {
-        base.AnimationActionTrigger();
     }
 }

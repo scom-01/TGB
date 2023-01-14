@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class AttackData : MonoBehaviour
+namespace SOB.Weapons.Components
 {
+    public class AttackData
+    {
     
+    }
 }

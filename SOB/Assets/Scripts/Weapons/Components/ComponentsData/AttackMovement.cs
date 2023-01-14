@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace SOB.Weapons.Components
 {
+    [Serializable]
     public class AttackMovement : AttackData
     {
         [field: SerializeField] public Vector2 Direction { get; private set; }

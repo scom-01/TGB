@@ -82,6 +82,7 @@ namespace SOB.Weapons
             attackCounterResetTimer.StopTimer();
                         
             SetBoolName("inAir", InAir);            
+            SetBoolName("attack", true);            
 
             OnEnter?.Invoke();
 
@@ -92,8 +93,13 @@ namespace SOB.Weapons
         /// </summary>
         public virtual void ExitWeapon()
         {
+            SetBoolName("attack", false);
+
+            attackCounterResetTimer.StartTimer();
+
             BaseGameObject.GetComponent<SpriteRenderer>().sprite = null;
             WeaponSpriteGameObject.GetComponent<SpriteRenderer>().sprite = null;
+
             gameObject.SetActive(false);
 
             OnExit?.Invoke();
