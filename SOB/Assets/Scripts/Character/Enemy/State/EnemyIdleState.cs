@@ -34,7 +34,7 @@ public class EnemyIdleState : EnemyState
     {
         base.LogicUpdate();
 
-        if(enemy.core.enemyCollisionSenses.PlayerDectected)
+        if(CollisionSenses.PlayerDectected)
         {
             enemy.FSM.ChangeState(enemy.RunState);
         }

@@ -15,9 +15,9 @@ public class EnemyRunState : EnemyState
     {
         base.DoChecks();
 
-        checkifCliff = enemy.core.enemyCollisionSenses.CheckIfCliff;
-        checkifTouchingWall = enemy.Core.CollisionSenses.CheckIfTouchingWall;
-        checkifTouching = enemy.core.enemyCollisionSenses.CheckIfTouching;
+        checkifCliff = CollisionSenses.CheckIfCliff;
+        checkifTouchingWall = CollisionSenses.CheckIfTouchingWall;
+        checkifTouching = CollisionSenses.CheckIfTouching;
     }
 
     public override void Enter()
@@ -34,7 +34,7 @@ public class EnemyRunState : EnemyState
     {
         base.LogicUpdate();
 
-        if(enemy.core.enemyMovement.knockback)
+        if(Movement.knockback)
         {
             Debug.Log(enemy.name + " ³Ë¹é»óÅÂ");
             return;
@@ -46,7 +46,7 @@ public class EnemyRunState : EnemyState
         }
         else
         {
-            enemy.core.enemyMovement.SetVelocityX(enemy.enemyData.commonStats.movementVelocity * enemy.core.enemyMovement.FancingDirection);
+            Movement.SetVelocityX(enemy.enemyData.commonStats.movementVelocity * Movement.FancingDirection);
         }
         //CheckIfCliff();
     }
