@@ -101,7 +101,7 @@ public class PlayerInAirState : PlayerState
             player.SecondaryAttackState.SetWeapon(player.Inventory.weapons[(int)CombatInputs.secondary]);
             player.FSM.ChangeState(player.SecondaryAttackState);
         }
-        else if (isGrounded && player.Core.Movement.CurrentVelocity.y < 0.01f)
+        else if (isGrounded && Movement.CurrentVelocity.y < 0.01f)
         {
             player.FSM.ChangeState(player.LandState);
         }
@@ -125,7 +125,7 @@ public class PlayerInAirState : PlayerState
         {
             FSM.ChangeState(player.WallGrabState);
         }*/
-        else if (isTouchingWall && xInput == player.Core.Movement.FancingDirection && player.Core.Movement.CurrentVelocity.y <= 0f)
+        else if (isTouchingWall && xInput == Movement.FancingDirection && Movement.CurrentVelocity.y <= 0f)
         {
             player.FSM.ChangeState(player.WallSlideState);
         }
@@ -138,11 +138,11 @@ public class PlayerInAirState : PlayerState
         }
         else
         {
-            player.Core.Movement.CheckIfShouldFlip(xInput);
-            player.Core.Movement.SetVelocityX(player.playerData.commonStats.movementVelocity * xInput);
+            Movement.CheckIfShouldFlip(xInput);
+            Movement.SetVelocityX(player.playerData.commonStats.movementVelocity * xInput);
 
-            player.Anim.SetFloat("yVelocity", Mathf.Clamp(player.Core.Movement.CurrentVelocity.y, -3, 13));
-            player.Anim.SetFloat("xVelocity", Mathf.Abs(player.Core.Movement.CurrentVelocity.x));
+            player.Anim.SetFloat("yVelocity", Mathf.Clamp(Movement.CurrentVelocity.y, -3, 13));
+            player.Anim.SetFloat("xVelocity", Mathf.Abs(Movement.CurrentVelocity.x));
         }
     }
 
@@ -152,10 +152,10 @@ public class PlayerInAirState : PlayerState
         {
             if (JumpInputStop)
             {
-                player.Core.Movement.SetVelocityY(player.Core.Movement.CurrentVelocity.y * player.playerData.variableJumpHeightMultiplier);
+                Movement.SetVelocityY(Movement.CurrentVelocity.y * player.playerData.variableJumpHeightMultiplier);
                 isJumping = false;
             }
-            else if (player.Core.Movement.CurrentVelocity.y <= 0f)
+            else if (Movement.CurrentVelocity.y <= 0f)
             {
                 isJumping = false;
             }

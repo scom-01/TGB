@@ -10,7 +10,7 @@ public class EnemyCore : Core
     public override void Awake()
     {
         base.Awake();
-        enemyMovement = Movement as EnemyMovement;
+        /*enemyMovement = Movement as EnemyMovement;
         enemyCollisionSenses = CollisionSenses as EnemyCollisionSenses;
         Enemy = Unit as Enemy;
 
@@ -22,6 +22,6 @@ public class EnemyCore : Core
         if (!CollisionSenses)
         {
             Debug.LogError("Missing EnemyCollisionSenses Core Componenet");
-        }
+        }*/
     }
 }

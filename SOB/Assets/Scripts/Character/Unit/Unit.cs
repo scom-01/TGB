@@ -6,6 +6,10 @@ using UnityEngine;
 using SOB.CoreSystem;
 public class Unit : MonoBehaviour
 {
+    private Movement Movement { get => movement ?? Core.GetCoreComponent(ref movement); }
+
+    private Movement movement;
+
     public Core Core { get; private set; }
     public UnitFSM FSM { get; private set; }
     public Animator Anim { get; private set; }
@@ -29,12 +33,10 @@ public class Unit : MonoBehaviour
         {
             Debug.Log($"{this.name} UnitData is null");
         }
-    }
-    protected virtual void Start()
-    {
+
         Anim = GetComponent<Animator>();
         if (Anim == null) Anim = this.GameObject().AddComponent<Animator>();
-        
+
         RB = GetComponent<Rigidbody2D>();
         if (RB == null) RB = this.GameObject().AddComponent<Rigidbody2D>();
 
@@ -50,6 +52,9 @@ public class Unit : MonoBehaviour
         PS = GetComponent<PlayerStats>();
         if (PS == null) PS = this.GameObject().AddComponent<PlayerStats>();
     }
+    protected virtual void Start()
+    {
+    }
 
     // Update is called once per frame
     protected virtual void Update()
@@ -63,6 +68,12 @@ public class Unit : MonoBehaviour
         {
             Debug.Log("Core is null");
         }
+
+        if(Anim != null)
+        {
+            Anim.SetFloat("yVelocity", Movement.RB.velocity.y);
+        }
+
         FSM.CurrentState.LogicUpdate();
     }
 

@@ -50,15 +50,15 @@ namespace SOB.CoreSystem
 
         public T GetCoreComponent<T>(ref T value) where T : CoreComponent
         {
-            value = GetComponent<T>();
+            value = GetCoreComponent<T>();
             return value;
         }
 
-        public Movement Movement
+        /*public Movement Movement
         {
             get => GenericNotImplementedError<Movement>.TryGet(movement, transform.parent.name);
             private set => movement = value;
-        }
+        }*/
         public Unit Unit
         {
             get => GenericNotImplementedError<Unit>.TryGet(unit, transform.parent.name);

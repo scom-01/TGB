@@ -70,7 +70,7 @@ public class PlayerTouchingWallState : PlayerState
         {
             player.FSM.ChangeState(player.IdleState);
         }
-        else if(!isTouchingWall || (xInput != player.Core.Movement.FancingDirection && !grabInput))
+        else if(!isTouchingWall || (xInput != Movement.FancingDirection && !grabInput))
         {
             player.FSM.ChangeState(player.InAirState);
         }    

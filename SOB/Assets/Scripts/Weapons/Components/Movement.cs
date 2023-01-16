@@ -10,8 +10,11 @@ namespace SOB.Weapons.Components
     public class Movement : WeaponComponent<MovementData, AttackMovement>
     {
         private CoreSystem.Movement coreMovement;
-        private CoreSystem.Movement CoreMovement =>
-            coreMovement ? coreMovement : core.GetCoreComponent(ref coreMovement);
+        private CoreSystem.Movement CoreMovement
+           {
+                get => coreMovement ? coreMovement : core.GetCoreComponent(ref coreMovement);
+            }
+
 
         private void HandleStartMovement()
         {
@@ -26,7 +29,10 @@ namespace SOB.Weapons.Components
         protected override void OnEnable()
         {
             base.OnEnable();
-
+            if(CoreMovement)
+            {
+                Debug.Log("coreMovement is null");
+            }
             eventHandler.OnStartMovement += HandleStartMovement;
             eventHandler.OnStopMovement += HandleStopMovement;
         }

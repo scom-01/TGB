@@ -10,7 +10,6 @@ public class WeaponSprite : WeaponComponent
     private SpriteRenderer weaponSpriteRenderer;
     private GameObject baseObject;
 
-    [SerializeField]
     private WeaponSpriteData GroundedWeaponSprites;
     private WeaponSpriteData InAirWeaponSprites;
 

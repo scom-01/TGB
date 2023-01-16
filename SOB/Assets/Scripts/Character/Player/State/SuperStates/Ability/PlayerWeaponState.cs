@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using static PlayerInputHandler;
 using SOB.Weapons;
+using SOB.CoreSystem;
+
 public class PlayerWeaponState : PlayerAbilityState
 {
     public bool CanAttack { get; private set; }
@@ -17,8 +19,10 @@ public class PlayerWeaponState : PlayerAbilityState
     private bool setVelocity;
     private bool shouldCheckFlip;
 
-    public PlayerWeaponState(Unit unit, string animBoolName) : base(unit, animBoolName)
+    public PlayerWeaponState(Unit unit, string animBoolName, Weapon weapon) : base(unit, animBoolName)
     {
+        this.weapon = weapon;
+        this.weapon.OnExit += ExitHandler;
     }
 
     public override void Enter()
@@ -36,11 +40,9 @@ public class PlayerWeaponState : PlayerAbilityState
         startTime = Time.time;
     }
 
-    public override void Exit()
+    private void ExitHandler()
     {
-        base.Exit();
-
-        weapon.ExitWeapon();
+        AnimationFinishTrigger();
     }
     
     public override void LogicUpdate()
@@ -64,12 +66,12 @@ public class PlayerWeaponState : PlayerAbilityState
 
         if(shouldCheckFlip)
         {
-            player.Core.Movement.CheckIfShouldFlip(xInput);
+            Movement.CheckIfShouldFlip(xInput);
         }
 
         if (setVelocity)
         {
-            player.Core.Movement.SetVelocityX(velocityToSet * player.Core.Movement.FancingDirection);
+            Movement.SetVelocityX(velocityToSet * Movement.FancingDirection);
         }
 
         if (player.InputHandler.DashInput && player.DashState.CheckIfCanDash())
@@ -84,23 +86,9 @@ public class PlayerWeaponState : PlayerAbilityState
     public void SetWeapon(Weapon weapon)
     {
         this.weapon = weapon;
+
         weapon.InitializeWeapon(this);
-        this.weapon.SetCore(this.weapon.WeaponCore);
+        //this.weapon.SetCore(this.weapon.WeaponCore);
         //this.weapon.GetComponentInParent<WeaponManager>().weapon = weapon;
     }
-
-    public void SetPlayerVelocity(float velocity)
-    {
-        player.Core.Movement.SetVelocityX(velocity * player.Core.Movement.FancingDirection);
-        velocityToSet = velocity;
-        setVelocity = true;
-    }
-
-    public void SetFlipCheck(bool value)
-    {
-        shouldCheckFlip = value;
-    }
-    #region Animation Triggers
-
-    #endregion
 }

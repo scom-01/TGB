@@ -1,3 +1,4 @@
+using SOB.CoreSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,6 @@ using UnityEngine.Windows;
 public class PlayerAirAttackState : PlayerAbilityState
 {
     public bool CanAirAttack = true;
-
 
     public PlayerAirAttackState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
@@ -52,17 +52,11 @@ public class PlayerAirAttackState : PlayerAbilityState
         }
         else
         {
-            player.Core.Movement.CheckIfShouldFlip(player.InputHandler.NormInputX);
-            player.Core.Movement.SetVelocityX(player.playerData.commonStats.movementVelocity * player.InputHandler.NormInputX);
-            player.Anim.SetFloat("yVelocity", Mathf.Clamp(player.Core.Movement.CurrentVelocity.y, -3, 13));
-            player.Anim.SetFloat("xVelocity", Mathf.Abs(player.Core.Movement.CurrentVelocity.x));
+            Movement.CheckIfShouldFlip(player.InputHandler.NormInputX);
+            Movement.SetVelocityX(player.playerData.commonStats.movementVelocity * player.InputHandler.NormInputX);
+            player.Anim.SetFloat("yVelocity", Mathf.Clamp(Movement.CurrentVelocity.y, -3, 13));
+            player.Anim.SetFloat("xVelocity", Mathf.Abs(Movement.CurrentVelocity.x));
         }
         
-    }
-
-    public void ComboCheck()
-    {
-        player.RB.gravityScale = 5f;
-        AnimationFinishTrigger();
     }
 }

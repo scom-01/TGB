@@ -163,7 +163,6 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.started)
         {
-            Debug.Log((int)CombatInputs.primary + " Input");
             AttackInputs[(int)CombatInputs.primary] = true;
         }
 

@@ -32,7 +32,7 @@ public class PlayerHeavyAttackState : PlayerAbilityState
         Skill2Input = player.InputHandler.Skill2Input;
         Skill2InputStop = player.InputHandler.Skill2InputStop;
 
-        player.Core.Movement.SetVelocityZero();
+        //player.Core.Movement.SetVelocityZero();
         if(Skill2InputStop)
         {
             if(Hold)

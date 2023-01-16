@@ -12,5 +12,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 829d099c869488a49a5f24ab18f0f054, type: 3}
   m_Name: Sword1
   m_EditorClassIdentifier: 
-  <NumberOfAttacks>k__BackingField: 0
-  <ComponentDatas>k__BackingField: []
+  <NumberOfAttacks>k__BackingField: 3
+  <CanJump>k__BackingField: 0
+  <CanAirAttack>k__BackingField: 0
+  <ComponentData>k__BackingField:
+  - rid: 3615621173780152320
+  - rid: 3615621173780152321
+  - rid: 3615621173780152322
+  references:
+    version: 2
+    RefIds:
+    - rid: 3615621173780152320
+      type: {class: ActionHitBoxData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        <AttackData>k__BackingField:
+        - Debug: 0
+          <HitBox>k__BackingField:
+            serializedVersion: 2
+            x: 0
+            y: 0
+            width: 0
+            height: 0
+        - Debug: 0
+          <HitBox>k__BackingField:
+            serializedVersion: 2
+            x: 0
+            y: 0
+            width: 0
+            height: 0
+        - Debug: 0
+          <HitBox>k__BackingField:
+            serializedVersion: 2
+            x: 0
+            y: 0
+            width: 0
+            height: 0
+        <DetectableLayers>k__BackingField:
+          serializedVersion: 2
+          m_Bits: 0
+    - rid: 3615621173780152321
+      type: {class: MovementData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        <AttackData>k__BackingField:
+        - <Direction>k__BackingField: {x: 0.1, y: 0}
+          <Velocity>k__BackingField: 1
+        - <Direction>k__BackingField: {x: 0.1, y: 0}
+          <Velocity>k__BackingField: 2
+        - <Direction>k__BackingField: {x: 0.1, y: 0}
+          <Velocity>k__BackingField: 3
+    - rid: 3615621173780152322
+      type: {class: WeaponSpriteData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        <AttackData>k__BackingField: []

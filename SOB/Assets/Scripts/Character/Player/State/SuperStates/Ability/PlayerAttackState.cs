@@ -1,16 +1,15 @@
+using SOB.Weapons;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttackState : PlayerWeaponState
+public class PlayerAttackState : PlayerAbilityState
 {
-    public PlayerAttackState(Unit unit, string animBoolName) : base(unit, animBoolName)
+    private Weapon weapon;
+    public PlayerAttackState(Unit unit, string animBoolName, Weapon weapon) : base(unit, animBoolName)
     {
-    }
-
-    public override void AnimationFinishTrigger()
-    {
-        base.AnimationFinishTrigger();
+        this.weapon = weapon;
+        //weapon.OnExit += ExitHanlder;
     }
 
     public override void Enter()
@@ -18,10 +17,6 @@ public class PlayerAttackState : PlayerWeaponState
         base.Enter();
     }
 
-    public override void Exit()
-    {
-        base.Exit();
-    }
 
     public override void LogicUpdate()
     {

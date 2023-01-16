@@ -42,7 +42,7 @@ public class EnemyRunState : EnemyState
 
         if (!checkifCliff || checkifTouching || checkifTouchingWall )
         {
-            enemy.Core.Movement.Flip();
+            Movement.Flip();
         }
         else
         {

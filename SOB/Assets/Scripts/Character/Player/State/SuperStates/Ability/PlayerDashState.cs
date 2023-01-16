@@ -34,7 +34,7 @@ public class PlayerDashState : PlayerAbilityState
 
         CanDash = false;
         player.InputHandler.UseDashInput();
-        player.Core.Movement.SetVelocityY(0f);
+        Movement.SetVelocityY(0f);
         player.RB.gravityScale = 0f;
         DecreaseDashCount();
         startTime = Time.time;
@@ -63,8 +63,8 @@ public class PlayerDashState : PlayerAbilityState
 
         if (!isExitingState)
         {
-            player.Core.Movement.SetVelocityX(player.playerData.dashVelocity * player.Core.Movement.FancingDirection);
-            player.Core.Movement.SetVelocityY(0);
+            Movement.SetVelocityX(player.playerData.dashVelocity * Movement.FancingDirection);
+            Movement.SetVelocityY(0);
             
             CheckIfShouldPlaceAfterImage();
 
@@ -75,7 +75,7 @@ public class PlayerDashState : PlayerAbilityState
                     CanDash = true;
                 }
 
-                player.Core.Movement.SetVelocityX(0f);
+                Movement.SetVelocityX(0f);
                 isAbilityDone = true;
                 lastDashTime = Time.time;                
             }

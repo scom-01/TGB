@@ -50,18 +50,18 @@ namespace SOB.CoreSystem
         public bool CheckIfTouchingWall
         {
             //Debug.DrawRay(wallCheck.position, Vector2.right * core.Movement.FancingDirection * wallCheckDistance, Color.green);
-            get => Physics2D.Raycast(wallCheck.position, Vector2.right * core.Movement.FancingDirection, WallCheckDistance, WhatIsGround);
+            get => Physics2D.Raycast(wallCheck.position, Vector2.right * Movement.FancingDirection, WallCheckDistance, WhatIsGround);
         }
 
         public bool CheckIfTouchingLedge
         {
-            get => Physics2D.Raycast(ledgeCheck.position, Vector2.right * core.Movement.FancingDirection, WallCheckDistance, WhatIsGround);
+            get => Physics2D.Raycast(ledgeCheck.position, Vector2.right * Movement.FancingDirection, WallCheckDistance, WhatIsGround);
         }
 
         public bool CheckIfTouchingWallBack
         {
             //Debug.DrawRay(wallCheck.position, Vector2.right * -core.Movement.FancingDirection * wallCheckDistance, Color.red);
-            get => Physics2D.Raycast(wallCheck.position, Vector2.right * -core.Movement.FancingDirection, WallCheckDistance, WhatIsGround);
+            get => Physics2D.Raycast(wallCheck.position, Vector2.right * -Movement.FancingDirection, WallCheckDistance, WhatIsGround);
         }
     }
 }

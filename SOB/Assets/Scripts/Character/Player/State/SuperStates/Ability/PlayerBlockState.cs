@@ -33,13 +33,13 @@ public class PlayerBlockState : PlayerAbilityState
 
         if (!isExitingState)
         {
-            player.Core.Movement.SetVelocityX(0f);
+            Movement.SetVelocityX(0f);
 
             if (CheckHit())
             {
                 //Block Effect
                 Debug.Log("Block!");
-                player.KnockBack(1);
+                //player.KnockBack(1);
             }
 
             if (Time.time >= startTime + player.playerData.blockTime)
@@ -54,7 +54,7 @@ public class PlayerBlockState : PlayerAbilityState
 
     private bool CheckHit()
     {
-        return Physics2D.OverlapBox(player.gameObject.transform.position + new Vector3(player.BC2D.size.x, 0, 0) * player.Core.Movement.FancingDirection, player.BC2D.size, 0f, player.playerData.enemyAttackMask);
+        return Physics2D.OverlapBox(player.gameObject.transform.position + new Vector3(player.BC2D.size.x, 0, 0) * Movement.FancingDirection, player.BC2D.size, 0f, player.playerData.enemyAttackMask);
     }
 
     public bool CheckIfCanBlock()

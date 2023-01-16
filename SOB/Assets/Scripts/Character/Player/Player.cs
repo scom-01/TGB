@@ -1,3 +1,4 @@
+using SOB.CoreSystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -58,8 +59,10 @@ public class Player : Unit
         WallSlideState = new PlayerWallSlideState(this, "wallSlide");        
         WallJumpState= new PlayerWallJumpState(this, "inAir");
         DashState = new PlayerDashState(this, "dash");
-        PrimaryAttackState = new PlayerWeaponState(this, "weapon");
-        SecondaryAttackState = new PlayerWeaponState(this, "weapon");        
+        PrimaryAttackState = new PlayerWeaponState(this, "weapon", Inventory.weapons[(int)CombatInputs.primary]);
+        SecondaryAttackState = new PlayerWeaponState(this, "weapon", Inventory.weapons[(int)CombatInputs.secondary]);
+        Inventory.weapons[(int)CombatInputs.primary].SetCore(Core);
+        Inventory.weapons[(int)CombatInputs.secondary].SetCore(Core);
     }
 
     protected override void Start()
@@ -138,7 +141,7 @@ public class Player : Unit
     #endregion
 
     #region Anim Event Func
-    public void Attack()
+    /*public void Attack()
     {
         InputHandler.UseSkill1Input();
 
@@ -156,7 +159,7 @@ public class Player : Unit
                 }
             }
         }
-    }
+    }*/
 
     public void Hit(float damage)
     {
@@ -186,20 +189,20 @@ public class Player : Unit
             this.transform.Translate(new Vector3(power, 0, 0));
         }*//*
     }*/
-    public void KnockBack(float power)
+    /*public void KnockBack(float power)
     {
-        if (!Physics2D.OverlapBox(transform.position + new Vector3((-Core.Movement.FancingDirection * power) / 2, BC2D.offset.y, 0),
+        if (!Physics2D.OverlapBox(transform.position + new Vector3((-Core.GetCoreComponent<Movement>().FancingDirection * power) / 2, BC2D.offset.y, 0),
                                 new Vector2(BC2D.bounds.size.x / 2 + power, BC2D.bounds.size.y * 0.95f), 0f, Core.CollisionSenses.WhatIsGround))
         {
-            this.transform.Translate(new Vector3(-Core.Movement.FancingDirection * power, 0, 0));
+            this.transform.Translate(new Vector3(-Movement.FancingDirection * power, 0, 0));
         }
-    }
+    }*/
     #endregion
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawCube(transform.position + new Vector3(BC2D.size.x, 0, 0) * Core.Movement.FancingDirection, BC2D.size);
+        //Gizmos.DrawCube(transform.position + new Vector3(BC2D.size.x, 0, 0) * Core.Movement.FancingDirection, BC2D.size);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
