@@ -51,13 +51,13 @@ namespace SOB.Weapons.Components
     public abstract class WeaponComponent<T1, T2> : WeaponComponent where T1 : ComponentData<T2> where T2 : AttackData
     {
         protected T1 data;
-        protected T2 currentAttackData;
+        protected T2 currentActionData;
 
         protected override void HandleEnter()
         {
             base.HandleEnter();
 
-            currentAttackData = data.AttackData[weapon.CurrentAttackCounter];
+            currentActionData = data.AttackData[weapon.CurrentActionCounter];
         }
 
         protected override void Awake()

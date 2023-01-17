@@ -18,7 +18,7 @@ namespace SOB.Weapons.Components
 
         private void HandleStartMovement()
         {
-            CoreMovement.SetVelocity(currentAttackData.Velocity, currentAttackData.Direction, CoreMovement.FancingDirection);
+            CoreMovement.SetVelocity(currentActionData.Velocity, currentActionData.Direction, CoreMovement.FancingDirection);
         }
 
         private void HandleStopMovement()
@@ -29,10 +29,7 @@ namespace SOB.Weapons.Components
         protected override void OnEnable()
         {
             base.OnEnable();
-            if (CoreMovement == null)
-            {
-                Debug.Log("coreMovement is null");
-            }
+            
             eventHandler.OnStartMovement += HandleStartMovement;
             eventHandler.OnStopMovement += HandleStopMovement;
         }

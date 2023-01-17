@@ -33,8 +33,8 @@ public class AggressiveWeapon : Weapon
 
         SetBoolName(boolname, true);
 
-        baseAnimator.SetInteger("attackCounter", CurrentAttackCounter);
-        //WeaponAnimator.SetInteger("attackCounter", CurrentAttackCounter);
+        baseAnimator.SetInteger("actionCounter", CurrentActionCounter);
+        //WeaponAnimator.SetInteger("actionCounter", currentActionCounter);
     }
 
     public override void ExitWeapon()
@@ -43,14 +43,14 @@ public class AggressiveWeapon : Weapon
 
         SetBoolName(boolname, false);
 
-        ChangeAttackCounter(CurrentAttackCounter + 1);
+        ChangeactionCounter(CurrentActionCounter + 1);
 
         gameObject.SetActive(false);
     }
 
     private void CheckMeleeAttack()
     {
-        /*WeaponAttackDetails details = aggressiveWeaponData.AttackDetails[CurrentAttackCounter];
+        /*WeaponAttackDetails details = aggressiveWeaponData.AttackDetails[currentActionCounter];
 
         foreach(IDamageable item in detectedDamagable.ToList())
         {

@@ -10,22 +10,22 @@ namespace SOB.Weapons
     public class Weapon : MonoBehaviour
     {
         [field: SerializeField] public WeaponDataSO weaponData { get; private set; }
-        [SerializeField] private float attackCounterResetCooldown;
+        [SerializeField] private float actionCounterResetCooldown;
 
         [HideInInspector]
         protected string weaponAnimBoolStr;
 
         [Tooltip("°ø°Ý È½¼ö")]
-        public int CurrentAttackCounter
+        public int CurrentActionCounter
         {
-            get => currentAttackCounter;
-            private set => currentAttackCounter = value >= weaponData.NumberOfAttacks ? 0 : value;
+            get => currentActionCounter;
+            private set => currentActionCounter = value >= weaponData.NumberOfActions ? 0 : value;
         }
 
         public Core WeaponCore { get; private set; }
 
-        private int currentAttackCounter;
-        private Timer attackCounterResetTimer;
+        private int currentActionCounter;
+        private Timer actionCounterResetTimer;
 
         public event Action OnEnter;
         public event Action OnExit;
@@ -50,24 +50,24 @@ namespace SOB.Weapons
 
             EventHandler = BaseGameObject.GetComponent<AnimationEventHandler>();
             
-            attackCounterResetTimer = new Timer(attackCounterResetCooldown);
+            actionCounterResetTimer = new Timer(actionCounterResetCooldown);
         }
 
         private void Update()
         {
-            attackCounterResetTimer.Tick();
+            actionCounterResetTimer.Tick();
         }
 
         private void OnEnable()
         {
             EventHandler.OnFinish += ExitWeapon;
-            attackCounterResetTimer.OnTimerDone += ResetAttackCounter;
+            actionCounterResetTimer.OnTimerDone += ResetactionCounter;
         }
 
         private void OnDisable()
         {
             EventHandler.OnFinish -= ExitWeapon;
-            attackCounterResetTimer.OnTimerDone -= ResetAttackCounter;
+            actionCounterResetTimer.OnTimerDone -= ResetactionCounter;
         }
 
         /// <summary>
@@ -79,12 +79,12 @@ namespace SOB.Weapons
 
             //gameObject.SetActive(true);
 
-            attackCounterResetTimer.StopTimer();
+            actionCounterResetTimer.StopTimer();
                         
             SetBoolName("inAir", InAir);            
-            SetBoolName("attack", true);
+            SetBoolName("action", true);
             Debug.Log("SetBoolName = true");
-            SetIntName("attackCounter", currentAttackCounter);            
+            SetIntName("actionCounter", CurrentActionCounter);            
 
             OnEnter?.Invoke();
         }
@@ -94,10 +94,10 @@ namespace SOB.Weapons
         /// </summary>
         public virtual void ExitWeapon()
         {
-            SetBoolName("attack", false);
+            SetBoolName("action", false);
             Debug.Log("SetBoolName = false");
-            CurrentAttackCounter++;
-            attackCounterResetTimer.StartTimer();
+            CurrentActionCounter++;
+            actionCounterResetTimer.StartTimer();
 
             //BaseGameObject.GetComponent<SpriteRenderer>().sprite = null;
             //WeaponSpriteGameObject.GetComponent<SpriteRenderer>().sprite = null;
@@ -110,17 +110,22 @@ namespace SOB.Weapons
 
         public void SetCore(Core core)
         {
+            if(core == null)
+            {
+                Debug.Log($"{transform.name} is core Null");
+                return;
+            }
             WeaponCore = core;
         }
 
-        public void ChangeAttackCounter(int value)
+        public void ChangeactionCounter(int value)
         {
-            CurrentAttackCounter = value;
+            CurrentActionCounter = value;
         }
 
-        public void ResetAttackCounter()
+        public void ResetactionCounter()
         {
-            CurrentAttackCounter = 0;
+            CurrentActionCounter = 0;
         }
 
         #region Set Func

@@ -17,11 +17,11 @@ namespace SOB.Weapons.Components
         private void HandleAttackAction()
         {
             offset.Set(
-                transform.position.x + (currentAttackData.HitBox.center.x * movement.Comp.FancingDirection),
-                transform.position.y + (currentAttackData.HitBox.center.y)
+                transform.position.x + (currentActionData.HitBox.center.x * movement.Comp.FancingDirection),
+                transform.position.y + (currentActionData.HitBox.center.y)
                 );
             Debug.Log(offset);
-            detected = Physics2D.OverlapBoxAll(offset, currentAttackData.HitBox.size, 0f, data.DetectableLayers);
+            detected = Physics2D.OverlapBoxAll(offset, currentActionData.HitBox.size, 0f, data.DetectableLayers);
 
             if (detected.Length == 0)
             {

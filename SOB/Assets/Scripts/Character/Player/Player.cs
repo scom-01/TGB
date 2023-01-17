@@ -141,25 +141,6 @@ public class Player : Unit
     #endregion
 
     #region Anim Event Func
-    /*public void Attack()
-    {
-        InputHandler.UseSkill1Input();
-
-        Debug.Log("Attack");
-        Collider2D[] targets = Physics2D.OverlapBoxAll(this.gameObject.transform.position + new Vector3(BC2D.size.x, 0, 0) * Core.Movement.FancingDirection, BC2D.size, 0f);
-
-        //범위 내 공격 대상 체크
-        if (targets.Length > 0)
-        {
-            for (int i = 0; i < targets.Length; i++)
-            {
-                if (targets[i].gameObject.layer >= 16 && targets[i].gameObject.layer <= 18)
-                {
-                    Debug.Log(targets.ToString());
-                }
-            }
-        }
-    }*/
 
     public void Hit(float damage)
     {
@@ -175,28 +156,6 @@ public class Player : Unit
         yield return new WaitForSeconds(0.5f);
         SR.color = Color.white;
     }
-
-    /*public void Push(float power)
-    {
-        if (!Physics2D.OverlapBox(transform.position + new Vector3((Core.Movement.FancingDirection * power) / 2, BC2D.offset.y, 0),
-                                new Vector2(BC2D.bounds.size.x / 2 + power, BC2D.bounds.size.y * 0.95f), 0f, Core.CollisionSenses.WhatIsGround)) 
-        {
-            this.transform.Translate(new Vector3(power, 0, 0));
-        }
-
-        *//*if (!Physics2D.Raycast(groundCheck.position, Vector2.right * FancingDirection, BC2D.size.x / 2 + power, playerData.whatIsGround))
-        {
-            this.transform.Translate(new Vector3(power, 0, 0));
-        }*//*
-    }*/
-    /*public void KnockBack(float power)
-    {
-        if (!Physics2D.OverlapBox(transform.position + new Vector3((-Core.GetCoreComponent<Movement>().FancingDirection * power) / 2, BC2D.offset.y, 0),
-                                new Vector2(BC2D.bounds.size.x / 2 + power, BC2D.bounds.size.y * 0.95f), 0f, Core.CollisionSenses.WhatIsGround))
-        {
-            this.transform.Translate(new Vector3(-Movement.FancingDirection * power, 0, 0));
-        }
-    }*/
     #endregion
 
     private void OnDrawGizmos()

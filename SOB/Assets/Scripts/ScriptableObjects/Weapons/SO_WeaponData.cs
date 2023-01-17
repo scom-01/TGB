@@ -11,7 +11,7 @@ public class SO_WeaponData : ScriptableObject
     public int amountOfAttacks;
 
     [Tooltip("콤보 공격 초기화 시간")]
-    public float attackCounterResetCooldown;
+    public float actionCounterResetCooldown;
     [Tooltip("공격 시 VelocityX movement 값")]
     public float[] movementSpeed { get; protected set; }
 

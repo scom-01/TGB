@@ -2323,7 +2323,6 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
-  - component: {fileID: 519420033}
   - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
@@ -2398,19 +2397,6 @@ Transform:
   m_Father: {fileID: 1602492055}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &519420033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34707f7937834a84ab3a992ec3a9b4d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MainChar: {fileID: 748526041}
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2544,7 +2530,6 @@ GameObject:
   m_Component:
   - component: {fileID: 585146591}
   - component: {fileID: 585146596}
-  - component: {fileID: 585146592}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -2567,18 +2552,6 @@ Transform:
   m_Father: {fileID: 2134487233}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &585146592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 585146590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 030c188c4b5f28b45b190c93b0ab12ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &585146596
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2620,15 +2593,15 @@ SpriteRenderer:
   m_SortingLayerID: -1959523095
   m_SortingLayer: 3
   m_SortingOrder: 1
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 849383663, guid: 054485f13aba1b74bb369c599630f0cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 8, y: 4}
+  m_Size: {x: 4, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &670421124
@@ -2852,10 +2825,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 724713816}
+  - component: {fileID: 1858235093}
+  - component: {fileID: 1858235092}
   - component: {fileID: 1858235090}
   - component: {fileID: 1858235091}
-  - component: {fileID: 1858235092}
-  - component: {fileID: 1858235093}
   - component: {fileID: 1858235094}
   m_Layer: 0
   m_Name: Sword1
@@ -3273,7 +3246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapons:
   - {fileID: 1858235093}
-  - {fileID: 1858235093}
+  - {fileID: 2134487235}
 --- !u!114 &748526052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4069,6 +4042,7 @@ GameObject:
   - component: {fileID: 1037978627}
   - component: {fileID: 1037978630}
   - component: {fileID: 1037978629}
+  - component: {fileID: 1037978631}
   m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
@@ -4152,7 +4126,7 @@ SpriteRenderer:
   m_SortingLayerID: -1959523095
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 849383663, guid: 054485f13aba1b74bb369c599630f0cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4160,9 +4134,21 @@ SpriteRenderer:
   m_Size: {x: 4, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1037978631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037978626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8495350aff46ed942865ff716f8ec660, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1114814835
 GameObject:
   m_ObjectHideFlags: 0
@@ -14103,7 +14089,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 724713815}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e51464ec659c57c479b31fa05eeff879, type: 3}
   m_Name: 
@@ -14134,7 +14120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <weaponData>k__BackingField: {fileID: 11400000, guid: 8956c3b7bcbd406458e827279ec8cb68, type: 2}
-  attackCounterResetCooldown: 0.1
+  actionCounterResetCooldown: 0.5
   InAir: 0
 --- !u!114 &1858235094
 MonoBehaviour:
@@ -14394,17 +14380,17 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2134487233}
-  - component: {fileID: 2134487234}
-  - component: {fileID: 1247396163}
-  - component: {fileID: 1247396164}
   - component: {fileID: 2134487235}
+  - component: {fileID: 2134487236}
+  - component: {fileID: 1247396164}
+  - component: {fileID: 1247396163}
   m_Layer: 0
   m_Name: BlockSword1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2134487233
 Transform:
   m_ObjectHideFlags: 0
@@ -14422,22 +14408,6 @@ Transform:
   m_Father: {fileID: 35553778}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2134487234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2134487232}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e12e4481b24add45ace3325c3437f3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <weaponData>k__BackingField: {fileID: 0}
-  attackCounterResetCooldown: 0
-  InAir: 0
-  boolname: block
 --- !u!114 &2134487235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14450,9 +14420,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a760ae3cf33120499be59753609a323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <weaponData>k__BackingField: {fileID: 0}
-  attackCounterResetCooldown: 0
+  <weaponData>k__BackingField: {fileID: 11400000, guid: b458fa991058a284abcb45a29073556b, type: 2}
+  actionCounterResetCooldown: 2
   InAir: 0
+--- !u!114 &2134487236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134487232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 481d28c0d4b469b4f90c059f1af12659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2136983664
 GameObject:
   m_ObjectHideFlags: 0

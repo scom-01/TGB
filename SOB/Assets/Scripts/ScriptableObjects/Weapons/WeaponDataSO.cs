@@ -7,7 +7,7 @@ using SOB.Weapons.Components;
 [CreateAssetMenu(fileName = "newWeaponData", menuName = "Data/Weapon Data/SO Weapon Data", order = 0)]
 public class WeaponDataSO : ScriptableObject
 {
-    [field: SerializeField] public int NumberOfAttacks { get; private set; }
+    [field: SerializeField] public int NumberOfActions { get; private set; }
     [field: SerializeField] public bool CanJump { get; private set; }
     [field: SerializeField] public bool CanAirAttack { get; private set; }
 

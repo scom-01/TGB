@@ -28,13 +28,13 @@ public class WeaponSprite : WeaponComponent<WeaponSpriteData, AttackSprites>
         
         if (baseObject.GetComponent<Animator>().GetBool("inAir"))
         {
-            if (currentAttackData.InAirSprites.Length > 0)
-                currentAttackSprite = currentAttackData.InAirSprites;
+            if (currentActionData.InAirSprites.Length > 0)
+                currentAttackSprite = currentActionData.InAirSprites;
         }
         else
         {
-            if (currentAttackData.GroundedSprites.Length > 0)
-                currentAttackSprite = currentAttackData.GroundedSprites;
+            if (currentActionData.GroundedSprites.Length > 0)
+                currentAttackSprite = currentActionData.GroundedSprites;
         }
 
         if (currentAttackSprite.Length < 0)
@@ -58,9 +58,6 @@ public class WeaponSprite : WeaponComponent<WeaponSpriteData, AttackSprites>
         weaponSpriteRenderer = transform.Find("Weapon").GetComponent<SpriteRenderer>();
 
         data = weapon.weaponData.GetData<WeaponSpriteData>();
-        
-        //baseSpriteRenderer = weapon.BaseGameObject.GetComponent<SpriteRenderer>();
-        //weaponSpriteRenderer = weapon.WeaponSpriteGameObject.GetComponent<SpriteRenderer>();
     }
 
     protected override void OnEnable()
