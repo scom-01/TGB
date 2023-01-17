@@ -4,14 +4,11 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using SOB.Weapons.Components;
-public class WeaponSprite : WeaponComponent
+public class WeaponSprite : WeaponComponent<WeaponSpriteData, AttackSprites>
 {
     private SpriteRenderer baseSpriteRenderer;
     private SpriteRenderer weaponSpriteRenderer;
     private GameObject baseObject;
-
-    private WeaponSpriteData GroundedWeaponSprites;
-    private WeaponSpriteData InAirWeaponSprites;
 
     private int currentWeaponSpriteIndex;
     protected override void HandleEnter()
@@ -28,16 +25,16 @@ public class WeaponSprite : WeaponComponent
             return;
         }
         Sprite[] currentAttackSprite = new Sprite[0];
-
+        
         if (baseObject.GetComponent<Animator>().GetBool("inAir"))
         {
-            if(InAirWeaponSprites.AttackData.Length> 0)
-                currentAttackSprite = InAirWeaponSprites.AttackData[weapon.CurrentAttackCounter].Sprites;
+            if (currentAttackData.InAirSprites.Length > 0)
+                currentAttackSprite = currentAttackData.InAirSprites;
         }
         else
         {
-            if (GroundedWeaponSprites.AttackData.Length > 0)
-                currentAttackSprite = GroundedWeaponSprites.AttackData[weapon.CurrentAttackCounter].Sprites;
+            if (currentAttackData.GroundedSprites.Length > 0)
+                currentAttackSprite = currentAttackData.GroundedSprites;
         }
 
         if (currentAttackSprite.Length < 0)
@@ -59,6 +56,9 @@ public class WeaponSprite : WeaponComponent
         baseObject = transform.Find("Base").gameObject;
         baseSpriteRenderer = transform.Find("Base").GetComponent<SpriteRenderer>();
         weaponSpriteRenderer = transform.Find("Weapon").GetComponent<SpriteRenderer>();
+
+        data = weapon.weaponData.GetData<WeaponSpriteData>();
+        
         //baseSpriteRenderer = weapon.BaseGameObject.GetComponent<SpriteRenderer>();
         //weaponSpriteRenderer = weapon.WeaponSpriteGameObject.GetComponent<SpriteRenderer>();
     }

@@ -202,7 +202,7 @@ public class Player : Unit
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        //Gizmos.DrawCube(transform.position + new Vector3(BC2D.size.x, 0, 0) * Core.Movement.FancingDirection, BC2D.size);
+        //Gizmos.DrawCube(transform.position + new Vector3(BC2D.size.x, 0, 0) * Movement.FancingDirection, BC2D.size);
     }
 
     private void OnTriggerStay2D(Collider2D collision)

@@ -6,8 +6,8 @@ using SOB.CoreSystem;
 public class EnemyCollisionSenses : CollisionSenses
 {
     private Enemy enemy;
-    private Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
-    private Movement movement;
+    private EnemyMovement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
+    private EnemyMovement movement;
 
     #region Check Transforms
     public LayerMask WhatIsPlayer { get => enemy.enemyData.whatIsPlayer; set => enemy.enemyData.whatIsPlayer = value; }

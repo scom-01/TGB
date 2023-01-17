@@ -29,7 +29,7 @@ namespace SOB.Weapons.Components
         protected override void OnEnable()
         {
             base.OnEnable();
-            if(CoreMovement)
+            if (CoreMovement == null)
             {
                 Debug.Log("coreMovement is null");
             }

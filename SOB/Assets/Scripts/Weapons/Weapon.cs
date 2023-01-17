@@ -82,7 +82,8 @@ namespace SOB.Weapons
             attackCounterResetTimer.StopTimer();
                         
             SetBoolName("inAir", InAir);            
-            SetBoolName("attack", true);            
+            SetBoolName("attack", true);
+            Debug.Log("SetBoolName = true");
             SetIntName("attackCounter", currentAttackCounter);            
 
             OnEnter?.Invoke();
@@ -94,12 +95,12 @@ namespace SOB.Weapons
         public virtual void ExitWeapon()
         {
             SetBoolName("attack", false);
-
+            Debug.Log("SetBoolName = false");
             CurrentAttackCounter++;
             attackCounterResetTimer.StartTimer();
 
-            BaseGameObject.GetComponent<SpriteRenderer>().sprite = null;
-            WeaponSpriteGameObject.GetComponent<SpriteRenderer>().sprite = null;
+            //BaseGameObject.GetComponent<SpriteRenderer>().sprite = null;
+            //WeaponSpriteGameObject.GetComponent<SpriteRenderer>().sprite = null;
 
 
             OnExit?.Invoke();
@@ -133,13 +134,11 @@ namespace SOB.Weapons
         {
             weaponAnimBoolStr = name;
             baseAnimator.SetBool(name, setbool);
-            //WeaponAnimator.SetBool(name, setbool);
         }
         public virtual void SetIntName(string name, int setint)
         {
             weaponAnimBoolStr = name;
             baseAnimator.SetInteger(name, setint);
-            //WeaponAnimator.SetBool(name, setbool);
         }
         #endregion
 

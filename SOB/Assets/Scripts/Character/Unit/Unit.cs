@@ -61,17 +61,11 @@ public class Unit : MonoBehaviour
     {
         if (Core != null)
         {
-
             Core.LogicUpdate();
         }
         else
         {
             Debug.Log("Core is null");
-        }
-
-        if(Anim != null)
-        {
-            Anim.SetFloat("yVelocity", Movement.RB.velocity.y);
         }
 
         FSM.CurrentState.LogicUpdate();
