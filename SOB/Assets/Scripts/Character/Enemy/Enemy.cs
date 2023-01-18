@@ -8,11 +8,7 @@ using UnityEngine;
 public class Enemy : Unit
 {
     #region State Variables
-    public EnemyIdleState IdleState { get; private set; }
-    public EnemyRunState RunState { get; private set; }
-    public EnemyAttackState AttackState { get; private set; }
-    public EnemyHitState HitState { get; private set; }
-    public EnemyDeadState DeadState { get; private set; }
+    
 
     [HideInInspector]
     public EnemyCore core;
@@ -27,6 +23,7 @@ public class Enemy : Unit
 
     #region Other Variables
 
+    public float CurrentHealth { get => currentHealth; private set => currentHealth = value > 0.0f ? value : 0.0f; }
     private float currentHealth;
     public float damageDirection { get; private set; }
     #endregion
@@ -39,19 +36,12 @@ public class Enemy : Unit
         core = Core as EnemyCore;
         enemyData = UnitData as EnemyData;
         currentHealth = enemyData.commonStats.maxHealth;
-
-        IdleState = new EnemyIdleState(this, "idle");
-        RunState = new EnemyRunState(this, "run");
-        AttackState = new EnemyAttackState(this, "attack");
-        HitState = new EnemyHitState(this, "hit");
-        DeadState = new EnemyDeadState(this, "dead");
     }
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        FSM.Initialize(IdleState);
     }
 
     // Update is called once per frame
@@ -91,14 +81,14 @@ public class Enemy : Unit
 
         //Hit Particle
 
-        if (currentHealth > 0.0f)
+        /* if (currentHealth > 0.0f)
         {
             FSM.ChangeState(HitState);
         }
         else if (currentHealth <= 0.0f) 
         {
             FSM.ChangeState(DeadState);
-        }
+        }*/
     }
 
     

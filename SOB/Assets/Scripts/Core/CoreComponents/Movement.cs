@@ -8,8 +8,8 @@ namespace SOB.CoreSystem
     {
         public Rigidbody2D RB { get; private set; }
 
-        public bool CanSetVelocity { get; private set; }
         public int FancingDirection { get; private set; }
+        public bool CanSetVelocity { get; set; }
         public Vector2 CurrentVelocity { get; private set; }
 
         protected Vector2 workspace;
