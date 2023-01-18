@@ -52,12 +52,11 @@ public class PlayerWeaponState : PlayerAbilityState
         xInput = player.InputHandler.NormInputX;
         JumpInput = player.InputHandler.JumpInput;
 
-
-        //TODO: 공격중 공중으로 전환 시 Anim의 "attack" Param이 제대로 false되지 않는 문제
-        /*if (JumpInput && player.JumpState.CanJump() && weapon.weaponData.CanJump)
+                
+        if (JumpInput && player.JumpState.CanJump() && weapon.weaponData.CanJump)
         {
-            player.FSM.ChangeState(player.JumpState);            
-        }*/
+            player.JumpState.Jump();
+        }
 
         //공중에서 공격 후 착지상태
         if (!player.InputHandler.AttackInputs[(int)CombatInputs.primary]&& weapon.InAir&& player.Core.CollisionSenses.CheckIfGrounded)
