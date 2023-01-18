@@ -6,23 +6,24 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 namespace SOB.CoreSystem
 {
-
-
     public class Combat : CoreComponent, IDamageable, IKnockbackable
     {
         [SerializeField] private GameObject damageParticles;
 
-        private Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
+        private Movement Movement 
+        {
+            get => movement ?? core.GetCoreComponent(ref movement); 
+        }
         private CollisionSenses CollisionSenses
         {
             get => collisionSenses ?? core.GetCoreComponent(ref collisionSenses);
         }
-        private PlayerStats Stats { get => stats ?? core.GetCoreComponent(ref stats); }
+        private UnitStats Stats { get => stats ?? core.GetCoreComponent(ref stats); }
         //private ParticleManager ParticleManager => particleManager ? particleManager : core.GetCoreComponent(ref particleManager);
 
         private Movement movement;
         private CollisionSenses collisionSenses;
-        private PlayerStats stats;
+        private UnitStats stats;
         //private ParticleManager particleManager;
 
         [SerializeField] private float maxKnockbackTime = 0.2f;
@@ -34,7 +35,8 @@ namespace SOB.CoreSystem
         {
             CheckKnockback();
         }
-        public void Damage(float amount = 0)
+
+        public void Damage(GameObject attacker, GameObject victim, float amount)
         {
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
             Stats?.DecreaseHealth(amount);

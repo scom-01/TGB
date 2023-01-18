@@ -10,11 +10,6 @@ namespace SOB.CoreSystem
     {
         private readonly List<CoreComponent> CoreComponents = new List<CoreComponent>();
 
-        private void Aweak()
-        {
-
-        }
-
         public void LogicUpdate()
         {
             foreach(CoreComponent component in CoreComponents)
@@ -54,11 +49,6 @@ namespace SOB.CoreSystem
             return value;
         }
 
-        /*public Movement Movement
-        {
-            get => GenericNotImplementedError<Movement>.TryGet(movement, transform.parent.name);
-            private set => movement = value;
-        }*/
         public Unit Unit
         {
             get => GenericNotImplementedError<Unit>.TryGet(unit, transform.parent.name);
@@ -86,11 +76,5 @@ namespace SOB.CoreSystem
             unit = GetComponentInParent<Unit>();
             combat = GetComponentInParent<Combat>();
         }
-
-        /*public virtual void LogicUpdate()
-        {
-            movement.LogicUpdate();
-            collisionSenses.LogicUpdate();
-        }*/
     }
 }

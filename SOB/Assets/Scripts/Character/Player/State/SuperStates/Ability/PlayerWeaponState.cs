@@ -88,7 +88,7 @@ public class PlayerWeaponState : PlayerAbilityState
     {
         this.weapon = weapon;
 
-        weapon.InitializeWeapon(this);
+        weapon.InitializeWeapon(this, player.Core);
         //this.weapon.SetCore(this.weapon.WeaponCore);
         //this.weapon.GetComponentInParent<WeaponManager>().weapon = weapon;
     }

@@ -5,6 +5,8 @@ using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Inst = null;
+
     [SerializeField]
     private Transform respawnPoint;
     [SerializeField]
@@ -16,6 +18,19 @@ public class GameManager : MonoBehaviour
     private bool respawn;
 
     private CinemachineVirtualCamera CVC;
+
+    private void Awake()
+    {
+        if(Inst == null)
+        {
+            Inst = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
     private void Start()
     {

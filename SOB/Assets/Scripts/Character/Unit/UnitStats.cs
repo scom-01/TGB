@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace SOB.CoreSystem
 {
-    public class PlayerStats : CoreComponent
+    public class UnitStats : CoreComponent
     {
         public event Action OnHealthZero;
 
@@ -19,19 +19,32 @@ namespace SOB.CoreSystem
             deathChunkParticle,
             deathBloodParticle;
 
-        private GameManager GM;
-
         protected override void Awake()
         {
             base.Awake();
-            currentHealth = maxHealth;
+            currentHealth = maxHealth;            
         }        
+
+        public void IncreaseMaxHealth(float amount)
+        {
+            if (core != null)
+            {
+                maxHealth += amount;
+                currentHealth += amount;
+            }
+            else
+            {
+                Debug.LogWarning($"{transform.parent.name} is Core null");
+            }
+        }
 
         public void DecreaseHealth(float amount)
         {
             currentHealth -= amount;
+            Debug.Log($"{core.transform.parent.name} Health = {currentHealth}");
             if (currentHealth <= 0.0f)
-            {                
+            {
+                currentHealth = 0.0f;
                 OnHealthZero?.Invoke();
             }
         }
@@ -39,16 +52,6 @@ namespace SOB.CoreSystem
         public void IncreaseHealth(float amount)
         {
             currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-        }
-
-        private void Die()
-        {
-            if (deathChunkParticle != null)
-                Instantiate(deathChunkParticle, transform.position, deathChunkParticle.transform.rotation);
-            if (deathBloodParticle != null)
-                Instantiate(deathBloodParticle, transform.position, deathBloodParticle.transform.rotation);
-            GM.Respawn();
-            Destroy(gameObject);
         }
 
     }

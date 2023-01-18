@@ -12,15 +12,23 @@ namespace SOB.Weapons.Components
         private event Action<Collider2D[]> OnDetectedCollider2D;
         private CoreComp<CoreSystem.Movement> movement;
 
+        private CoreSystem.UnitStats coreStats;
+        private CoreSystem.UnitStats CoreStats
+        {
+            get => coreStats ? coreStats : core.GetCoreComponent(ref coreStats);
+        }
+
         private Vector2 offset;
         private Collider2D[] detected;
+
+
         private void HandleAttackAction()
         {
             offset.Set(
                 transform.position.x + (currentActionData.HitBox.center.x * movement.Comp.FancingDirection),
                 transform.position.y + (currentActionData.HitBox.center.y)
                 );
-            Debug.Log(offset);
+
             detected = Physics2D.OverlapBoxAll(offset, currentActionData.HitBox.size, 0f, data.DetectableLayers);
 
             if (detected.Length == 0)
@@ -33,6 +41,19 @@ namespace SOB.Weapons.Components
 
             foreach(var item in detected)
             {
+                //Combat안에 있는 BoxCollider2D(Trigger)만 가져오기 위함
+                if (!item.isTrigger)
+                    continue;
+
+                var detecter = item.gameObject;
+                
+                if(detecter.GetComponent<Combat>())
+                {
+                    Debug.Log("detecter have Combat");
+                    detecter.GetComponent<Combat>().Damage(this.gameObject, detecter, 10);
+
+                }
+                //detecter.GetComponentInChildren<Combat>().Damage(this.GetComponent<Unit>().gameObject, detecter, detecter.GetComponent<Unit>().UnitData.commonStats.AttackPower);
                 Debug.Log(item.name);
             }
         }

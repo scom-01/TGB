@@ -10,6 +10,9 @@ public class EnemyData : UnitData
     public float minIdleTime;
     public float maxIdleTime;
 
+    [field: SerializeField]
+    public EnemyState[] enemyStates;
+
     [Header("Check Variables")]
     [Tooltip("플레이어 감지 거리")]
     public float playerDetectedDistance = 5f;

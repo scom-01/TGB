@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 829d099c869488a49a5f24ab18f0f054, type: 3}
+  m_Name: Sword3
+  m_EditorClassIdentifier: 
+  <NumberOfActions>k__BackingField: 3
+  <CanJump>k__BackingField: 1
+  <CanAirAttack>k__BackingField: 1
+  <ComponentData>k__BackingField:
+  - rid: 3615621173780152320
+  - rid: 3615621173780152321
+  - rid: 3615621236231503872
+  references:
+    version: 2
+    RefIds:
+    - rid: 3615621173780152320
+      type: {class: ActionHitBoxData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        <AttackData>k__BackingField:
+        - Debug: 0
+          <HitBox>k__BackingField:
+            serializedVersion: 2
+            x: -0.77
+            y: -0.83
+            width: 3.83
+            height: 1.17
+        - Debug: 0
+          <HitBox>k__BackingField:
+            serializedVersion: 2
+            x: -0.77
+            y: -0.83
+            width: 3.83
+            height: 1.17
+        - Debug: 0
+          <HitBox>k__BackingField:
+            serializedVersion: 2
+            x: -0.83
+            y: -0.83
+            width: 3.68
+            height: 2.22
+        <DetectableLayers>k__BackingField:
+          serializedVersion: 2
+          m_Bits: 131072
+    - rid: 3615621173780152321
+      type: {class: MovementData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        <AttackData>k__BackingField:
+        - <Direction>k__BackingField: {x: 0.1, y: 0}
+          <Velocity>k__BackingField: 1
+        - <Direction>k__BackingField: {x: 0.1, y: 0}
+          <Velocity>k__BackingField: 2
+        - <Direction>k__BackingField: {x: 0.1, y: 0}
+          <Velocity>k__BackingField: 3
+    - rid: 3615621236231503872
+      type: {class: WeaponSpriteData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        <AttackData>k__BackingField:
+        - <GroundedSprites>k__BackingField:
+          - {fileID: 2024158448, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
+          - {fileID: 829565306, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
+          - {fileID: -1702336157, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
+          - {fileID: -832027921, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
+          - {fileID: -1552490490, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
+          <InAirSprites>k__BackingField:
+          - {fileID: 1213060584, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
+          - {fileID: -1786561542, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
+          - {fileID: 481340600, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
+          - {fileID: -1278682800, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
+          - {fileID: 94370055, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
+          - {fileID: 1987319174, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
+        - <GroundedSprites>k__BackingField:
+          - {fileID: -85242271, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
+          - {fileID: -390544012, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
+          - {fileID: 2044384428, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
+          - {fileID: 107414174, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
+          - {fileID: 1203510556, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
+          <InAirSprites>k__BackingField:
+          - {fileID: 1414451403, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
+          - {fileID: -1373038146, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
+          - {fileID: 757623960, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
+          - {fileID: -2104761717, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
+          - {fileID: -697474629, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
+        - <GroundedSprites>k__BackingField:
+          - {fileID: -1882352595, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
+          - {fileID: 1071354061, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
+          - {fileID: -823431220, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
+          - {fileID: -2054684485, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
+          - {fileID: 1312805329, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
+          <InAirSprites>k__BackingField:
+          - {fileID: 2135411007, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
+          - {fileID: -209406829, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
+          - {fileID: -2027913737, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
+          - {fileID: -191111204, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
+          - {fileID: -1330394290, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}

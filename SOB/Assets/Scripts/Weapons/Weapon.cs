@@ -152,9 +152,10 @@ namespace SOB.Weapons
         /// 초기 State 설정
         /// </summary>
         /// <param name="state"></param>
-        public void InitializeWeapon(PlayerWeaponState state)
+        public void InitializeWeapon(PlayerWeaponState state, Core core)
         {
             this.state = state;
+            this.WeaponCore = core;
         }
     }
 

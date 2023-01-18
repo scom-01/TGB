@@ -36,7 +36,7 @@ public class EnemyIdleState : EnemyState
 
         if(CollisionSenses.PlayerDectected)
         {
-            enemy.FSM.ChangeState(enemy.RunState);
+            //enemy.FSM.ChangeState(enemy.RunState);
         }
 
         if(Time.time >= startTime + idleTime)

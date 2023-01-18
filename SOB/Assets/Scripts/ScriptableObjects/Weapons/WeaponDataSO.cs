@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using SOB.Weapons.Components;
 
-[CreateAssetMenu(fileName = "newWeaponData", menuName = "Data/Weapon Data/SO Weapon Data", order = 0)]
+[CreateAssetMenu(fileName = "newWeaponData", menuName = "Data/Weapon Data/SO Weapon Data")]
 public class WeaponDataSO : ScriptableObject
 {
     [field: SerializeField] public int NumberOfActions { get; private set; }

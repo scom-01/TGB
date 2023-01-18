@@ -7,13 +7,13 @@ using System;
 
 namespace SOB.Weapons.Components
 {
-    public class Movement : WeaponComponent<MovementData, AttackMovement>
+    public class WeaponMovement : WeaponComponent<MovementData, AttackMovement>
     {
         private CoreSystem.Movement coreMovement;
         private CoreSystem.Movement CoreMovement
-           {
-                get => coreMovement ? coreMovement : core.GetCoreComponent(ref coreMovement);
-            }
+        {
+            get => coreMovement ? coreMovement : core.GetCoreComponent(ref coreMovement);
+        }
 
 
         private void HandleStartMovement()
@@ -29,7 +29,7 @@ namespace SOB.Weapons.Components
         protected override void OnEnable()
         {
             base.OnEnable();
-            
+
             eventHandler.OnStartMovement += HandleStartMovement;
             eventHandler.OnStopMovement += HandleStopMovement;
         }

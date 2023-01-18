@@ -13,7 +13,6 @@ public class Unit : MonoBehaviour
     public Core Core { get; private set; }
     public UnitFSM FSM { get; private set; }
     public Animator Anim { get; private set; }
-    public PlayerStats PS { get; private set; }
     public Rigidbody2D RB { get; private set; }
     public BoxCollider2D BC2D { get; private set; }
 
@@ -48,9 +47,6 @@ public class Unit : MonoBehaviour
 
         Inventory = GetComponent<Inventory>();
         if (Inventory == null) Inventory = this.GameObject().AddComponent<Inventory>();
-
-        PS = GetComponent<PlayerStats>();
-        if (PS == null) PS = this.GameObject().AddComponent<PlayerStats>();
     }
     protected virtual void Start()
     {
@@ -60,12 +56,18 @@ public class Unit : MonoBehaviour
     protected virtual void Update()
     {
         if (Core != null)
-        {
             Core.LogicUpdate();
-        }
         else
-        {
             Debug.Log("Core is null");
+
+        if (UnitData.invincibleTime > 0.0f)
+        {
+            UnitData.invincibleTime -= Time.deltaTime;
+
+            if (UnitData.invincibleTime <= 0.0f)
+            {
+                UnitData.invincibleTime = 0f;
+            }
         }
 
         FSM.CurrentState.LogicUpdate();

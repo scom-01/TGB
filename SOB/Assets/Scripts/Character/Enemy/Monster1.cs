@@ -22,7 +22,10 @@ namespace SOB
             HitState = new EnemyHitState(this, "hit");
             DeadState = new EnemyDeadState(this, "dead");
         }
-
+        protected override void FixedUpdate()
+        {
+            base.FixedUpdate(); 
+        }
         protected override void Start()
         {
             base.Start();

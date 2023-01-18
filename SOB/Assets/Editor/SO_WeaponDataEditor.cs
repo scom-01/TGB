@@ -9,8 +9,6 @@ using SOB.Weapons.Components;
 
 namespace SOB.Weapons
 {
-
-
     [CustomEditor(typeof(WeaponDataSO))]
     public class SO_WeaponDataEditor : Editor
     {

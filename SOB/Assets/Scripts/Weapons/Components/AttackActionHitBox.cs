@@ -10,5 +10,6 @@ namespace SOB.Weapons.Components
     {
         public bool Debug;
         [field: SerializeField] public Rect HitBox { get; private set; }
+        [field: SerializeField] public Vector2 KnockbackAngle { get; private set; }
     }
 }

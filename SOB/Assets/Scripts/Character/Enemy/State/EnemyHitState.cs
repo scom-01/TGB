@@ -11,7 +11,6 @@ public class EnemyHitState : EnemyState
     public override void Enter()
     {
         base.Enter();
-
         //Movement.SetVelocityX(enemy.enemyData.knockBackSpeed.x * enemy.damageDirection);
         startTime = Time.time;
     }
@@ -26,7 +25,7 @@ public class EnemyHitState : EnemyState
         base.LogicUpdate();
         if(Time.time >= enemy.enemyData.knockBackDuration + startTime)
         {
-            enemy.FSM.ChangeState(enemy.RunState);
+            //enemy.FSM.ChangeState(enemy.RunState);
         }
     }
 
