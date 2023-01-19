@@ -20,23 +20,13 @@ public class PlayerJumpState : PlayerAbilityState
 
     public void Jump()
     {
-        player.InputHandler.UseJumpInput();
+        player.InputHandler.UseInput(ref player.InputHandler.JumpInput);
         Movement.SetVelocityY(player.playerData.jumpVelocity);
         DecreaseAmountOfJumpsLeft();
         player.InAirState.SetIsJumping();
     }
 
-    public bool CanJump()
-    {
-        if(amountOfJumpLeft > 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+    public bool CanJump() => (amountOfJumpLeft > 0);
 
     public void ResetAmountOfJumpsLeft() => amountOfJumpLeft = player.playerData.amountOfJumps;
 

@@ -16,7 +16,7 @@ public class PlayerHeavyAttackState : PlayerAbilityState
     {
         base.Enter();
         Hold = true;
-        player.InputHandler.UseSkill2Input();
+        player.InputHandler.UseInput(ref player.InputHandler.Skill2Input);
     }
 
     public override void Exit()

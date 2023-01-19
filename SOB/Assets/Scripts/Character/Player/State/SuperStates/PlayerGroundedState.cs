@@ -7,17 +7,17 @@ using static PlayerInputHandler;
 public class PlayerGroundedState : PlayerState
 {
     //Input
-    protected int xInput;           //x�� �̵� �Է°�
-    private bool JumpInput;         //���� �Է°�
-    private bool grabInput;         //grab �Է°�
-    private bool dashInput;         //Dash �Է°�
-    private bool blockInput;        //Block �Է°�
-    private bool skill1Input;       //Skill1 �Է°�
-    private bool skill2Input;       //Skill2 �Է°�
+    protected int xInput;           //x축 이동 입력값
+    private bool JumpInput;         //점프 입력값
+    private bool grabInput;         //grab 입력값
+    private bool dashInput;         //Dash 입력값
+    private bool blockInput;        //Block 입력값
+    private bool skill1Input;       //Skill1 입력값
+    private bool skill2Input;       //Skill2 입력값
     //Checks
-    private bool isGrounded;        //Grounded üũ
-    private bool isTouchingWall;    //�� üũ 
-    private bool isTouchingLedge;   //Ledgeüũ
+    private bool isGrounded;        //Grounded 체크
+    private bool isTouchingWall;    //벽 체크 
+    private bool isTouchingLedge;   //Ledge체크
 
     public PlayerGroundedState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
@@ -60,12 +60,12 @@ public class PlayerGroundedState : PlayerState
         dashInput = player.InputHandler.DashInput;
         blockInput = player.InputHandler.BlockInput;
         
-        if (player.InputHandler.AttackInputs[(int)CombatInputs.primary])
+        if (player.InputHandler.ActionInputs[(int)CombatInputs.primary])
         {
             player.PrimaryAttackState.SetWeapon(player.Inventory.weapons[(int)CombatInputs.primary]);
             player.FSM.ChangeState(player.PrimaryAttackState);
         }
-        else if(player.InputHandler.AttackInputs[(int)CombatInputs.secondary])
+        else if(player.InputHandler.ActionInputs[(int)CombatInputs.secondary])
         {
             player.SecondaryAttackState.SetWeapon(player.Inventory.weapons[(int)CombatInputs.secondary]);
             player.FSM.ChangeState(player.SecondaryAttackState);            

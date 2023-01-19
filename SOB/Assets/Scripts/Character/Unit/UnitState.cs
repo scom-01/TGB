@@ -48,4 +48,5 @@ public class UnitState
 
     public virtual void AnimationFinishTrigger() => isAnimationFinished = true;
 
+    public virtual void UseInput(ref bool input) => input = false;
 }

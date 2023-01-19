@@ -25,46 +25,59 @@ MonoBehaviour:
     - rid: 3615621173780152320
       type: {class: ActionHitBoxData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
-        <AttackData>k__BackingField:
-        - Debug: 0
+        name: ActionHitBoxData
+        actionData:
+        - name: Attack 1
+          Debug: 0
           <HitBox>k__BackingField:
             serializedVersion: 2
             x: -0.77
             y: -0.83
             width: 3.83
             height: 1.17
-        - Debug: 0
+          <KnockbackAngle>k__BackingField: {x: 0, y: 0}
+        - name: Attack 2
+          Debug: 0
           <HitBox>k__BackingField:
             serializedVersion: 2
             x: -0.77
             y: -0.83
             width: 3.83
             height: 1.17
-        - Debug: 0
+          <KnockbackAngle>k__BackingField: {x: 0, y: 0}
+        - name: Attack 3
+          Debug: 0
           <HitBox>k__BackingField:
             serializedVersion: 2
             x: -0.83
             y: -0.83
             width: 3.68
             height: 2.22
+          <KnockbackAngle>k__BackingField: {x: 0, y: 0}
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
           m_Bits: 131072
     - rid: 3615621173780152321
       type: {class: MovementData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
-        <AttackData>k__BackingField:
-        - <Direction>k__BackingField: {x: 0.1, y: 0}
+        name: MovementData
+        actionData:
+        - name: Attack 1
+          <Direction>k__BackingField: {x: 0.1, y: 0}
           <Velocity>k__BackingField: 1
-        - <Direction>k__BackingField: {x: 0.1, y: 0}
+        - name: Attack 2
+          <Direction>k__BackingField: {x: 0.1, y: 0}
           <Velocity>k__BackingField: 2
-        - <Direction>k__BackingField: {x: 0.1, y: 0}
+        - name: Attack 3
+          <Direction>k__BackingField: {x: 0.1, y: 0}
           <Velocity>k__BackingField: 3
     - rid: 3615621236231503872
       type: {class: WeaponSpriteData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
-        <AttackData>k__BackingField:
-        - <GroundedSprites>k__BackingField:
+        name: WeaponSpriteData
+        actionData:
+        - name: Attack 1
+          <GroundedSprites>k__BackingField:
           - {fileID: 51041346, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
           - {fileID: -1188008882, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
           - {fileID: 140725285, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
@@ -77,7 +90,8 @@ MonoBehaviour:
           - {fileID: 1505583640, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
           - {fileID: -118192930, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
           - {fileID: 813284989, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-        - <GroundedSprites>k__BackingField:
+        - name: Attack 2
+          <GroundedSprites>k__BackingField:
           - {fileID: 675924838, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
           - {fileID: -1128788728, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
           - {fileID: -1554525141, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
@@ -89,7 +103,8 @@ MonoBehaviour:
           - {fileID: 243659706, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
           - {fileID: -1895856038, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
           - {fileID: 2055020914, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-        - <GroundedSprites>k__BackingField:
+        - name: Attack 3
+          <GroundedSprites>k__BackingField:
           - {fileID: 577480298, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
           - {fileID: 653481542, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
           - {fileID: -1284737267, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}

@@ -25,7 +25,7 @@ MonoBehaviour:
     - rid: 3615621173780152320
       type: {class: ActionHitBoxData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
-        <AttackData>k__BackingField:
+        actionData:
         - Debug: 0
           <HitBox>k__BackingField:
             serializedVersion: 2
@@ -53,7 +53,7 @@ MonoBehaviour:
     - rid: 3615621173780152321
       type: {class: MovementData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
-        <AttackData>k__BackingField:
+        actionData:
         - <Direction>k__BackingField: {x: 0.1, y: 0}
           <Velocity>k__BackingField: 1
         - <Direction>k__BackingField: {x: 0.1, y: 0}
@@ -63,7 +63,7 @@ MonoBehaviour:
     - rid: 3615621236231503872
       type: {class: WeaponSpriteData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
-        <AttackData>k__BackingField:
+        actionData:
         - <GroundedSprites>k__BackingField:
           - {fileID: 1433230625, guid: 72ef2132635b05b439be381d774127ee, type: 3}
           - {fileID: 1805210951, guid: 72ef2132635b05b439be381d774127ee, type: 3}

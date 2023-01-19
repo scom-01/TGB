@@ -6,7 +6,7 @@ using UnityEngine;
 namespace SOB.Weapons.Components
 {
     [Serializable]
-    public class AttackActionHitBox : AttackData
+    public class AttackActionHitBox : ActionData
     {
         public bool Debug;
         [field: SerializeField] public Rect HitBox { get; private set; }

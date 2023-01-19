@@ -23,7 +23,7 @@ public class PlayerAirAttackState : PlayerAbilityState
         }
 
         //player.RB.gravityScale = 0f;
-        player.InputHandler.UseSkill1Input();
+        player.InputHandler.UseInput(ref player.InputHandler.Skill1Input);
         startTime = Time.time;
     }
 

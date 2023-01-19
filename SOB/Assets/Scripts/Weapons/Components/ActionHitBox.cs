@@ -41,7 +41,7 @@ namespace SOB.Weapons.Components
 
             foreach(var item in detected)
             {
-                //Combat¾È¿¡ ÀÖ´Â BoxCollider2D(Trigger)¸¸ °¡Á®¿À±â À§ÇÔ
+                //Combatì•ˆì— ìˆëŠ” BoxCollider2D(Trigger)ë§Œ ê°€ì ¸ì˜¤ê¸° ìœ„í•¨
                 if (!item.isTrigger)
                     continue;
 
@@ -77,13 +77,13 @@ namespace SOB.Weapons.Components
             eventHandler.OnAttackAction -= HandleAttackAction;
         }
 
-        //Hierarchy¿¡¼­ ¼±ÅÃ ½Ã ±âÁî¸ğ Ç¥½Ã
+        //Hierarchyì—ì„œ ì„ íƒ ì‹œ ê¸°ì¦ˆëª¨ í‘œì‹œ
         private void OnDrawGizmosSelected()
         {
             if (data == null)
                 return;
 
-            foreach(var item in data.AttackData)
+            foreach(var item in data.ActionData)
             {
                 if (!item.Debug)
                     continue;                

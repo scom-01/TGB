@@ -11,8 +11,8 @@ public class AnimationEventHandler : MonoBehaviour
     public event Action OnAttackAction;
 
 
-    private void AnimationFinishedTrigger() => OnFinish?.Invoke();
-    private void StartMovementTrigger() => OnStartMovement?.Invoke();
-    private void StopMovementTrigger() => OnStopMovement?.Invoke();
-    private void AttackActionTrigger() => OnAttackAction?.Invoke();
+    public void AnimationFinishedTrigger() => OnFinish?.Invoke();
+    public void StartMovementTrigger() => OnStartMovement?.Invoke();
+    public void StopMovementTrigger() => OnStopMovement?.Invoke();
+    public void AttackActionTrigger() => OnAttackAction?.Invoke();
 }

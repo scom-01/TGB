@@ -16,6 +16,9 @@ namespace SOB.Weapons
         private static List<Type> dataCompTypes = new List<Type>();
         private WeaponDataSO dataSO;
 
+        private bool showForceUpdateButtons;
+        private bool showAddComponentButtons;
+
         private void OnEnable()
         {
             dataSO = target as WeaponDataSO;
@@ -24,18 +27,52 @@ namespace SOB.Weapons
         {
             base.OnInspectorGUI();
 
-            foreach (var dataCompType in dataCompTypes)
+            if(GUILayout.Button("Set Number of Actions"))
             {
-                if (GUILayout.Button(dataCompType.Name))
+                foreach (var item in dataSO.ComponentData)
                 {
-                    var comp = Activator.CreateInstance(dataCompType) as ComponentData;
+                    item.InitializeActionData(dataSO.NumberOfActions);
+                }
+            }
 
-                    if (comp == null)
+            showAddComponentButtons = EditorGUILayout.Foldout(showAddComponentButtons, "Add Components Buttons");            
+
+            if(showAddComponentButtons)
+            {
+                foreach (var dataCompType in dataCompTypes)
+                {
+                    if (GUILayout.Button(dataCompType.Name))
                     {
-                        return;
-                    }
+                        var comp = Activator.CreateInstance(dataCompType) as ComponentData;
 
-                    dataSO.AddData(comp);
+                        if (comp == null)
+                        {
+                            return;
+                        }
+
+                        comp.InitializeActionData(dataSO.NumberOfActions);
+
+                        dataSO.AddData(comp);
+                    }
+                }
+            }
+
+            showForceUpdateButtons = EditorGUILayout.Foldout(showForceUpdateButtons, "Force Update Buttons");
+            if(showForceUpdateButtons)
+            {
+                if (GUILayout.Button("Force Update Component Names"))
+                {
+                    foreach(var item in dataSO.ComponentData)
+                    {
+                        item.SetComponentName();
+                    }
+                }
+                if(GUILayout.Button("Force Update Attack Names"))
+                {
+                    foreach(var item in dataSO.ComponentData)
+                    {
+                        item.SetActionDataNames();
+                    }
                 }
             }
         }

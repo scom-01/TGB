@@ -18,7 +18,7 @@ public class PlayerBlockState : PlayerAbilityState
         base.Enter();
 
         CanBlock = false;
-        player.InputHandler.UseBlockInput();
+        player.InputHandler.UseInput(ref player.InputHandler.BlockInput);
         startTime = Time.time;
     }
 

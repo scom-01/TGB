@@ -9,23 +9,24 @@ public class PlayerInputHandler : MonoBehaviour
     private PlayerInput playerInput;
     private Camera cam;
     public Vector2 RawMovementInput { get; private set; }
-    public int NormInputX { get; private set; } 
+    public int NormInputX { get; private set; }
     public int NormInputY { get; private set; }
-    public bool JumpInput { get; private set; }
-    public bool JumpInputStop { get; private set; }
-    public bool GrabInput { get; private set; }
-    public bool DashInput { get; private set; }
-    public bool DashInputStop { get; private set; }
-
-    public bool[] AttackInputs { get; private set; }
-    public bool Skill1Input { get; private set; }
-    public bool Skill1InputStop { get; private set; }
-    public bool Skill2Input { get; private set; }
-    public bool Skill2InputStop { get; private set; }
-    public bool PrimaryInput { get; private set; }
-    public bool PrimaryStop { get; private set; }
-    public bool BlockInput { get; private set; }
-    public bool BlockInputStop { get; private set; }
+    [HideInInspector]
+    public bool     JumpInput
+                    , JumpInputStop
+                    , GrabInput
+                    , DashInput
+                    , DashInputStop
+                    , Skill1Input
+                    , Skill1InputStop
+                    , Skill2Input
+                    , Skill2InputStop
+                    , PrimaryInput
+                    , PrimaryStop
+                    , BlockInput
+                    , BlockInputStop;
+    [HideInInspector]
+    public bool[] ActionInputs;
 
     [SerializeField]
     private float inputHoldTime = 0.2f;
@@ -35,13 +36,15 @@ public class PlayerInputHandler : MonoBehaviour
     private float skill1InputStartTime;
     private float skill2InputStartTime;
     private float blockInputStartTime;
+    private float[] ActionInputsStartTime;
 
 
-    private void Start()
+    private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
         int count = Enum.GetValues(typeof(CombatInputs)).Length;
-        AttackInputs = new bool[count];
+        ActionInputs = new bool[count];
+        ActionInputsStartTime = new float[count];
         cam = Camera.main;
     }
 
@@ -52,21 +55,24 @@ public class PlayerInputHandler : MonoBehaviour
         bool blockInput = BlockInput;
         bool skill1Input = Skill1Input;
         bool skill2Input = Skill2Input;
+        bool[] attackInputs = ActionInputs;
 
         CheckHoldTime(ref jumpInput, ref jumpInputStartTime);
         CheckHoldTime(ref dashInput, ref dashInputStartTime);
         CheckHoldTime(ref blockInput, ref blockInputStartTime);
         CheckHoldTime(ref skill1Input, ref skill1InputStartTime);
         CheckHoldTime(ref skill2Input, ref skill2InputStartTime);
+        CheckHoldTime(ref attackInputs, ref ActionInputsStartTime);
 
         JumpInput = jumpInput;
         DashInput = dashInput;
         BlockInput = blockInput;
         Skill1Input = skill1Input;
         Skill2Input = skill2Input;
+        ActionInputs = attackInputs;
     }
 
-    //øÚ¡˜¿” Input
+    //ÏõÄÏßÅÏûÑ Input
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         RawMovementInput = context.ReadValue<Vector2>();
@@ -85,17 +91,17 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
-    //¡°«¡ Input
+    //Ï†êÌîÑ Input
     public void OnJumpInput(InputAction.CallbackContext context)
     {
-        if(context.started)
+        if (context.started)
         {
             JumpInput = true;
             JumpInputStop = false;
             jumpInputStartTime = Time.time;
         }
 
-        if(context.canceled)
+        if (context.canceled)
         {
             JumpInputStop = true;
         }
@@ -104,12 +110,12 @@ public class PlayerInputHandler : MonoBehaviour
     //Grab Input
     public void OnGrabInput(InputAction.CallbackContext context)
     {
-        if(context.started)
+        if (context.started)
         {
             GrabInput = true;
         }
 
-        if(context.canceled)
+        if (context.canceled)
         {
             GrabInput = false;
         }
@@ -117,13 +123,13 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnDashInput(InputAction.CallbackContext context)
     {
-        if(context.started)
+        if (context.started)
         {
             DashInput = true;
             DashInputStop = false;
             dashInputStartTime = Time.time;
         }
-        else if(context.canceled)
+        else if (context.canceled)
         {
             DashInputStop = true;
         }
@@ -131,13 +137,13 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnSkill1Input(InputAction.CallbackContext context)
     {
-        if(context.started)
+        if (context.started)
         {
             Debug.Log("OnSkill 1 Input");
             Skill1Input = true;
             Skill1InputStop = false;
         }
-        
+
         if (context.canceled)
         {
             Skill1InputStop = true;
@@ -152,8 +158,8 @@ public class PlayerInputHandler : MonoBehaviour
             Skill2Input = true;
             Skill2InputStop = false;
         }
-        
-        if(context.canceled)
+
+        if (context.canceled)
         {
             Skill2InputStop = true;
         }
@@ -163,12 +169,13 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.started)
         {
-            AttackInputs[(int)CombatInputs.primary] = true;
+            ActionInputs[(int)CombatInputs.primary] = true;
+            ActionInputsStartTime[(int)CombatInputs.primary] = Time.time;
         }
 
         if (context.canceled)
         {
-            AttackInputs[(int)CombatInputs.primary] = false;
+            ActionInputs[(int)CombatInputs.primary] = false;
         }
     }
 
@@ -176,25 +183,25 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.started)
         {
-            Debug.Log((int)CombatInputs.secondary + " Input");
-            AttackInputs[(int)CombatInputs.secondary] = true;
+            ActionInputs[(int)CombatInputs.secondary] = true;
+            ActionInputsStartTime[(int)CombatInputs.secondary] = Time.time;
         }
 
         if (context.canceled)
         {
-            AttackInputs[(int)CombatInputs.secondary] = false;
+            ActionInputs[(int)CombatInputs.secondary] = false;
         }
     }
 
     public void OnBlockInput(InputAction.CallbackContext context)
     {
-        if(context.started)
+        if (context.started)
         {
             BlockInput = true;
             BlockInputStop = false;
             blockInputStartTime = Time.time;
         }
-        else if(context.canceled)
+        else if (context.canceled)
         {
             BlockInputStop = true;
         }
@@ -205,7 +212,9 @@ public class PlayerInputHandler : MonoBehaviour
     public void UseSkill2Input() => Skill2Input = false;
     public void UseBlockInput() => BlockInput = false;
 
-    //»¶µÂ Ω√∞£
+    public void UseInput(ref bool input) => input = false;
+
+    //ÌôÄÎìú ÏãúÍ∞Ñ
 
     private void CheckHoldTime(ref bool input, ref float inputStartTime)
     {
@@ -214,25 +223,25 @@ public class PlayerInputHandler : MonoBehaviour
             input = false;
         }
     }
+    private void CheckHoldTime(ref bool[] input, ref float[] inputStartTime)
+    {
+        if (input.Length == 0)
+            return;
+
+        for(int i = 0; i< input.Length; i++)
+        {
+            if (Time.time >= inputStartTime[i] + inputHoldTime)
+            {
+                {
+                    input[i] = false;  
+                }
+            }
+        }
+    }
 
     public enum CombatInputs
     {
         primary,
         secondary,
     }
-/*    private void CheckJumpInputHoldTime()
-    {
-        if(Time.time >= jumpInputStartTime + inputHoldTime)
-        {
-            JumpInput = false;
-        }
-    }
-    
-    private void CheckDashInputHoldTime()
-    {
-        if(Time.time >= dashInputStartTime + inputHoldTime)
-        {
-            DashInput = false;
-        }
-    }*/
 }

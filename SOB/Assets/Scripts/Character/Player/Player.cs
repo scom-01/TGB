@@ -50,10 +50,13 @@ public class Player : Unit
     {
         base.Awake();
         playerData = UnitData as PlayerData;
-        //°¢ State »ı¼º
+        InputHandler = GetComponent<PlayerInputHandler>();
+        if (InputHandler == null) InputHandler = this.GameObject().AddComponent<PlayerInputHandler>();
+
+        //ê° State ìƒì„±
         IdleState = new PlayerIdleState(this, "idle");
         MoveState = new PlayerMoveState(this, "move");
-        JumpState = new PlayerJumpState(this, "inAir");    //Á¡ÇÁÇÏ´Â ¼ø°£ °øÁß»óÅÂÀÌ¹Ç·Î
+        JumpState = new PlayerJumpState(this, "inAir");    //ì í”„í•˜ëŠ” ìˆœê°„ ê³µì¤‘ìƒíƒœì´ë¯€ë¡œ
         InAirState = new PlayerInAirState(this, "inAir");
         LandState = new PlayerLandState(this, "land");
         WallSlideState = new PlayerWallSlideState(this, "wallSlide");        
@@ -61,6 +64,7 @@ public class Player : Unit
         DashState = new PlayerDashState(this, "dash");
         PrimaryAttackState = new PlayerWeaponState(this, "weapon", Inventory.weapons[(int)CombatInputs.primary]);
         SecondaryAttackState = new PlayerWeaponState(this, "weapon", Inventory.weapons[(int)CombatInputs.secondary]);
+
         Inventory.weapons[(int)CombatInputs.primary].SetCore(Core);
         Inventory.weapons[(int)CombatInputs.secondary].SetCore(Core);
     }
@@ -69,8 +73,7 @@ public class Player : Unit
     {
         base.Start();
         
-        InputHandler = GetComponent<PlayerInputHandler>();
-        if (InputHandler == null) InputHandler = this.GameObject().AddComponent<PlayerInputHandler>();
+        
         
         FSM.Initialize(IdleState);
     }
@@ -108,7 +111,7 @@ public class Player : Unit
             return;
         }
 
-        //pivot = true -> offset °íÁ¤ÇÏ°í Height º¯°æ, false -> offset ¹«½ÃÇÏ°í Height º¯°æ
+        //pivot = true -> offset ê³ ì •í•˜ê³  Height ë³€ê²½, false -> offset ë¬´ì‹œí•˜ê³  Height ë³€ê²½
         if (pivot)
         {
             Vector2 center = BC2D.offset;

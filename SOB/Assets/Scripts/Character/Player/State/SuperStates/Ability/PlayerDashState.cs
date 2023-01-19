@@ -22,22 +22,27 @@ public class PlayerDashState : PlayerAbilityState
         IsGrounded = player.Core.CollisionSenses.CheckIfGrounded;
         if (IsGrounded)
         {
-            //Äİ¶óÀÌ´õ Å©±â º¯°æ
+            //ì½œë¼ì´ë” í¬ê¸° ë³€ê²½
             player.SetColliderHeight(player.playerData.dashColliderHeight);
         }
         else
         {
-            //Äİ¶óÀÌ´õ Å©±â º¯°æ
+            //ì½œë¼ì´ë” í¬ê¸° ë³€ê²½
             player.SetColliderHeight(player.playerData.dashColliderHeight, false);            
         }
         
 
         CanDash = false;
-        player.InputHandler.UseDashInput();
+        player.InputHandler.UseInput(ref player.InputHandler.DashInput);
         Movement.SetVelocityY(0f);
         player.RB.gravityScale = 0f;
         DecreaseDashCount();
         startTime = Time.time;
+    }
+
+    public void Dash()
+    {
+
     }
 
     public override void Exit()
@@ -47,12 +52,12 @@ public class PlayerDashState : PlayerAbilityState
 
         if (IsGrounded)
         {
-            //Äİ¶óÀÌ´õ Å©±â º¯°æ
+            //ì½œë¼ì´ë” í¬ê¸° ë³€ê²½
             player.SetColliderHeight(player.playerData.standColliderHeight);
         }
         else
         {
-            //Äİ¶óÀÌ´õ Å©±â º¯°æ
+            //ì½œë¼ì´ë” í¬ê¸° ë³€ê²½
             player.SetColliderHeight(player.playerData.standColliderHeight, false);
         }
     }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -48,7 +48,7 @@ namespace SOB.Weapons.Components
 
 
     }
-    public abstract class WeaponComponent<T1, T2> : WeaponComponent where T1 : ComponentData<T2> where T2 : AttackData
+    public abstract class WeaponComponent<T1, T2> : WeaponComponent where T1 : ComponentData<T2> where T2 : ActionData
     {
         protected T1 data;
         protected T2 currentActionData;
@@ -57,7 +57,7 @@ namespace SOB.Weapons.Components
         {
             base.HandleEnter();
 
-            currentActionData = data.AttackData[weapon.CurrentActionCounter];
+            currentActionData = data.ActionData[weapon.CurrentActionCounter];
         }
 
         protected override void Awake()

@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +15,7 @@ namespace SOB.Weapons
         [HideInInspector]
         protected string weaponAnimBoolStr;
 
-        [Tooltip("°ø°İ È½¼ö")]
+        [Tooltip("ê³µê²© íšŸìˆ˜")]
         public int CurrentActionCounter
         {
             get => currentActionCounter;
@@ -60,6 +60,7 @@ namespace SOB.Weapons
 
         private void OnEnable()
         {
+            //TODO: event Action ì‚¬ìš© ì‹œ Finishì²˜ë¦¬ê°€ animation ëë¶€ë¶„ì— ìˆê¸°ì— Cancleì²˜ë¦¬ê°€ ì•ˆë¨
             EventHandler.OnFinish += ExitWeapon;
             actionCounterResetTimer.OnTimerDone += ResetactionCounter;
         }
@@ -71,7 +72,7 @@ namespace SOB.Weapons
         }
 
         /// <summary>
-        /// PlayerWeaponState Enter ¿¡¼­ È£ÃâµÇ´Â ÇÔ¼ö
+        /// PlayerWeaponState Enter ì—ì„œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜
         /// </summary>
         public virtual void EnterWeapon()
         {
@@ -90,7 +91,7 @@ namespace SOB.Weapons
         }
 
         /// <summary>
-        /// PlayerWeaponState Exit ¿¡¼­ È£ÃâµÇ´Â ÇÔ¼ö
+        /// PlayerWeaponState Exit ì—ì„œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜
         /// </summary>
         public virtual void ExitWeapon()
         {
@@ -149,7 +150,7 @@ namespace SOB.Weapons
 
 
         /// <summary>
-        /// ÃÊ±â State ¼³Á¤
+        /// ì´ˆê¸° State ì„¤ì •
         /// </summary>
         /// <param name="state"></param>
         public void InitializeWeapon(PlayerWeaponState state, Core core)
