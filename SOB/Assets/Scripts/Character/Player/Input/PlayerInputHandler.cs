@@ -238,10 +238,10 @@ public class PlayerInputHandler : MonoBehaviour
             }
         }
     }
+}    
 
-    public enum CombatInputs
-    {
-        primary,
-        secondary,
-    }
+public enum CombatInputs
+{
+    primary,
+    secondary,
 }

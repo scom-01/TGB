@@ -1,8 +1,7 @@
-using SOB.Weapons.Components;
+﻿using SOB.Weapons.Components;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static PlayerInputHandler;
 
 public class PlayerInAirState : PlayerState
 {

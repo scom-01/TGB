@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
-using static PlayerInputHandler;
 
 public class Player : Unit
 {

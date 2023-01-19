@@ -44,7 +44,7 @@ public class PlayerAfterImageSprite : MonoBehaviour
                             Mathf.Clamp01(colorRGB.z), alpha);
 
         SR.color = color;
-        if(Time.time>=(timeActivated + activeTime))
+        if(Time.time >= (timeActivated + activeTime))
         {
             PlayerAfterImagePool.Instance.AddToPool(gameObject);
         }

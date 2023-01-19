@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerDashState : PlayerAbilityState
 {
     public bool CanDash { get; private set; }
@@ -72,6 +73,17 @@ public class PlayerDashState : PlayerAbilityState
             Movement.SetVelocityY(0);
             
             CheckIfShouldPlaceAfterImage();
+
+            if (player.InputHandler.ActionInputs[(int)CombatInputs.primary])
+            {
+                player.PrimaryAttackState.SetWeapon(player.Inventory.weapons[(int)CombatInputs.primary]);
+                player.FSM.ChangeState(player.PrimaryAttackState);
+            }
+            else if (player.InputHandler.ActionInputs[(int)CombatInputs.secondary])
+            {
+                player.SecondaryAttackState.SetWeapon(player.Inventory.weapons[(int)CombatInputs.secondary]);
+                player.FSM.ChangeState(player.SecondaryAttackState);
+            }
 
             if (Time.time >= startTime + player.playerData.dashTime)
             {
