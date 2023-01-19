@@ -35,8 +35,10 @@ public class PlayerWeaponState : PlayerAbilityState
         weapon.EnterWeapon();
 
         CanAttack = false;
-        
-        player.InputHandler.UseSkill1Input();
+
+        Debug.Log($"Enter input = {input}");
+        player.InputHandler.UseInput(ref input);
+        Debug.Log($"input = {input}");
         startTime = Time.time;
     }
 
@@ -44,7 +46,7 @@ public class PlayerWeaponState : PlayerAbilityState
     {
         AnimationFinishTrigger();
     }
-    
+
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
@@ -52,20 +54,22 @@ public class PlayerWeaponState : PlayerAbilityState
         xInput = player.InputHandler.NormInputX;
         JumpInput = player.InputHandler.JumpInput;
 
-                
+
         if (JumpInput && player.JumpState.CanJump() && weapon.weaponData.CanJump)
         {
-            player.JumpState.Jump();
+            weapon.EventHandler.AnimationFinishedTrigger();
+            player.FSM.ChangeState(player.JumpState);
         }
 
-        //°øÁß¿¡¼­ °ø°İ ÈÄ ÂøÁö»óÅÂ
-        if (!player.InputHandler.AttackInputs[(int)CombatInputs.primary]&& weapon.InAir&& player.Core.CollisionSenses.CheckIfGrounded)
+        //ê³µì¤‘ì—ì„œ ê³µê²© í›„ ì°©ì§€ìƒíƒœ
+        //TODO:Inputì˜ booleanê°’ì„ ê°€ì ¸ì™€ì„œ íŒë³„í•˜ëŠ” ë°©ë²•ìœ¼ë¡œ ë³€ê²½í•´ì•¼ í•  ë“¯ í•˜ë‹¤ ex)AttackInputs
+        if (!player.InputHandler.ActionInputs[(int)CombatInputs.primary] && weapon.InAir && player.Core.CollisionSenses.CheckIfGrounded)
         {
             player.FSM.ChangeState(player.LandState);
             return;
         }
 
-        if(shouldCheckFlip)
+        if (shouldCheckFlip)
         {
             Movement.CheckIfShouldFlip(xInput);
         }
@@ -76,7 +80,8 @@ public class PlayerWeaponState : PlayerAbilityState
         }
 
         if (player.InputHandler.DashInput && player.DashState.CheckIfCanDash())
-        {
+        {            
+            weapon.EventHandler.AnimationFinishedTrigger();
             player.FSM.ChangeState(player.DashState);
             return;
         }
