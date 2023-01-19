@@ -5,10 +5,12 @@ using UnityEngine;
 public interface IDamageable
 {
     /// <summary>
-    /// attacker°¡  victim¿¡°Ô amount¸¸Å­ÀÇ ÇÇÇØ¸¦ ÁÜ
+    /// attackerê°€  victimì—ê²Œ amountë§Œí¼ì˜ í”¼í•´ë¥¼ ì¤Œ
     /// </summary>
-    /// <param name="attacker">°ø°İÇÏ´Â Object</param>
-    /// <param name="victim">ÇÇÇØ¹Ş´Â Object</param>
-    /// <param name="amount">ÇÇÇØ·®</param>
-    public void Damage(GameObject attacker, GameObject victim, float amount);
+    /// <param name="attacker">ê³µê²©í•˜ëŠ” Object</param>
+    /// <param name="victim">í”¼í•´ë°›ëŠ” Object</param>
+    /// <param name="elementalPower">ê³µê²©í•˜ëŠ” ì›ì†Œ ì†ì„±</param>
+    /// <param name="attiribute">ë¬¼ë¦¬, ë§ˆë²•</param>
+    /// <param name="amount">í”¼í•´ëŸ‰</param>
+    public void Damage(GameObject attacker, GameObject victim, ElementalPower elementalPower, DamageAttiribute attiribute, float amount);
 }

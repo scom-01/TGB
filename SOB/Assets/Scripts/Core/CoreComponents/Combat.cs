@@ -18,7 +18,10 @@ namespace SOB.CoreSystem
         {
             get => collisionSenses ?? core.GetCoreComponent(ref collisionSenses);
         }
-        private UnitStats Stats { get => stats ?? core.GetCoreComponent(ref stats); }
+        private UnitStats Stats 
+        { 
+            get => stats ?? core.GetCoreComponent(ref stats); 
+        }
         //private ParticleManager ParticleManager => particleManager ? particleManager : core.GetCoreComponent(ref particleManager);
 
         private Movement movement;
@@ -36,13 +39,19 @@ namespace SOB.CoreSystem
             CheckKnockback();
         }
 
-        public void Damage(GameObject attacker, GameObject victim, float amount)
+        public void Damage(GameObject attacker, GameObject victim, ElementalPower elementalPower, DamageAttiribute attiribute, float amount)
         {
+            //attacker.GetComponentInChildren<Core>().GetCoreComponent<UnitStats>()
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
-            Stats?.DecreaseHealth(amount);
+            Stats?.DecreaseHealth(elementalPower, attiribute, amount);
             //ParticleManager?.StartParticlesWithRandomRotation(damageParticles);
         }
-
+        public void Damage(CommonData AttackterCommonData, CommonData VictimCommonData, float amount)
+        {
+            Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
+            Stats?.DecreaseHealth(AttackterCommonData, VictimCommonData, amount);
+            //ParticleManager?.StartParticlesWithRandomRotation(damageParticles);
+        }
         public void Knockback(Vector2 angle, float strength, int direction)
         {
             Movement?.SetVelocity(strength, angle, direction);

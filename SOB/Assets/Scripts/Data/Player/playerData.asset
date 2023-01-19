@@ -15,8 +15,15 @@ MonoBehaviour:
   commonStats:
     maxHealth: 100
     movementVelocity: 10
-    AttackPower: 10
-    DefendsivePower: 1
+    DefaulPower: 10
+    PhysicsDefensivePer: 0
+    MagicDefensivePer: 0
+    PhysicsAggressivePer: 0
+    MagicAggressivePer: 0
+    MyElemental: 0
+    ElementalDefensivePer: 0
+    ElementalAggressivePer: 0
+    DamageAttiribute: 0
   knockBackDuration: 0
   knockBackSpeed: {x: 0, y: 0}
   invincibleTime: 0
@@ -41,8 +48,8 @@ MonoBehaviour:
   stopOffset: {x: 0.5, y: 2.3}
   dashCooldown: 0.1
   dashResetCooldown: 0.5
-  dashTime: 0.2
-  dashVelocity: 30
+  dashTime: 0.1
+  dashVelocity: 100
   dashCount: 2
   drag: 10
   dashEndYMultiplier: 0.2
