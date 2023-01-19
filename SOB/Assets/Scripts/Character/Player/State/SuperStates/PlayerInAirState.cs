@@ -7,25 +7,25 @@ using static PlayerInputHandler;
 public class PlayerInAirState : PlayerState
 {
     //Input
-    private int xInput;                 //ÁÂ¿ì ÀÔ·Â°ª
-    private bool JumpInput;             //Á¡ÇÁ ÀÔ·Â°ª
-    private bool JumpInputStop;         //Á¡ÇÁ ÀÔ·Â ÇØÃ¼ °ª
-    private bool grabInput;             //±×·¦ ÀÔ·Â°ª
-    private bool dashInput;             //Dash Å° ÀÔ·Â°ª
-    private bool skill1Input;           //skill1Å° ÀÔ·Â°ª
-    private bool skill2Input;           //skill2Å° ÀÔ·Â°ª
+    private int xInput;                 //ì¢Œìš° ì…ë ¥ê°’
+    private bool JumpInput;             //ì í”„ ì…ë ¥ê°’
+    private bool JumpInputStop;         //ì í”„ ì…ë ¥ í•´ì²´ ê°’
+    private bool grabInput;             //ê·¸ë© ì…ë ¥ê°’
+    private bool dashInput;             //Dash í‚¤ ì…ë ¥ê°’
+    private bool skill1Input;           //skill1í‚¤ ì…ë ¥ê°’
+    private bool skill2Input;           //skill2í‚¤ ì…ë ¥ê°’
 
     //Checks
-    private bool isGrounded;            //¹Ù´Ú Ã¼Å©
-    private bool isTouchingWall;        //Àü¹æ º®°ú ºÙ¾îÀÖ´ÂÁö Ã¼Å©
-    private bool isTouchingWallBack;    //ÈÄ¹æ º®°ú ºÙ¾îÀÖ´ÂÁö Ã¼Å©
-    private bool oldIsTouchingWall;     //Old Àü¹æ º®°ú ºÙ¾îÀÖ´ÂÁö Ã¼Å©
-    private bool oldIsTouchingWallBack; //Old ÈÄ¹æ º®°ú ºÙ¾îÀÖ´ÂÁö Ã¼Å©
-    private bool isTouchingLedge;       //LedgeCheck¿ÀºêÁ§Æ®°¡ º®À» Ã¼Å©ÇÏ´ÂÁö
+    private bool isGrounded;            //ë°”ë‹¥ ì²´í¬
+    private bool isTouchingWall;        //ì „ë°© ë²½ê³¼ ë¶™ì–´ìˆëŠ”ì§€ ì²´í¬
+    private bool isTouchingWallBack;    //í›„ë°© ë²½ê³¼ ë¶™ì–´ìˆëŠ”ì§€ ì²´í¬
+    private bool oldIsTouchingWall;     //Old ì „ë°© ë²½ê³¼ ë¶™ì–´ìˆëŠ”ì§€ ì²´í¬
+    private bool oldIsTouchingWallBack; //Old í›„ë°© ë²½ê³¼ ë¶™ì–´ìˆëŠ”ì§€ ì²´í¬
+    private bool isTouchingLedge;       //LedgeCheckì˜¤ë¸Œì íŠ¸ê°€ ë²½ì„ ì²´í¬í•˜ëŠ”ì§€
 
-    private bool coyoteTime;            //ÄÚ¿äÅ× Å¸ÀÓ Ã¼Å©
-    private bool wallJumpCoyoteTime;    //º® Á¡ÇÁ ÄÚ¿äÅ× Å¸ÀÓ Ã¼Å©
-    private bool isJumping;             //Á¡ÇÁ ÁßÀÎÁö Ã¼Å©
+    private bool coyoteTime;            //ì½”ìš”í…Œ íƒ€ì„ ì²´í¬
+    private bool wallJumpCoyoteTime;    //ë²½ ì í”„ ì½”ìš”í…Œ íƒ€ì„ ì²´í¬
+    private bool isJumping;             //ì í”„ ì¤‘ì¸ì§€ ì²´í¬
 
     private float startWallJumpCoyoteTime;
 
@@ -91,12 +91,12 @@ public class PlayerInAirState : PlayerState
         skill1Input = player.InputHandler.Skill1Input;
         skill2Input = player.InputHandler.Skill2Input;
 
-        if (player.InputHandler.AttackInputs[(int)CombatInputs.primary] && player.Inventory.weapons[(int)CombatInputs.primary].weaponData.CanAirAttack)
+        if (player.InputHandler.ActionInputs[(int)CombatInputs.primary] && player.Inventory.weapons[(int)CombatInputs.primary].weaponData.CanAirAttack)
         {
             player.PrimaryAttackState.SetWeapon(player.Inventory.weapons[(int)CombatInputs.primary]);
             player.FSM.ChangeState(player.PrimaryAttackState);
         }
-        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondary] && player.Inventory.weapons[(int)CombatInputs.secondary].weaponData.CanAirAttack)
+        else if (player.InputHandler.ActionInputs[(int)CombatInputs.secondary] && player.Inventory.weapons[(int)CombatInputs.secondary].weaponData.CanAirAttack)
         {
             player.SecondaryAttackState.SetWeapon(player.Inventory.weapons[(int)CombatInputs.secondary]);
             player.FSM.ChangeState(player.SecondaryAttackState);
@@ -152,7 +152,8 @@ public class PlayerInAirState : PlayerState
         {
             if (JumpInputStop)
             {
-                Movement.SetVelocityY(Movement.CurrentVelocity.y * player.playerData.variableJumpHeightMultiplier);
+                //TODO:InputTimeìœ¼ë¡œ ì í”„ Velocity ì¡°ì ˆ 
+                //Movement.SetVelocityY(Movement.CurrentVelocity.y * player.playerData.variableJumpHeightMultiplier);
                 isJumping = false;
             }
             else if (Movement.CurrentVelocity.y <= 0f)
