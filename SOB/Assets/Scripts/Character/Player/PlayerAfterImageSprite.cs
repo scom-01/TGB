@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAfterImageSprite : MonoBehaviour
 {
     [SerializeField]
+    [Tooltip("잔상 지속시간")]
     private float activeTime = 0.1f;
     private float timeActivated;
     private float alpha;

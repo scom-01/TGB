@@ -39,11 +39,8 @@ public class PlayerDashState : PlayerAbilityState
         player.RB.gravityScale = 0f;
         DecreaseDashCount();
         startTime = Time.time;
-    }
-
-    public void Dash()
-    {
-
+        Debug.Log($"Dash Start player.transform.position = {player.transform.position}");
+        Debug.Log($"Dash StartTime = {startTime}");
     }
 
     public override void Exit()
@@ -85,16 +82,30 @@ public class PlayerDashState : PlayerAbilityState
                 player.FSM.ChangeState(player.SecondaryAttackState);
             }
 
-            if (Time.time >= startTime + player.playerData.dashTime)
+            //대쉬 지속시간 종료
+            if (Time.time >= startTime + player.playerData.dashDuration)
             {
-                if(DashCount > 0)
+                if (DashCount > 0)
                 {
                     CanDash = true;
                 }
+                if (player.InputHandler.DashInput)
+                {            
+                    lastDashTime = Time.time;
+                    if(player.DashState.CheckIfCanDash())
+                    {
+                        player.FSM.ChangeState(player.DashState);
+                    }
+                }
 
-                Movement.SetVelocityX(0f);
-                isAbilityDone = true;
-                lastDashTime = Time.time;                
+                Movement.SetVelocityZero();
+                if(Time.time>=startTime + player.playerData.dashDuration + player.playerData.dashFlightDuration)
+                {
+                    isAbilityDone = true;
+                    lastDashTime = Time.time;
+                    Debug.Log($"Dash End player.transform.position = {player.transform.position}");
+                    Debug.Log($"Dash EndTime = {lastDashTime}");
+                }
             }
         }
     }
@@ -113,12 +124,7 @@ public class PlayerDashState : PlayerAbilityState
         lastAIPos = player.transform.position;
     }
 
-    public bool CheckIfCanDash()
-    {
-
-        return CanDash && Time.time >= lastDashTime + player.playerData.dashCooldown && DashCount > 0;
-    }
-
+    public bool CheckIfCanDash() => CanDash && Time.time >= lastDashTime + player.playerData.dashCooldown && DashCount > 0;
     public void DecreaseDashCount() => DashCount--;
     public bool CheckIfResetDash()
     {

@@ -5,13 +5,13 @@ using UnityEngine;
 /*public class CommonData1 : MonoBehaviour
 {
     [Header("CommonData")]
-    [Tooltip("Ã¼·Â")]
+    [Tooltip("ì²´ë ¥")]
     public int Health;
-    [Tooltip("Á¡ÇÁ·Â")]
+    [Tooltip("ì í”„ë ¥")]
     public float JumpVelocity;
-    [Tooltip("ÀÌµ¿¼Óµµ")]
+    [Tooltip("ì´ë™ì†ë„")]
     public float MovementSpeed;
-    [Tooltip("Ãë¾à ¿ø¼Ò")]
+    [Tooltip("ì·¨ì•½ ì›ì†Œ")]
     public ElementalPower WeakElementalPower;
 }*/
 
@@ -21,59 +21,63 @@ public class PlayerData : UnitData
  
 
     [Header("Jump State")]
-    [Tooltip("Á¡ÇÁ Velocity")]
+    [Tooltip("ì í”„ Velocity")]
     public float jumpVelocity = 15f;
-    [Tooltip("Á¡ÇÁ °¡´É È½¼ö")]
+    [Tooltip("ì í”„ ê°€ëŠ¥ íšŸìˆ˜")]
     public int amountOfJumps = 1;
 
 
 
     [Header("Collider")]
-    [Tooltip("´ë½¬ Äİ¶óÀÌ´õ Å©±â")]
+    [Tooltip("ëŒ€ì‰¬ ì½œë¼ì´ë” í¬ê¸°")]
     public float dashColliderHeight;
 
     [Header("Wall Jump State")]
-    [Tooltip("º® Á¡ÇÁ Velocity")]
+    [Tooltip("ë²½ ì í”„ Velocity")]
     public float wallJumpVelocity = 20f;
-    [Tooltip("º® Á¡ÇÁ ½Ã°£")]
+    [Tooltip("ë²½ ì í”„ ì‹œê°„")]
     public float wallJumpTime = 0.4f;
-    [Tooltip("º® Á¡ÇÁ ½Ã °¢µµ y = 2x")]
+    [Tooltip("ë²½ ì í”„ ì‹œ ê°ë„ y = 2x")]
     public Vector2 wallJumpAngle = new Vector2(1, 2);
 
     [Header("In Air State")]
-    [Tooltip("°øÁß Á¡ÇÁ °¡´É ½Ã°£ (Á¡ÇÁÇÏÁö¾Ê°í ³«ÇÏ ½Ã 0.2s ¾È¿¡ Á¡ÇÁ °¡´É)")]
+    [Tooltip("ê³µì¤‘ ì í”„ ê°€ëŠ¥ ì‹œê°„ (ì í”„í•˜ì§€ì•Šê³  ë‚™í•˜ ì‹œ 0.2s ì•ˆì— ì í”„ ê°€ëŠ¥)")]
     public float coyeteTime = 0.2f;
-    [Tooltip("¸ÖÆ¼ Á¡ÇÁ °¡´É ½Ã°£")]
+    [Tooltip("ë©€í‹° ì í”„ ê°€ëŠ¥ ì‹œê°„")]
     public float variableJumpHeightMultiplier = 0.5f;
 
     [Header("Wall Slide State")]
-    [Tooltip("º® ½½¶óÀÌµù Velocity")]
+    [Tooltip("ë²½ ìŠ¬ë¼ì´ë”© Velocity")]
     public float wallSlideVelocity = 3f;
 
     [Header("Wall Climb State")]
-    [Tooltip("º® Climb Velocity")]
+    [Tooltip("ë²½ Climb Velocity")]
     public float wallClimbVelocity = 3f;
 
     [Header("Ledge Climb State")]
-    [Tooltip("º® ¿À¸£±â ½Ã ½ÃÀÛ ½ÃÁ¡")]
+    [Tooltip("ë²½ ì˜¤ë¥´ê¸° ì‹œ ì‹œì‘ ì‹œì ")]
     public Vector2 startOffset;
-    [Tooltip("º® ¿À¸£±â ½Ã Á¾·á ÁöÁ¡")]
+    [Tooltip("ë²½ ì˜¤ë¥´ê¸° ì‹œ ì¢…ë£Œ ì§€ì ")]
     public Vector2 stopOffset;
 
     [Header("Dash State")]
-    [Tooltip("´ë½¬ ÄğÅ¸ÀÓ")]
+    [Tooltip("ëŒ€ì‰¬ ì¿¨íƒ€ì„")]
     public float dashCooldown = 0.5f;
-    [Tooltip("´ë½¬ ÃÊ±âÈ­ ÄğÅ¸ÀÓ")]
+    [Tooltip("ëŒ€ì‰¬ ì´ˆê¸°í™” ì¿¨íƒ€ì„")]
     public float dashResetCooldown = 0.8f;
-    [Tooltip("´ë½¬½Ã°£")]
-    public float dashTime = 0.2f;
-    [Tooltip("´ë½¬ ¼Óµµ")]
+    [Tooltip("ëŒ€ì‰¬ ì§€ì†ì‹œê°„")]
+    public float dashDuration = 0.2f;
+    [Tooltip("ëŒ€ì‰¬í›„ ì²´ê³µì‹œê°„")]
+    public float dashFlightDuration = 0.2f;
+    [Tooltip("ëŒ€ì‰¬ ì†ë„")]
     public float dashVelocity = 30f;
-    [Tooltip("´ë½¬ »ç¿ë°¡´É È½¼ö")]
+    [Tooltip("ëŒ€ì‰¬ ê±°ë¦¬")]
+    public float dashDistance = 30f;
+    [Tooltip("ëŒ€ì‰¬ ì‚¬ìš©ê°€ëŠ¥ íšŸìˆ˜")]
     public int dashCount = 1;
     public float drag = 10f;
     public float dashEndYMultiplier = 0.2f;
-    [Tooltip("ÀÜ»ó °£ÀÇ °Å¸®")]
+    [Tooltip("ì”ìƒ ê°„ì˜ ê±°ë¦¬")]
     public float distBetweenAfterImages = 0.5f;
 
     [Header("Block State")]
@@ -83,6 +87,6 @@ public class PlayerData : UnitData
 
     [Tooltip("Player Attack LayerMask")]
     public LayerMask playerAttackMask;
-    [Tooltip("Àû °ø°İ LayerMask")]
+    [Tooltip("ì  ê³µê²© LayerMask")]
     public LayerMask enemyAttackMask;
 }

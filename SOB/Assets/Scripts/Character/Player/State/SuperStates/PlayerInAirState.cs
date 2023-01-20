@@ -1,4 +1,4 @@
-﻿using SOB.Weapons.Components;
+using SOB.Weapons.Components;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -131,9 +131,6 @@ public class PlayerInAirState : PlayerState
         else if (dashInput && player.DashState.CheckIfCanDash())
         {
             player.FSM.ChangeState(player.DashState);
-            if (player.DashState.DashCount > 0)
-            {
-            }
         }
         else
         {
