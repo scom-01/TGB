@@ -51,7 +51,7 @@ namespace SOB.Weapons.Components
                 {
                     Debug.Log("detecter have Combat");
                     detecter.GetComponent<Combat>().Damage(
-                                this.gameObject.GetComponentInParent<Core>().GetCoreComponent<UnitStats>().CommonData, 
+                                CoreStats.CommonData, 
                                 detecter.GetComponentInParent<Core>().GetCoreComponent<UnitStats>().CommonData, 10);
                 }
                 //detecter.GetComponentInChildren<Combat>().Damage(this.GetComponent<Unit>().gameObject, detecter, detecter.GetComponent<Unit>().UnitData.commonStats.AttackPower);
