@@ -58,6 +58,7 @@ public class PlayerWeaponState : PlayerAbilityState
         {
             weapon.EventHandler.AnimationFinishedTrigger();
             player.FSM.ChangeState(player.JumpState);
+            return;
         }
 
         //공중에서 공격 후 착지상태
@@ -75,8 +76,10 @@ public class PlayerWeaponState : PlayerAbilityState
 
         if (setVelocity)
         {
-            Movement.SetVelocityX(velocityToSet * Movement.FancingDirection);
+            //Movement.SetVelocityX(velocityToSet * Movement.FancingDirection);
         }
+
+        Movement.SetVelocityX(player.playerData.commonStats.movementVelocity * xInput);
 
         if (player.InputHandler.DashInput && player.DashState.CheckIfCanDash())
         {            

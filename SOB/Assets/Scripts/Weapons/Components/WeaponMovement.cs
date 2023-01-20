@@ -17,13 +17,13 @@ namespace SOB.Weapons.Components
 
 
         private void HandleStartMovement()
-        {
-            CoreMovement.SetVelocity(currentActionData.Velocity, currentActionData.Direction, CoreMovement.FancingDirection);
+        {            
+            CoreMovement.SetVelocity(currentActionData.Velocity, currentActionData.Direction, CoreMovement.FancingDirection);            
         }
 
         private void HandleStopMovement()
         {
-            CoreMovement.SetVelocityZero();
+            CoreMovement.SetVelocityX(0f);
         }
 
         protected override void OnEnable()
