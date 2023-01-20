@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SOB.Weapons;
 using SOB.CoreSystem;
+using SOB.Weapons.Components;
 
 public class PlayerWeaponState : PlayerAbilityState
 {
@@ -65,6 +66,7 @@ public class PlayerWeaponState : PlayerAbilityState
         //TODO:Input의 boolean값을 가져와서 판별하는 방법으로 변경해야 할 듯 하다 ex)AttackInputs
         if (!player.InputHandler.ActionInputs[(int)CombatInputs.primary] && weapon.InAir && player.Core.CollisionSenses.CheckIfGrounded)
         {
+            weapon.EventHandler.AnimationFinishedTrigger();
             player.FSM.ChangeState(player.LandState);
             return;
         }
@@ -74,12 +76,13 @@ public class PlayerWeaponState : PlayerAbilityState
             Movement.CheckIfShouldFlip(xInput);
         }
 
+        setVelocity = weapon.weaponData.GetData<MovementData>().ActionData[weapon.CurrentActionCounter].CanMoveCtrl;
         if (setVelocity)
         {
             //Movement.SetVelocityX(velocityToSet * Movement.FancingDirection);
+        Movement.SetVelocityX(player.playerData.commonStats.movementVelocity * xInput);
         }
 
-        Movement.SetVelocityX(player.playerData.commonStats.movementVelocity * xInput);
 
         if (player.InputHandler.DashInput && player.DashState.CheckIfCanDash())
         {            
