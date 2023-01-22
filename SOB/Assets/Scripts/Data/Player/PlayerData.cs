@@ -2,31 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*public class CommonData1 : MonoBehaviour
-{
-    [Header("CommonData")]
-    [Tooltip("체력")]
-    public int Health;
-    [Tooltip("점프력")]
-    public float JumpVelocity;
-    [Tooltip("이동속도")]
-    public float MovementSpeed;
-    [Tooltip("취약 원소")]
-    public ElementalPower WeakElementalPower;
-}*/
-
 [CreateAssetMenu(fileName = "newPlayerData",menuName ="Data/Player Data/Base Data")]
 public class PlayerData : UnitData
 {
- 
-
     [Header("Jump State")]
     [Tooltip("점프 Velocity")]
     public float jumpVelocity = 15f;
     [Tooltip("점프 가능 횟수")]
     public int amountOfJumps = 1;
-
-
 
     [Header("Collider")]
     [Tooltip("대쉬 콜라이더 크기")]
@@ -80,6 +63,7 @@ public class PlayerData : UnitData
     [Tooltip("잔상 간의 거리")]
     public float distBetweenAfterImages = 0.5f;
 
+    //WeaponData로 옮길 예정
     [Header("Block State")]
     public float blockTime = 1f;
     public float blockCooldown = 2f;

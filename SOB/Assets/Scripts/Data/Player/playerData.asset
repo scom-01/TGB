@@ -46,11 +46,12 @@ MonoBehaviour:
   wallClimbVelocity: 6
   startOffset: {x: 0.34, y: -0.8}
   stopOffset: {x: 0.5, y: 2.3}
-  dashCooldown: 0.1
-  dashResetCooldown: 0.5
-  dashTime: 0.5
-  dashVelocity: 50
-  dashDistance: 10
+  dashCooldown: 0
+  dashResetCooldown: 0.2
+  dashDuration: 0.2
+  dashFlightDuration: 0.2
+  dashVelocity: 20
+  dashDistance: 5
   dashCount: 2
   drag: 10
   dashEndYMultiplier: 0.1
