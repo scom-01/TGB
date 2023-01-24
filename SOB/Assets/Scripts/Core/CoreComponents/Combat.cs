@@ -44,12 +44,22 @@ namespace SOB.CoreSystem
             //attacker.GetComponentInChildren<Core>().GetCoreComponent<UnitStats>()
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
             Stats?.DecreaseHealth(elementalPower, attiribute, amount);
+            if(damageParticles == null)
+            {
+                Debug.Log("Combat DamageParticles is Null");
+                return;
+            }
             ParticleManager?.StartParticlesWithRandomRotation(damageParticles);
         }
         public void Damage(CommonData AttackterCommonData, CommonData VictimCommonData, float amount)
         {
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
             Stats?.DecreaseHealth(AttackterCommonData, VictimCommonData, amount);
+            if (damageParticles == null)
+            {
+                Debug.Log("Combat DamageParticles is Null");
+                return;
+            }
             ParticleManager?.StartParticlesWithRandomRotation(damageParticles);
         }
         public void Knockback(Vector2 angle, float strength, int direction)
