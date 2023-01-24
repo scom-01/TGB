@@ -9,8 +9,9 @@ namespace SOB.CoreSystem
     {
         [SerializeField]
         private GameObject[] deathParticles;
-        //private ParticleManager ParticleManager => ParticleManager ? particleManager : core.GetCoreComponent(ref particleManager);
-        //private ParticleManager particleManager;
+        private ParticleManager ParticleManager => ParticleManager ? particleManager : core.GetCoreComponent(ref particleManager);
+        private ParticleManager particleManager;
+
 
         private UnitStats Stats => stats ? stats : core.GetCoreComponent(ref stats);
         private UnitStats stats;
@@ -20,7 +21,7 @@ namespace SOB.CoreSystem
         {
             foreach (var particle in deathParticles)
             {
-                //ParticleManager.StartParticles(particle);
+                ParticleManager.StartParticles(particle);
             }
 
             core.transform.parent.gameObject.SetActive(false);

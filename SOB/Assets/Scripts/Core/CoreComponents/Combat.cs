@@ -22,12 +22,12 @@ namespace SOB.CoreSystem
         { 
             get => stats ?? core.GetCoreComponent(ref stats); 
         }
-        //private ParticleManager ParticleManager => particleManager ? particleManager : core.GetCoreComponent(ref particleManager);
+        private ParticleManager ParticleManager => particleManager ? particleManager : core.GetCoreComponent(ref particleManager);
 
         private Movement movement;
         private CollisionSenses collisionSenses;
         private UnitStats stats;
-        //private ParticleManager particleManager;
+        private ParticleManager particleManager;
 
         [SerializeField] private float maxKnockbackTime = 0.2f;
 
@@ -44,13 +44,13 @@ namespace SOB.CoreSystem
             //attacker.GetComponentInChildren<Core>().GetCoreComponent<UnitStats>()
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
             Stats?.DecreaseHealth(elementalPower, attiribute, amount);
-            //ParticleManager?.StartParticlesWithRandomRotation(damageParticles);
+            ParticleManager?.StartParticlesWithRandomRotation(damageParticles);
         }
         public void Damage(CommonData AttackterCommonData, CommonData VictimCommonData, float amount)
         {
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
             Stats?.DecreaseHealth(AttackterCommonData, VictimCommonData, amount);
-            //ParticleManager?.StartParticlesWithRandomRotation(damageParticles);
+            ParticleManager?.StartParticlesWithRandomRotation(damageParticles);
         }
         public void Knockback(Vector2 angle, float strength, int direction)
         {
