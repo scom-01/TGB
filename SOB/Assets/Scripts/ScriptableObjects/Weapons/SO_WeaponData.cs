@@ -7,18 +7,18 @@ using SOB.Weapons.Components;
 public class SO_WeaponData : ScriptableObject
 {
     [field: SerializeField]
-    [Tooltip("°ø°İ ¸ğ¼Ç ¼ö")]
+    [Tooltip("ê³µê²© ëª¨ì…˜ ìˆ˜")]
     public int amountOfAttacks;
 
-    [Tooltip("ÄŞº¸ °ø°İ ÃÊ±âÈ­ ½Ã°£")]
+    [Tooltip("ì½¤ë³´ ê³µê²© ì´ˆê¸°í™” ì‹œê°„")]
     public float actionCounterResetCooldown;
-    [Tooltip("°ø°İ ½Ã VelocityX movement °ª")]
+    [Tooltip("ê³µê²© ì‹œ VelocityX movement ê°’")]
     public float[] movementSpeed { get; protected set; }
 
     [Header("Skill polymorphism")]
-    [Tooltip("°ø°İ Áß Á¡ÇÁ")]
+    [Tooltip("ê³µê²© ì¤‘ ì í”„")]
     public bool CanJump;
-    [Tooltip("°øÁß °ø°İ")]
+    [Tooltip("ê³µì¤‘ ê³µê²©")]
     public bool CanAirAttack;
 
     /*[field: SerializeReference] public List<ComponentData> ComponentData { get; private set; }
