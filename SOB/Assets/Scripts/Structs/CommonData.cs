@@ -11,6 +11,8 @@ public struct CommonData
     public float movementVelocity;
     [Tooltip("기본 공격력")]
     public float DefaulPower;
+    [Tooltip("추가 공격 속도 %")]
+    public float AttackSpeedPer;
     [Tooltip("기본 물리방어력")]
     public float PhysicsDefensivePer;
     [Tooltip("기본 물리방어력")]    

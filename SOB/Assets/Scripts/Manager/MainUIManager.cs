@@ -8,24 +8,42 @@ namespace SOB.Manager
     {
         private GameObject Player;
 
-        [SerializeField]
-        private TextMeshProUGUI[] textUIs;
+        [SerializeField]    private TextMeshProUGUI AttackSpeedStat;
+        [SerializeField]    private TextMeshProUGUI AttackPowerStat;
+        [SerializeField]    private TextMeshProUGUI JumpPowerStat;
+        [SerializeField]    private TextMeshProUGUI MoveSpeedStat;
+        [SerializeField]    private TextMeshProUGUI ElementalPowerStat;
+        [SerializeField]    private TextMeshProUGUI DefensivePowerStat;
 
         private void Awake()
         {
-            Player = GameManager.Inst?.player;
+            Player = GameManager.Inst?.player;            
         }
 
         // Use this for initialization
         void Start()
         {
-
+            Player = GameManager.Inst?.player;
+            if(Player)
+            {
+                float temp = 100.0f + Player.GetComponent<Player>().playerData.commonStats.AttackSpeedPer;
+                AttackSpeedStat.text = " + " + temp.ToString("F1") + "%";
+                temp = 100.0f + Player.GetComponent<Player>().playerData.commonStats.DefaulPower;
+                AttackPowerStat.text = " + " + temp.ToString("F1") + "%";
+                temp = 100.0f + Player.GetComponent<Player>().playerData.commonStats.movementVelocity;
+                MoveSpeedStat.text = " + " + temp.ToString("F1") + "%";
+                temp = 100.0f + Player.GetComponent<Player>().playerData.commonStats.ElementalAggressivePer;
+                ElementalPowerStat.text = " + " + temp.ToString("F1") + "%";
+                temp = 100.0f + Player.GetComponent<Player>().playerData.commonStats.PhysicsDefensivePer;
+                DefensivePowerStat.text = " + " + temp.ToString("F1") + "%";
+            }            
         }
 
         // Update is called once per frame
         void Update()
         {
-
+            //Player = GameManager.Inst?.player;
+            //AttackSpeedStat.text = " + " + (100.0f + Player?.GetComponent<Player>().playerData.commonStats.AttackSpeedPer).ToString() + "%";
         }
     }
 }

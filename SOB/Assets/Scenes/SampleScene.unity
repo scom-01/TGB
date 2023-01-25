@@ -10470,6 +10470,7 @@ GameObject:
   - component: {fileID: 1727414117}
   - component: {fileID: 1727414116}
   - component: {fileID: 1727414115}
+  - component: {fileID: 1727414119}
   m_Layer: 5
   m_Name: MainUI
   m_TagString: Untagged
@@ -10561,6 +10562,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1727414119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1727414114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca6b827463cd3f24c9bef386fca18689, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackSpeedStat: {fileID: 929726907}
+  AttackPowerStat: {fileID: 357704900}
+  JumpPowerStat: {fileID: 859114305}
+  MoveSpeedStat: {fileID: 155446847}
+  ElementalPowerStat: {fileID: 1953733824}
+  DefensivePowerStat: {fileID: 597574129}
 --- !u!1 &1731958471
 GameObject:
   m_ObjectHideFlags: 0
