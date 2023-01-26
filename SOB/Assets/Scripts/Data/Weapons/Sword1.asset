@@ -19,6 +19,7 @@ MonoBehaviour:
   - rid: 3615621173780152320
   - rid: 3615621173780152321
   - rid: 3615621236231503872
+  - rid: 3615621433789513728
   references:
     version: 2
     RefIds:
@@ -119,3 +120,14 @@ MonoBehaviour:
           - {fileID: 2006328060, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
           - {fileID: 590085780, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
           - {fileID: -502706545, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+    - rid: 3615621433789513728
+      type: {class: DamageData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: DamageData
+        actionData:
+        - name: Action 1
+          <Amount>k__BackingField: 5
+        - name: Action 2
+          <Amount>k__BackingField: 15
+        - name: Action 3
+          <Amount>k__BackingField: 20

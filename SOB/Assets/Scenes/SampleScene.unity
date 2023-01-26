@@ -3471,6 +3471,7 @@ GameObject:
   - component: {fileID: 1858235090}
   - component: {fileID: 1858235091}
   - component: {fileID: 1858235094}
+  - component: {fileID: 1858235095}
   m_Layer: 0
   m_Name: Sword1
   m_TagString: Untagged
@@ -15331,6 +15332,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef538d01f04db6148881dd2435a9248d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1858235095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724713815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 945032430a0219b46b0d150691d8adaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1875718352
 GameObject:
   m_ObjectHideFlags: 0
@@ -15938,6 +15951,7 @@ GameObject:
   - component: {fileID: 2134487236}
   - component: {fileID: 1247396164}
   - component: {fileID: 1247396163}
+  - component: {fileID: 2134487237}
   m_Layer: 0
   m_Name: BlockSword1
   m_TagString: Untagged
@@ -15987,6 +16001,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 481d28c0d4b469b4f90c059f1af12659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2134487237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134487232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 945032430a0219b46b0d150691d8adaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2136983664

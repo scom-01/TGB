@@ -59,22 +59,22 @@ namespace SOB.CoreSystem
             get => GenericNotImplementedError<CollisionSenses>.TryGet(collisionSenses, transform.parent.name);
             private set => collisionSenses = value;
         }
-        public Combat Combat
+        public KnockBackReceiver Combat
         {
-            get => GenericNotImplementedError<Combat>.TryGet(combat, transform.parent.name);
+            get => GenericNotImplementedError<KnockBackReceiver>.TryGet(combat, transform.parent.name);
             private set => combat = value;
         }
 
         private Movement movement;
         private Unit unit;
         private CollisionSenses collisionSenses;
-        private Combat combat;
+        private KnockBackReceiver combat;
         public virtual void Awake()
         {
             movement = GetComponentInChildren<Movement>();
             collisionSenses = GetComponentInChildren<CollisionSenses>();
             unit = GetComponentInParent<Unit>();
-            combat = GetComponentInParent<Combat>();
+            combat = GetComponentInParent<KnockBackReceiver>();
         }
     }
 }

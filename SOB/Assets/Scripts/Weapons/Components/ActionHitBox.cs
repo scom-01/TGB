@@ -9,7 +9,7 @@ namespace SOB.Weapons.Components
 {
     public class ActionHitBox : WeaponComponent<ActionHitBoxData, AttackActionHitBox>
     {
-        private event Action<Collider2D[]> OnDetectedCollider2D;
+        public event Action<Collider2D[]> OnDetectedCollider2D;
         private CoreComp<CoreSystem.Movement> movement;
 
         private CoreSystem.UnitStats coreStats;
@@ -33,30 +33,30 @@ namespace SOB.Weapons.Components
 
             if (detected.Length == 0)
             {
-                Debug.Log("detected.Length == 0");
+                Debug.Log("detected.Length == 0"); 
                 return;
             }
 
             OnDetectedCollider2D?.Invoke(detected);
 
-            foreach(var item in detected)
-            {
-                //Combat안에 있는 BoxCollider2D(Trigger)만 가져오기 위함
-                if (!item.isTrigger)
-                    continue;
+            //foreach(var item in detected)
+            //{
+            //    //Combat안에 있는 BoxCollider2D(Trigger)만 가져오기 위함
+            //    if (!item.isTrigger)
+            //        continue;
 
-                var detecter = item.gameObject;
+            //    var detecter = item.gameObject;
                 
-                if(detecter.GetComponent<Combat>())
-                {
-                    Debug.Log("detecter have Combat");
-                    detecter.GetComponent<Combat>().Damage(
-                                CoreStats.CommonData, 
-                                detecter.GetComponentInParent<Core>().GetCoreComponent<UnitStats>().CommonData, 10);
-                }
-                //detecter.GetComponentInChildren<Combat>().Damage(this.GetComponent<Unit>().gameObject, detecter, detecter.GetComponent<Unit>().UnitData.commonStats.AttackPower);
-                Debug.Log(item.name);
-            }
+            //    if(detecter.GetComponent<KnockBackReceiver>())
+            //    {
+            //        Debug.Log("detecter have Combat");
+            //        detecter.GetComponent<KnockBackReceiver>().Damage(
+            //                    CoreStats.CommonData, 
+            //                    detecter.GetComponentInParent<Core>().GetCoreComponent<UnitStats>().CommonData, 10);
+            //    }
+            //    //detecter.GetComponentInChildren<Combat>().Damage(this.GetComponent<Unit>().gameObject, detecter, detecter.GetComponent<Unit>().UnitData.commonStats.AttackPower);
+            //    Debug.Log(item.name);
+            //}
         }
 
         protected override void Start()
