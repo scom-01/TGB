@@ -6,8 +6,6 @@ namespace SOB.CoreSystem
 {
     public class DamageReceiver : CoreComponent, IDamageable
     {
-        [SerializeField] private GameObject damageParticles;
-
         private CoreComp<UnitStats> stats;
         private CoreComp<ParticleManager> particleManager;
         public void Damage(GameObject attacker, GameObject victim, ElementalPower elementalPower, DamageAttiribute attiribute, float amount)
@@ -15,12 +13,12 @@ namespace SOB.CoreSystem
             //attacker.GetComponentInChildren<Core>().GetCoreComponent<UnitStats>()
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
             stats.Comp?.DecreaseHealth(elementalPower, attiribute, amount);            
-            if (damageParticles == null)
-            {
-                Debug.Log("Combat DamageParticles is Null");
-                return;
-            }
-            particleManager.Comp?.StartParticlesWithRandomRotation(damageParticles);
+            //if (damageParticles == null)
+            //{
+            //    Debug.Log("Combat DamageParticles is Null");
+            //    return;
+            //}
+            //particleManager.Comp?.StartParticlesWithRandomRotation(damageParticles);
         }
         public void Damage(CommonData AttackterCommonData, CommonData VictimCommonData, GameObject EffectPrefab, float amount)
         {
