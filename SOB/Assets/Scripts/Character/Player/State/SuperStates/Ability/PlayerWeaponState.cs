@@ -71,6 +71,7 @@ public class PlayerWeaponState : PlayerAbilityState
             return;
         }
 
+        shouldCheckFlip = weapon.weaponData.GetData<MovementData>().ActionData[weapon.CurrentActionCounter].CanFlip;
         if (shouldCheckFlip)
         {
             Movement.CheckIfShouldFlip(xInput);

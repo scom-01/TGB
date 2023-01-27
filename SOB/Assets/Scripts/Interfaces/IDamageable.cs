@@ -13,4 +13,5 @@ public interface IDamageable
     /// <param name="attiribute">물리, 마법</param>
     /// <param name="amount">피해량</param>
     public void Damage(GameObject attacker, GameObject victim, ElementalPower elementalPower, DamageAttiribute attiribute, float amount);
+    public void Damage(CommonData AttackterCommonData, CommonData VictimCommonData, GameObject EffectPrefab, float amount);
 }

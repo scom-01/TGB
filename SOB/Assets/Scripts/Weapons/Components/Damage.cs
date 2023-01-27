@@ -14,7 +14,7 @@ namespace SOB.Weapons.Components
                 print($"Detected Item {item.name}");
                 if (item.TryGetComponent(out IDamageable damageable))
                 {
-                    //damageable.Damage(currentActionData.);
+                    damageable.Damage(this.GetComponentInParent<Unit>().UnitData.commonStats,item.GetComponentInParent<Unit>().UnitData.commonStats,GetComponent<Weapon>().weaponData.EffectPrefab, this.GetComponentInParent<Unit>().UnitData.commonStats.DefaulPower);
                 }
             }
         }

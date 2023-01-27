@@ -14,7 +14,7 @@ namespace SOB.CoreSystem
         {
             //attacker.GetComponentInChildren<Core>().GetCoreComponent<UnitStats>()
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
-            stats.Comp?.DecreaseHealth(elementalPower, attiribute, amount);
+            stats.Comp?.DecreaseHealth(elementalPower, attiribute, amount);            
             if (damageParticles == null)
             {
                 Debug.Log("Combat DamageParticles is Null");
@@ -22,16 +22,16 @@ namespace SOB.CoreSystem
             }
             particleManager.Comp?.StartParticlesWithRandomRotation(damageParticles);
         }
-        public void Damage(CommonData AttackterCommonData, CommonData VictimCommonData, float amount)
+        public void Damage(CommonData AttackterCommonData, CommonData VictimCommonData, GameObject EffectPrefab, float amount)
         {
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
             stats.Comp?.DecreaseHealth(AttackterCommonData, VictimCommonData, amount);
-            if (damageParticles == null)
+            if (EffectPrefab == null)
             {
                 Debug.Log("Combat DamageParticles is Null");
                 return;
             }
-            particleManager.Comp?.StartParticlesWithRandomRotation(damageParticles);
+            particleManager.Comp?.StartParticlesWithRandomPosition(EffectPrefab, 1.5f);
         }
 
         protected override void Awake()
