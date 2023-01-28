@@ -8,8 +8,10 @@ public class Detector : MonoBehaviour
 {
     private Unit unit;
     private BoxCollider2D BC2D;
-    [SerializeField]
-    private LayerMask DetectorMask;
+    
+    [field: SerializeField]
+    [field: Tooltip("설정한 LayerMask만 탐지가능")]
+    public LayerMask DetectorMask { get; private set; }
     private void Awake()
     {
         unit = GetComponentInParent<Unit>();
@@ -21,9 +23,18 @@ public class Detector : MonoBehaviour
         {
             BC2D.size = unit.BC2D.size;
         }
-
-        Debug.Log((int)DetectorMask.value);
     }
+
+    public void AddLayerMask(string layerName)
+    {
+        DetectorMask |= (1 << LayerMask.NameToLayer(layerName));
+    }
+
+    public void RemoveLayerMask(string layerName)
+    {
+        DetectorMask = DetectorMask & ~(1 << LayerMask.NameToLayer(layerName));
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         //DetectorMask 의 LayerMask가 아니면 return
