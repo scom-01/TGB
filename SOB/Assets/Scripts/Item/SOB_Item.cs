@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.U2D.IK;
 
 namespace SOB.Item
 {
@@ -11,6 +12,10 @@ namespace SOB.Item
         [field: SerializeField] public ItemDataSO itemData { get; private set; }
         public Core ItemCore { get; private set; }
 
+        [SerializeField]
+        private float DetectedRadius;
+
+        private CircleCollider2D CC2D;
         private Transform particleContainer;
         private void Awake()
         {
@@ -18,7 +23,12 @@ namespace SOB.Item
         }
         private void OnEnable()
         {
-
+            CC2D = GetComponent<CircleCollider2D>();
+            if(CC2D != null)
+            {
+                CC2D.isTrigger = true;
+                CC2D.radius = DetectedRadius;
+            }
         }
 
         private void OnDisable()
@@ -30,9 +40,20 @@ namespace SOB.Item
         {
             this.ItemCore = core;
         }
+        public void Detected()
+        {
+
+        }
+        public void UnDetected()
+        {
+
+        }
 
         private void OnCollisionEnter2D(Collision2D coll)
         {
+            if (!itemData.ConflictUse)
+                return;
+
             if (coll.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
                 if (itemData != null ? true : false)
