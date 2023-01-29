@@ -19,6 +19,12 @@ public enum EffectColor
     Yellow = 4,
 }
 
+public enum ItemGetType
+{ 
+    Conflict = 0,
+    DetectedSense = 1,
+}
+
 public class ItemValue : MonoBehaviour
 {
     private SwordType   ElementalType;

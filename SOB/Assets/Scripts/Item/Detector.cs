@@ -74,6 +74,10 @@ public class Detector : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        //Conflict
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Conflict"))
+            return;
+
         //DetectorMask 의 LayerMask가 아니면 return
         if ((DetectorMask.value & (1 << collision.gameObject.layer)) <= 0)
             return;
@@ -97,6 +101,10 @@ public class Detector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //Conflict
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Conflict"))
+            return;
+
         //DetectorMask 의 LayerMask가 아니면 return
         if ((DetectorMask.value & (1 << collision.gameObject.layer)) <= 0)
             return;
@@ -105,18 +113,23 @@ public class Detector : MonoBehaviour
         if (collision.gameObject.tag == "Item")
         {
             Debug.Log($"Detected {collision.name} {this.name}");
-            var collItem = collision.GetComponent<SOB_Item>();
+            var collItem = collision.GetComponentInParent<SOB_Item>();
             collItem.Detected();
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        //Conflict
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Conflict"))
+            return;
+
         //DetectorMask 의 LayerMask가 아니면 return
         if ((DetectorMask.value & (1 << collision.gameObject.layer)) <= 0)
             return;
-        
-        if(currentGO == collision.gameObject)
+
+
+        if (currentGO == collision.gameObject)
         {
             currentGO = null;
         }
@@ -129,6 +142,20 @@ public class Detector : MonoBehaviour
             Debug.Log($"UnDetected {collision.name}");
             var collItem = collision.GetComponent<SOB_Item>();
             collItem.UnDetected();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //DetectorMask 의 LayerMask가 아니면 return
+        if ((DetectorMask.value & (1 << collision.gameObject.layer)) <= 0)
+            return;
+
+        if(collision.gameObject.tag == "Item")
+        {
+            Debug.Log($"Conflict {collision.gameObject.name}");
+            var collItem = collision.gameObject.GetComponent<SOB_Item>();
+            collItem.Detected(ItemGetType.DetectedSense.ToString());
         }
     }
 }
