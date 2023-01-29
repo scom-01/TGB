@@ -12,17 +12,61 @@ public class Detector : MonoBehaviour
     [field: SerializeField]
     [field: Tooltip("설정한 LayerMask만 탐지가능")]
     public LayerMask DetectorMask { get; private set; }
+
+    private List<GameObject> DetectedList = new List<GameObject>();
+    private GameObject currentGO;
+    private float currentDistance = 0.0f;
+    private GameObject oldGO;
     private void Awake()
     {
         unit = GetComponentInParent<Unit>();
         BC2D = GetComponent<BoxCollider2D>();
     }
+
     private void Start()
     {        
         if (unit != null)
         {
             BC2D.size = unit.BC2D.size;
+            BC2D.offset = unit.BC2D.offset;
         }
+    }
+
+    private void Update()
+    {
+        
+    }
+    IEnumerator CheckCurrentGO()
+    {
+        if (DetectedList.Count > 0)
+        {
+            foreach (GameObject go in DetectedList)
+            {
+                if(currentGO == null)
+                {
+                    currentDistance = Vector2.Distance(go.transform.position, this.gameObject.transform.position);
+                    currentGO = go;
+                    Debug.Log($"제일 가까운 오브젝트 {currentGO.name}");
+                    continue;
+                }
+
+                if (go == null)
+                    continue;
+
+                if (Vector2.Distance(currentGO.transform.position,this.gameObject.transform.position) > Vector2.Distance(go.transform.position, this.gameObject.transform.position))
+                {
+                    currentDistance = Vector2.Distance(go.transform.position, this.gameObject.transform.position);
+                    currentGO = go;
+                    Debug.Log($"제일 가까운 오브젝트 {currentGO.name}");
+                }
+
+            }
+        }
+        else
+        {
+            currentDistance = 0.0f;
+        }
+        yield return 0;
     }
 
     public void AddLayerMask(string layerName)
@@ -38,11 +82,17 @@ public class Detector : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         //DetectorMask 의 LayerMask가 아니면 return
-        if ((DetectorMask.value & (1 << collision.transform.gameObject.layer)) < 0)
+        if ((DetectorMask.value & (1 << collision.gameObject.layer)) <= 0)
             return;
 
+        if (!DetectedList.Contains(collision.gameObject))
+        {
+            DetectedList.Add(collision.gameObject);
+        }
+        StartCoroutine(CheckCurrentGO());
+
         //Trap
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Trap"))
+        if (collision.gameObject.tag == "Trap")
         {
             if (unit.UnitData.invincibleTime == 0f)
             {
@@ -55,11 +105,11 @@ public class Detector : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //DetectorMask 의 LayerMask가 아니면 return
-        if ((DetectorMask.value & (1 << collision.transform.gameObject.layer)) < 0)
+        if ((DetectorMask.value & (1 << collision.gameObject.layer)) <= 0)
             return;
-        
+
         //Item
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Item"))
+        if (collision.gameObject.tag == "Item")
         {
             Debug.Log($"Detected {collision.name} {this.name}");
             var collItem = collision.GetComponent<SOB_Item>();
@@ -70,12 +120,16 @@ public class Detector : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         //DetectorMask 의 LayerMask가 아니면 return
-        if ((DetectorMask.value & (1 << collision.transform.gameObject.layer)) < 0)
+        if ((DetectorMask.value & (1 << collision.gameObject.layer)) <= 0)
             return;
+        
+        if(currentGO == collision.gameObject)
+            StartCoroutine(CheckCurrentGO());
 
+        DetectedList.Remove(collision.gameObject);
 
         //Item
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Item"))
+        if (collision.gameObject.tag == "Item")
         {
             Debug.Log($"UnDetected {collision.name}");
             var collItem = collision.GetComponent<SOB_Item>();
