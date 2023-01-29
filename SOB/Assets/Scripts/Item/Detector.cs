@@ -16,7 +16,6 @@ public class Detector : MonoBehaviour
     private List<GameObject> DetectedList = new List<GameObject>();
     private GameObject currentGO;
     private float currentDistance = 0.0f;
-    private GameObject oldGO;
     private void Awake()
     {
         unit = GetComponentInParent<Unit>();
@@ -44,7 +43,6 @@ public class Detector : MonoBehaviour
             {
                 if(currentGO == null)
                 {
-                    currentDistance = Vector2.Distance(go.transform.position, this.gameObject.transform.position);
                     currentGO = go;
                     Debug.Log($"제일 가까운 오브젝트 {currentGO.name}");
                     continue;
@@ -55,16 +53,11 @@ public class Detector : MonoBehaviour
 
                 if (Vector2.Distance(currentGO.transform.position,this.gameObject.transform.position) > Vector2.Distance(go.transform.position, this.gameObject.transform.position))
                 {
-                    currentDistance = Vector2.Distance(go.transform.position, this.gameObject.transform.position);
                     currentGO = go;
                     Debug.Log($"제일 가까운 오브젝트 {currentGO.name}");
                 }
 
             }
-        }
-        else
-        {
-            currentDistance = 0.0f;
         }
         yield return 0;
     }
@@ -124,7 +117,9 @@ public class Detector : MonoBehaviour
             return;
         
         if(currentGO == collision.gameObject)
-            StartCoroutine(CheckCurrentGO());
+        {
+            currentGO = null;
+        }
 
         DetectedList.Remove(collision.gameObject);
 

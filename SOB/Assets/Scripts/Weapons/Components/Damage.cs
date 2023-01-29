@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace SOB.Weapons.Components
@@ -11,6 +12,9 @@ namespace SOB.Weapons.Components
         {
             foreach(var item in coll)
             {
+                if (item.gameObject.tag == "Player")
+                    continue;
+
                 print($"Detected Item {item.name}");
                 if (item.TryGetComponent(out IDamageable damageable))
                 {
