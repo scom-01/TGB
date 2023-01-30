@@ -45,7 +45,9 @@ public class Detector : MonoBehaviour
                 {
                     currentGO = go;
                     Debug.Log($"제일 가까운 오브젝트 {currentGO.name}");
-                    currentGO.GetComponentInParent<SOB_Item>().Detected(this.gameObject.transform.localPosition.x < currentGO.transform.localPosition.x);
+                    Debug.Log(this.gameObject.transform.localPosition.x);
+                    Debug.Log(currentGO.transform.localPosition.x);
+                    currentGO.GetComponentInParent<SOB_Item>().Detected(this.gameObject.transform.position.x < currentGO.transform.position.x);
                     continue;
                 }
 
@@ -58,7 +60,7 @@ public class Detector : MonoBehaviour
                     currentGO = go;
                     Debug.Log($"제일 가까운 오브젝트 {currentGO.name}");
                     
-                    currentGO.GetComponentInParent<SOB_Item>().Detected(this.gameObject.transform.localPosition.x < currentGO.transform.localPosition.x);                    
+                    currentGO.GetComponentInParent<SOB_Item>().Detected(this.gameObject.transform.position.x < currentGO.transform.position.x);                    
 
                     continue;
                 }
