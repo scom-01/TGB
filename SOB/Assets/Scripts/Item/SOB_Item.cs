@@ -40,16 +40,36 @@ namespace SOB.Item
         {
             this.ItemCore = core;
         }
-
-        public void Detected(string coroutine)
+        /// <summary>
+        /// 감지된 아이템
+        /// </summary>
+        /// <param name="isright">Detector의 오른쪽인지(Default true)</param>
+        public void Detected(bool isright = true)
         {
-            Debug.Log("Detected + " +coroutine);
-            StartCoroutine(coroutine);
+            GameManager.Inst.SubUI.isRight(isright);
+
+            if (GameManager.Inst.SubUI.DetailSubUI.gameObject.activeSelf)
+            {
+                //대충 SubUI 내용 바꾸는 코드
+                Debug.Log($"Change {GameManager.Inst.SubUI.DetailSubUI.gameObject.name} Text");
+                GameManager.Inst.SubUI.SetSubUI(false);
+                GameManager.Inst.SubUI.SetSubUI(true);
+            }
+            else
+            {
+                Debug.Log($"{GameManager.Inst.SubUI.DetailSubUI.gameObject.name} SetActive(true)");
+                GameManager.Inst.SubUI.SetSubUI(true);
+            }
         }
 
-        public void Detected()
+        public void UnDetected()
         {
+            GameManager.Inst.SubUI.SetSubUI(false);
+        }
 
+        public void Conflict(string coroutine)
+        {
+            StartCoroutine(coroutine);
         }
 
         IEnumerator DetectedSense()
@@ -57,7 +77,8 @@ namespace SOB.Item
             Debug.LogWarning($"DetectedSense {this.name}");
             if (itemData != null ? true : false)
             {
-                Instantiate(itemData.AcquiredEffectPrefab, this.gameObject.transform.position, Quaternion.identity, particleContainer);
+                if (itemData.AcquiredEffectPrefab != null)
+                    Instantiate(itemData.AcquiredEffectPrefab, this.gameObject.transform.position, Quaternion.identity, particleContainer);
                 Debug.LogWarning($"Get {this.name}");
                 this.gameObject.SetActive(false);
             }
@@ -71,11 +92,6 @@ namespace SOB.Item
         {
 
             yield return 0;
-        }
-
-        public void UnDetected()
-        {
-
         }
     }
 }

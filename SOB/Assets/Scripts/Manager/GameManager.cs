@@ -2,20 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using SOB.Manager;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Inst = null;
 
+    [Header("----Player----")]
     [SerializeField]
     private Transform respawnPoint;
     [SerializeField]
     public GameObject player;
     [SerializeField]
     private float respawnTime;
-
+    
     private float respawnTimeStart;
     private bool respawn;
+
+
+    [Header("----UI----")]
+    public MainUIManager MainUI;
+    public SubUIManager SubUI;
+
+    
 
     private CinemachineVirtualCamera CVC;
 

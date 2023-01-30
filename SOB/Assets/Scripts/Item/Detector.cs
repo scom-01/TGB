@@ -45,6 +45,7 @@ public class Detector : MonoBehaviour
                 {
                     currentGO = go;
                     Debug.Log($"제일 가까운 오브젝트 {currentGO.name}");
+                    currentGO.GetComponentInParent<SOB_Item>().Detected(this.gameObject.transform.localPosition.x < currentGO.transform.localPosition.x);
                     continue;
                 }
 
@@ -53,8 +54,13 @@ public class Detector : MonoBehaviour
 
                 if (Vector2.Distance(currentGO.transform.position,this.gameObject.transform.position) > Vector2.Distance(go.transform.position, this.gameObject.transform.position))
                 {
+                    //가장 가까운 Detected 오브젝트
                     currentGO = go;
                     Debug.Log($"제일 가까운 오브젝트 {currentGO.name}");
+                    
+                    currentGO.GetComponentInParent<SOB_Item>().Detected(this.gameObject.transform.localPosition.x < currentGO.transform.localPosition.x);                    
+
+                    continue;
                 }
 
             }
@@ -114,7 +120,7 @@ public class Detector : MonoBehaviour
         {
             Debug.Log($"Detected {collision.name} {this.name}");
             var collItem = collision.GetComponentInParent<SOB_Item>();
-            collItem.Detected();
+            //collItem.Detected();
         }
     }
 
@@ -140,13 +146,17 @@ public class Detector : MonoBehaviour
         if (collision.gameObject.tag == "Item")
         {
             Debug.Log($"UnDetected {collision.name}");
-            var collItem = collision.GetComponent<SOB_Item>();
+            var collItem = collision.GetComponentInParent<SOB_Item>();
             collItem.UnDetected();
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //Conflict
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Detected"))
+            return;
+
         //DetectorMask 의 LayerMask가 아니면 return
         if ((DetectorMask.value & (1 << collision.gameObject.layer)) <= 0)
             return;
@@ -155,7 +165,7 @@ public class Detector : MonoBehaviour
         {
             Debug.Log($"Conflict {collision.gameObject.name}");
             var collItem = collision.gameObject.GetComponent<SOB_Item>();
-            collItem.Detected(ItemGetType.DetectedSense.ToString());
+            collItem.Conflict(ItemGetType.DetectedSense.ToString());
         }
     }
 }
