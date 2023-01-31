@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 namespace SOB.Weapons.Components
 {
     public class Damage : WeaponComponent<DamageData,AttackDamage>
     {
         private ActionHitBox hitBox;
+        /// <summary>
+        /// Hit Collider가 감지된 오브젝트에 Damage
+        /// </summary>
+        /// <param name="coll"></param>
         private void HandleDetectedCollider2D(Collider2D[] coll)
         {
             foreach(var item in coll)

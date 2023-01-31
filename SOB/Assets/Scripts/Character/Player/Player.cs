@@ -36,6 +36,7 @@ public class Player : Unit
     public PlayerInputHandler InputHandler { get; private set; }
     [HideInInspector]
     public PlayerData playerData;
+    public GameObject DamageTextPrefab;
     #endregion
 
 

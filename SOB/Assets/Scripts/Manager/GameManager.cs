@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     [Header("----UI----")]
     public MainUIManager MainUI;
     public SubUIManager SubUI;
-
+    public DamageUIManager DamageUI;
     
 
     private CinemachineVirtualCamera CVC;

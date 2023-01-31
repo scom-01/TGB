@@ -29,7 +29,14 @@ namespace SOB.CoreSystem
                 Debug.Log("Combat DamageParticles is Null");
                 return;
             }
-            particleManager.Comp?.StartParticlesWithRandomPosition(EffectPrefab, 1.5f);
+            var particle = particleManager.Comp?.StartParticlesWithRandomPosition(EffectPrefab, 1.5f);
+            var damageText = Instantiate(GameManager.Inst.player.GetComponent<Player>().DamageTextPrefab,
+                        new Vector3(particle.transform.position.x, particle.transform.position.y + 50),
+                        Quaternion.identity, GameManager.Inst.DamageUI.transform);;
+            damageText.GetComponent<DamageText>().DamageAmount = amount;
+            damageText.GetComponent<DamageText>().Color = Color.black;
+            damageText.GetComponent<DamageText>().FontSize = 50;
+
         }
 
         protected override void Awake()
