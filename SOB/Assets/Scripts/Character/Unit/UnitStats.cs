@@ -142,7 +142,7 @@ namespace SOB.CoreSystem
             }
         }
 
-        public void DecreaseHealth(CommonData AttackerData, CommonData VictimData, float amount)
+        public float DecreaseHealth(CommonData AttackerData, CommonData VictimData, float amount)
         {
             amount = CalculateDamage(AttackerData, VictimData, amount);
             CurrentHealth -= amount;
@@ -152,6 +152,7 @@ namespace SOB.CoreSystem
             {
                 OnHealthZero?.Invoke();
             }
+            return amount;
         }
 
         public float CalculateDamage(ElementalPower elemental, DamageAttiribute attiribute, float amount)

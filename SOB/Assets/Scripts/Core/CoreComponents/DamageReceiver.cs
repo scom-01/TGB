@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
@@ -23,17 +24,27 @@ namespace SOB.CoreSystem
         public void Damage(CommonData AttackterCommonData, CommonData VictimCommonData, GameObject EffectPrefab, float amount)
         {
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
+            
+            //TODO: 계산한 데미지 수치 return 필요
             stats.Comp?.DecreaseHealth(AttackterCommonData, VictimCommonData, amount);
             if (EffectPrefab == null)
             {
                 Debug.Log("Combat DamageParticles is Null");
                 return;
             }
+
+            //간결화 필요
             var particle = particleManager.Comp?.StartParticlesWithRandomPosition(EffectPrefab, 1.5f);
+
+            var pos = new Vector2((Camera.main.WorldToViewportPoint(particle.transform.position).x * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x * 0.5f),
+                                    (Camera.main.WorldToViewportPoint(particle.transform.position).y * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y * 0.5f) + 50);
             var damageText = Instantiate(GameManager.Inst.player.GetComponent<Player>().DamageTextPrefab,
-                        new Vector3(particle.transform.position.x, particle.transform.position.y + 50),
-                        Quaternion.identity, GameManager.Inst.DamageUI.transform);;
-            damageText.GetComponent<DamageText>().DamageAmount = amount;
+                            new Vector3(pos.x, pos.y),
+                            Quaternion.identity, GameManager.Inst.DamageUI.transform);
+            //간결화 필요
+
+            damageText.GetComponent<DamageText>().GetComponent<RectTransform>().anchoredPosition = pos;
+            damageText.GetComponent<DamageText>().GetComponent<TextMeshProUGUI>().text = amount.ToString();
             damageText.GetComponent<DamageText>().Color = Color.black;
             damageText.GetComponent<DamageText>().FontSize = 50;
 
