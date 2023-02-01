@@ -43,10 +43,10 @@ namespace SOB.CoreSystem
                             Quaternion.identity, GameManager.Inst.DamageUI.transform);
             //간결화 필요
 
-            damageText.GetComponent<DamageText>().GetComponent<RectTransform>().anchoredPosition = pos;
-            damageText.GetComponent<DamageText>().GetComponent<TextMeshProUGUI>().text = amount.ToString();
-            damageText.GetComponent<DamageText>().Color = Color.black;
-            damageText.GetComponent<DamageText>().FontSize = 50;
+            damageText.GetComponent<RectTransform>().anchoredPosition = pos;
+            damageText.GetComponentInChildren<DamageText>().HitTextMeshPro.text = amount.ToString();
+            damageText.GetComponentInChildren<DamageText>().Color = Color.black;
+            damageText.GetComponentInChildren<DamageText>().FontSize = 50;
 
         }
 

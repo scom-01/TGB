@@ -47,10 +47,12 @@ namespace SOB.Item
         public void Detected(bool isright = true)
         {
             GameManager.Inst.SubUI.isRight(isright);
+            GameManager.Inst.SubUI.DetailSubUI.GetComponent<DetailUI>().MainItemName = itemData.ItemData.ItemName;
+            GameManager.Inst.SubUI.DetailSubUI.GetComponent<DetailUI>().SubItemName = itemData.ItemData.ItemDescription;
 
             if (GameManager.Inst.SubUI.DetailSubUI.gameObject.activeSelf)
             {
-                //대충 SubUI 내용 바꾸는 코드
+                //대충 SubUI 내용 바꾸는 코드                
                 Debug.Log($"Change {GameManager.Inst.SubUI.DetailSubUI.gameObject.name} Text");
                 GameManager.Inst.SubUI.SetSubUI(false);
                 GameManager.Inst.SubUI.SetSubUI(true);
@@ -92,6 +94,12 @@ namespace SOB.Item
         {
 
             yield return 0;
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.white;
+            Gizmos.DrawWireSphere(transform.position, DetectedRadius/2);
         }
     }
 }

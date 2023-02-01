@@ -10,7 +10,21 @@ public class DetailUI : MonoBehaviour
     [SerializeField]
     private GameObject mainUI;
     [Tooltip("하위 컴포넌트 중 'MainText' Text String")]
-    public string mainItemName;
+    public string MainItemName 
+    { 
+        get 
+        {
+            return mainItemName; 
+        }
+        set
+        {
+            mainItemName = value;
+            if(mainUI != null)
+                mainUI.GetComponent<TextMeshProUGUI>().text = mainItemName;
+        }
+    }
+    private string mainItemName;
+
     [SerializeField]
     private RawImage icon;
 
@@ -18,7 +32,20 @@ public class DetailUI : MonoBehaviour
     [SerializeField]
     private GameObject subUI;
     [Tooltip("하위 컴포넌트 중 'SubText' Text String")]
-    public string subItemName;
+    public string SubItemName
+    {
+        get
+        {
+            return subItemName;
+        }
+        set
+        {
+            subItemName = value;
+            if (subUI != null)
+                subUI.GetComponent<TextMeshProUGUI>().text = subItemName;
+        }
+    }
+    private string subItemName;
 
 
     [SerializeField]

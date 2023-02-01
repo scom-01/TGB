@@ -21,12 +21,16 @@ public class DamageText : MonoBehaviour
     private void Awake()
     {
         this.HitTextMeshPro = this.GetComponent<TextMeshProUGUI>();
+
         if (HitTextMeshPro != null)
         {
             HitTextMeshPro.text = DamageAmount.ToString();
         }
     }
-
+    private void Start()
+    {
+        
+    }
     public void ChangeFontColor()
     {
         HitTextMeshPro.color = Color;
@@ -35,8 +39,8 @@ public class DamageText : MonoBehaviour
     /// <summary>
     /// AnimationEvent
     /// </summary>
-    private void FinishAnim()
+    public void FinishAnim()
     {
-        Destroy(this.gameObject);
+        Destroy(this.transform.parent.gameObject);
     }
 }

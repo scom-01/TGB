@@ -6,6 +6,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "newItemData", menuName = "Data/Item Data/Item Data")]
 public class ItemDataSO : ScriptableObject
 {
+    [field: Tooltip("아이템 Data")]
+    public ItemData ItemData;
+
     //--Collider--
     [field: Header("Collider Use")]
     [field: Tooltip("획득 시 이펙트")]
