@@ -11,6 +11,7 @@ namespace SOB.Item
     {
         [field: SerializeField] public ItemDataSO itemData { get; private set; }
         public Core ItemCore { get; private set; }
+        public Unit unit;
 
         [SerializeField]
         private float DetectedRadius;
@@ -29,10 +30,27 @@ namespace SOB.Item
                 CC2D.isTrigger = true;
                 CC2D.radius = DetectedRadius;
             }
+
+            if(itemData.Event_item_type.Count > 0)
+            {
+                for(int i = 0; i< itemData.coroutineName.Length; i++)
+                {
+                    itemData.Event_item_type.Add(itemData.coroutineName[i], itemData.coroutineValue[i]);
+                }
+            }
         }
+
+        
 
         private void OnDisable()
         {
+            //아이템이 가진 효과 List StartCoroutine
+            for(int i = 0; i < itemData.coroutineName.Length; i++)
+            {
+                //TODO: Event 내용 IEnumerator 로 코루틴화
+                //StartCoroutine(itemData.coroutineName[i], itemData.coroutineValue[i]);
+            }
+
             Destroy(this.gameObject, 0.1f);
         }
 
@@ -74,6 +92,15 @@ namespace SOB.Item
             StartCoroutine(coroutine);
         }
 
+        #region IEnumerator
+        IEnumerator IncreaseHealth(float value)
+        {
+            if (unit != null)
+            {
+                unit.Core.GetCoreComponent<UnitStats>().IncreaseHealth(value);
+            }
+            yield return 0;
+        }
         IEnumerator DetectedSense()
         {
             Debug.LogWarning($"DetectedSense {this.name}");
@@ -95,6 +122,7 @@ namespace SOB.Item
 
             yield return 0;
         }
+        #endregion
 
         private void OnDrawGizmos()
         {

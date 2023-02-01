@@ -5,21 +5,8 @@ using UnityEngine;
 namespace SOB.Manager
 {
     public class SubUIManager : MonoBehaviour
-    {
-        
+    {        
         public GameObject DetailSubUI;
-
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
 
         public void isRight(bool isright)
         {
