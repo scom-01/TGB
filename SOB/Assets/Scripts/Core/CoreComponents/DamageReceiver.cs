@@ -26,7 +26,8 @@ namespace SOB.CoreSystem
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
             
             //TODO: 계산한 데미지 수치 return 필요
-            stats.Comp?.DecreaseHealth(AttackterCommonData, VictimCommonData, amount);
+            //stats.Comp?.DecreaseHealth(AttackterCommonData, VictimCommonData, amount);
+            var damage =  stats.Comp.DecreaseHealth(AttackterCommonData, VictimCommonData, amount);
             if (EffectPrefab == null)
             {
                 Debug.Log("Combat DamageParticles is Null");
@@ -44,7 +45,7 @@ namespace SOB.CoreSystem
             //간결화 필요
 
             damageText.GetComponent<RectTransform>().anchoredPosition = pos;
-            damageText.GetComponentInChildren<DamageText>().SetText(amount, 50, Color.blue);
+            damageText.GetComponentInChildren<DamageText>().SetText(damage, 50, Color.blue);
         }
 
         protected override void Awake()

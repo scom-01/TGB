@@ -18,6 +18,7 @@ namespace SOB.CoreSystem
         public CommonData CommonData { get => commonData; set => commonData = value; }
         private CommonData commonData;
         public float CurrentHealth { get => currentHealth; set => currentHealth = value <= 0 ? 0 : value; }
+        [SerializeField]
         private float currentHealth;
 
         /// <summary>
@@ -132,7 +133,7 @@ namespace SOB.CoreSystem
 
         public void DecreaseHealth(ElementalPower elemental, DamageAttiribute attiribute, float amount)
         {
-            amount = CalculateDamage(elemental, attiribute, amount);
+            CalculateDamage(elemental, attiribute, amount);
             CurrentHealth -= amount;
 
             Debug.Log($"{core.transform.parent.name} Health = {currentHealth}");
