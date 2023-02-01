@@ -44,10 +44,7 @@ namespace SOB.CoreSystem
             //간결화 필요
 
             damageText.GetComponent<RectTransform>().anchoredPosition = pos;
-            damageText.GetComponentInChildren<DamageText>().HitTextMeshPro.text = amount.ToString();
-            damageText.GetComponentInChildren<DamageText>().Color = Color.black;
-            damageText.GetComponentInChildren<DamageText>().FontSize = 50;
-
+            damageText.GetComponentInChildren<DamageText>().SetText(amount, 50, Color.blue);
         }
 
         protected override void Awake()

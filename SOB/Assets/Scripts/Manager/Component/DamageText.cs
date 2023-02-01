@@ -9,10 +9,63 @@ public class DamageText : MonoBehaviour
     
     private TextMeshProUGUI hitTextMeshPro;
 
-    public float DamageAmount { get => damageAmount; set => damageAmount = value; }
-    public float FontSize { get => fontSize; set => fontSize = value; }
-    public Color Color { get => color; set => color = value; }
-
+    public float DamageAmount
+    {
+        get
+        {
+            return damageAmount;
+        }
+        set
+        {
+            damageAmount = value;
+            if(HitTextMeshPro != null)
+            {
+                HitTextMeshPro.text = damageAmount.ToString();
+            }
+            else
+            {
+                Debug.LogWarning("HitTextMeshPro is null");
+            }
+        }
+    }
+    public float FontSize 
+    { 
+        get
+        {
+            return fontSize;
+        } 
+        set
+        {
+            fontSize = value;
+            if (HitTextMeshPro != null)
+            {
+                HitTextMeshPro.fontSize = fontSize;
+            }
+            else
+            {
+                Debug.LogWarning("HitTextMeshPro is null");
+            }
+        }
+    }
+    public Color Color 
+    { 
+        get
+        {
+            return color;
+        }
+        set
+        {
+            color = value;
+            if (HitTextMeshPro != null)
+            {
+                HitTextMeshPro.color = color;
+            }
+            else
+            {
+                Debug.LogWarning("HitTextMeshPro is null");
+            }
+        }
+    }
 
     private float damageAmount;
     private float fontSize;
@@ -21,19 +74,13 @@ public class DamageText : MonoBehaviour
     private void Awake()
     {
         this.HitTextMeshPro = this.GetComponent<TextMeshProUGUI>();
+    }
 
-        if (HitTextMeshPro != null)
-        {
-            HitTextMeshPro.text = DamageAmount.ToString();
-        }
-    }
-    private void Start()
+    public void SetText(float damage, float fontsize, Color color)
     {
-        
-    }
-    public void ChangeFontColor()
-    {
-        HitTextMeshPro.color = Color;
+        this.DamageAmount = damage;
+        this.FontSize = fontsize;
+        this.Color = color;
     }
 
     /// <summary>
