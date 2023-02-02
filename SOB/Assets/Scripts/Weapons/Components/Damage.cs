@@ -43,7 +43,7 @@ namespace SOB.Weapons.Components
         }
 
         protected override void OnDisable()
-        {
+        { 
             base.OnDisable();
 
             hitBox.OnDetectedCollider2D -= HandleDetectedCollider2D;

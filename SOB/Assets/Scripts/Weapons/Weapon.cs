@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,8 +9,9 @@ namespace SOB.Weapons
 {
     public class Weapon : MonoBehaviour
     {
-        [field: SerializeField] public WeaponDataSO weaponData { get; private set; }
         [SerializeField] private float actionCounterResetCooldown;
+
+        [field: SerializeField] public WeaponDataSO weaponData { get; private set; }
 
         [HideInInspector]
         protected string weaponAnimBoolStr;
@@ -117,6 +118,10 @@ namespace SOB.Weapons
                 return;
             }
             WeaponCore = core;
+        }
+        public void SetData(WeaponDataSO data)
+        {
+            this.weaponData = data;
         }
 
         public void ChangeactionCounter(int value)

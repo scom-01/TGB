@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using SOB.Weapons.Components;
+using System;
 
 [CreateAssetMenu(fileName = "newWeaponData", menuName = "Data/Weapon Data/SO Weapon Data")]
 public class WeaponDataSO : ScriptableObject
@@ -19,6 +20,10 @@ public class WeaponDataSO : ScriptableObject
         return ComponentData.OfType<T>().FirstOrDefault();
     }
 
+    public List<Type> GetAllDependencies()
+    {
+        return ComponentData.Select(component => component.ComponentDependency).ToList();
+    }
     public void AddData(ComponentData data)
     {
         if (ComponentData.FirstOrDefault(t => t.GetType() == data.GetType()) != null)
