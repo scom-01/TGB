@@ -10,3 +10,9 @@ public enum EVENT_ITEM_TYPE
     E_IncreaseDefaultDamage = 2,
 }
 
+public enum ITEM_TPYE
+{
+    Detected = 0,
+    Collision = 1,
+    
+}

@@ -70,7 +70,6 @@ namespace SOB.Item
             {
                 //대충 SubUI 내용 바꾸는 코드                
                 Debug.Log($"Change {GameManager.Inst.SubUI.DetailSubUI.gameObject.name} Text");
-                GameManager.Inst.SubUI.SetSubUI(false);
                 GameManager.Inst.SubUI.SetSubUI(true);
             }
             else
@@ -81,7 +80,7 @@ namespace SOB.Item
         }
 
         public void UnDetected()
-        {
+        {            
             GameManager.Inst.SubUI.SetSubUI(false);
         }
 
@@ -112,7 +111,7 @@ namespace SOB.Item
             
             yield return 0;
         }
-        IEnumerator Conflict()
+        IEnumerator Collision()
         {
             Debug.LogWarning($"Conflict {this.name}");
             if (itemData != null ? true : false)
@@ -133,7 +132,10 @@ namespace SOB.Item
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.white;
-            Gizmos.DrawWireSphere(transform.position, DetectedRadius/2);
+            if (DetectedRadius != 0)
+            {
+                Gizmos.DrawWireSphere(transform.position, DetectedRadius/2);
+            }
         }
     }
 }

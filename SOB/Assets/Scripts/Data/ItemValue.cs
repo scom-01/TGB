@@ -20,9 +20,13 @@ public enum EffectColor
 }
 
 public enum ItemGetType
-{ 
-    Conflict = 0,
+{
+    [Tooltip("충돌(Rigid[dynamic], BoxCollider2D)")]
+    Collision = 0,
+    [Tooltip("감지(Rigid[static], CircleCollider2D")]
     DetectedSense = 1,
+    [Tooltip("덩어리(Rigid[dynamic], CircleCollider2D")]
+    Chunk = 2,
 }
 
 public class ItemValue : MonoBehaviour

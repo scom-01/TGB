@@ -8,7 +8,7 @@ public class Detector : MonoBehaviour
 {
     private Unit unit;
     private BoxCollider2D BC2D;
-    
+
     [field: SerializeField]
     [field: Tooltip("설정한 LayerMask만 탐지가능")]
     public LayerMask DetectorMask { get; private set; }
@@ -23,7 +23,7 @@ public class Detector : MonoBehaviour
     }
 
     private void Start()
-    {        
+    {
         if (unit != null)
         {
             BC2D.size = unit.BC2D.size;
@@ -33,7 +33,7 @@ public class Detector : MonoBehaviour
 
     private void Update()
     {
-        
+
     }
     IEnumerator CheckCurrentGO()
     {
@@ -41,7 +41,7 @@ public class Detector : MonoBehaviour
         {
             foreach (GameObject go in DetectedList)
             {
-                if(currentGO == null)
+                if (currentGO == null)
                 {
                     currentGO = go;
                     Debug.Log($"제일 가까운 오브젝트 {currentGO.name}");
@@ -56,13 +56,13 @@ public class Detector : MonoBehaviour
                 if (go == null)
                     continue;
 
-                if (Vector2.Distance(currentGO.transform.position,this.gameObject.transform.position) > Vector2.Distance(go.transform.position, this.gameObject.transform.position))
+                if (Vector2.Distance(currentGO.transform.position, this.gameObject.transform.position) > Vector2.Distance(go.transform.position, this.gameObject.transform.position))
                 {
                     //가장 가까운 Detected 오브젝트
                     currentGO = go;
                     Debug.Log($"제일 가까운 오브젝트 {currentGO.name}");
                     currentGO.GetComponentInParent<SOB_Item>().unit = unit;
-                    currentGO.GetComponentInParent<SOB_Item>().Detected(this.gameObject.transform.position.x < currentGO.transform.position.x);                    
+                    currentGO.GetComponentInParent<SOB_Item>().Detected(this.gameObject.transform.position.x < currentGO.transform.position.x);
 
                     continue;
                 }
@@ -82,10 +82,11 @@ public class Detector : MonoBehaviour
         DetectorMask = DetectorMask & ~(1 << LayerMask.NameToLayer(layerName));
     }
 
+    //Detected
     private void OnTriggerStay2D(Collider2D collision)
     {
-        //Conflict
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Conflict"))
+        //Collision return
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Collision"))
             return;
 
         //DetectorMask 의 LayerMask가 아니면 return
@@ -108,11 +109,11 @@ public class Detector : MonoBehaviour
             }
         }
     }
-
+    //Detected
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Conflict
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Conflict"))
+        //Collision return
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Collision"))
             return;
 
         //DetectorMask 의 LayerMask가 아니면 return
@@ -122,42 +123,43 @@ public class Detector : MonoBehaviour
         //Item
         if (collision.gameObject.tag == "Item")
         {
-            Debug.Log($"Detected {collision.name} {this.name}");
+            //Debug.Log($"Detected {collision.name} {this.name}");
             var collItem = collision.GetComponentInParent<SOB_Item>();
             //collItem.Detected();
         }
     }
-
+    //Detected
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //Conflict
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Conflict"))
+        //Collision return
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Collision"))
             return;
 
         //DetectorMask 의 LayerMask가 아니면 return
         if ((DetectorMask.value & (1 << collision.gameObject.layer)) <= 0)
             return;
 
-
-        if (currentGO == collision.gameObject)
-        {
-            currentGO = null;
-        }
 
         DetectedList.Remove(collision.gameObject);
 
         //Item
         if (collision.gameObject.tag == "Item")
         {
-            Debug.Log($"UnDetected {collision.name}");
+            Debug.Log($"UnDetected {this.name}");
             var collItem = collision.GetComponentInParent<SOB_Item>();
-            collItem.UnDetected();
+            if (currentGO == collision.gameObject)
+            {
+                collItem.UnDetected();
+                currentGO = null;
+            }
         }
     }
 
+
+    //Collider
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //Conflict
+        //Detected이면 return
         if (collision.gameObject.layer == LayerMask.NameToLayer("Detected"))
             return;
 
@@ -165,12 +167,12 @@ public class Detector : MonoBehaviour
         if ((DetectorMask.value & (1 << collision.gameObject.layer)) <= 0)
             return;
 
-        if(collision.gameObject.tag == "Item")
+        if (collision.gameObject.tag == "Item")
         {
             Debug.Log($"Conflict {collision.gameObject.name}");
             var collItem = collision.gameObject.GetComponent<SOB_Item>();
             collItem.unit = unit;
-            collItem.CallCoroutine(ItemGetType.Conflict.ToString());
+            collItem.CallCoroutine(ItemGetType.Collision.ToString());
         }
     }
 }
