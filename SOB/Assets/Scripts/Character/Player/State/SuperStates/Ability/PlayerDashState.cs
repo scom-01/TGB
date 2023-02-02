@@ -63,7 +63,6 @@ public class PlayerDashState : PlayerAbilityState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
         if (!isExitingState)
         {
             Movement.SetVelocityX(player.playerData.dashVelocity * Movement.FancingDirection);
@@ -94,6 +93,7 @@ public class PlayerDashState : PlayerAbilityState
                     lastDashTime = Time.time;
                     if(player.DashState.CheckIfCanDash())
                     {
+                        Movement.CheckIfShouldFlip(player.InputHandler.NormInputX);
                         player.FSM.ChangeState(player.DashState);
                     }
                 }
