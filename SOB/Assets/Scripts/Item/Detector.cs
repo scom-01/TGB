@@ -169,7 +169,8 @@ public class Detector : MonoBehaviour
         {
             Debug.Log($"Conflict {collision.gameObject.name}");
             var collItem = collision.gameObject.GetComponent<SOB_Item>();
-            collItem.Conflict(ItemGetType.DetectedSense.ToString());
+            collItem.unit = unit;
+            collItem.CallCoroutine(ItemGetType.Conflict.ToString());
         }
     }
 }

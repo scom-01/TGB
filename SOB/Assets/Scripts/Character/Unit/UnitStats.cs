@@ -295,8 +295,9 @@ namespace SOB.CoreSystem
         }
 
         public void IncreaseHealth(float amount)
-        {
+        {            
             currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+            Debug.Log($"IncreaseHealth {amount}");
         }
 
     }

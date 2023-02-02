@@ -11,7 +11,7 @@ namespace SOB.Item
     {
         [field: SerializeField] public ItemDataSO itemData { get; private set; }
         public Core ItemCore { get; private set; }
-        public Unit unit;
+        [HideInInspector] public Unit unit;
 
         [SerializeField]
         private float DetectedRadius;
@@ -31,7 +31,7 @@ namespace SOB.Item
                 CC2D.radius = DetectedRadius;
             }
 
-            if(itemData.Event_item_type.Count > 0)
+            if(itemData.coroutineName.Length > 0)
             {
                 for(int i = 0; i< itemData.coroutineName.Length; i++)
                 {
@@ -39,8 +39,6 @@ namespace SOB.Item
                 }
             }
         }
-
-        
 
         private void OnDisable()
         {
@@ -87,13 +85,21 @@ namespace SOB.Item
             GameManager.Inst.SubUI.SetSubUI(false);
         }
 
-        public void Conflict(string coroutine)
+        public void CallCoroutine(string coroutine)
         {
+            if (itemData.coroutineName.Length > 0)
+            {
+                for(int i = 0; i < itemData.coroutineName.Length; i++)
+                {
+                    StartCoroutine(itemData.coroutineName[i].ToString(), itemData.coroutineValue[i]);
+                }
+            }
+
             StartCoroutine(coroutine);
         }
 
         #region IEnumerator
-        IEnumerator IncreaseHealth(float value)
+        IEnumerator E_IncreaseHealth(float value)
         {
             if (unit != null)
             {
@@ -103,7 +109,12 @@ namespace SOB.Item
         }
         IEnumerator DetectedSense()
         {
-            Debug.LogWarning($"DetectedSense {this.name}");
+            
+            yield return 0;
+        }
+        IEnumerator Conflict()
+        {
+            Debug.LogWarning($"Conflict {this.name}");
             if (itemData != null ? true : false)
             {
                 if (itemData.AcquiredEffectPrefab != null)
@@ -115,11 +126,6 @@ namespace SOB.Item
             {
                 Debug.LogWarning("itemData is null");
             }
-            yield return 0;
-        }
-        IEnumerable Conflict()
-        {
-
             yield return 0;
         }
         #endregion
