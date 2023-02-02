@@ -6,11 +6,11 @@ using UnityEngine;
 
 namespace SOB.Weapons.Components
 {
-    public class MovementData : ComponentData<AttackMovement>
+    public class MovementData : ComponentData<ActionMovement>
     {
         public MovementData()
         {
-            ComponentDependency = typeof(Movement);
+            ComponentDependency = typeof(WeaponMovement);
         }
     }
 }

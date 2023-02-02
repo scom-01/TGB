@@ -11,7 +11,7 @@ namespace SOB.Weapons
     {
         [SerializeField] private float actionCounterResetCooldown;
 
-        [field: SerializeField] public WeaponDataSO weaponData { get; private set; }
+        public WeaponDataSO weaponData { get; private set; }
 
         [HideInInspector]
         protected string weaponAnimBoolStr;

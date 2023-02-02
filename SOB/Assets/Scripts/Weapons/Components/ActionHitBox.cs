@@ -64,17 +64,12 @@ namespace SOB.Weapons.Components
             base.Start();
 
             movement = new CoreComp<CoreSystem.Movement>(core);
-        }
-
-        protected override void OnEnable()
-        {
-            base.OnEnable();
             eventHandler.OnAttackAction += HandleAttackAction;
         }
 
-        protected override void OnDisable()
+        protected override void OnDestory()
         {
-            base.OnDisable();
+            base.OnDestory();
             eventHandler.OnAttackAction -= HandleAttackAction;
         }
 

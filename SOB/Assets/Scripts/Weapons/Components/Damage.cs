@@ -33,18 +33,12 @@ namespace SOB.Weapons.Components
             base.Awake();
 
             hitBox = GetComponent<ActionHitBox>();
-        }
-
-        protected override void OnEnable()
-        {
-            base.OnEnable();
-
             hitBox.OnDetectedCollider2D += HandleDetectedCollider2D;
         }
 
-        protected override void OnDisable()
+        protected override void OnDestory()
         { 
-            base.OnDisable();
+            base.OnDestory();
 
             hitBox.OnDetectedCollider2D -= HandleDetectedCollider2D;
         }

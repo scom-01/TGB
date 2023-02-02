@@ -22,6 +22,12 @@ namespace SOB.Weapons
             GenerateWeapon(weaponData);
         }
 
+        [ContextMenu("Test Generate")]
+        private void TestGeneration()
+        {
+            GenerateWeapon(weaponData);
+        }
+
         public void GenerateWeapon(WeaponDataSO data)
         {
             weapon.SetData(data);
@@ -46,6 +52,8 @@ namespace SOB.Weapons
                 {
                     weaponComponent = gameObject.AddComponent(dependency) as WeaponComponent;
                 }
+
+                weaponComponent.Init();
 
                 componentsAddedToWeapon.Add(weaponComponent);
             }

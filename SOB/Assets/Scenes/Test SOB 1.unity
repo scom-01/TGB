@@ -3708,11 +3708,8 @@ GameObject:
   m_Component:
   - component: {fileID: 724713816}
   - component: {fileID: 1858235093}
-  - component: {fileID: 1858235092}
-  - component: {fileID: 1858235090}
   - component: {fileID: 1858235091}
   - component: {fileID: 1858235094}
-  - component: {fileID: 1858235095}
   m_Layer: 0
   m_Name: Sword1
   m_TagString: Untagged
@@ -5964,18 +5961,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponSpeed: 1
---- !u!114 &1247396164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2134487232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb803558d86c29f40a6891b1ff3cb548, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1261266760
 GameObject:
   m_ObjectHideFlags: 0
@@ -16525,18 +16510,6 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
---- !u!114 &1858235090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 724713815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb803558d86c29f40a6891b1ff3cb548, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1858235091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16550,18 +16523,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponSpeed: 1
---- !u!114 &1858235092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 724713815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 481d28c0d4b469b4f90c059f1af12659, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1858235093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16574,8 +16535,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a760ae3cf33120499be59753609a323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <weaponData>k__BackingField: {fileID: 11400000, guid: 8956c3b7bcbd406458e827279ec8cb68, type: 2}
   actionCounterResetCooldown: 0.5
+  <weaponData>k__BackingField: {fileID: 11400000, guid: 8956c3b7bcbd406458e827279ec8cb68, type: 2}
   InAir: 0
 --- !u!114 &1858235094
 MonoBehaviour:
@@ -16586,21 +16547,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 724713815}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef538d01f04db6148881dd2435a9248d, type: 3}
+  m_Script: {fileID: 11500000, guid: 48d301d0b1380ba46b1269e07d0ee177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1858235095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 724713815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 945032430a0219b46b0d150691d8adaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  weapon: {fileID: 1858235093}
+  weaponData: {fileID: 11400000, guid: 8956c3b7bcbd406458e827279ec8cb68, type: 2}
 --- !u!1 &1874728970
 GameObject:
   m_ObjectHideFlags: 0
@@ -17315,16 +17266,15 @@ GameObject:
   m_Component:
   - component: {fileID: 2134487233}
   - component: {fileID: 2134487235}
-  - component: {fileID: 2134487236}
-  - component: {fileID: 1247396164}
   - component: {fileID: 1247396163}
+  - component: {fileID: 2134487236}
   m_Layer: 0
   m_Name: BlockSword1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2134487233
 Transform:
   m_ObjectHideFlags: 0
@@ -17354,8 +17304,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a760ae3cf33120499be59753609a323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <weaponData>k__BackingField: {fileID: 11400000, guid: b458fa991058a284abcb45a29073556b, type: 2}
   actionCounterResetCooldown: 2
+  <weaponData>k__BackingField: {fileID: 11400000, guid: b458fa991058a284abcb45a29073556b, type: 2}
   InAir: 0
 --- !u!114 &2134487236
 MonoBehaviour:
@@ -17366,9 +17316,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2134487232}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 481d28c0d4b469b4f90c059f1af12659, type: 3}
+  m_Script: {fileID: 11500000, guid: 48d301d0b1380ba46b1269e07d0ee177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 2134487235}
+  weaponData: {fileID: 11400000, guid: b458fa991058a284abcb45a29073556b, type: 2}
 --- !u!1 &2136983664
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using SOB.Weapons.Components;
-public class WeaponSprite : WeaponComponent<WeaponSpriteData, AttackSprites>
+public class WeaponSprite : WeaponComponent<WeaponSpriteData, ActionSprites>
 {
     private SpriteRenderer baseSpriteRenderer;
     private SpriteRenderer weaponSpriteRenderer;
@@ -26,7 +26,7 @@ public class WeaponSprite : WeaponComponent<WeaponSpriteData, AttackSprites>
         }
         Sprite[] currentAttackSprite = new Sprite[0];
         
-        if (baseObject.GetComponent<Animator>().GetBool("inAir"))
+        if (weapon.BaseGameObject.GetComponent<Animator>().GetBool("inAir"))
         {
             if (currentActionData.InAirSprites.Length > 0)
                 currentAttackSprite = currentActionData.InAirSprites;
@@ -50,29 +50,24 @@ public class WeaponSprite : WeaponComponent<WeaponSpriteData, AttackSprites>
         currentWeaponSpriteIndex++;
     }
 
-    protected override void Awake()
+    protected override void Start()
     {
-        base.Awake();
-        baseObject = transform.Find("Base").gameObject;
-        baseSpriteRenderer = transform.Find("Base").GetComponent<SpriteRenderer>();
-        weaponSpriteRenderer = transform.Find("Weapon").GetComponent<SpriteRenderer>();
+        base.Start();
+        //baseObject = transform.Find("Base").gameObject;
+        //baseSpriteRenderer = transform.Find("Base").GetComponent<SpriteRenderer>();
+        //weaponSpriteRenderer = transform.Find("Weapon").GetComponent<SpriteRenderer>();
+
+        baseSpriteRenderer = weapon.BaseGameObject.GetComponent<SpriteRenderer>();
+        weaponSpriteRenderer = weapon.WeaponSpriteGameObject.GetComponent<SpriteRenderer>();
 
         data = weapon.weaponData.GetData<WeaponSpriteData>();
-    }
-
-    protected override void OnEnable()
-    {
-        base.OnEnable();
         baseSpriteRenderer.RegisterSpriteChangeCallback(HandleBaseSpriteChange);
-
-        weapon.OnEnter += HandleEnter;
     }
 
-    protected override void OnDisable()
+    protected override void OnDestory()
     {
-        base.OnDisable();
+        base.OnDestory();
 
         baseSpriteRenderer.UnregisterSpriteChangeCallback(HandleBaseSpriteChange);
-        weapon.OnEnter -= HandleEnter;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SOB.Weapons.Components
 { 
-    public class WeaponSpriteData : ComponentData<AttackSprites>
+    public class WeaponSpriteData : ComponentData<ActionSprites>
     {   
         public WeaponSpriteData()
         {

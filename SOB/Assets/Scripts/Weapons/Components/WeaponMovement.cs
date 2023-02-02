@@ -7,7 +7,7 @@ using System;
 
 namespace SOB.Weapons.Components
 {
-    public class WeaponMovement : WeaponComponent<MovementData, AttackMovement>
+    public class WeaponMovement : WeaponComponent<MovementData, ActionMovement>
     {
         private CoreSystem.Movement coreMovement;
         private CoreSystem.Movement CoreMovement
@@ -26,17 +26,17 @@ namespace SOB.Weapons.Components
             CoreMovement.SetVelocityX(0f);
         }
 
-        protected override void OnEnable()
+        protected override void Start()
         {
-            base.OnEnable();
+            base.Start();
 
             eventHandler.OnStartMovement += HandleStartMovement;
             eventHandler.OnStopMovement += HandleStopMovement;
         }
 
-        protected override void OnDisable()
+        protected override void OnDestory()
         {
-            base.OnDisable();
+            base.OnDestory();
 
             eventHandler.OnStartMovement -= HandleStartMovement;
             eventHandler.OnStopMovement -= HandleStopMovement;
