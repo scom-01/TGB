@@ -44,9 +44,6 @@ public class Detector : MonoBehaviour
                 if (currentGO == null)
                 {
                     currentGO = go;
-                    Debug.Log($"제일 가까운 오브젝트 {currentGO.name}");
-                    Debug.Log(this.gameObject.transform.localPosition.x);
-                    Debug.Log(currentGO.transform.localPosition.x);
 
                     currentGO.GetComponentInParent<SOB_Item>().unit = unit;
                     currentGO.GetComponentInParent<SOB_Item>().Detected(this.gameObject.transform.position.x < currentGO.transform.position.x);
@@ -85,19 +82,25 @@ public class Detector : MonoBehaviour
     //Detected
     private void OnTriggerStay2D(Collider2D collision)
     {
-        //Collision return
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Collision"))
-            return;
-
         //DetectorMask 의 LayerMask가 아니면 return
         if ((DetectorMask.value & (1 << collision.gameObject.layer)) <= 0)
             return;
-
-        if (!DetectedList.Contains(collision.gameObject))
+        var item = collision.GetComponentInParent<SOB_Item>();
+        //EquipmentItem
+        if (item.itemData.isEquipment)
         {
-            DetectedList.Add(collision.gameObject);
+            if (!DetectedList.Contains(collision.gameObject))
+            {
+                DetectedList.Add(collision.gameObject);
+            }
+            StartCoroutine(CheckCurrentGO());
         }
-        StartCoroutine(CheckCurrentGO());
+        //ConsumptionItem
+        else
+        {
+            item.unit = unit;
+            item.CallCoroutine(ItemGetType.Collision.ToString());
+        }
 
         //Trap
         if (collision.gameObject.tag == "Trap")
@@ -112,44 +115,37 @@ public class Detector : MonoBehaviour
     //Detected
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Collision return
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Collision"))
-            return;
-
         //DetectorMask 의 LayerMask가 아니면 return
         if ((DetectorMask.value & (1 << collision.gameObject.layer)) <= 0)
             return;
-
+        var item = collision.GetComponentInParent<SOB_Item>();
         //Item
-        if (collision.gameObject.tag == "Item")
+        if (item.itemData.isEquipment)
         {
             //Debug.Log($"Detected {collision.name} {this.name}");
-            var collItem = collision.GetComponentInParent<SOB_Item>();
+            //var collItem = collision.GetComponentInParent<SOB_Item>();
             //collItem.Detected();
         }
     }
     //Detected
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //Collision return
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Collision"))
-            return;
-
         //DetectorMask 의 LayerMask가 아니면 return
         if ((DetectorMask.value & (1 << collision.gameObject.layer)) <= 0)
             return;
 
-
         DetectedList.Remove(collision.gameObject);
 
+        var item = collision.GetComponentInParent<SOB_Item>();
+        if (item == null)
+            return;
         //Item
-        if (collision.gameObject.tag == "Item")
+        if (item.itemData.isEquipment)
         {
             Debug.Log($"UnDetected {this.name}");
-            var collItem = collision.GetComponentInParent<SOB_Item>();
             if (currentGO == collision.gameObject)
             {
-                collItem.UnDetected();
+                item.UnDetected();
                 currentGO = null;
             }
         }
@@ -159,20 +155,20 @@ public class Detector : MonoBehaviour
     //Collider
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //Detected이면 return
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Detected"))
-            return;
+        ////Detected이면 return
+        //if (collision.gameObject.layer == LayerMask.NameToLayer("Invisible"))
+        //    return;
 
-        //DetectorMask 의 LayerMask가 아니면 return
-        if ((DetectorMask.value & (1 << collision.gameObject.layer)) <= 0)
-            return;
+        ////DetectorMask 의 LayerMask가 아니면 return
+        //if ((DetectorMask.value & (1 << collision.gameObject.layer)) <= 0)
+        //    return;
 
-        if (collision.gameObject.tag == "Item")
-        {
-            Debug.Log($"Conflict {collision.gameObject.name}");
-            var collItem = collision.gameObject.GetComponent<SOB_Item>();
-            collItem.unit = unit;
-            collItem.CallCoroutine(ItemGetType.Collision.ToString());
-        }
+        //if (collision.gameObject.tag == "Item")
+        //{
+        //    Debug.Log($"Conflict {collision.gameObject.name}");
+        //    var collItem = collision.gameObject.GetComponent<SOB_Item>();
+        //    collItem.unit = unit;
+        //    collItem.CallCoroutine(ItemGetType.Collision.ToString());
+        //}
     }
 }

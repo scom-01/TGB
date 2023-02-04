@@ -42,13 +42,6 @@ namespace SOB.Item
 
         private void OnDisable()
         {
-            //아이템이 가진 효과 List StartCoroutine
-            for(int i = 0; i < itemData.coroutineName.Length; i++)
-            {
-                //TODO: Event 내용 IEnumerator 로 코루틴화
-                //StartCoroutine(itemData.coroutineName[i], itemData.coroutineValue[i]);
-            }
-
             Destroy(this.gameObject, 0.1f);
         }
 
@@ -120,6 +113,7 @@ namespace SOB.Item
                     Instantiate(itemData.AcquiredEffectPrefab, this.gameObject.transform.position, Quaternion.identity, particleContainer);
                 Debug.LogWarning($"Get {this.name}");
                 this.gameObject.SetActive(false);
+                yield return 0;
             }
             else
             {

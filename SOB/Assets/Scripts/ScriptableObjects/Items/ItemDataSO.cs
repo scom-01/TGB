@@ -21,8 +21,8 @@ public class ItemDataSO : ScriptableObject
     [field: Tooltip("획득 시 이펙트")]
     [field: SerializeField] public GameObject AcquiredEffectPrefab { get; private set; }
     
-    [field: Tooltip("충돌 시 소모여부")]
-    [field: SerializeField] public bool ConflictUse { get; private set; }
+    [field: Tooltip("아이템 소비 여부")]
+    [field: SerializeField] public bool isEquipment { get; private set; }
 
     //--Detect--
     [field: Header("Detect Use")]
