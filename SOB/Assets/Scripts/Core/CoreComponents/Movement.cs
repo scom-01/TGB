@@ -12,6 +12,9 @@ namespace SOB.CoreSystem
         public bool CanSetVelocity { get; set; }
         public Vector2 CurrentVelocity { get; private set; }
 
+        [HideInInspector] public bool CanFlip = false;
+        [HideInInspector] public bool CanMovement = false;
+
         protected Vector2 workspace;
 
         protected override void Awake()

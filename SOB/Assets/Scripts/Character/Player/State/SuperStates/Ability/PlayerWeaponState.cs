@@ -72,16 +72,17 @@ public class PlayerWeaponState : PlayerAbilityState
         }
 
         shouldCheckFlip = weapon.weaponData.GetData<MovementData>().ActionData[weapon.CurrentActionCounter].CanFlip;
-        if (shouldCheckFlip)
+         
+        if (Movement.CanFlip)
         {
             Movement.CheckIfShouldFlip(xInput);
         }
 
         setVelocity = weapon.weaponData.GetData<MovementData>().ActionData[weapon.CurrentActionCounter].CanMoveCtrl;
-        if (setVelocity)
+        if (Movement.CanMovement)
         {
             //Movement.SetVelocityX(velocityToSet * Movement.FancingDirection);
-        Movement.SetVelocityX(player.playerData.commonStats.movementVelocity * xInput);
+            Movement.SetVelocityX(player.playerData.commonStats.movementVelocity * xInput);
         }
 
 
