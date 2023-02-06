@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 public class PlayerInputHandler : MonoBehaviour
 {
     private PlayerInput playerInput;
+    PlayerInputActions actions;
+    public static event Action<InputActionMap> actionMapChange;
     private Camera cam;
     public Vector2 RawMovementInput { get; private set; }
     public int NormInputX { get; private set; }
@@ -47,6 +49,23 @@ public class PlayerInputHandler : MonoBehaviour
         ActionInputs = new bool[count];
         ActionInputsStartTime = new float[count];
         cam = Camera.main;
+
+        
+    }
+
+    private void Start()
+    {
+        actions = new PlayerInputActions();       
+        //ActionMap Switch
+        playerInput.SwitchCurrentActionMap("UI");        
+        actions.GamePlay.Enable();
+        actions.GamePlay.Change.performed += Change_performed;
+    }
+    void Change_performed(InputAction.CallbackContext context)
+    {
+        Debug.Log("Change_performed");
+        actions.GamePlay.Disable();
+        actions.UI.Enable();
     }
 
     private void Update()
@@ -198,6 +217,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.started)
         {
+            Debug.Log("OnContentsInput");
             ContentsInput = true;
         }
 

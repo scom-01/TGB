@@ -4003,26 +4003,14 @@ MonoBehaviour:
     m_ActionId: 62f09e07-e18f-45bf-9d3a-9e0cb0df973d
     m_ActionName: GamePlay/New action
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 748526042}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 4c4415b1-11c2-4150-b97a-9218e028f4f2
-    m_ActionName: GamePlay/Action[/Keyboard/f]
+      m_Calls: []
+    m_ActionId: b6792d25-2dfd-4bde-896d-9ac950f27bf8
+    m_ActionName: UI/Action[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: GamePlay
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 519420031}
 --- !u!4 &748526044
 Transform:
   m_ObjectHideFlags: 0
@@ -4217,7 +4205,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 749720747}
-  - component: {fileID: 749720748}
+  - component: {fileID: 749720749}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4240,7 +4228,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &749720748
+--- !u!114 &749720749
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4249,7 +4237,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 749720746}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44bb384dae0825847a89d0ffbda510c1, type: 3}
+  m_Script: {fileID: 11500000, guid: 6de62d4b84b451c488fcfd937f7844c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   respawnPoint: {fileID: 411396809}

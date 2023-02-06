@@ -1,5 +1,5 @@
 {
-    "name": "Player",
+    "name": "PlayerInputActions",
     "maps": [
         {
             "name": "GamePlay",
@@ -78,9 +78,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Action",
+                    "name": "Change",
                     "type": "Button",
-                    "id": "4c4415b1-11c2-4150-b97a-9218e028f4f2",
+                    "id": "33cc7a68-30a5-4d89-8ae1-ca0c430395b4",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -222,7 +222,35 @@
                 },
                 {
                     "name": "",
-                    "id": "dbe8456c-9f65-4e5f-8927-ae0fa74ab6e6",
+                    "id": "b73af24f-cd4b-4c73-999f-4fa44ec15d9e",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Change",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "c3e760cb-3d6b-4dbd-a2ce-61849351d6cc",
+            "actions": [
+                {
+                    "name": "Action",
+                    "type": "Button",
+                    "id": "b6792d25-2dfd-4bde-896d-9ac950f27bf8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "55310409-d664-4513-a361-cc097e73ad5b",
                     "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",

@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     [SerializeField]
     private float respawnTime;
-    
+
     private float respawnTimeStart;
     private bool respawn;
 
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public MainUIManager MainUI;
     public SubUIManager SubUI;
     public DamageUIManager DamageUI;
-    
+
 
     private CinemachineVirtualCamera CVC;
 
@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     {
         Application.targetFrameRate = 60;
 
-        if(Inst == null)
+        if (Inst == null)
         {
             Inst = this;
             DontDestroyOnLoad(this.gameObject);
@@ -62,11 +62,10 @@ public class GameManager : MonoBehaviour
     {
         if (Time.time >= respawnTimeStart + respawnTime && respawn)
         {
-            var playerTemp = Instantiate(player,respawnPoint);
+            var playerTemp = Instantiate(player, respawnPoint);
             CVC.m_Follow = playerTemp.transform;
             respawn = false;
         }
 
     }
-
 }
