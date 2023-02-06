@@ -24,7 +24,8 @@ public class PlayerInputHandler : MonoBehaviour
                     , PrimaryInput
                     , PrimaryStop
                     , BlockInput
-                    , BlockInputStop;
+                    , BlockInputStop
+                    , ContentsInput;
     [HideInInspector]
     public bool[] ActionInputs;
 
@@ -190,6 +191,19 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.canceled)
         {
             ActionInputs[(int)CombatInputs.secondary] = false;
+        }
+    }
+    
+    public void OnContentsInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            ContentsInput = true;
+        }
+
+        if (context.canceled)
+        {
+            ContentsInput = false;
         }
     }
 

@@ -3846,6 +3846,7 @@ MonoBehaviour:
   PrimaryStop: 0
   BlockInput: 0
   BlockInputStop: 0
+  ContentsInput: 0
   ActionInputs: 
   inputHoldTime: 0.02
 --- !u!114 &748526043
@@ -4001,6 +4002,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 62f09e07-e18f-45bf-9d3a-9e0cb0df973d
     m_ActionName: GamePlay/New action
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 748526042}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4c4415b1-11c2-4150-b97a-9218e028f4f2
+    m_ActionName: GamePlay/Action[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: GamePlay
