@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: Test_DetectedItem
   m_EditorClassIdentifier: 
   ItemData:
-    ItemName: speed Up Item
-    ItemDescription: Use this item to speed up.
-  coroutineName:
-  - IncreaseHealth
+    ItemName: IncreaseHealth Item
+    ItemDescription: Use this item to Health up.
+  coroutineName: 00000000
   coroutineValue:
   - 10
   <AcquiredEffectPrefab>k__BackingField: {fileID: 0}
-  <ConflictUse>k__BackingField: 0
+  <isEquipment>k__BackingField: 1
   <DetailSubUI>k__BackingField: 1
