@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -49,9 +51,18 @@ public class PlayerInputHandler : MonoBehaviour
         ActionInputs = new bool[count];
         ActionInputsStartTime = new float[count];
         cam = Camera.main;
-        Debug.Log(playerInput.actions.name);
-        Debug.Log(playerInput.currentActionMap.name);
 
+        Debug.Log(playerInput.currentActionMap.name);
+    }
+
+    private void OnEnable()
+    {
+
+    }
+
+    private void OnDisable()
+    {
+        
     }
 
     /// <summary>
@@ -65,9 +76,37 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnTapInput(InputAction.CallbackContext context)
     {
-        if(playerInput.actions.name == playerInput.currentActionMap.name)
+        if(context.started)
         {
-            Debug.Log("Same");
+            if (playerInput.actions.actionMaps.ToArray().Length > 0)
+            {
+                if(playerInput.currentActionMap == playerInput.actions.FindActionMap("UI"))
+                {
+                    playerInput.SwitchCurrentActionMap("GamePlay");
+                    //UnPause
+                    Time.timeScale = 1;
+                }
+                else if(playerInput.currentActionMap == playerInput.actions.FindActionMap("GamePlay"))
+                {
+                    playerInput.SwitchCurrentActionMap("UI");
+                    //Pause
+                    Time.timeScale = 0;
+                }
+
+                //foreach (var index in playerInput.actions.actionMaps.ToArray())
+                //{
+                //    if (playerInput.currentActionMap != index)
+                //    {
+                //        Debug.Log($"CurrentActionMaps {playerInput.currentActionMap.name}, Change ActionMaps {index.name}");
+                //        playerInput.SwitchCurrentActionMap(index.name);
+                //        break;
+                //    }
+                //}
+            }
+        }
+        if(context.canceled)
+        {
+            Debug.Log("OnTapInput Cancled");
         }
     }
 

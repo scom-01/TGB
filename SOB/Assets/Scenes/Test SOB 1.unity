@@ -4022,6 +4022,46 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 33cc7a68-30a5-4d89-8ae1-ca0c430395b4
     m_ActionName: GamePlay/New action
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 748526042}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnTapInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c9536ce7-8a8e-4d61-91e3-9d2d49ac2761
+    m_ActionName: GamePlay/Tap[/Keyboard/tab]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5ef6d7c4-9f8e-4d95-a822-89ab03cfecbe
+    m_ActionName: GamePlay/ESC[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 748526042}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnTapInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 44e1b40c-d23c-4b89-ba4c-8ac8d9676769
+    m_ActionName: UI/Tap[/Keyboard/tab]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a57f4db8-9671-4fee-be89-bd0560bd42fd
+    m_ActionName: UI/ESC[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: GamePlay
