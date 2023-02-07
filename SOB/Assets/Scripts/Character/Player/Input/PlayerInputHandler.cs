@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerInputHandler : MonoBehaviour
 {
     private PlayerInput playerInput;
-    PlayerInputActions actions;
+    PlayerInputActions playerInputActions;
     public static event Action<InputActionMap> actionMapChange;
     private Camera cam;
     public Vector2 RawMovementInput { get; private set; }
@@ -49,23 +49,26 @@ public class PlayerInputHandler : MonoBehaviour
         ActionInputs = new bool[count];
         ActionInputsStartTime = new float[count];
         cam = Camera.main;
+        Debug.Log(playerInput.actions.name);
+        Debug.Log(playerInput.currentActionMap.name);
 
-        
     }
 
-    private void Start()
+    /// <summary>
+    /// Change ActionMap
+    /// </summary>
+    /// <param name="str">ActionMap Name</param>
+    public void SwitchActionMap(string Name)
     {
-        actions = new PlayerInputActions();       
-        //ActionMap Switch
-        playerInput.SwitchCurrentActionMap("UI");        
-        actions.GamePlay.Enable();
-        actions.GamePlay.Change.performed += Change_performed;
+        playerInput.SwitchCurrentActionMap(Name);
     }
-    void Change_performed(InputAction.CallbackContext context)
+
+    public void OnTapInput(InputAction.CallbackContext context)
     {
-        Debug.Log("Change_performed");
-        actions.GamePlay.Disable();
-        actions.UI.Enable();
+        if(playerInput.actions.name == playerInput.currentActionMap.name)
+        {
+            Debug.Log("Same");
+        }
     }
 
     private void Update()

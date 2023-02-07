@@ -4003,9 +4003,25 @@ MonoBehaviour:
     m_ActionId: 62f09e07-e18f-45bf-9d3a-9e0cb0df973d
     m_ActionName: GamePlay/New action
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 748526042}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnContentsInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: b6792d25-2dfd-4bde-896d-9ac950f27bf8
     m_ActionName: UI/Action[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 33cc7a68-30a5-4d89-8ae1-ca0c430395b4
+    m_ActionName: GamePlay/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: GamePlay

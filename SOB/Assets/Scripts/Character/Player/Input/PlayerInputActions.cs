@@ -107,6 +107,24 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tap"",
+                    ""type"": ""Button"",
+                    ""id"": ""c9536ce7-8a8e-4d61-91e3-9d2d49ac2761"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ESC"",
+                    ""type"": ""Button"",
+                    ""id"": ""5ef6d7c4-9f8e-4d95-a822-89ab03cfecbe"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -252,6 +270,28 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Change"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c6c81528-58d7-4546-92cc-eb810926d95a"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Tap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""381151c3-f86c-48b7-975d-5b70041ec302"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""ESC"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -267,6 +307,24 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tap"",
+                    ""type"": ""Button"",
+                    ""id"": ""44e1b40c-d23c-4b89-ba4c-8ac8d9676769"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ESC"",
+                    ""type"": ""Button"",
+                    ""id"": ""a57f4db8-9671-4fee-be89-bd0560bd42fd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -278,6 +336,28 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""24739e07-aa29-4746-8a72-b97068f90252"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Tap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""54a58f2c-6c36-4ea4-b96e-a31b6329990b"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""ESC"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -314,9 +394,13 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_GamePlay_Primary = m_GamePlay.FindAction("Primary", throwIfNotFound: true);
         m_GamePlay_Secondary = m_GamePlay.FindAction("Secondary", throwIfNotFound: true);
         m_GamePlay_Change = m_GamePlay.FindAction("Change", throwIfNotFound: true);
+        m_GamePlay_Tap = m_GamePlay.FindAction("Tap", throwIfNotFound: true);
+        m_GamePlay_ESC = m_GamePlay.FindAction("ESC", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Action = m_UI.FindAction("Action", throwIfNotFound: true);
+        m_UI_Tap = m_UI.FindAction("Tap", throwIfNotFound: true);
+        m_UI_ESC = m_UI.FindAction("ESC", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -385,6 +469,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay_Primary;
     private readonly InputAction m_GamePlay_Secondary;
     private readonly InputAction m_GamePlay_Change;
+    private readonly InputAction m_GamePlay_Tap;
+    private readonly InputAction m_GamePlay_ESC;
     public struct GamePlayActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -398,6 +484,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @Primary => m_Wrapper.m_GamePlay_Primary;
         public InputAction @Secondary => m_Wrapper.m_GamePlay_Secondary;
         public InputAction @Change => m_Wrapper.m_GamePlay_Change;
+        public InputAction @Tap => m_Wrapper.m_GamePlay_Tap;
+        public InputAction @ESC => m_Wrapper.m_GamePlay_ESC;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -434,6 +522,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Change.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnChange;
                 @Change.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnChange;
                 @Change.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnChange;
+                @Tap.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnTap;
+                @Tap.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnTap;
+                @Tap.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnTap;
+                @ESC.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnESC;
+                @ESC.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnESC;
+                @ESC.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnESC;
             }
             m_Wrapper.m_GamePlayActionsCallbackInterface = instance;
             if (instance != null)
@@ -465,6 +559,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Change.started += instance.OnChange;
                 @Change.performed += instance.OnChange;
                 @Change.canceled += instance.OnChange;
+                @Tap.started += instance.OnTap;
+                @Tap.performed += instance.OnTap;
+                @Tap.canceled += instance.OnTap;
+                @ESC.started += instance.OnESC;
+                @ESC.performed += instance.OnESC;
+                @ESC.canceled += instance.OnESC;
             }
         }
     }
@@ -474,11 +574,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_UI;
     private IUIActions m_UIActionsCallbackInterface;
     private readonly InputAction m_UI_Action;
+    private readonly InputAction m_UI_Tap;
+    private readonly InputAction m_UI_ESC;
     public struct UIActions
     {
         private @PlayerInputActions m_Wrapper;
         public UIActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Action => m_Wrapper.m_UI_Action;
+        public InputAction @Tap => m_Wrapper.m_UI_Tap;
+        public InputAction @ESC => m_Wrapper.m_UI_ESC;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -491,6 +595,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Action.started -= m_Wrapper.m_UIActionsCallbackInterface.OnAction;
                 @Action.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnAction;
                 @Action.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnAction;
+                @Tap.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTap;
+                @Tap.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTap;
+                @Tap.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTap;
+                @ESC.started -= m_Wrapper.m_UIActionsCallbackInterface.OnESC;
+                @ESC.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnESC;
+                @ESC.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnESC;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -498,6 +608,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Action.started += instance.OnAction;
                 @Action.performed += instance.OnAction;
                 @Action.canceled += instance.OnAction;
+                @Tap.started += instance.OnTap;
+                @Tap.performed += instance.OnTap;
+                @Tap.canceled += instance.OnTap;
+                @ESC.started += instance.OnESC;
+                @ESC.performed += instance.OnESC;
+                @ESC.canceled += instance.OnESC;
             }
         }
     }
@@ -522,9 +638,13 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnPrimary(InputAction.CallbackContext context);
         void OnSecondary(InputAction.CallbackContext context);
         void OnChange(InputAction.CallbackContext context);
+        void OnTap(InputAction.CallbackContext context);
+        void OnESC(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
         void OnAction(InputAction.CallbackContext context);
+        void OnTap(InputAction.CallbackContext context);
+        void OnESC(InputAction.CallbackContext context);
     }
 }
