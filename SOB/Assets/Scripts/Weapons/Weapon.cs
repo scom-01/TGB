@@ -62,7 +62,7 @@ namespace SOB.Weapons
         private void OnEnable()
         {
             //TODO: event Action 사용 시 Finish처리가 animation 끝부분에 있기에 Cancle처리가 안됨
-            EventHandler.OnFinish += ExitWeapon;
+            EventHandler.OnFinish += ExitWeapon;            
             actionCounterResetTimer.OnTimerDone += ResetActionCounter;
         }
 

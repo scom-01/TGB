@@ -102,8 +102,7 @@ public class PlayerDashState : PlayerAbilityState
                 if(Time.time>=startTime + player.playerData.dashDuration + player.playerData.dashFlightDuration)
                 {
                     isAbilityDone = true;
-                    lastDashTime = Time.time;
-                    Debug.Log($"Dash End player.transform.position = {player.transform.position}");
+                    lastDashTime = Time.time;                    
                     Debug.Log($"Dash EndTime = {lastDashTime}");
                 }
             }

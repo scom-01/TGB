@@ -37,7 +37,7 @@ public class PlayerWeaponState : PlayerAbilityState
         CanAttack = false;
 
         Debug.Log($"Enter input = {input}");
-        player.InputHandler.UseInput(ref input);
+        //player.InputHandler.UseInput(ref input);
         Debug.Log($"input = {input}");
         startTime = Time.time;
     }
@@ -81,8 +81,7 @@ public class PlayerWeaponState : PlayerAbilityState
         setVelocity = weapon.weaponData.GetData<MovementData>().ActionData[weapon.CurrentActionCounter].CanMoveCtrl;
         if (Movement.CanMovement)
         {
-            //Movement.SetVelocityX(velocityToSet * Movement.FancingDirection);
-            Movement.SetVelocityX(player.playerData.commonStats.movementVelocity * xInput);
+            Movement.SetVelocityX(player.playerData.commonStats.MovementVelocity * xInput);
         }
 
 

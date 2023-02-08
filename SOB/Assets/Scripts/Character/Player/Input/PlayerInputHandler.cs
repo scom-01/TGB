@@ -9,8 +9,7 @@ using UnityEngine.InputSystem;
 public class PlayerInputHandler : MonoBehaviour
 {
     private PlayerInput playerInput;
-    PlayerInputActions playerInputActions;
-    public static event Action<InputActionMap> actionMapChange;
+    //PlayerInputActions playerInputActions;
     private Camera cam;
     public Vector2 RawMovementInput { get; private set; }
     public int NormInputX { get; private set; }

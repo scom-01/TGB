@@ -2356,7 +2356,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c9855e77531ec458ce701591569b49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  commonData:
+    MaxHealth: 0
+    MovementVelocity: 0
+    DefaultPower: 0
+    AttackSpeedPer: 0
+    PhysicsDefensivePer: 0
+    MagicDefensivePer: 0
+    PhysicsAggressivePer: 0
+    MagicAggressivePer: 0
+    DamageAttiribute: 0
+    MyElemental: 0
+    ElementalDefensivePer: 0
+    ElementalAggressivePer: 0
   currentHealth: 0
   deathChunkParticle: {fileID: 0}
   deathBloodParticle: {fileID: 0}
@@ -2370,7 +2382,7 @@ GameObject:
   m_Component:
   - component: {fileID: 270204222}
   - component: {fileID: 270204223}
-  m_Layer: 18
+  m_Layer: 6
   m_Name: MiniMap Obj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2661,7 +2673,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c9855e77531ec458ce701591569b49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  commonData:
+    MaxHealth: 0
+    MovementVelocity: 0
+    DefaultPower: 0
+    AttackSpeedPer: 0
+    PhysicsDefensivePer: 0
+    MagicDefensivePer: 0
+    PhysicsAggressivePer: 0
+    MagicAggressivePer: 0
+    DamageAttiribute: 0
+    MyElemental: 0
+    ElementalDefensivePer: 0
+    ElementalAggressivePer: 0
   currentHealth: 0
   deathChunkParticle: {fileID: 0}
   deathBloodParticle: {fileID: 0}
@@ -5834,7 +5858,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1072599555}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.6259999, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16538,7 +16562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fdf71a3eaa7b1b428fb72e78945092e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <itemData>k__BackingField: {fileID: 11400000, guid: ba2e9b9a699dd8147876bc4ebe46d34e, type: 2}
+  <itemData>k__BackingField: {fileID: 11400000, guid: 45bf890e301b83740a4dafff7b7b6674, type: 2}
 --- !u!1 &1838141328
 GameObject:
   m_ObjectHideFlags: 0

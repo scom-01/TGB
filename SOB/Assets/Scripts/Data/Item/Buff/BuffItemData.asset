@@ -9,18 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7545a5a90ec226845b360310da1cf7b2, type: 3}
-  m_Name: Test_DetectedItem
+  m_Script: {fileID: 11500000, guid: b7774ae76107dc54e8991bca2af96082, type: 3}
+  m_Name: BuffItemData
   m_EditorClassIdentifier: 
   ItemData:
-    ItemName: IncreaseHealth Item
-    ItemDescription: Use this item to Health up.
+    ItemName: BuffItem
+    ItemDescription: Buff
     ItemSprite: {fileID: 0}
     commomData:
       MaxHealth: 0
       MovementVelocity: 0
-      DefaulPower: 10
-      AttackSpeedPer: 10
+      DefaulPower: 0
+      AttackSpeedPer: 0
       PhysicsDefensivePer: 0
       MagicDefensivePer: 0
       PhysicsAggressivePer: 0
@@ -29,10 +29,12 @@ MonoBehaviour:
       MyElemental: 0
       ElementalDefensivePer: 0
       ElementalAggressivePer: 0
-  BuffType: 
-  BuffName: 
-  BuffValue: []
-  BuffDurationTime: []
+  BuffType: 00000000
+  BuffName: 00000000
+  BuffValue:
+  - 30
+  BuffDurationTime:
+  - 2
   <AcquiredEffectPrefab>k__BackingField: {fileID: 0}
-  <isEquipment>k__BackingField: 1
-  <DetailSubUI>k__BackingField: 1
+  <isEquipment>k__BackingField: 0
+  <DetailSubUI>k__BackingField: 0

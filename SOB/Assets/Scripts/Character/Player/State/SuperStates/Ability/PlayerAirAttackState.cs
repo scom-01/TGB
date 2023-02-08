@@ -53,7 +53,7 @@ public class PlayerAirAttackState : PlayerAbilityState
         else
         {
             Movement.CheckIfShouldFlip(player.InputHandler.NormInputX);
-            Movement.SetVelocityX(player.playerData.commonStats.movementVelocity * player.InputHandler.NormInputX);
+            Movement.SetVelocityX(player.playerData.commonStats.MovementVelocity * player.InputHandler.NormInputX);
             player.Anim.SetFloat("yVelocity", Mathf.Clamp(Movement.CurrentVelocity.y, -3, 13));
             player.Anim.SetFloat("xVelocity", Mathf.Abs(Movement.CurrentVelocity.x));
         }

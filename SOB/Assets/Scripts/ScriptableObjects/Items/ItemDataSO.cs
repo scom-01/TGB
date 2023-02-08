@@ -7,14 +7,20 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "newItemData", menuName = "Data/Item Data/Item Data")]
 public class ItemDataSO : ScriptableObject
 {
+    [field: Header("Item")]
     [field: Tooltip("아이템 Data")]
     public ItemData ItemData;
 
-    [field: SerializeField]
-    [field: Tooltip("IncreaseHealth")]
-    public Dictionary<EVENT_ITEM_TYPE, float> Event_item_type = new Dictionary<EVENT_ITEM_TYPE, float>();
-    public EVENT_ITEM_TYPE[] coroutineName;
-    public float[] coroutineValue;
+    [field: Header("Buff")]
+    public EVENT_BUFF_TYPE[] BuffType;
+    public EVENT_BUFF_STATS[] BuffName;
+    public float[] BuffValue;
+    public float[] BuffDurationTime;
+
+    public virtual void Actions()
+    {
+
+    }
 
     //--Collider--
     [field: Header("Collider Use")]

@@ -61,6 +61,7 @@ public class PlayerGroundedState : PlayerState
         
         if (player.InputHandler.ActionInputs[(int)CombatInputs.primary])
         {
+            Debug.Log("Attack1");
             player.PrimaryAttackState.SetWeapon(player.Inventory.weapons[(int)CombatInputs.primary]);
             player.FSM.ChangeState(player.PrimaryAttackState);
         }

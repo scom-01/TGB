@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.U2D.IK;
 
 namespace SOB.Item
 {
@@ -31,20 +32,44 @@ namespace SOB.Item
                 CC2D.radius = DetectedRadius;
             }
 
-            if(Item.itemData.coroutineName.Length > 0)
-            {
-                for(int i = 0; i< Item.itemData.coroutineName.Length; i++)
-                {
-                    Item.itemData.Event_item_type.Add(Item.itemData.coroutineName[i], Item.itemData.coroutineValue[i]);
-                }
-            }
         }
 
         private void OnDisable()
-        {
-            Destroy(this.gameObject, 0.1f);
+        {            
+            Destroy(this.gameObject, 5f);
         }
 
+        public void Buff()
+        {
+            if (Item.itemData.BuffType.Length > 0)
+            {
+                for (int i = 0; i < Item.itemData.BuffType.Length; i++)
+                {
+                    if (Item.itemData.BuffType[i].ToString() == EVENT_BUFF_TYPE.E_Buff.ToString())
+                    {
+                        StartCoroutine(
+                            E_Increase
+                                (
+                                Item.itemData.BuffName[i].ToString(),
+                                Item.itemData.BuffValue[i],
+                                Item.itemData.BuffDurationTime[i]
+                                )
+                            );
+                    }
+                    else if (Item.itemData.BuffType[i].ToString() == EVENT_BUFF_TYPE.E_DeBuff.ToString())
+                    {
+                        StartCoroutine(
+                            E_Decrease
+                                (
+                                Item.itemData.BuffName[i].ToString(),
+                                Item.itemData.BuffValue[i],
+                                Item.itemData.BuffDurationTime[i]
+                                )
+                            );
+                    }
+                }
+            }
+        }
         private void InitializeItem(Core core)
         {
             this.ItemCore = core;
@@ -79,26 +104,49 @@ namespace SOB.Item
 
         public void CallCoroutine(string coroutine)
         {
-            if (Item.itemData.coroutineName.Length > 0)
-            {
-                for(int i = 0; i < Item.itemData.coroutineName.Length; i++)
-                {
-                    StartCoroutine(Item.itemData.coroutineName[i].ToString(), Item.itemData.coroutineValue[i]);
-                }
-            }
-
+            Buff();
             StartCoroutine(coroutine);
         }
 
+        
+
         #region IEnumerator
-        IEnumerator E_IncreaseHealth(float value)
+        IEnumerator E_Increase(string statName , float value, float duration)
         {
             if (unit != null)
             {
-                unit.Core.GetCoreComponent<UnitStats>().IncreaseHealth(value);
+                unit.Core.GetCoreComponent<UnitStats>().Increase(statName, value);
+                yield return new WaitForSeconds(duration);
+                unit.Core.GetCoreComponent<UnitStats>().Decrease(statName, value);
+                Destroy(this.gameObject);
+                yield break;
+            }
+            
+            yield break;
+        }
+
+        IEnumerator E_Decrease(string statName, float value, float duration)
+        {
+            if (unit != null)
+            {
+                unit.Core.GetCoreComponent<UnitStats>().Decrease(statName, value);
+                yield return new WaitForSeconds(duration);
+                unit.Core.GetCoreComponent<UnitStats>().Increase(statName, value);
+                Destroy(this.gameObject);
+                yield break;
+            }
+            
+            yield break;
+        }
+        IEnumerator E_Buff(float value)
+        {
+            if (unit != null)
+            {
+                unit.GetComponent<Inventory>().items.Add(new ItemDataSO());
             }
             yield return 0;
         }
+        
         IEnumerator DetectedSense()
         {
             
@@ -112,7 +160,9 @@ namespace SOB.Item
                 if (Item.itemData.AcquiredEffectPrefab != null)
                     Instantiate(Item.itemData.AcquiredEffectPrefab, this.gameObject.transform.position, Quaternion.identity, particleContainer);
                 Debug.LogWarning($"Get {this.name}");
-                this.gameObject.SetActive(false);
+                //this.gameObject.SetActive(false);
+                GetComponent<SpriteRenderer>().enabled = false;
+                Destroy(CC2D.gameObject);
                 yield return 0;
             }
             else

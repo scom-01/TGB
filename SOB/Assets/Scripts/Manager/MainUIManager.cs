@@ -28,9 +28,9 @@ namespace SOB.Manager
             {
                 float temp = 100.0f + Player.GetComponent<Player>().playerData.commonStats.AttackSpeedPer;
                 AttackSpeedStat.text = " + " + temp.ToString("F1") + "%";
-                temp = 100.0f + Player.GetComponent<Player>().playerData.commonStats.DefaulPower;
+                temp = 100.0f + Player.GetComponent<Player>().playerData.commonStats.DefaultPower;
                 AttackPowerStat.text = " + " + temp.ToString("F1") + "%";
-                temp = 100.0f + Player.GetComponent<Player>().playerData.commonStats.movementVelocity;
+                temp = 100.0f + Player.GetComponent<Player>().playerData.commonStats.MovementVelocity;
                 MoveSpeedStat.text = " + " + temp.ToString("F1") + "%";
                 temp = 100.0f + Player.GetComponent<Player>().playerData.commonStats.ElementalAggressivePer;
                 ElementalPowerStat.text = " + " + temp.ToString("F1") + "%";
