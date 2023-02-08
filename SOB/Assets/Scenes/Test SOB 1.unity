@@ -2970,6 +2970,7 @@ GameObject:
   - component: {fileID: 541406792}
   - component: {fileID: 541406795}
   - component: {fileID: 541406796}
+  - component: {fileID: 541406797}
   m_Layer: 27
   m_Name: Equipment_Item
   m_TagString: Item
@@ -3005,7 +3006,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc03701987cf2845a833e6cc2324cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <itemData>k__BackingField: {fileID: 11400000, guid: 178972a8cccbcb74580126071932f123, type: 2}
   unit: {fileID: 0}
   DetectedRadius: 2.5
 --- !u!212 &541406794
@@ -3107,6 +3107,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.5, y: 2.5}
   m_EdgeRadius: 0
+--- !u!114 &541406797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541406790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdf71a3eaa7b1b428fb72e78945092e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <itemData>k__BackingField: {fileID: 11400000, guid: 178972a8cccbcb74580126071932f123, type: 2}
 --- !u!1 &544838629
 GameObject:
   m_ObjectHideFlags: 0
@@ -3846,7 +3859,7 @@ MonoBehaviour:
   PrimaryStop: 0
   BlockInput: 0
   BlockInputStop: 0
-  ContentsInput: 0
+  InteractionInput: 0
   ActionInputs: 
   inputHoldTime: 0.02
 --- !u!114 &748526043
@@ -4062,6 +4075,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: a57f4db8-9671-4fee-be89-bd0560bd42fd
     m_ActionName: UI/ESC[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 748526042}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnInteractionInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2f43fc99-450b-49c0-a447-aa51acaa84b8
+    m_ActionName: GamePlay/Interaction[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: GamePlay
@@ -4233,6 +4262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 480ea422138f0204ebec5ebb59c25bdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unit: {fileID: 0}
   weapons:
   - {fileID: 1858235093}
   - {fileID: 2134487235}
@@ -5710,7 +5740,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc03701987cf2845a833e6cc2324cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <itemData>k__BackingField: {fileID: 11400000, guid: ba2e9b9a699dd8147876bc4ebe46d34e, type: 2}
   unit: {fileID: 0}
   DetectedRadius: 8
 --- !u!212 &1071241947
@@ -6320,7 +6349,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc03701987cf2845a833e6cc2324cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <itemData>k__BackingField: {fileID: 11400000, guid: ba2e9b9a699dd8147876bc4ebe46d34e, type: 2}
   unit: {fileID: 0}
   DetectedRadius: 8
 --- !u!212 &1356687234
@@ -6403,8 +6431,9 @@ GameObject:
   - component: {fileID: 1368271461}
   - component: {fileID: 1368271460}
   - component: {fileID: 1368271464}
+  - component: {fileID: 1368271465}
   m_Layer: 27
-  m_Name: Equipment_Item
+  m_Name: Equipment_Item1
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6443,7 +6472,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc03701987cf2845a833e6cc2324cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <itemData>k__BackingField: {fileID: 11400000, guid: f2116e04d96714d46ac7549557d9845c, type: 2}
   unit: {fileID: 0}
   DetectedRadius: 2.5
 --- !u!212 &1368271462
@@ -6540,6 +6568,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.5, y: 2.5}
   m_EdgeRadius: 0
+--- !u!114 &1368271465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368271459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdf71a3eaa7b1b428fb72e78945092e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <itemData>k__BackingField: {fileID: 11400000, guid: f2116e04d96714d46ac7549557d9845c, type: 2}
 --- !u!1 &1376347061
 GameObject:
   m_ObjectHideFlags: 0
@@ -16348,6 +16389,7 @@ GameObject:
   - component: {fileID: 1834255318}
   - component: {fileID: 1834255317}
   - component: {fileID: 1834255316}
+  - component: {fileID: 1834255321}
   m_Layer: 27
   m_Name: Consumption_Item
   m_TagString: Item
@@ -16414,7 +16456,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc03701987cf2845a833e6cc2324cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <itemData>k__BackingField: {fileID: 11400000, guid: ba2e9b9a699dd8147876bc4ebe46d34e, type: 2}
   unit: {fileID: 0}
   DetectedRadius: 1
 --- !u!212 &1834255319
@@ -16485,6 +16526,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1834255321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834255314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdf71a3eaa7b1b428fb72e78945092e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <itemData>k__BackingField: {fileID: 11400000, guid: ba2e9b9a699dd8147876bc4ebe46d34e, type: 2}
 --- !u!1 &1838141328
 GameObject:
   m_ObjectHideFlags: 0

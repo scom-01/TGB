@@ -20,7 +20,7 @@ public class PlayerDashState : PlayerAbilityState
     {
         base.Enter();
 
-        IsGrounded = player.Core.CollisionSenses.CheckIfGrounded;
+        IsGrounded = CollisionSenses.CheckIfGrounded;
         if (IsGrounded)
         {
             //콜라이더 크기 변경

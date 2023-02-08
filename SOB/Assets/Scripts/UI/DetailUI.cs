@@ -95,6 +95,5 @@ public class DetailUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 }

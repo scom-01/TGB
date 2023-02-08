@@ -33,7 +33,18 @@ public class Detector : MonoBehaviour
 
     private void Update()
     {
-
+        if(currentGO != null)
+        {
+            var player = unit as Player;
+            if(player.InputHandler.InteractionInput)
+            {
+                player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
+                Debug.Log($"{currentGO.transform.parent.name} is Add Inventory");
+                player?.Inventory.AddInventoryItem(currentGO.GetComponentInParent<InventoryItem>().itemData);
+                Destroy(currentGO.transform.parent.gameObject);
+                currentGO = null;
+            }
+        }
     }
     IEnumerator CheckCurrentGO()
     {
@@ -44,7 +55,7 @@ public class Detector : MonoBehaviour
                 if (currentGO == null)
                 {
                     currentGO = go;
-
+                    Debug.Log($"제일 가까운 오브젝트 {currentGO.transform.parent.name}");
                     currentGO.GetComponentInParent<SOB_Item>().unit = unit;
                     currentGO.GetComponentInParent<SOB_Item>().Detected(this.gameObject.transform.position.x < currentGO.transform.position.x);
                     continue;
@@ -57,7 +68,7 @@ public class Detector : MonoBehaviour
                 {
                     //가장 가까운 Detected 오브젝트
                     currentGO = go;
-                    Debug.Log($"제일 가까운 오브젝트 {currentGO.name}");
+                    Debug.Log($"제일 가까운 오브젝트 {currentGO.transform.parent.name}");
                     currentGO.GetComponentInParent<SOB_Item>().unit = unit;
                     currentGO.GetComponentInParent<SOB_Item>().Detected(this.gameObject.transform.position.x < currentGO.transform.position.x);
 
@@ -87,7 +98,7 @@ public class Detector : MonoBehaviour
             return;
         var item = collision.GetComponentInParent<SOB_Item>();
         //EquipmentItem
-        if (item.itemData.isEquipment)
+        if (item.Item.itemData.isEquipment)
         {
             if (!DetectedList.Contains(collision.gameObject))
             {
@@ -120,7 +131,7 @@ public class Detector : MonoBehaviour
             return;
         var item = collision.GetComponentInParent<SOB_Item>();
         //Item
-        if (item.itemData.isEquipment)
+        if (item.Item.itemData.isEquipment)
         {
             //Debug.Log($"Detected {collision.name} {this.name}");
             //var collItem = collision.GetComponentInParent<SOB_Item>();
@@ -140,7 +151,7 @@ public class Detector : MonoBehaviour
         if (item == null)
             return;
         //Item
-        if (item.itemData.isEquipment)
+        if (item.Item.itemData.isEquipment)
         {
             Debug.Log($"UnDetected {this.name}");
             if (currentGO == collision.gameObject)

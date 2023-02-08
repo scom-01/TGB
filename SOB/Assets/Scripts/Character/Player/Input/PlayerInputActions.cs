@@ -125,6 +125,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interaction"",
+                    ""type"": ""Button"",
+                    ""id"": ""2f43fc99-450b-49c0-a447-aa51acaa84b8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -292,6 +301,17 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""ESC"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7158b675-5dc8-4ca0-8cba-72f8034b2798"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Interaction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -300,7 +320,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
             ""id"": ""c3e760cb-3d6b-4dbd-a2ce-61849351d6cc"",
             ""actions"": [
                 {
-                    ""name"": ""Action"",
+                    ""name"": ""Interaction"",
                     ""type"": ""Button"",
                     ""id"": ""b6792d25-2dfd-4bde-896d-9ac950f27bf8"",
                     ""expectedControlType"": ""Button"",
@@ -335,7 +355,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""Action"",
+                    ""action"": ""Interaction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -396,9 +416,10 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_GamePlay_Change = m_GamePlay.FindAction("Change", throwIfNotFound: true);
         m_GamePlay_Tap = m_GamePlay.FindAction("Tap", throwIfNotFound: true);
         m_GamePlay_ESC = m_GamePlay.FindAction("ESC", throwIfNotFound: true);
+        m_GamePlay_Interaction = m_GamePlay.FindAction("Interaction", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-        m_UI_Action = m_UI.FindAction("Action", throwIfNotFound: true);
+        m_UI_Interaction = m_UI.FindAction("Interaction", throwIfNotFound: true);
         m_UI_Tap = m_UI.FindAction("Tap", throwIfNotFound: true);
         m_UI_ESC = m_UI.FindAction("ESC", throwIfNotFound: true);
     }
@@ -471,6 +492,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay_Change;
     private readonly InputAction m_GamePlay_Tap;
     private readonly InputAction m_GamePlay_ESC;
+    private readonly InputAction m_GamePlay_Interaction;
     public struct GamePlayActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -486,6 +508,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @Change => m_Wrapper.m_GamePlay_Change;
         public InputAction @Tap => m_Wrapper.m_GamePlay_Tap;
         public InputAction @ESC => m_Wrapper.m_GamePlay_ESC;
+        public InputAction @Interaction => m_Wrapper.m_GamePlay_Interaction;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -528,6 +551,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @ESC.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnESC;
                 @ESC.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnESC;
                 @ESC.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnESC;
+                @Interaction.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnInteraction;
+                @Interaction.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnInteraction;
+                @Interaction.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnInteraction;
             }
             m_Wrapper.m_GamePlayActionsCallbackInterface = instance;
             if (instance != null)
@@ -565,6 +591,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @ESC.started += instance.OnESC;
                 @ESC.performed += instance.OnESC;
                 @ESC.canceled += instance.OnESC;
+                @Interaction.started += instance.OnInteraction;
+                @Interaction.performed += instance.OnInteraction;
+                @Interaction.canceled += instance.OnInteraction;
             }
         }
     }
@@ -573,14 +602,14 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     // UI
     private readonly InputActionMap m_UI;
     private IUIActions m_UIActionsCallbackInterface;
-    private readonly InputAction m_UI_Action;
+    private readonly InputAction m_UI_Interaction;
     private readonly InputAction m_UI_Tap;
     private readonly InputAction m_UI_ESC;
     public struct UIActions
     {
         private @PlayerInputActions m_Wrapper;
         public UIActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Action => m_Wrapper.m_UI_Action;
+        public InputAction @Interaction => m_Wrapper.m_UI_Interaction;
         public InputAction @Tap => m_Wrapper.m_UI_Tap;
         public InputAction @ESC => m_Wrapper.m_UI_ESC;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
@@ -592,9 +621,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_UIActionsCallbackInterface != null)
             {
-                @Action.started -= m_Wrapper.m_UIActionsCallbackInterface.OnAction;
-                @Action.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnAction;
-                @Action.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnAction;
+                @Interaction.started -= m_Wrapper.m_UIActionsCallbackInterface.OnInteraction;
+                @Interaction.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnInteraction;
+                @Interaction.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnInteraction;
                 @Tap.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTap;
                 @Tap.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTap;
                 @Tap.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTap;
@@ -605,9 +634,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Action.started += instance.OnAction;
-                @Action.performed += instance.OnAction;
-                @Action.canceled += instance.OnAction;
+                @Interaction.started += instance.OnInteraction;
+                @Interaction.performed += instance.OnInteraction;
+                @Interaction.canceled += instance.OnInteraction;
                 @Tap.started += instance.OnTap;
                 @Tap.performed += instance.OnTap;
                 @Tap.canceled += instance.OnTap;
@@ -640,10 +669,11 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnChange(InputAction.CallbackContext context);
         void OnTap(InputAction.CallbackContext context);
         void OnESC(InputAction.CallbackContext context);
+        void OnInteraction(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
-        void OnAction(InputAction.CallbackContext context);
+        void OnInteraction(InputAction.CallbackContext context);
         void OnTap(InputAction.CallbackContext context);
         void OnESC(InputAction.CallbackContext context);
     }

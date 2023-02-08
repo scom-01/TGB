@@ -13,67 +13,64 @@ namespace SOB.CoreSystem
         #region Stats
         [SerializeField]
         private float maxHealth;
-
-
+        
         public CommonData CommonData { get => commonData; set => commonData = value; }
-        private CommonData commonData;
+        [field: SerializeField] private CommonData commonData;
         public float CurrentHealth { get => currentHealth; set => currentHealth = value <= 0 ? 0 : value; }
-        [SerializeField]
-        private float currentHealth;
+        [SerializeField] private float currentHealth;
 
         /// <summary>
         /// 물리 방어력 최대 100%의 피해 흡수
         /// </summary>
-        public float PhysicsDefensivePer { get => physicsDefensivePer; set => physicsDefensivePer = Mathf.Clamp(value, 0, 1.0f); }
-        private float physicsDefensivePer;
+        public float PhysicsDefensivePer { get => commonData.PhysicsDefensivePer; set => commonData.PhysicsDefensivePer = Mathf.Clamp(value, 0, 1.0f); }
 
         /// <summary>
         /// 마법 방어력 최대 100%의 피해 흡수
         /// </summary>
         public float MagicDefensivePer { get => magicDefensivePer; set => magicDefensivePer = Mathf.Clamp(value, 0, 1.0f); }
-        private float magicDefensivePer;
+        [SerializeField] private float magicDefensivePer;
 
         /// <summary>
         /// 공격력
         /// </summary>
         public float DefaultPower { get => defaultPower; set => defaultPower = value <= 0 ? 0 : value; }
-        private float defaultPower;
+        [SerializeField] private float defaultPower;
 
         /// <summary>
         /// 추가 물리공격력 %
         /// </summary>
         public float PhysicsAggressivePer { get => physicsAggressivePer; set => physicsAggressivePer = value <= 0 ? 0 : value; }
-        private float physicsAggressivePer;
+        [SerializeField] private float physicsAggressivePer;
 
         /// <summary>
         /// 추가 마법공격력 %
         /// </summary>
         public float MagicAggressivePer { get => magicAggressivePer; set => magicAggressivePer = value <= 0 ? 0 : value; }
-        private float magicAggressivePer;
+        [SerializeField] private float magicAggressivePer;
 
         /// <summary>
         /// 원소 속성 (공격과 방어 모두에 적용)
         /// </summary>
         public ElementalPower MyElemental { get => myElemental; set => myElemental = value; }
-        private ElementalPower myElemental = ElementalPower.Normal;
+        [SerializeField] private ElementalPower myElemental = ElementalPower.Normal;
 
         /// <summary>
         /// 원소 저항력 (수치만큼 %로 감소)
         /// </summary>
         public float ElementalDefensivePer { get => elementalDefensivePer; set => elementalDefensivePer = value; }
-        private float elementalDefensivePer;
+        [SerializeField] private float elementalDefensivePer;
 
         /// <summary>
         /// 원소 공격력 (수치만큼 %로 증가)
         /// </summary>
         public float ElementalAggressivePer { get => elementalAggressivePer; set => elementalAggressivePer = value; }
-        private float elementalAggressivePer;
+        [SerializeField] private float elementalAggressivePer;
 
         /// <summary>
         /// 공격 속성 
         /// </summary>
         public DamageAttiribute DamageAttiribute { get => damageAttiribute; set => damageAttiribute = value; }
-        private DamageAttiribute damageAttiribute;
+        [SerializeField] private DamageAttiribute damageAttiribute;
         #endregion
 
         [SerializeField]

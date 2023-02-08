@@ -63,13 +63,13 @@ namespace SOB.Weapons
         {
             //TODO: event Action 사용 시 Finish처리가 animation 끝부분에 있기에 Cancle처리가 안됨
             EventHandler.OnFinish += ExitWeapon;
-            actionCounterResetTimer.OnTimerDone += ResetactionCounter;
+            actionCounterResetTimer.OnTimerDone += ResetActionCounter;
         }
 
         private void OnDisable()
         {
             EventHandler.OnFinish -= ExitWeapon;
-            actionCounterResetTimer.OnTimerDone -= ResetactionCounter;
+            actionCounterResetTimer.OnTimerDone -= ResetActionCounter;
         }
 
         /// <summary>
@@ -101,13 +101,7 @@ namespace SOB.Weapons
             CurrentActionCounter++;
             actionCounterResetTimer.StartTimer();
 
-            //BaseGameObject.GetComponent<SpriteRenderer>().sprite = null;
-            //WeaponSpriteGameObject.GetComponent<SpriteRenderer>().sprite = null;
-
-
             OnExit?.Invoke();
-
-            //gameObject.SetActive(false);
         }
 
         public void SetCore(Core core)
@@ -124,12 +118,12 @@ namespace SOB.Weapons
             this.weaponData = data;
         }
 
-        public void ChangeactionCounter(int value)
+        public void ChangeActionCounter(int value)
         {
             CurrentActionCounter = value;
         }
 
-        public void ResetactionCounter()
+        public void ResetActionCounter()
         {
             CurrentActionCounter = 0;
         }

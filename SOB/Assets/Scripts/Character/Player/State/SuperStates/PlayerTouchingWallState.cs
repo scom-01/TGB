@@ -1,3 +1,4 @@
+using SOB.CoreSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,9 +33,9 @@ public class PlayerTouchingWallState : PlayerState
     {
         base.DoChecks();
 
-        isGrounded = player.Core.CollisionSenses.CheckIfGrounded;
-        isTouchingWall = player.Core.CollisionSenses.CheckIfTouchingWall;
-        isTouchingLedge = player.Core.CollisionSenses.CheckIfTouchingLedge;
+        isGrounded = CollisionSenses.CheckIfGrounded;
+        isTouchingWall = CollisionSenses.CheckIfTouchingWall;
+        isTouchingLedge = CollisionSenses.CheckIfTouchingLedge;
 
         /*if(isTouchingWall && !isTouchingLedge)
         {

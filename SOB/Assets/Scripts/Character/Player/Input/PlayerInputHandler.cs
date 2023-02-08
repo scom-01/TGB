@@ -29,7 +29,7 @@ public class PlayerInputHandler : MonoBehaviour
                     , PrimaryStop
                     , BlockInput
                     , BlockInputStop
-                    , ContentsInput;
+                    , InteractionInput;
     [HideInInspector]
     public bool[] ActionInputs;
 
@@ -83,16 +83,12 @@ public class PlayerInputHandler : MonoBehaviour
                 if(playerInput.currentActionMap == playerInput.actions.FindActionMap("UI"))
                 {
                     playerInput.SwitchCurrentActionMap("GamePlay");
-                    //UnPause
-                    Time.timeScale = 1;
                 }
                 else if(playerInput.currentActionMap == playerInput.actions.FindActionMap("GamePlay"))
                 {
                     playerInput.SwitchCurrentActionMap("UI");
-                    //Pause
-                    Time.timeScale = 0;
                 }
-
+                GameManager.Inst.CheckPause();
                 //foreach (var index in playerInput.actions.actionMaps.ToArray())
                 //{
                 //    if (playerInput.currentActionMap != index)
@@ -255,17 +251,17 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
     
-    public void OnContentsInput(InputAction.CallbackContext context)
+    public void OnInteractionInput(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            Debug.Log("OnContentsInput");
-            ContentsInput = true;
+            Debug.Log("OnInteractionInput");
+            InteractionInput = true;
         }
 
         if (context.canceled)
         {
-            ContentsInput = false;
+            InteractionInput = false;
         }
     }
 
@@ -282,11 +278,6 @@ public class PlayerInputHandler : MonoBehaviour
             BlockInputStop = true;
         }
     }
-    public void UseJumpInput() => JumpInput = false;
-    public void UseDashInput() => DashInput = false;
-    public void UseSkill1Input() => Skill1Input = false;
-    public void UseSkill2Input() => Skill2Input = false;
-    public void UseBlockInput() => BlockInput = false;
 
     public void UseInput(ref bool input) => input = false;
 

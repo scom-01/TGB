@@ -30,4 +30,35 @@ public struct CommonData
     public float ElementalAggressivePer;
     [Tooltip("공격 속성")]
     public DamageAttiribute DamageAttiribute;
+
+    public static CommonData operator +(CommonData c1, CommonData c2)
+    {
+        CommonData temp =new CommonData();
+        temp.maxHealth = c1.maxHealth + c2.maxHealth;
+        temp.movementVelocity = c1.movementVelocity + c2.movementVelocity;
+        temp.DefaulPower = c1.DefaulPower + c2.DefaulPower;
+        temp.AttackSpeedPer = c1.AttackSpeedPer + c2.AttackSpeedPer;
+        temp.PhysicsDefensivePer = c1.PhysicsDefensivePer + c2.PhysicsDefensivePer;
+        temp.MagicDefensivePer = c1.MagicDefensivePer + c2.MagicDefensivePer;
+        temp.PhysicsAggressivePer = c1.PhysicsAggressivePer + c2.PhysicsAggressivePer;
+        temp.MagicAggressivePer = c1.MagicAggressivePer + c2.MagicAggressivePer;
+        temp.ElementalDefensivePer = c1.ElementalDefensivePer + c2.ElementalDefensivePer;
+        temp.ElementalAggressivePer = c1.ElementalAggressivePer + c2.ElementalAggressivePer;
+        return temp;
+    }
+    public static CommonData operator -(CommonData c1, CommonData c2)
+    {
+        CommonData temp =new CommonData();
+        temp.maxHealth = c1.maxHealth - c2.maxHealth;
+        temp.movementVelocity = c1.movementVelocity - c2.movementVelocity;
+        temp.DefaulPower = c1.DefaulPower - c2.DefaulPower;
+        temp.AttackSpeedPer = c1.AttackSpeedPer - c2.AttackSpeedPer;
+        temp.PhysicsDefensivePer = c1.PhysicsDefensivePer - c2.PhysicsDefensivePer;
+        temp.MagicDefensivePer = c1.MagicDefensivePer - c2.MagicDefensivePer;
+        temp.PhysicsAggressivePer = c1.PhysicsAggressivePer - c2.PhysicsAggressivePer;
+        temp.MagicAggressivePer = c1.MagicAggressivePer - c2.MagicAggressivePer;
+        temp.ElementalDefensivePer = c1.ElementalDefensivePer - c2.ElementalDefensivePer;
+        temp.ElementalAggressivePer = c1.ElementalAggressivePer - c2.ElementalAggressivePer;
+        return temp;
+    }
 }

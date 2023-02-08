@@ -43,7 +43,7 @@ public class AggressiveWeapon : Weapon
 
         SetBoolName(boolname, false);
 
-        ChangeactionCounter(CurrentActionCounter + 1);
+        ChangeActionCounter(CurrentActionCounter + 1);
 
         gameObject.SetActive(false);
     }

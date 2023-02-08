@@ -3,13 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.U2D.IK;
 
 namespace SOB.Item
 {
     public class SOB_Item : MonoBehaviour
     {
-        [field: SerializeField] public ItemDataSO itemData { get; private set; }
+        public InventoryItem Item { get; private set; }
         public Core ItemCore { get; private set; }
         [HideInInspector] public Unit unit;
 
@@ -21,6 +20,7 @@ namespace SOB.Item
         private void Awake()
         {
             particleContainer = GameObject.FindGameObjectWithTag("ParticleContainer").transform;
+            Item = GetComponent<InventoryItem>();
         }
         private void OnEnable()
         {
@@ -31,11 +31,11 @@ namespace SOB.Item
                 CC2D.radius = DetectedRadius;
             }
 
-            if(itemData.coroutineName.Length > 0)
+            if(Item.itemData.coroutineName.Length > 0)
             {
-                for(int i = 0; i< itemData.coroutineName.Length; i++)
+                for(int i = 0; i< Item.itemData.coroutineName.Length; i++)
                 {
-                    itemData.Event_item_type.Add(itemData.coroutineName[i], itemData.coroutineValue[i]);
+                    Item.itemData.Event_item_type.Add(Item.itemData.coroutineName[i], Item.itemData.coroutineValue[i]);
                 }
             }
         }
@@ -56,8 +56,8 @@ namespace SOB.Item
         public void Detected(bool isright = true)
         {
             GameManager.Inst.SubUI.isRight(isright);
-            GameManager.Inst.SubUI.DetailSubUI.GetComponent<DetailUI>().MainItemName = itemData.ItemData.ItemName;
-            GameManager.Inst.SubUI.DetailSubUI.GetComponent<DetailUI>().SubItemName = itemData.ItemData.ItemDescription;
+            GameManager.Inst.SubUI.DetailSubUI.GetComponent<DetailUI>().MainItemName = Item.itemData.ItemData.ItemName;
+            GameManager.Inst.SubUI.DetailSubUI.GetComponent<DetailUI>().SubItemName = Item.itemData.ItemData.ItemDescription;
 
             if (GameManager.Inst.SubUI.DetailSubUI.gameObject.activeSelf)
             {
@@ -79,11 +79,11 @@ namespace SOB.Item
 
         public void CallCoroutine(string coroutine)
         {
-            if (itemData.coroutineName.Length > 0)
+            if (Item.itemData.coroutineName.Length > 0)
             {
-                for(int i = 0; i < itemData.coroutineName.Length; i++)
+                for(int i = 0; i < Item.itemData.coroutineName.Length; i++)
                 {
-                    StartCoroutine(itemData.coroutineName[i].ToString(), itemData.coroutineValue[i]);
+                    StartCoroutine(Item.itemData.coroutineName[i].ToString(), Item.itemData.coroutineValue[i]);
                 }
             }
 
@@ -107,10 +107,10 @@ namespace SOB.Item
         IEnumerator Collision()
         {
             Debug.LogWarning($"Conflict {this.name}");
-            if (itemData != null ? true : false)
+            if (Item.itemData != null ? true : false)
             {
-                if (itemData.AcquiredEffectPrefab != null)
-                    Instantiate(itemData.AcquiredEffectPrefab, this.gameObject.transform.position, Quaternion.identity, particleContainer);
+                if (Item.itemData.AcquiredEffectPrefab != null)
+                    Instantiate(Item.itemData.AcquiredEffectPrefab, this.gameObject.transform.position, Quaternion.identity, particleContainer);
                 Debug.LogWarning($"Get {this.name}");
                 this.gameObject.SetActive(false);
                 yield return 0;

@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float respawnTime;
 
+    public PlayerInputHandler inputHandler { get; private set; }
     private float respawnTimeStart;
     private bool respawn;
 
@@ -31,7 +32,10 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Application.targetFrameRate = 60;
-
+        if(player)
+        {
+            inputHandler = player.GetComponent<PlayerInputHandler>();
+        }
         if (Inst == null)
         {
             Inst = this;
@@ -67,5 +71,22 @@ public class GameManager : MonoBehaviour
             respawn = false;
         }
 
+    }
+
+    public void CheckPause()
+    {
+        if (Time.timeScale == 1f)
+            Pause();
+        else if (Time.timeScale == 0f)
+            Continue();
+    }
+
+    private void Pause()
+    {
+        Time.timeScale = 0f;
+    }
+    private void Continue()
+    {
+        Time.timeScale = 1f;
     }
 }

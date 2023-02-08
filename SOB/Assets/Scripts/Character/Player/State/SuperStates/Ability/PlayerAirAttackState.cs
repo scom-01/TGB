@@ -16,7 +16,7 @@ public class PlayerAirAttackState : PlayerAbilityState
     {
         base.Enter();
         CanAirAttack = false;
-        if (player.Core.CollisionSenses.CheckIfGrounded)
+        if (CollisionSenses.CheckIfGrounded)
         {
             isAbilityDone = true;
             return;

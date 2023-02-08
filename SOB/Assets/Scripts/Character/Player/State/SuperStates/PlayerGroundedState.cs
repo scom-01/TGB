@@ -26,9 +26,9 @@ public class PlayerGroundedState : PlayerState
     {
         base.DoChecks();
 
-        isGrounded = player.Core.CollisionSenses.CheckIfGrounded;
-        isTouchingWall = player.Core.CollisionSenses.CheckIfTouchingWall;
-        isTouchingLedge = player.Core.CollisionSenses.CheckIfTouchingLedge; 
+        isGrounded = CollisionSenses.CheckIfGrounded;
+        isTouchingWall = CollisionSenses.CheckIfTouchingWall;
+        isTouchingLedge = CollisionSenses.CheckIfTouchingLedge; 
     }
 
     public override void Enter()

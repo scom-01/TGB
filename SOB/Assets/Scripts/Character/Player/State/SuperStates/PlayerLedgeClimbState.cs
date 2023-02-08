@@ -89,7 +89,7 @@ public class PlayerLedgeClimbState : PlayerState
             {
                 player.FSM.ChangeState(player.InAirState);
             }
-            //¸Å´Þ¸®±â »óÅÂ¿¡¼­ º® Á¡ÇÁ
+            //ë§¤ë‹¬ë¦¬ê¸° ìƒíƒœì—ì„œ ë²½ ì í”„
             else if(jumpInput && !isClimbing && isHanging)
             {
                 player.WallJumpState.DetermineWallJumpDirection(true);
@@ -99,15 +99,15 @@ public class PlayerLedgeClimbState : PlayerState
     }
     public Vector2 DetermineCornerPosition()
     {
-        //x RayCast¸¦ ÅëÇÑ Ä³¸¯ÅÍ Àü¹æ wallCheck
-        RaycastHit2D xHit = Physics2D.Raycast(player.Core.CollisionSenses.GroundCheck.position, Vector2.right * Movement.FancingDirection, CollisionSenses.WallCheckDistance, CollisionSenses.WhatIsGround);
+        //x RayCastë¥¼ í†µí•œ ìºë¦­í„° ì „ë°© wallCheck
+        RaycastHit2D xHit = Physics2D.Raycast(CollisionSenses.GroundCheck.position, Vector2.right * Movement.FancingDirection, CollisionSenses.WallCheckDistance, CollisionSenses.WhatIsGround);
         float xDist = xHit.distance;
         workspace.Set((xDist + 0.015f) * Movement.FancingDirection, 0f);
-        //y RayCast¸¦ ÅëÇÑ Corner¿Í ledgeCheck Position°úÀÇ Â÷ °è»ê
-        RaycastHit2D yHit = Physics2D.Raycast(player.Core.CollisionSenses.LedgeCheck.position + (Vector3)(workspace), Vector2.down, player.Core.CollisionSenses.LedgeCheck.position.y - player.Core.CollisionSenses.WallCheck.position.y + 0.015f, player.Core.CollisionSenses.WhatIsGround);
+        //y RayCastë¥¼ í†µí•œ Cornerì™€ ledgeCheck Positionê³¼ì˜ ì°¨ ê³„ì‚°
+        RaycastHit2D yHit = Physics2D.Raycast(CollisionSenses.LedgeCheck.position + (Vector3)(workspace), Vector2.down, CollisionSenses.LedgeCheck.position.y - CollisionSenses.WallCheck.position.y + 0.015f, CollisionSenses.WhatIsGround);
         float yDist = yHit.distance;
 
-        workspace.Set(CollisionSenses.WallCheck.position.x + (xDist * Movement.FancingDirection), player.Core.CollisionSenses.LedgeCheck.position.y - yDist);
+        workspace.Set(CollisionSenses.WallCheck.position.x + (xDist * Movement.FancingDirection), CollisionSenses.LedgeCheck.position.y - yDist);
         return workspace;
     }
     public void SetDetectedPosition(Vector2 pos) => detectedPos = pos;
