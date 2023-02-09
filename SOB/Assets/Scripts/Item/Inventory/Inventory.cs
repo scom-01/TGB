@@ -9,7 +9,7 @@ using SOB.CoreSystem;
 
 public class Inventory : MonoBehaviour
 {
-    public Unit unit;
+    private Unit unit;
     public Weapon[] weapons;
     public List<ItemDataSO> items;
 
@@ -30,11 +30,6 @@ public class Inventory : MonoBehaviour
 
         if(items == null || items?.Count == 0)
         {
-            //foreach(var item in this.GetComponentsInChildren<SOB_Item>())
-            //{
-            //    items.Add(item.itemData);
-            //}
-
             if (items == null)
             {
                 Debug.LogWarning($"{transform.name}'s Items is empty in The Inventory");
@@ -59,6 +54,7 @@ public class Inventory : MonoBehaviour
 
     public void AddInventoryItem(ItemDataSO item)
     {
+        //중복금지
         if (items.Contains(item))
         {
             Debug.Log($"Contians {item.name}, fail add");
@@ -67,8 +63,8 @@ public class Inventory : MonoBehaviour
         {
             Debug.Log($"Add {item.name}, Success add {item.name}");
             items.Add(item);
-                        
-            unit.Core.GetCoreComponent<UnitStats>().CommonData += item.ItemData.commomData;
+
+            SetStat(item.ItemData.commomData, true);
             Debug.Log($"Change UnitStats {unit.Core.GetCoreComponent<UnitStats>().CommonData}");
         }
     }
@@ -79,13 +75,15 @@ public class Inventory : MonoBehaviour
         {
             Debug.Log($"Remove Item {item.name}");
             items.Remove(item);
-            unit.Core.GetCoreComponent<UnitStats>().CommonData -= item.ItemData.commomData;
+            SetStat(item.ItemData.commomData, false);            
         }
         else
         {
             Debug.Log($"Not Contians {item.name}, fail remove");
         }
     }
+
+    
     private void ChangeWeaponAttribute()
     {
 
@@ -96,12 +94,16 @@ public class Inventory : MonoBehaviour
         //CalculateItem(items);
     }
 
-    private void CalculateItem(List<ItemDataSO> items)
+    /// <summary>
+    /// Unit의 CommonData Stats 변경
+    /// </summary>
+    /// <param name="commonData"></param>
+    /// <param name="plus">Plus = true, Minus = false</param>
+    private void SetStat(CommonData commonData, bool plus = true)
     {
-        //item들의 CommonData합산
-        foreach(var item in items)
-        {
-            unit.Core.GetCoreComponent<UnitStats>().CommonData += item.ItemData.commomData;
-        }
+        if (plus)
+            unit.Core.GetCoreComponent<UnitStats>().CommonData += commonData;
+        else
+            unit.Core.GetCoreComponent<UnitStats>().CommonData -= commonData;
     }
 }

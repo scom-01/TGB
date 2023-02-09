@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.U2D.IK;
+using static UnityEngine.UI.CanvasScaler;
 
 namespace SOB.Item
 {
@@ -39,37 +40,6 @@ namespace SOB.Item
             Destroy(this.gameObject, 5f);
         }
 
-        public void Buff()
-        {
-            if (Item.itemData.BuffType.Length > 0)
-            {
-                for (int i = 0; i < Item.itemData.BuffType.Length; i++)
-                {
-                    if (Item.itemData.BuffType[i].ToString() == EVENT_BUFF_TYPE.E_Buff.ToString())
-                    {
-                        StartCoroutine(
-                            E_Increase
-                                (
-                                Item.itemData.BuffName[i].ToString(),
-                                Item.itemData.BuffValue[i],
-                                Item.itemData.BuffDurationTime[i]
-                                )
-                            );
-                    }
-                    else if (Item.itemData.BuffType[i].ToString() == EVENT_BUFF_TYPE.E_DeBuff.ToString())
-                    {
-                        StartCoroutine(
-                            E_Decrease
-                                (
-                                Item.itemData.BuffName[i].ToString(),
-                                Item.itemData.BuffValue[i],
-                                Item.itemData.BuffDurationTime[i]
-                                )
-                            );
-                    }
-                }
-            }
-        }
         private void InitializeItem(Core core)
         {
             this.ItemCore = core;
@@ -104,7 +74,15 @@ namespace SOB.Item
 
         public void CallCoroutine(string coroutine)
         {
-            Buff();
+            //ifBuff
+            if(unit.gameObject.GetComponent<BuffSystem>())
+            {
+                Buff buff = new Buff();
+                buff.ItemData = Item.itemData;
+                unit.gameObject.GetComponent<BuffSystem>().AddBuff(buff);
+            }
+
+            //Effect
             StartCoroutine(coroutine);
         }
 

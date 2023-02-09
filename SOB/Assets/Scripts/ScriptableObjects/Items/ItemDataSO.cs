@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using SOB.CoreSystem;
 
 [CreateAssetMenu(fileName = "newItemData", menuName = "Data/Item Data/Item Data")]
 public class ItemDataSO : ScriptableObject
