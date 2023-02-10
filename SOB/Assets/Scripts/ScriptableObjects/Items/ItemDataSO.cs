@@ -18,6 +18,4 @@ public class ItemDataSO : ScriptableObject
     public Sprite ItemSprite;
     [field: Tooltip("아이템 GUID")]
     public GUID GUID = new GUID(); 
-    [Tooltip("아이템이 갖는 스탯")]
-    public List<CommonData> CommonDatas;
 }

@@ -52,7 +52,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void AddInventoryItem(ItemDataSO itemData)
+    public void AddInventoryItem(StatsItemSO itemData)
     {
         //중복금지
         if (items.Contains(itemData))
@@ -72,7 +72,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void RemoveInventoryItem(ItemDataSO itemData)
+    public void RemoveInventoryItem(StatsItemSO itemData)
     {
         if(items.Contains(itemData))
         {
