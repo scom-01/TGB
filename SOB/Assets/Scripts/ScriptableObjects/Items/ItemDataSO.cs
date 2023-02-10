@@ -3,35 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SOB.CoreSystem;
+using UnityEditor;
 
 [CreateAssetMenu(fileName = "newItemData", menuName = "Data/Item Data/Item Data")]
 public class ItemDataSO : ScriptableObject
 {
     [field: Header("Item")]
-    [field: Tooltip("아이템 Data")]
-    public ItemData ItemData;
-
-    [field: Header("Buff")]
-    public EVENT_BUFF_TYPE[] BuffType;
-    public EVENT_BUFF_STATS[] BuffName;
-    public float[] BuffValue;
-    public float[] BuffDurationTime;
-
-    public virtual void Actions()
-    {
-
-    }
-
-    //--Collider--
-    [field: Header("Collider Use")]
-    [field: Tooltip("획득 시 이펙트")]
-    [field: SerializeField] public GameObject AcquiredEffectPrefab { get; private set; }
-    
-    [field: Tooltip("아이템 소비 여부")]
-    [field: SerializeField] public bool isEquipment { get; private set; }
-
-    //--Detect--
-    [field: Header("Detect Use")]
-    [field: Tooltip("Detect 시 SubUI 표시 여부")]
-    [field: SerializeField] public bool DetailSubUI { get; private set; }
+    [field: Tooltip("아이템 이름")]
+    public string ItemName;
+    [Tooltip("아이템 설명")]
+    [field: TextArea]
+    public string ItemDescription;
+    [field: Tooltip("아이템 Sprite아이콘")]
+    public Sprite ItemSprite;
+    [field: Tooltip("아이템 GUID")]
+    public GUID GUID = new GUID(); 
+    [Tooltip("아이템이 갖는 스탯")]
+    public List<CommonData> CommonDatas;
 }

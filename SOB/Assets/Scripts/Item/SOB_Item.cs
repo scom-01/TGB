@@ -10,19 +10,17 @@ namespace SOB.Item
 {
     public class SOB_Item : MonoBehaviour
     {
-        public InventoryItem Item { get; private set; }
+        [field :SerializeField] public StatsItemSO Item { get; private set; }
         public Core ItemCore { get; private set; }
         [HideInInspector] public Unit unit;
 
-        [SerializeField]
-        private float DetectedRadius;
+        [SerializeField] private float DetectedRadius;
 
         private CircleCollider2D CC2D;
         private Transform particleContainer;
         private void Awake()
         {
             particleContainer = GameObject.FindGameObjectWithTag("ParticleContainer").transform;
-            Item = GetComponent<InventoryItem>();
         }
         private void OnEnable()
         {
@@ -51,8 +49,8 @@ namespace SOB.Item
         public void Detected(bool isright = true)
         {
             GameManager.Inst.SubUI.isRight(isright);
-            GameManager.Inst.SubUI.DetailSubUI.GetComponent<DetailUI>().MainItemName = Item.itemData.ItemData.ItemName;
-            GameManager.Inst.SubUI.DetailSubUI.GetComponent<DetailUI>().SubItemName = Item.itemData.ItemData.ItemDescription;
+            GameManager.Inst.SubUI.DetailSubUI.GetComponent<DetailUI>().MainItemName = Item.ItemName;
+            GameManager.Inst.SubUI.DetailSubUI.GetComponent<DetailUI>().SubItemName = Item.ItemDescription;
 
             if (GameManager.Inst.SubUI.DetailSubUI.gameObject.activeSelf)
             {
@@ -75,10 +73,10 @@ namespace SOB.Item
         public void CallCoroutine(string coroutine)
         {
             //ifBuff
-            if(unit.gameObject.GetComponent<BuffSystem>())
+            if (unit.gameObject.GetComponent<BuffSystem>() && Item.GetType() == typeof(BuffItemSO))
             {
                 Buff buff = new Buff();
-                buff.ItemData = Item.itemData;
+                buff.BuffItemData = Item as BuffItemSO;
                 unit.gameObject.GetComponent<BuffSystem>().AddBuff(buff);
             }
 
@@ -133,10 +131,10 @@ namespace SOB.Item
         IEnumerator Collision()
         {
             Debug.LogWarning($"Conflict {this.name}");
-            if (Item.itemData != null ? true : false)
+            if (Item != null ? true : false)
             {
-                if (Item.itemData.AcquiredEffectPrefab != null)
-                    Instantiate(Item.itemData.AcquiredEffectPrefab, this.gameObject.transform.position, Quaternion.identity, particleContainer);
+                if (Item.AcquiredEffectPrefab != null)
+                    Instantiate(Item.AcquiredEffectPrefab, this.gameObject.transform.position, Quaternion.identity, particleContainer);
                 Debug.LogWarning($"Get {this.name}");
                 //this.gameObject.SetActive(false);
                 GetComponent<SpriteRenderer>().enabled = false;

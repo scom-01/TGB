@@ -9,14 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7545a5a90ec226845b360310da1cf7b2, type: 3}
-  m_Name: Test_DetectedItem 1
+  m_Script: {fileID: 11500000, guid: b7774ae76107dc54e8991bca2af96082, type: 3}
+  m_Name: ClearBuffItemData
   m_EditorClassIdentifier: 
-  ItemData:
-    ItemName: speed Up Item2
-    ItemDescription: Use this item to speed up.2
-  coroutineName: 
-  coroutineValue: []
+  ItemName: 
+  ItemDescription: 
+  ItemSprite: {fileID: 0}
+  CommonDatas: []
   <AcquiredEffectPrefab>k__BackingField: {fileID: 0}
-  <isEquipment>k__BackingField: 1
-  <DetailSubUI>k__BackingField: 1
+  <isEquipment>k__BackingField: 0
+  <DetailSubUI>k__BackingField: 0
+  DurationTime: []
+  BuffType: 

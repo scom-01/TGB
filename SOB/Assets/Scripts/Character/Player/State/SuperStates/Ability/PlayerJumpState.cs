@@ -21,7 +21,7 @@ public class PlayerJumpState : PlayerAbilityState
     public void Jump()
     {
         player.InputHandler.UseInput(ref player.InputHandler.JumpInput);
-        Movement.SetVelocityY(player.playerData.jumpVelocity);
+        Movement.SetVelocityY(UnitStats.CommonData.JumpVelocity);
         DecreaseAmountOfJumpsLeft();
         player.InAirState.SetIsJumping();
     }

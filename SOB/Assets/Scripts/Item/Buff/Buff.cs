@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Buff 
 {
-    public ItemDataSO ItemData;
+    public BuffItemSO BuffItemData;
 
     private Unit unit;
 

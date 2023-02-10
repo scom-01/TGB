@@ -16,12 +16,17 @@ public class PlayerState : UnitState
     {
         get => collisionSenses ?? player.Core.GetCoreComponent(ref collisionSenses);
     }
+    protected UnitStats UnitStats
+    {
+        get => unitStats ?? player.Core.GetCoreComponent(ref unitStats);
+    }
 
     public void SetInput(ref bool input) => this.input = input;
 
 
     private Movement movement;
     private CollisionSenses collisionSenses;
+    private UnitStats unitStats;
 
     public PlayerState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {

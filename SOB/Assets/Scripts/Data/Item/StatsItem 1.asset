@@ -9,28 +9,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7774ae76107dc54e8991bca2af96082, type: 3}
-  m_Name: BuffItemData
+  m_Script: {fileID: 11500000, guid: 836f02ead74e6a24db24927dd939c743, type: 3}
+  m_Name: StatsItem 1
   m_EditorClassIdentifier: 
-  ItemName: 
-  ItemDescription: 
+  ItemName: StatsItem1
+  ItemDescription: StatsItem1 Description
   ItemSprite: {fileID: 0}
   CommonDatas:
-  - MaxHealth: 0
-    MovementVelocity: 0
-    JumpVelocity: 0
-    DefaultPower: 0
-    AttackSpeedPer: 0
-    PhysicsDefensivePer: 0
-    MagicDefensivePer: 0
-    PhysicsAggressivePer: 0
-    MagicAggressivePer: 0
+  - MaxHealth: 10
+    MovementVelocity: 10
+    JumpVelocity: 10
+    DefaultPower: 10
+    AttackSpeedPer: 10
+    PhysicsDefensivePer: -10
+    MagicDefensivePer: -10
+    PhysicsAggressivePer: -10
+    MagicAggressivePer: -10
     DamageAttiribute: 0
     MyElemental: 0
     ElementalDefensivePer: 0
     ElementalAggressivePer: 0
   <AcquiredEffectPrefab>k__BackingField: {fileID: 5279545542555632717, guid: 54c319e2f98e0b04384f32b5f2f6b28b, type: 3}
-  <isEquipment>k__BackingField: 0
+  <isEquipment>k__BackingField: 1
   <DetailSubUI>k__BackingField: 0
-  DurationTime: []
-  BuffType: 

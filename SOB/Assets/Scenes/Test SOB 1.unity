@@ -3851,6 +3851,7 @@ GameObject:
   - component: {fileID: 748526045}
   - component: {fileID: 748526051}
   - component: {fileID: 748526052}
+  - component: {fileID: 748526053}
   m_Layer: 12
   m_Name: Player
   m_TagString: Player
@@ -4286,7 +4287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 480ea422138f0204ebec5ebb59c25bdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unit: {fileID: 0}
   weapons:
   - {fileID: 1858235093}
   - {fileID: 2134487235}
@@ -4306,6 +4306,18 @@ MonoBehaviour:
   <DetectorMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 268435456
+--- !u!114 &748526053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748526041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4865ea70498b9774f9a584b1c8ea7ae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &749720746
 GameObject:
   m_ObjectHideFlags: 0

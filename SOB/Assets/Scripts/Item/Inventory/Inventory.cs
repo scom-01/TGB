@@ -52,34 +52,40 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void AddInventoryItem(ItemDataSO item)
+    public void AddInventoryItem(ItemDataSO itemData)
     {
         //중복금지
-        if (items.Contains(item))
+        if (items.Contains(itemData))
         {
-            Debug.Log($"Contians {item.name}, fail add");
+            Debug.Log($"Contians {itemData.name}, fail add");
         }
         else
         {
-            Debug.Log($"Add {item.name}, Success add {item.name}");
-            items.Add(item);
+            Debug.Log($"Add {itemData.name}, Success add {itemData.name}");
+            items.Add(itemData);
 
-            SetStat(item.ItemData.commomData, true);
+            foreach(var commonData in itemData.CommonDatas)
+            {
+                SetStat(commonData);
+            }                
             Debug.Log($"Change UnitStats {unit.Core.GetCoreComponent<UnitStats>().CommonData}");
         }
     }
 
-    public void RemoveInventoryItem(ItemDataSO item)
+    public void RemoveInventoryItem(ItemDataSO itemData)
     {
-        if(items.Contains(item))
+        if(items.Contains(itemData))
         {
-            Debug.Log($"Remove Item {item.name}");
-            items.Remove(item);
-            SetStat(item.ItemData.commomData, false);            
+            Debug.Log($"Remove Item {itemData.name}");
+            foreach (var commonData in itemData.CommonDatas)
+            {
+                SetStat(commonData * -1f);
+            }
+            items.Remove(itemData);
         }
         else
         {
-            Debug.Log($"Not Contians {item.name}, fail remove");
+            Debug.Log($"Not Contians {itemData.name}, fail remove");
         }
     }
 
@@ -99,11 +105,8 @@ public class Inventory : MonoBehaviour
     /// </summary>
     /// <param name="commonData"></param>
     /// <param name="plus">Plus = true, Minus = false</param>
-    private void SetStat(CommonData commonData, bool plus = true)
+    private void SetStat(CommonData commonData)
     {
-        if (plus)
-            unit.Core.GetCoreComponent<UnitStats>().CommonData += commonData;
-        else
-            unit.Core.GetCoreComponent<UnitStats>().CommonData -= commonData;
+        unit.Core.GetCoreComponent<UnitStats>().CommonData += commonData;
     }
 }

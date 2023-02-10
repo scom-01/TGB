@@ -11,6 +11,8 @@ public struct CommonData
     public float MaxHealth;
     [Tooltip("움직임 Velocity")]
     public float MovementVelocity;
+    [Tooltip("점프 Velocity")]
+    public float JumpVelocity;
     [Tooltip("기본 공격력")]
     public float DefaultPower;
     [Tooltip("추가 공격 속도 %")]
@@ -40,6 +42,7 @@ public struct CommonData
         CommonData temp =new CommonData();
         temp.MaxHealth = c1.MaxHealth + c2.MaxHealth;
         temp.MovementVelocity = c1.MovementVelocity + c2.MovementVelocity;
+        temp.JumpVelocity = c1.JumpVelocity + c2.JumpVelocity;
         temp.DefaultPower = c1.DefaultPower + c2.DefaultPower;
         temp.AttackSpeedPer = c1.AttackSpeedPer + c2.AttackSpeedPer;
         temp.PhysicsDefensivePer = c1.PhysicsDefensivePer + c2.PhysicsDefensivePer;
@@ -50,19 +53,21 @@ public struct CommonData
         temp.ElementalAggressivePer = c1.ElementalAggressivePer + c2.ElementalAggressivePer;
         return temp;
     }
-    public static CommonData operator -(CommonData c1, CommonData c2)
+
+    public static CommonData operator *(CommonData c1, float f1)
     {
         CommonData temp =new CommonData();
-        temp.MaxHealth = c1.MaxHealth - c2.MaxHealth;
-        temp.MovementVelocity = c1.MovementVelocity - c2.MovementVelocity;
-        temp.DefaultPower = c1.DefaultPower - c2.DefaultPower;
-        temp.AttackSpeedPer = c1.AttackSpeedPer - c2.AttackSpeedPer;
-        temp.PhysicsDefensivePer = c1.PhysicsDefensivePer - c2.PhysicsDefensivePer;
-        temp.MagicDefensivePer = c1.MagicDefensivePer - c2.MagicDefensivePer;
-        temp.PhysicsAggressivePer = c1.PhysicsAggressivePer - c2.PhysicsAggressivePer;
-        temp.MagicAggressivePer = c1.MagicAggressivePer - c2.MagicAggressivePer;
-        temp.ElementalDefensivePer = c1.ElementalDefensivePer - c2.ElementalDefensivePer;
-        temp.ElementalAggressivePer = c1.ElementalAggressivePer - c2.ElementalAggressivePer;
+        temp.MaxHealth = c1.MaxHealth * f1;
+        temp.MovementVelocity = c1.MovementVelocity * f1;
+        temp.JumpVelocity = c1.JumpVelocity * f1;
+        temp.DefaultPower = c1.DefaultPower * f1;
+        temp.AttackSpeedPer = c1.AttackSpeedPer * f1;
+        temp.PhysicsDefensivePer = c1.PhysicsDefensivePer * f1;
+        temp.MagicDefensivePer = c1.MagicDefensivePer * f1;
+        temp.PhysicsAggressivePer = c1.PhysicsAggressivePer * f1;
+        temp.MagicAggressivePer = c1.MagicAggressivePer * f1;
+        temp.ElementalDefensivePer = c1.ElementalDefensivePer * f1;
+        temp.ElementalAggressivePer = c1.ElementalAggressivePer * f1;
         return temp;
     }
 }
