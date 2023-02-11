@@ -21,7 +21,7 @@ namespace SOB.CoreSystem
             //}
             //particleManager.Comp?.StartParticlesWithRandomRotation(damageParticles);
         }
-        public void Damage(CommonData AttackterCommonData, CommonData VictimCommonData, GameObject EffectPrefab, float amount)
+        public void Damage(StatsData AttackterCommonData, StatsData VictimCommonData, GameObject EffectPrefab, float amount)
         {
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
             

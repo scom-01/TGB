@@ -26,10 +26,10 @@ namespace SOB.Weapons.Components
                 {
                     damageable.Damage
                         (
-                            this.GetComponentInParent<Unit>().UnitData.commonStats,
-                            item.GetComponentInParent<Unit>().UnitData.commonStats,
+                            this.GetComponentInParent<Unit>().UnitData.statsStats,
+                            item.GetComponentInParent<Unit>().UnitData.statsStats,
                             GetComponent<Weapon>().weaponData.EffectPrefab,
-                            this.GetComponentInParent<Unit>().Core.GetCoreComponent<UnitStats>().CommonData.DefaultPower + this.currentActionData.Amount
+                            this.GetComponentInParent<Unit>().Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + this.currentActionData.Amount
                         );
                 }
             }

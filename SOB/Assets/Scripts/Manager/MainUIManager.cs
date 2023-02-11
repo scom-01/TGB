@@ -26,15 +26,15 @@ namespace SOB.Manager
             Player = GameManager.Inst?.player;
             if(Player)
             {
-                float temp = 100.0f + Player.GetComponent<Player>().playerData.commonStats.AttackSpeedPer;
+                float temp = 100.0f + Player.GetComponent<Player>().playerData.statsStats.AttackSpeedPer;
                 AttackSpeedStat.text = " + " + temp.ToString("F1") + "%";
-                temp = 100.0f + Player.GetComponent<Player>().playerData.commonStats.DefaultPower;
+                temp = 100.0f + Player.GetComponent<Player>().playerData.statsStats.DefaultPower;
                 AttackPowerStat.text = " + " + temp.ToString("F1") + "%";
-                temp = 100.0f + Player.GetComponent<Player>().playerData.commonStats.MovementVelocity;
+                temp = 100.0f + Player.GetComponent<Player>().playerData.statsStats.MovementVelocity;
                 MoveSpeedStat.text = " + " + temp.ToString("F1") + "%";
-                temp = 100.0f + Player.GetComponent<Player>().playerData.commonStats.ElementalAggressivePer;
+                temp = 100.0f + Player.GetComponent<Player>().playerData.statsStats.ElementalAggressivePer;
                 ElementalPowerStat.text = " + " + temp.ToString("F1") + "%";
-                temp = 100.0f + Player.GetComponent<Player>().playerData.commonStats.PhysicsDefensivePer;
+                temp = 100.0f + Player.GetComponent<Player>().playerData.statsStats.PhysicsDefensivePer;
                 DefensivePowerStat.text = " + " + temp.ToString("F1") + "%";
             }            
         }

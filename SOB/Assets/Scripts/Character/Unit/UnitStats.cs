@@ -11,55 +11,55 @@ namespace SOB.CoreSystem
         public event Action OnHealthZero;
 
         #region Stats        
-        public CommonData CommonData { get => commonData; set => commonData = value; }
-        [field: SerializeField] private CommonData commonData;
+        public StatsData StatsData { get => statsData; set => statsData = value; }
+        [field: SerializeField] private StatsData statsData;
         public float CurrentHealth { get => currentHealth; set => currentHealth = value <= 0 ? 0 : value; }
         [SerializeField] private float currentHealth;
 
         /// <summary>
         /// 물리 방어력 최대 100%의 피해 흡수
         /// </summary>
-        public float PhysicsDefensivePer { get => commonData.PhysicsDefensivePer; set => commonData.PhysicsDefensivePer = Mathf.Clamp(value, 0, 1.0f); }
+        public float PhysicsDefensivePer { get => statsData.PhysicsDefensivePer; set => statsData.PhysicsDefensivePer = Mathf.Clamp(value, 0, 1.0f); }
 
         /// <summary>
         /// 마법 방어력 최대 100%의 피해 흡수
         /// </summary>
-        public float MagicDefensivePer { get => commonData.MagicDefensivePer; set => commonData.MagicDefensivePer = Mathf.Clamp(value, 0, 1.0f); }
+        public float MagicDefensivePer { get => statsData.MagicDefensivePer; set => statsData.MagicDefensivePer = Mathf.Clamp(value, 0, 1.0f); }
 
         /// <summary>
         /// 공격력
         /// </summary>
-        public float DefaultPower { get => commonData.DefaultPower; set => commonData.DefaultPower = value <= 0 ? 0 : value; }
+        public float DefaultPower { get => statsData.DefaultPower; set => statsData.DefaultPower = value <= 0 ? 0 : value; }
 
         /// <summary>
         /// 추가 물리공격력 %
         /// </summary>
-        public float PhysicsAggressivePer { get => commonData.PhysicsAggressivePer; set => commonData.PhysicsAggressivePer = value <= 0 ? 0 : value; }
+        public float PhysicsAggressivePer { get => statsData.PhysicsAggressivePer; set => statsData.PhysicsAggressivePer = value <= 0 ? 0 : value; }
 
         /// <summary>
         /// 추가 마법공격력 %
         /// </summary>
-        public float MagicAggressivePer { get => commonData.MagicAggressivePer; set => commonData.MagicAggressivePer = value <= 0 ? 0 : value; }
+        public float MagicAggressivePer { get => statsData.MagicAggressivePer; set => statsData.MagicAggressivePer = value <= 0 ? 0 : value; }
 
         /// <summary>
         /// 원소 속성 (공격과 방어 모두에 적용)
         /// </summary>
-        public ElementalPower MyElemental { get => commonData.MyElemental; set => commonData.MyElemental = value; }        
+        public ElementalPower MyElemental { get => statsData.MyElemental; set => statsData.MyElemental = value; }        
 
         /// <summary>
         /// 원소 저항력 (수치만큼 %로 감소)
         /// </summary>
-        public float ElementalDefensivePer { get => commonData.ElementalDefensivePer; set => commonData.ElementalDefensivePer = value; }
+        public float ElementalDefensivePer { get => statsData.ElementalDefensivePer; set => statsData.ElementalDefensivePer = value; }
 
         /// <summary>
         /// 원소 공격력 (수치만큼 %로 증가)
         /// </summary>
-        public float ElementalAggressivePer { get => commonData.ElementalAggressivePer; set => commonData.ElementalAggressivePer = value; }
+        public float ElementalAggressivePer { get => statsData.ElementalAggressivePer; set => statsData.ElementalAggressivePer = value; }
 
         /// <summary>
         /// 공격 속성 
         /// </summary>
-        public DamageAttiribute DamageAttiribute { get => commonData.DamageAttiribute; set => commonData.DamageAttiribute = value; }
+        public DamageAttiribute DamageAttiribute { get => statsData.DamageAttiribute; set => statsData.DamageAttiribute = value; }
         #endregion
 
         [SerializeField]
@@ -76,8 +76,8 @@ namespace SOB.CoreSystem
         {
             if(core.Unit.UnitData != null)
             {
-                CommonData = core.Unit.UnitData.commonStats;
-                CurrentHealth = CommonData.MaxHealth;
+                StatsData = core.Unit.UnitData.statsStats;
+                CurrentHealth = StatsData.MaxHealth;
             }            
         }
 
@@ -86,14 +86,14 @@ namespace SOB.CoreSystem
             switch (statName)
             {
                 case "MaxHealth":
-                    commonData.MaxHealth += amount;
+                    statsData.MaxHealth += amount;
                     //현재 체력도 증가
                     currentHealth += amount;
                     break;
                 case "currentHealth":
-                    if (CurrentHealth + amount >= commonData.MaxHealth)
+                    if (CurrentHealth + amount >= statsData.MaxHealth)
                     {
-                        CurrentHealth = commonData.MaxHealth;
+                        CurrentHealth = statsData.MaxHealth;
                     }
                     else
                     {
@@ -101,31 +101,31 @@ namespace SOB.CoreSystem
                     }
                     break;
                 case "MovementVelocity":
-                    commonData.MovementVelocity += amount;
+                    statsData.MovementVelocity += amount;
                     break;
                 case "DefaulPower":
-                    commonData.DefaultPower += amount;
+                    statsData.DefaultPower += amount;
                     break;
                 case "AttackSpeedPer":
-                    commonData.AttackSpeedPer += amount;
+                    statsData.AttackSpeedPer += amount;
                     break;
                 case "PhysicsDefensivePer":
-                    commonData.PhysicsDefensivePer += amount;
+                    statsData.PhysicsDefensivePer += amount;
                     break;
                 case "MagicDefensivePer":
-                    commonData.MagicDefensivePer += amount;
+                    statsData.MagicDefensivePer += amount;
                     break;
                 case "PhysicsAggressivePer":
-                    commonData.PhysicsAggressivePer += amount;
+                    statsData.PhysicsAggressivePer += amount;
                     break;
                 case "MagicAggressivePer":
-                    commonData.MagicAggressivePer += amount;
+                    statsData.MagicAggressivePer += amount;
                     break;
                 case "ElementalDefensivePer":
-                    commonData.ElementalDefensivePer += amount;
+                    statsData.ElementalDefensivePer += amount;
                     break;
                 case "ElementalAggressivePer":
-                    commonData.ElementalAggressivePer += amount;
+                    statsData.ElementalAggressivePer += amount;
                     break;
             }   
 
@@ -135,7 +135,7 @@ namespace SOB.CoreSystem
             switch (statName)
             {
                 case "MaxHealth":
-                    commonData.MaxHealth -= amount;
+                    statsData.MaxHealth -= amount;
                     //현재 체력도 감소
                     CurrentHealth -= amount;
                     break;
@@ -143,31 +143,31 @@ namespace SOB.CoreSystem
                     CurrentHealth -= amount;
                     break;
                 case "MovementVelocity":
-                    commonData.MovementVelocity -= amount;
+                    statsData.MovementVelocity -= amount;
                     break;
                 case "DefaulPower":
-                    commonData.DefaultPower -= amount;
+                    statsData.DefaultPower -= amount;
                     break;
                 case "AttackSpeedPer":
-                    commonData.AttackSpeedPer -= amount;
+                    statsData.AttackSpeedPer -= amount;
                     break;
                 case "PhysicsDefensivePer":
-                    commonData.PhysicsDefensivePer -= amount;
+                    statsData.PhysicsDefensivePer -= amount;
                     break;
                 case "MagicDefensivePer":
-                    commonData.MagicDefensivePer -= amount;
+                    statsData.MagicDefensivePer -= amount;
                     break;
                 case "PhysicsAggressivePer":
-                    commonData.PhysicsAggressivePer -= amount;
+                    statsData.PhysicsAggressivePer -= amount;
                     break;
                 case "MagicAggressivePer":
-                    commonData.MagicAggressivePer -= amount;
+                    statsData.MagicAggressivePer -= amount;
                     break;
                 case "ElementalDefensivePer":
-                    commonData.ElementalDefensivePer -= amount;
+                    statsData.ElementalDefensivePer -= amount;
                     break;
                 case "ElementalAggressivePer":
-                    commonData.ElementalAggressivePer -= amount;
+                    statsData.ElementalAggressivePer -= amount;
                     break;
             }   
 
@@ -185,7 +185,7 @@ namespace SOB.CoreSystem
             }
         }
 
-        public float DecreaseHealth(CommonData AttackerData, CommonData VictimData, float amount)
+        public float DecreaseHealth(StatsData AttackerData, StatsData VictimData, float amount)
         {
             amount = CalculateDamage(AttackerData, VictimData, amount);
             CurrentHealth -= amount;
@@ -264,7 +264,7 @@ namespace SOB.CoreSystem
             #endregion
             return amount;
         }
-        public float CalculateDamage(CommonData AttackerData, CommonData VictimData, float amount)
+        public float CalculateDamage(StatsData AttackerData, StatsData VictimData, float amount)
         {
             #region 원소속성 계산
             Debug.Log($"Before Calculator ElementalPower = {amount}");

@@ -54,11 +54,11 @@ public class BuffSystem : MonoBehaviour
 
     public void PlayBuff(Buff buff)
     {
-        if (buff.BuffItemData.CommonDatas.Count > 0)
+        if (buff.BuffItemData.StatsDatas.Count > 0)
         {
-            for (int i = 0; i < buff.BuffItemData.CommonDatas.Count; i++)
+            for (int i = 0; i < buff.BuffItemData.StatsDatas.Count; i++)
             {
-                StartCoroutine(ChangeStats(buff, buff.BuffItemData.CommonDatas[i], buff.BuffItemData.DurationTime[i]));
+                StartCoroutine(ChangeStats(buff, buff.BuffItemData.StatsDatas[i], buff.BuffItemData.DurationTime[i]));
                 //if (buff.BuffType[i].ToString() == EVENT_BUFF_TYPE.E_Buff.ToString())
                 //{
                 //    StartCoroutine(
@@ -89,11 +89,11 @@ public class BuffSystem : MonoBehaviour
 
     public void ClearBuff(Buff buff)
     {
-        if (buff.BuffItemData.CommonDatas.Count > 0)
+        if (buff.BuffItemData.StatsDatas.Count > 0)
         {
-            for (int i = 0; i < buff.BuffItemData.CommonDatas.Count; i++)
+            for (int i = 0; i < buff.BuffItemData.StatsDatas.Count; i++)
             {
-                StopCoroutine(ChangeStats(buff, buff.BuffItemData.CommonDatas[i], buff.BuffItemData.DurationTime[i]));
+                StopCoroutine(ChangeStats(buff, buff.BuffItemData.StatsDatas[i], buff.BuffItemData.DurationTime[i]));
                 //if (buff.BuffItemData.BuffType[i].ToString() == EVENT_BUFF_TYPE.E_Buff.ToString())
                 //{   
                 //    StopCoroutine(
@@ -124,13 +124,13 @@ public class BuffSystem : MonoBehaviour
     }
     #region IEnumerator
 
-    IEnumerator ChangeStats(Buff buff, CommonData commonData, float duration)
+    IEnumerator ChangeStats(Buff buff, StatsData statsData, float duration)
     {
         if(unit != null)
         {
-            unit.Core.GetCoreComponent<UnitStats>().CommonData += commonData;
+            unit.Core.GetCoreComponent<UnitStats>().StatsData += statsData;
             yield return new WaitForSeconds(duration);
-            unit.Core.GetCoreComponent<UnitStats>().CommonData += commonData * -1f;
+            unit.Core.GetCoreComponent<UnitStats>().StatsData += statsData * -1f;
             RemoveBuff(buff);
             yield break;
         }

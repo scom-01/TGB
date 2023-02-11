@@ -72,11 +72,11 @@ public class Inventory : MonoBehaviour
             Debug.Log($"Add {itemData.name}, Success add {itemData.name}");
             items.Add(itemData);
             ItemCount++;
-            foreach (var commonData in itemData.CommonDatas)
+            foreach (var commonData in itemData.StatsDatas)
             {
                 SetStat(commonData);
             }                
-            Debug.Log($"Change UnitStats {unit.Core.GetCoreComponent<UnitStats>().CommonData}");
+            Debug.Log($"Change UnitStats {unit.Core.GetCoreComponent<UnitStats>().StatsData}");
         }
     }
 
@@ -85,7 +85,7 @@ public class Inventory : MonoBehaviour
         if(items.Contains(itemData))
         {
             Debug.Log($"Remove Item {itemData.name}");
-            foreach (var commonData in itemData.CommonDatas)
+            foreach (var commonData in itemData.StatsDatas)
             {
                 SetStat(commonData * -1f);
             }
@@ -111,10 +111,10 @@ public class Inventory : MonoBehaviour
     /// <summary>
     /// Unit의 CommonData Stats 변경
     /// </summary>
-    /// <param name="commonData"></param>
+    /// <param name="statsData"></param>
     /// <param name="plus">Plus = true, Minus = false</param>
-    private void SetStat(CommonData commonData)
+    private void SetStat(StatsData statsData)
     {
-        unit.Core.GetCoreComponent<UnitStats>().CommonData += commonData;
+        unit.Core.GetCoreComponent<UnitStats>().StatsData += statsData;
     }
 }

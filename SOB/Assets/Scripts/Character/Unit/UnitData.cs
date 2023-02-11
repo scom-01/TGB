@@ -5,29 +5,29 @@ using UnityEngine;
 public class UnitData : ScriptableObject
 {
     [Header("Status")]
-    [Tooltip("±âº» Status")]
-    public CommonData commonStats;
-    [Tooltip("³Ë¹éÁö¼Ó½Ã°£")]
+    [Tooltip("ê¸°ë³¸ Status")]
+    public StatsData statsStats;
+    [Tooltip("ë„‰ë°±ì§€ì†ì‹œê°„")]
     public float knockBackDuration;
-    [Tooltip("³Ë¹é ¼Óµµ")]
+    [Tooltip("ë„‰ë°± ì†ë„")]
     public Vector2 knockBackSpeed;
 
     [Header("InvincibleTime")]
-    [Tooltip("ÇÇ°İ ÄğÅ¸ÀÓ")]
+    [Tooltip("í”¼ê²© ì¿¨íƒ€ì„")]
     public float invincibleTime = 1f;
-    [Tooltip("ÅÍÄ¡ ÇÇ°İ ÄğÅ¸ÀÓ")]
+    [Tooltip("í„°ì¹˜ í”¼ê²© ì¿¨íƒ€ì„")]
     public float touchDamageinvincibleTime = 1f;
 
     [Header("Collider")]
-    [Tooltip("±âº» Äİ¶óÀÌ´õ Å©±â")]
+    [Tooltip("ê¸°ë³¸ ì½œë¼ì´ë” í¬ê¸°")]
     public float standColliderHeight;
 
     [Header("Check Variables")]
-    [Tooltip("Áö¸é °¨Áö °Å¸®")]
+    [Tooltip("ì§€ë©´ ê°ì§€ ê±°ë¦¬")]
     public float groundCheckRadius = 0.1f;
-    [Tooltip("º®¸é °¨Áö °Å¸®")]
+    [Tooltip("ë²½ë©´ ê°ì§€ ê±°ë¦¬")]
     public float wallCheckDistance = 0.5f;
-    [Tooltip("Áö¸é LayerMask")]
+    [Tooltip("ì§€ë©´ LayerMask")]
     public LayerMask whatIsGround;
     
 }

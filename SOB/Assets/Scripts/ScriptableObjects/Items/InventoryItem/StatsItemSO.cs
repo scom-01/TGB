@@ -7,7 +7,7 @@ public class StatsItemSO : ItemDataSO
 {
 
     [Tooltip("아이템이 갖는 스탯")]
-    public List<CommonData> CommonDatas;
+    public List<StatsData> StatsDatas;
     //--Collider--
     [field: Header("Collider Use")]
     [field: Tooltip("획득 시 이펙트")]
