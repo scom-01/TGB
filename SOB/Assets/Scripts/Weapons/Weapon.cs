@@ -56,6 +56,7 @@ namespace SOB.Weapons
 
         private void Update()
         {
+            BaseGameObject.GetComponent<Animator>().speed = 1f + (WeaponCore.GetCoreComponent<UnitStats>().CommonData.AttackSpeedPer * 1 / 100);
             actionCounterResetTimer.Tick();
         }
 
