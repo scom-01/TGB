@@ -20,7 +20,7 @@ public class DamageText : MonoBehaviour
             damageAmount = value;
             if(HitTextMeshPro != null)
             {
-                HitTextMeshPro.text = damageAmount.ToString();
+                HitTextMeshPro.text = damageAmount.ToString("F0");
             }
             else
             {
