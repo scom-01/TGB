@@ -38,9 +38,7 @@ public class PlayerDashState : PlayerAbilityState
         Movement.SetVelocityY(0f);
         player.RB.gravityScale = 0f;
         DecreaseDashCount();
-        startTime = Time.time;
-        Debug.Log($"Dash Start player.transform.position = {player.transform.position}");
-        Debug.Log($"Dash StartTime = {startTime}");
+        startTime = Time.time;        
     }
 
     public override void Exit()

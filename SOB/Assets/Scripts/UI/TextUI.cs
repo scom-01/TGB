@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class TextUI : MonoBehaviour
 {
     [SerializeField]
-    private Texture Backtexture2D;
+    private Sprite Backsprite;
     [SerializeField]
-    private Texture texture2D;
+    private Sprite sprite;
 
     [SerializeField]
     private string text;
@@ -22,12 +22,12 @@ public class TextUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var rawImage = GetComponentsInChildren<RawImage>();
+        var Image = GetComponentsInChildren<Image>();
 
-        rawImage[0].texture = Backtexture2D;
+        Image[0].sprite = Backsprite;
         //rawImage[0].rectTransform.sizeDelta = new Vector2(size, size);
 
-        rawImage[1].texture = texture2D;
+        Image[1].sprite = sprite;
         //rawImage[1].rectTransform.sizeDelta = new Vector2(size - padding, size - padding);
 
         GetComponentInChildren<TextMeshProUGUI>().text = text;

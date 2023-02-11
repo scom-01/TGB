@@ -56,7 +56,7 @@ public class DetailUI : MonoBehaviour
         Init();
 
         //처음 SetActive시 ContentSizeFitter가 먹히지않던 해결 코드
-        LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)csf.transform);
+        
 
         //this.gameObject.SetActive(false);
     }
@@ -64,6 +64,7 @@ public class DetailUI : MonoBehaviour
     private void OnEnable()
     {
         Init();
+        LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)csf.transform);
     }
 
     private void OnDisable()
