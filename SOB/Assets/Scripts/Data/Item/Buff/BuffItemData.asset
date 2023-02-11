@@ -16,7 +16,7 @@ MonoBehaviour:
   ItemDescription: 
   ItemSprite: {fileID: 0}
   CommonDatas:
-  - MaxHealth: 0
+  - MaxHealth: 50
     MovementVelocity: 0
     JumpVelocity: 0
     DefaultPower: 0
@@ -32,5 +32,6 @@ MonoBehaviour:
   <AcquiredEffectPrefab>k__BackingField: {fileID: 5279545542555632717, guid: 54c319e2f98e0b04384f32b5f2f6b28b, type: 3}
   <isEquipment>k__BackingField: 0
   <DetailSubUI>k__BackingField: 0
-  DurationTime: []
-  BuffType: 
+  DurationTime:
+  - 5
+  BuffType: 00000000
