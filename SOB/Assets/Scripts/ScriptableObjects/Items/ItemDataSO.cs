@@ -16,6 +16,6 @@ public class ItemDataSO : ScriptableObject
     public string ItemDescription;
     [field: Tooltip("아이템 Sprite아이콘")]
     public Sprite ItemSprite;
-    [field: Tooltip("아이템 GUID")]
-    public GUID GUID = new GUID(); 
+    //[field: Tooltip("아이템 GUID")]
+    //public Guid GUID; 
 }

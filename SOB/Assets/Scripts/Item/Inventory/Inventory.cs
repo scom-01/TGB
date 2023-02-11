@@ -4,7 +4,6 @@ using UnityEngine;
 using SOB.Weapons;
 using SOB.Item;
 using Unity.VisualScripting;
-using static UnityEditor.Progress;
 using SOB.CoreSystem;
 
 public class Inventory : MonoBehaviour
@@ -13,9 +12,12 @@ public class Inventory : MonoBehaviour
     public Weapon[] weapons;
     public List<ItemDataSO> items;
 
+    private int ItemCount;
+
     private void Awake()
     {
         unit = this.GetComponent<Unit>();
+        ItemCount = items.Count;
     }
     private void Start()
     {
@@ -45,15 +47,21 @@ public class Inventory : MonoBehaviour
             ChangeWeaponAttribute();
         }
 
-        var oldItem = items;
-        if(items != oldItem)
+        if(items.Count != ItemCount)
         {
+
             ChangeItemAttribute();
         }
     }
 
     public void AddInventoryItem(StatsItemSO itemData)
     {
+        if(items.Count >= 9)
+        {
+            Debug.LogWarning("Inventory is full");
+            //아이템 교체하는 코드
+        }
+
         //중복금지
         if (items.Contains(itemData))
         {
@@ -63,8 +71,8 @@ public class Inventory : MonoBehaviour
         {
             Debug.Log($"Add {itemData.name}, Success add {itemData.name}");
             items.Add(itemData);
-
-            foreach(var commonData in itemData.CommonDatas)
+            ItemCount++;
+            foreach (var commonData in itemData.CommonDatas)
             {
                 SetStat(commonData);
             }                
@@ -97,7 +105,7 @@ public class Inventory : MonoBehaviour
 
     private void ChangeItemAttribute()
     {
-        //CalculateItem(items);
+
     }
 
     /// <summary>

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SOB.Item;
-using UnityEditor.UIElements;
 
 public class Detector : MonoBehaviour
 {
@@ -40,7 +39,7 @@ public class Detector : MonoBehaviour
             {
                 player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
                 Debug.Log($"{currentGO.transform.parent.name} is Add Inventory");
-                player?.Inventory.AddInventoryItem(currentGO.GetComponentInParent<InventoryItem>().StatsItemData);
+                player?.Inventory.AddInventoryItem(currentGO.GetComponentInParent<SOB_Item>().Item);
                 Destroy(currentGO.transform.parent.gameObject);
                 currentGO = null;
             }
