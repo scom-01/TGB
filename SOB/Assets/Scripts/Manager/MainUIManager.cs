@@ -1,3 +1,4 @@
+using SOB.CoreSystem;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -24,24 +25,37 @@ namespace SOB.Manager
         void Start()
         {
             Player = GameManager.Inst?.player;
-            if(Player)
+            if (Player)
             {
-                float temp = 100.0f + Player.GetComponent<Player>().playerData.statsStats.AttackSpeedPer;
+                float temp = 100.0f + Player.GetComponent<Player>().Core.GetCoreComponent<UnitStats>().StatsData.AttackSpeedPer;
                 AttackSpeedStat.text = " + " + temp.ToString("F1") + "%";
-                temp = 100.0f + Player.GetComponent<Player>().playerData.statsStats.DefaultPower;
+                temp = 100.0f + Player.GetComponent<Player>().Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower;
                 AttackPowerStat.text = " + " + temp.ToString("F1") + "%";
-                temp = 100.0f + Player.GetComponent<Player>().playerData.statsStats.MovementVelocity;
+                temp = 100.0f + Player.GetComponent<Player>().Core.GetCoreComponent<UnitStats>().StatsData.MovementVelocity;
                 MoveSpeedStat.text = " + " + temp.ToString("F1") + "%";
-                temp = 100.0f + Player.GetComponent<Player>().playerData.statsStats.ElementalAggressivePer;
+                temp = 100.0f + Player.GetComponent<Player>().Core.GetCoreComponent<UnitStats>().StatsData.ElementalAggressivePer;
                 ElementalPowerStat.text = " + " + temp.ToString("F1") + "%";
-                temp = 100.0f + Player.GetComponent<Player>().playerData.statsStats.PhysicsDefensivePer;
+                temp = 100.0f + Player.GetComponent<Player>().Core.GetCoreComponent<UnitStats>().StatsData.PhysicsDefensivePer;
                 DefensivePowerStat.text = " + " + temp.ToString("F1") + "%";
-            }            
+            }
         }
 
         // Update is called once per frame
         void Update()
         {
+            if (Player)
+            {
+                float temp = 100.0f + Player.GetComponent<Player>().Core.GetCoreComponent<UnitStats>().StatsData.AttackSpeedPer;
+                AttackSpeedStat.text = " + " + temp.ToString("F1") + "%";
+                temp = 100.0f + Player.GetComponent<Player>().Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower;
+                AttackPowerStat.text = " + " + temp.ToString("F1") + "%";
+                temp = 100.0f + Player.GetComponent<Player>().Core.GetCoreComponent<UnitStats>().StatsData.MovementVelocity;
+                MoveSpeedStat.text = " + " + temp.ToString("F1") + "%";
+                temp = 100.0f + Player.GetComponent<Player>().Core.GetCoreComponent<UnitStats>().StatsData.ElementalAggressivePer;
+                ElementalPowerStat.text = " + " + temp.ToString("F1") + "%";
+                temp = 100.0f + Player.GetComponent<Player>().Core.GetCoreComponent<UnitStats>().StatsData.PhysicsDefensivePer;
+                DefensivePowerStat.text = " + " + temp.ToString("F1") + "%";
+            }
             //Player = GameManager.Inst?.player;
             //AttackSpeedStat.text = " + " + (100.0f + Player?.GetComponent<Player>().playerData.commonStats.AttackSpeedPer).ToString() + "%";
         }

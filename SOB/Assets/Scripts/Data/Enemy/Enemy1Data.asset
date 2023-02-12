@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 789ccafd0a6fa6b488c550d87e922e3c, type: 3}
   m_Name: Enemy1Data
   m_EditorClassIdentifier: 
-  commonStats:
+  statsStats:
     MaxHealth: 200
     MovementVelocity: 5
-    DefaulPower: 10
+    JumpVelocity: 10
+    DefaultPower: 5
     AttackSpeedPer: 0
-    PhysicsDefensivePer: 0.5
+    PhysicsDefensivePer: 0
     MagicDefensivePer: 0
     PhysicsAggressivePer: 0
     MagicAggressivePer: 0
