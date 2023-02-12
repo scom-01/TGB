@@ -2,12 +2,16 @@ using SOB.CoreSystem;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SOB.Manager
 {
     public class MainUIManager : MonoBehaviour
     {
         private GameObject Player;
+
+        [SerializeField] private TextMeshProUGUI CurrentHealthText;
+        [SerializeField] private Image CurrentHealthFillImg;
 
         [SerializeField]    private TextMeshProUGUI AttackSpeedStat;
         [SerializeField]    private TextMeshProUGUI AttackPowerStat;
@@ -27,7 +31,11 @@ namespace SOB.Manager
             Player = GameManager.Inst?.player;
             if (Player)
             {
-                float temp = 100.0f + Player.GetComponent<Player>().Core.GetCoreComponent<UnitStats>().StatsData.AttackSpeedPer;
+                float temp = Player.GetComponent<Player>().Core.GetCoreComponent<UnitStats>().CurrentHealth;
+                CurrentHealthText.text = temp.ToString("F0");
+                CurrentHealthFillImg.fillAmount = temp / Player.GetComponent<Player>().Core.GetCoreComponent<UnitStats>().StatsData.MaxHealth;
+
+                temp = 100.0f + Player.GetComponent<Player>().Core.GetCoreComponent<UnitStats>().StatsData.AttackSpeedPer;
                 AttackSpeedStat.text = " + " + temp.ToString("F1") + "%";
                 temp = 100.0f + Player.GetComponent<Player>().Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower;
                 AttackPowerStat.text = " + " + temp.ToString("F1") + "%";
@@ -45,7 +53,11 @@ namespace SOB.Manager
         {
             if (Player)
             {
-                float temp = 100.0f + Player.GetComponent<Player>().Core.GetCoreComponent<UnitStats>().StatsData.AttackSpeedPer;
+                float temp = Player.GetComponent<Player>().Core.GetCoreComponent<UnitStats>().CurrentHealth;
+                CurrentHealthText.text = temp.ToString("F0");
+                CurrentHealthFillImg.fillAmount = temp / Player.GetComponent<Player>().Core.GetCoreComponent<UnitStats>().StatsData.MaxHealth;
+
+                temp = 100.0f + Player.GetComponent<Player>().Core.GetCoreComponent<UnitStats>().StatsData.AttackSpeedPer;
                 AttackSpeedStat.text = " + " + temp.ToString("F1") + "%";
                 temp = 100.0f + Player.GetComponent<Player>().Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower;
                 AttackPowerStat.text = " + " + temp.ToString("F1") + "%";

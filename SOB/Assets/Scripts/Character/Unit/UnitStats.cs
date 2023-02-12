@@ -13,6 +13,7 @@ namespace SOB.CoreSystem
         #region Stats        
         public StatsData StatsData { get => statsData; set => statsData = value; }
         [field: SerializeField] private StatsData statsData;
+
         public float CurrentHealth { get => currentHealth; set => currentHealth = value <= 0 ? 0 : value; }
         [SerializeField] private float currentHealth;
 
