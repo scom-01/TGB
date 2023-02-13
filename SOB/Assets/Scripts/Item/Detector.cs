@@ -35,13 +35,18 @@ public class Detector : MonoBehaviour
         if(currentGO != null)
         {
             var player = unit as Player;
+            if (player == null)
+                return;
+
             if(player.InputHandler.InteractionInput)
             {
                 player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
                 Debug.Log($"{currentGO.transform.parent.name} is Add Inventory");
-                player?.Inventory.AddInventoryItem(currentGO.GetComponentInParent<SOB_Item>().Item);
-                Destroy(currentGO.transform.parent.gameObject);
-                currentGO = null;
+                if (player.Inventory.AddInventoryItem(currentGO.GetComponentInParent<SOB_Item>().Item))
+                {
+                    Destroy(currentGO.transform.parent.gameObject);
+                    currentGO = null;
+                }
             }
         }
     }

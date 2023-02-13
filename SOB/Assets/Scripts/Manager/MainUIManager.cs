@@ -32,7 +32,7 @@ namespace SOB.Manager
             if (Player)
             {
                 float temp = Player.GetComponent<Player>().Core.GetCoreComponent<UnitStats>().CurrentHealth;
-                CurrentHealthText.text = temp.ToString("F0");
+                CurrentHealthText.text = temp.ToString("F0") + " / " + Player.GetComponent<Player>().Core.GetCoreComponent<UnitStats>().StatsData.MaxHealth.ToString();
                 CurrentHealthFillImg.fillAmount = temp / Player.GetComponent<Player>().Core.GetCoreComponent<UnitStats>().StatsData.MaxHealth;
 
                 temp = 100.0f + Player.GetComponent<Player>().Core.GetCoreComponent<UnitStats>().StatsData.AttackSpeedPer;
@@ -54,7 +54,7 @@ namespace SOB.Manager
             if (Player)
             {
                 float temp = Player.GetComponent<Player>().Core.GetCoreComponent<UnitStats>().CurrentHealth;
-                CurrentHealthText.text = temp.ToString("F0");
+                CurrentHealthText.text = temp.ToString("F0")+ " / "+ Player.GetComponent<Player>().Core.GetCoreComponent<UnitStats>().StatsData.MaxHealth.ToString();
                 CurrentHealthFillImg.fillAmount = temp / Player.GetComponent<Player>().Core.GetCoreComponent<UnitStats>().StatsData.MaxHealth;
 
                 temp = 100.0f + Player.GetComponent<Player>().Core.GetCoreComponent<UnitStats>().StatsData.AttackSpeedPer;

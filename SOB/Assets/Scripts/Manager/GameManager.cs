@@ -84,9 +84,11 @@ public class GameManager : MonoBehaviour
     private void Pause()
     {
         Time.timeScale = 0f;
+        SubUI.InventorySubUI.gameObject.SetActive(true);
     }
     private void Continue()
     {
         Time.timeScale = 1f;
+        SubUI.InventorySubUI.gameObject.SetActive(false);
     }
 }

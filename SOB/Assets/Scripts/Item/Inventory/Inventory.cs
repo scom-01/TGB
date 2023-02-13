@@ -10,7 +10,7 @@ public class Inventory : MonoBehaviour
 {
     private Unit unit;
     public Weapon[] weapons;
-    public List<ItemDataSO> items;
+    public List<StatsItemSO> items;
 
     private int ItemCount;
 
@@ -54,12 +54,13 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void AddInventoryItem(StatsItemSO itemData)
+    public bool AddInventoryItem(StatsItemSO itemData)
     {
-        if(items.Count >= 9)
+        if(items.Count >= 8)
         {
             Debug.LogWarning("Inventory is full");
             //아이템 교체하는 코드
+            return false;
         }
 
         //중복금지
@@ -70,6 +71,7 @@ public class Inventory : MonoBehaviour
         else
         {
             Debug.Log($"Add {itemData.name}, Success add {itemData.name}");
+            GameManager.Inst.SubUI.InventorySubUI.InventoryItems.AddItem(itemData);
             items.Add(itemData);
             ItemCount++;
             foreach (var commonData in itemData.StatsDatas)
@@ -78,6 +80,7 @@ public class Inventory : MonoBehaviour
             }                
             Debug.Log($"Change UnitStats {unit.Core.GetCoreComponent<UnitStats>().StatsData}");
         }
+        return true;
     }
 
     public void RemoveInventoryItem(StatsItemSO itemData)

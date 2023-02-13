@@ -1,12 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace SOB.Manager
 {
     public class SubUIManager : MonoBehaviour
     {        
-        public GameObject DetailSubUI;
+        public DetailUI DetailSubUI;
+        public InventoryUI InventorySubUI;
+
+        private void Awake()
+        {
+            //DetailSubUI = this.GetComponentInChildren<DetailUI>();
+            //InventorySubUI = this.GetComponentInChildren<InventoryUI>();
+        }
 
         public void isRight(bool isright)
         {
@@ -24,7 +32,7 @@ namespace SOB.Manager
         {
             if(DetailSubUI != null)
             {
-                DetailSubUI.SetActive(OnOff);                
+                DetailSubUI.gameObject.SetActive(OnOff);                
             }
         }
     }

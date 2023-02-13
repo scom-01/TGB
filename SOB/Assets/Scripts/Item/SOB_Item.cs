@@ -49,8 +49,8 @@ namespace SOB.Item
         public void Detected(bool isright = true)
         {
             GameManager.Inst.SubUI.isRight(isright);
-            GameManager.Inst.SubUI.DetailSubUI.GetComponent<DetailUI>().MainItemName = Item.ItemName;
-            GameManager.Inst.SubUI.DetailSubUI.GetComponent<DetailUI>().SubItemName = Item.ItemDescription;
+            GameManager.Inst.SubUI.DetailSubUI.MainItemName = Item.ItemName;
+            GameManager.Inst.SubUI.DetailSubUI.SubItemName = Item.ItemDescription;
 
             if (GameManager.Inst.SubUI.DetailSubUI.gameObject.activeSelf)
             {
@@ -87,41 +87,6 @@ namespace SOB.Item
         
 
         #region IEnumerator
-        IEnumerator E_Increase(string statName , float value, float duration)
-        {
-            if (unit != null)
-            {
-                unit.Core.GetCoreComponent<UnitStats>().Increase(statName, value);
-                yield return new WaitForSeconds(duration);
-                unit.Core.GetCoreComponent<UnitStats>().Decrease(statName, value);
-                Destroy(this.gameObject);
-                yield break;
-            }
-            
-            yield break;
-        }
-
-        IEnumerator E_Decrease(string statName, float value, float duration)
-        {
-            if (unit != null)
-            {
-                unit.Core.GetCoreComponent<UnitStats>().Decrease(statName, value);
-                yield return new WaitForSeconds(duration);
-                unit.Core.GetCoreComponent<UnitStats>().Increase(statName, value);
-                Destroy(this.gameObject);
-                yield break;
-            }
-            
-            yield break;
-        }
-        IEnumerator E_Buff(float value)
-        {
-            if (unit != null)
-            {
-                unit.GetComponent<Inventory>().items.Add(new ItemDataSO());
-            }
-            yield return 0;
-        }
         
         IEnumerator DetectedSense()
         {

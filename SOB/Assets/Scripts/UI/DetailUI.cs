@@ -47,16 +47,11 @@ public class DetailUI : MonoBehaviour
     }
     private string subItemName;
 
-
-    [SerializeField]
     ContentSizeFitter csf;
     private void Awake()
     {
         csf = GetComponent<ContentSizeFitter>();
         Init();
-
-        //처음 SetActive시 ContentSizeFitter가 먹히지않던 해결 코드
-        
 
         //this.gameObject.SetActive(false);
     }
@@ -64,6 +59,7 @@ public class DetailUI : MonoBehaviour
     private void OnEnable()
     {
         Init();
+        //처음 SetActive시 ContentSizeFitter가 먹히지않던 해결 코드
         LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)csf.transform);
     }
 
