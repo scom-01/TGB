@@ -129,6 +129,11 @@ public class BuffSystem : MonoBehaviour
         if(unit != null)
         {
             unit.Core.GetCoreComponent<UnitStats>().StatsData += statsData;
+            if (duration == 999.0f)
+            {
+                Debug.LogWarning("duration is 999");
+                yield break;
+            }
             yield return new WaitForSeconds(duration);
             unit.Core.GetCoreComponent<UnitStats>().StatsData += statsData * -1f;
             RemoveBuff(buff);
@@ -142,6 +147,11 @@ public class BuffSystem : MonoBehaviour
         if (unit != null)
         {
             unit.Core.GetCoreComponent<UnitStats>().Increase(statName, value);
+            if (duration == 999.0f)
+            {
+                Debug.LogWarning("duration is 999");
+                yield break;
+            }
             yield return new WaitForSeconds(duration);
             unit.Core.GetCoreComponent<UnitStats>().Decrease(statName, value);
             RemoveBuff(buff);
