@@ -15,7 +15,7 @@ public class PlayerInputHandler : MonoBehaviour
     public int NormInputX { get; private set; }
     public int NormInputY { get; private set; }
     [HideInInspector]
-    public bool     JumpInput
+    public bool JumpInput
                     , JumpInputStop
                     , GrabInput
                     , DashInput
@@ -28,7 +28,7 @@ public class PlayerInputHandler : MonoBehaviour
                     , PrimaryStop
                     , BlockInput
                     , BlockInputStop
-                    , InteractionInput;
+                    , InteractionInput = false;
     [HideInInspector]
     public bool[] ActionInputs;
 
@@ -40,6 +40,7 @@ public class PlayerInputHandler : MonoBehaviour
     private float skill1InputStartTime;
     private float skill2InputStartTime;
     private float blockInputStartTime;
+    private float interactionInputStartTime;
     private float[] ActionInputsStartTime;
 
 
@@ -112,6 +113,7 @@ public class PlayerInputHandler : MonoBehaviour
         bool blockInput = BlockInput;
         bool skill1Input = Skill1Input;
         bool skill2Input = Skill2Input;
+        bool interacInput = InteractionInput;
         bool[] attackInputs = ActionInputs;
 
         CheckHoldTime(ref jumpInput, ref jumpInputStartTime);
@@ -120,6 +122,7 @@ public class PlayerInputHandler : MonoBehaviour
         CheckHoldTime(ref skill1Input, ref skill1InputStartTime);
         CheckHoldTime(ref skill2Input, ref skill2InputStartTime);
         CheckHoldTime(ref attackInputs, ref ActionInputsStartTime);
+        CheckHoldTime(ref interacInput, ref interactionInputStartTime);
 
         JumpInput = jumpInput;
         DashInput = dashInput;
@@ -127,6 +130,7 @@ public class PlayerInputHandler : MonoBehaviour
         Skill1Input = skill1Input;
         Skill2Input = skill2Input;
         ActionInputs = attackInputs;
+        InteractionInput = interacInput;
     }
 
     //움직임 Input
@@ -256,6 +260,7 @@ public class PlayerInputHandler : MonoBehaviour
         {
             Debug.Log("OnInteractionInput");
             InteractionInput = true;
+            interactionInputStartTime = Time.time;
         }
 
         if (context.canceled)
