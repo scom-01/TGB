@@ -52,6 +52,7 @@ public class InventoryItems : MonoBehaviour
     }
     public void RemoveItem(StatsItemSO StatsItem)
     {
+        items[currentSelectItemIndex].StatsItemData = null;
         CurrentSelectItem.StatsItemData = null;
         CurrentSelectItem = items[currentSelectItemIndex--];
     }

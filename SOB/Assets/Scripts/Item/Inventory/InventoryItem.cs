@@ -7,7 +7,17 @@ using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour
 {
-    [field: SerializeField] public StatsItemSO StatsItemData;
+    public StatsItemSO StatsItemData
+    {
+        get => statsItemData;
+        set
+        {
+            statsItemData = value;
+            Init();
+        }
+    }
+
+    [SerializeField] private StatsItemSO statsItemData;
     public bool isSelect
     {
         set => BackImgAlpha = value ? 1f : 0.75f;
@@ -22,7 +32,14 @@ public class InventoryItem : MonoBehaviour
 
     public void Init()
     {
-        iconImg.sprite = StatsItemData.ItemSprite;
+        if (statsItemData != null)
+        {
+            iconImg.sprite = statsItemData.ItemSprite;
+        }
+        else
+        {
+            iconImg.sprite = null;
+        }
     }
 }
 
