@@ -59,30 +59,6 @@ public class BuffSystem : MonoBehaviour
             for (int i = 0; i < buff.BuffItemData.StatsDatas.Count; i++)
             {
                 StartCoroutine(ChangeStats(buff, buff.BuffItemData.StatsDatas[i], buff.BuffItemData.DurationTime[i]));
-                //if (buff.BuffType[i].ToString() == EVENT_BUFF_TYPE.E_Buff.ToString())
-                //{
-                //    StartCoroutine(
-                //        E_Increase
-                //            (
-                //            buff,
-                //            buff.BuffItemData.BuffName[i].ToString(),
-                //            buff.BuffItemData.BuffValue[i],
-                //            buff.BuffItemData.BuffDurationTime[i]
-                //            )
-                //        );
-                //}
-                //else if (buff.BuffItemData.BuffType[i].ToString() == EVENT_BUFF_TYPE.E_DeBuff.ToString())
-                //{
-                //    StartCoroutine(
-                //        E_Decrease
-                //            (
-                //            buff,
-                //            buff.BuffItemData.BuffName[i].ToString(),
-                //            buff.BuffItemData.BuffValue[i],
-                //            buff.BuffItemData.BuffDurationTime[i]
-                //            )
-                //        );
-                //}
             }
         }
     }
@@ -94,30 +70,6 @@ public class BuffSystem : MonoBehaviour
             for (int i = 0; i < buff.BuffItemData.StatsDatas.Count; i++)
             {
                 StopCoroutine(ChangeStats(buff, buff.BuffItemData.StatsDatas[i], buff.BuffItemData.DurationTime[i]));
-                //if (buff.BuffItemData.BuffType[i].ToString() == EVENT_BUFF_TYPE.E_Buff.ToString())
-                //{   
-                //    StopCoroutine(
-                //        E_Increase
-                //            (
-                //            buff,
-                //            buff.BuffItemData.BuffName[i].ToString(),
-                //            buff.BuffItemData.BuffValue[i],
-                //            buff.BuffItemData.BuffDurationTime[i]
-                //            )
-                //        );
-                //}
-                //else if (buff.BuffItemData.BuffType[i].ToString() == EVENT_BUFF_TYPE.E_DeBuff.ToString())
-                //{
-                //    StopCoroutine(
-                //        E_Decrease
-                //            (
-                //            buff,
-                //            buff.BuffItemData.BuffName[i].ToString(),
-                //            buff.BuffItemData.BuffValue[i],
-                //            buff.BuffItemData.BuffDurationTime[i]
-                //            )
-                //        );
-                //}
             }
         }
 
@@ -141,38 +93,6 @@ public class BuffSystem : MonoBehaviour
         }
         Debug.LogWarning($"{buff} is not have unit");
         yield break;
-    }
-    IEnumerator E_Increase(Buff buff, string statName, float value, float duration)
-    {
-        if (unit != null)
-        {
-            unit.Core.GetCoreComponent<UnitStats>().Increase(statName, value);
-            if (duration == 999.0f)
-            {
-                Debug.LogWarning("duration is 999");
-                yield break;
-            }
-            yield return new WaitForSeconds(duration);
-            unit.Core.GetCoreComponent<UnitStats>().Decrease(statName, value);
-            RemoveBuff(buff);
-            yield break;
-        }
-
-        yield break;
-    }
-
-    IEnumerator E_Decrease(Buff buff, string statName, float value, float duration)
-    {
-        if (unit != null)
-        {
-            unit.Core.GetCoreComponent<UnitStats>().Decrease(statName, value);
-            yield return new WaitForSeconds(duration);
-            unit.Core.GetCoreComponent<UnitStats>().Increase(statName, value);
-            RemoveBuff(buff);
-            yield break;
-        }
-
-        yield break;
-    }
+    }    
     #endregion
 }
