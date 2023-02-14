@@ -1,6 +1,7 @@
 using SOB.CoreSystem;
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,7 @@ namespace SOB.Manager
 {
     public class MainUIManager : MonoBehaviour
     {
-        private GameObject Player;
+        protected GameObject Player;
 
         [SerializeField] private TextMeshProUGUI CurrentHealthText;
         [SerializeField] private Image CurrentHealthFillImg;
@@ -20,9 +21,12 @@ namespace SOB.Manager
         [SerializeField]    private TextMeshProUGUI ElementalPowerStat;
         [SerializeField]    private TextMeshProUGUI DefensivePowerStat;
 
+        public BuffPanelSystem BuffPanelSystem;
+
         private void Awake()
         {
-            Player = GameManager.Inst?.player;            
+            Player = GameManager.Inst?.player;
+            BuffPanelSystem = this.GetComponent<BuffPanelSystem>();
         }
 
         // Use this for initialization
