@@ -6,8 +6,9 @@ using UnityEngine;
 
 public class Buff 
 {
-    public BuffItemSO BuffItemData;
+    public StatsData statsData;
+    public float durationTime;
+    public EVENT_BUFF_TYPE buffType;
 
-    private Unit unit;
-
+    public float startTime;
 }
