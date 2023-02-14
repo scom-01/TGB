@@ -110,12 +110,7 @@ public class Detector : MonoBehaviour
             }
             StartCoroutine(CheckCurrentGO());
         }
-        //ConsumptionItem
-        else
-        {
-            item.unit = unit;
-            item.CallCoroutine(ItemGetType.Collision.ToString());
-        }
+        
 
         //Trap
         if (collision.gameObject.tag == "Trap")
@@ -140,6 +135,12 @@ public class Detector : MonoBehaviour
             //Debug.Log($"Detected {collision.name} {this.name}");
             //var collItem = collision.GetComponentInParent<SOB_Item>();
             //collItem.Detected();
+        }
+        //ConsumptionItem
+        else
+        {
+            item.unit = unit;
+            item.CallCoroutine(ItemGetType.Collision.ToString());
         }
     }
     //Detected

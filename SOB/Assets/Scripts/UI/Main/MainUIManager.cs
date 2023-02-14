@@ -21,12 +21,12 @@ namespace SOB.Manager
         [SerializeField]    private TextMeshProUGUI ElementalPowerStat;
         [SerializeField]    private TextMeshProUGUI DefensivePowerStat;
 
-        public BuffPanelSystem BuffPanelSystem;
+        [HideInInspector] public BuffPanelSystem BuffPanelSystem;
 
         private void Awake()
         {
             Player = GameManager.Inst?.player;
-            BuffPanelSystem = this.GetComponent<BuffPanelSystem>();
+            BuffPanelSystem = this.GetComponentInChildren<BuffPanelSystem>();
         }
 
         // Use this for initialization
