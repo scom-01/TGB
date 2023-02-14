@@ -10,13 +10,16 @@ namespace SOB.Weapons
 {
     public class WeaponGenerator : MonoBehaviour
     {
-        [SerializeField] private Weapon weapon;
+        private Weapon weapon;
         [SerializeField] private WeaponDataSO weaponData;
 
         private List<WeaponComponent> componentsAllreadyOnWeapon = new List<WeaponComponent>();
         private List<WeaponComponent> componentsAddedToWeapon = new List<WeaponComponent>();
         private List<Type> componentsDependencies = new List<Type>();
-
+        private void Awake()
+        {
+            weapon = this.GetComponent<Weapon>();
+        }
         private void Start()
         {
             GenerateWeapon(weaponData);
