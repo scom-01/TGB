@@ -9,7 +9,7 @@ using SOB.CoreSystem;
 public class Inventory : MonoBehaviour
 {
     private Unit unit;
-    public Weapon[] weapons;
+    public List<Weapon> weapons;
     public List<StatsItemSO> items;
 
     private int ItemCount;
@@ -21,10 +21,15 @@ public class Inventory : MonoBehaviour
     }
     private void Start()
     {
-        if(weapons == null || weapons?.Length == 0)
+        if(weapons == null || weapons?.Count == 0)
         {
-            weapons = this.GetComponentsInChildren<Weapon>();
-            if (weapons == null)
+            var weaponItems = this.GetComponentsInChildren<Weapon>();
+            for (int i = 0; i < weaponItems.Length;i++)
+            {
+                this.weapons.Add(weaponItems[i]);
+            }
+            
+            if (this.weapons == null)
             {
                 Debug.LogWarning($"{transform.name}'s Weapons is empty in The Inventory");
             }
