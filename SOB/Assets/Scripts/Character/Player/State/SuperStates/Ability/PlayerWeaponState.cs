@@ -17,13 +17,12 @@ public class PlayerWeaponState : PlayerAbilityState
     public PlayerWeaponState(Unit unit, string animBoolName, Weapon weapon) : base(unit, animBoolName)
     {
         this.weapon = weapon;
-        this.weapon.OnExit += ExitHandler;
     }
 
     public override void Enter()
     {
         base.Enter();
-
+        this.weapon.OnExit += ExitHandler;
         //setVelocity = false;
 
         weapon.InAir = !CollisionSenses.CheckIfGrounded;
