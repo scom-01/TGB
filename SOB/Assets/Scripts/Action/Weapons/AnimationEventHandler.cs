@@ -6,6 +6,8 @@ using UnityEngine;
 public class AnimationEventHandler : MonoBehaviour
 {
     public event Action OnFinish;
+    public event Action OnFixedStartMovement;
+    public event Action OnFixedStopMovement;
     public event Action OnStartMovement;
     public event Action OnStopMovement;
     public event Action OnStartFlip;
@@ -14,6 +16,8 @@ public class AnimationEventHandler : MonoBehaviour
 
 
     public void AnimationFinishedTrigger() => OnFinish?.Invoke();
+    public void FixedStartMovementTrigger() => OnFixedStartMovement?.Invoke();
+    public void FixedStopMovementTrigger() => OnFixedStopMovement?.Invoke();
     public void StartMovementTrigger() => OnStartMovement?.Invoke();
     public void StopMovementTrigger() => OnStopMovement?.Invoke();
     public void StartFlipTrigger() => OnStartFlip?.Invoke();

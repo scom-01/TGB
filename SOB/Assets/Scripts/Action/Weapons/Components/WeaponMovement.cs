@@ -22,11 +22,17 @@ namespace SOB.Weapons.Components
             CoreMovement.CanMovement = true;
         }
 
-        //강제로 움직임-> 나중에 스킬로사용 가능
-        //private void HandleStartMovement()
-        //{            
-        //    CoreMovement.SetVelocity(currentActionData.Velocity, currentActionData.Direction, CoreMovement.FancingDirection);            
-        //}
+        //중력의 영향 x 
+        private void HandleFixedStartMovement()
+        {
+            CoreMovement.SetVelocity(currentActionData.Velocity, currentActionData.Direction, CoreMovement.FancingDirection);
+            core.Unit.RB.gravityScale = 0f;            
+        }
+        private void HandleFixedStopMovement()
+        {
+            CoreMovement.SetVelocityX(0f);
+            core.Unit.RB.gravityScale = 5f;            
+        }
 
         private void HandleStopMovement()
         {
@@ -47,6 +53,8 @@ namespace SOB.Weapons.Components
         {
             base.Start();
 
+            eventHandler.OnFixedStartMovement += HandleFixedStartMovement;
+            eventHandler.OnFixedStopMovement += HandleFixedStopMovement;
             eventHandler.OnStartMovement += HandleStartMovement;
             eventHandler.OnStopMovement += HandleStopMovement;
             eventHandler.OnStartFlip += HandleStartFlip;
@@ -57,6 +65,8 @@ namespace SOB.Weapons.Components
         {
             base.OnDestory();
 
+            eventHandler.OnFixedStartMovement -= HandleFixedStartMovement;
+            eventHandler.OnFixedStopMovement -= HandleFixedStopMovement;
             eventHandler.OnStartMovement -= HandleStartMovement;
             eventHandler.OnStopMovement -= HandleStopMovement;
             eventHandler.OnStartFlip -= HandleStartFlip;

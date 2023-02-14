@@ -42,6 +42,7 @@ public class PlayerInputHandler : MonoBehaviour
     private float blockInputStartTime;
     private float interactionInputStartTime;
     private float[] ActionInputsStartTime;
+    private float[] ActionInputsStopTime;
 
 
     private void Awake()
@@ -50,6 +51,7 @@ public class PlayerInputHandler : MonoBehaviour
         int count = Enum.GetValues(typeof(CombatInputs)).Length;
         ActionInputs = new bool[count];
         ActionInputsStartTime = new float[count];
+        ActionInputsStopTime = new float[count];
         cam = Camera.main;
 
         Debug.Log(playerInput.currentActionMap.name);
@@ -121,7 +123,7 @@ public class PlayerInputHandler : MonoBehaviour
         CheckHoldTime(ref blockInput, ref blockInputStartTime);
         CheckHoldTime(ref skill1Input, ref skill1InputStartTime);
         CheckHoldTime(ref skill2Input, ref skill2InputStartTime);
-        CheckHoldTime(ref attackInputs, ref ActionInputsStartTime);
+        //CheckHoldTime(ref attackInputs, ref ActionInputsStartTime);
         CheckHoldTime(ref interacInput, ref interactionInputStartTime);
 
         JumpInput = jumpInput;
@@ -129,7 +131,7 @@ public class PlayerInputHandler : MonoBehaviour
         BlockInput = blockInput;
         Skill1Input = skill1Input;
         Skill2Input = skill2Input;
-        ActionInputs = attackInputs;
+        //ActionInputs = attackInputs;
         InteractionInput = interacInput;
     }
 
@@ -230,12 +232,14 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.started)
         {
-            ActionInputs[(int)CombatInputs.primary] = true;
+            ActionInputs[(int)CombatInputs.primary] = true;            
             ActionInputsStartTime[(int)CombatInputs.primary] = Time.time;
         }
 
         if (context.canceled)
         {
+            ActionInputsStopTime[(int)CombatInputs.primary] = Time.time;
+            Debug.Log($"ActionInputStopTime {ActionInputsStartTime[(int)CombatInputs.primary]}");
             ActionInputs[(int)CombatInputs.primary] = false;
         }
     }
