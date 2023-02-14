@@ -38,7 +38,7 @@ namespace SOB.Skills
         }
         private void Update()
         {
-            BaseGameObject.GetComponent<Animator>().speed = 1f + (SkillCore.GetCoreComponent<UnitStats>().StatsData.AttackSpeedPer * 1 / 100);            
+            //BaseGameObject.GetComponent<Animator>().speed = 1f + (SkillCore.GetCoreComponent<UnitStats>().StatsData.AttackSpeedPer * 1 / 100);            
         }
 
         private void OnEnable()

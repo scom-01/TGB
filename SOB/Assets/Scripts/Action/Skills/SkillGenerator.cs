@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using System;
+using SOB.Skills.Component;
 
 namespace SOB.Skills
 {
@@ -14,10 +15,14 @@ namespace SOB.Skills
         [SerializeField] private SkillDataSO skillData;
 
 
-        private List<WeaponComponent> componentsAllreadyOnWeapon = new List<WeaponComponent>();
-        private List<WeaponComponent> componentsAddedToWeapon = new List<WeaponComponent>();
+        private List<SkillComponent> componentsAllreadyOnWeapon = new List<SkillComponent>();
+        private List<SkillComponent> componentsAddedToWeapon = new List<SkillComponent>();
         private List<Type> componentsDependencies = new List<Type>();
 
+        private void Awake()
+        {
+            skill = this.GetComponent<Skill>();
+        }
         // Start is called before the first frame update
         void Start()
         {
@@ -36,7 +41,7 @@ namespace SOB.Skills
             componentsAddedToWeapon.Clear();
             componentsDependencies.Clear();
 
-            componentsAllreadyOnWeapon = GetComponents<WeaponComponent>().ToList();
+            componentsAllreadyOnWeapon = GetComponents<SkillComponent>().ToList();
 
             componentsDependencies = data.GetAllDependencies();
             foreach (var dependency in componentsDependencies)
@@ -46,25 +51,25 @@ namespace SOB.Skills
                     continue;
 
 
-                var weaponComponent = componentsAllreadyOnWeapon.FirstOrDefault(component => component.GetType() == dependency);
+                var skillComponent = componentsAllreadyOnWeapon.FirstOrDefault(component => component.GetType() == dependency);
 
                 //componentsAllreadyOnWeapon List안에 dependency와 같은 타입이 존재 하지않을 때
-                if (weaponComponent == null)
+                if (skillComponent == null)
                 {
-                    weaponComponent = gameObject.AddComponent(dependency) as WeaponComponent;
+                    skillComponent = gameObject.AddComponent(dependency) as SkillComponent;
                 }
 
-                weaponComponent.Init();
+                skillComponent.Init();
 
-                componentsAddedToWeapon.Add(weaponComponent);
+                componentsAddedToWeapon.Add(skillComponent);
             }
 
             //componentsAllreadyOnWeapon안에 componentsAddedToWeapon와 같은 항목을 제거 ex) {1,2,3}.Except(1) = {2, 3}
             var componentsToRemove = componentsAllreadyOnWeapon.Except(componentsAddedToWeapon);
 
-            foreach (var weaponComponent in componentsToRemove)
+            foreach (var skillComponent in componentsToRemove)
             {
-                Destroy(weaponComponent);
+                Destroy(skillComponent);
             }
         }
         
