@@ -14,11 +14,6 @@ public class PlayerWeaponState : PlayerAbilityState
     private int xInput;
     private bool JumpInput;
 
-    private float velocityToSet;
-
-    private bool setVelocity;
-    private bool shouldCheckFlip;
-
     public PlayerWeaponState(Unit unit, string animBoolName, Weapon weapon) : base(unit, animBoolName)
     {
         this.weapon = weapon;
@@ -29,16 +24,13 @@ public class PlayerWeaponState : PlayerAbilityState
     {
         base.Enter();
 
-        setVelocity = false;
+        //setVelocity = false;
 
         weapon.InAir = !CollisionSenses.CheckIfGrounded;
         weapon.EnterWeapon();
 
         CanAttack = false;
 
-        Debug.Log($"Enter input = {input}");
-        //player.InputHandler.UseInput(ref input);
-        Debug.Log($"input = {input}");
         startTime = Time.time;
     }
 
@@ -71,14 +63,14 @@ public class PlayerWeaponState : PlayerAbilityState
             return;
         }
 
-        shouldCheckFlip = weapon.weaponData.GetData<MovementData>().ActionData[weapon.CurrentActionCounter].CanFlip;
+        //shouldCheckFlip = weapon.weaponData.GetData<MovementData>().ActionData[weapon.CurrentActionCounter].CanFlip;
          
         if (Movement.CanFlip)
         {
             Movement.CheckIfShouldFlip(xInput);
         }
 
-        setVelocity = weapon.weaponData.GetData<MovementData>().ActionData[weapon.CurrentActionCounter].CanMoveCtrl;
+        //setVelocity = weapon.weaponData.GetData<MovementData>().ActionData[weapon.CurrentActionCounter].CanMoveCtrl;
         if (Movement.CanMovement)
         {
             Movement.SetVelocityX(UnitStats.StatsData.MovementVelocity * xInput);
@@ -98,9 +90,6 @@ public class PlayerWeaponState : PlayerAbilityState
     public void SetWeapon(Weapon weapon)
     {
         this.weapon = weapon;
-
         weapon.InitializeWeapon(this, player.Core);
-        //this.weapon.SetCore(this.weapon.WeaponCore);
-        //this.weapon.GetComponentInParent<WeaponManager>().weapon = weapon;
     }
 }
