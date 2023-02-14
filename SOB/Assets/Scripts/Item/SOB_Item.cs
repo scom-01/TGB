@@ -76,8 +76,14 @@ namespace SOB.Item
             if (unit.gameObject.GetComponent<BuffSystem>() && Item.GetType() == typeof(BuffItemSO))
             {
                 Buff buff = new Buff();
-                buff.BuffItemData = Item as BuffItemSO;
-                unit.gameObject.GetComponent<BuffSystem>().AddBuff(buff);
+                var items = Item as BuffItemSO;
+                for(int i = 0; i < items.StatsDatas.Count; i++)
+                {
+                    buff.statsData = items.StatsDatas[i];
+                    buff.durationTime = items.DurationTime[i];
+                    buff.buffType = items.BuffType[i];
+                    unit.gameObject.GetComponent<BuffSystem>().AddBuff(buff);
+                }                
             }
 
             //Effect
