@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class BuffPanelItem : MonoBehaviour
 {
+    public Buff buff;
     public Sprite IconImgSprite;
     [SerializeField] private Sprite BackImgSprite;
 
     [SerializeField] private Image IconImg;
-    [SerializeField] private Image IconImgFilled;
     [SerializeField] private Image BackImg;
-    [SerializeField] private Image BackImgFilled;
+    [SerializeField] private Image FilledImg;
 
     /// <summary>
     /// 버프 총 지속 시간
@@ -20,38 +20,30 @@ public class BuffPanelItem : MonoBehaviour
     /// <summary>
     /// 버프 지속 남은 시간
     /// </summary>
-    public float BuffCurrentTime
-    {
-        get => buffCurrentTime;
-        set
-        {
-            buffCurrentTime = value;
-            IconImgFilled.fillAmount = buffCurrentTime / BuffDurationTime;
-            BackImgFilled.fillAmount = buffCurrentTime / BuffDurationTime;
-        }
-    }
-    private float buffCurrentTime;
+    private float BuffCurrentTime;
 
     // Start is called before the first frame update
     void Start()
     {
         Setting();
     }
+    private void Update()
+    {
+        if (buff == null)
+            return;
+
+        BuffDurationTime = buff.durationTime;
+        BuffCurrentTime = 1f - ((Time.time - buff.startTime) / BuffDurationTime);
+        FilledImg.fillAmount = BuffCurrentTime;
+        if (BuffCurrentTime <= 0f)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
     [ContextMenu("Setting")]
     private void Setting()
     {
-        if(IconImgFilled ==null || BackImgFilled == null)
-        {
-            Debug.LogError($"IconImgFilled or BackImgFilled is Null");
-            return;
-        }
-        
-        if (IconImgFilled != null)
-        {
-            IconImgFilled.sprite = IconImgSprite;
-        }
-
         if (IconImg != null)
         {
             IconImg.sprite = IconImgSprite;
@@ -60,11 +52,6 @@ public class BuffPanelItem : MonoBehaviour
         if (BackImg != null)
         {
             BackImg.sprite = BackImgSprite;
-        }
-
-        if (BackImgFilled != null)
-        {
-            BackImgFilled.sprite = BackImgSprite;
         }
     }
 }
