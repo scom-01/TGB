@@ -65,9 +65,10 @@ public class Player : Unit
         DashState = new PlayerDashState(this, "dash");
         PrimaryAttackState = new PlayerWeaponState(this, "weapon", Inventory.weapons[(int)CombatInputs.primary]);
         SecondaryAttackState = new PlayerWeaponState(this, "weapon", Inventory.weapons[(int)CombatInputs.secondary]);
-
-        Inventory.weapons[(int)CombatInputs.primary].SetCore(Core);
-        Inventory.weapons[(int)CombatInputs.secondary].SetCore(Core);
+        foreach(var weapon in Inventory.weapons)
+        {
+            weapon.SetCore(Core);
+        }
     }
 
     protected override void Start()
