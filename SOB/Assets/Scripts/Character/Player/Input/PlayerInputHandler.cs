@@ -85,21 +85,13 @@ public class PlayerInputHandler : MonoBehaviour
                 if(playerInput.currentActionMap == playerInput.actions.FindActionMap("UI"))
                 {
                     playerInput.SwitchCurrentActionMap("GamePlay");
+                    GameManager.Inst.CheckPause(false);
                 }
                 else if(playerInput.currentActionMap == playerInput.actions.FindActionMap("GamePlay"))
                 {
                     playerInput.SwitchCurrentActionMap("UI");
+                    GameManager.Inst.CheckPause(true);
                 }
-                GameManager.Inst.CheckPause();
-                //foreach (var index in playerInput.actions.actionMaps.ToArray())
-                //{
-                //    if (playerInput.currentActionMap != index)
-                //    {
-                //        Debug.Log($"CurrentActionMaps {playerInput.currentActionMap.name}, Change ActionMaps {index.name}");
-                //        playerInput.SwitchCurrentActionMap(index.name);
-                //        break;
-                //    }
-                //}
             }
         }
         if(context.canceled)

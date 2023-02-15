@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float respawnTime;
     [SerializeField]
-    private float deathLine;
+    private float deadLine;
 
     public PlayerInputHandler inputHandler { get; private set; }
     private float respawnTimeStart;
@@ -68,14 +68,7 @@ public class GameManager : MonoBehaviour
 
     private void CheckRespawn()
     {
-        if (player != null)
-        {
-            if(player.transform.position.y < deathLine)
-            {
-                player.GetComponent<Player>().Core.GetCoreComponent<Death>().Die();
-                respawn = true;
-            }
-        }
+        CheckDeadLine();
 
         CheckLife(player.GetComponent<Player>());
 
@@ -87,16 +80,28 @@ public class GameManager : MonoBehaviour
         }
 
     }
+
+    private void CheckDeadLine()
+    {
+        if (player != null)
+        {
+            if (player.transform.position.y < deadLine)
+            {
+                player.GetComponent<Player>().Core.GetCoreComponent<Death>().Die();
+                respawn = true;
+            }
+        }
+    }
     private void CheckLife(Player player)
     {
         player.IsAlive = player.gameObject.activeSelf;
     }
 
-    public void CheckPause()
+    public void CheckPause(bool pause)
     {
-        if (Time.timeScale == 1f)
+        if (pause)
             Pause();
-        else if (Time.timeScale == 0f)
+        else
             Continue();
     }
 
