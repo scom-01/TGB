@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SOB.Item;
+using SOB.CoreSystem;
 
 public class Detector : MonoBehaviour
 {
@@ -32,13 +33,13 @@ public class Detector : MonoBehaviour
 
     private void Update()
     {
-        if(currentGO != null)
+        if (currentGO != null)
         {
             var player = unit as Player;
             if (player == null)
                 return;
 
-            if(player.InputHandler.InteractionInput)
+            if (player.InputHandler.InteractionInput)
             {
                 player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
                 Debug.Log($"{currentGO.transform.parent.name} is Add Inventory");
@@ -100,24 +101,28 @@ public class Detector : MonoBehaviour
         //DetectorMask 의 LayerMask가 아니면 return
         if ((DetectorMask.value & (1 << collision.gameObject.layer)) <= 0)
             return;
-        var item = collision.GetComponentInParent<SOB_Item>();
-        //EquipmentItem
-        if (item.Item.isEquipment)
+        if (collision.tag == "item")
         {
-            if (!DetectedList.Contains(collision.gameObject))
+            var item = collision.GetComponentInParent<SOB_Item>();
+
+            //EquipmentItem
+            if (item.Item.isEquipment)
             {
-                DetectedList.Add(collision.gameObject);
+                if (!DetectedList.Contains(collision.gameObject))
+                {
+                    DetectedList.Add(collision.gameObject);
+                }
+                StartCoroutine(CheckCurrentGO());
             }
-            StartCoroutine(CheckCurrentGO());
         }
-        
+
 
         //Trap
         if (collision.gameObject.tag == "Trap")
         {
             if (unit.UnitData.invincibleTime == 0f)
             {
-                //unit.Hit(5);
+                unit.Core.GetCoreComponent<UnitStats>().DecreaseHealth(ElementalPower.Normal, DamageAttiribute.Fixed, 50);
                 unit.UnitData.invincibleTime = 1.5f;
             }
         }
@@ -128,20 +133,25 @@ public class Detector : MonoBehaviour
         //DetectorMask 의 LayerMask가 아니면 return
         if ((DetectorMask.value & (1 << collision.gameObject.layer)) <= 0)
             return;
-        var item = collision.GetComponentInParent<SOB_Item>();
-        //Item
-        if (item.Item.isEquipment)
+
+        if (collision.tag == "item")
         {
-            //Debug.Log($"Detected {collision.name} {this.name}");
-            //var collItem = collision.GetComponentInParent<SOB_Item>();
-            //collItem.Detected();
+            var item = collision.GetComponentInParent<SOB_Item>();
+            //Item
+            if (item.Item.isEquipment)
+            {
+                //Debug.Log($"Detected {collision.name} {this.name}");
+                //var collItem = collision.GetComponentInParent<SOB_Item>();
+                //collItem.Detected();
+            }
+            //ConsumptionItem
+            else
+            {
+                item.unit = unit;
+                item.CallCoroutine(ItemGetType.Collision.ToString());
+            }
         }
-        //ConsumptionItem
-        else
-        {
-            item.unit = unit;
-            item.CallCoroutine(ItemGetType.Collision.ToString());
-        }
+
     }
     //Detected
     private void OnTriggerExit2D(Collider2D collision)
@@ -152,17 +162,20 @@ public class Detector : MonoBehaviour
 
         DetectedList.Remove(collision.gameObject);
 
-        var item = collision.GetComponentInParent<SOB_Item>();
-        if (item == null)
-            return;
-        //Item
-        if (item.Item.isEquipment)
+        if (collision.tag == "item")
         {
-            Debug.Log($"UnDetected {this.name}");
-            if (currentGO == collision.gameObject)
+            var item = collision.GetComponentInParent<SOB_Item>();
+            if (item == null)
+                return;
+            //Item
+            if (item.Item.isEquipment)
             {
-                item.UnDetected();
-                currentGO = null;
+                Debug.Log($"UnDetected {this.name}");
+                if (currentGO == collision.gameObject)
+                {
+                    item.UnDetected();
+                    currentGO = null;
+                }
             }
         }
     }

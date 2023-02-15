@@ -6,6 +6,7 @@ using UnityEngine;
 using SOB.CoreSystem;
 public class Unit : MonoBehaviour
 {
+    #region Component
     private Movement Movement { get => movement ?? Core.GetCoreComponent(ref movement); }
 
     private Movement movement;
@@ -21,7 +22,8 @@ public class Unit : MonoBehaviour
     public Inventory Inventory { get; private set; }
 
     public UnitData UnitData;
-    
+    #endregion
+
     #region Unity Callback Func
     protected virtual void Awake()
     {
