@@ -10,12 +10,12 @@ using UnityEngine;
 public class Player : Unit
 {
     #region State Variables
-    
+
     //PlayerState
     public PlayerInAirState InAirState { get; private set; }
 
     //PlayerGroundedState
-    public PlayerIdleState IdleState { get; private set; }   
+    public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
     public PlayerLandState LandState { get; private set; }
 
@@ -43,6 +43,7 @@ public class Player : Unit
 
     #region Other Variables            
     private Vector2 workspace;
+    public bool IsAlive = true;
     //public float invincibleTime;
     #endregion
 
@@ -60,24 +61,27 @@ public class Player : Unit
         JumpState = new PlayerJumpState(this, "inAir");    //점프하는 순간 공중상태이므로
         InAirState = new PlayerInAirState(this, "inAir");
         LandState = new PlayerLandState(this, "land");
-        WallSlideState = new PlayerWallSlideState(this, "wallSlide");        
-        WallJumpState= new PlayerWallJumpState(this, "inAir");
+        WallSlideState = new PlayerWallSlideState(this, "wallSlide");
+        WallJumpState = new PlayerWallJumpState(this, "inAir");
         DashState = new PlayerDashState(this, "dash");
         PrimaryAttackState = new PlayerWeaponState(this, "weapon", Inventory.weapons[(int)CombatInputs.primary]);
         SecondaryAttackState = new PlayerWeaponState(this, "weapon", Inventory.weapons[(int)CombatInputs.secondary]);
-        foreach(var weapon in Inventory.weapons)
+        foreach (var weapon in Inventory.weapons)
         {
             weapon.SetCore(Core);
         }
     }
 
+    private void Init()
+    {
+        FSM.Initialize(IdleState);
+    }
+
     protected override void Start()
     {
         base.Start();
-        
-        
-        
-        FSM.Initialize(IdleState);
+
+        Init();
     }
 
     protected override void Update()
@@ -105,9 +109,9 @@ public class Player : Unit
 
     #region Set Func
 
-    public void SetColliderHeight(float height , bool pivot = true)
+    public void SetColliderHeight(float height, bool pivot = true)
     {
-        if(BC2D == null)
+        if (BC2D == null)
         {
             Debug.Log("BoxCollider is null");
             return;
@@ -131,7 +135,7 @@ public class Player : Unit
 
             BC2D.size = workspace;
             BC2D.offset = center;
-        }        
+        }
     }
 
     #endregion
@@ -142,7 +146,7 @@ public class Player : Unit
 
     private void AnimationFinishTrigger() => FSM.CurrentState.AnimationFinishTrigger();
 
-   
+
     #endregion
 
     #region Anim Event Func
