@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using SOB.Manager;
+using SOB.CoreSystem;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +17,8 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     [SerializeField]
     private float respawnTime;
+    [SerializeField]
+    private float deathLine;
 
     public PlayerInputHandler inputHandler { get; private set; }
     private float respawnTimeStart;
@@ -64,6 +68,17 @@ public class GameManager : MonoBehaviour
 
     private void CheckRespawn()
     {
+        if (player != null)
+        {
+            if(player.transform.position.y < deathLine)
+            {
+                player.GetComponent<Player>().Core.GetCoreComponent<Death>().Die();
+                respawn = true;
+            }
+        }
+
+        CheckLife(player.GetComponent<Player>());
+
         if (Time.time >= respawnTimeStart + respawnTime && respawn)
         {
             var playerTemp = Instantiate(player, respawnPoint);
@@ -71,6 +86,10 @@ public class GameManager : MonoBehaviour
             respawn = false;
         }
 
+    }
+    private void CheckLife(Player player)
+    {
+        player.IsAlive = player.gameObject.activeSelf;
     }
 
     public void CheckPause()
