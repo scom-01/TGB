@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SOB.Item;
 using SOB.CoreSystem;
+using UnityEditor;
 
 public class Detector : MonoBehaviour
 {
@@ -120,10 +121,12 @@ public class Detector : MonoBehaviour
         //Trap
         if (collision.gameObject.tag == "Trap")
         {
-            if (unit.UnitData.invincibleTime == 0f)
+            if (unit.Core.GetCoreComponent<UnitStats>().invincibleTime == 0f)
             {
-                unit.Core.GetCoreComponent<UnitStats>().DecreaseHealth(ElementalPower.Normal, DamageAttiribute.Fixed, 50);
-                unit.UnitData.invincibleTime = 1.5f;
+                unit.HitEffect();
+                var amount = unit.Core.GetCoreComponent<UnitStats>().DecreaseHealth(ElementalPower.Normal, DamageAttiribute.Fixed, 50);
+                unit.Core.GetCoreComponent<DamageReceiver>().RandomParticleInstantiate(unit.Core.GetCoreComponent<DamageReceiver>().DefaultEffectPrefab, 0.5f, amount, 50, DamageAttiribute.Fixed);                
+                unit.Core.GetCoreComponent<UnitStats>().invincibleTime = 1.5f;
             }
         }
     }
