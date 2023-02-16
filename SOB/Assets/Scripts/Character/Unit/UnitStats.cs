@@ -14,6 +14,7 @@ namespace SOB.CoreSystem
         public StatsData StatsData { get => statsData; set => statsData = value; }
         [field: SerializeField] private StatsData statsData;
 
+        public float invincibleTime;
         public float CurrentHealth { get => currentHealth; set => currentHealth = value <= 0 ? 0 : value; }
         [SerializeField] private float currentHealth;
 
@@ -78,6 +79,7 @@ namespace SOB.CoreSystem
             if(core.Unit.UnitData != null)
             {
                 StatsData = core.Unit.UnitData.statsStats;
+                invincibleTime = core.Unit.UnitData.invincibleTime;
                 CurrentHealth = StatsData.MaxHealth;
             }            
         }
@@ -174,7 +176,13 @@ namespace SOB.CoreSystem
 
         }
 
-        public void DecreaseHealth(ElementalPower elemental, DamageAttiribute attiribute, float amount)
+        /// <summary>
+        /// 공격하는 주체가 명확하지 않은 경우(낙사, 트랩 등)
+        /// </summary>
+        /// <param name="elemental"></param>
+        /// <param name="attiribute"></param>
+        /// <param name="amount"></param>
+        public float DecreaseHealth(ElementalPower elemental, DamageAttiribute attiribute, float amount)
         {
             CalculateDamage(elemental, attiribute, amount);
             CurrentHealth -= amount;
@@ -184,6 +192,7 @@ namespace SOB.CoreSystem
             {
                 OnHealthZero?.Invoke();
             }
+            return amount;
         }
 
         public float DecreaseHealth(StatsData AttackerData, StatsData VictimData, float amount)
