@@ -184,6 +184,7 @@ namespace SOB.CoreSystem
         /// <param name="amount"></param>
         public float DecreaseHealth(ElementalPower elemental, DamageAttiribute attiribute, float amount)
         {
+            core.Unit.HitEffect();
             CalculateDamage(elemental, attiribute, amount);
             CurrentHealth -= amount;
 
@@ -197,6 +198,7 @@ namespace SOB.CoreSystem
 
         public float DecreaseHealth(StatsData AttackerData, StatsData VictimData, float amount)
         {
+            core.Unit.HitEffect();
             amount = CalculateDamage(AttackerData, VictimData, amount);
             CurrentHealth -= amount;
 

@@ -123,7 +123,6 @@ public class Detector : MonoBehaviour
         {
             if (unit.Core.GetCoreComponent<UnitStats>().invincibleTime == 0f)
             {
-                unit.HitEffect();
                 var amount = unit.Core.GetCoreComponent<UnitStats>().DecreaseHealth(ElementalPower.Normal, DamageAttiribute.Fixed, 50);
                 unit.Core.GetCoreComponent<DamageReceiver>().RandomParticleInstantiate(unit.Core.GetCoreComponent<DamageReceiver>().DefaultEffectPrefab, 0.5f, amount, 50, DamageAttiribute.Fixed);                
                 unit.Core.GetCoreComponent<UnitStats>().invincibleTime = 1.5f;
