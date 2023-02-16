@@ -5,6 +5,7 @@ using Cinemachine;
 using SOB.Manager;
 using SOB.CoreSystem;
 using static UnityEditor.Experimental.GraphView.GraphView;
+using System.Numerics;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Transform respawnPoint;
     [SerializeField]
-    public GameObject player;
+    public Player player;
     [SerializeField]
     private float respawnTime;
     [SerializeField]
@@ -70,7 +71,7 @@ public class GameManager : MonoBehaviour
     {
         CheckDeadLine();
 
-        CheckLife(player.GetComponent<Player>());
+        CheckLife(player);
 
         if (Time.time >= respawnTimeStart + respawnTime && respawn)
         {
@@ -87,8 +88,12 @@ public class GameManager : MonoBehaviour
         {
             if (player.transform.position.y < deadLine)
             {
-                player.GetComponent<Player>().Core.GetCoreComponent<Death>().Die();
-                respawn = true;
+                player.Core.GetCoreComponent<Movement>().SetVelocityZero();
+                player.gameObject.transform.position = respawnPoint.transform.position;
+                var amount = player.Core.GetCoreComponent<UnitStats>().DecreaseHealth(ElementalPower.Normal, DamageAttiribute.Fixed, 50);
+                player.Core.GetCoreComponent<DamageReceiver>().RandomParticleInstantiate(player.Core.GetCoreComponent<DamageReceiver>().DefaultEffectPrefab, 0.5f, amount, 50, DamageAttiribute.Fixed);
+                //player.GetComponent<Player>().Core.GetCoreComponent<Death>().Die();
+                //respawn = true;
             }
         }
     }
