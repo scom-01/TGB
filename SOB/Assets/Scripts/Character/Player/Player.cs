@@ -140,20 +140,7 @@ public class Player : Unit
 
     #region Anim Event Func
 
-    public void Hit(float damage)
-    {
-        //if (SR == null) SR = this.GameObject().AddComponent<SpriteRenderer>();
-
-        Debug.Log("Hit");
-        StartCoroutine(HitEffect());
-    }
-
-    IEnumerator HitEffect()
-    {
-        SR.color = Color.red;
-        yield return new WaitForSeconds(0.5f);
-        SR.color = Color.white;
-    }
+    
     #endregion
 
     private void OnDrawGizmos()
@@ -161,36 +148,4 @@ public class Player : Unit
         Gizmos.color = Color.red;
         //Gizmos.DrawCube(transform.position + new Vector3(BC2D.size.x, 0, 0) * Movement.FancingDirection, BC2D.size);
     }
-
-    //private void OnTriggerStay2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.layer == LayerMask.NameToLayer("Trap"))
-    //    {
-    //        if (playerData.invincibleTime == 0f)
-    //        {
-    //            Hit(5);
-    //            playerData.invincibleTime = 1.5f;
-    //        }
-    //    }
-    //}
-
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.layer == LayerMask.NameToLayer("Item"))
-    //    {
-    //        Debug.Log($"Detected {collision.name} {this.name}");
-    //        var collItem = collision.GetComponent<SOB_Item>();
-    //        collItem.Detected();
-    //    }
-    //}
-
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.layer == LayerMask.NameToLayer("Item"))
-    //    {
-    //        Debug.Log($"UnDetected {collision.name}");
-    //        var collItem = collision.GetComponent<SOB_Item>();
-    //        collItem.UnDetected();
-    //    }
-    //}
 }

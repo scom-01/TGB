@@ -16,6 +16,7 @@ namespace SOB.Item
 
         [SerializeField] private float DetectedRadius;
 
+        private SpriteRenderer SR;
         private CircleCollider2D CC2D;
         private Transform particleContainer;
         private void Awake()
@@ -24,6 +25,8 @@ namespace SOB.Item
         }
         private void OnEnable()
         {
+            SR = GetComponent<SpriteRenderer>();
+            SR.sprite = Item.ItemSprite;
             CC2D = GetComponentInChildren<CircleCollider2D>();
             if(CC2D != null)
             {
@@ -49,6 +52,7 @@ namespace SOB.Item
         public void Detected(bool isright = true)
         {
             GameManager.Inst.SubUI.isRight(isright);
+            GameManager.Inst.SubUI.DetailSubUI.Icon.sprite = Item.ItemSprite;
             GameManager.Inst.SubUI.DetailSubUI.MainItemName = Item.ItemName;
             GameManager.Inst.SubUI.DetailSubUI.SubItemName = Item.ItemDescription;
 
@@ -82,6 +86,7 @@ namespace SOB.Item
                     buff.statsData = items.StatsDatas[i];
                     buff.durationTime = items.DurationTime[i];
                     buff.buffType = items.BuffType[i];
+                    buff.buffSprite = items.ItemSprite;
                     unit.gameObject.GetComponent<BuffSystem>().AddBuff(buff);
                 }                
             }

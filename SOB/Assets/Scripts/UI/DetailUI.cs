@@ -25,8 +25,7 @@ public class DetailUI : MonoBehaviour
     }
     private string mainItemName;
 
-    [SerializeField]
-    private RawImage icon;
+    public Image Icon;
 
     [Header("---Sub---")]    
     [SerializeField]

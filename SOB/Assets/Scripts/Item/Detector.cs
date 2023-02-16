@@ -102,7 +102,7 @@ public class Detector : MonoBehaviour
         //DetectorMask 의 LayerMask가 아니면 return
         if ((DetectorMask.value & (1 << collision.gameObject.layer)) <= 0)
             return;
-        if (collision.tag == "item")
+        if (collision.tag == "Item")
         {
             var item = collision.GetComponentInParent<SOB_Item>();
 
@@ -136,7 +136,7 @@ public class Detector : MonoBehaviour
         if ((DetectorMask.value & (1 << collision.gameObject.layer)) <= 0)
             return;
 
-        if (collision.tag == "item")
+        if (collision.tag == "Item")
         {
             var item = collision.GetComponentInParent<SOB_Item>();
             //Item
@@ -164,7 +164,7 @@ public class Detector : MonoBehaviour
 
         DetectedList.Remove(collision.gameObject);
 
-        if (collision.tag == "item")
+        if (collision.tag == "Item")
         {
             var item = collision.GetComponentInParent<SOB_Item>();
             if (item == null)

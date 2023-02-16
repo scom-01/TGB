@@ -9,14 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7774ae76107dc54e8991bca2af96082, type: 3}
-  m_Name: BuffItemData
+  m_Script: {fileID: 11500000, guid: c0c6ea7b1ec094043a23d689d061ee6d, type: 3}
+  m_Name: Trap_Grid_1
   m_EditorClassIdentifier: 
-  ItemName: HealthUpBuff
-  ItemDescription: HealthUpBuff
-  ItemSprite: {fileID: 21300000, guid: 15cc575b0d9a36846838578bfb080819, type: 3}
-  StatsDatas:
-  - MaxHealth: 30
+  statsStats:
+    MaxHealth: 0
     MovementVelocity: 0
     JumpVelocity: 0
     DefaultPower: 0
@@ -29,9 +26,13 @@ MonoBehaviour:
     MyElemental: 0
     ElementalDefensivePer: 0
     ElementalAggressivePer: 0
-  <AcquiredEffectPrefab>k__BackingField: {fileID: 5279545542555632717, guid: 54c319e2f98e0b04384f32b5f2f6b28b, type: 3}
-  <isEquipment>k__BackingField: 0
-  <DetailSubUI>k__BackingField: 0
-  DurationTime:
-  - 5
-  BuffType: 00000000
+  knockBackDuration: 0
+  knockBackSpeed: {x: 0, y: 0}
+  invincibleTime: 1
+  touchDamageinvincibleTime: 1
+  standColliderHeight: 0
+  groundCheckRadius: 0.1
+  wallCheckDistance: 0.5
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0

@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class BuffPanelItem : MonoBehaviour
 {
     public Buff buff;
-    public Sprite IconImgSprite;
     [SerializeField] private Sprite BackImgSprite;
 
     [SerializeField] private Image IconImg;
@@ -33,20 +32,20 @@ public class BuffPanelItem : MonoBehaviour
             return;
 
         BuffDurationTime = buff.durationTime;
-        BuffCurrentTime = 1f - ((Time.time - buff.startTime) / BuffDurationTime);
+        BuffCurrentTime = ((Time.time - buff.startTime) / BuffDurationTime);
         FilledImg.fillAmount = BuffCurrentTime;
-        if (BuffCurrentTime <= 0f)
+        if (BuffCurrentTime >= 1f)
         {
             Destroy(this.gameObject);
         }
     }
 
     [ContextMenu("Setting")]
-    private void Setting()
+    public void Setting()
     {
         if (IconImg != null)
         {
-            IconImg.sprite = IconImgSprite;
+            IconImg.sprite = buff.buffSprite;
         }
 
         if (BackImg != null)
