@@ -1,3 +1,4 @@
+using SOB.CoreSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,13 +33,13 @@ public class Enemy_Archer1 : Unit
     {
         base.Update();
         //Anim.SetFloat("yVelocity", enemyCore.Movement.RB.velocity.y);
-        if (enemyData.invincibleTime > 0.0f)
+        if (core.GetCoreComponent<UnitStats>().invincibleTime > 0.0f)
         {
-            enemyData.invincibleTime -= Time.deltaTime;
+            core.GetCoreComponent<UnitStats>().invincibleTime -= Time.deltaTime;
 
-            if (enemyData.invincibleTime <= 0.0f)
+            if (core.GetCoreComponent<UnitStats>().invincibleTime <= 0.0f)
             {
-                enemyData.invincibleTime = 0f;
+                core.GetCoreComponent<UnitStats>().invincibleTime = 0f;
             }
         }
     }

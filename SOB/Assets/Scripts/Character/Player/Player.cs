@@ -87,17 +87,6 @@ public class Player : Unit
     protected override void Update()
     {
         base.Update();
-        //Core.LogicUpdate();
-        if (playerData.invincibleTime > 0.0f)
-        {
-            playerData.invincibleTime -= Time.deltaTime;
-
-            if (playerData.invincibleTime <= 0.0f)
-            {
-                playerData.invincibleTime = 0f;
-            }
-        }
-        //fsm.CurrentState.LogicUpdate();
     }
 
     protected override void FixedUpdate()
