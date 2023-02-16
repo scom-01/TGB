@@ -9,7 +9,7 @@ namespace SOB.Manager
 {
     public class InventoryUI : MonoBehaviour
     {
-        private GameObject Player;
+        private Player Player;
         private Inventory PlayerInventory;
 
         [HideInInspector] public InventoryItems InventoryItems;

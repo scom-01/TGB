@@ -26,10 +26,10 @@ namespace SOB.CoreSystem
             private set => ledgeCheck = value; 
         }
 
-        public float GroundCheckRadius { get => core.Unit.UnitData.groundCheckRadius; set => core.Unit.UnitData.groundCheckRadius = value; }
-        public float WallCheckDistance { get => core.Unit.UnitData.wallCheckDistance; set => core.Unit.UnitData.wallCheckDistance = value; }
+        public float GroundCheckRadius { get => core.Unit.UnitData.groundCheckRadius; }
+        public float WallCheckDistance { get => core.Unit.UnitData.wallCheckDistance; }
 
-        public LayerMask WhatIsGround { get => core.Unit.UnitData.whatIsGround; set => core.Unit.UnitData.whatIsGround = value; }
+        public LayerMask WhatIsGround { get => core.Unit.UnitData.whatIsGround; }
 
         [SerializeField] protected Transform groundCheck;
         [SerializeField] protected Transform wallCheck;
