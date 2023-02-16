@@ -76,6 +76,12 @@ public class DamageText : MonoBehaviour
         this.HitTextMeshPro = this.GetComponent<TextMeshProUGUI>();
     }
 
+    /// <summary>
+    /// DamageText세팅
+    /// </summary>
+    /// <param name="damage">데미지크기</param>
+    /// <param name="fontsize">폰트 사이즈</param>
+    /// <param name="color">폰트 색상</param>
     public void SetText(float damage, float fontsize, Color color)
     {
         this.DamageAmount = damage;
