@@ -62,17 +62,34 @@ public class Unit : MonoBehaviour
         else
             Debug.Log("Core is null");
 
-        if (UnitData.invincibleTime > 0.0f)
+        if (Core.GetCoreComponent<UnitStats>().invincibleTime > 0.0f)
         {
-            UnitData.invincibleTime -= Time.deltaTime;
+            Core.GetCoreComponent<UnitStats>().invincibleTime -= Time.deltaTime;
 
-            if (UnitData.invincibleTime <= 0.0f)
+            if (Core.GetCoreComponent<UnitStats>().invincibleTime <= 0.0f)
             {
-                UnitData.invincibleTime = 0f;
+                Core.GetCoreComponent<UnitStats>().invincibleTime = 0f;
             }
         }
 
         FSM.CurrentState.LogicUpdate();
+    }
+
+    public virtual void HitEffect()
+    {
+        var oldsprites = this.GetComponentsInChildren<SpriteRenderer>();
+        var sprites = this.GetComponentsInChildren<SpriteRenderer>();
+        for (int i =0; i < sprites.Length;i++)
+        {
+            StartCoroutine(HitEffect(sprites[i], 0.5f));
+        }
+    }
+
+    IEnumerator HitEffect(SpriteRenderer sr, float duration)
+    {
+        sr.color = Color.red;
+        yield return new WaitForSeconds(duration);
+        sr.color = Color.white;
     }
 
     protected virtual void FixedUpdate()
