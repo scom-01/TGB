@@ -52,9 +52,7 @@ public class Player : Unit
     {
         base.Awake();
         playerData = UnitData as PlayerData;
-        InputHandler = GetComponent<PlayerInputHandler>();
-        if (InputHandler == null) InputHandler = this.GameObject().AddComponent<PlayerInputHandler>();
-
+        
         //각 State 생성
         IdleState = new PlayerIdleState(this, "idle");
         MoveState = new PlayerMoveState(this, "move");
@@ -74,6 +72,9 @@ public class Player : Unit
 
     private void Init()
     {
+        InputHandler = GameManager.Inst.GetComponent<PlayerInputHandler>();
+        if (InputHandler == null) InputHandler = GameManager.Inst.GameObject().AddComponent<PlayerInputHandler>();
+
         FSM.Initialize(IdleState);
     }
 
