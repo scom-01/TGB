@@ -18,7 +18,16 @@ public class InventoryItems : MonoBehaviour
         }
     }
     private InventoryItem currentSelectItem;
-    private int currentSelectItemIndex;
+    public int CurrentSelectItemIndex
+    {
+        get => currentSelectItemIndex;
+        set
+        {
+            currentSelectItemIndex = value;
+            CurrentSelectItem = items[currentSelectItemIndex];
+        }
+    }
+    private int currentSelectItemIndex = 0;
 
     private void Init()
     {
@@ -43,7 +52,6 @@ public class InventoryItems : MonoBehaviour
             else
             {
                 Debug.LogWarning($"{items[i].name}.StatsItemData is Null");
-                CurrentSelectItem = items[i];
                 currentSelectItemIndex = i;
                 items[i].StatsItemData = StatsItem;
                 break;
@@ -54,6 +62,6 @@ public class InventoryItems : MonoBehaviour
     {
         items[currentSelectItemIndex].StatsItemData = null;
         CurrentSelectItem.StatsItemData = null;
-        CurrentSelectItem = items[currentSelectItemIndex--];
+        CurrentSelectItemIndex--;
     }
 }

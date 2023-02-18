@@ -347,13 +347,13 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""WASD"",
-                    ""type"": ""Button"",
+                    ""name"": ""UIMove"",
+                    ""type"": ""Value"",
                     ""id"": ""aa50e02b-8718-430e-a703-6db520704812"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -391,48 +391,59 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""559b7909-0ec7-4e8d-acb9-a7775c493e00"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""name"": ""WASD"",
+                    ""id"": ""aad11b40-eaa7-4256-a37b-846a0c35b806"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""WASD"",
-                    ""isComposite"": false,
+                    ""groups"": """",
+                    ""action"": ""UIMove"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""4503311c-c88f-4206-9212-cc8cfde3dc53"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""name"": ""up"",
+                    ""id"": ""5b169f74-fb58-45eb-bc80-f1ff33d71e4e"",
+                    ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""WASD"",
+                    ""action"": ""UIMove"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""54e338e0-af7c-4e72-8ab5-465b859c963d"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""name"": ""down"",
+                    ""id"": ""d6c2ef88-9bbb-4985-a381-2730f8003b7e"",
+                    ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""WASD"",
+                    ""action"": ""UIMove"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""6a15e8b5-1fec-477b-bd75-b2d0d79d8e45"",
-                    ""path"": ""<Keyboard>/d"",
+                    ""name"": ""left"",
+                    ""id"": ""e75d21ee-7b89-41ea-b50e-bc9ae1a3c5c9"",
+                    ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""WASD"",
+                    ""action"": ""UIMove"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""22f8fe0d-4661-40aa-ab5f-b83df1d792a7"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""UIMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -475,7 +486,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_UI_Interaction = m_UI.FindAction("Interaction", throwIfNotFound: true);
         m_UI_Tap = m_UI.FindAction("Tap", throwIfNotFound: true);
         m_UI_ESC = m_UI.FindAction("ESC", throwIfNotFound: true);
-        m_UI_WASD = m_UI.FindAction("WASD", throwIfNotFound: true);
+        m_UI_UIMove = m_UI.FindAction("UIMove", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -659,7 +670,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Interaction;
     private readonly InputAction m_UI_Tap;
     private readonly InputAction m_UI_ESC;
-    private readonly InputAction m_UI_WASD;
+    private readonly InputAction m_UI_UIMove;
     public struct UIActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -667,7 +678,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @Interaction => m_Wrapper.m_UI_Interaction;
         public InputAction @Tap => m_Wrapper.m_UI_Tap;
         public InputAction @ESC => m_Wrapper.m_UI_ESC;
-        public InputAction @WASD => m_Wrapper.m_UI_WASD;
+        public InputAction @UIMove => m_Wrapper.m_UI_UIMove;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -686,9 +697,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @ESC.started -= m_Wrapper.m_UIActionsCallbackInterface.OnESC;
                 @ESC.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnESC;
                 @ESC.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnESC;
-                @WASD.started -= m_Wrapper.m_UIActionsCallbackInterface.OnWASD;
-                @WASD.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnWASD;
-                @WASD.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnWASD;
+                @UIMove.started -= m_Wrapper.m_UIActionsCallbackInterface.OnUIMove;
+                @UIMove.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnUIMove;
+                @UIMove.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnUIMove;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -702,9 +713,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @ESC.started += instance.OnESC;
                 @ESC.performed += instance.OnESC;
                 @ESC.canceled += instance.OnESC;
-                @WASD.started += instance.OnWASD;
-                @WASD.performed += instance.OnWASD;
-                @WASD.canceled += instance.OnWASD;
+                @UIMove.started += instance.OnUIMove;
+                @UIMove.performed += instance.OnUIMove;
+                @UIMove.canceled += instance.OnUIMove;
             }
         }
     }
@@ -738,6 +749,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnInteraction(InputAction.CallbackContext context);
         void OnTap(InputAction.CallbackContext context);
         void OnESC(InputAction.CallbackContext context);
-        void OnWASD(InputAction.CallbackContext context);
+        void OnUIMove(InputAction.CallbackContext context);
     }
 }

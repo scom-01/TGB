@@ -37,10 +37,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Application.targetFrameRate = 60;
-        if(player)
-        {
-            inputHandler = player.GetComponent<PlayerInputHandler>();
-        }
+        inputHandler = this.GetComponent<PlayerInputHandler>();
+
         if (Inst == null)
         {
             Inst = this;

@@ -6784,7 +6784,19 @@ MonoBehaviour:
     m_ActionId: 2f43fc99-450b-49c0-a447-aa51acaa84b8
     m_ActionName: GamePlay/Interaction[/Keyboard/f]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 749720750}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnUIMoveInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: aa50e02b-8718-430e-a703-6db520704812
     m_ActionName: UI/WASD[/Keyboard/w,/Keyboard/a,/Keyboard/s,/Keyboard/d]
   m_NeverAutoSwitchControlSchemes: 0

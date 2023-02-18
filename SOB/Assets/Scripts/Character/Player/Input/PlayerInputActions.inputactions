@@ -325,13 +325,13 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "WASD",
-                    "type": "Button",
+                    "name": "UIMove",
+                    "type": "Value",
                     "id": "aa50e02b-8718-430e-a703-6db520704812",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -369,48 +369,59 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "559b7909-0ec7-4e8d-acb9-a7775c493e00",
-                    "path": "<Keyboard>/w",
+                    "name": "WASD",
+                    "id": "aad11b40-eaa7-4256-a37b-846a0c35b806",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
-                    "action": "WASD",
-                    "isComposite": false,
+                    "groups": "",
+                    "action": "UIMove",
+                    "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "4503311c-c88f-4206-9212-cc8cfde3dc53",
-                    "path": "<Keyboard>/a",
+                    "name": "up",
+                    "id": "5b169f74-fb58-45eb-bc80-f1ff33d71e4e",
+                    "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "WASD",
+                    "action": "UIMove",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "54e338e0-af7c-4e72-8ab5-465b859c963d",
-                    "path": "<Keyboard>/s",
+                    "name": "down",
+                    "id": "d6c2ef88-9bbb-4985-a381-2730f8003b7e",
+                    "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "WASD",
+                    "action": "UIMove",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "6a15e8b5-1fec-477b-bd75-b2d0d79d8e45",
-                    "path": "<Keyboard>/d",
+                    "name": "left",
+                    "id": "e75d21ee-7b89-41ea-b50e-bc9ae1a3c5c9",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "WASD",
+                    "action": "UIMove",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "22f8fe0d-4661-40aa-ab5f-b83df1d792a7",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "UIMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

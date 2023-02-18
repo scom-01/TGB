@@ -11,6 +11,7 @@ namespace SOB.Manager
     {
         private Player Player;
         private Inventory PlayerInventory;
+        private PlayerInputHandler inputHandler;
 
         [HideInInspector] public InventoryItems InventoryItems;
         [HideInInspector] public InventoryStats InventoryStats;
@@ -19,8 +20,33 @@ namespace SOB.Manager
         private void Awake()
         {
             Player = GameManager.Inst.player;
+            inputHandler = GameManager.Inst.inputHandler;
             PlayerInventory = Player.GetComponent<Inventory>();
         }
+        private void Update()
+        {
+            if(inputHandler.NormUIInputX > 0)
+            {
+                Debug.Log("Right");
+                InventoryItems.CurrentSelectItemIndex++;
+            }
+            else if(inputHandler.NormUIInputX < 0)
+            {
+                Debug.Log("Left");
+                InventoryItems.CurrentSelectItemIndex--;
+            }
+
+            if (inputHandler.NormUIInputY > 0)
+            {
+                Debug.Log("Up");
+            }
+            else if(inputHandler.NormUIInputY <0)
+            {
+                Debug.Log("Down");
+            }
+        }
+
+
         private void OnEnable()
         {
             InventoryItems = this.GetComponentInChildren<InventoryItems>();
