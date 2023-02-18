@@ -23,12 +23,20 @@ public class InventoryItems : MonoBehaviour
         get => currentSelectItemIndex;
         set
         {
-            currentSelectItemIndex = value;
+            currentSelectItemIndex = Mathf.Clamp(value, 0, items.Count - 1);
+            //currentSelectItemIndex = value < 0 ? 0 : value;
             CurrentSelectItem = items[currentSelectItemIndex];
         }
     }
     private int currentSelectItemIndex = 0;
 
+    private void OnEnable()
+    {
+        if (!(items.Count > 0))
+        {
+            Init();
+        }
+    }
     private void Init()
     {
         foreach (var item in this.GetComponentsInChildren<InventoryItem>())
@@ -38,11 +46,7 @@ public class InventoryItems : MonoBehaviour
     }
 
     public void AddItem(StatsItemSO StatsItem)
-    {
-        if (!(items.Count > 0))
-        {
-            Init();
-        }
+    {        
         for (int i = 0; i < items.Count; i++)
         {
             if (items[i].StatsItemData != null)

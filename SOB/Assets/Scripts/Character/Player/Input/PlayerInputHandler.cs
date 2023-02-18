@@ -12,8 +12,11 @@ public class PlayerInputHandler : MonoBehaviour
     //PlayerInputActions playerInputActions;
     private Camera cam;
     public Vector2 RawMovementInput { get; private set; }
+    public Vector2 RawUIMovementInput { get; private set; }
     public int NormInputX { get; private set; }
     public int NormInputY { get; private set; }
+    public int NormUIInputX { get; private set; }
+    public int NormUIInputY { get; private set; }
     [HideInInspector]
     public bool JumpInput
                     , JumpInputStop
@@ -44,6 +47,8 @@ public class PlayerInputHandler : MonoBehaviour
     private float[] ActionInputsStartTime;
     private float[] ActionInputsStopTime;
 
+    private float normUIInputXStartTime;
+    private float normUIInputYStartTime;
 
     private void Awake()
     {
@@ -76,30 +81,6 @@ public class PlayerInputHandler : MonoBehaviour
         playerInput.SwitchCurrentActionMap(Name);
     }
 
-    public void OnTapInput(InputAction.CallbackContext context)
-    {
-        if(context.started)
-        {
-            if (playerInput.actions.actionMaps.ToArray().Length > 0)
-            {
-                if(playerInput.currentActionMap == playerInput.actions.FindActionMap("UI"))
-                {
-                    playerInput.SwitchCurrentActionMap("GamePlay");
-                    GameManager.Inst.CheckPause(false);
-                }
-                else if(playerInput.currentActionMap == playerInput.actions.FindActionMap("GamePlay"))
-                {
-                    playerInput.SwitchCurrentActionMap("UI");
-                    GameManager.Inst.CheckPause(true);
-                }
-            }
-        }
-        if(context.canceled)
-        {
-            Debug.Log("OnTapInput Cancled");
-        }
-    }
-
     private void Update()
     {
         bool jumpInput = JumpInput;
@@ -110,6 +91,9 @@ public class PlayerInputHandler : MonoBehaviour
         bool interacInput = InteractionInput;
         bool[] attackInputs = ActionInputs;
 
+        float normUIInputX = RawUIMovementInput.x;
+        float normUIInputY = RawUIMovementInput.y;
+
         CheckHoldTime(ref jumpInput, ref jumpInputStartTime);
         CheckHoldTime(ref dashInput, ref dashInputStartTime);
         CheckHoldTime(ref blockInput, ref blockInputStartTime);
@@ -117,6 +101,8 @@ public class PlayerInputHandler : MonoBehaviour
         CheckHoldTime(ref skill2Input, ref skill2InputStartTime);
         //CheckHoldTime(ref attackInputs, ref ActionInputsStartTime);
         CheckHoldTime(ref interacInput, ref interactionInputStartTime);
+        CheckHoldTime(ref normUIInputX, ref normUIInputXStartTime);
+        CheckHoldTime(ref normUIInputY, ref normUIInputYStartTime);
 
         JumpInput = jumpInput;
         DashInput = dashInput;
@@ -125,8 +111,10 @@ public class PlayerInputHandler : MonoBehaviour
         Skill2Input = skill2Input;
         //ActionInputs = attackInputs;
         InteractionInput = interacInput;
+        RawUIMovementInput = new Vector2(normUIInputX, normUIInputY);
     }
 
+    #region GamePlay
     //움직임 Input
     public void OnMoveInput(InputAction.CallbackContext context)
     {
@@ -135,16 +123,13 @@ public class PlayerInputHandler : MonoBehaviour
         NormInputX = Mathf.RoundToInt(RawMovementInput.x);
         NormInputY = Mathf.RoundToInt(RawMovementInput.y);
 
-        //NormInputX = (int)(RawMovementInput * Vector2.right).normalized.x;
-        //NormInputX = Mathf.Abs(RawMovementInput.x) > 0.3f ? (int)(RawMovementInput * Vector2.right).normalized.x : 0;
-        //NormInputY = Mathf.Abs(RawMovementInput.x) > 0.3f ? (int)(RawMovementInput * Vector2.up).normalized.y : 0;        
-        //NormInputY = (int)(RawMovementInput * Vector2.up).normalized.y;
-
         if (context.canceled)
         {
             NormInputX = 0;
+            NormInputY = 0;
         }
     }
+    
 
     //점프 Input
     public void OnJumpInput(InputAction.CallbackContext context)
@@ -278,6 +263,48 @@ public class PlayerInputHandler : MonoBehaviour
             BlockInputStop = true;
         }
     }
+    #endregion
+
+    #region UI
+    public void OnTapInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (playerInput.actions.actionMaps.ToArray().Length > 0)
+            {
+                if (playerInput.currentActionMap == playerInput.actions.FindActionMap("UI"))
+                {
+                    playerInput.SwitchCurrentActionMap("GamePlay");
+                    GameManager.Inst.CheckPause(false);
+                }
+                else if (playerInput.currentActionMap == playerInput.actions.FindActionMap("GamePlay"))
+                {
+                    playerInput.SwitchCurrentActionMap("UI");
+                    GameManager.Inst.CheckPause(true);
+                }
+            }
+        }
+        if (context.canceled)
+        {
+            Debug.Log("OnTapInput Cancled");
+        }
+    }
+    //UI움직임 Input
+    public void OnUIMoveInput(InputAction.CallbackContext context)
+    {
+        RawUIMovementInput = context.ReadValue<Vector2>();
+
+        NormUIInputX = Mathf.RoundToInt(RawUIMovementInput.x);
+        normUIInputXStartTime = Time.time;
+        NormUIInputY = Mathf.RoundToInt(RawUIMovementInput.y);
+        normUIInputYStartTime = Time.time;
+
+        if (context.canceled)
+        {
+            NormUIInputX = 0;
+        }
+    }
+    #endregion
 
     public void UseInput(ref bool input) => input = false;
 
@@ -288,6 +315,20 @@ public class PlayerInputHandler : MonoBehaviour
         if (Time.time >= inputStartTime + inputHoldTime)
         {
             input = false;
+        }
+    }
+    private void CheckHoldTime(ref int input, ref float inputStartTime)
+    {
+        if (Time.time >= inputStartTime + inputHoldTime)
+        {
+            input = 0;
+        }
+    }
+    private void CheckHoldTime(ref float input, ref float inputStartTime)
+    {
+        if (Time.time >= inputStartTime + inputHoldTime)
+        {
+            input = 0.0f;
         }
     }
     private void CheckHoldTime(ref bool[] input, ref float[] inputStartTime)
