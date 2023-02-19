@@ -11,16 +11,19 @@ public class InventoryDescript : MonoBehaviour
 
     public void OnEnable()
     {
-        if (GameManager.Inst.SubUI.InventorySubUI.InventoryItems.CurrentSelectItem != null)
-        {
-            ItemName.text = GameManager.Inst.SubUI.InventorySubUI.InventoryItems.CurrentSelectItem.StatsItemData.ItemName;
-            ItemDescript.text = GameManager.Inst.SubUI.InventorySubUI.InventoryItems.CurrentSelectItem.StatsItemData.ItemDescription;
-        }
-        else
-        {
-            ItemName.text = "";
-            ItemDescript.text = "";
-        }
+        
+    }
 
+    public void SetDescript()
+    {
+        var item = GameManager.Inst.SubUI.InventorySubUI.InventoryItems.CurrentSelectItem;
+        if (item != null && item.StatsItemData!=null)
+        {
+                ItemName.text = item.StatsItemData.ItemName;
+                ItemDescript.text = item.StatsItemData.ItemDescription;
+                return;
+        }
+        ItemName.text = "";
+        ItemDescript.text = "";
     }
 }

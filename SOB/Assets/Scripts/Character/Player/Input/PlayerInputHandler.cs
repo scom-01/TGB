@@ -12,11 +12,8 @@ public class PlayerInputHandler : MonoBehaviour
     //PlayerInputActions playerInputActions;
     private Camera cam;
     public Vector2 RawMovementInput { get; private set; }
-    public Vector2 RawUIMovementInput { get; private set; }
     public int NormInputX { get; private set; }
     public int NormInputY { get; private set; }
-    public int NormUIInputX { get; private set; }
-    public int NormUIInputY { get; private set; }
     [HideInInspector]
     public bool JumpInput
                     , JumpInputStop
@@ -32,6 +29,10 @@ public class PlayerInputHandler : MonoBehaviour
                     , BlockInput
                     , BlockInputStop
                     , InteractionInput = false;
+
+    public bool RawUIMoveInputLeft
+                , RawUIMoveInputRight = false;
+
     [HideInInspector]
     public bool[] ActionInputs;
 
@@ -47,8 +48,8 @@ public class PlayerInputHandler : MonoBehaviour
     private float[] ActionInputsStartTime;
     private float[] ActionInputsStopTime;
 
-    private float normUIInputXStartTime;
-    private float normUIInputYStartTime;
+    private float normUIInputLeftStartTime;
+    private float normUIInputRightStartTime;
 
     private void Awake()
     {
@@ -69,7 +70,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void OnDisable()
     {
-        
+
     }
 
     /// <summary>
@@ -91,8 +92,8 @@ public class PlayerInputHandler : MonoBehaviour
         bool interacInput = InteractionInput;
         bool[] attackInputs = ActionInputs;
 
-        float normUIInputX = RawUIMovementInput.x;
-        float normUIInputY = RawUIMovementInput.y;
+        bool normUIInputLeft = RawUIMoveInputLeft;
+        bool normUIInputRight = RawUIMoveInputRight;
 
         CheckHoldTime(ref jumpInput, ref jumpInputStartTime);
         CheckHoldTime(ref dashInput, ref dashInputStartTime);
@@ -101,8 +102,8 @@ public class PlayerInputHandler : MonoBehaviour
         CheckHoldTime(ref skill2Input, ref skill2InputStartTime);
         //CheckHoldTime(ref attackInputs, ref ActionInputsStartTime);
         CheckHoldTime(ref interacInput, ref interactionInputStartTime);
-        CheckHoldTime(ref normUIInputX, ref normUIInputXStartTime);
-        CheckHoldTime(ref normUIInputY, ref normUIInputYStartTime);
+        CheckHoldTime(ref normUIInputLeft, ref normUIInputLeftStartTime);
+        CheckHoldTime(ref normUIInputRight, ref normUIInputRightStartTime);
 
         JumpInput = jumpInput;
         DashInput = dashInput;
@@ -111,7 +112,10 @@ public class PlayerInputHandler : MonoBehaviour
         Skill2Input = skill2Input;
         //ActionInputs = attackInputs;
         InteractionInput = interacInput;
-        RawUIMovementInput = new Vector2(normUIInputX, normUIInputY);
+        RawUIMoveInputLeft = normUIInputLeft;
+        RawUIMoveInputRight = normUIInputRight;
+        Debug.Log("RawUIMoveInputLeft : " + RawUIMoveInputLeft);
+        Debug.Log("RawUIMoveInputRight : " + RawUIMoveInputRight);
     }
 
     #region GamePlay
@@ -129,7 +133,7 @@ public class PlayerInputHandler : MonoBehaviour
             NormInputY = 0;
         }
     }
-    
+
 
     //점프 Input
     public void OnJumpInput(InputAction.CallbackContext context)
@@ -209,7 +213,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.started)
         {
-            ActionInputs[(int)CombatInputs.primary] = true;            
+            ActionInputs[(int)CombatInputs.primary] = true;
             ActionInputsStartTime[(int)CombatInputs.primary] = Time.time;
         }
 
@@ -234,7 +238,7 @@ public class PlayerInputHandler : MonoBehaviour
             ActionInputs[(int)CombatInputs.secondary] = false;
         }
     }
-    
+
     public void OnInteractionInput(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -290,18 +294,30 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
     //UI움직임 Input
-    public void OnUIMoveInput(InputAction.CallbackContext context)
+    public void OnUIMoveLeftInput(InputAction.CallbackContext context)
     {
-        RawUIMovementInput = context.ReadValue<Vector2>();
-
-        NormUIInputX = Mathf.RoundToInt(RawUIMovementInput.x);
-        normUIInputXStartTime = Time.time;
-        NormUIInputY = Mathf.RoundToInt(RawUIMovementInput.y);
-        normUIInputYStartTime = Time.time;
+        if(context.started)
+        {
+            RawUIMoveInputLeft = true;
+            normUIInputLeftStartTime = Time.time;
+        }
 
         if (context.canceled)
         {
-            NormUIInputX = 0;
+            RawUIMoveInputLeft = false;
+        }
+    }
+    public void OnUIMoveRightInput(InputAction.CallbackContext context)
+    {
+        if(context.started)
+        {
+            RawUIMoveInputRight = true;
+            normUIInputRightStartTime = Time.time;
+        }
+
+        if (context.canceled)
+        {
+            RawUIMoveInputRight = false;
         }
     }
     #endregion
@@ -336,17 +352,17 @@ public class PlayerInputHandler : MonoBehaviour
         if (input.Length == 0)
             return;
 
-        for(int i = 0; i< input.Length; i++)
+        for (int i = 0; i < input.Length; i++)
         {
             if (Time.time >= inputStartTime[i] + inputHoldTime)
             {
                 {
-                    input[i] = false;  
+                    input[i] = false;
                 }
             }
         }
     }
-}    
+}
 
 public enum CombatInputs
 {

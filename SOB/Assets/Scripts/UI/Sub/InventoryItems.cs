@@ -26,6 +26,7 @@ public class InventoryItems : MonoBehaviour
             currentSelectItemIndex = Mathf.Clamp(value, 0, items.Count - 1);
             //currentSelectItemIndex = value < 0 ? 0 : value;
             CurrentSelectItem = items[currentSelectItemIndex];
+            GameManager.Inst.SubUI.InventorySubUI.InventoryDescript.SetDescript();
         }
     }
     private int currentSelectItemIndex = 0;
@@ -56,15 +57,15 @@ public class InventoryItems : MonoBehaviour
             else
             {
                 Debug.LogWarning($"{items[i].name}.StatsItemData is Null");
-                currentSelectItemIndex = i;
                 items[i].StatsItemData = StatsItem;
+                CurrentSelectItemIndex = i;
                 break;
             }
         }
     }
     public void RemoveItem(StatsItemSO StatsItem)
     {
-        items[currentSelectItemIndex].StatsItemData = null;
+        items[CurrentSelectItemIndex].StatsItemData = null;
         CurrentSelectItem.StatsItemData = null;
         CurrentSelectItemIndex--;
     }

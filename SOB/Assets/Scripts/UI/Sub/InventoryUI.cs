@@ -25,24 +25,17 @@ namespace SOB.Manager
         }
         private void Update()
         {
-            if(inputHandler.NormUIInputX > 0)
+            if(inputHandler.RawUIMoveInputRight)
             {
                 Debug.Log("Right");
                 InventoryItems.CurrentSelectItemIndex++;
+                inputHandler.RawUIMoveInputRight = false;
             }
-            else if(inputHandler.NormUIInputX < 0)
+            else if(inputHandler.RawUIMoveInputLeft)
             {
                 Debug.Log("Left");
                 InventoryItems.CurrentSelectItemIndex--;
-            }
-
-            if (inputHandler.NormUIInputY > 0)
-            {
-                Debug.Log("Up");
-            }
-            else if(inputHandler.NormUIInputY <0)
-            {
-                Debug.Log("Down");
+                inputHandler.RawUIMoveInputLeft = false;
             }
         }
 
