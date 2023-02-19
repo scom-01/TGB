@@ -347,13 +347,22 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""UIMove"",
-                    ""type"": ""Value"",
+                    ""name"": ""UILeft"",
+                    ""type"": ""Button"",
                     ""id"": ""aa50e02b-8718-430e-a703-6db520704812"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UIRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""f3bd8583-ebe6-4fd9-8828-f566bcb18933"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -391,59 +400,26 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""WASD"",
-                    ""id"": ""aad11b40-eaa7-4256-a37b-846a0c35b806"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""UIMove"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""5b169f74-fb58-45eb-bc80-f1ff33d71e4e"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""UIMove"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""d6c2ef88-9bbb-4985-a381-2730f8003b7e"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""UIMove"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""e75d21ee-7b89-41ea-b50e-bc9ae1a3c5c9"",
+                    ""name"": """",
+                    ""id"": ""80f103b8-de55-42b9-97c6-bdcb16eb47f4"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""UIMove"",
+                    ""action"": ""UILeft"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""right"",
-                    ""id"": ""22f8fe0d-4661-40aa-ab5f-b83df1d792a7"",
+                    ""name"": """",
+                    ""id"": ""704c977a-d465-4154-a34b-7699f8b060f2"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""UIMove"",
+                    ""action"": ""UIRight"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -486,7 +462,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_UI_Interaction = m_UI.FindAction("Interaction", throwIfNotFound: true);
         m_UI_Tap = m_UI.FindAction("Tap", throwIfNotFound: true);
         m_UI_ESC = m_UI.FindAction("ESC", throwIfNotFound: true);
-        m_UI_UIMove = m_UI.FindAction("UIMove", throwIfNotFound: true);
+        m_UI_UILeft = m_UI.FindAction("UILeft", throwIfNotFound: true);
+        m_UI_UIRight = m_UI.FindAction("UIRight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -670,7 +647,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Interaction;
     private readonly InputAction m_UI_Tap;
     private readonly InputAction m_UI_ESC;
-    private readonly InputAction m_UI_UIMove;
+    private readonly InputAction m_UI_UILeft;
+    private readonly InputAction m_UI_UIRight;
     public struct UIActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -678,7 +656,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @Interaction => m_Wrapper.m_UI_Interaction;
         public InputAction @Tap => m_Wrapper.m_UI_Tap;
         public InputAction @ESC => m_Wrapper.m_UI_ESC;
-        public InputAction @UIMove => m_Wrapper.m_UI_UIMove;
+        public InputAction @UILeft => m_Wrapper.m_UI_UILeft;
+        public InputAction @UIRight => m_Wrapper.m_UI_UIRight;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -697,9 +676,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @ESC.started -= m_Wrapper.m_UIActionsCallbackInterface.OnESC;
                 @ESC.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnESC;
                 @ESC.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnESC;
-                @UIMove.started -= m_Wrapper.m_UIActionsCallbackInterface.OnUIMove;
-                @UIMove.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnUIMove;
-                @UIMove.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnUIMove;
+                @UILeft.started -= m_Wrapper.m_UIActionsCallbackInterface.OnUILeft;
+                @UILeft.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnUILeft;
+                @UILeft.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnUILeft;
+                @UIRight.started -= m_Wrapper.m_UIActionsCallbackInterface.OnUIRight;
+                @UIRight.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnUIRight;
+                @UIRight.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnUIRight;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -713,9 +695,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @ESC.started += instance.OnESC;
                 @ESC.performed += instance.OnESC;
                 @ESC.canceled += instance.OnESC;
-                @UIMove.started += instance.OnUIMove;
-                @UIMove.performed += instance.OnUIMove;
-                @UIMove.canceled += instance.OnUIMove;
+                @UILeft.started += instance.OnUILeft;
+                @UILeft.performed += instance.OnUILeft;
+                @UILeft.canceled += instance.OnUILeft;
+                @UIRight.started += instance.OnUIRight;
+                @UIRight.performed += instance.OnUIRight;
+                @UIRight.canceled += instance.OnUIRight;
             }
         }
     }
@@ -749,6 +734,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnInteraction(InputAction.CallbackContext context);
         void OnTap(InputAction.CallbackContext context);
         void OnESC(InputAction.CallbackContext context);
-        void OnUIMove(InputAction.CallbackContext context);
+        void OnUILeft(InputAction.CallbackContext context);
+        void OnUIRight(InputAction.CallbackContext context);
     }
 }
