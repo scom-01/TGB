@@ -47,18 +47,18 @@ public class PlayerGroundedState : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
-        if(player.DashState.CheckIfResetDash())
-        {
-            player.DashState.ResetDash(player.playerData.dashCount);
-        }
-
+        
         xInput = player.InputHandler.NormInputX;
         JumpInput = player.InputHandler.JumpInput;
         grabInput = player.InputHandler.GrabInput;
         dashInput = player.InputHandler.DashInput;
         blockInput = player.InputHandler.BlockInput;
         
+        if (player.DashState.CheckIfResetDash())
+        {
+            player.DashState.ResetDash(player.playerData.dashCount);
+        }
+
         if (player.InputHandler.ActionInputs[(int)CombatInputs.primary])
         {
             Debug.Log("Attack1");

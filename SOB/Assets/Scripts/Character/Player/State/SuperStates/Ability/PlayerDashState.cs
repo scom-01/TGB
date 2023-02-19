@@ -19,7 +19,7 @@ public class PlayerDashState : PlayerAbilityState
     public override void Enter()
     {
         base.Enter();
-
+        Movement.CheckIfShouldFlip(player.InputHandler.NormInputX);
         IsGrounded = CollisionSenses.CheckIfGrounded;
         if (IsGrounded)
         {
