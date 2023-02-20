@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Inst = null;
 
+    [Header("----Manager----")]
+    public ItemManager IM;
+
     [Header("----Player----")]
     [SerializeField]
     private Transform respawnPoint;
