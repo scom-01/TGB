@@ -29,13 +29,11 @@ namespace SOB.Manager
             {
                 Debug.Log("Right");
                 InventoryItems.CurrentSelectItemIndex++;
-                inputHandler.RawUIMoveInputRight = false;
             }
             else if(inputHandler.RawUIMoveInputLeft)
             {
                 Debug.Log("Left");
                 InventoryItems.CurrentSelectItemIndex--;
-                inputHandler.RawUIMoveInputLeft = false;
             }
         }
 

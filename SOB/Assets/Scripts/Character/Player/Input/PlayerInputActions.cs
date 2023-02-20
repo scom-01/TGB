@@ -353,7 +353,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""UIRight"",
@@ -362,7 +362,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -403,7 +403,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""80f103b8-de55-42b9-97c6-bdcb16eb47f4"",
                     ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
+                    ""interactions"": ""MultiTap(tapTime=0.02,tapDelay=5,tapCount=1)"",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""UILeft"",
@@ -414,7 +414,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""704c977a-d465-4154-a34b-7699f8b060f2"",
                     ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
+                    ""interactions"": ""MultiTap(tapTime=0.02,tapCount=1)"",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""UIRight"",
