@@ -24,7 +24,6 @@ public class InventoryItems : MonoBehaviour
         set
         {
             currentSelectItemIndex = Mathf.Clamp(value, 0, items.Count - 1);
-            //currentSelectItemIndex = value < 0 ? 0 : value;
             CurrentSelectItem = items[currentSelectItemIndex];
             GameManager.Inst.SubUI.InventorySubUI.InventoryDescript.SetDescript();
         }
@@ -33,10 +32,10 @@ public class InventoryItems : MonoBehaviour
 
     private void OnEnable()
     {
-        if (!(items.Count > 0))
-        {
-            Init();
-        }
+        //if (!(items.Count > 0))
+        //{
+        //    Init();
+        //}
     }
     private void Init()
     {

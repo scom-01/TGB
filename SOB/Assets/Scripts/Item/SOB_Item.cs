@@ -10,7 +10,7 @@ namespace SOB.Item
 {
     public class SOB_Item : MonoBehaviour
     {
-        [field :SerializeField] public StatsItemSO Item { get; private set; }
+        [field: SerializeField] public StatsItemSO Item;
         public Core ItemCore { get; private set; }
         [HideInInspector] public Unit unit;
 
@@ -26,14 +26,23 @@ namespace SOB.Item
         private void OnEnable()
         {
             SR = GetComponent<SpriteRenderer>();
+            if(Init())
+            {
+                Debug.Log("Item Init");
+            }
+        }
+        public bool Init()
+        {
+            if (Item == null)
+                return false;
             SR.sprite = Item.ItemSprite;
             CC2D = GetComponentInChildren<CircleCollider2D>();
-            if(CC2D != null)
+            if (CC2D != null)
             {
                 CC2D.isTrigger = true;
                 CC2D.radius = DetectedRadius;
             }
-
+            return true;
         }
 
         private void OnDisable()
