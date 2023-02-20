@@ -21,21 +21,21 @@ public class Inventory : MonoBehaviour
     }
     private void Start()
     {
-        if(weapons == null || weapons?.Count == 0)
+        if (weapons == null || weapons?.Count == 0)
         {
             var weaponItems = this.GetComponentsInChildren<Weapon>();
-            for (int i = 0; i < weaponItems.Length;i++)
+            for (int i = 0; i < weaponItems.Length; i++)
             {
                 this.weapons.Add(weaponItems[i]);
             }
-            
+
             if (this.weapons == null)
             {
                 Debug.LogWarning($"{transform.name}'s Weapons is empty in The Inventory");
             }
         }
 
-        if(items == null || items?.Count == 0)
+        if (items == null || items?.Count == 0)
         {
             if (items == null)
             {
@@ -47,12 +47,12 @@ public class Inventory : MonoBehaviour
     private void Update()
     {
         var oldWeapon = weapons;
-        if(weapons != oldWeapon)
+        if (weapons != oldWeapon)
         {
             ChangeWeaponAttribute();
         }
 
-        if(items.Count != ItemCount)
+        if (items.Count != ItemCount)
         {
 
             ChangeItemAttribute();
@@ -61,7 +61,7 @@ public class Inventory : MonoBehaviour
 
     public bool AddInventoryItem(StatsItemSO itemData)
     {
-        if(items.Count >= 8)
+        if (items.Count >= 8)
         {
             Debug.LogWarning("Inventory is full");
             //아이템 교체하는 코드
@@ -79,10 +79,14 @@ public class Inventory : MonoBehaviour
             GameManager.Inst.SubUI.InventorySubUI.InventoryItems.AddItem(itemData);
             items.Add(itemData);
             ItemCount++;
-            foreach (var commonData in itemData.StatsDatas)
+            foreach (var statsData in itemData.StatsDatas)
             {
-                SetStat(commonData);
-            }                
+                SetStat(statsData);
+                if (statsData.MaxHealth != 0.0f)
+                {
+                    unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += statsData.MaxHealth;
+                }
+            }
             Debug.Log($"Change UnitStats {unit.Core.GetCoreComponent<UnitStats>().StatsData}");
         }
         return true;
@@ -90,14 +94,21 @@ public class Inventory : MonoBehaviour
 
     public void RemoveInventoryItem(StatsItemSO itemData)
     {
-        if(items.Contains(itemData))
+        if (items.Contains(itemData))
         {
             Debug.Log($"Remove Item {itemData.name}");
-            foreach (var commonData in itemData.StatsDatas)
+            foreach (var statsData in itemData.StatsDatas)
             {
-                SetStat(commonData * -1f);
+                SetStat(statsData * -1f);
+                if (statsData.MaxHealth != 0.0f)
+                {
+                    unit.Core.GetCoreComponent<UnitStats>().CurrentHealth -= statsData.MaxHealth;
+                }
             }
             items.Remove(itemData);
+            var item = Instantiate(GameManager.Inst.IM.InventoryItem, unit.transform.position, Quaternion.identity, GameManager.Inst.IM.transform);
+            item.GetComponent<SOB_Item>().Item = itemData;
+            item.GetComponent<SOB_Item>().Init();
         }
         else
         {
@@ -105,7 +116,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    
+
     private void ChangeWeaponAttribute()
     {
 
