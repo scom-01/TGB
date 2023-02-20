@@ -46,7 +46,7 @@ public class BuffSystem : MonoBehaviour
     }
 
     public void PlayBuff(Buff buff)
-    {                
+    {
         StartCoroutine(ChangeStats(buff, buff.statsData, buff.durationTime));
     }
 
@@ -61,6 +61,10 @@ public class BuffSystem : MonoBehaviour
         if (unit != null)
         {
             unit.Core.GetCoreComponent<UnitStats>().StatsData += statsData;
+            if (statsData.MaxHealth != 0.0f)
+            {
+                unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += statsData.MaxHealth;
+            }
             if (duration == 999.0f)
             {
                 Debug.LogWarning("duration is 999");
@@ -68,6 +72,10 @@ public class BuffSystem : MonoBehaviour
             }
             yield return new WaitForSeconds(duration);
             unit.Core.GetCoreComponent<UnitStats>().StatsData += statsData * -1f;
+            if (statsData.MaxHealth != 0.0f)
+            {
+                unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += statsData.MaxHealth * -1f;
+            }
             RemoveBuff(buff);
             yield break;
         }
