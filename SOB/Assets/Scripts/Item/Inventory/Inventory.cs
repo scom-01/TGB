@@ -92,6 +92,10 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
+    /// <summary>
+    /// Item 제거, Destory하지 않고 InventoryItem의 StatsItemSO 데이터값을 없앤다.
+    /// </summary>
+    /// <param name="itemData"></param>
     public void RemoveInventoryItem(StatsItemSO itemData)
     {
         if (itemData == null)
@@ -113,9 +117,9 @@ public class Inventory : MonoBehaviour
             }
             items.Remove(itemData);
             GameManager.Inst.SubUI.InventorySubUI.InventoryItems.RemoveItem(itemData);
-            var item = Instantiate(GameManager.Inst.IM.InventoryItem, unit.transform.position, Quaternion.identity, GameManager.Inst.IM.transform);
-            item.GetComponent<SOB_Item>().Item = itemData;
-            item.GetComponent<SOB_Item>().Init();
+
+            //spawnItem
+            GameManager.Inst.SPM.SpawnItem(GameManager.Inst.IM.InventoryItem, unit.transform.position,GameManager.Inst.IM.transform, itemData);
         }
         else
         {

@@ -219,7 +219,6 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.canceled)
         {
             ActionInputsStopTime[(int)CombatInputs.primary] = Time.time;
-            Debug.Log($"ActionInputStopTime {ActionInputsStartTime[(int)CombatInputs.primary]}");
             ActionInputs[(int)CombatInputs.primary] = false;
         }
     }
