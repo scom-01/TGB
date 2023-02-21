@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     [Header("----Manager----")]
     public ItemManager IM;
+    public SpawnManager SPM;
 
     [Header("----Player----")]
     [SerializeField]
