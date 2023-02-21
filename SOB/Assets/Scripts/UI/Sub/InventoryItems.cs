@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class InventoryItems : MonoBehaviour
 {
     public List<InventoryItem> items = new List<InventoryItem>();
+
+    public GameObject InventoryItemPrefab;
+    public int MaxIndex;
     public InventoryItem CurrentSelectItem
     {
         get => currentSelectItem;
@@ -39,9 +44,23 @@ public class InventoryItems : MonoBehaviour
     }
     private void Init()
     {
-        foreach (var item in this.GetComponentsInChildren<InventoryItem>())
+        if(this.GetComponentsInChildren<InventoryItem>().Length == 0)
         {
-            items.Add(item);
+            for (int i = 0; i < MaxIndex; i++)
+            {
+                var item = Instantiate(InventoryItemPrefab, this.transform).GetComponent<InventoryItem>();
+                items.Add(item);
+                item.Index = i;
+            }
+        }
+        else if(this.GetComponentsInChildren<InventoryItem>().Length != MaxIndex)
+        {
+            for (int i = this.GetComponentsInChildren<InventoryItem>().Length; i < MaxIndex; i++)
+            {
+                var item = Instantiate(InventoryItemPrefab, this.transform).GetComponent<InventoryItem>();
+                items.Add(item);
+                item.Index = i;
+            }
         }
     }
 
@@ -58,6 +77,7 @@ public class InventoryItems : MonoBehaviour
                 Debug.LogWarning($"{items[i].name}.StatsItemData is Null");
                 items[i].StatsItemData = StatsItem;
                 CurrentSelectItemIndex = i;
+                items[i].Index = CurrentSelectItemIndex;
                 break;
             }
         }
@@ -68,7 +88,11 @@ public class InventoryItems : MonoBehaviour
         {
             if(item.StatsItemData == StatsItem)
             {
-                item.StatsItemData = null;
+                for(int i = item.Index; i < items.Count-1; i++)
+                {
+                    items[i].StatsItemData = items[i + 1].StatsItemData;
+                }
+                items.Last().StatsItemData = null;
                 return;
             }
         }
