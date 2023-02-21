@@ -32,7 +32,7 @@ public class Detector : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (currentGO != null)
         {

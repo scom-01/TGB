@@ -30,6 +30,7 @@ public class PlayerInputHandler : MonoBehaviour
                     , BlockInputStop
                     , InteractionInput = false;
 
+    [HideInInspector]
     public bool RawUIMoveInputLeft
                 , RawUIMoveInputRight = false;
 
@@ -114,8 +115,6 @@ public class PlayerInputHandler : MonoBehaviour
         InteractionInput = interacInput;
         RawUIMoveInputLeft = normUIInputLeft;
         RawUIMoveInputRight = normUIInputRight;
-        Debug.Log("RawUIMoveInputLeft : " + RawUIMoveInputLeft);
-        Debug.Log("RawUIMoveInputRight : " + RawUIMoveInputRight);
     }
 
     #region GamePlay
@@ -243,7 +242,6 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.started)
         {
-            Debug.Log("OnInteractionInput");
             InteractionInput = true;
             interactionInputStartTime = Time.time;
         }

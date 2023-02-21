@@ -25,20 +25,41 @@ namespace SOB.Manager
         }
         private void Update()
         {
-            if(inputHandler.RawUIMoveInputRight)
-            {
-                Debug.Log("Right");
-                InventoryItems.CurrentSelectItemIndex++;
-                inputHandler.RawUIMoveInputRight = false;
-            }
-            else if(inputHandler.RawUIMoveInputLeft)
-            {
-                Debug.Log("Left");
-                InventoryItems.CurrentSelectItemIndex--;
-                inputHandler.RawUIMoveInputLeft = false;
-            }
+            InputCheck();
         }
 
+        public void InputCheck()
+        {
+            if (inputHandler == null)
+            {
+                Debug.LogWarning("InventoryUI inputHandler is null");
+                return;
+            }
+
+            if (inputHandler.RawUIMoveInputRight)
+            {
+                InventoryItems.CurrentSelectItemIndex++;
+                inputHandler.UseInput(ref inputHandler.RawUIMoveInputRight);
+            }
+            else if (inputHandler.RawUIMoveInputLeft)
+            {
+                InventoryItems.CurrentSelectItemIndex--;
+                inputHandler.UseInput(ref inputHandler.RawUIMoveInputLeft);
+            }
+
+            if(inputHandler.InteractionInput)
+            {
+                Debug.LogWarning("inputHandler InteractionInput ");
+                if (this.InventoryItems.CurrentSelectItem == null)
+                {
+                    return;
+                }
+
+                PlayerInventory.RemoveInventoryItem(this.InventoryItems.CurrentSelectItem.StatsItemData);
+                this.InventoryItems.CurrentSelectItemIndex--;
+                inputHandler.UseInput(ref inputHandler.InteractionInput);
+            }
+        }
 
         private void OnEnable()
         {

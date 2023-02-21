@@ -94,6 +94,12 @@ public class Inventory : MonoBehaviour
 
     public void RemoveInventoryItem(StatsItemSO itemData)
     {
+        if (itemData == null)
+        {
+            Debug.Log("Find not InventoryItem");
+            return;
+        }
+
         if (items.Contains(itemData))
         {
             Debug.Log($"Remove Item {itemData.name}");
@@ -106,6 +112,7 @@ public class Inventory : MonoBehaviour
                 }
             }
             items.Remove(itemData);
+            GameManager.Inst.SubUI.InventorySubUI.InventoryItems.RemoveItem(itemData);
             var item = Instantiate(GameManager.Inst.IM.InventoryItem, unit.transform.position, Quaternion.identity, GameManager.Inst.IM.transform);
             item.GetComponent<SOB_Item>().Item = itemData;
             item.GetComponent<SOB_Item>().Init();
