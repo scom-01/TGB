@@ -13,9 +13,46 @@ namespace SOB.Manager
         private Inventory PlayerInventory;
         private PlayerInputHandler inputHandler;
 
-        [HideInInspector] public InventoryItems InventoryItems;
-        [HideInInspector] public InventoryStats InventoryStats;
-        [HideInInspector] public InventoryDescript InventoryDescript;
+        public InventoryItems InventoryItems
+        {
+            get
+            {
+                if (inventoryItems == null)
+                {
+                    inventoryItems = this.GetComponentInChildren<InventoryItems>();
+                }
+                return inventoryItems;
+            }
+            set => inventoryItems = value;
+        }
+        public InventoryStats InventoryStats
+        {
+            get
+            {
+                if (inventoryStats == null)
+                {
+                    inventoryStats = this.GetComponentInChildren<InventoryStats>();
+                }
+                return inventoryStats;
+            }
+            set => inventoryStats = value;
+        }
+        public InventoryDescript InventoryDescript
+        {
+            get
+            {
+                if (inventoryDescript == null)
+                {
+                    inventoryDescript = this.GetComponentInChildren<InventoryDescript>();
+                }
+                return inventoryDescript;
+            }
+            set =>  inventoryDescript = value;
+        }
+
+        private InventoryItems inventoryItems;
+        private InventoryStats inventoryStats;
+        private InventoryDescript inventoryDescript;
 
         private void Awake()
         {
@@ -47,7 +84,7 @@ namespace SOB.Manager
                 inputHandler.UseInput(ref inputHandler.RawUIMoveInputLeft);
             }
 
-            if(inputHandler.InteractionInput)
+            if (inputHandler.InteractionInput)
             {
                 Debug.LogWarning("inputHandler InteractionInput ");
                 if (this.InventoryItems.CurrentSelectItem == null)
@@ -63,10 +100,6 @@ namespace SOB.Manager
 
         private void OnEnable()
         {
-            InventoryItems = this.GetComponentInChildren<InventoryItems>();
-            InventoryStats = this.GetComponentInChildren<InventoryStats>();
-            InventoryDescript = this.GetComponentInChildren<InventoryDescript>();
-
             for (int i = 0; i < PlayerInventory.items.Count; i++)
             {
                 InventoryItems.items[i].StatsItemData = PlayerInventory.items[i];
