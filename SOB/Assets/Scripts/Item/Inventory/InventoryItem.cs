@@ -20,12 +20,12 @@ public class InventoryItem : MonoBehaviour
             Init();
         }
     }
-
     [SerializeField] private StatsItemSO statsItemData;
     public bool isSelect
     {
         set => BackImgAlpha = value ? 1f : 0.5f;
     }
+    public int Index;
 
     public Image iconBackImg;
     public Image iconImg;
@@ -33,6 +33,16 @@ public class InventoryItem : MonoBehaviour
     private float BackImgAlpha
     {
         set => iconBackImg.color = new Color(iconBackImg.color.r, iconBackImg.color.g, iconBackImg.color.b, value);
+    }
+    
+    public void CurrentItem()
+    {
+        if(this.GetComponentInParent<InventoryItems>() ==null)
+        {
+            return;
+        }
+
+        this.GetComponentInParent<InventoryItems>().CurrentSelectItemIndex = Index;
     }
 
     public void Init()
