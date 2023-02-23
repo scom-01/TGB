@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using static UnityEditor.Progress;
 
 namespace SOB.Weapons.Components
 {
@@ -30,6 +31,17 @@ namespace SOB.Weapons.Components
 
             detected = Physics2D.OverlapBoxAll(offset, currentActionData.HitBox.size, 0f, data.DetectableLayers);
 
+            foreach(var detecte in detected)
+            {
+                if (detecte.gameObject.tag == "Player")
+                    continue;
+
+                if (detecte.TryGetComponent(out IKnockBackable knockbackables))
+                {
+                    knockbackables.KnockBack(currentActionData.KnockbackAngle, currentActionData.KnockbackAngle.magnitude, core.GetCoreComponent<Movement>().FancingDirection);
+                }
+            }
+
             if (detected.Length == 0)
             {
                 Debug.Log("detected.Length == 0"); 
@@ -37,25 +49,6 @@ namespace SOB.Weapons.Components
             }
 
             OnDetectedCollider2D?.Invoke(detected);
-
-            //foreach(var item in detected)
-            //{
-            //    //Combat안에 있는 BoxCollider2D(Trigger)만 가져오기 위함
-            //    if (!item.isTrigger)
-            //        continue;
-
-            //    var detecter = item.gameObject;
-                
-            //    if(detecter.GetComponent<KnockBackReceiver>())
-            //    {
-            //        Debug.Log("detecter have Combat");
-            //        detecter.GetComponent<KnockBackReceiver>().Damage(
-            //                    CoreStats.CommonData, 
-            //                    detecter.GetComponentInParent<Core>().GetCoreComponent<UnitStats>().CommonData, 10);
-            //    }
-            //    //detecter.GetComponentInChildren<Combat>().Damage(this.GetComponent<Unit>().gameObject, detecter, detecter.GetComponent<Unit>().UnitData.commonStats.AttackPower);
-            //    Debug.Log(item.name);
-            //}
         }
 
         protected override void Start()

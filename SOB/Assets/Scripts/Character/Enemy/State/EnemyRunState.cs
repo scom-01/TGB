@@ -34,11 +34,11 @@ public class EnemyRunState : EnemyState
     {
         base.LogicUpdate();
 
-        if(Movement.knockback)
-        {
-            Debug.Log(enemy.name + " ³Ë¹é»óÅÂ");
-            return;
-        }
+        //if(Movement.knockback)
+        //{
+        //    Debug.Log(enemy.name + " ë„‰ë°±ìƒíƒœ");
+        //    return;
+        //}
 
         if (!checkifCliff || checkifTouching || checkifTouchingWall )
         {

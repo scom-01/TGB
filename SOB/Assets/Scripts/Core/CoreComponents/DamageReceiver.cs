@@ -14,18 +14,6 @@ namespace SOB.CoreSystem
         private CoreComp<UnitStats> stats;
         private CoreComp<ParticleManager> particleManager;
 
-        //public void Damage(GameObject attacker, GameObject victim, ElementalPower elementalPower, DamageAttiribute attiribute, float amount)
-        //{
-        //    //attacker.GetComponentInChildren<Core>().GetCoreComponent<UnitStats>()
-        //    Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
-        //    stats.Comp?.DecreaseHealth(elementalPower, attiribute, amount);            
-        //    //if (damageParticles == null)
-        //    //{
-        //    //    Debug.Log("Combat DamageParticles is Null");
-        //    //    return;
-        //    //}
-        //    //particleManager.Comp?.StartParticlesWithRandomRotation(damageParticles);
-        //}
         public void Damage(StatsData AttackterCommonData, StatsData VictimCommonData, GameObject EffectPrefab, float amount)
         {
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");

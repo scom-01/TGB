@@ -37,6 +37,12 @@ namespace SOB.CoreSystem
             workspace = Vector2.zero;
             SetFinalVelocity();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="velocity">움직임 크기</param>
+        /// <param name="angle">캐릭터가 움직일 각도</param>
+        /// <param name="direction">캐릭터가 향하는 방향</param>
         public void SetVelocity(float velocity, Vector2 angle, int direction)
         {
             angle.Normalize();
