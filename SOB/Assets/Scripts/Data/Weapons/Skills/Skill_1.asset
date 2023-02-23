@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <NumberOfActions>k__BackingField: 1
   <CanJump>k__BackingField: 0
-  <CanAirAttack>k__BackingField: 0
+  <CanAirAttack>k__BackingField: 1
   <EffectPrefab>k__BackingField: {fileID: 5279545542555632717, guid: 54c319e2f98e0b04384f32b5f2f6b28b, type: 3}
   <ComponentData>k__BackingField:
   - rid: 8358215042463956996
@@ -74,7 +74,7 @@ MonoBehaviour:
         name: MovementData
         actionData:
         - name: Action 1
-          <CanFlip>k__BackingField: 0
+          <CanFlip>k__BackingField: 1
           <CanMoveCtrl>k__BackingField: 0
-          <Direction>k__BackingField: {x: 0, y: 0}
-          <Velocity>k__BackingField: 0
+          <Direction>k__BackingField: {x: 1, y: 0}
+          <Velocity>k__BackingField: 5

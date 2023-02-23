@@ -10,6 +10,10 @@ public class InventoryItems : MonoBehaviour
 
     public GameObject InventoryItemPrefab;
     public int MaxIndex;
+
+    /// <summary>
+    /// 현재 선택된 아이템
+    /// </summary>
     public InventoryItem CurrentSelectItem
     {
         get => currentSelectItem;
@@ -23,6 +27,10 @@ public class InventoryItems : MonoBehaviour
         }
     }
     private InventoryItem currentSelectItem;
+
+    /// <summary>
+    /// 현재 선택된 아이템 인덱스
+    /// </summary>
     public int CurrentSelectItemIndex
     {
         get => currentSelectItemIndex;
