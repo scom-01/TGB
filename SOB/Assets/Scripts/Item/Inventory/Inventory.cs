@@ -72,6 +72,7 @@ public class Inventory : MonoBehaviour
         if (items.Contains(itemData))
         {
             Debug.Log($"Contians {itemData.name}, fail add");
+            return false;
         }
         else
         {

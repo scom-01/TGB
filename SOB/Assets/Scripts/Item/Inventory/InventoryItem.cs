@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour
 {
+    /// <summary>
+    /// 인벤토리 Data
+    /// </summary>
     public StatsItemSO StatsItemData
     {
         get => statsItemData;
@@ -25,9 +28,13 @@ public class InventoryItem : MonoBehaviour
     {
         set => BackImgAlpha = value ? 1f : 0.5f;
     }
+
     public int Index;
 
     public Image iconBackImg;
+    /// <summary>
+    /// 아이템 아이콘 이미지
+    /// </summary>
     public Image iconImg;
 
     private float BackImgAlpha

@@ -9,45 +9,44 @@ namespace SOB.Weapons
 {
     public class Weapon : MonoBehaviour
     {
-        [SerializeField] private float actionCounterResetCooldown;
-
+        //Component
         public WeaponDataSO weaponData { get; private set; }
 
-        [HideInInspector]
-        protected string weaponAnimBoolStr;
+        public Core WeaponCore { get; private set; }
+        public GameObject BaseGameObject { get; private set; }
+        public GameObject WeaponSpriteGameObject { get; private set; }
+        public AnimationEventHandler EventHandler { get; private set; }
 
-        [Tooltip("공격 횟수")]
-        public int CurrentActionCounter
+        protected PlayerWeaponState state;
+        
+        private Timer actionCounterResetTimer;
+
+        //Action
+        public event Action OnEnter;
+        public event Action OnExit;
+
+        //Value
+        [Tooltip("공격 횟수")]  public int CurrentActionCounter
         {
             get => currentActionCounter;
             private set => currentActionCounter = value >= weaponData.NumberOfActions ? 0 : value;
         }
-
-        public Core WeaponCore { get; private set; }
+        [HideInInspector] public bool InAir;
+        [HideInInspector]   protected string weaponAnimBoolStr;
+        
+        protected Animator baseAnimator;
+        
+        [SerializeField]    private float actionCounterResetCooldown;
 
         private int currentActionCounter;
-        private Timer actionCounterResetTimer;
+        
 
-        public event Action OnEnter;
-        public event Action OnExit;
-
-        protected Animator baseAnimator;
-        public GameObject BaseGameObject { get; private set; }
-        protected Animator WeaponAnimator;
-        public GameObject WeaponSpriteGameObject { get; private set; }
-
-        public AnimationEventHandler EventHandler { get; private set; }
-
-        [HideInInspector]
-        public bool InAir;
-
-        protected PlayerWeaponState state;
         protected virtual void Awake()
         {
             BaseGameObject = transform.Find("Base").gameObject;
             WeaponSpriteGameObject = transform.Find("Weapon").gameObject;
 
-            baseAnimator = transform.Find("Base").GetComponent<Animator>();
+            baseAnimator = BaseGameObject.GetComponent<Animator>();
 
             EventHandler = BaseGameObject.GetComponent<AnimationEventHandler>();
             
@@ -79,8 +78,6 @@ namespace SOB.Weapons
         public virtual void EnterWeapon()
         {
             print($"{transform.name} enter");
-
-            //gameObject.SetActive(true);
 
             actionCounterResetTimer.StopTimer();
                         
