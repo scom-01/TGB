@@ -77,19 +77,19 @@ public class Unit : MonoBehaviour
 
     public virtual void HitEffect()
     {
-        var oldsprites = this.GetComponentsInChildren<SpriteRenderer>();
         var sprites = this.GetComponentsInChildren<SpriteRenderer>();
         for (int i =0; i < sprites.Length;i++)
         {
-            StartCoroutine(HitEffect(sprites[i], 0.5f));
+            var oldcolor = sprites[i].color;
+            StartCoroutine(HitEffect(sprites[i], oldcolor, 0.5f));
         }
     }
 
-    IEnumerator HitEffect(SpriteRenderer sr, float duration)
+    IEnumerator HitEffect(SpriteRenderer sr, Color oldcolor , float duration)
     {
         sr.color = Color.red;
         yield return new WaitForSeconds(duration);
-        sr.color = Color.white;
+        sr.color = oldcolor;
     }
 
     protected virtual void FixedUpdate()
