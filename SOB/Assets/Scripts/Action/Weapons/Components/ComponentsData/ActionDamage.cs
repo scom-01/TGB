@@ -6,7 +6,7 @@ using UnityEngine;
 namespace SOB.Weapons.Components
 {
     [Serializable]
-    public class AttackDamage : ActionData
+    public class ActionDamage : ActionData
     {
         [field : SerializeField] public float Amount { get; private set; }
     }
