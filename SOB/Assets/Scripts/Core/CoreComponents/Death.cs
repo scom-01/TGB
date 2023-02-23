@@ -10,7 +10,18 @@ namespace SOB.CoreSystem
     {
         [SerializeField]
         private GameObject[] deathParticles;
-        private ParticleManager ParticleManager => ParticleManager ? particleManager : core.GetCoreComponent(ref particleManager);
+        private ParticleManager ParticleManager
+        {
+            get
+            {
+                if(particleManager == null)
+                {
+                    core.GetCoreComponent(ref particleManager);
+                }
+                return particleManager;
+            }
+        }
+            
         private ParticleManager particleManager;
 
 
@@ -22,7 +33,8 @@ namespace SOB.CoreSystem
         {
             foreach (var particle in deathParticles)
             {
-                ParticleManager.StartParticles(particle);
+                var particleObject = ParticleManager.StartParticles(particle);
+                particleObject.GetComponent<Animator>().speed = Random.Range(0.3f, 1f);
             }
             var item = core.Unit.Inventory.items;
             int count = item.Count;
