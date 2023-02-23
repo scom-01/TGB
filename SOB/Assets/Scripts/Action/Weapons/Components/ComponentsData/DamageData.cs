@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SOB.Weapons.Components
 {
-    public class DamageData : ComponentData<AttackDamage>
+    public class DamageData : ComponentData<ActionDamage>
     {
         public DamageData()
         {

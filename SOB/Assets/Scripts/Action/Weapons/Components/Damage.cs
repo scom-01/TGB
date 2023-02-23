@@ -7,7 +7,7 @@ using UnityEngine.PlayerLoop;
 
 namespace SOB.Weapons.Components
 {
-    public class Damage : WeaponComponent<DamageData,AttackDamage>
+    public class Damage : WeaponComponent<DamageData, ActionDamage>
     {
         private ActionHitBox hitBox;
         /// <summary>
@@ -16,7 +16,7 @@ namespace SOB.Weapons.Components
         /// <param name="coll"></param>
         private void HandleDetectedCollider2D(Collider2D[] coll)
         {
-            foreach(var item in coll)
+            foreach (var item in coll)
             {
                 if (item.gameObject.tag == "Player")
                     continue;
@@ -44,7 +44,7 @@ namespace SOB.Weapons.Components
         }
 
         protected override void OnDestory()
-        { 
+        {
             base.OnDestory();
 
             hitBox.OnDetectedCollider2D -= HandleDetectedCollider2D;

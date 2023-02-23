@@ -21,6 +21,7 @@ MonoBehaviour:
   - rid: 3615621173780152321
   - rid: 3615621236231503872
   - rid: 3615621433789513728
+  - rid: 8358215245741948929
   references:
     version: 2
     RefIds:
@@ -37,7 +38,6 @@ MonoBehaviour:
             y: -0.83
             width: 3.83
             height: 1.17
-          <KnockbackAngle>k__BackingField: {x: 0, y: 0}
         - name: Action 2
           Debug: 0
           <HitBox>k__BackingField:
@@ -46,7 +46,6 @@ MonoBehaviour:
             y: -0.83
             width: 3.83
             height: 1.17
-          <KnockbackAngle>k__BackingField: {x: 0, y: 0}
         - name: Action 3
           Debug: 0
           <HitBox>k__BackingField:
@@ -55,7 +54,6 @@ MonoBehaviour:
             y: -0.83
             width: 3.68
             height: 2.22
-          <KnockbackAngle>k__BackingField: {x: 0, y: 0}
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
           m_Bits: 133120
@@ -135,3 +133,14 @@ MonoBehaviour:
           <Amount>k__BackingField: 15
         - name: Action 3
           <Amount>k__BackingField: 20
+    - rid: 8358215245741948929
+      type: {class: KnockbackData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: KnockbackData
+        actionData:
+        - name: Action 1
+          <KnockbackAngle>k__BackingField: {x: 10, y: 30}
+        - name: Action 2
+          <KnockbackAngle>k__BackingField: {x: 20, y: 50}
+        - name: Action 3
+          <KnockbackAngle>k__BackingField: {x: 20, y: 50}

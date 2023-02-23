@@ -6,9 +6,8 @@ using UnityEngine;
 namespace SOB.Weapons.Components
 {
     [Serializable]
-    public class AttackActionHitBox : ActionData
+    public class ActionKnockback : ActionData
     {
-        public bool Debug;
-        [field: SerializeField] public Rect HitBox { get; private set; }
+        [field: SerializeField] public Vector2 KnockbackAngle { get; private set; }
     }
 }

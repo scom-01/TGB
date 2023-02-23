@@ -31,17 +31,6 @@ namespace SOB.Weapons.Components
 
             detected = Physics2D.OverlapBoxAll(offset, currentActionData.HitBox.size, 0f, data.DetectableLayers);
 
-            foreach(var detecte in detected)
-            {
-                if (detecte.gameObject.tag == "Player")
-                    continue;
-
-                if (detecte.TryGetComponent(out IKnockBackable knockbackables))
-                {
-                    knockbackables.KnockBack(currentActionData.KnockbackAngle, currentActionData.KnockbackAngle.magnitude, core.GetCoreComponent<Movement>().FancingDirection);
-                }
-            }
-
             if (detected.Length == 0)
             {
                 Debug.Log("detected.Length == 0"); 
