@@ -38,7 +38,10 @@ public class Detector : MonoBehaviour
         {
             var player = unit as Player;
             if (player == null)
+            {
+                Debug.Log("player is null");
                 return;
+            }
 
             if (player.InputHandler.InteractionInput)
             {
@@ -48,6 +51,10 @@ public class Detector : MonoBehaviour
                 {
                     Destroy(currentGO.transform.parent.gameObject);
                     currentGO = null;
+                }
+                else
+                {
+
                 }
             }
         }
