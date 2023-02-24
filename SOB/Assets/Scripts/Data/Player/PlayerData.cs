@@ -67,10 +67,4 @@ public class PlayerData : UnitData
     [Header("Block State")]
     public float blockTime = 1f;
     public float blockCooldown = 2f;
-
-
-    [Tooltip("Player Attack LayerMask")]
-    public LayerMask playerAttackMask;
-    [Tooltip("적 공격 LayerMask")]
-    public LayerMask enemyAttackMask;
 }

@@ -8,7 +8,7 @@ public class PlayerState : UnitState
     protected Player player;
 
     public bool input = false;
-    protected Movement Movement
+    protected SOB.CoreSystem.Movement Movement
     {
         get => movement ?? player.Core.GetCoreComponent(ref movement);
     }
@@ -24,7 +24,7 @@ public class PlayerState : UnitState
     public void SetInput(ref bool input) => this.input = input;
 
 
-    private Movement movement;
+    private SOB.CoreSystem.Movement movement;
     private CollisionSenses collisionSenses;
     private UnitStats unitStats;
 

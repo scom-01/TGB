@@ -28,7 +28,11 @@ public class UnitData : ScriptableObject
     public float groundCheckRadius = 0.1f;
     [Tooltip("벽면 감지 거리")]
     public float wallCheckDistance = 0.5f;
+    [Tooltip("유닛 감지 거리")]
+    public float UnitDetectedDistance = 0.5f;
     [Tooltip("지면 LayerMask")]
     public LayerMask whatIsGround;
+    [Tooltip("적으로 인지하는 Object LayerMask")]
+    public LayerMask WhatIsEnemyUnit;
     
 }

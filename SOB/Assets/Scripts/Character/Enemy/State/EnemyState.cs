@@ -8,17 +8,17 @@ public class EnemyState : UnitState
 {
     protected Enemy enemy;
 
-    protected EnemyMovement Movement
+    protected Movement Movement
     {
-        get => movement as EnemyMovement ?? enemy.core.GetCoreComponent(ref movement) as EnemyMovement;
+        get => movement ?? enemy.core.GetCoreComponent(ref movement);
     }
-    protected EnemyCollisionSenses CollisionSenses
+    protected CollisionSenses CollisionSenses
     {
-        get => collisionSenses as EnemyCollisionSenses ?? enemy.core.GetCoreComponent(ref collisionSenses) as EnemyCollisionSenses;
+        get => collisionSenses ?? enemy.core.GetCoreComponent(ref collisionSenses);
     }
 
-    private EnemyMovement movement;
-    private EnemyCollisionSenses collisionSenses;
+    private Movement movement;
+    private CollisionSenses collisionSenses;
     public EnemyState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
         enemy = unit as Enemy;

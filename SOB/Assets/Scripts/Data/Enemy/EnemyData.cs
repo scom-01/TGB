@@ -9,18 +9,4 @@ public class EnemyData : UnitData
     [Header("StateData")]    
     public float minIdleTime;
     public float maxIdleTime;
-
-    [field: SerializeField]
-    public EnemyState[] enemyStates;
-
-    [Header("Check Variables")]
-    [Tooltip("플레이어 감지 거리")]
-    public float playerDetectedDistance = 5f;
-    [Tooltip("Player LayerMask")]
-    public LayerMask whatIsPlayer;
-
-    [Tooltip("Player Attack LayerMask")]
-    public LayerMask playerAttackMask;
-    [Tooltip("적 공격 LayerMask")]
-    public LayerMask enemyAttackMask;
 }

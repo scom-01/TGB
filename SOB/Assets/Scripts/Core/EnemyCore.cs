@@ -5,8 +5,8 @@ using SOB.CoreSystem;
 public class EnemyCore : Core
 {
     public Enemy Enemy { get; private set; }
-    public EnemyMovement enemyMovement { get; private set; }
-    public EnemyCollisionSenses enemyCollisionSenses { get; private set; }
+    public Movement enemyMovement { get; private set; }
+    public CollisionSenses enemyCollisionSenses { get; private set; }
     /*public override void Awake()
     {
         base.Awake();
