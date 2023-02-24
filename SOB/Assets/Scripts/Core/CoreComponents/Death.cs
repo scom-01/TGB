@@ -33,7 +33,7 @@ namespace SOB.CoreSystem
         {
             foreach (var particle in deathParticles)
             {
-                var particleObject = ParticleManager.StartParticles(particle);
+                var particleObject = ParticleManager.StartParticlesWithRandomPosition(particle,0.5f);
                 particleObject.GetComponent<Animator>().speed = Random.Range(0.3f, 1f);
             }
             var item = core.Unit.Inventory.items;
