@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyRunState : EnemyState
 {
     private bool checkifCliff;
-    private bool checkifGrounded;
+    private bool checkifTouchingGrounded;
     private bool checkifTouchingWall;
     public EnemyRunState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
@@ -17,7 +17,7 @@ public class EnemyRunState : EnemyState
 
         checkifCliff = CollisionSenses.CheckIfCliff;
         checkifTouchingWall = CollisionSenses.CheckIfTouchingWall;
-        checkifGrounded = CollisionSenses.CheckIfGrounded;
+        checkifTouchingGrounded = CollisionSenses.CheckIfStayGrounded;
     }
 
     public override void Enter()
@@ -40,7 +40,7 @@ public class EnemyRunState : EnemyState
         //    return;
         //}
 
-        if (!checkifCliff || checkifGrounded || checkifTouchingWall )
+        if (!checkifCliff || checkifTouchingGrounded || checkifTouchingWall )
         {
             Movement.Flip();
         }

@@ -63,6 +63,12 @@ namespace SOB.CoreSystem
             //Debug.DrawRay(wallCheck.position, Vector2.right * -core.Movement.FancingDirection * wallCheckDistance, Color.red);
             get => Physics2D.Raycast(wallCheck.position, Vector2.right * -Movement.FancingDirection, WallCheckDistance, WhatIsGround);
         }
+
+        public bool CheckIfStayGrounded
+        {
+            get => Physics2D.OverlapBox(transform.position + new Vector3((BC2D.offset.x + 0.1f) * Movement.FancingDirection, BC2D.offset.y), new Vector2(BC2D.bounds.size.x, BC2D.bounds.size.y * 0.95f), 0f, WhatIsGround);
+        }
+
         public bool CheckIfCliff
         {
             get => Physics2D.Raycast(groundCheck.position + new Vector3(BC2D.offset.x + BC2D.size.x / 2, 0, 0) * Movement.FancingDirection, Vector2.down, 0.2f, WhatIsGround);
@@ -77,6 +83,16 @@ namespace SOB.CoreSystem
                 RaycastHit2D ray3 = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 0.5f), Vector2.right * Movement.FancingDirection, core.Unit.UnitData.UnitDetectedDistance, core.Unit.UnitData.WhatIsEnemyUnit);
                 return (ray1 || ray2 || ray3);
             }
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.white;
+            
+            Gizmos.DrawWireCube(transform.position + new Vector3((BC2D.offset.x) * Movement.FancingDirection, BC2D.offset.y), new Vector2(BC2D.bounds.size.x, BC2D.bounds.size.y * 0.95f));
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(groundCheck.position, new Vector2(BC2D.bounds.size.x * 0.95f, BC2D.bounds.size.y * GroundCheckRadius));
+            
         }
     }
 }
