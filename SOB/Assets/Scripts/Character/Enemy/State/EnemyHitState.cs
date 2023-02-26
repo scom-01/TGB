@@ -1,3 +1,4 @@
+using SOB.CoreSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class EnemyHitState : EnemyState
     {
         base.Enter();
         //Movement.SetVelocityX(enemy.enemyData.knockBackSpeed.x * enemy.damageDirection);
+        enemy.Anim.speed = 0.0f;
         startTime = Time.time;
     }
 
@@ -25,7 +27,9 @@ public class EnemyHitState : EnemyState
         base.LogicUpdate();
         if(Time.time >= enemy.enemyData.knockBackDuration + startTime)
         {
-            //enemy.FSM.ChangeState(enemy.RunState);
+            enemy.Anim.speed = 1.0f;
+            enemy.core.GetCoreComponent<DamageReceiver>().isHit = false;
+            enemy.FSM.ChangeState(enemy.IdleState);
         }
     }
 

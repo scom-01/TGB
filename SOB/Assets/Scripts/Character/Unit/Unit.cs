@@ -4,6 +4,8 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using SOB.CoreSystem;
+using System.ComponentModel;
+
 public class Unit : MonoBehaviour
 {
     #region Component
@@ -68,6 +70,7 @@ public class Unit : MonoBehaviour
 
             if (Core.GetCoreComponent<UnitStats>().invincibleTime <= 0.0f)
             {
+                Core.GetCoreComponent<DamageReceiver>().isHit = false;
                 Core.GetCoreComponent<UnitStats>().invincibleTime = 0f;
             }
         }
