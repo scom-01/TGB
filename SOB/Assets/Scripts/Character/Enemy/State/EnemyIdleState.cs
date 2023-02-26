@@ -1,3 +1,4 @@
+using SOB.CoreSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,6 +34,12 @@ public class EnemyIdleState : EnemyState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
+        if(enemy.core.GetCoreComponent<DamageReceiver>().isHit)
+        {
+            enemy.FSM.ChangeState(enemy.HitState);
+            return;
+        }
 
         if(CollisionSenses.UnitDectected)
         {

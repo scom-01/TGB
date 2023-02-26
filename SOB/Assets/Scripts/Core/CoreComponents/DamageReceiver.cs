@@ -14,13 +14,15 @@ namespace SOB.CoreSystem
         private CoreComp<UnitStats> stats;
         private CoreComp<ParticleManager> particleManager;
 
+        public bool isHit = false;
         public void Damage(StatsData AttackterCommonData, StatsData VictimCommonData, GameObject EffectPrefab, float amount)
         {
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
-
+            
             //TODO: 계산한 데미지 수치 return 필요
             //stats.Comp?.DecreaseHealth(AttackterCommonData, VictimCommonData, amount);
             var damage = stats.Comp.DecreaseHealth(AttackterCommonData, VictimCommonData, amount);
+            isHit = true;
             if (EffectPrefab == null)
             {
                 Debug.Log("Combat DamageParticles is Null");
