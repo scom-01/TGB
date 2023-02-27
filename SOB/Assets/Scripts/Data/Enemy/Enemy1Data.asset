@@ -26,9 +26,9 @@ MonoBehaviour:
     MyElemental: 0
     ElementalDefensivePer: 0
     ElementalAggressivePer: 0
-  knockBackDuration: 0
+  knockBackDuration: 0.2
   knockBackSpeed: {x: 1, y: 0}
-  invincibleTime: 0
+  invincibleTime: 1
   touchDamageinvincibleTime: 1
   standColliderHeight: 2.25
   groundCheckRadius: 0.1
@@ -42,10 +42,3 @@ MonoBehaviour:
     m_Bits: 4096
   minIdleTime: 0
   maxIdleTime: 0
-  playerDetectedDistance: 5
-  playerAttackMask:
-    serializedVersion: 2
-    m_Bits: 0
-  enemyAttackMask:
-    serializedVersion: 2
-    m_Bits: 0
