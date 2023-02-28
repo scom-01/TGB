@@ -43,7 +43,7 @@ public class SpawnCtrl : MonoBehaviour
         //Test
         for (int i = 0; i < respawnPoints.Length; i++)
         {
-            SpawnEnemy(respawnPoints[i].SpawnPrefab);
+            SpawnEnemy(respawnPoints[i].SpawnPrefab, respawnPoints[i].transform.position, respawnPoints[i].transform);
         }
         isSpawn = true;
     }
