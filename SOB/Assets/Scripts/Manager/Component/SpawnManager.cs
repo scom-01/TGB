@@ -10,12 +10,23 @@ namespace SOB.Manager
         public GameObject TestEnemy;
         private RespawnPoint[] respawnPoints;
 
+        public int CurrentEnemyCount;
+
+        private void Update()
+        {
+            int curr = 0;
+            for (int i = 0; i < respawnPoints.Length; i++)
+            {
+                curr += respawnPoints[i].GetComponentsInChildren<Enemy>().Length;
+            }
+            CurrentEnemyCount = curr;
+        }
         private void OnEnable()
         {
             respawnPoints = GetComponentsInChildren<RespawnPoint>();
 
             //Test
-            for(int i = 0; i < respawnPoints.Length; i++)
+            for (int i = 0; i < respawnPoints.Length; i++)
             {
                 SpawnEnemy(TestEnemy);
             }
@@ -23,10 +34,10 @@ namespace SOB.Manager
 
         private void OnDisable()
         {
-            
+
         }
 
-        public void SpawnItem(GameObject SpawnPrefab, Vector3 pos,Transform transform, StatsItemSO itemData)
+        public void SpawnItem(GameObject SpawnPrefab, Vector3 pos, Transform transform, StatsItemSO itemData)
         {
             var item = Instantiate(SpawnPrefab, pos, Quaternion.identity, transform);
             item.GetComponent<SOB_Item>().Item = itemData;
@@ -46,13 +57,13 @@ namespace SOB.Manager
 
         public void SpawnEnemy(GameObject EnemyPrefab)
         {
-            if(respawnPoints.Length <= 0)
+            if (respawnPoints.Length <= 0)
             {
                 Debug.LogWarning("RespawnPoints.Length < 0");
                 return;
             }
-
-            var enemy = Instantiate(EnemyPrefab, respawnPoints[Random.Range(0, respawnPoints.Length)].transform.position, Quaternion.identity);            
+            var rnd = Random.Range(0, respawnPoints.Length);
+            var enemy = Instantiate(EnemyPrefab, respawnPoints[rnd].transform.position, Quaternion.identity, respawnPoints[rnd].transform);
         }
     }
 }

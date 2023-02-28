@@ -128,6 +128,7 @@ public class Detector : MonoBehaviour
         //Trap
         if (collision.gameObject.tag == "Trap")
         {
+            //collision.GetComponent<Trap>().UnitData
             if (unit.Core.GetCoreComponent<UnitStats>().invincibleTime == 0f)
             {
                 var amount = unit.Core.GetCoreComponent<UnitStats>().DecreaseHealth(ElementalPower.Normal, DamageAttiribute.Fixed, 50);

@@ -11,12 +11,11 @@ namespace SOB.Weapons.Components
     {
         public event Action<Collider2D[]> OnDetectedCollider2D;
         private CoreComp<CoreSystem.Movement> movement;
-
-        private CoreSystem.UnitStats coreStats;
-        private CoreSystem.UnitStats CoreStats
+        public CoreSystem.UnitStats CoreStats
         {
             get => coreStats ? coreStats : core.GetCoreComponent(ref coreStats);
         }
+        private CoreSystem.UnitStats coreStats;
 
         private Vector2 offset;
         private Collider2D[] detected;

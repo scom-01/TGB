@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        CheckEnemy();
         CheckRespawn();
     }
 
@@ -67,6 +68,14 @@ public class GameManager : MonoBehaviour
     {
         respawnTimeStart = Time.time;
         respawn = true;
+    }
+
+    private bool CheckEnemy()
+    {
+        if (SPM == null)
+        { return false; }
+        MainUI.EnemyPanelSystem.EnemyCountText.text = "Enemy : " + SPM.CurrentEnemyCount.ToString();
+        return true;
     }
 
     private void CheckRespawn()
