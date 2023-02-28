@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
     {
         if (SPM == null)
         { return false; }
-        MainUI.EnemyPanelSystem.EnemyCountText.text = "Enemy : " + SPM.CurrentEnemyCount.ToString();
+        MainUI.EnemyPanelSystem.EnemyCountText.text = "Enemy : " + SPM.UIEnemyCount.ToString();
         return true;
     }
 
