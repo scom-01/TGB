@@ -88,7 +88,8 @@ namespace SOB.CoreSystem
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.white;
-            
+            if (BC2D == null)
+                return;
             Gizmos.DrawWireCube(transform.position + new Vector3((BC2D.offset.x) * Movement.FancingDirection, BC2D.offset.y), new Vector2(BC2D.bounds.size.x, BC2D.bounds.size.y * 0.95f));
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube(groundCheck.position, new Vector2(BC2D.bounds.size.x * 0.95f, BC2D.bounds.size.y * GroundCheckRadius));
