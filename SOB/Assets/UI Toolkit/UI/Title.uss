@@ -12,4 +12,9 @@
 .title-button:hover {
     font-size: 120px;
     rotate: -10deg;
+    transition-duration: 0.3s, 0s;
+    bottom: auto;
+    transition-delay: 0.2s, 0s;
+    transform-origin: center;
+    scale: 1 1;
 }
