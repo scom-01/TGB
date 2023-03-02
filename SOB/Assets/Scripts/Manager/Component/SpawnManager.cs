@@ -42,11 +42,14 @@ namespace SOB.Manager
                 }
             }
         }
-        private int currentSpawnIndex;
+        private int currentSpawnIndex = 0;
 
         private void Awake()
         {
-            SpawnCtrls = this.GetComponentsInChildren<SpawnCtrl>();
+            SpawnCtrls = this.GetComponentsInChildren<SpawnCtrl>();            
+        }
+        private void Start()
+        {
             CurrentSpawnIndex = 0;
         }
         private void Update()

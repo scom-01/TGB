@@ -271,6 +271,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.started)
         {
+            Debug.Log("OnTapInput Start");
             if (playerInput.actions.actionMaps.ToArray().Length > 0)
             {
                 if (playerInput.currentActionMap == playerInput.actions.FindActionMap("UI"))
