@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="Canvas" style="flex-direction: column; align-items: stretch; justify-content: flex-start; width: 100%; height: 100%; background-color: rgb(0, 0, 0);">
+        <ui:VisualElement style="justify-content: center; flex-direction: column; transform-origin: bottom; width: 100%; height: 100%; align-items: center; opacity: 1;">
+            <ui:Label text="Label" display-tooltip-when-elided="true" name="Loading_Lb" style="color: rgb(255, 255, 255); font-size: 100px;" />
+            <ui:ProgressBar title="Loading..." name="Loading_progress_bar" low-value="0" style="justify-content: center; align-items: center; width: 265px; height: 59px; font-size: 20px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
