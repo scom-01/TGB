@@ -18,9 +18,7 @@ public class Inventory : MonoBehaviour
     {
         unit = this.GetComponent<Unit>();
         ItemCount = items.Count;
-    }
-    private void Start()
-    {
+
         if (weapons == null || weapons?.Count == 0)
         {
             var weaponItems = this.GetComponentsInChildren<Weapon>();
@@ -42,6 +40,10 @@ public class Inventory : MonoBehaviour
                 Debug.LogWarning($"{transform.name}'s Items is empty in The Inventory");
             }
         }
+    }
+    private void Start()
+    {
+        
     }
 
     private void Update()
