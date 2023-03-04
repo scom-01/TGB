@@ -12,11 +12,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 829d099c869488a49a5f24ab18f0f054, type: 3}
   m_Name: Enemy_Attack_1
   m_EditorClassIdentifier: 
-  <NumberOfActions>k__BackingField: 0
+  <NumberOfActions>k__BackingField: 1
   <CanJump>k__BackingField: 0
   <CanAirAttack>k__BackingField: 0
   <EffectPrefab>k__BackingField: {fileID: 0}
-  <ComponentData>k__BackingField: []
+  <ComponentData>k__BackingField:
+  - rid: 1770984582361907200
+  - rid: 1770984582361907201
+  - rid: 1770984582361907202
+  - rid: 1770984582361907203
+  - rid: 1770984582361907204
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 1770984582361907200
+      type: {class: ActionHitBoxData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ActionHitBoxData
+        actionData:
+        - name: Action 1
+          Debug: 0
+          <HitBox>k__BackingField:
+            serializedVersion: 2
+            x: 0
+            y: 0
+            width: 0
+            height: 0
+        <DetectableLayers>k__BackingField:
+          serializedVersion: 2
+          m_Bits: 0
+    - rid: 1770984582361907201
+      type: {class: DamageData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: DamageData
+        actionData:
+        - name: Action 1
+          <Amount>k__BackingField: 0
+    - rid: 1770984582361907202
+      type: {class: KnockbackData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: KnockbackData
+        actionData:
+        - name: Action 1
+          <KnockbackAngle>k__BackingField: {x: 0, y: 0}
+    - rid: 1770984582361907203
+      type: {class: MovementData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: MovementData
+        actionData:
+        - name: Action 1
+          <CanFlip>k__BackingField: 0
+          <CanMoveCtrl>k__BackingField: 0
+          <Direction>k__BackingField: {x: 0, y: 0}
+          <Velocity>k__BackingField: 0
+    - rid: 1770984582361907204
+      type: {class: WeaponSpriteData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: WeaponSpriteData
+        actionData:
+        - name: Action 1
+          <GroundedSprites>k__BackingField: []
+          <InAirSprites>k__BackingField: []

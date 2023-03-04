@@ -27,10 +27,9 @@ public class Enemy : Unit
 
         IdleState = new EnemyIdleState(this, "idle");
         RunState = new EnemyRunState(this, "run");
-        AttackState = new EnemyAttackState(this, "attack");
+        AttackState = new EnemyAttackState(this, "action");
         HitState = new EnemyHitState(this, "hit");
         DeadState = new EnemyDeadState(this, "dead");
-        
     }
 
     // Start is called before the first frame update
