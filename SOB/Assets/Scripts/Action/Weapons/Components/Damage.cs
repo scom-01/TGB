@@ -18,7 +18,7 @@ namespace SOB.Weapons.Components
         {
             foreach (var item in coll)
             {
-                if (item.gameObject.tag == "Player")
+                if (item.gameObject.tag == this.gameObject.tag)
                     continue;
 
                 print($"Detected Item {item.name}");

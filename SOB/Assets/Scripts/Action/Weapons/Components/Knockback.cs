@@ -13,7 +13,7 @@ namespace SOB.Weapons.Components
         {
             foreach (var detecte in coll)
             {
-                if (detecte.gameObject.tag == "Player")
+                if (detecte.gameObject.tag == this.gameObject.tag)
                     continue;
 
                 if (detecte.TryGetComponent(out IKnockBackable knockbackables))
