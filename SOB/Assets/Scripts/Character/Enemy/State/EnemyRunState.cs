@@ -35,7 +35,7 @@ public class EnemyRunState : EnemyState
     {
         base.LogicUpdate();
 
-        if (enemy.core.GetCoreComponent<DamageReceiver>().isHit)
+        if (enemy.Core.GetCoreComponent<DamageReceiver>().isHit)
         {
             enemy.FSM.ChangeState(enemy.HitState);
             return;

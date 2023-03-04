@@ -25,11 +25,11 @@ public class EnemyHitState : EnemyState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if(Time.time >= enemy.enemyData.knockBackDuration + startTime)
+        if(Time.time >= unit.UnitData.knockBackDuration + startTime)
         {
-            enemy.Anim.speed = 1.0f;
-            enemy.core.GetCoreComponent<DamageReceiver>().isHit = false;
-            enemy.FSM.ChangeState(enemy.IdleState);
+            unit.Anim.speed = 1.0f;
+            unit.Core.GetCoreComponent<DamageReceiver>().isHit = false;
+            unit.FSM.ChangeState(enemy.IdleState);
         }
     }
 

@@ -35,15 +35,15 @@ public class EnemyIdleState : EnemyState
     {
         base.LogicUpdate();
 
-        if(enemy.core.GetCoreComponent<DamageReceiver>().isHit)
+        if(unit.Core.GetCoreComponent<DamageReceiver>().isHit)
         {
-            enemy.FSM.ChangeState(enemy.HitState);
+            unit.FSM.ChangeState(enemy.HitState);
             return;
         }
 
         if(CollisionSenses.UnitDectected)
         {
-            enemy.FSM.ChangeState(enemy.RunState);
+            unit.FSM.ChangeState(enemy.RunState);
         }
 
         if(Time.time >= startTime + idleTime)

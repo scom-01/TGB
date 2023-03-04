@@ -17,7 +17,7 @@ namespace SOB.Weapons
         public GameObject WeaponSpriteGameObject { get; private set; }
         public AnimationEventHandler EventHandler { get; private set; }
 
-        protected PlayerWeaponState state;
+        protected UnitState state;
         
         private Timer actionCounterResetTimer;
 
@@ -150,7 +150,7 @@ namespace SOB.Weapons
         /// 초기 State 설정
         /// </summary>
         /// <param name="state"></param>
-        public void InitializeWeapon(PlayerWeaponState state, Core core)
+        public void InitializeWeapon(UnitState state, Core core)
         {
             this.state = state;
             this.WeaponCore = core;

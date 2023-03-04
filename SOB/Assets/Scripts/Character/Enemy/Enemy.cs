@@ -15,9 +15,6 @@ public class Enemy : Unit
     public EnemyHitState HitState { get; private set; }
     public EnemyDeadState DeadState { get; private set; }
 
-
-    [HideInInspector]
-    public EnemyCore core;
     [HideInInspector]
     public EnemyData enemyData;
     #endregion
@@ -26,21 +23,24 @@ public class Enemy : Unit
     protected override void Awake()
     {
         base.Awake();
-        core = Core as EnemyCore;
         enemyData = UnitData as EnemyData;
-
 
         IdleState = new EnemyIdleState(this, "idle");
         RunState = new EnemyRunState(this, "run");
         AttackState = new EnemyAttackState(this, "attack");
         HitState = new EnemyHitState(this, "hit");
         DeadState = new EnemyDeadState(this, "dead");
+        
     }
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
+        foreach (var weapon in Inventory.weapons)
+        {
+            weapon.SetCore(Core);
+        }
         FSM.Initialize(IdleState);
     }
 

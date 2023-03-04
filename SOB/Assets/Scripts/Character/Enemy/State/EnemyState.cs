@@ -10,11 +10,11 @@ public class EnemyState : UnitState
 
     protected Movement Movement
     {
-        get => movement ?? enemy.core.GetCoreComponent(ref movement);
+        get => movement ?? enemy.Core.GetCoreComponent(ref movement);
     }
     protected CollisionSenses CollisionSenses
     {
-        get => collisionSenses ?? enemy.core.GetCoreComponent(ref collisionSenses);
+        get => collisionSenses ?? enemy.Core.GetCoreComponent(ref collisionSenses);
     }
 
     private Movement movement;
