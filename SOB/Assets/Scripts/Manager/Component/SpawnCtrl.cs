@@ -33,6 +33,9 @@ public class SpawnCtrl : MonoBehaviour
 
     private void OnDisable()
     {
+        if (!isSpawn || CurrentEnemyCount != 0)
+            return;
+
         GameManager.Inst.SPM.CurrentSpawnIndex++;
     }
 
