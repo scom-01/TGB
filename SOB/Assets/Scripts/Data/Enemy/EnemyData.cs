@@ -6,6 +6,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "newEnemyData", menuName = "Data/Enemy Data/Base Data")]
 public class EnemyData : UnitData
 {
+    [Header("EnemyAttack")]
+    public float UnitAttackDistance;
+
     [Header("StateData")]    
     public float minIdleTime;
     public float maxIdleTime;
