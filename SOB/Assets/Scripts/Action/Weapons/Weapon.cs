@@ -98,6 +98,7 @@ namespace SOB.Weapons
             Debug.Log("SetBoolName = false");
             CurrentActionCounter++;
             actionCounterResetTimer.StartTimer();
+            WeaponCore.Unit.AnimationFinishTrigger();
 
             OnExit?.Invoke();
         }

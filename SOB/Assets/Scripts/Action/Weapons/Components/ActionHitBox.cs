@@ -20,7 +20,6 @@ namespace SOB.Weapons.Components
         private Vector2 offset;
         private Collider2D[] detected;
 
-
         private void HandleAttackAction()
         {
             offset.Set(

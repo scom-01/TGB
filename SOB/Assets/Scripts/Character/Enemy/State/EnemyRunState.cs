@@ -41,6 +41,12 @@ public class EnemyRunState : EnemyState
             return;
         }
 
+        if (CollisionSenses.UnitDectected && unit.Inventory.weapons.Count>0)
+        {
+            enemy.AttackState.SetWeapon(unit.Inventory.weapons[0]);
+            unit.FSM.ChangeState(enemy.AttackState);
+        }
+
         //if(Movement.knockback)
         //{
         //    Debug.Log(enemy.name + " 넉백상태");

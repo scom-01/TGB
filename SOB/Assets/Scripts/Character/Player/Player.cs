@@ -134,9 +134,6 @@ public class Player : Unit
 
     private void AnimationTrigger() => FSM.CurrentState.AnimationTrigger();
 
-    private void AnimationFinishTrigger() => FSM.CurrentState.AnimationFinishTrigger();
-
-
     #endregion
 
     #region Anim Event Func

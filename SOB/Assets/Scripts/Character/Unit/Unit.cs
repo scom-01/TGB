@@ -78,6 +78,8 @@ public class Unit : MonoBehaviour
         FSM.CurrentState.LogicUpdate();
     }
 
+    public void AnimationFinishTrigger() => FSM.CurrentState.AnimationFinishTrigger();
+
     public virtual void HitEffect()
     {
         var sprites = this.GetComponentsInChildren<SpriteRenderer>();
