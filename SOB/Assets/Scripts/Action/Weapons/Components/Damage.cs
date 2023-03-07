@@ -38,7 +38,7 @@ namespace SOB.Weapons.Components
                         continue;
                     }
 
-                    switch (item.GetComponent<Enemy>().enemyData.enemy_size)
+                    switch (item.GetComponentInParent<Enemy>().enemyData.enemy_size)
                     {
                         case ENEMY_Size.Small:
                             damageable.Damage
@@ -52,7 +52,6 @@ namespace SOB.Weapons.Components
                                 this.GetComponentInParent<Unit>().Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + this.currentActionData.Amount
                                 + " Enemy_Size_WeakPer Additional Dam = " +
                                 (this.GetComponentInParent<Unit>().Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + this.currentActionData.Amount) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
-                            break;
                             break;
                         case ENEMY_Size.Medium:
                             damageable.Damage
