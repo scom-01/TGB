@@ -101,8 +101,8 @@ public class GameManager : MonoBehaviour
             {
                 player.Core.GetCoreComponent<Movement>().SetVelocityZero();
                 player.gameObject.transform.position = respawnPoint.transform.position;
-                var amount = player.Core.GetCoreComponent<UnitStats>().DecreaseHealth(ElementalPower.Normal, DamageAttiribute.Fixed, 50);
-                player.Core.GetCoreComponent<DamageReceiver>().RandomParticleInstantiate(player.Core.GetCoreComponent<DamageReceiver>().DefaultEffectPrefab, 0.5f, amount, 50, DamageAttiribute.Fixed);
+                var amount = player.Core.GetCoreComponent<UnitStats>().DecreaseHealth(E_Power.Normal, DAMAGE_ATT.Fixed, 50);
+                player.Core.GetCoreComponent<DamageReceiver>().RandomParticleInstantiate(player.Core.GetCoreComponent<DamageReceiver>().DefaultEffectPrefab, 0.5f, amount, 50, DAMAGE_ATT.Fixed);
                 //player.GetComponent<Player>().Core.GetCoreComponent<Death>().Die();
                 //respawn = true;
             }

@@ -19,10 +19,9 @@ namespace SOB.CoreSystem
         {
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
             
-            //TODO: 계산한 데미지 수치 return 필요
-            //stats.Comp?.DecreaseHealth(AttackterCommonData, VictimCommonData, amount);
             var damage = stats.Comp.DecreaseHealth(AttackterCommonData, VictimCommonData, amount);
             isHit = true;
+
             if (EffectPrefab == null)
             {
                 Debug.Log("Combat DamageParticles is Null");
@@ -41,7 +40,7 @@ namespace SOB.CoreSystem
         /// <param name="fontSize">DamageText 폰트 사이즈</param>
         /// <param name="damageAttiribute">Damage속성</param>
         /// <returns></returns>
-        public GameObject RandomParticleInstantiate(GameObject effectPrefab, float range, float damage, float fontSize, DamageAttiribute damageAttiribute)
+        public GameObject RandomParticleInstantiate(GameObject effectPrefab, float range, float damage, float fontSize, DAMAGE_ATT damageAttiribute)
         {
             var particle = particleManager.Comp?.StartParticlesWithRandomPosition(effectPrefab, range);
 
@@ -54,13 +53,13 @@ namespace SOB.CoreSystem
             damageText.GetComponent<RectTransform>().anchoredPosition = pos;
             switch (damageAttiribute)
             {
-                case DamageAttiribute.Magic:
+                case DAMAGE_ATT.Magic:
                     damageText.GetComponentInChildren<DamageText>().SetText(damage, fontSize, Color.magenta);
                     break;
-                case DamageAttiribute.Physics:
+                case DAMAGE_ATT.Physics:
                     damageText.GetComponentInChildren<DamageText>().SetText(damage, fontSize, Color.yellow);
                     break;
-                case DamageAttiribute.Fixed:
+                case DAMAGE_ATT.Fixed:
                     damageText.GetComponentInChildren<DamageText>().SetText(damage, fontSize, Color.black);
                     break;
             }

@@ -26,12 +26,12 @@ public struct StatsData
     [Tooltip("추가 마법공격력 %")]
     public float MagicAggressivePer;
     [Tooltip("공격 속성")]
-    public DamageAttiribute DamageAttiribute;
+    public DAMAGE_ATT DamageAttiribute;
 
     //-------------------------Elemental Options
     [Header("Elemental Options")]
     [Tooltip("원소 속성")]
-    public ElementalPower MyElemental;
+    public E_Power MyElemental;
     [Tooltip("원소 저항력 (max = 100)%")]
     public float ElementalDefensivePer;
     [Tooltip("원소 공격력 %")]
