@@ -6310,9 +6310,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UnitData: {fileID: 11400000, guid: ae3d62f76bc500849819fd1f7f2f1900, type: 2}
+  IsAlive: 1
   playerData: {fileID: 11400000, guid: ae3d62f76bc500849819fd1f7f2f1900, type: 2}
   DamageTextPrefab: {fileID: 1081114584503966581, guid: ac79a3234d3f9384daeb57ffc2760fa4, type: 3}
-  IsAlive: 1
 --- !u!95 &748526046
 Animator:
   serializedVersion: 4
@@ -6527,7 +6527,7 @@ MonoBehaviour:
   respawnPoint: {fileID: 411396809}
   player: {fileID: 748526045}
   respawnTime: 2
-  deadLine: -50
+  DeadLine: -50
   MainUI: {fileID: 1727414119}
   SubUI: {fileID: 874409323}
   DamageUI: {fileID: 1788033390}
