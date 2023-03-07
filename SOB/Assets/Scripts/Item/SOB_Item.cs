@@ -123,7 +123,7 @@ namespace SOB.Item
                 Debug.LogWarning($"Get {this.name}");
                 //this.gameObject.SetActive(false);
                 GetComponent<SpriteRenderer>().enabled = false;
-                Destroy(CC2D.gameObject);
+                Destroy(this.gameObject);
                 yield return 0;
             }
             else
