@@ -24,6 +24,8 @@ public class Unit : MonoBehaviour
     public Inventory Inventory { get; private set; }
 
     public UnitData UnitData;
+
+    public bool IsAlive = true;
     #endregion
 
     #region Unity Callback Func
@@ -59,6 +61,9 @@ public class Unit : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
+        CheckLife(this);
+        CheckDeadLine();
+
         if (Core != null)
             Core.LogicUpdate();
         else
@@ -78,19 +83,47 @@ public class Unit : MonoBehaviour
         FSM.CurrentState.LogicUpdate();
     }
 
+    private void CheckDeadLine()
+    {
+        if (this.transform.position.y < GameManager.Inst.DeadLine)
+        {
+            Core?.GetCoreComponent<Movement>().SetVelocityZero();
+            this.gameObject.transform.position = GameManager.Inst.respawnPoint.transform.position;
+            var amount = Core.GetCoreComponent<UnitStats>().DecreaseHealth(E_Power.Normal, DAMAGE_ATT.Fixed, 50);
+            if (Core.GetCoreComponent<DamageReceiver>().DefaultEffectPrefab == null)
+            {
+                Core.GetCoreComponent<DamageReceiver>().RandomParticleInstantiate(0.5f, amount, 50, DAMAGE_ATT.Fixed);
+            }
+            else
+            {
+                Core.GetCoreComponent<DamageReceiver>().RandomParticleInstantiate(Core.GetCoreComponent<DamageReceiver>().DefaultEffectPrefab, 0.5f, amount, 50, DAMAGE_ATT.Fixed);
+            }
+
+
+            //player.GetComponent<Player>().Core.GetCoreComponent<Death>().Die();
+            //respawn = true;
+        }
+    }
+
+    private void CheckLife(Unit unit)
+    {
+        unit.IsAlive = unit.gameObject.activeSelf;
+    }
+
+
     public void AnimationFinishTrigger() => FSM.CurrentState.AnimationFinishTrigger();
 
     public virtual void HitEffect()
     {
         var sprites = this.GetComponentsInChildren<SpriteRenderer>();
-        for (int i =0; i < sprites.Length;i++)
+        for (int i = 0; i < sprites.Length; i++)
         {
             var oldcolor = sprites[i].color;
             StartCoroutine(HitEffect(sprites[i], oldcolor, 0.5f));
         }
     }
 
-    IEnumerator HitEffect(SpriteRenderer sr, Color oldcolor , float duration)
+    IEnumerator HitEffect(SpriteRenderer sr, Color oldcolor, float duration)
     {
         sr.color = Color.red;
         yield return new WaitForSeconds(duration);

@@ -17,13 +17,13 @@ public class GameManager : MonoBehaviour
 
     [Header("----Player----")]
     [SerializeField]
-    private Transform respawnPoint;
+    public Transform respawnPoint;
     [SerializeField]
     public Player player;
     [SerializeField]
-    private float respawnTime;
+    public float respawnTime;
     [SerializeField]
-    private float deadLine;
+    public float DeadLine;
 
     public PlayerInputHandler inputHandler { get; private set; }
     private float respawnTimeStart;
@@ -80,38 +80,10 @@ public class GameManager : MonoBehaviour
 
     private void CheckRespawn()
     {
-        CheckDeadLine();
-
-        CheckLife(player);
-
-        if (Time.time >= respawnTimeStart + respawnTime && respawn)
-        {
-            var playerTemp = Instantiate(player, respawnPoint);
-            CVC.m_Follow = playerTemp.transform;
-            respawn = false;
-        }
-
+        
     }
 
-    private void CheckDeadLine()
-    {
-        if (player != null)
-        {
-            if (player.transform.position.y < deadLine)
-            {
-                player.Core.GetCoreComponent<Movement>().SetVelocityZero();
-                player.gameObject.transform.position = respawnPoint.transform.position;
-                var amount = player.Core.GetCoreComponent<UnitStats>().DecreaseHealth(E_Power.Normal, DAMAGE_ATT.Fixed, 50);
-                player.Core.GetCoreComponent<DamageReceiver>().RandomParticleInstantiate(player.Core.GetCoreComponent<DamageReceiver>().DefaultEffectPrefab, 0.5f, amount, 50, DAMAGE_ATT.Fixed);
-                //player.GetComponent<Player>().Core.GetCoreComponent<Death>().Die();
-                //respawn = true;
-            }
-        }
-    }
-    private void CheckLife(Player player)
-    {
-        player.IsAlive = player.gameObject.activeSelf;
-    }
+    
 
     public void CheckPause(bool pause)
     {

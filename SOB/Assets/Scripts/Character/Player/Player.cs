@@ -43,7 +43,6 @@ public class Player : Unit
 
     #region Other Variables            
     private Vector2 workspace;
-    public bool IsAlive = true;
     //public float invincibleTime;
     #endregion
 
