@@ -18,13 +18,14 @@ namespace SOB.CoreSystem
         public void Damage(StatsData AttackterCommonData, StatsData VictimCommonData, GameObject EffectPrefab, float amount)
         {
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
-            
+
             var damage = stats.Comp.DecreaseHealth(AttackterCommonData, VictimCommonData, amount);
             isHit = true;
 
             if (EffectPrefab == null)
             {
                 Debug.Log("Combat DamageParticles is Null");
+                RandomParticleInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
                 return;
             }
 
@@ -46,6 +47,33 @@ namespace SOB.CoreSystem
 
             var pos = new Vector2((Camera.main.WorldToViewportPoint(particle.transform.position).x * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x * 0.5f),
                                     (Camera.main.WorldToViewportPoint(particle.transform.position).y * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y * 0.5f) + 50);   //50 = DamageText의 높이
+            var damageText = Instantiate(GameManager.Inst.player.GetComponent<Player>().DamageTextPrefab,
+                            new Vector3(pos.x, pos.y),
+                            Quaternion.identity, GameManager.Inst.DamageUI.transform);
+
+            damageText.GetComponent<RectTransform>().anchoredPosition = pos;
+            switch (damageAttiribute)
+            {
+                case DAMAGE_ATT.Magic:
+                    damageText.GetComponentInChildren<DamageText>().SetText(damage, fontSize, Color.magenta);
+                    break;
+                case DAMAGE_ATT.Physics:
+                    damageText.GetComponentInChildren<DamageText>().SetText(damage, fontSize, Color.yellow);
+                    break;
+                case DAMAGE_ATT.Fixed:
+                    damageText.GetComponentInChildren<DamageText>().SetText(damage, fontSize, Color.black);
+                    break;
+            }
+
+            return damageText;
+        }
+
+        public GameObject RandomParticleInstantiate(float range, float damage, float fontSize, DAMAGE_ATT damageAttiribute)
+        {
+            var randomPos = new Vector2(transform.position.x + Random.Range(-range, range), transform.position.y + Random.Range(-range, range));
+
+            var pos = new Vector2((Camera.main.WorldToViewportPoint(randomPos).x * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x * 0.5f),
+                                    (Camera.main.WorldToViewportPoint(randomPos).y * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y * 0.5f) + 50);   //50 = DamageText의 높이
             var damageText = Instantiate(GameManager.Inst.player.GetComponent<Player>().DamageTextPrefab,
                             new Vector3(pos.x, pos.y),
                             Quaternion.identity, GameManager.Inst.DamageUI.transform);
