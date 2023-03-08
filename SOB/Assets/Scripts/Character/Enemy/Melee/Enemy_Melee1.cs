@@ -3,23 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_Archer1 : Unit
+public class Enemy_Melee1 : Enemy
 {
     #region State Variables
-
-    [HideInInspector]
-    public EnemyCore core;
-    [HideInInspector]
-    public EnemyData enemyData;
-
+    public Enemy_Melee1_AttackState AttackState { get; private set; }
+    public Enemy_Melee1_IdleState IdleState { get; private set; }
+    public Enemy_Melee1_MoveState RunState { get; private set; }
+    public Enemy_Melee1_HitState HitState { get; private set; }
+    public Enemy_Melee1_DeadState DeadState { get; private set; }
     #endregion
 
     #region Unity Callback Func
     protected override void Awake()
     {
         base.Awake();
-        core = Core as EnemyCore;
-        enemyData = UnitData as EnemyData;
+
+        AttackState = new Enemy_Melee1_AttackState(this, "action");
+        IdleState = new Enemy_Melee1_IdleState(this, "idle");
+        RunState = new Enemy_Melee1_MoveState(this, "run");
+        HitState = new Enemy_Melee1_HitState(this, "hit");
+        DeadState = new Enemy_Melee1_DeadState(this, "dead");
     }
 
     // Start is called before the first frame update
@@ -32,16 +35,6 @@ public class Enemy_Archer1 : Unit
     protected override void Update()
     {
         base.Update();
-        //Anim.SetFloat("yVelocity", enemyCore.Movement.RB.velocity.y);
-        if (core.GetCoreComponent<UnitStats>().invincibleTime > 0.0f)
-        {
-            core.GetCoreComponent<UnitStats>().invincibleTime -= Time.deltaTime;
-
-            if (core.GetCoreComponent<UnitStats>().invincibleTime <= 0.0f)
-            {
-                core.GetCoreComponent<UnitStats>().invincibleTime = 0f;
-            }
-        }
     }
     protected override void FixedUpdate()
     {
@@ -57,6 +50,12 @@ public class Enemy_Archer1 : Unit
         //Gizmos.DrawLine(Core.CollisionSenses.transform.position, Core.CollisionSenses.transform.position + Vector3.right * 1.1f * Core.Movement.FancingDirection);
         //Gizmos.DrawCube(transform.position + new Vector3((BC2D.offset.x + 0.1f) * Core.Movement.FancingDirection, BC2D.offset.y), new Vector2(BC2D.bounds.size.x, BC2D.bounds.size.y * 0.95f)); // enemyCore.CollisionSenses.GroundCheck.position + new Vector3(BC2D.offset.x + BC2D.size.x / 2, 0, 0) * enemyCore.Movement.FancingDirection + Vector3.down);
         //Gizmos.DrawLine(Core.CollisionSenses.transform.position, Core.CollisionSenses.transform.position + Vector3.right * Core.Movement.FancingDirection * enemyData.playerDetectedDistance);
+    }
+
+    protected override void Init()
+    {
+        base.Init();
+        FSM.Initialize(IdleState);
     }
 }
 
