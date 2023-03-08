@@ -35,21 +35,20 @@ public class EnemyIdleState : EnemyState
     {
         base.LogicUpdate();
 
-        if(unit.Core.GetCoreComponent<DamageReceiver>().isHit)
-        {
-            unit.FSM.ChangeState(enemy.HitState);
-            return;
-        }
-
         if(CollisionSenses.UnitDectected)
         {
-            unit.FSM.ChangeState(enemy.RunState);
+            RunState();            
         }
 
         if(Time.time >= startTime + idleTime)
         {
             isIdleTimeOver = true;
         }
+    }
+
+    public virtual void RunState()
+    {
+
     }
 
     public override void PhysicsUpdate()

@@ -2,13 +2,13 @@ using SOB.Weapons;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 [Serializable]
 public class EnemyAttackState : EnemyState
 {
     private Weapon weapon;
-
     public EnemyAttackState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
     }
@@ -42,6 +42,14 @@ public class EnemyAttackState : EnemyState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        if (isAnimationFinished)
+        {
+            IdleState();            
+        }
+    }
+    public virtual void IdleState()
+    {
+
     }
 
     public override void PhysicsUpdate()

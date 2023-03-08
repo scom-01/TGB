@@ -35,16 +35,10 @@ public class EnemyRunState : EnemyState
     {
         base.LogicUpdate();
 
-        if (enemy.Core.GetCoreComponent<DamageReceiver>().isHit)
-        {
-            enemy.FSM.ChangeState(enemy.HitState);
-            return;
-        }
 
-        if (CollisionSenses.UnitDectected && unit.Inventory.weapons.Count>0)
+        if (CollisionSenses.UnitDectected && unit.Inventory.weapons.Count > 0)
         {
-            enemy.AttackState.SetWeapon(unit.Inventory.weapons[0]);
-            unit.FSM.ChangeState(enemy.AttackState);
+            Enemy_Attack();
         }
 
         //if(Movement.knockback)
@@ -53,7 +47,7 @@ public class EnemyRunState : EnemyState
         //    return;
         //}
 
-        if (!checkifCliff || checkifTouchingGrounded || checkifTouchingWall )
+        if (!checkifCliff || checkifTouchingGrounded || checkifTouchingWall)
         {
             Movement.Flip();
         }
@@ -61,7 +55,11 @@ public class EnemyRunState : EnemyState
         {
             Movement.SetVelocityX(enemy.enemyData.statsStats.MovementVelocity * Movement.FancingDirection);
         }
-        //CheckIfCliff();
+    }
+
+    public virtual void Enemy_Attack()
+    {
+        Debug.Log("Enemy_Attack");
     }
 
     public override void PhysicsUpdate()

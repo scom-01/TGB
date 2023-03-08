@@ -51,13 +51,15 @@ public class EnemyState : UnitState
     {
         base.LogicUpdate();
 
-        if (isAnimationFinished)
-        {
-            //if (isGrounded && Movement.CurrentVelocity.y < 0.01f)
-            //{
-            //    enemy.FSM.ChangeState(enemy.IdleState);
-            //}
-            enemy.FSM.ChangeState(enemy.IdleState);
-        }
+        //if (isAnimationFinished)
+        //{
+        //    enemy.FSM.ChangeState(enemy.IdleState);
+        //}
+
+        //if (enemy.Core.GetCoreComponent<DamageReceiver>().isHit && enemy.FSM.CurrentState != enemy.HitState)
+        //{
+        //    enemy.FSM.ChangeState(enemy.HitState);
+        //    return;
+        //}
     }
 }

@@ -4,16 +4,17 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using static UnityEngine.UI.CanvasScaler;
 
 public class Enemy : Unit
 {
     #region State Variables
 
-    public EnemyIdleState IdleState { get; private set; }
-    public EnemyRunState RunState { get; private set; }
-    public EnemyAttackState AttackState { get; private set; }
-    public EnemyHitState HitState { get; private set; }
-    public EnemyDeadState DeadState { get; private set; }
+    //public EnemyIdleState IdleState { get; private set; }
+    //public EnemyRunState RunState { get; private set; }
+    //public EnemyAttackState AttackState { get; private set; }
+    //public EnemyHitState HitState { get; private set; }
+    //public EnemyDeadState DeadState { get; private set; }
 
     [HideInInspector]
     public EnemyData enemyData;
@@ -25,11 +26,11 @@ public class Enemy : Unit
         base.Awake();
         enemyData = UnitData as EnemyData;
 
-        IdleState = new EnemyIdleState(this, "idle");
-        RunState = new EnemyRunState(this, "run");
-        AttackState = new EnemyAttackState(this, "action");
-        HitState = new EnemyHitState(this, "hit");
-        DeadState = new EnemyDeadState(this, "dead");
+        //IdleState = new EnemyIdleState(this, "idle");
+        //RunState = new EnemyRunState(this, "run");
+        ////AttackState = new EnemyAttackState(this, "action");
+        //HitState = new EnemyHitState(this, "hit");
+        //DeadState = new EnemyDeadState(this, "dead");
     }
 
     // Start is called before the first frame update
@@ -40,7 +41,12 @@ public class Enemy : Unit
         {
             weapon.SetCore(Core);
         }
-        FSM.Initialize(IdleState);
+        Init();        
+    }
+
+    protected virtual void Init()
+    {
+
     }
 
     // Update is called once per frame
