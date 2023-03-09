@@ -20,6 +20,11 @@ public class PlayerState : UnitState
     {
         get => unitStats ?? player.Core.GetCoreComponent(ref unitStats);
     }
+    
+    protected ParticleManager ParticleManager
+    {
+        get => particleManager ?? player.Core.GetCoreComponent(ref particleManager);
+    }
 
     public void SetInput(ref bool input) => this.input = input;
 
@@ -27,6 +32,7 @@ public class PlayerState : UnitState
     private SOB.CoreSystem.Movement movement;
     private CollisionSenses collisionSenses;
     private UnitStats unitStats;
+    private ParticleManager particleManager;
 
     public PlayerState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {

@@ -22,9 +22,21 @@ MonoBehaviour:
   - rid: 3615621236231503872
   - rid: 3615621433789513728
   - rid: 8358215245741948929
+  - rid: 1770984693643870208
   references:
     version: 2
     RefIds:
+    - rid: 1770984693643870208
+      type: {class: ParticleSpawnData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ParticleSpawnData
+        actionData:
+        - name: Action 1
+          <ParticlePrefabs>k__BackingField: []
+        - name: Action 2
+          <ParticlePrefabs>k__BackingField: []
+        - name: Action 3
+          <ParticlePrefabs>k__BackingField: []
     - rid: 3615621173780152320
       type: {class: ActionHitBoxData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
