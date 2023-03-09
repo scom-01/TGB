@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    public void Damage(StatsData AttackterCommonData, StatsData VictimCommonData, GameObject EffectPrefab, float amount);
+    public void Damage(StatsData AttackterCommonData, StatsData VictimCommonData, float amount);
+    public void HitAction(GameObject EffectPrefab, float Range);
 }

@@ -14,14 +14,31 @@ namespace SOB.Weapons.Components
         private Vector2 offset;
         private Collider2D[] detected;
 
+
+        private int currentHitBoxIndex;
+        private int currentHitEffectIndex;
+        protected override void HandleEnter()
+        {
+            base.HandleEnter();
+            currentHitBoxIndex = 0;
+            currentHitEffectIndex = 0;
+        }
+
         private void HandleAttackAction()
         {
+            var currHitBox = currentActionData.HitBox;
+            if(currentHitBoxIndex >= currHitBox.Length)
+            {
+                Debug.Log($"{weapon.name} HitBox length mismatch");
+                return;
+            }
+
             offset.Set(
-                transform.position.x + (currentActionData.HitBox.center.x * CoreMovement.FancingDirection),
-                transform.position.y + (currentActionData.HitBox.center.y)
+                transform.position.x + (currentActionData.HitBox[currentHitBoxIndex].center.x * CoreMovement.FancingDirection),
+                transform.position.y + (currentActionData.HitBox[currentHitBoxIndex].center.y)
                 );
 
-            detected = Physics2D.OverlapBoxAll(offset, currentActionData.HitBox.size, 0f, data.DetectableLayers);
+            detected = Physics2D.OverlapBoxAll(offset, currentActionData.HitBox[currentHitBoxIndex].size, 0f, data.DetectableLayers);
 
             if (detected.Length == 0)
             {
@@ -29,7 +46,27 @@ namespace SOB.Weapons.Components
                 return;
             }
 
+            var currentHit = currentActionData.HitEffect;
+            if (currentHitEffectIndex >= currentHit.Length)
+            {
+                Debug.Log($"{weapon.name} HitEffect length mismatch");
+                return;
+            }
+
+            foreach (Collider2D c in detected)
+            {
+                if (c.gameObject.tag == this.gameObject.tag)
+                    continue;
+
+                if (c.TryGetComponent(out IDamageable damageable))
+                {
+                    damageable.HitAction(currentActionData.HitEffect[currentHitEffectIndex], 0.5f);
+                }
+            }
+
             OnDetectedCollider2D?.Invoke(detected);
+            currentHitBoxIndex++;
+            currentHitEffectIndex++;
         }
 
         protected override void Start()
@@ -55,7 +92,7 @@ namespace SOB.Weapons.Components
                 if (!item.Debug)
                     continue;                
                 Gizmos.color = Color.white;
-                Gizmos.DrawWireCube(transform.position + new Vector3(item.HitBox.center.x * CoreMovement.FancingDirection, item.HitBox.center.y, 0), item.HitBox.size);
+                Gizmos.DrawWireCube(transform.position + new Vector3(item.HitBox[currentHitBoxIndex].center.x * CoreMovement.FancingDirection, item.HitBox[currentHitBoxIndex].center.y, 0), item.HitBox[currentHitBoxIndex].size);
             }
         }
     }

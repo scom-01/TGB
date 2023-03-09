@@ -21,7 +21,6 @@ namespace SOB.Weapons.Components
                 if (item.gameObject.tag == this.gameObject.tag)
                     continue;
 
-                print($"Detected {item.name}");
                 if (item.TryGetComponent(out IDamageable damageable))
                 {
                     #region 타입계산
@@ -32,7 +31,6 @@ namespace SOB.Weapons.Components
                         (
                             CoreUnitStats.StatsData,
                             item.GetComponentInParent<Unit>().UnitData.statsStats,
-                            GetComponent<Weapon>().weaponData.EffectPrefab,
                             CoreUnitStats.StatsData.DefaultPower + this.currentActionData.Amount
                         );
                         continue;
@@ -45,7 +43,6 @@ namespace SOB.Weapons.Components
                         (
                             CoreUnitStats.StatsData,
                             item.GetComponentInParent<Unit>().UnitData.statsStats,
-                            GetComponent<Weapon>().weaponData.EffectPrefab,
                             (CoreUnitStats.StatsData.DefaultPower + this.currentActionData.Amount) * (1.0f + GlobalValue.Enemy_Size_WeakPer)
                         );
                             Debug.Log("Enemy Type Small, Normal Dam = " +
@@ -58,7 +55,6 @@ namespace SOB.Weapons.Components
                         (
                             CoreUnitStats.StatsData,
                             item.GetComponentInParent<Unit>().UnitData.statsStats,
-                            GetComponent<Weapon>().weaponData.EffectPrefab,
                             (CoreUnitStats.StatsData.DefaultPower + this.currentActionData.Amount)
                         );
                             break;
@@ -67,7 +63,6 @@ namespace SOB.Weapons.Components
                         (
                             CoreUnitStats.StatsData,
                             item.GetComponentInParent<Unit>().UnitData.statsStats,
-                            GetComponent<Weapon>().weaponData.EffectPrefab,
                             (CoreUnitStats.StatsData.DefaultPower + this.currentActionData.Amount) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
                         );
 

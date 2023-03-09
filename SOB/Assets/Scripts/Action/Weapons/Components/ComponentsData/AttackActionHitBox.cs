@@ -9,6 +9,7 @@ namespace SOB.Weapons.Components
     public class AttackActionHitBox : ActionData
     {
         public bool Debug;
-        [field: SerializeField] public Rect HitBox { get; private set; }
+        [field: SerializeField] public Rect[] HitBox { get; private set; }
+        [field: SerializeField] public GameObject[] HitEffect { get; private set; }
     }
 }

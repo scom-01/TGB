@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Xml;
-using TMPro;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 namespace SOB.CoreSystem
@@ -15,23 +10,19 @@ namespace SOB.CoreSystem
         private CoreComp<ParticleManager> particleManager;
 
         public bool isHit = false;
-        public void Damage(StatsData AttackterCommonData, StatsData VictimCommonData, GameObject EffectPrefab, float amount)
+        public void Damage(StatsData AttackterCommonData, StatsData VictimCommonData, float amount)
         {
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
 
             var damage = stats.Comp.DecreaseHealth(AttackterCommonData, VictimCommonData, amount);
             isHit = true;
 
-            if (EffectPrefab == null)
-            {
-                Debug.Log("Combat DamageParticles is Null");
-                RandomParticleInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
-                return;
-            }
-
-            RandomParticleInstantiate(EffectPrefab, 1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
+            RandomParticleInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
         }
-
+        public void HitAction(GameObject EffectPrefab, float Range)
+        {
+            particleManager.Comp.StartParticlesWithRandomPosition(EffectPrefab, Range);
+        }
         /// <summary>
         /// Random위치에 파티클을 생성하고 UI상으로 같은 위치에 DamageText를 생성하는 로직
         /// </summary>
