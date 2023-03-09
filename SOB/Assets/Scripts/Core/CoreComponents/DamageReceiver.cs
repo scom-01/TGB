@@ -21,7 +21,7 @@ namespace SOB.CoreSystem
         }
         public void HitAction(GameObject EffectPrefab, float Range)
         {
-            particleManager.Comp.StartParticlesWithRandomPosition(EffectPrefab, Range);
+            particleManager.Comp.StartParticlesWithRandomPos(EffectPrefab, Range);
         }
         /// <summary>
         /// Random위치에 파티클을 생성하고 UI상으로 같은 위치에 DamageText를 생성하는 로직
@@ -34,7 +34,7 @@ namespace SOB.CoreSystem
         /// <returns></returns>
         public GameObject RandomParticleInstantiate(GameObject effectPrefab, float range, float damage, float fontSize, DAMAGE_ATT damageAttiribute)
         {
-            var particle = particleManager.Comp?.StartParticlesWithRandomPosition(effectPrefab, range);
+            var particle = particleManager.Comp?.StartParticlesWithRandomPos(effectPrefab, range);
 
             var pos = new Vector2((Camera.main.WorldToViewportPoint(particle.transform.position).x * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x * 0.5f),
                                     (Camera.main.WorldToViewportPoint(particle.transform.position).y * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y * 0.5f) + 50);   //50 = DamageText의 높이

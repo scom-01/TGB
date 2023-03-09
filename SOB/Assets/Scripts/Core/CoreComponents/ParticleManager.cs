@@ -26,13 +26,20 @@ namespace SOB.CoreSystem
             return Instantiate(particlePrefab, transform.position, Quaternion.identity);
         }
 
-        public GameObject StartParticlesWithRandomRotation(GameObject particlePrefab)
+        public GameObject StartParticlesWithRandomRot(GameObject particlePrefab)
         {
             var randomRotation = Quaternion.Euler(0f, 0f, Random.Range(0, 360f));
             return StartParticles(particlePrefab, transform.position, randomRotation);
         }
 
-        public GameObject StartParticlesWithRandomPosition(GameObject particlePrefab, float Range)
+        public GameObject StartParticlesWithRandomPos(GameObject particlePrefab, float Range)
+        {
+            var randomRotation = Quaternion.Euler(0f, 0f, Random.Range(0, 360f));
+            return StartParticles(particlePrefab, new Vector2(
+                                                    transform.position.x + Random.Range(-Range, Range),
+                                                    transform.position.y + Random.Range(-Range, Range)), Quaternion.identity);
+        }
+        public GameObject StartParticlesWithRandomPosRot(GameObject particlePrefab, float Range)
         {
             var randomRotation = Quaternion.Euler(0f, 0f, Random.Range(0, 360f));
             return StartParticles(particlePrefab, new Vector2(
