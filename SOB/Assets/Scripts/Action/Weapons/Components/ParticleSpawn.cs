@@ -1,3 +1,4 @@
+using SOB.CoreSystem;
 using SOB.Weapons.Components;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace SOB.Weapons.Components
 
         private void HandleParticleSpawn()
         {
-            GameObject[] currentParticle = new GameObject[0];
+            EffectPrefab[] currentParticle = new EffectPrefab[0];
             currentParticle = currentActionData.ParticlePrefabs;
             if (currentParticle.Length < 0)
                 return;
@@ -26,8 +27,23 @@ namespace SOB.Weapons.Components
             {
                 Debug.Log($"{weapon.name} Particle Prefabs length mismatch");
                 return;
-            }            
-            Instantiate(currentActionData.ParticlePrefabs[currentParticleSpawnIndex], CoreCollisionSenses.GroundCheck.position, Quaternion.identity);
+            }
+
+            if (currentActionData.ParticlePrefabs[currentParticleSpawnIndex].isGround)
+            {   
+                CoreParticleManager.StartParticles(currentActionData.ParticlePrefabs[currentParticleSpawnIndex].Object, CoreCollisionSenses.GroundCheck.position, Quaternion.identity);
+            }
+            else
+            {
+                if(currentActionData.ParticlePrefabs[currentParticleSpawnIndex].isRandomPosRot)
+                {
+                    CoreParticleManager.StartParticlesWithRandomPosRot(currentActionData.ParticlePrefabs[currentParticleSpawnIndex].Object, currentActionData.ParticlePrefabs[currentParticleSpawnIndex].isRandomRange);
+                }
+                else
+                {
+                    CoreParticleManager.StartParticles(currentActionData.ParticlePrefabs[currentParticleSpawnIndex].Object);
+                }
+            }
             currentParticleSpawnIndex++;
         }
 
