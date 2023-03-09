@@ -11,9 +11,15 @@ public class PlayerDashState : PlayerAbilityState
     private bool IsGrounded = true;
 
     private Vector2 lastAIPos;
+
+    private GameObject Dash_Effect;
     
     public PlayerDashState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
+        if(Dash_Effect == null)
+        {
+            Dash_Effect = Resources.Load<GameObject>("Prefabs/Particle/Dash_Smoke");
+        }
     }
 
     public override void Enter()
@@ -35,6 +41,11 @@ public class PlayerDashState : PlayerAbilityState
 
         CanDash = false;
         player.InputHandler.UseInput(ref player.InputHandler.DashInput);
+        if(Dash_Effect!=null)
+        {
+            Dash_Effect.GetComponent<SpriteRenderer>().flipX = (Movement.FancingDirection > 0);
+            player.Core.GetCoreComponent<ParticleManager>().StartParticles(Dash_Effect, CollisionSenses.GroundCheck.position, Quaternion.identity);
+        }
         Movement.SetVelocityY(0f);
         player.RB.gravityScale = 0f;
         DecreaseDashCount();
