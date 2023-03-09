@@ -9,16 +9,8 @@ namespace SOB.Weapons.Components
 {
     public class WeaponMovement : WeaponComponent<MovementData, ActionMovement>
     {
-        private CoreSystem.Movement coreMovement;
-        private CoreSystem.Movement CoreMovement
-        {
-            get => coreMovement ? coreMovement : core.GetCoreComponent(ref coreMovement);
-        }
-
-
         private void HandleStartMovement()
         {
-            //CoreMovement.SetVelocity(currentActionData.Velocity, currentActionData.Direction, CoreMovement.FancingDirection);            
             CoreMovement.CanMovement = true;
         }
 

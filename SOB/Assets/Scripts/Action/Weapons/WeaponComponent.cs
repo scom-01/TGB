@@ -13,6 +13,28 @@ namespace SOB.Weapons.Components
         protected Core core => weapon.WeaponCore;
         protected bool isAttackActive;
 
+        private CoreSystem.Movement coreMovement;
+        protected CoreSystem.Movement CoreMovement
+        {
+            get => coreMovement ? coreMovement : core.GetCoreComponent(ref coreMovement);
+        }
+        private CoreSystem.CollisionSenses coreCollisionSenses;
+        protected CoreSystem.CollisionSenses CoreCollisionSenses
+        {
+            get => coreCollisionSenses ? coreCollisionSenses : core.GetCoreComponent(ref coreCollisionSenses);
+        }
+        private CoreSystem.ParticleManager coreParticleManager;
+        protected CoreSystem.ParticleManager CoreParticleManager
+        {
+            get => coreParticleManager ? coreParticleManager : core.GetCoreComponent(ref coreParticleManager);
+        }
+
+        private CoreSystem.UnitStats coreUnitStats;
+        protected CoreSystem.UnitStats CoreUnitStats
+        {
+            get => coreUnitStats ? coreUnitStats : core.GetCoreComponent(ref coreUnitStats);
+        }
+
         public virtual void Init()
         {
 

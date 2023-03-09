@@ -10,12 +10,6 @@ namespace SOB.Weapons.Components
     public class ActionHitBox : WeaponComponent<ActionHitBoxData, AttackActionHitBox>
     {
         public event Action<Collider2D[]> OnDetectedCollider2D;
-        private CoreComp<CoreSystem.Movement> movement;
-        public CoreSystem.UnitStats CoreStats
-        {
-            get => coreStats ? coreStats : core.GetCoreComponent(ref coreStats);
-        }
-        private CoreSystem.UnitStats coreStats;
 
         private Vector2 offset;
         private Collider2D[] detected;
@@ -23,7 +17,7 @@ namespace SOB.Weapons.Components
         private void HandleAttackAction()
         {
             offset.Set(
-                transform.position.x + (currentActionData.HitBox.center.x * movement.Comp.FancingDirection),
+                transform.position.x + (currentActionData.HitBox.center.x * CoreMovement.FancingDirection),
                 transform.position.y + (currentActionData.HitBox.center.y)
                 );
 
@@ -41,8 +35,6 @@ namespace SOB.Weapons.Components
         protected override void Start()
         {
             base.Start();
-
-            movement = new CoreComp<CoreSystem.Movement>(core);
             eventHandler.OnAttackAction += HandleAttackAction;
         }
 
@@ -63,7 +55,7 @@ namespace SOB.Weapons.Components
                 if (!item.Debug)
                     continue;                
                 Gizmos.color = Color.white;
-                Gizmos.DrawWireCube(transform.position + new Vector3(item.HitBox.center.x * movement.Comp.FancingDirection, item.HitBox.center.y, 0), item.HitBox.size);
+                Gizmos.DrawWireCube(transform.position + new Vector3(item.HitBox.center.x * CoreMovement.FancingDirection, item.HitBox.center.y, 0), item.HitBox.size);
             }
         }
     }

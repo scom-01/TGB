@@ -18,7 +18,7 @@ namespace SOB.Weapons.Components
 
                 if (detecte.TryGetComponent(out IKnockBackable knockbackables))
                 {
-                    knockbackables.KnockBack(currentActionData.KnockbackAngle, currentActionData.KnockbackAngle.magnitude, core.GetCoreComponent<Movement>().FancingDirection);
+                    knockbackables.KnockBack(currentActionData.KnockbackAngle, currentActionData.KnockbackAngle.magnitude, CoreMovement.FancingDirection);
                 }
             }
         }

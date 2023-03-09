@@ -30,10 +30,10 @@ namespace SOB.Weapons.Components
                     {
                         damageable.Damage
                         (
-                            this.GetComponentInParent<Unit>().UnitData.statsStats,
+                            CoreUnitStats.StatsData,
                             item.GetComponentInParent<Unit>().UnitData.statsStats,
                             GetComponent<Weapon>().weaponData.EffectPrefab,
-                            this.GetComponentInParent<Unit>().Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + this.currentActionData.Amount
+                            CoreUnitStats.StatsData.DefaultPower + this.currentActionData.Amount
                         );
                         continue;
                     }
@@ -43,38 +43,38 @@ namespace SOB.Weapons.Components
                         case ENEMY_Size.Small:
                             damageable.Damage
                         (
-                            this.GetComponentInParent<Unit>().UnitData.statsStats,
+                            CoreUnitStats.StatsData,
                             item.GetComponentInParent<Unit>().UnitData.statsStats,
                             GetComponent<Weapon>().weaponData.EffectPrefab,
-                            (this.GetComponentInParent<Unit>().Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + this.currentActionData.Amount) * (1.0f + GlobalValue.Enemy_Size_WeakPer)
+                            (CoreUnitStats.StatsData.DefaultPower + this.currentActionData.Amount) * (1.0f + GlobalValue.Enemy_Size_WeakPer)
                         );
                             Debug.Log("Enemy Type Small, Normal Dam = " +
-                                this.GetComponentInParent<Unit>().Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + this.currentActionData.Amount
+                                CoreUnitStats.StatsData.DefaultPower + this.currentActionData.Amount
                                 + " Enemy_Size_WeakPer Additional Dam = " +
-                                (this.GetComponentInParent<Unit>().Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + this.currentActionData.Amount) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
+                                (CoreUnitStats.StatsData.DefaultPower + this.currentActionData.Amount) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
                             break;
                         case ENEMY_Size.Medium:
                             damageable.Damage
                         (
-                            this.GetComponentInParent<Unit>().UnitData.statsStats,
+                            CoreUnitStats.StatsData,
                             item.GetComponentInParent<Unit>().UnitData.statsStats,
                             GetComponent<Weapon>().weaponData.EffectPrefab,
-                            (this.GetComponentInParent<Unit>().Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + this.currentActionData.Amount)
+                            (CoreUnitStats.StatsData.DefaultPower + this.currentActionData.Amount)
                         );
                             break;
                         case ENEMY_Size.Big:
                             damageable.Damage
                         (
-                            this.GetComponentInParent<Unit>().UnitData.statsStats,
+                            CoreUnitStats.StatsData,
                             item.GetComponentInParent<Unit>().UnitData.statsStats,
                             GetComponent<Weapon>().weaponData.EffectPrefab,
-                            (this.GetComponentInParent<Unit>().Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + this.currentActionData.Amount) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
+                            (CoreUnitStats.StatsData.DefaultPower + this.currentActionData.Amount) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
                         );
 
                             Debug.Log("Enemy Type Big, Normal Dam = "+ 
-                                this.GetComponentInParent<Unit>().Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + this.currentActionData.Amount 
+                                CoreUnitStats.StatsData.DefaultPower + this.currentActionData.Amount 
                                 + " Enemy_Size_WeakPer Additional Dam = " +
-                                (this.GetComponentInParent<Unit>().Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + this.currentActionData.Amount) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
+                                (CoreUnitStats.StatsData.DefaultPower + this.currentActionData.Amount) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
                             break;
                     }
                     #endregion

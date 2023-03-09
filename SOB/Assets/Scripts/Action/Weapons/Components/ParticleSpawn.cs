@@ -7,16 +7,6 @@ namespace SOB.Weapons.Components
 {
     public class ParticleSpawn : WeaponComponent<ParticleSpawnData, ActionParticle>
     {
-        private CoreSystem.Movement coreMovement;
-        private CoreSystem.Movement CoreMovement
-        {
-            get => coreMovement ? coreMovement : core.GetCoreComponent(ref coreMovement);
-        }
-        private CoreSystem.CollisionSenses coreCollisionSenses;
-        private CoreSystem.CollisionSenses CoreCollisionSenses
-        {
-            get => coreCollisionSenses ? coreCollisionSenses : core.GetCoreComponent(ref coreCollisionSenses);
-        }
 
         private int currentParticleSpawnIndex;
         protected override void HandleEnter()
@@ -36,8 +26,7 @@ namespace SOB.Weapons.Components
             {
                 Debug.Log($"{weapon.name} Particle Prefabs length mismatch");
                 return;
-            }
-
+            }            
             Instantiate(currentActionData.ParticlePrefabs[currentParticleSpawnIndex], CoreCollisionSenses.GroundCheck.position, Quaternion.identity);
             currentParticleSpawnIndex++;
         }
