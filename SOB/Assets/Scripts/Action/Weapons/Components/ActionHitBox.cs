@@ -26,7 +26,7 @@ namespace SOB.Weapons.Components
 
         private void HandleAttackAction()
         {
-            var currHitBox = currentActionData.HitBox;
+            var currHitBox = currentActionData.ActionHit;
             if(currentHitBoxIndex >= currHitBox.Length)
             {
                 Debug.Log($"{weapon.name} HitBox length mismatch");
@@ -34,11 +34,11 @@ namespace SOB.Weapons.Components
             }
 
             offset.Set(
-                transform.position.x + (currentActionData.HitBox[currentHitBoxIndex].center.x * CoreMovement.FancingDirection),
-                transform.position.y + (currentActionData.HitBox[currentHitBoxIndex].center.y)
+                transform.position.x + (currentActionData.ActionHit[currentHitBoxIndex].ActionRect.center.x * CoreMovement.FancingDirection),
+                transform.position.y + (currentActionData.ActionHit[currentHitBoxIndex].ActionRect.center.y)
                 );
 
-            detected = Physics2D.OverlapBoxAll(offset, currentActionData.HitBox[currentHitBoxIndex].size, 0f, data.DetectableLayers);
+            detected = Physics2D.OverlapBoxAll(offset, currentActionData.ActionHit[currentHitBoxIndex].ActionRect.size, 0f, data.DetectableLayers);
 
             if (detected.Length == 0)
             {
@@ -46,7 +46,7 @@ namespace SOB.Weapons.Components
                 return;
             }
 
-            var currentHit = currentActionData.HitEffect;
+            var currentHit = currentActionData.ActionHit;
             if (currentHitEffectIndex >= currentHit.Length)
             {
                 Debug.Log($"{weapon.name} HitEffect length mismatch");
@@ -60,7 +60,7 @@ namespace SOB.Weapons.Components
 
                 if (c.TryGetComponent(out IDamageable damageable))
                 {
-                    damageable.HitAction(currentActionData.HitEffect[currentHitEffectIndex], 0.5f);
+                    damageable.HitAction(currentActionData.ActionHit[currentHitEffectIndex].EffectPrefab, 0.5f);
                 }
             }
 
@@ -87,12 +87,14 @@ namespace SOB.Weapons.Components
             if (data == null)
                 return;
 
-            foreach(var item in data.ActionData)
+            var index = data.ActionData.Length;
+            foreach (var item in data.ActionData)
             {
-                if (!item.Debug)
+                
+                if (!item.ActionHit[index].Debug)
                     continue;                
                 Gizmos.color = Color.white;
-                Gizmos.DrawWireCube(transform.position + new Vector3(item.HitBox[currentHitBoxIndex].center.x * CoreMovement.FancingDirection, item.HitBox[currentHitBoxIndex].center.y, 0), item.HitBox[currentHitBoxIndex].size);
+                Gizmos.DrawWireCube(transform.position + new Vector3(item.ActionHit[currentHitBoxIndex].ActionRect.center.x * CoreMovement.FancingDirection, item.ActionHit[currentHitBoxIndex].ActionRect.center.y, 0), item.ActionHit[currentHitBoxIndex].ActionRect.size);
             }
         }
     }

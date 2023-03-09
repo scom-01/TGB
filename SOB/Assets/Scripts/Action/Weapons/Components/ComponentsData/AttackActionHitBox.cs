@@ -8,8 +8,14 @@ namespace SOB.Weapons.Components
     [Serializable]
     public class AttackActionHitBox : ActionData
     {
+        [field: SerializeField] public HitAction[] ActionHit;
+    }
+
+    [Serializable]
+    public struct HitAction
+    {
         public bool Debug;
-        [field: SerializeField] public Rect[] HitBox { get; private set; }
-        [field: SerializeField] public GameObject[] HitEffect { get; private set; }
+        public Rect ActionRect;
+        public GameObject EffectPrefab;
     }
 }
