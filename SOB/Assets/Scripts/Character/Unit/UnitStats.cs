@@ -46,7 +46,7 @@ namespace SOB.CoreSystem
         /// <summary>
         /// 원소 속성 (공격과 방어 모두에 적용)
         /// </summary>
-        public E_Power MyElemental { get => statsData.MyElemental; set => statsData.MyElemental = value; }        
+        public E_Power MyElemental { get => statsData.MyElemental; set => statsData.MyElemental = value; }
 
         /// <summary>
         /// 원소 저항력 (수치만큼 %로 감소)
@@ -76,12 +76,12 @@ namespace SOB.CoreSystem
 
         private void Start()
         {
-            if(core.Unit.UnitData != null)
+            if (core.Unit.UnitData != null)
             {
                 StatsData = core.Unit.UnitData.statsStats;
                 invincibleTime = core.Unit.UnitData.invincibleTime;
                 CurrentHealth = StatsData.MaxHealth;
-            }            
+            }
         }
 
         public void Increase(string statName, float amount)
@@ -130,7 +130,7 @@ namespace SOB.CoreSystem
                 case "ElementalAggressivePer":
                     statsData.ElementalAggressivePer += amount;
                     break;
-            }   
+            }
 
         }
         public void Decrease(string statName, float amount)
@@ -172,7 +172,7 @@ namespace SOB.CoreSystem
                 case "ElementalAggressivePer":
                     statsData.ElementalAggressivePer -= amount;
                     break;
-            }   
+            }
 
         }
 
@@ -227,22 +227,22 @@ namespace SOB.CoreSystem
                     //0.7f, 1.3f또한 변수화 예정
                     if ((int)elemental == 4 && (int)MyElemental == 1)
                     {
-                        amount *= (1.0f - GlobalValue.E_WeakPer * (1.0f - ElementalDefensivePer));
+                        amount *= (1.0f - GlobalValue.E_WeakPer * (1.0f - ElementalDefensivePer / 100));
                     }
                     else
                     {
-                        amount *= (1.0f + GlobalValue.E_WeakPer * (1.0f - ElementalDefensivePer));
+                        amount *= (1.0f + GlobalValue.E_WeakPer * (1.0f - ElementalDefensivePer / 100));
                     }
                 }
                 else if ((int)elemental < (int)MyElemental)
                 {
                     if ((int)elemental == 1 && (int)MyElemental == 4)
                     {
-                        amount *= (1.0f - GlobalValue.E_WeakPer * (1.0f - ElementalDefensivePer));
+                        amount *= (1.0f - GlobalValue.E_WeakPer * (1.0f - ElementalDefensivePer / 100));
                     }
                     else
                     {
-                        amount *= (1.0f + GlobalValue.E_WeakPer * (1.0f - ElementalDefensivePer));
+                        amount *= (1.0f + GlobalValue.E_WeakPer * (1.0f - ElementalDefensivePer / 100));
                     }
                 }
                 //elemental == MyElemental 같거나 Normal일때
@@ -293,22 +293,22 @@ namespace SOB.CoreSystem
                 {
                     if ((int)AttackerData.MyElemental == 4 && (int)VictimData.MyElemental == 1)
                     {
-                        amount *= (1.0f - GlobalValue.E_WeakPer * (1.0f - VictimData.ElementalDefensivePer));
+                        amount *= (1.0f - GlobalValue.E_WeakPer * (1.0f - VictimData.ElementalDefensivePer / 100));
                     }
                     else
                     {
-                        amount *= (1.0f + GlobalValue.E_WeakPer * (1.0f - VictimData.ElementalDefensivePer));
+                        amount *= (1.0f + GlobalValue.E_WeakPer * (1.0f - VictimData.ElementalDefensivePer / 100));
                     }
                 }
                 else if ((int)AttackerData.MyElemental < (int)VictimData.MyElemental)
                 {
                     if ((int)AttackerData.MyElemental == 1 && (int)VictimData.MyElemental == 4)
                     {
-                        amount *= (1.0f - GlobalValue.E_WeakPer * (1.0f - VictimData.ElementalDefensivePer));
+                        amount *= (1.0f - GlobalValue.E_WeakPer * (1.0f - VictimData.ElementalDefensivePer / 100));
                     }
                     else
                     {
-                        amount *= (1.0f + GlobalValue.E_WeakPer * (1.0f - VictimData.ElementalDefensivePer));
+                        amount *= (1.0f + GlobalValue.E_WeakPer * (1.0f - VictimData.ElementalDefensivePer / 100));
                     }
                 }
                 //elemental == MyElemental 같거나 Normal일때
@@ -321,24 +321,24 @@ namespace SOB.CoreSystem
             #endregion
 
             #region 속성 계산
-            Debug.Log($"Before Calculator DamageAttribute = {amount}");            
+            Debug.Log($"Before Calculator DamageAttribute = {amount}");
             switch (VictimData.DamageAttiribute)
             {
                 case DAMAGE_ATT.Physics:
-                    amount *= (1.0f + AttackerData.PhysicsAggressivePer);
+                    amount *= (1.0f + AttackerData.PhysicsAggressivePer / 100);
                     amount *= (1.0f - VictimData.PhysicsDefensivePer);
                     if (amount <= 0.0f)
                         return 0;
                     break;
                 case DAMAGE_ATT.Magic:
-                    amount *= (1.0f + AttackerData.MagicAggressivePer);
+                    amount *= (1.0f + AttackerData.MagicAggressivePer / 100);
                     amount *= (1.0f - VictimData.MagicDefensivePer);
                     if (amount <= 0.0f)
                         return 0;
                     break;
                 case DAMAGE_ATT.Fixed:
                     //고정 데미지는 Physics와 Magic AggressivePer 합의 곱
-                    amount *= (1.0f + AttackerData.PhysicsAggressivePer + AttackerData.MagicAggressivePer);
+                    amount *= (1.0f + AttackerData.PhysicsAggressivePer / 100 + AttackerData.MagicAggressivePer / 100);
                     //고정 데미지 일 시 감소 없음
                     break;
             }
