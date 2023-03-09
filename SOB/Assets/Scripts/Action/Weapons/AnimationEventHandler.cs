@@ -13,6 +13,7 @@ public class AnimationEventHandler : MonoBehaviour
     public event Action OnStartFlip;
     public event Action OnStopFlip;
     public event Action OnAttackAction;
+    public event Action OnParticleSpawn;
 
 
     public void AnimationFinishedTrigger() => OnFinish?.Invoke();
@@ -23,4 +24,5 @@ public class AnimationEventHandler : MonoBehaviour
     public void StartFlipTrigger() => OnStartFlip?.Invoke();
     public void StopFlipTrigger() => OnStopFlip?.Invoke();
     public void AttackActionTrigger() => OnAttackAction?.Invoke();
+    public void SpawnParticleTrigger() => OnParticleSpawn?.Invoke();
 }
