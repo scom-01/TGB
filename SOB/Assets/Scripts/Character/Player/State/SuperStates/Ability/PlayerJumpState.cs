@@ -32,7 +32,7 @@ public class PlayerJumpState : PlayerAbilityState
         Movement.SetVelocityY(UnitStats.StatsData.JumpVelocity);
         if(amountOfJumpLeft < player.playerData.amountOfJumps)
         {
-            player.Core.GetCoreComponent<ParticleManager>().StartParticles(Jump_Effect, CollisionSenses.GroundCheck.position, Quaternion.identity);
+            player.Core.GetCoreComponent<ParticleManager>().StartParticles(Jump_Effect, CollisionSenses.GroundCheck.position);
         }
         DecreaseAmountOfJumpsLeft();
         player.InAirState.SetIsJumping();

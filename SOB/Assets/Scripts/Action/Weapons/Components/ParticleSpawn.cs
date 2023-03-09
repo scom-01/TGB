@@ -31,7 +31,7 @@ namespace SOB.Weapons.Components
 
             if (currentActionData.ParticlePrefabs[currentParticleSpawnIndex].isGround)
             {   
-                CoreParticleManager.StartParticles(currentActionData.ParticlePrefabs[currentParticleSpawnIndex].Object, CoreCollisionSenses.GroundCheck.position, Quaternion.identity);
+                CoreParticleManager.StartParticles(currentActionData.ParticlePrefabs[currentParticleSpawnIndex].Object, CoreCollisionSenses.GroundCheck.position);
             }
             else
             {

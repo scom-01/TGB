@@ -43,8 +43,7 @@ public class PlayerDashState : PlayerAbilityState
         player.InputHandler.UseInput(ref player.InputHandler.DashInput);
         if(Dash_Effect!=null)
         {
-            Dash_Effect.GetComponent<SpriteRenderer>().flipX = (Movement.FancingDirection > 0);
-            ParticleManager.StartParticles(Dash_Effect, CollisionSenses.GroundCheck.position, Quaternion.identity);
+            ParticleManager.StartParticles(Dash_Effect, CollisionSenses.GroundCheck.position);
         }
         Movement.SetVelocityY(0f);
         player.RB.gravityScale = 0f;
