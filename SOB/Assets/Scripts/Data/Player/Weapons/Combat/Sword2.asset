@@ -15,6 +15,7 @@ MonoBehaviour:
   <NumberOfActions>k__BackingField: 3
   <CanJump>k__BackingField: 1
   <CanAirAttack>k__BackingField: 1
+  <EffectPrefab>k__BackingField: {fileID: 0}
   <ComponentData>k__BackingField:
   - rid: 3615621173780152320
   - rid: 3615621173780152321
@@ -25,46 +26,65 @@ MonoBehaviour:
     - rid: 3615621173780152320
       type: {class: ActionHitBoxData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
+        name: ActionHitBoxData
         actionData:
-        - Debug: 0
+        - name: 
+          Debug: 0
           <HitBox>k__BackingField:
-            serializedVersion: 2
+          - serializedVersion: 2
             x: -0.77
             y: -0.83
             width: 3.83
             height: 1.17
-        - Debug: 0
+          <HitEffect>k__BackingField: []
+        - name: 
+          Debug: 0
           <HitBox>k__BackingField:
-            serializedVersion: 2
+          - serializedVersion: 2
             x: -0.77
             y: -0.83
             width: 3.83
             height: 1.17
-        - Debug: 0
+          <HitEffect>k__BackingField: []
+        - name: 
+          Debug: 0
           <HitBox>k__BackingField:
-            serializedVersion: 2
+          - serializedVersion: 2
             x: -0.83
             y: -0.83
             width: 3.68
             height: 2.22
+          <HitEffect>k__BackingField: []
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
           m_Bits: 131072
     - rid: 3615621173780152321
       type: {class: MovementData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
+        name: MovementData
         actionData:
-        - <Direction>k__BackingField: {x: 0.1, y: 0}
+        - name: 
+          <CanFlip>k__BackingField: 0
+          <CanMoveCtrl>k__BackingField: 0
+          <Direction>k__BackingField: {x: 0.1, y: 0}
           <Velocity>k__BackingField: 1
-        - <Direction>k__BackingField: {x: 0.1, y: 0}
+        - name: 
+          <CanFlip>k__BackingField: 0
+          <CanMoveCtrl>k__BackingField: 0
+          <Direction>k__BackingField: {x: 0.1, y: 0}
           <Velocity>k__BackingField: 2
-        - <Direction>k__BackingField: {x: 0.1, y: 0}
+        - name: 
+          <CanFlip>k__BackingField: 0
+          <CanMoveCtrl>k__BackingField: 0
+          <Direction>k__BackingField: {x: 0.1, y: 0}
           <Velocity>k__BackingField: 3
     - rid: 3615621236231503872
       type: {class: WeaponSpriteData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
+        name: WeaponSpriteData
         actionData:
-        - <GroundedSprites>k__BackingField:
+        - name: 
+          <GroundedSprites>k__BackingField:
           - {fileID: 1433230625, guid: 72ef2132635b05b439be381d774127ee, type: 3}
           - {fileID: 1805210951, guid: 72ef2132635b05b439be381d774127ee, type: 3}
           - {fileID: 277646980, guid: 72ef2132635b05b439be381d774127ee, type: 3}
@@ -77,7 +97,8 @@ MonoBehaviour:
           - {fileID: 2018985082, guid: 3b121fde6adae8041a3dd5c09f676364, type: 3}
           - {fileID: 401504847, guid: 3b121fde6adae8041a3dd5c09f676364, type: 3}
           - {fileID: -1362033435, guid: 3b121fde6adae8041a3dd5c09f676364, type: 3}
-        - <GroundedSprites>k__BackingField:
+        - name: 
+          <GroundedSprites>k__BackingField:
           - {fileID: -1575140979, guid: 72ef2132635b05b439be381d774127ee, type: 3}
           - {fileID: 542500942, guid: 72ef2132635b05b439be381d774127ee, type: 3}
           - {fileID: 360467885, guid: 72ef2132635b05b439be381d774127ee, type: 3}
@@ -89,7 +110,8 @@ MonoBehaviour:
           - {fileID: 1584315942, guid: 3b121fde6adae8041a3dd5c09f676364, type: 3}
           - {fileID: -1935662141, guid: 3b121fde6adae8041a3dd5c09f676364, type: 3}
           - {fileID: 954288513, guid: 3b121fde6adae8041a3dd5c09f676364, type: 3}
-        - <GroundedSprites>k__BackingField:
+        - name: 
+          <GroundedSprites>k__BackingField:
           - {fileID: 1190113757, guid: 72ef2132635b05b439be381d774127ee, type: 3}
           - {fileID: -1937832525, guid: 72ef2132635b05b439be381d774127ee, type: 3}
           - {fileID: 207459841, guid: 72ef2132635b05b439be381d774127ee, type: 3}
