@@ -23,6 +23,7 @@ MonoBehaviour:
   - rid: 3615621433789513728
   - rid: 8358215245741948929
   - rid: 1770984693643870208
+  - rid: 1770984693643870209
   references:
     version: 2
     RefIds:
@@ -38,7 +39,7 @@ MonoBehaviour:
             isRandomRange: 0
             Object: {fileID: 8924082236497946225, guid: 22379e21c7b451147ab25b1e916aafaf, type: 3}
           - isGround: 0
-            isRandomPosRot: 1
+            isRandomPosRot: 0
             isRandomRange: 1
             Object: {fileID: 5279545542555632717, guid: 54c319e2f98e0b04384f32b5f2f6b28b, type: 3}
           - isGround: 1
@@ -49,6 +50,20 @@ MonoBehaviour:
           <ParticlePrefabs>k__BackingField: []
         - name: Action 3
           <ParticlePrefabs>k__BackingField: []
+    - rid: 1770984693643870209
+      type: {class: SoundClipData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: SoundClipData
+        actionData:
+        - name: Action 1
+          audioClips:
+          - {fileID: 8300000, guid: a90b7184fb02659469901edc3ceb6a19, type: 3}
+        - name: Action 2
+          audioClips:
+          - {fileID: 8300000, guid: 7dfd8119742582c47832bf5ec01273db, type: 3}
+        - name: Action 3
+          audioClips:
+          - {fileID: 8300000, guid: a90b7184fb02659469901edc3ceb6a19, type: 3}
     - rid: 3615621173780152320
       type: {class: ActionHitBoxData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -66,7 +81,7 @@ MonoBehaviour:
             EffectPrefab: {fileID: 5279545542555632717, guid: 54c319e2f98e0b04384f32b5f2f6b28b, type: 3}
         - name: Action 2
           ActionHit:
-          - Debug: 1
+          - Debug: 0
             ActionRect:
               serializedVersion: 2
               x: -0.77
@@ -76,7 +91,7 @@ MonoBehaviour:
             EffectPrefab: {fileID: 5279545542555632717, guid: 54c319e2f98e0b04384f32b5f2f6b28b, type: 3}
         - name: Action 3
           ActionHit:
-          - Debug: 1
+          - Debug: 0
             ActionRect:
               serializedVersion: 2
               x: -0.83

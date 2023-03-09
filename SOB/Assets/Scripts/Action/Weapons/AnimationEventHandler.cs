@@ -14,6 +14,7 @@ public class AnimationEventHandler : MonoBehaviour
     public event Action OnStopFlip;
     public event Action OnAttackAction;
     public event Action OnParticleSpawn;
+    public event Action OnSoundClip;
 
 
     public void AnimationFinishedTrigger() => OnFinish?.Invoke();
@@ -25,4 +26,5 @@ public class AnimationEventHandler : MonoBehaviour
     public void StopFlipTrigger() => OnStopFlip?.Invoke();
     public void AttackActionTrigger() => OnAttackAction?.Invoke();
     public void SpawnParticleTrigger() => OnParticleSpawn?.Invoke();
+    public void SpawnSoundClipTrigger() => OnSoundClip?.Invoke();
 }

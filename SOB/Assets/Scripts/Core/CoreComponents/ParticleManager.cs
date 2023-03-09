@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace SOB.CoreSystem
 {
-
     public class ParticleManager : CoreComponent
     {
         private Transform particleContainer;
