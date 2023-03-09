@@ -87,14 +87,15 @@ namespace SOB.Weapons.Components
             if (data == null)
                 return;
 
-            var index = data.ActionData.Length;
             foreach (var item in data.ActionData)
             {
-                
-                if (!item.ActionHit[index].Debug)
-                    continue;                
-                Gizmos.color = Color.white;
-                Gizmos.DrawWireCube(transform.position + new Vector3(item.ActionHit[currentHitBoxIndex].ActionRect.center.x * CoreMovement.FancingDirection, item.ActionHit[currentHitBoxIndex].ActionRect.center.y, 0), item.ActionHit[currentHitBoxIndex].ActionRect.size);
+                foreach(var action in item.ActionHit)
+                {
+                    if (!action.Debug)
+                        continue;
+                    Gizmos.color = Color.white;
+                    Gizmos.DrawWireCube(transform.position + new Vector3(action.ActionRect.center.x * CoreMovement.FancingDirection, action.ActionRect.center.y, 0), action.ActionRect.size);                    
+                }                
             }
         }
     }
