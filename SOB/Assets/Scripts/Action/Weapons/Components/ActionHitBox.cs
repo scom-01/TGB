@@ -53,6 +53,7 @@ namespace SOB.Weapons.Components
                 return;
             }
 
+            #region HitAction Effect Spawn
             foreach (Collider2D c in detected)
             {
                 if (c.gameObject.tag == this.gameObject.tag)
@@ -60,13 +61,19 @@ namespace SOB.Weapons.Components
 
                 if (c.TryGetComponent(out IDamageable damageable))
                 {
+                    if(currentActionData.ActionHit[currentHitEffectIndex].EffectPrefab ==null)
+                    {
+                        continue;
+                    }
                     damageable.HitAction(currentActionData.ActionHit[currentHitEffectIndex].EffectPrefab, 0.5f);
                 }
             }
+            #endregion
 
             OnDetectedCollider2D?.Invoke(detected);
-            currentHitBoxIndex++;
             currentHitEffectIndex++;
+            currentHitBoxIndex++;
+
         }
 
         protected override void Start()
