@@ -1,12 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class PlayerGroundedState : PlayerState
 {
     //Input
     protected int xInput;           //x축 이동 입력값
+    protected int yInput;           //y축 이동 입력값
     private bool JumpInput;         //점프 입력값
     private bool grabInput;         //grab 입력값
     private bool dashInput;         //Dash 입력값
@@ -15,6 +14,7 @@ public class PlayerGroundedState : PlayerState
     private bool skill2Input;       //Skill2 입력값
     //Checks
     private bool isGrounded;        //Grounded 체크
+    private bool isPlatform;        //Platform 체크
     private bool isTouchingWall;    //벽 체크 
     private bool isTouchingLedge;   //Ledge체크
 
@@ -27,6 +27,7 @@ public class PlayerGroundedState : PlayerState
         base.DoChecks();
 
         isGrounded = CollisionSenses.CheckIfGrounded;
+        isPlatform = CollisionSenses.CheckIfPlatform;
         isTouchingWall = CollisionSenses.CheckIfTouchingWall;
         isTouchingLedge = CollisionSenses.CheckIfTouchingLedge; 
     }
@@ -49,6 +50,7 @@ public class PlayerGroundedState : PlayerState
         base.LogicUpdate();
         
         xInput = player.InputHandler.NormInputX;
+        yInput = player.InputHandler.NormInputY;
         JumpInput = player.InputHandler.JumpInput;
         grabInput = player.InputHandler.GrabInput;
         dashInput = player.InputHandler.DashInput;
@@ -78,9 +80,16 @@ public class PlayerGroundedState : PlayerState
         {
             //FSM.ChangeState(player.SecondaryAttackState);
         }
-        else if (JumpInput && player.JumpState.CanJump())
+        //아래로 점프
+        else if (JumpInput && isPlatform && isGrounded && yInput < 0)
         {
-            player.FSM.ChangeState(player.JumpState);        
+            player.StartCoroutine(player.DisableCollision());
+            return;
+        }
+        else if (JumpInput && player.JumpState.CanJump() && isGrounded && yInput >= 0 && !player.BC2D.isTrigger)
+        {
+            player.FSM.ChangeState(player.JumpState);
+            return;
         }
         else if (!isGrounded)
         {

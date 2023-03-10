@@ -24,7 +24,6 @@ public class GlobalValue : MonoBehaviour
     /// ex) 0.3f일때 Big Enemy에 대해 받는 추가 데미지는 30%이다.
     /// </summary>
     public static float Enemy_Size_WeakPer = 0.1f;
-
     /*~Param*/
 
     private void Awake()

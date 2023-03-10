@@ -115,7 +115,7 @@ public class PlayerInAirState : PlayerState
             player.WallJumpState.DetermineWallJumpDirection(isTouchingWall);
             player.FSM.ChangeState(player.WallJumpState);
         }
-        else if (JumpInput && player.JumpState.CanJump())
+        else if (JumpInput && player.JumpState.CanJump()&& !player.BC2D.isTrigger)
         {
             coyoteTime = false;
             player.FSM.ChangeState(player.JumpState);

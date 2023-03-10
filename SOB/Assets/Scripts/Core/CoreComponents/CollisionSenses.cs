@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace SOB.CoreSystem
@@ -30,6 +27,7 @@ namespace SOB.CoreSystem
         public float WallCheckDistance { get => core.Unit.UnitData.wallCheckDistance; }
 
         public LayerMask WhatIsGround { get => core.Unit.UnitData.whatIsGround; }
+        public LayerMask WhatIsPlatform { get => core.Unit.UnitData.whatIsPlatform; }
 
         [SerializeField] protected Transform groundCheck;
         [SerializeField] protected Transform wallCheck;
@@ -39,6 +37,11 @@ namespace SOB.CoreSystem
         {
             base.Awake();
             BC2D = GetComponentInParent<BoxCollider2D>();
+        }
+
+        public bool CheckIfPlatform
+        {
+            get => Physics2D.OverlapBox(groundCheck.position, new Vector2(BC2D.bounds.size.x * 0.95f, BC2D.bounds.size.y * GroundCheckRadius), 0f, WhatIsPlatform);
         }
 
         public bool CheckIfGrounded
@@ -93,7 +96,7 @@ namespace SOB.CoreSystem
             Gizmos.DrawWireCube(transform.position + new Vector3((BC2D.offset.x) * Movement.FancingDirection, BC2D.offset.y), new Vector2(BC2D.bounds.size.x, BC2D.bounds.size.y * 0.95f));
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube(groundCheck.position, new Vector2(BC2D.bounds.size.x * 0.95f, BC2D.bounds.size.y * GroundCheckRadius));
-            
+            Debug.DrawRay(groundCheck.position, Vector2.down * GroundCheckRadius *4, Color.red);
         }
     }
 }

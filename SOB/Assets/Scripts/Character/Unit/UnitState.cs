@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitState
+public class UnitState : MonoBehaviour
 {
     protected Unit unit;
 

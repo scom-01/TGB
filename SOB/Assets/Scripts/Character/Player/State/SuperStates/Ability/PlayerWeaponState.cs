@@ -12,6 +12,7 @@ public class PlayerWeaponState : PlayerAbilityState
     private Weapon weapon;
 
     private int xInput;
+    private int yInput;
     private bool JumpInput;
 
     public PlayerWeaponState(Unit unit, string animBoolName, Weapon weapon) : base(unit, animBoolName)
@@ -43,10 +44,15 @@ public class PlayerWeaponState : PlayerAbilityState
         base.PhysicsUpdate();
 
         xInput = player.InputHandler.NormInputX;
+        yInput = player.InputHandler.NormInputY;
         JumpInput = player.InputHandler.JumpInput;
 
-
-        if (JumpInput && player.JumpState.CanJump() && weapon.weaponData.CanJump)
+        if (JumpInput && player.JumpState.CanJump() && weapon.weaponData.CanJump && CollisionSenses.CheckIfPlatform && yInput < 0)
+        {
+            player.StartCoroutine(player.DisableCollision());
+            return;
+        }
+        else if (JumpInput && player.JumpState.CanJump() && weapon.weaponData.CanJump && !player.BC2D.isTrigger)
         {
             weapon.EventHandler.AnimationFinishedTrigger();
             player.FSM.ChangeState(player.JumpState);

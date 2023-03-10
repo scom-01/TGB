@@ -135,9 +135,14 @@ public class Player : Unit
 
     #endregion
 
-    #region Anim Event Func
+    #region IEnumerator
+    public IEnumerator DisableCollision()
+    {
+        BC2D.isTrigger = true;
+        yield return new WaitForSeconds(0.25f);
+        BC2D.isTrigger = false;
+    }
 
-    
     #endregion
 
     private void OnDrawGizmos()
