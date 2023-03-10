@@ -122,6 +122,12 @@ public class Unit : MonoBehaviour
             StartCoroutine(HitEffect(sprites[i], oldcolor, 0.5f));
         }
     }
+    public IEnumerator DisableCollision()
+    {
+        BC2D.isTrigger = true;
+        yield return new WaitForSeconds(0.25f);
+        BC2D.isTrigger = false;
+    }
 
     IEnumerator HitEffect(SpriteRenderer sr, Color oldcolor, float duration)
     {
