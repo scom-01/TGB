@@ -1,17 +1,20 @@
+using Cinemachine;
 using UnityEngine;
 
 namespace SOB.CoreSystem
 {
     public class ParticleManager : CoreComponent
     {
+        [TagField]
+        [field: SerializeField] private string particleContainerTagName;
         private Transform particleContainer;
 
         protected override void Awake()
         {
             base.Awake();
-            if (GameObject.FindGameObjectWithTag("ParticleContainer").transform != null)
+            if (GameObject.FindGameObjectWithTag(particleContainerTagName).transform != null)
             {
-                particleContainer = GameObject.FindGameObjectWithTag("ParticleContainer").transform;
+                particleContainer = GameObject.FindGameObjectWithTag(particleContainerTagName).transform;
             }
         }
 

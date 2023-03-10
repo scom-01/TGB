@@ -1,15 +1,24 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.UIElements;
 using UnityEngine;
 
 namespace SOB.CoreSystem
 {
     public class SoundEffect : CoreComponent
     {
+        [TagField]
+        [field: SerializeField] private string soundContainerTagName;
+        private Transform soundContainer;
         protected override void Awake()
         {
             base.Awake();
+            if (GameObject.FindGameObjectWithTag(soundContainerTagName).transform != null)
+            {
+                soundContainer = GameObject.FindGameObjectWithTag(soundContainerTagName).transform;
+            }
         }
 
         public void AudioSpawn(AudioClip audioClip)
@@ -20,7 +29,7 @@ namespace SOB.CoreSystem
                 return;
             }
 
-            var audioSource = this.AddComponent<AudioSource>();
+            var audioSource = soundContainer.AddComponent<AudioSource>();
             audioSource.clip = audioClip;
             audioSource.playOnAwake = true;
             audioSource.loop = false;

@@ -752,6 +752,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 61121295}
   m_CullTransparentMesh: 1
+--- !u!1 &62329261
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 62329262}
+  m_Layer: 0
+  m_Name: SoundClips
+  m_TagString: SoundContainer
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &62329262
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62329261}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &69992973
 GameObject:
   m_ObjectHideFlags: 0
@@ -2440,7 +2471,7 @@ Transform:
   - {fileID: 69992974}
   - {fileID: 1788033386}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &132572196
 GameObject:
@@ -2517,7 +2548,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &149699449
 GameObject:
@@ -6316,7 +6347,7 @@ Transform:
   - {fileID: 107315414}
   - {fileID: 59082931}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &748526045
 MonoBehaviour:
@@ -8376,6 +8407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d951751a5143a7548893b8be23de17fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundContainerTagName: SoundContainer
 --- !u!1 &903839657
 GameObject:
   m_ObjectHideFlags: 0
@@ -8890,7 +8922,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1037978626
 GameObject:
@@ -20883,7 +20915,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1680194179
 GameObject:
@@ -23266,6 +23298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dbfb8afd8d07ea46877f2a0730681d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particleContainerTagName: ParticleContainer
 --- !u!1 &1834255314
 GameObject:
   m_ObjectHideFlags: 0
@@ -23445,7 +23478,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1845063250
 GameObject:
@@ -24784,7 +24817,7 @@ Transform:
   - {fileID: 93600874}
   - {fileID: 814671652}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2007453212
 GameObject:
@@ -25336,7 +25369,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2134487232
 GameObject:
