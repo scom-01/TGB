@@ -30,13 +30,15 @@ MonoBehaviour:
         name: ActionHitBoxData
         actionData:
         - name: Action 1
-          Debug: 1
-          <HitBox>k__BackingField:
-            serializedVersion: 2
-            x: 0.03
-            y: -1.61
-            width: 2.09
-            height: 2.58
+          ActionHit:
+          - Debug: 1
+            ActionRect:
+              serializedVersion: 2
+              x: -1.14
+              y: -1.52
+              width: 3.17
+              height: 2.49
+            EffectPrefab: {fileID: 0}
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
           m_Bits: 2048
