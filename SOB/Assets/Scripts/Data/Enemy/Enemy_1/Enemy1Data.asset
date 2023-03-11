@@ -30,7 +30,9 @@ MonoBehaviour:
   knockBackSpeed: {x: 1, y: 0}
   invincibleTime: 1
   touchDamageinvincibleTime: 1
-  standColliderHeight: 2.25
+  standColliderOffset: {x: 0, y: -0.45}
+  standColliderSize: {x: 1.5, y: 2.25}
+  UnitColliderMaterial: {fileID: 0}
   groundCheckRadius: 0.1
   wallCheckDistance: 0.5
   UnitDetectedDistance: 5

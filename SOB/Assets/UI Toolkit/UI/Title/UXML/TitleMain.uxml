@@ -1,7 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/UI/Title/USS/Title.uss?fileID=7433441132597879392&amp;guid=57ad1b99d607fb84dae772777cbbb18c&amp;type=3#Title" />
     <ui:VisualElement style="width: 100%; height: 100%; background-color: rgb(0, 0, 0); margin-left: 0; align-items: stretch;">
-        <ui:Label text="Logo" display-tooltip-when-elided="true" style="justify-content: center; align-items: center; left: auto; background-color: rgb(0, 0, 0); color: rgb(255, 255, 255); -unity-text-align: middle-center; -unity-font-style: bold; font-size: 200px;" />
+        <ui:Label text="Short Of BlackSmith" display-tooltip-when-elided="true" name="TitleLogo" style="justify-content: center; align-items: center; left: auto; background-color: rgb(0, 0, 0); color: rgb(255, 255, 255); -unity-text-align: middle-center; -unity-font-style: bold; font-size: 150px; height: 306px;" />
         <ui:VisualElement name="Buttons" style="justify-content: center; align-items: center; -unity-text-align: upper-center; flex-grow: 1; flex-shrink: 1;">
             <ui:Button text="Start" display-tooltip-when-elided="true" name="Start_Btn" class="title-button" />
             <ui:Button text="Load" display-tooltip-when-elided="true" name="Load_Btn" class="title-button" />
