@@ -90,11 +90,12 @@ namespace SOB.Item
             {
                 Buff buff = new Buff();
                 var items = Item as BuffItemSO;
-                for(int i = 0; i < items.StatsDatas.Count; i++)
+                unit.Core.GetCoreComponent<SoundEffect>().AudioSpawn(Item.AcquiredSoundEffect);
+                for (int i = 0; i < items.StatsDatas.Count; i++)
                 {
                     buff.statsData = items.StatsDatas[i];
-                    buff.durationTime = items.DurationTime[i];
-                    buff.buffType = items.BuffType[i];
+                    buff.durationTime = items.BuffData[i].DurationTime;
+                    buff.buffType = items.BuffData[i].BuffType;
                     buff.buffSprite = items.ItemSprite;
                     unit.gameObject.GetComponent<BuffSystem>().AddBuff(buff);
                 }                
@@ -120,6 +121,7 @@ namespace SOB.Item
             {
                 if (Item.AcquiredEffectPrefab != null)
                     Instantiate(Item.AcquiredEffectPrefab, this.gameObject.transform.position, Quaternion.identity, particleContainer);
+
                 Debug.LogWarning($"Get {this.name}");
                 //this.gameObject.SetActive(false);
                 GetComponent<SpriteRenderer>().enabled = false;

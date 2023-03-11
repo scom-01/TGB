@@ -80,6 +80,7 @@ public class Inventory : MonoBehaviour
             Debug.Log($"Add {itemData.name}, Success add {itemData.name}");
             GameManager.Inst.SubUI.InventorySubUI.InventoryItems.AddItem(itemData);
             items.Add(itemData);
+
             ItemCount++;
             foreach (var statsData in itemData.StatsDatas)
             {
