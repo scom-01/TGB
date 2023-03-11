@@ -10,7 +10,7 @@ namespace SOB.Weapons.Components
     {
         protected Weapon weapon;
         protected AnimationEventHandler eventHandler;
-        protected Core core => weapon.WeaponCore;
+        protected Core core => weapon.WeaponCore ?? weapon.GetComponentInParent<Unit>().Core;
         protected bool isAttackActive;
 
         private CoreSystem.Movement coreMovement;

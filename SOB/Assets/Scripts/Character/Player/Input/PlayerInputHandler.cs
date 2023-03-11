@@ -61,7 +61,7 @@ public class PlayerInputHandler : MonoBehaviour
         ActionInputsStopTime = new float[count];
         cam = Camera.main;
 
-        Debug.Log(playerInput.currentActionMap.name);
+        Debug.Log("This InputHandler ActionMap Name : " + playerInput.currentActionMap.name);
     }
 
     private void OnEnable()

@@ -9,10 +9,6 @@ using System.ComponentModel;
 public class Unit : MonoBehaviour
 {
     #region Component
-    private Movement Movement { get => movement ?? Core.GetCoreComponent(ref movement); }
-
-    private Movement movement;
-
     public Core Core { get; private set; }
     public UnitFSM FSM { get; private set; }
     public Animator Anim { get; private set; }
@@ -31,6 +27,11 @@ public class Unit : MonoBehaviour
     #region Unity Callback Func
     protected virtual void Awake()
     {
+        InitSetting();
+    }
+
+    private void InitSetting()
+    {
         Core = GetComponentInChildren<Core>();
         FSM = new UnitFSM();
 
@@ -40,13 +41,23 @@ public class Unit : MonoBehaviour
         }
 
         Anim = GetComponent<Animator>();
-        if (Anim == null) Anim = this.GameObject().AddComponent<Animator>();
+        if (Anim == null)
+        {
+            Anim = this.GameObject().AddComponent<Animator>();
+            Anim.runtimeAnimatorController = UnitData.UnitAnimator;
+        };
 
         RB = GetComponent<Rigidbody2D>();
         if (RB == null) RB = this.GameObject().AddComponent<Rigidbody2D>();
 
         BC2D = GetComponent<BoxCollider2D>();
-        if (BC2D == null) BC2D = this.GameObject().AddComponent<BoxCollider2D>();
+        if (BC2D == null)
+        {
+            BC2D = this.GameObject().AddComponent<BoxCollider2D>();
+            BC2D.sharedMaterial = UnitData.UnitColliderMaterial;
+            BC2D.offset = UnitData.standColliderOffset;
+            BC2D.size = UnitData.standColliderSize;
+        }
 
         SR = GetComponent<SpriteRenderer>();
         if (SR == null) SR = this.GameObject().AddComponent<SpriteRenderer>();
@@ -54,6 +65,7 @@ public class Unit : MonoBehaviour
         Inventory = GetComponent<Inventory>();
         if (Inventory == null) Inventory = this.GameObject().AddComponent<Inventory>();
     }
+
     protected virtual void Start()
     {
     }

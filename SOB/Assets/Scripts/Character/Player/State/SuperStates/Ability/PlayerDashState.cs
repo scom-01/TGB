@@ -59,12 +59,12 @@ public class PlayerDashState : PlayerAbilityState
         if (IsGrounded)
         {
             //콜라이더 크기 변경
-            player.SetColliderHeight(player.playerData.standColliderHeight);
+            player.SetColliderHeight(player.playerData.standColliderSize.y);
         }
         else
         {
             //콜라이더 크기 변경
-            player.SetColliderHeight(player.playerData.standColliderHeight, false);
+            player.SetColliderHeight(player.playerData.standColliderSize.y, false);
         }
     }
 
@@ -110,8 +110,7 @@ public class PlayerDashState : PlayerAbilityState
                 if(Time.time>=startTime + player.playerData.dashDuration + player.playerData.dashFlightDuration)
                 {
                     isAbilityDone = true;
-                    lastDashTime = Time.time;                    
-                    Debug.Log($"Dash EndTime = {lastDashTime}");
+                    lastDashTime = Time.time;
                 }
             }
         }

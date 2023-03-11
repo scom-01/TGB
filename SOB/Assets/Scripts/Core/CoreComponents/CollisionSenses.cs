@@ -18,10 +18,6 @@ namespace SOB.CoreSystem
             get => GenericNotImplementedError<Transform>.TryGet(wallCheck, core.transform.parent.name); 
             private set => wallCheck = value; 
         }
-        public Transform LedgeCheck { 
-            get => GenericNotImplementedError<Transform>.TryGet(ledgeCheck, core.transform.parent.name);
-            private set => ledgeCheck = value; 
-        }
 
         public float GroundCheckRadius { get => core.Unit.UnitData.groundCheckRadius; }
         public float WallCheckDistance { get => core.Unit.UnitData.wallCheckDistance; }
@@ -31,7 +27,6 @@ namespace SOB.CoreSystem
 
         [SerializeField] protected Transform groundCheck;
         [SerializeField] protected Transform wallCheck;
-        [SerializeField] protected Transform ledgeCheck;
         #endregion
         protected override void Awake()
         {
@@ -54,11 +49,6 @@ namespace SOB.CoreSystem
         {
             //Debug.DrawRay(wallCheck.position, Vector2.right * core.Movement.FancingDirection * wallCheckDistance, Color.green);
             get => Physics2D.Raycast(wallCheck.position, Vector2.right * Movement.FancingDirection, WallCheckDistance, WhatIsGround);
-        }
-
-        public bool CheckIfTouchingLedge
-        {
-            get => Physics2D.Raycast(ledgeCheck.position, Vector2.right * Movement.FancingDirection, WallCheckDistance, WhatIsGround);
         }
 
         public bool CheckIfTouchingWallBack

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitState : MonoBehaviour
+public class UnitState
 {
     protected Unit unit;
 
@@ -23,7 +23,7 @@ public class UnitState : MonoBehaviour
         DoChecks();
         unit.Anim.SetBool(animBoolName, true);
         startTime = Time.time;
-        Debug.Log(animBoolName);
+        Debug.Log(unit.name + " Enter State : " + animBoolName);
         isAnimationFinished = false;
         isExitingState = false;
     }

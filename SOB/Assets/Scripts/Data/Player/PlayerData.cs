@@ -33,16 +33,6 @@ public class PlayerData : UnitData
     [Tooltip("벽 슬라이딩 Velocity")]
     public float wallSlideVelocity = 3f;
 
-    [Header("Wall Climb State")]
-    [Tooltip("벽 Climb Velocity")]
-    public float wallClimbVelocity = 3f;
-
-    [Header("Ledge Climb State")]
-    [Tooltip("벽 오르기 시 시작 시점")]
-    public Vector2 startOffset;
-    [Tooltip("벽 오르기 시 종료 지점")]
-    public Vector2 stopOffset;
-
     [Header("Dash State")]
     [Tooltip("대쉬 쿨타임")]
     public float dashCooldown = 0.5f;

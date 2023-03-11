@@ -15,9 +15,8 @@ public class PlayerWeaponState : PlayerAbilityState
     private int yInput;
     private bool JumpInput;
 
-    public PlayerWeaponState(Unit unit, string animBoolName, Weapon weapon) : base(unit, animBoolName)
+    public PlayerWeaponState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
-        this.weapon = weapon;
     }
 
     public override void Enter()

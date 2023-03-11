@@ -42,12 +42,6 @@ public class PlayerInAirState : PlayerState
         isGrounded = CollisionSenses.CheckIfGrounded;
         isTouchingWall = CollisionSenses.CheckIfTouchingWall;
         isTouchingWallBack = CollisionSenses.CheckIfTouchingWallBack;
-        isTouchingLedge = CollisionSenses.CheckIfTouchingLedge;
-
-        /*if(isTouchingWall && !isTouchingLedge)
-        {
-            player.LedgeClimbState.SetDetectedPosition(player.transform.position);
-        }*/
 
         if (!wallJumpCoyoteTime && !isTouchingWall && !isTouchingWallBack && (oldIsTouchingWall || oldIsTouchingWallBack))
         {
@@ -104,10 +98,6 @@ public class PlayerInAirState : PlayerState
         {
             player.FSM.ChangeState(player.LandState);
         }
-        /*else if(isTouchingWall && !isTouchingLedge && !isGrounded)
-        {
-            FSM.ChangeState(player.LedgeClimbState);
-        }*/
         else if (JumpInput && (isTouchingWall || isTouchingWallBack || wallJumpCoyoteTime))
         {
             StopWallJumpCoyoteTime();
@@ -120,10 +110,6 @@ public class PlayerInAirState : PlayerState
             coyoteTime = false;
             player.FSM.ChangeState(player.JumpState);
         }
-        /*else if(isTouchingWall && grabInput && isTouchingLedge)
-        {
-            FSM.ChangeState(player.WallGrabState);
-        }*/
         else if (isTouchingWall && xInput == Movement.FancingDirection && Movement.CurrentVelocity.y <= 0f)
         {
             player.FSM.ChangeState(player.WallSlideState);

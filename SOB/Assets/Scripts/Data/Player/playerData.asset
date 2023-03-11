@@ -30,7 +30,9 @@ MonoBehaviour:
   knockBackSpeed: {x: 0, y: 0}
   invincibleTime: 1.5
   touchDamageinvincibleTime: 1
-  standColliderHeight: 1.3
+  standColliderOffset: {x: 0, y: -0.16}
+  standColliderSize: {x: 0.625, y: 1.3}
+  UnitColliderMaterial: {fileID: 6200000, guid: 5cc90d2fd1f3c2d4ba56287afb0442d4, type: 2}
   groundCheckRadius: 0.1
   wallCheckDistance: 0.4
   UnitDetectedDistance: 0.5
@@ -43,6 +45,7 @@ MonoBehaviour:
   WhatIsEnemyUnit:
     serializedVersion: 2
     m_Bits: 262144
+  UnitAnimator: {fileID: 9100000, guid: f8140e6895d29404cb3c31ff401edc68, type: 2}
   jumpVelocity: 15
   amountOfJumps: 4
   dashColliderHeight: 0.93
@@ -52,9 +55,6 @@ MonoBehaviour:
   coyeteTime: 0.2
   variableJumpHeightMultiplier: 0.5
   wallSlideVelocity: 1
-  wallClimbVelocity: 6
-  startOffset: {x: 0.34, y: -0.8}
-  stopOffset: {x: 0.5, y: 2.3}
   dashCooldown: 0
   dashResetCooldown: 0.2
   dashDuration: 0.2

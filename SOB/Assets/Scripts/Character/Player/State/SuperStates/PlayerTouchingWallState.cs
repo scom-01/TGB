@@ -7,9 +7,7 @@ public class PlayerTouchingWallState : PlayerState
 {
     protected bool isGrounded;
     protected bool isTouchingWall;
-    protected bool grabInput;
     protected bool jumpInput;
-    protected bool isTouchingLedge;
 
     protected int xInput;
     protected int yInput;
@@ -35,12 +33,6 @@ public class PlayerTouchingWallState : PlayerState
 
         isGrounded = CollisionSenses.CheckIfGrounded;
         isTouchingWall = CollisionSenses.CheckIfTouchingWall;
-        isTouchingLedge = CollisionSenses.CheckIfTouchingLedge;
-
-        /*if(isTouchingWall && !isTouchingLedge)
-        {
-            player.LedgeClimbState.SetDetectedPosition(player.transform.position);
-        }*/
     }
 
     public override void Enter()
@@ -59,7 +51,6 @@ public class PlayerTouchingWallState : PlayerState
 
         xInput = player.InputHandler.NormInputX;
         yInput = player.InputHandler.NormInputY;
-        grabInput = player.InputHandler.GrabInput;
         jumpInput = player.InputHandler.JumpInput;
 
         if(jumpInput)
@@ -67,18 +58,14 @@ public class PlayerTouchingWallState : PlayerState
             player.WallJumpState.DetermineWallJumpDirection(isTouchingWall);
             player.FSM.ChangeState(player.WallJumpState);
         }
-        else if (isGrounded && !grabInput)
+        else if (isGrounded)
         {
             player.FSM.ChangeState(player.IdleState);
         }
-        else if(!isTouchingWall || (xInput != Movement.FancingDirection && !grabInput))
+        else if(!isTouchingWall || (xInput != Movement.FancingDirection))
         {
             player.FSM.ChangeState(player.InAirState);
-        }    
-        /*else if(isTouchingWall && !isTouchingLedge)
-        {
-            FSM.ChangeState(player.LedgeClimbState);
-        }*/
+        }
     }
 
     public override void PhysicsUpdate()

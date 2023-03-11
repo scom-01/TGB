@@ -55,6 +55,8 @@ namespace SOB.Weapons
 
         private void Update()
         {
+            if (WeaponCore == null)
+                return;
             BaseGameObject.GetComponent<Animator>().speed = 1f + (WeaponCore.GetCoreComponent<UnitStats>().StatsData.AttackSpeedPer * 1 / 100);
             actionCounterResetTimer.Tick();
         }
@@ -77,13 +79,12 @@ namespace SOB.Weapons
         /// </summary>
         public virtual void EnterWeapon()
         {
-            print($"{transform.name} enter");
+            print($"{transform.name} EnterWeapon");
 
             actionCounterResetTimer.StopTimer();
                         
             SetBoolName("inAir", InAir);            
             SetBoolName("action", true);
-            Debug.Log("SetBoolName = true");
             SetIntName("actionCounter", CurrentActionCounter);            
 
             OnEnter?.Invoke();
@@ -95,7 +96,6 @@ namespace SOB.Weapons
         public virtual void ExitWeapon()
         {
             SetBoolName("action", false);
-            Debug.Log("SetBoolName = false");
             CurrentActionCounter++;
             actionCounterResetTimer.StartTimer();
             WeaponCore.Unit.AnimationFinishTrigger();

@@ -29,7 +29,7 @@ public class PlayerState : UnitState
     public void SetInput(ref bool input) => this.input = input;
 
 
-    private SOB.CoreSystem.Movement movement;
+    private Movement movement;
     private CollisionSenses collisionSenses;
     private UnitStats unitStats;
     private ParticleManager particleManager;
