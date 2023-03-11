@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public Transform respawnPoint;
     [SerializeField]
+    public GameObject Player;
+    private GameObject playerGO;
     public Player player;
     [SerializeField]
     public float respawnTime;
@@ -41,6 +43,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Application.targetFrameRate = 60;
+        playerGO = Instantiate(Player, respawnPoint);
+        player = playerGO.GetComponent<Player>();
         inputHandler = this.GetComponent<PlayerInputHandler>();
 
         if (Inst == null)
@@ -57,6 +61,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         CVC = GameObject.Find("Player Camera").GetComponent<CinemachineVirtualCamera>();
+        CVC.Follow = player.transform;
     }
     private void Update()
     {
