@@ -6,7 +6,7 @@ using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 [Serializable]
-public class EnemyAttackState : EnemyState
+public abstract class EnemyAttackState : EnemyState
 {
     private Weapon weapon;
     public EnemyAttackState(Unit unit, string animBoolName) : base(unit, animBoolName)
@@ -47,10 +47,7 @@ public class EnemyAttackState : EnemyState
             IdleState();            
         }
     }
-    public virtual void IdleState()
-    {
-
-    }
+    public abstract void IdleState();
 
     public override void PhysicsUpdate()
     {

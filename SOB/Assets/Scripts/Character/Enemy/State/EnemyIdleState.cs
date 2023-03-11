@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyIdleState : EnemyState
+public abstract class EnemyIdleState : EnemyState
 {
     protected bool isIdleTimeOver;
 
@@ -46,10 +46,7 @@ public class EnemyIdleState : EnemyState
         }
     }
 
-    public virtual void RunState()
-    {
-
-    }
+    public abstract void RunState();
 
     public override void PhysicsUpdate()
     {

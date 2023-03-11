@@ -16,15 +16,4 @@ public class Enemy_Melee1_HitState : EnemyHitState
     {
         unit.FSM.ChangeState(enemy_Melee1.IdleState);
     }
-
-    public override void LogicUpdate()
-    {
-        base.LogicUpdate();
-        if (Time.time >= unit.UnitData.knockBackDuration + startTime)
-        {
-            unit.Anim.speed = 1.0f;
-            unit.Core.GetCoreComponent<DamageReceiver>().isHit = false;
-            IdleState();
-        }
-    }
 }

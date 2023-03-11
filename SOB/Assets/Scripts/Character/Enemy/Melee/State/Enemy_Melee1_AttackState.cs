@@ -10,34 +10,8 @@ public class Enemy_Melee1_AttackState : EnemyAttackState
     {
         enemy_Melee1 = enemy as Enemy_Melee1;
     }
-
-    public override void DoChecks()
-    {
-        base.DoChecks();
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
     public override void IdleState()
     {
-        base.IdleState();
         enemy.FSM.ChangeState(enemy_Melee1.IdleState);
-    }
-
-    public override void LogicUpdate()
-    {
-        base.LogicUpdate();
-        if (isAnimationFinished)
-        {
-            IdleState();
-        }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyRunState : EnemyState
+public abstract class EnemyRunState : EnemyState
 {
     private bool checkifCliff;
     private bool checkifTouchingGrounded;
@@ -41,12 +41,6 @@ public class EnemyRunState : EnemyState
             Enemy_Attack();
         }
 
-        //if(Movement.knockback)
-        //{
-        //    Debug.Log(enemy.name + " 넉백상태");
-        //    return;
-        //}
-
         if (!checkifCliff || checkifTouchingGrounded || checkifTouchingWall)
         {
             Movement.Flip();
@@ -57,10 +51,7 @@ public class EnemyRunState : EnemyState
         }
     }
 
-    public virtual void Enemy_Attack()
-    {
-        Debug.Log("Enemy_Attack");
-    }
+    public abstract void Enemy_Attack();
 
     public override void PhysicsUpdate()
     {

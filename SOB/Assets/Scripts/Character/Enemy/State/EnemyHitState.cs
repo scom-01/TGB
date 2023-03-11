@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHitState : EnemyState
+public abstract class EnemyHitState : EnemyState
 {
     public EnemyHitState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
@@ -12,7 +12,6 @@ public class EnemyHitState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        //Movement.SetVelocityX(enemy.enemyData.knockBackSpeed.x * enemy.damageDirection);
         enemy.Anim.speed = 0.0f;
         startTime = Time.time;
     }
@@ -33,10 +32,7 @@ public class EnemyHitState : EnemyState
             IdleState();            
         }
     }
-    public virtual void IdleState()
-    {
-
-    }
+    public abstract void IdleState();
 
     public override void PhysicsUpdate()
     {
