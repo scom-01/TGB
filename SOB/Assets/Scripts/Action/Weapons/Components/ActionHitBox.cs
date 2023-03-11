@@ -96,6 +96,8 @@ namespace SOB.Weapons.Components
 
             foreach (var item in data.ActionData)
             {
+                if (item.ActionHit == null)
+                    continue;
                 foreach(var action in item.ActionHit)
                 {
                     if (!action.Debug)
