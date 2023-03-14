@@ -422,6 +422,34 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Cfg"",
+            ""id"": ""505c4398-024e-4595-b08b-0eee3f105bfd"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""8a329b78-667b-4e1a-9978-9f6e4e961714"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""328d8e78-49ea-4636-9bf6-36ee30c315fd"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -464,6 +492,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_UI_ESC = m_UI.FindAction("ESC", throwIfNotFound: true);
         m_UI_UILeft = m_UI.FindAction("UILeft", throwIfNotFound: true);
         m_UI_UIRight = m_UI.FindAction("UIRight", throwIfNotFound: true);
+        // Cfg
+        m_Cfg = asset.FindActionMap("Cfg", throwIfNotFound: true);
+        m_Cfg_Newaction = m_Cfg.FindAction("New action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -705,6 +736,39 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Cfg
+    private readonly InputActionMap m_Cfg;
+    private ICfgActions m_CfgActionsCallbackInterface;
+    private readonly InputAction m_Cfg_Newaction;
+    public struct CfgActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public CfgActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_Cfg_Newaction;
+        public InputActionMap Get() { return m_Wrapper.m_Cfg; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CfgActions set) { return set.Get(); }
+        public void SetCallbacks(ICfgActions instance)
+        {
+            if (m_Wrapper.m_CfgActionsCallbackInterface != null)
+            {
+                @Newaction.started -= m_Wrapper.m_CfgActionsCallbackInterface.OnNewaction;
+                @Newaction.performed -= m_Wrapper.m_CfgActionsCallbackInterface.OnNewaction;
+                @Newaction.canceled -= m_Wrapper.m_CfgActionsCallbackInterface.OnNewaction;
+            }
+            m_Wrapper.m_CfgActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Newaction.started += instance.OnNewaction;
+                @Newaction.performed += instance.OnNewaction;
+                @Newaction.canceled += instance.OnNewaction;
+            }
+        }
+    }
+    public CfgActions @Cfg => new CfgActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -736,5 +800,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnESC(InputAction.CallbackContext context);
         void OnUILeft(InputAction.CallbackContext context);
         void OnUIRight(InputAction.CallbackContext context);
+    }
+    public interface ICfgActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
     }
 }

@@ -9,7 +9,8 @@ using UnityEngine.InputSystem;
 public class PlayerInputHandler : MonoBehaviour
 {
     private PlayerInput playerInput;
-    //PlayerInputActions playerInputActions;
+    PlayerInputActions playerInputActions;
+    private InputActionMap oldInputActionMap;
     private Camera cam;
     public Vector2 RawMovementInput { get; private set; }
     public int NormInputX { get; private set; }
@@ -276,14 +277,46 @@ public class PlayerInputHandler : MonoBehaviour
             {
                 if (playerInput.currentActionMap == playerInput.actions.FindActionMap("UI"))
                 {
+                    oldInputActionMap = playerInput.currentActionMap;
                     playerInput.SwitchCurrentActionMap("GamePlay");
                     GameManager.Inst.CheckPause(false);
                 }
                 else if (playerInput.currentActionMap == playerInput.actions.FindActionMap("GamePlay"))
                 {
+                    oldInputActionMap = playerInput.currentActionMap;
                     playerInput.SwitchCurrentActionMap("UI");
                     GameManager.Inst.CheckPause(true);
                 }
+            }
+        }
+        if (context.canceled)
+        {
+            Debug.Log("OnTapInput Cancled");
+        }
+    }
+    public void OnESCInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Debug.Log("OnESCInput Start");
+            if (playerInput.actions.actionMaps.ToArray().Length > 0)
+            {
+                if (playerInput.currentActionMap == playerInput.actions.FindActionMap("UI"))
+                {
+                    playerInput.SwitchCurrentActionMap("Cfg");
+                    GameManager.Inst.CheckPause(true);
+                }
+                else if (playerInput.currentActionMap == playerInput.actions.FindActionMap("GamePlay"))
+                {
+                    playerInput.SwitchCurrentActionMap("Cfg");
+                    GameManager.Inst.CheckPause(true);
+                }
+                else if(playerInput.currentActionMap == playerInput.actions.FindActionMap("Cfg"))
+                {
+                    playerInput.SwitchCurrentActionMap(oldInputActionMap.name);
+                    GameManager.Inst.CheckPause(false);
+                }
+                oldInputActionMap = playerInput.currentActionMap;
             }
         }
         if (context.canceled)
