@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="HealthBar" src="project://database/Assets/UI%20Toolkit/UI/GamePlay/HealthBar.uxml?fileID=9197481963319205126&amp;guid=9d0cc52cc82ba344ebcc3b2ae4244733&amp;type=3#HealthBar" />
+    <ui:VisualElement name="Main" style="width: 100%; height: 100%; overflow: visible; visibility: visible; opacity: 1; justify-content: flex-start; align-items: stretch; flex-grow: 1; flex-direction: row; flex-shrink: 3;">
+        <ui:VisualElement name="Left_Section" style="flex-shrink: 1; flex-grow: 1; flex-direction: column-reverse; flex-basis: 0;">
+            <ui:ListView focusable="true" name="ListView" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Mid_Section" style="flex-grow: 1; justify-content: flex-end; align-items: center; min-width: auto; min-height: auto; flex-basis: 0;">
+            <ui:Instance template="HealthBar" name="HealthBar" style="bottom: 5%;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Right_Section" style="flex-shrink: 1; flex-grow: 1; flex-basis: 0;" />
+        <ui:IMGUIContainer style="justify-content: flex-start; width: 400px; height: 400px; align-items: flex-end; position: absolute; top: auto; left: auto; right: 0; bottom: 0; flex-grow: 0; background-image: resource(&apos;MiniMap RT&apos;);" />
+    </ui:VisualElement>
+</ui:UXML>

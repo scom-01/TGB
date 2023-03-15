@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="Container_Back" style="width: 500px; height: 100px; justify-content: center; align-items: center; background-image: resource(&apos;Sprites/Maps/Box&apos;); visibility: visible; display: flex; overflow: hidden;">
+        <ui:VisualElement name="Container_Bar" style="justify-content: center; background-image: resource(&apos;Sprites/Maps/Box&apos;); -unity-background-image-tint-color: rgb(255, 0, 0); width: 100%; height: 100%; align-items: flex-start; margin-left: 0; flex-direction: row; padding-left: 0; margin-right: 132%;" />
+        <ui:Label text="200 / 200" display-tooltip-when-elided="true" name="CurrentHealth_txt" style="font-size: 50px; position: absolute;" />
+    </ui:VisualElement>
+</ui:UXML>
