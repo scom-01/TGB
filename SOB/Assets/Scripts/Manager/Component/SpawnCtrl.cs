@@ -9,18 +9,23 @@ public class SpawnCtrl : MonoBehaviour
     private bool isSpawn = false;
 
     public int CurrentEnemyCount;
+    public int currentCount;
 
     private void Update()
     {
         if (!isSpawn)
             return;
 
-        int curr = 0;
-        for (int i = 0; i < respawnPoints.Length; i++)
-        {
-            curr += respawnPoints[i].GetComponentsInChildren<Enemy>().Length;
-        }
-        CurrentEnemyCount = curr;     
+        //currentCount = 0;
+        //for (int i = 0; i < respawnPoints.Length; i++)
+        //{    
+            
+        //    if (respawnPoints[i].FinishSpawn)
+        //    {
+        //        currentCount--;
+        //    }
+        //}
+        CurrentEnemyCount = currentCount;
         if(CurrentEnemyCount == 0)
         {
             this.enabled = false;            
@@ -46,7 +51,9 @@ public class SpawnCtrl : MonoBehaviour
         //Test
         for (int i = 0; i < respawnPoints.Length; i++)
         {
-            SpawnEnemy(respawnPoints[i].SpawnPrefab, respawnPoints[i].transform.position, respawnPoints[i].transform);
+            respawnPoints[i].SpawnEffect(respawnPoints[i].SpawnEffectPrefab, respawnPoints[i].transform.position, respawnPoints[i].transform);
+            currentCount++;
+            //SpawnEnemy(respawnPoints[i].SpawnPrefab, respawnPoints[i].transform.position, respawnPoints[i].transform);
         }
         isSpawn = true;
     }
