@@ -27,7 +27,7 @@ namespace SOB.Weapons.Components
         private void HandleAttackAction()
         {
             var currHitBox = currentActionData.ActionHit;
-            if(currentHitBoxIndex >= currHitBox.Length)
+            if (currentHitBoxIndex >= currHitBox.Length)
             {
                 Debug.Log($"{weapon.name} HitBox length mismatch");
                 return;
@@ -42,7 +42,7 @@ namespace SOB.Weapons.Components
 
             if (detected.Length == 0)
             {
-                Debug.Log("detected.Length == 0"); 
+                Debug.Log("detected.Length == 0");
                 return;
             }
 
@@ -61,11 +61,16 @@ namespace SOB.Weapons.Components
 
                 if (c.TryGetComponent(out IDamageable damageable))
                 {
-                    if(currentActionData.ActionHit[currentHitEffectIndex].EffectPrefab ==null)
+                    if (currentActionData.ActionHit[currentHitEffectIndex].EffectPrefab == null)
                     {
                         continue;
                     }
-                    damageable.HitAction(currentActionData.ActionHit[currentHitEffectIndex].EffectPrefab, 0.5f);
+                    for (int i = 0; i < currentActionData.ActionHit[currentHitEffectIndex].EffectPrefab.Length; i++)
+                    {
+                        if (currentActionData.ActionHit[currentHitEffectIndex].EffectPrefab[i] == null)
+                            continue;
+                        damageable.HitAction(currentActionData.ActionHit[currentHitEffectIndex].EffectPrefab[i], 0.5f);
+                    }
                 }
             }
             #endregion
@@ -98,13 +103,13 @@ namespace SOB.Weapons.Components
             {
                 if (item.ActionHit == null)
                     continue;
-                foreach(var action in item.ActionHit)
+                foreach (var action in item.ActionHit)
                 {
                     if (!action.Debug)
                         continue;
                     Gizmos.color = Color.white;
-                    Gizmos.DrawWireCube(transform.position + new Vector3(action.ActionRect.center.x * CoreMovement.FancingDirection, action.ActionRect.center.y, 0), action.ActionRect.size);                    
-                }                
+                    Gizmos.DrawWireCube(transform.position + new Vector3(action.ActionRect.center.x * CoreMovement.FancingDirection, action.ActionRect.center.y, 0), action.ActionRect.size);
+                }
             }
         }
     }
