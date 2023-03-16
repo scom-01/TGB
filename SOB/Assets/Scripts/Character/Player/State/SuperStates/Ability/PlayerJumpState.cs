@@ -33,6 +33,7 @@ public class PlayerJumpState : PlayerAbilityState
         if(amountOfJumpLeft < player.playerData.amountOfJumps)
         {
             player.Core.GetCoreComponent<ParticleManager>().StartParticles(Jump_Effect, CollisionSenses.GroundCheck.position);
+            player.Anim.SetBool("JumpFlip", true);
         }
         DecreaseAmountOfJumpsLeft();
         player.InAirState.SetIsJumping();
@@ -40,7 +41,14 @@ public class PlayerJumpState : PlayerAbilityState
 
     public bool CanJump() => (amountOfJumpLeft > 0);
 
-    public void ResetAmountOfJumpsLeft() => amountOfJumpLeft = player.playerData.amountOfJumps;
+    public void ResetAmountOfJumpsLeft()
+    {
+        amountOfJumpLeft = player.playerData.amountOfJumps;
+        player.Anim.SetBool("JumpFlip", false);
+    }
 
-    public void DecreaseAmountOfJumpsLeft() => amountOfJumpLeft--;
+    public void DecreaseAmountOfJumpsLeft()
+    {
+        amountOfJumpLeft--;
+    }
 }
