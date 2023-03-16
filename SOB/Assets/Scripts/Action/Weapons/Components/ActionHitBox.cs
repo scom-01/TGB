@@ -67,8 +67,10 @@ namespace SOB.Weapons.Components
                     }
                     for (int i = 0; i < currentActionData.ActionHit[currentHitEffectIndex].EffectPrefab.Length; i++)
                     {
-                        if (currentActionData.ActionHit[currentHitEffectIndex].EffectPrefab[i] == null)
-                            continue;
+                        //if (currentActionData.ActionHit[currentHitEffectIndex].EffectPrefab[i] == null)
+                        //{
+                        //    continue;
+                        //}
                         damageable.HitAction(currentActionData.ActionHit[currentHitEffectIndex].EffectPrefab[i], 0.5f);
                     }
                 }

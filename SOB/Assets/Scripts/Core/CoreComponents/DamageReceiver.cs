@@ -21,6 +21,13 @@ namespace SOB.CoreSystem
         }
         public void HitAction(GameObject EffectPrefab, float Range)
         {
+            if (EffectPrefab == null)
+            {
+                if (DefaultEffectPrefab != null)
+                    particleManager.Comp.StartParticlesWithRandomPos(DefaultEffectPrefab, Range);
+                return;
+            }
+                
             particleManager.Comp.StartParticlesWithRandomPos(EffectPrefab, Range);
         }
         /// <summary>

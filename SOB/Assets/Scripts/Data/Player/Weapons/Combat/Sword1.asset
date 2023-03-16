@@ -15,7 +15,6 @@ MonoBehaviour:
   <NumberOfActions>k__BackingField: 3
   <CanJump>k__BackingField: 1
   <CanAirAttack>k__BackingField: 1
-  <EffectPrefab>k__BackingField: {fileID: 5279545542555632717, guid: 54c319e2f98e0b04384f32b5f2f6b28b, type: 3}
   <ComponentData>k__BackingField:
   - rid: 3615621173780152320
   - rid: 3615621173780152321
@@ -78,7 +77,9 @@ MonoBehaviour:
               y: -0.83
               width: 3.83
               height: 1.17
-            EffectPrefab: {fileID: 5279545542555632717, guid: 54c319e2f98e0b04384f32b5f2f6b28b, type: 3}
+            EffectPrefab:
+            - {fileID: 1380205584940949931, guid: d83a3596133faad43bf69d39ddbe8db5, type: 3}
+            - {fileID: 2778760166630123670, guid: f950d6dec83c5414d9813e10ac41e754, type: 3}
         - name: Action 2
           ActionHit:
           - Debug: 1
@@ -88,7 +89,9 @@ MonoBehaviour:
               y: -0.83
               width: 3.83
               height: 1.17
-            EffectPrefab: {fileID: 5279545542555632717, guid: 54c319e2f98e0b04384f32b5f2f6b28b, type: 3}
+            EffectPrefab:
+            - {fileID: 1380205584940949931, guid: d83a3596133faad43bf69d39ddbe8db5, type: 3}
+            - {fileID: 2778760166630123670, guid: f950d6dec83c5414d9813e10ac41e754, type: 3}
         - name: Action 3
           ActionHit:
           - Debug: 1
@@ -98,7 +101,9 @@ MonoBehaviour:
               y: -0.83
               width: 3.68
               height: 2.22
-            EffectPrefab: {fileID: 5279545542555632717, guid: 54c319e2f98e0b04384f32b5f2f6b28b, type: 3}
+            EffectPrefab:
+            - {fileID: 1380205584940949931, guid: d83a3596133faad43bf69d39ddbe8db5, type: 3}
+            - {fileID: 6994026979909216902, guid: d0ba99a8a595fd74e9cb4f4357ba3266, type: 3}
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
           m_Bits: 133120
