@@ -8,15 +8,32 @@ namespace SOB.CoreSystem
 
         private CoreComp<UnitStats> stats;
         private CoreComp<ParticleManager> particleManager;
+        private BoxCollider2D BC2D;
 
-        public bool isHit = false;
+        public bool isHit
+        {
+            get => ishit;
+            set
+            {
+                BC2D.enabled = !value;
+                ishit = value;
+            }
+        }
+        private bool ishit = false;
+
+
         public void Damage(StatsData AttackterCommonData, StatsData VictimCommonData, float amount)
         {
+            if (isHit)
+            {
+                Debug.Log(core.Unit.name + " isHit = true");
+                return;
+            }
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
 
             var damage = stats.Comp.DecreaseHealth(AttackterCommonData, VictimCommonData, amount);
             isHit = true;
-
+            stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
             RandomParticleInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
         }
         public void HitAction(GameObject EffectPrefab, float Range)
@@ -96,7 +113,7 @@ namespace SOB.CoreSystem
         protected override void Awake()
         {
             base.Awake();
-
+            BC2D = GetComponent<BoxCollider2D>();
             stats = new CoreComp<UnitStats>(core);
             particleManager = new CoreComp<ParticleManager>(core);
         }

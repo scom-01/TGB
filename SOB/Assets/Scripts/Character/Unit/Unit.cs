@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
-using UnityEngine;
 using SOB.CoreSystem;
-using System.ComponentModel;
+using System.Collections;
+using Unity.VisualScripting;
+using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
@@ -88,6 +85,7 @@ public class Unit : MonoBehaviour
             if (Core.GetCoreComponent<UnitStats>().invincibleTime <= 0.0f)
             {
                 Core.GetCoreComponent<DamageReceiver>().isHit = false;
+                Debug.Log(name + " isHit false");
                 Core.GetCoreComponent<UnitStats>().invincibleTime = 0f;
             }
         }
@@ -110,10 +108,6 @@ public class Unit : MonoBehaviour
             {
                 Core.GetCoreComponent<DamageReceiver>().RandomParticleInstantiate(Core.GetCoreComponent<DamageReceiver>().DefaultEffectPrefab, 0.5f, amount, 50, DAMAGE_ATT.Fixed);
             }
-
-
-            //player.GetComponent<Player>().Core.GetCoreComponent<Death>().Die();
-            //respawn = true;
         }
     }
 
