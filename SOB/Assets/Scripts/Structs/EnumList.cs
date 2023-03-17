@@ -79,3 +79,12 @@ public enum ENEMY_Level
 }
 
 #endregion
+
+#region Sound
+public enum Sound
+{
+    BGM,
+    Effect,
+    MaxCount,
+}
+#endregion
