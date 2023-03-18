@@ -277,15 +277,12 @@ public class PlayerInputHandler : MonoBehaviour
             {
                 if (playerInput.currentActionMap == playerInput.actions.FindActionMap("UI"))
                 {
-                    oldInputActionMap = playerInput.currentActionMap;
-                    playerInput.SwitchCurrentActionMap("GamePlay");
-                    GameManager.Inst.CheckPause(false);
+                    ChangeCurrentActionMap("GamePlay", false);
                 }
                 else if (playerInput.currentActionMap == playerInput.actions.FindActionMap("GamePlay"))
                 {
-                    oldInputActionMap = playerInput.currentActionMap;
-                    playerInput.SwitchCurrentActionMap("UI");
-                    GameManager.Inst.CheckPause(true);
+                    GameManager.Inst.SubUI.InventorySubUI.PutInventoryItem();
+                    ChangeCurrentActionMap("UI", true);
                 }
             }
         }
@@ -303,18 +300,15 @@ public class PlayerInputHandler : MonoBehaviour
             {
                 if (playerInput.currentActionMap == playerInput.actions.FindActionMap("UI"))
                 {
-                    playerInput.SwitchCurrentActionMap("Cfg");
-                    GameManager.Inst.CheckPause(true);
+                    ChangeCurrentActionMap("Cfg", true);
                 }
                 else if (playerInput.currentActionMap == playerInput.actions.FindActionMap("GamePlay"))
                 {
-                    playerInput.SwitchCurrentActionMap("Cfg");
-                    GameManager.Inst.CheckPause(true);
+                    ChangeCurrentActionMap("Cfg", true);
                 }
                 else if(playerInput.currentActionMap == playerInput.actions.FindActionMap("Cfg"))
                 {
-                    playerInput.SwitchCurrentActionMap(oldInputActionMap.name);
-                    GameManager.Inst.CheckPause(false);
+                    ChangeCurrentActionMap(oldInputActionMap.name, false);
                 }
                 oldInputActionMap = playerInput.currentActionMap;
             }
@@ -352,6 +346,13 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
     #endregion
+
+    public void ChangeCurrentActionMap(string actionMapName, bool Pause)
+    {
+        oldInputActionMap = playerInput.currentActionMap;
+        playerInput.SwitchCurrentActionMap(actionMapName);
+        GameManager.Inst.CheckPause(Pause);
+    }
 
     public void UseInput(ref bool input) => input = false;
 
