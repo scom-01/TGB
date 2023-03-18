@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour
     private Unit unit;
     public List<Weapon> weapons = new List<Weapon>();
     public List<StatsItemSO> items = new List<StatsItemSO>();
-
+    public GameObject CheckItem;
     private int ItemCount;
 
     private void Awake()
@@ -60,11 +60,16 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public bool AddInventoryItem(StatsItemSO itemData)
+    public bool AddInventoryItem(GameObject itemObject)
     {
+        StatsItemSO itemData = itemObject.GetComponent<SOB_Item>().Item;
         if (items.Count >= 8)
         {
+            CheckItem = itemObject;
             Debug.LogWarning("Inventory is full");
+
+            GameManager.Inst.SubUI.InventorySubUI.ChangeInventoryItem();
+            GameManager.Inst.inputHandler.ChangeCurrentActionMap("UI", true);
             //아이템 교체하는 코드
             return false;
         }
@@ -90,7 +95,7 @@ public class Inventory : MonoBehaviour
                     unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += statsData.MaxHealth;
                 }
             }
-            Debug.Log($"Change UnitStats {unit.Core.GetCoreComponent<UnitStats>().StatsData}");
+            Debug.Log($"Change UnitStats {unit.Core.GetCoreComponent<UnitStats>().StatsData}");            
         }
         return true;
     }

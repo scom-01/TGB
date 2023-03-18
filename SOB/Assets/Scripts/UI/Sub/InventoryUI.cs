@@ -13,6 +13,10 @@ namespace SOB.Manager
         private Inventory PlayerInventory;
         private PlayerInputHandler inputHandler;
 
+        public event Action OnRawUIMoveInputLeft;
+        public event Action OnRawUIMoveInputRight;
+        public event Action OnInteractionInput;
+
         public InventoryItems InventoryItems
         {
             get
@@ -47,7 +51,7 @@ namespace SOB.Manager
                 }
                 return inventoryDescript;
             }
-            set =>  inventoryDescript = value;
+            set => inventoryDescript = value;
         }
 
         private InventoryItems inventoryItems;
@@ -75,26 +79,16 @@ namespace SOB.Manager
 
             if (inputHandler.RawUIMoveInputRight)
             {
-                InventoryItems.CurrentSelectItemIndex++;
-                inputHandler.UseInput(ref inputHandler.RawUIMoveInputRight);
+                OnRawUIMoveInputRight.Invoke();
             }
             else if (inputHandler.RawUIMoveInputLeft)
             {
-                InventoryItems.CurrentSelectItemIndex--;
-                inputHandler.UseInput(ref inputHandler.RawUIMoveInputLeft);
+                OnRawUIMoveInputLeft.Invoke();
             }
 
             if (inputHandler.InteractionInput)
             {
-                Debug.LogWarning("inputHandler InteractionInput ");
-                if (this.InventoryItems.CurrentSelectItem == null)
-                {
-                    return;
-                }
-
-                PlayerInventory.RemoveInventoryItem(this.InventoryItems.CurrentSelectItem.StatsItemData);
-                this.InventoryItems.CurrentSelectItemIndex--;
-                inputHandler.UseInput(ref inputHandler.InteractionInput);
+                OnInteractionInput.Invoke();
             }
         }
 
@@ -106,5 +100,82 @@ namespace SOB.Manager
             }
         }
 
+        private void OnDisable()
+        {
+            PutInventoryItem();
+        }
+
+        public bool NullCheckInput()
+        {
+            OnRawUIMoveInputLeft = null;
+            OnRawUIMoveInputRight = null;
+            OnInteractionInput = null;
+            return true;
+        }
+
+        /// <summary>
+        /// InteractionInput 시 인벤토리아이템을 떨어뜨리는 상태로 전환
+        /// </summary>
+        public void PutInventoryItem()
+        {
+            //Input 초기화
+            NullCheckInput();
+
+            OnRawUIMoveInputLeft += CurrentSelectItemLeft;
+            OnRawUIMoveInputRight += CurrentSelectItemRight;
+            OnInteractionInput += PutItem;
+        }
+
+        /// <summary>
+        /// InteractionInput 시 인벤토리을 교체하는 상태로 전환
+        /// </summary>
+        public void ChangeInventoryItem()
+        {
+            //Input 초기화
+            NullCheckInput();
+
+            OnRawUIMoveInputLeft += CurrentSelectItemLeft;
+            OnRawUIMoveInputRight += CurrentSelectItemRight;
+            OnInteractionInput += ChangeItem;
+        }
+        public void CurrentSelectItemLeft()
+        {
+            InventoryItems.CurrentSelectItemIndex--;
+            inputHandler.UseInput(ref inputHandler.RawUIMoveInputLeft);
+        }
+
+        public void CurrentSelectItemRight()
+        {
+            InventoryItems.CurrentSelectItemIndex++;
+            inputHandler.UseInput(ref inputHandler.RawUIMoveInputRight);
+        }
+
+        public void PutItem()
+        {
+
+            if (this.InventoryItems.CurrentSelectItem == null)
+            {
+                Debug.Log("선택된 아이템 없음");
+                return;
+            }
+            PlayerInventory.RemoveInventoryItem(this.InventoryItems.CurrentSelectItem.StatsItemData);
+            this.InventoryItems.CurrentSelectItemIndex--;
+            inputHandler.UseInput(ref inputHandler.InteractionInput);
+        }
+
+        public void ChangeItem()
+        {
+            if (this.InventoryItems.CurrentSelectItem == null)
+            {
+                Debug.Log("선택된 아이템 없음");
+                return;
+            }
+            PlayerInventory.RemoveInventoryItem(this.InventoryItems.CurrentSelectItem.StatsItemData);
+            PlayerInventory.AddInventoryItem(PlayerInventory.CheckItem);
+            Destroy(PlayerInventory.CheckItem.GameObject());
+            PlayerInventory.CheckItem = null;
+            inputHandler.UseInput(ref inputHandler.InteractionInput);
+            GameManager.Inst.inputHandler.ChangeCurrentActionMap("GamePlay", false);
+        }
     }
 }
