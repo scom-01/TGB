@@ -59,8 +59,8 @@ public class Player : Unit
         WallSlideState = new PlayerWallSlideState(this, "wallSlide");
         WallJumpState = new PlayerWallJumpState(this, "inAir");
         DashState = new PlayerDashState(this, "dash");
-        PrimaryAttackState = new PlayerWeaponState(this, "action"); //, Inventory.weapons[(int)CombatInputs.primary]);
-        SecondaryAttackState = new PlayerWeaponState(this, "action");//, Inventory.weapons[(int)CombatInputs.secondary]);
+        PrimaryAttackState = new PlayerWeaponState(this, "action",((int)CombatInputs.primary== (int)CombatInputs.primary)); //, Inventory.weapons[(int)CombatInputs.primary]);
+        SecondaryAttackState = new PlayerWeaponState(this, "action",((int)CombatInputs.primary== (int)CombatInputs.secondary));//, Inventory.weapons[(int)CombatInputs.secondary]);
         foreach (var weapon in Inventory.weapons)
         {
             weapon.SetCore(Core);

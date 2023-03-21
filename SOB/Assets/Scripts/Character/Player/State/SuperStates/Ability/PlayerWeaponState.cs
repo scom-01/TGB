@@ -14,9 +14,11 @@ public class PlayerWeaponState : PlayerAbilityState
     private int xInput;
     private int yInput;
     private bool JumpInput;
+    private bool isPrimary;
 
-    public PlayerWeaponState(Unit unit, string animBoolName) : base(unit, animBoolName)
+    public PlayerWeaponState(Unit unit, string animBoolName, bool primary) : base(unit, animBoolName)
     {
+        isPrimary = primary;
     }
 
     public override void Enter()
@@ -26,6 +28,7 @@ public class PlayerWeaponState : PlayerAbilityState
         //setVelocity = false;
 
         weapon.InAir = !CollisionSenses.CheckIfGrounded;
+        weapon.isPrimary = isPrimary;
         weapon.EnterWeapon();
 
         CanAttack = false;

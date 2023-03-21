@@ -155,11 +155,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 840319699465386052}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a760ae3cf33120499be59753609a323, type: 3}
+  m_Script: {fileID: 11500000, guid: b85d4bde7d2e8de4daefd1f2646b39a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPrimary: 0
   InAir: 0
-  actionCounterResetCooldown: 0.5
+  actionCounterResetCooldown: 0.6
 --- !u!114 &840319700626150341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,7 +266,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DefaultEffectPrefab: {fileID: 5279545542555632717, guid: 54c319e2f98e0b04384f32b5f2f6b28b, type: 3}
-  isHit: 0
 --- !u!61 &840319699523841664
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1074,11 +1074,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 840319700343323625}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a760ae3cf33120499be59753609a323, type: 3}
+  m_Script: {fileID: 11500000, guid: b85d4bde7d2e8de4daefd1f2646b39a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPrimary: 0
   InAir: 0
-  actionCounterResetCooldown: 5
+  actionCounterResetCooldown: 0.8
 --- !u!114 &840319700343323631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1379,11 +1380,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 840319700875233747}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a760ae3cf33120499be59753609a323, type: 3}
+  m_Script: {fileID: 11500000, guid: b85d4bde7d2e8de4daefd1f2646b39a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPrimary: 0
   InAir: 0
-  actionCounterResetCooldown: 2
+  actionCounterResetCooldown: 1
 --- !u!114 &840319700875233751
 MonoBehaviour:
   m_ObjectHideFlags: 0

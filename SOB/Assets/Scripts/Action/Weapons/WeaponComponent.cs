@@ -79,7 +79,7 @@ namespace SOB.Weapons.Components
         {
             base.HandleEnter();
 
-            currentActionData = data.ActionData[weapon.CurrentActionCounter];
+            currentActionData = data.ActionData[weapon.CurrentActionCounter_1];
         }
 
         public override void Init()

@@ -128,11 +128,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1649730510779115559}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a760ae3cf33120499be59753609a323, type: 3}
+  m_Script: {fileID: 11500000, guid: b85d4bde7d2e8de4daefd1f2646b39a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   InAir: 0
-  actionCounterResetCooldown: 1
+  actionCounterResetCooldown: 0
 --- !u!114 &7465565771582179943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,6 +351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapons: []
   items: []
+  CheckItem: {fileID: 0}
 --- !u!114 &6735750043806285471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,7 +521,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DefaultEffectPrefab: {fileID: 0}
-  isHit: 0
 --- !u!61 &3640253523003701946
 BoxCollider2D:
   m_ObjectHideFlags: 0
