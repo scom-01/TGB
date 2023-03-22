@@ -6,6 +6,7 @@ using SOB.Manager;
 using SOB.CoreSystem;
 using static UnityEditor.Experimental.GraphView.GraphView;
 using System.Numerics;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,7 +28,13 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public float DeadLine;
 
-    public PlayerInputHandler inputHandler { get; private set; }
+    public PlayerInputHandler inputHandler
+    {
+        get
+        {
+            return this.GetComponent<PlayerInputHandler>();
+        }
+    }
     private float respawnTimeStart;
     private bool respawn;
 
@@ -45,7 +52,6 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 60;
         playerGO = Instantiate(Player, respawnPoint);
         player = playerGO.GetComponent<Player>();
-        inputHandler = this.GetComponent<PlayerInputHandler>();
 
         if (Inst == null)
         {
@@ -67,6 +73,16 @@ public class GameManager : MonoBehaviour
     {
         CheckEnemy();
         CheckRespawn();
+    }
+
+    private void OnEnable()
+    {
+        UserKeySettingLoad();
+    }
+
+    private void OnDisable()
+    {
+        UserKeySettingSave();
     }
 
     public void Respawn()
@@ -107,5 +123,23 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SubUI.InventorySubUI.gameObject.SetActive(false);
+    }
+
+    public void UserKeySettingLoad()
+    {
+        string rebinds = PlayerPrefs.GetString(GlobalValue.RebindsKey, string.Empty);
+        if (string.IsNullOrEmpty(rebinds))
+        {
+            Debug.LogWarning("Load Fails");
+            return;
+        }
+        inputHandler.playerInput.actions.LoadBindingOverridesFromJson(rebinds);
+        Debug.LogWarning("Load Success");
+    }
+    public void UserKeySettingSave()
+    {
+        string rebinds = inputHandler.playerInput.actions.SaveBindingOverridesAsJson();
+        PlayerPrefs.SetString(GlobalValue.RebindsKey, rebinds);
+        Debug.LogWarning("Save Success");
     }
 }

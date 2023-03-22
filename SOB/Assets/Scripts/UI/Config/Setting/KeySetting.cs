@@ -1,15 +1,15 @@
+using SOB.Manager;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputActionRebindingExtensions;
+using static UnityEngine.InputSystem.InputBindingCompositeContext;
 using static UnityEngine.Rendering.DebugUI.Table;
 
 public class KeySetting : MonoBehaviour
 {
-    public InputAction m_Action;
-    public int m_BindingIndex;    
     public string KeyName
     {
         set
@@ -21,17 +21,35 @@ public class KeySetting : MonoBehaviour
             }
         }
     }
+    [SerializeField] private InputActionReference m_Action = null;
+    private PlayerInputHandler m_PlayerInputHandler
+    {
+        get
+        {
+            return GameManager.Inst.inputHandler;
+        }
+    }
 
     [SerializeField] private TextMeshProUGUI KeyNameTxt;
     [SerializeField] private TextMeshProUGUI CurrentKeyBtnNameTxt;
     [SerializeField] private string keyName;
-    public InputAction KeyBtn;
-    private string currentKeyBtnName;
-    private bool isChangeKey;
+
+    private InputActionRebindingExtensions.RebindingOperation m_Rebind;
+    private int m_BindingIndex;
 
     private void OnEnable()
     {
-        m_BindingIndex = KeyBtn.GetBindingIndex();
+        Debug.Log(keyName + " Enable");
+        KeyName = keyName;
+        if (m_Action.action.type == InputActionType.Value)
+        {
+            m_BindingIndex = m_Action.action.ChangeBinding("WASD").NextPartBinding(keyName).bindingIndex;
+        }
+        else
+        {
+            m_BindingIndex = m_Action.action.GetBindingIndex();
+        }
+
         UpdateDisplayText();
     }
     private void OnDisable()
@@ -41,40 +59,32 @@ public class KeySetting : MonoBehaviour
     private void UpdateDisplayText()
     {
         m_Rebind?.Dispose();
-        //CurrentKeyBtnNameTxt.text = m_Action.GetBindingDisplayString(m_BindingIndex);
-        CurrentKeyBtnNameTxt.text = KeyBtn.GetBindingDisplayString();
+
+        CurrentKeyBtnNameTxt.text = InputControlPath.ToHumanReadableString(
+            m_Action.action.bindings[m_BindingIndex].effectivePath,
+            InputControlPath.HumanReadableStringOptions.OmitDevice);
     }
-    private InputActionRebindingExtensions.RebindingOperation m_Rebind;
+
     private void Start()
     {
-        KeyName = keyName;
-        CurrentKeyBtnNameTxt.text = KeyBtn.GetBindingDisplayString();
+        //KeyName = keyName;
+        //string rebinds = PlayerPrefs.GetString(RebindsKey, string.Empty);
+        //if (string.IsNullOrEmpty(rebinds))
+        //    return;
+        //m_PlayerInputHandler.playerInput.actions.LoadBindingOverridesFromJson(rebinds);
+        //UpdateDisplayText();
     }
 
     public void OnClickChange()
     {
         Debug.Log("OnClick = " + keyName);
-        m_Rebind = KeyBtn.PerformInteractiveRebinding()
-            .WithControlsExcluding("Mouse")
-            .OnMatchWaitForAnother(0.1f)
-            .WithTargetBinding(m_BindingIndex)
-            .OnComplete(_ => UpdateDisplayText())
-            .Start();
-        Debug.LogWarning("ChangeInput = " + KeyBtn.GetBindingDisplayString());
-        //KeyBtn.Reset();
-        //KeyBtn.PerformInteractiveRebinding()
-        //        //// To avoid accidental input from mouse motion
-        //        //.WithControlsExcluding("Mouse")
-        //        //.OnMatchWaitForAnother(0.1f)
-        //        .Start();
-        //CurrentKeyBtnNameTxt.text = KeyBtn.GetBindingDisplayString();
-        //isChangeKey = true;
-    }
-
-    private void OnGUI()
-    {
-        if (!isChangeKey)
-            return;
-        
-    }
+        m_PlayerInputHandler.SwitchActionMap("UI");
+        m_Rebind = m_Action.action.PerformInteractiveRebinding()
+        .WithTargetBinding(m_BindingIndex)
+        .WithControlsExcluding("Mouse")
+        .OnMatchWaitForAnother(0.1f)
+        .OnComplete(_ => UpdateDisplayText())
+        .Start();
+        m_PlayerInputHandler.SwitchActionMap("GamePlay");
+    }    
 }

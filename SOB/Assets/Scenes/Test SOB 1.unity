@@ -158,10 +158,10 @@ RectTransform:
   m_Father: {fileID: 1289933013}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 260, y: -250}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3969098
 MonoBehaviour:
@@ -204,36 +204,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a0f0f32a55e8f74397545f81993c311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Action:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  m_BindingIndex: 0
+  m_Action: {fileID: 1172321988610390200, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
   KeyNameTxt: {fileID: 709186041}
   CurrentKeyBtnNameTxt: {fileID: 2097233566}
-  keyName: Right
-  KeyBtn:
-    m_Name: Key Btn
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 047a9587-9a8a-4da9-a4ef-ca336d50b89c
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: abb708ea-9802-4f93-9e41-08403e48a277
-      m_Path: <Keyboard>/rightArrow
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Key Btn
-      m_Flags: 0
-    m_Flags: 0
+  keyName: Left
 --- !u!1 &15017665
 GameObject:
   m_ObjectHideFlags: 0
@@ -2411,7 +2385,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Up Arrow
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2438,7 +2412,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 44.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2590,10 +2564,10 @@ RectTransform:
   m_Father: {fileID: 1289933013}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 640, y: -150}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &147682240
 MonoBehaviour:
@@ -2636,36 +2610,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a0f0f32a55e8f74397545f81993c311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Action:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  m_BindingIndex: 0
+  m_Action: {fileID: 849095682613746056, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
   KeyNameTxt: {fileID: 1821835446}
   CurrentKeyBtnNameTxt: {fileID: 1950202639}
   keyName: Command Attack2
-  KeyBtn:
-    m_Name: Key Btn
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 047a9587-9a8a-4da9-a4ef-ca336d50b89c
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: abb708ea-9802-4f93-9e41-08403e48a277
-      m_Path: <Keyboard>/x
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Key Btn
-      m_Flags: 0
-    m_Flags: 0
 --- !u!1 &149699449
 GameObject:
   m_ObjectHideFlags: 0
@@ -3213,10 +3161,10 @@ RectTransform:
   m_Father: {fileID: 1289933013}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 640, y: -350}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &215364836
 MonoBehaviour:
@@ -3259,36 +3207,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a0f0f32a55e8f74397545f81993c311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Action:
-    m_Name: Action
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 91d563a2-60b9-470e-8602-89c70a6e184a
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  m_BindingIndex: 0
+  m_Action: {fileID: 2836663159072329735, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
   KeyNameTxt: {fileID: 779334224}
   CurrentKeyBtnNameTxt: {fileID: 460477073}
-  keyName: "\uC0C1\uD638\uC791\uC6A9"
-  KeyBtn:
-    m_Name: Key Btn
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 047a9587-9a8a-4da9-a4ef-ca336d50b89c
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: abb708ea-9802-4f93-9e41-08403e48a277
-      m_Path: <Keyboard>/f
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Key Btn
-      m_Flags: 0
-    m_Flags: 0
+  keyName: Interaction
 --- !u!1 &222069324
 GameObject:
   m_ObjectHideFlags: 0
@@ -4067,7 +3989,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Up Arrow
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4094,7 +4016,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 44.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4155,13 +4077,14 @@ GameObject:
   - component: {fileID: 305827921}
   - component: {fileID: 305827923}
   - component: {fileID: 305827922}
+  - component: {fileID: 305827924}
   m_Layer: 0
   m_Name: SettingUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &305827921
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4198,7 +4121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.4627451}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4219,6 +4142,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 305827920}
   m_CullTransparentMesh: 1
+--- !u!114 &305827924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305827920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1cc243d0ecb2a041a09c01f822c42f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &306839318
 GameObject:
   m_ObjectHideFlags: 0
@@ -5211,10 +5146,10 @@ RectTransform:
   m_Father: {fileID: 1289933013}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 640, y: -50}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &391891719
 MonoBehaviour:
@@ -5257,36 +5192,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a0f0f32a55e8f74397545f81993c311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Action:
-    m_Name: Action
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 8d439441-b3fd-4b68-8d5e-ccaed29e59d4
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  m_BindingIndex: 0
+  m_Action: {fileID: 701637411946163291, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
   KeyNameTxt: {fileID: 1573125565}
   CurrentKeyBtnNameTxt: {fileID: 954510691}
   keyName: Command Attack
-  KeyBtn:
-    m_Name: Key Btn
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 047a9587-9a8a-4da9-a4ef-ca336d50b89c
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: abb708ea-9802-4f93-9e41-08403e48a277
-      m_Path: <Keyboard>/x
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Key Btn
-      m_Flags: 0
-    m_Flags: 0
 --- !u!1 &411396808
 GameObject:
   m_ObjectHideFlags: 0
@@ -5695,7 +5604,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Up Arrow
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5722,7 +5631,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 44.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7149,10 +7058,10 @@ RectTransform:
   m_Father: {fileID: 1289933013}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 260, y: -150}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &594360315
 MonoBehaviour:
@@ -7195,36 +7104,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a0f0f32a55e8f74397545f81993c311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Action:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  m_BindingIndex: 0
+  m_Action: {fileID: 1172321988610390200, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
   KeyNameTxt: {fileID: 1079962833}
   CurrentKeyBtnNameTxt: {fileID: 288441467}
-  keyName: Backward
-  KeyBtn:
-    m_Name: Key Btn
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 047a9587-9a8a-4da9-a4ef-ca336d50b89c
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: abb708ea-9802-4f93-9e41-08403e48a277
-      m_Path: <Keyboard>/downArrow
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Key Btn
-      m_Flags: 0
-    m_Flags: 0
+  keyName: Down
 --- !u!1 &597574127
 GameObject:
   m_ObjectHideFlags: 0
@@ -7547,10 +7430,10 @@ RectTransform:
   m_Father: {fileID: 1289933013}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 260, y: -450}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &664843496
 MonoBehaviour:
@@ -7593,36 +7476,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a0f0f32a55e8f74397545f81993c311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Action:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  m_BindingIndex: 0
+  m_Action: {fileID: 7362042947304280454, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
   KeyNameTxt: {fileID: 495420514}
   CurrentKeyBtnNameTxt: {fileID: 1221497859}
   keyName: Jump
-  KeyBtn:
-    m_Name: Key Btn
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 047a9587-9a8a-4da9-a4ef-ca336d50b89c
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: abb708ea-9802-4f93-9e41-08403e48a277
-      m_Path: <Keyboard>/c
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Key Btn
-      m_Flags: 0
-    m_Flags: 0
 --- !u!114 &665877236 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6723216883595263995, guid: 81b02d1fbb379ce41a4a10f75c934531, type: 3}
@@ -8365,7 +8222,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Up Arrow
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8392,7 +8249,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 44.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8511,6 +8368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0571809d65d03a944a5cc9469d92e83d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
   JumpInput: 0
   JumpInputStop: 0
   DashInput: 0
@@ -8585,22 +8443,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 77de3ba5-221f-4ef0-9272-612ca69c3ed2
     m_ActionName: GamePlay/Jump[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 749720750}
-        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
-        m_MethodName: OnGrabInput
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 5a6fa1af-c214-4172-a847-0b11cbcdaabf
-    m_ActionName: GamePlay/Grab[/Keyboard/ctrl]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 749720750}
@@ -9635,10 +9477,10 @@ RectTransform:
   m_Father: {fileID: 1289933013}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 260, y: -350}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &812701231
 MonoBehaviour:
@@ -9681,36 +9523,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a0f0f32a55e8f74397545f81993c311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Action:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  m_BindingIndex: 0
+  m_Action: {fileID: 1172321988610390200, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
   KeyNameTxt: {fileID: 222069326}
   CurrentKeyBtnNameTxt: {fileID: 96070111}
-  keyName: Left
-  KeyBtn:
-    m_Name: Key Btn
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 047a9587-9a8a-4da9-a4ef-ca336d50b89c
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: abb708ea-9802-4f93-9e41-08403e48a277
-      m_Path: <Keyboard>/leftArrow
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Key Btn
-      m_Flags: 0
-    m_Flags: 0
+  keyName: Right
 --- !u!1 &814671651
 GameObject:
   m_ObjectHideFlags: 0
@@ -10978,6 +10794,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DetailSubUI: {fileID: 1416250191}
   InventorySubUI: {fileID: 1133903273}
+  SettingSubUI: {fileID: 305827924}
 --- !u!1 &902708837
 GameObject:
   m_ObjectHideFlags: 0
@@ -11255,7 +11072,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Up Arrow
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11282,7 +11099,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 44.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -12304,7 +12121,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Up Arrow
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -12331,7 +12148,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 44.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -17146,7 +16963,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Up Arrow
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -17173,7 +16990,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 44.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -18075,10 +17892,10 @@ RectTransform:
   m_Father: {fileID: 1289933013}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 260, y: -550}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1343217345
 MonoBehaviour:
@@ -18121,36 +17938,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a0f0f32a55e8f74397545f81993c311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Action:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  m_BindingIndex: 0
+  m_Action: {fileID: -6152377101488576760, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
   KeyNameTxt: {fileID: 1611310194}
   CurrentKeyBtnNameTxt: {fileID: 1089025142}
   keyName: Dash
-  KeyBtn:
-    m_Name: Key Btn
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 047a9587-9a8a-4da9-a4ef-ca336d50b89c
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: abb708ea-9802-4f93-9e41-08403e48a277
-      m_Path: <Keyboard>/shift
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Key Btn
-      m_Flags: 0
-    m_Flags: 0
 --- !u!1 &1356687229
 GameObject:
   m_ObjectHideFlags: 0
@@ -23713,7 +23504,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Up Arrow
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -23740,7 +23531,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 44.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -24217,10 +24008,10 @@ RectTransform:
   m_Father: {fileID: 1289933013}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 260, y: -50}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1573694080
 MonoBehaviour:
@@ -24234,36 +24025,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a0f0f32a55e8f74397545f81993c311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Action:
-    m_Name: Action
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 606bbc96-90bc-4a41-a563-5aa212845cbb
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  m_BindingIndex: 0
+  m_Action: {fileID: 1172321988610390200, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
   KeyNameTxt: {fileID: 496760395}
   CurrentKeyBtnNameTxt: {fileID: 2001335747}
-  keyName: Forward
-  KeyBtn:
-    m_Name: Key Btn
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 047a9587-9a8a-4da9-a4ef-ca336d50b89c
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: abb708ea-9802-4f93-9e41-08403e48a277
-      m_Path: <Keyboard>/upArrow
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Key Btn
-      m_Flags: 0
-    m_Flags: 0
+  keyName: Up
 --- !u!114 &1573694081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28535,10 +28300,10 @@ RectTransform:
   m_Father: {fileID: 1289933013}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 640, y: -250}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1860736866
 MonoBehaviour:
@@ -28581,36 +28346,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a0f0f32a55e8f74397545f81993c311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Action:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  m_BindingIndex: 0
+  m_Action: {fileID: 4136438745065761487, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
   KeyNameTxt: {fileID: 1486877666}
   CurrentKeyBtnNameTxt: {fileID: 2051876609}
   keyName: Tap
-  KeyBtn:
-    m_Name: Key Btn
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 047a9587-9a8a-4da9-a4ef-ca336d50b89c
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: abb708ea-9802-4f93-9e41-08403e48a277
-      m_Path: <Keyboard>/tab
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Key Btn
-      m_Flags: 0
-    m_Flags: 0
 --- !u!1 &1875718352
 GameObject:
   m_ObjectHideFlags: 0
@@ -28841,10 +28580,10 @@ RectTransform:
   m_Father: {fileID: 1289933013}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 640, y: -450}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1911123610
 MonoBehaviour:
@@ -28887,36 +28626,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a0f0f32a55e8f74397545f81993c311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Action:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  m_BindingIndex: 0
+  m_Action: {fileID: 6937146174194068168, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
   KeyNameTxt: {fileID: 1597876712}
   CurrentKeyBtnNameTxt: {fileID: 1498155616}
-  keyName: Forward
-  KeyBtn:
-    m_Name: Key Btn
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 047a9587-9a8a-4da9-a4ef-ca336d50b89c
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: abb708ea-9802-4f93-9e41-08403e48a277
-      m_Path: <Keyboard>/a
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Key Btn
-      m_Flags: 0
-    m_Flags: 0
+  keyName: Change
 --- !u!1 &1915450650
 GameObject:
   m_ObjectHideFlags: 0
@@ -29250,7 +28963,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Up Arrow
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -29277,7 +28990,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 44.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -29618,7 +29331,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Up Arrow
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -29645,7 +29358,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 44.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -30014,10 +29727,10 @@ RectTransform:
   m_Father: {fileID: 1289933013}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 640, y: -550}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2036935567
 MonoBehaviour:
@@ -30060,36 +29773,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a0f0f32a55e8f74397545f81993c311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Action:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  m_BindingIndex: 0
+  m_Action: {fileID: -3231042697741060887, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
   KeyNameTxt: {fileID: 805648367}
   CurrentKeyBtnNameTxt: {fileID: 733102463}
-  keyName: Forward
-  KeyBtn:
-    m_Name: Key Btn
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 047a9587-9a8a-4da9-a4ef-ca336d50b89c
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: abb708ea-9802-4f93-9e41-08403e48a277
-      m_Path: <Keyboard>/a
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Key Btn
-      m_Flags: 0
-    m_Flags: 0
+  keyName: Skill2
 --- !u!1 &2047606516
 GameObject:
   m_ObjectHideFlags: 0
@@ -30379,7 +30066,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Up Arrow
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -30406,7 +30093,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 44.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -30633,7 +30320,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Up Arrow
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -30660,7 +30347,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 44.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

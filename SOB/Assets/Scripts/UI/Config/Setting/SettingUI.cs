@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-namespace SOB
+namespace SOB.Manager
 {
     public class SettingUI : MonoBehaviour
     {
-        // Start is called before the first frame update
+        private KeySetting[] keySettings;
+        
         void Start()
         {
-        
+            keySettings = GetComponentsInChildren<KeySetting>();
         }
 
         // Update is called once per frame

@@ -9,6 +9,7 @@ namespace SOB.Manager
     {        
         public DetailUI DetailSubUI;
         public InventoryUI InventorySubUI;
+        public SettingUI SettingSubUI;
 
         private void Awake()
         {

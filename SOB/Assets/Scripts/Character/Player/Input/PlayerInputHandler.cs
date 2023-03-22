@@ -9,7 +9,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
-    private PlayerInput playerInput;
+    public PlayerInput playerInput
+    {
+        get => GetComponent<PlayerInput>();
+    }
     PlayerInputActions playerInputActions;
     private InputActionMap oldInputActionMap;
     private InputAction MyAction;
@@ -56,7 +59,6 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void Awake()
     {
-        playerInput = GetComponent<PlayerInput>();
         playerInputActions = new PlayerInputActions();
         MyAction = playerInputActions.GamePlay.Primary;
         int count = Enum.GetValues(typeof(CombatInputs)).Length;

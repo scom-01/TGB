@@ -11,6 +11,7 @@ public class GlobalValue : MonoBehaviour
     public static float GV_SystemDeltatime = 0.02f;
     public static float GV_CharacterDeltatime = 0.02f;
 
+    public const string RebindsKey = "rebinds";
     /// <summary>
     /// Elemetal 속성 공격에 따른 추가 데미지 퍼센트
     /// ex) 0.3f일때 Weak Elemental에 대한 추가 데미지는 30%이다.
