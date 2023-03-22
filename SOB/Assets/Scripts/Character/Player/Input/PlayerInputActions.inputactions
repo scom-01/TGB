@@ -24,15 +24,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Grab",
-                    "type": "Button",
-                    "id": "5a6fa1af-c214-4172-a847-0b11cbcdaabf",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Dash",
                     "type": "Button",
                     "id": "6990ccc3-08b3-4a66-b619-60a27835fe6a",
@@ -183,19 +174,8 @@
                 },
                 {
                     "name": "",
-                    "id": "2239b71d-e5f5-4aaf-a576-01dc5beba898",
-                    "path": "<Keyboard>/ctrl",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Grab",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "f8b88acf-52b1-43d1-805c-ca293720c521",
-                    "path": "<Keyboard>/z",
+                    "path": "<Keyboard>/ctrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -227,19 +207,8 @@
                 },
                 {
                     "name": "",
-                    "id": "994e0bc5-3c8e-4344-a143-ad8910edece0",
-                    "path": "<Keyboard>/x",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Primary",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "4d564be0-fd03-4c82-9427-5085594a5b46",
-                    "path": "<Keyboard>/v",
+                    "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -288,6 +257,17 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Interaction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f0df4264-8dcb-4d7c-a6bb-23385f36b744",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Primary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

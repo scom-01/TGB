@@ -9,7 +9,6 @@ public class PlayerInAirState : PlayerState
     private int xInput;                 //좌우 입력값
     private bool JumpInput;             //점프 입력값
     private bool JumpInputStop;         //점프 입력 해체 값
-    private bool grabInput;             //그랩 입력값
     private bool dashInput;             //Dash 키 입력값
     private bool skill1Input;           //skill1키 입력값
     private bool skill2Input;           //skill2키 입력값
@@ -79,7 +78,6 @@ public class PlayerInAirState : PlayerState
         JumpInputStop = player.InputHandler.JumpInputStop;
         CheckJumpMultiplier();
 
-        grabInput = player.InputHandler.GrabInput;
         dashInput = player.InputHandler.DashInput;
         skill1Input = player.InputHandler.Skill1Input;
         skill2Input = player.InputHandler.Skill2Input;

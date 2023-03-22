@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,7 @@ public class PlayerInputHandler : MonoBehaviour
     private PlayerInput playerInput;
     PlayerInputActions playerInputActions;
     private InputActionMap oldInputActionMap;
+    private InputAction MyAction;
     private Camera cam;
     public Vector2 RawMovementInput { get; private set; }
     public int NormInputX { get; private set; }
@@ -18,7 +20,6 @@ public class PlayerInputHandler : MonoBehaviour
     [HideInInspector]
     public bool JumpInput
                     , JumpInputStop
-                    , GrabInput
                     , DashInput
                     , DashInputStop
                     , Skill1Input
@@ -56,6 +57,8 @@ public class PlayerInputHandler : MonoBehaviour
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
+        playerInputActions = new PlayerInputActions();
+        MyAction = playerInputActions.GamePlay.Primary;
         int count = Enum.GetValues(typeof(CombatInputs)).Length;
         ActionInputs = new bool[count];
         ActionInputsStartTime = new float[count];
@@ -150,21 +153,6 @@ public class PlayerInputHandler : MonoBehaviour
             JumpInputStop = true;
         }
     }
-
-    //Grab Input
-    public void OnGrabInput(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            GrabInput = true;
-        }
-
-        if (context.canceled)
-        {
-            GrabInput = false;
-        }
-    }
-
     public void OnDashInput(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -342,10 +330,16 @@ public class PlayerInputHandler : MonoBehaviour
 
         if (context.canceled)
         {
-            RawUIMoveInputRight = false;
+            RawUIMoveInputRight = false;            
         }
     }
     #endregion
+
+    private void OnGUI()
+    {
+        Event e = Event.current;
+        Debug.Log("E = " +e.keyCode);
+    }
 
     public void ChangeCurrentActionMap(string actionMapName, bool Pause)
     {

@@ -46,15 +46,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Grab"",
-                    ""type"": ""Button"",
-                    ""id"": ""5a6fa1af-c214-4172-a847-0b11cbcdaabf"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Dash"",
                     ""type"": ""Button"",
                     ""id"": ""6990ccc3-08b3-4a66-b619-60a27835fe6a"",
@@ -205,19 +196,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2239b71d-e5f5-4aaf-a576-01dc5beba898"",
-                    ""path"": ""<Keyboard>/ctrl"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Grab"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""f8b88acf-52b1-43d1-805c-ca293720c521"",
-                    ""path"": ""<Keyboard>/z"",
+                    ""path"": ""<Keyboard>/ctrl"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
@@ -249,19 +229,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""994e0bc5-3c8e-4344-a143-ad8910edece0"",
-                    ""path"": ""<Keyboard>/x"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Primary"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""4d564be0-fd03-4c82-9427-5085594a5b46"",
-                    ""path"": ""<Keyboard>/v"",
+                    ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
@@ -310,6 +279,17 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Interaction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f0df4264-8dcb-4d7c-a6bb-23385f36b744"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Primary"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -475,7 +455,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_GamePlay = asset.FindActionMap("GamePlay", throwIfNotFound: true);
         m_GamePlay_Movement = m_GamePlay.FindAction("Movement", throwIfNotFound: true);
         m_GamePlay_Jump = m_GamePlay.FindAction("Jump", throwIfNotFound: true);
-        m_GamePlay_Grab = m_GamePlay.FindAction("Grab", throwIfNotFound: true);
         m_GamePlay_Dash = m_GamePlay.FindAction("Dash", throwIfNotFound: true);
         m_GamePlay_Skill1 = m_GamePlay.FindAction("Skill1", throwIfNotFound: true);
         m_GamePlay_Skill2 = m_GamePlay.FindAction("Skill2", throwIfNotFound: true);
@@ -556,7 +535,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private IGamePlayActions m_GamePlayActionsCallbackInterface;
     private readonly InputAction m_GamePlay_Movement;
     private readonly InputAction m_GamePlay_Jump;
-    private readonly InputAction m_GamePlay_Grab;
     private readonly InputAction m_GamePlay_Dash;
     private readonly InputAction m_GamePlay_Skill1;
     private readonly InputAction m_GamePlay_Skill2;
@@ -572,7 +550,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public GamePlayActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_GamePlay_Movement;
         public InputAction @Jump => m_Wrapper.m_GamePlay_Jump;
-        public InputAction @Grab => m_Wrapper.m_GamePlay_Grab;
         public InputAction @Dash => m_Wrapper.m_GamePlay_Dash;
         public InputAction @Skill1 => m_Wrapper.m_GamePlay_Skill1;
         public InputAction @Skill2 => m_Wrapper.m_GamePlay_Skill2;
@@ -597,9 +574,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnJump;
-                @Grab.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnGrab;
-                @Grab.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnGrab;
-                @Grab.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnGrab;
                 @Dash.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnDash;
@@ -637,9 +611,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @Grab.started += instance.OnGrab;
-                @Grab.performed += instance.OnGrab;
-                @Grab.canceled += instance.OnGrab;
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
@@ -782,7 +753,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnGrab(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnSkill1(InputAction.CallbackContext context);
         void OnSkill2(InputAction.CallbackContext context);
