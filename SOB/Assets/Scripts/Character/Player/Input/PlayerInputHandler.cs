@@ -337,8 +337,6 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void OnGUI()
     {
-        Event e = Event.current;
-        Debug.Log("E = " +e.keyCode);
     }
 
     public void ChangeCurrentActionMap(string actionMapName, bool Pause)
