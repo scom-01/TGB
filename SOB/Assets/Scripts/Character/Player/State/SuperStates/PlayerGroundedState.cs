@@ -63,7 +63,7 @@ public class PlayerGroundedState : PlayerState
         }
         else if(player.InputHandler.ActionInputs[(int)CombatInputs.secondary])
         {
-            player.SecondaryAttackState.SetWeapon(player.Inventory.weapons[(int)CombatInputs.secondary]);
+            player.SecondaryAttackState.SetWeapon(player.Inventory.weapons[(int)CombatInputs.primary]);
             player.FSM.ChangeState(player.SecondaryAttackState);            
         }
         else if (player.InputHandler.Skill1Input)

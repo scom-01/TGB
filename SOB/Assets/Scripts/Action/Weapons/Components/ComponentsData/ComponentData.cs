@@ -28,7 +28,7 @@ namespace SOB.Weapons.Components
         public override void SetActionDataNames()
         {
             base.SetActionDataNames();
-            for(var i = 0; i <ActionData.Length; i++)
+            for (var i = 0; i < ActionData.Length; i++)
             {
                 ActionData[i].SetAttackName(i + 1);
             }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SOB.CoreSystem;
 using SOB.Utilities;
+using SOB.Weapons.Components;
 
 namespace SOB.Weapons
 {
@@ -17,7 +18,7 @@ namespace SOB.Weapons
         public GameObject WeaponSpriteGameObject { get; private set; }
         public AnimationEventHandler EventHandler { get; private set; }
 
-        public bool isPrimary;
+        [HideInInspector] public CommandEnum Command;
         protected UnitState state;
         
         private Timer actionCounterResetTimer;
@@ -35,12 +36,12 @@ namespace SOB.Weapons
         [Tooltip("공격1 횟수")]  public int CurrentActionCounter_1
         {
             get => currentActionCounter_1;
-            private set => currentActionCounter_1 = value >= weaponData.NumberOfActions ? 0 : value;
+            private set => currentActionCounter_1 = value >= weaponData.NumberOfActionsPrimary ? 0 : value;
         }
         [Tooltip("공격2 횟수")]  public int CurrentActionCounter_2
         {
             get => currentActionCounter_2;
-            private set => currentActionCounter_2 = value >= weaponData.NumberOfActions ? 0 : value;
+            private set => currentActionCounter_2 = value >= weaponData.NumberOfActionsSecondary ? 0 : value;
         }
         [HideInInspector] public bool InAir;
         [HideInInspector]   protected string weaponAnimBoolStr;
@@ -98,13 +99,13 @@ namespace SOB.Weapons
                         
             SetBoolName("inAir", InAir);            
             SetBoolName("action", true);
-            if(isPrimary)
+            if(Command == CommandEnum.Primary)
             {
-                SetFloatName("actionCounter_1", CurrentActionCounter_1);            
+                SetIntName("actionCounter_1", CurrentActionCounter_1);            
             }
             else
             {
-                SetFloatName("actionCounter_2", CurrentActionCounter_2);            
+                SetIntName("actionCounter_2", CurrentActionCounter_2);            
             }
 
             SetIntName("actionCounter", CurrentActionCounter);            
@@ -119,7 +120,7 @@ namespace SOB.Weapons
         public virtual void ExitWeapon()
         {
             SetBoolName("action", false);
-            if (isPrimary)
+            if (Command == CommandEnum.Primary)
             {
                 CurrentActionCounter_1++;
             }
@@ -127,6 +128,7 @@ namespace SOB.Weapons
             {
                 CurrentActionCounter_2++;
             }
+            CurrentActionCounter++;
             actionCounterResetTimer.StartTimer();
             WeaponCore.Unit.AnimationFinishTrigger();
 
@@ -154,6 +156,7 @@ namespace SOB.Weapons
 
         public void ResetActionCounter()
         {
+            CurrentActionCounter = 0;
             CurrentActionCounter_1 = 0;
             CurrentActionCounter_2 = 0;
         }

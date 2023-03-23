@@ -9,4 +9,10 @@ namespace SOB.Weapons.Components
 
         public void SetAttackName(int i) => name = $"Action {i}";
     }
+
+    public enum CommandEnum
+    {
+        Primary,
+        Secondary,
+    }
 }

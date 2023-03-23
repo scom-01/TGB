@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Sword1
   m_EditorClassIdentifier: 
   <NumberOfActions>k__BackingField: 3
+  <NumberOfActionsPrimary>k__BackingField: 3
+  <NumberOfActionsSecondary>k__BackingField: 3
   <CanJump>k__BackingField: 1
   <CanAirAttack>k__BackingField: 1
   <ComponentData>k__BackingField:
@@ -70,7 +72,7 @@ MonoBehaviour:
         actionData:
         - name: Action 1
           ActionHit:
-          - Debug: 1
+          - Debug: 0
             ActionRect:
               serializedVersion: 2
               x: -0.77
@@ -80,6 +82,37 @@ MonoBehaviour:
             EffectPrefab:
             - {fileID: 1380205584940949931, guid: d83a3596133faad43bf69d39ddbe8db5, type: 3}
             - {fileID: 2778760166630123670, guid: f950d6dec83c5414d9813e10ac41e754, type: 3}
+            Command: 0
+          - Debug: 0
+            ActionRect:
+              serializedVersion: 2
+              x: -0.77
+              y: -0.83
+              width: 3.83
+              height: 1.17
+            EffectPrefab:
+            - {fileID: 1380205584940949931, guid: d83a3596133faad43bf69d39ddbe8db5, type: 3}
+            - {fileID: 2778760166630123670, guid: f950d6dec83c5414d9813e10ac41e754, type: 3}
+            Command: 1
+          IsAirActionHit:
+          - Debug: 1
+            ActionRect:
+              serializedVersion: 2
+              x: -1.3
+              y: -0.54
+              width: 3.97
+              height: 0.8
+            EffectPrefab: []
+            Command: 0
+          - Debug: 0
+            ActionRect:
+              serializedVersion: 2
+              x: -1.3
+              y: -0.54
+              width: 3.97
+              height: 0.8
+            EffectPrefab: []
+            Command: 1
         - name: Action 2
           ActionHit:
           - Debug: 1
@@ -92,6 +125,37 @@ MonoBehaviour:
             EffectPrefab:
             - {fileID: 1380205584940949931, guid: d83a3596133faad43bf69d39ddbe8db5, type: 3}
             - {fileID: 2778760166630123670, guid: f950d6dec83c5414d9813e10ac41e754, type: 3}
+            Command: 0
+          - Debug: 1
+            ActionRect:
+              serializedVersion: 2
+              x: -0.77
+              y: -0.83
+              width: 3.83
+              height: 1.17
+            EffectPrefab:
+            - {fileID: 1380205584940949931, guid: d83a3596133faad43bf69d39ddbe8db5, type: 3}
+            - {fileID: 2778760166630123670, guid: f950d6dec83c5414d9813e10ac41e754, type: 3}
+            Command: 1
+          IsAirActionHit:
+          - Debug: 1
+            ActionRect:
+              serializedVersion: 2
+              x: -1.66
+              y: -0.2
+              width: 4.06
+              height: 0.86
+            EffectPrefab: []
+            Command: 0
+          - Debug: 0
+            ActionRect:
+              serializedVersion: 2
+              x: -1.66
+              y: -0.2
+              width: 4.06
+              height: 0.86
+            EffectPrefab: []
+            Command: 1
         - name: Action 3
           ActionHit:
           - Debug: 1
@@ -104,6 +168,37 @@ MonoBehaviour:
             EffectPrefab:
             - {fileID: 1380205584940949931, guid: d83a3596133faad43bf69d39ddbe8db5, type: 3}
             - {fileID: 6994026979909216902, guid: d0ba99a8a595fd74e9cb4f4357ba3266, type: 3}
+            Command: 0
+          - Debug: 1
+            ActionRect:
+              serializedVersion: 2
+              x: -0.83
+              y: -0.83
+              width: 3.68
+              height: 2.22
+            EffectPrefab:
+            - {fileID: 1380205584940949931, guid: d83a3596133faad43bf69d39ddbe8db5, type: 3}
+            - {fileID: 6994026979909216902, guid: d0ba99a8a595fd74e9cb4f4357ba3266, type: 3}
+            Command: 1
+          IsAirActionHit:
+          - Debug: 1
+            ActionRect:
+              serializedVersion: 2
+              x: -1.46
+              y: -0.81
+              width: 3.59
+              height: 2.09
+            EffectPrefab: []
+            Command: 0
+          - Debug: 0
+            ActionRect:
+              serializedVersion: 2
+              x: -1.46
+              y: -0.81
+              width: 3.59
+              height: 2.09
+            EffectPrefab: []
+            Command: 1
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
           m_Bits: 133120
@@ -134,44 +229,77 @@ MonoBehaviour:
         actionData:
         - name: Action 1
           <GroundedSprites>k__BackingField:
-          - {fileID: 51041346, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-          - {fileID: -1188008882, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-          - {fileID: 140725285, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-          - {fileID: 301393240, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-          - {fileID: -737698732, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - sprites:
+            - {fileID: 51041346, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+            - {fileID: -1188008882, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+            - {fileID: 140725285, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+            - {fileID: 301393240, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+            - {fileID: -737698732, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+            Command: 0
+          - sprites:
+            - {fileID: 1433230625, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+            - {fileID: 1805210951, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+            - {fileID: 277646980, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+            - {fileID: 970946481, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+            - {fileID: 622053077, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+            Command: 1
           <InAirSprites>k__BackingField:
-          - {fileID: 648612261, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-          - {fileID: 1591889717, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-          - {fileID: 1017945547, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-          - {fileID: 1505583640, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-          - {fileID: -118192930, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-          - {fileID: 813284989, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+          - sprites:
+            - {fileID: 648612261, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+            - {fileID: 1591889717, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+            - {fileID: 1017945547, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+            - {fileID: 1505583640, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+            - {fileID: -118192930, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+            - {fileID: 813284989, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+            Command: 0
         - name: Action 2
           <GroundedSprites>k__BackingField:
-          - {fileID: 675924838, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-          - {fileID: -1128788728, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-          - {fileID: -1554525141, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-          - {fileID: 783210583, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-          - {fileID: 100916829, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - sprites:
+            - {fileID: 675924838, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+            - {fileID: -1128788728, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+            - {fileID: -1554525141, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+            - {fileID: 783210583, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+            - {fileID: 100916829, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+            Command: 0
+          - sprites:
+            - {fileID: -1575140979, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+            - {fileID: 542500942, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+            - {fileID: 360467885, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+            - {fileID: -2141200257, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+            - {fileID: 1762517732, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+            Command: 1
           <InAirSprites>k__BackingField:
-          - {fileID: 1626861925, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-          - {fileID: -389562703, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-          - {fileID: 243659706, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-          - {fileID: -1895856038, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-          - {fileID: 2055020914, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+          - sprites:
+            - {fileID: 1626861925, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+            - {fileID: -389562703, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+            - {fileID: 243659706, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+            - {fileID: -1895856038, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+            - {fileID: 2055020914, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+            Command: 0
         - name: Action 3
           <GroundedSprites>k__BackingField:
-          - {fileID: 577480298, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-          - {fileID: 653481542, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-          - {fileID: -1284737267, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-          - {fileID: 1848349252, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-          - {fileID: -1175468386, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - sprites:
+            - {fileID: 577480298, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+            - {fileID: 653481542, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+            - {fileID: -1284737267, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+            - {fileID: 1848349252, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+            - {fileID: -1175468386, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+            Command: 0
+          - sprites:
+            - {fileID: 1190113757, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+            - {fileID: -1937832525, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+            - {fileID: 207459841, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+            - {fileID: -2097710950, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+            - {fileID: -438660922, guid: 72ef2132635b05b439be381d774127ee, type: 3}
+            Command: 1
           <InAirSprites>k__BackingField:
-          - {fileID: -859760171, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-          - {fileID: -2062899245, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-          - {fileID: 2006328060, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-          - {fileID: 590085780, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-          - {fileID: -502706545, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+          - sprites:
+            - {fileID: -859760171, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+            - {fileID: -2062899245, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+            - {fileID: 2006328060, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+            - {fileID: 590085780, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+            - {fileID: -502706545, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
+            Command: 0
     - rid: 3615621433789513728
       type: {class: DamageData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:

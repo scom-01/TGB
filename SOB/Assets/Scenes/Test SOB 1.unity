@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3969097}
   - component: {fileID: 3969099}
-  - component: {fileID: 3969098}
   m_Layer: 0
   m_Name: KeySetting (4)
   m_TagString: Untagged
@@ -163,35 +162,6 @@ RectTransform:
   m_AnchoredPosition: {x: 260, y: -250}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3969098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3969096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 3969099}
-          m_TargetAssemblyTypeName: KeySetting, Assembly-CSharp
-          m_MethodName: OnClickChange
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &3969099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2475,7 +2445,7 @@ GameObject:
   - component: {fileID: 110155448}
   - component: {fileID: 110155447}
   m_Layer: 0
-  m_Name: Button
+  m_Name: KeyBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2546,7 +2516,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573694080}
+      - m_Target: {fileID: 2036935568}
         m_TargetAssemblyTypeName: KeySetting, Assembly-CSharp
         m_MethodName: OnClickChange
         m_Mode: 1
@@ -2673,7 +2643,6 @@ GameObject:
   m_Component:
   - component: {fileID: 147682239}
   - component: {fileID: 147682241}
-  - component: {fileID: 147682240}
   m_Layer: 0
   m_Name: KeySetting (3)
   m_TagString: Untagged
@@ -2703,35 +2672,6 @@ RectTransform:
   m_AnchoredPosition: {x: 640, y: -150}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &147682240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 147682238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 147682241}
-          m_TargetAssemblyTypeName: KeySetting, Assembly-CSharp
-          m_MethodName: OnClickChange
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &147682241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3139,7 +3079,7 @@ GameObject:
   - component: {fileID: 199663854}
   - component: {fileID: 199663853}
   m_Layer: 0
-  m_Name: Button
+  m_Name: KeyBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3210,7 +3150,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573694080}
+      - m_Target: {fileID: 812701232}
         m_TargetAssemblyTypeName: KeySetting, Assembly-CSharp
         m_MethodName: OnClickChange
         m_Mode: 1
@@ -3404,7 +3344,6 @@ GameObject:
   m_Component:
   - component: {fileID: 215364835}
   - component: {fileID: 215364837}
-  - component: {fileID: 215364836}
   m_Layer: 0
   m_Name: KeySetting (7)
   m_TagString: Untagged
@@ -3434,35 +3373,6 @@ RectTransform:
   m_AnchoredPosition: {x: 640, y: -350}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &215364836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 215364834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 215364837}
-          m_TargetAssemblyTypeName: KeySetting, Assembly-CSharp
-          m_MethodName: OnClickChange
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &215364837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3646,17 +3556,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 230961397}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1727414118}
+  m_Father: {fileID: 608225317}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 200}
+  m_AnchoredPosition: {x: 0, y: -290}
   m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &230961399
@@ -4235,14 +4145,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 325034150}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 354980721}
   - {fileID: 91374550}
-  m_Father: {fileID: 1727414118}
+  m_Father: {fileID: 608225317}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -4947,7 +4857,6 @@ GameObject:
   m_Component:
   - component: {fileID: 391891718}
   - component: {fileID: 391891720}
-  - component: {fileID: 391891719}
   m_Layer: 0
   m_Name: KeySetting (1)
   m_TagString: Untagged
@@ -4977,35 +4886,6 @@ RectTransform:
   m_AnchoredPosition: {x: 640, y: -50}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &391891719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 391891717}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 391891720}
-          m_TargetAssemblyTypeName: KeySetting, Assembly-CSharp
-          m_MethodName: OnClickChange
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &391891720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6283,13 +6163,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 496753062}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1499261868}
-  m_Father: {fileID: 1727414118}
+  m_Father: {fileID: 608225317}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -6997,7 +6877,7 @@ GameObject:
   - component: {fileID: 565298762}
   - component: {fileID: 565298761}
   m_Layer: 0
-  m_Name: Button
+  m_Name: KeyBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7068,7 +6948,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573694080}
+      - m_Target: {fileID: 147682241}
         m_TargetAssemblyTypeName: KeySetting, Assembly-CSharp
         m_MethodName: OnClickChange
         m_Mode: 1
@@ -7128,7 +7008,6 @@ GameObject:
   m_Component:
   - component: {fileID: 594360314}
   - component: {fileID: 594360316}
-  - component: {fileID: 594360315}
   m_Layer: 0
   m_Name: KeySetting (2)
   m_TagString: Untagged
@@ -7158,35 +7037,6 @@ RectTransform:
   m_AnchoredPosition: {x: 260, y: -150}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &594360315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 594360313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 594360316}
-          m_TargetAssemblyTypeName: KeySetting, Assembly-CSharp
-          m_MethodName: OnClickChange
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &594360316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7338,6 +7188,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 597574127}
   m_CullTransparentMesh: 1
+--- !u!1 &608225316
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 608225317}
+  - component: {fileID: 608225318}
+  m_Layer: 5
+  m_Name: MainPanelUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &608225317
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608225316}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 325034151}
+  - {fileID: 230961398}
+  - {fileID: 790089306}
+  - {fileID: 496753063}
+  m_Father: {fileID: 1727414118}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &608225318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608225316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e4b88295082d241a901e71a09db01d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &613131205
 GameObject:
   m_ObjectHideFlags: 0
@@ -7500,7 +7403,6 @@ GameObject:
   m_Component:
   - component: {fileID: 664843495}
   - component: {fileID: 664843497}
-  - component: {fileID: 664843496}
   m_Layer: 0
   m_Name: KeySetting (8)
   m_TagString: Untagged
@@ -7530,35 +7432,6 @@ RectTransform:
   m_AnchoredPosition: {x: 260, y: -450}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &664843496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 664843494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 664843497}
-          m_TargetAssemblyTypeName: KeySetting, Assembly-CSharp
-          m_MethodName: OnClickChange
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &664843497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8377,14 +8250,14 @@ MonoBehaviour:
       - m_Target: {fileID: 716272047}
         m_TargetAssemblyTypeName: CfgBtn, Assembly-CSharp
         m_MethodName: OnClickActiveUI
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &716272045
 MonoBehaviour:
@@ -8691,7 +8564,7 @@ GameObject:
   - component: {fileID: 741221099}
   - component: {fileID: 741221098}
   m_Layer: 0
-  m_Name: Button
+  m_Name: KeyBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8762,7 +8635,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573694080}
+      - m_Target: {fileID: 3969099}
         m_TargetAssemblyTypeName: KeySetting, Assembly-CSharp
         m_MethodName: OnClickChange
         m_Mode: 1
@@ -9639,7 +9512,7 @@ GameObject:
   - component: {fileID: 789017823}
   - component: {fileID: 789017822}
   m_Layer: 0
-  m_Name: Button
+  m_Name: KeyBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9710,7 +9583,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573694080}
+      - m_Target: {fileID: 391891720}
         m_TargetAssemblyTypeName: KeySetting, Assembly-CSharp
         m_MethodName: OnClickChange
         m_Mode: 1
@@ -9784,18 +9657,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 790089305}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1857809447}
-  m_Father: {fileID: 1727414118}
+  m_Father: {fileID: 608225317}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -100}
+  m_AnchoredPosition: {x: -760, y: 390}
   m_SizeDelta: {x: 300, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &790089307
@@ -10034,7 +9907,6 @@ GameObject:
   m_Component:
   - component: {fileID: 812701230}
   - component: {fileID: 812701232}
-  - component: {fileID: 812701231}
   m_Layer: 0
   m_Name: KeySetting (6)
   m_TagString: Untagged
@@ -10064,35 +9936,6 @@ RectTransform:
   m_AnchoredPosition: {x: 260, y: -350}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &812701231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 812701229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 812701232}
-          m_TargetAssemblyTypeName: KeySetting, Assembly-CSharp
-          m_MethodName: OnClickChange
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &812701232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10438,7 +10281,7 @@ GameObject:
   - component: {fileID: 819416264}
   - component: {fileID: 819416263}
   m_Layer: 0
-  m_Name: Button
+  m_Name: KeyBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10509,7 +10352,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573694080}
+      - m_Target: {fileID: 1911123611}
         m_TargetAssemblyTypeName: KeySetting, Assembly-CSharp
         m_MethodName: OnClickChange
         m_Mode: 1
@@ -10707,7 +10550,7 @@ GameObject:
   - component: {fileID: 830024291}
   - component: {fileID: 830024290}
   m_Layer: 0
-  m_Name: Button
+  m_Name: KeyBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10778,7 +10621,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573694080}
+      - m_Target: {fileID: 1860736867}
         m_TargetAssemblyTypeName: KeySetting, Assembly-CSharp
         m_MethodName: OnClickChange
         m_Mode: 1
@@ -17674,7 +17517,7 @@ GameObject:
   - component: {fileID: 1206308459}
   - component: {fileID: 1206308458}
   m_Layer: 0
-  m_Name: Button
+  m_Name: KeyBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17745,7 +17588,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573694080}
+      - m_Target: {fileID: 594360316}
         m_TargetAssemblyTypeName: KeySetting, Assembly-CSharp
         m_MethodName: OnClickChange
         m_Mode: 1
@@ -18286,7 +18129,7 @@ GameObject:
   - component: {fileID: 1281841259}
   - component: {fileID: 1281841258}
   m_Layer: 0
-  m_Name: Button
+  m_Name: KeyBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18357,7 +18200,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573694080}
+      - m_Target: {fileID: 664843497}
         m_TargetAssemblyTypeName: KeySetting, Assembly-CSharp
         m_MethodName: OnClickChange
         m_Mode: 1
@@ -18752,7 +18595,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1343217344}
   - component: {fileID: 1343217346}
-  - component: {fileID: 1343217345}
   m_Layer: 0
   m_Name: KeySetting (10)
   m_TagString: Untagged
@@ -18782,35 +18624,6 @@ RectTransform:
   m_AnchoredPosition: {x: 260, y: -550}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1343217345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1343217343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1343217346}
-          m_TargetAssemblyTypeName: KeySetting, Assembly-CSharp
-          m_MethodName: OnClickChange
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &1343217346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19259,7 +19072,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 1
   m_SortingLayerID: 0
   m_SortingOrder: 3
   m_TargetDisplay: 0
@@ -19289,7 +19102,7 @@ GameObject:
   - component: {fileID: 1377767314}
   - component: {fileID: 1377767313}
   m_Layer: 0
-  m_Name: Button
+  m_Name: KeyBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24788,7 +24601,7 @@ GameObject:
   - component: {fileID: 1514599412}
   - component: {fileID: 1514599411}
   m_Layer: 0
-  m_Name: Button
+  m_Name: CloseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25106,6 +24919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bf47588c654a847b4829acadb260a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cfgBtns: []
 --- !u!1 &1573125563
 GameObject:
   m_ObjectHideFlags: 0
@@ -25253,7 +25067,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1573694079}
   - component: {fileID: 1573694080}
-  - component: {fileID: 1573694081}
   m_Layer: 0
   m_Name: KeySetting
   m_TagString: Untagged
@@ -25299,35 +25112,6 @@ MonoBehaviour:
   KeyNameTxt: {fileID: 496760395}
   CurrentKeyBtnNameTxt: {fileID: 1651264404}
   keyName: Up
---- !u!114 &1573694081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1573694078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1573694080}
-          m_TargetAssemblyTypeName: KeySetting, Assembly-CSharp
-          m_MethodName: OnClickChange
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1001 &1590072029
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26050,7 +25834,7 @@ GameObject:
   - component: {fileID: 1623092978}
   - component: {fileID: 1623092977}
   m_Layer: 0
-  m_Name: Button
+  m_Name: KeyBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26121,7 +25905,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573694080}
+      - m_Target: {fileID: 215364837}
         m_TargetAssemblyTypeName: KeySetting, Assembly-CSharp
         m_MethodName: OnClickChange
         m_Mode: 1
@@ -27349,10 +27133,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 325034151}
-  - {fileID: 230961398}
-  - {fileID: 790089306}
-  - {fileID: 496753063}
+  - {fileID: 608225317}
   m_Father: {fileID: 121750873}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -27373,6 +27154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca6b827463cd3f24c9bef386fca18689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainPanel: {fileID: 608225318}
   BuffPanelSystem: {fileID: 0}
   EnemyPanelSystem: {fileID: 0}
   StatsPanelSystem: {fileID: 0}
@@ -29853,7 +29635,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1860736865}
   - component: {fileID: 1860736867}
-  - component: {fileID: 1860736866}
   m_Layer: 0
   m_Name: KeySetting (5)
   m_TagString: Untagged
@@ -29883,35 +29664,6 @@ RectTransform:
   m_AnchoredPosition: {x: 640, y: -250}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1860736866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1860736864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1860736867}
-          m_TargetAssemblyTypeName: KeySetting, Assembly-CSharp
-          m_MethodName: OnClickChange
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &1860736867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30133,7 +29885,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1911123609}
   - component: {fileID: 1911123611}
-  - component: {fileID: 1911123610}
   m_Layer: 0
   m_Name: KeySetting (9)
   m_TagString: Untagged
@@ -30163,35 +29914,6 @@ RectTransform:
   m_AnchoredPosition: {x: 640, y: -450}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1911123610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1911123608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1911123611}
-          m_TargetAssemblyTypeName: KeySetting, Assembly-CSharp
-          m_MethodName: OnClickChange
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &1911123611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30936,7 +30658,7 @@ GameObject:
   - component: {fileID: 2026842678}
   - component: {fileID: 2026842677}
   m_Layer: 0
-  m_Name: Button
+  m_Name: KeyBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31007,7 +30729,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573694080}
+      - m_Target: {fileID: 1343217346}
         m_TargetAssemblyTypeName: KeySetting, Assembly-CSharp
         m_MethodName: OnClickChange
         m_Mode: 1
@@ -31067,7 +30789,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2036935566}
   - component: {fileID: 2036935568}
-  - component: {fileID: 2036935567}
   m_Layer: 0
   m_Name: KeySetting (11)
   m_TagString: Untagged
@@ -31097,35 +30818,6 @@ RectTransform:
   m_AnchoredPosition: {x: 640, y: -550}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2036935567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2036935565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2036935568}
-          m_TargetAssemblyTypeName: KeySetting, Assembly-CSharp
-          m_MethodName: OnClickChange
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &2036935568
 MonoBehaviour:
   m_ObjectHideFlags: 0

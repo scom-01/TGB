@@ -22,6 +22,11 @@ namespace SOB.Weapons.Components
                 Debug.Log("SoundClip is Null");
                 return;
             }
+            if (currSoundClip.Length == currentSoundIndex)
+            {
+                Debug.LogWarning(currSoundClip + "[" + currentSoundIndex + "] is Null");
+                return;
+            }
             core.GetCoreComponent<SoundEffect>().AudioSpawn(currentActionData.audioClips[currentSoundIndex]);
             currentSoundIndex++;
         }

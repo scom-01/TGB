@@ -9,6 +9,7 @@ namespace SOB.Weapons.Components
     public class AttackActionHitBox : ActionData
     {
         [field: SerializeField] public HitAction[] ActionHit;
+        [field: SerializeField] public HitAction[] IsAirActionHit;
     }
 
     [Serializable]
@@ -17,5 +18,6 @@ namespace SOB.Weapons.Components
         public bool Debug;
         public Rect ActionRect;
         public GameObject[] EffectPrefab;
+        public CommandEnum Command;
     }
 }

@@ -9,6 +9,8 @@ using System;
 public class WeaponDataSO : ScriptableObject
 {
     [field: SerializeField] public int NumberOfActions { get; private set; }
+    [field: SerializeField] public int NumberOfActionsPrimary { get; private set; }
+    [field: SerializeField] public int NumberOfActionsSecondary { get; private set; }
     [field: SerializeField] public bool CanJump { get; private set; }
     [field: SerializeField] public bool CanAirAttack { get; private set; }
     [field: SerializeReference] public List<ComponentData> ComponentData { get; private set; }

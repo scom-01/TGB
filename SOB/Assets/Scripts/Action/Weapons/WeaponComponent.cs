@@ -78,8 +78,7 @@ namespace SOB.Weapons.Components
         protected override void HandleEnter()
         {
             base.HandleEnter();
-
-            currentActionData = data.ActionData[weapon.CurrentActionCounter_1];
+            currentActionData = data.ActionData[weapon.CurrentActionCounter];
         }
 
         public override void Init()

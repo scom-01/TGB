@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using static UnityEngine.InputSystem.InputActionRebindingExtensions;
 using static UnityEngine.InputSystem.InputBindingCompositeContext;
 using static UnityEngine.Rendering.DebugUI.Table;
@@ -36,6 +37,7 @@ public class KeySetting : MonoBehaviour
 
     private InputActionRebindingExtensions.RebindingOperation m_Rebind;
     private int m_BindingIndex;
+    private Button btn;
 
     private void OnEnable()
     {
@@ -65,8 +67,9 @@ public class KeySetting : MonoBehaviour
             InputControlPath.HumanReadableStringOptions.OmitDevice);
     }
 
-    private void Start()
+    private void Awake()
     {
+        btn = this.GetComponentInChildren<Button>();
         //KeyName = keyName;
         //string rebinds = PlayerPrefs.GetString(RebindsKey, string.Empty);
         //if (string.IsNullOrEmpty(rebinds))

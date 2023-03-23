@@ -28,7 +28,14 @@ public class PlayerWeaponState : PlayerAbilityState
         //setVelocity = false;
 
         weapon.InAir = !CollisionSenses.CheckIfGrounded;
-        weapon.isPrimary = isPrimary;
+        if(isPrimary)
+        {
+            weapon.Command = CommandEnum.Primary;
+        }
+        else
+        {
+            weapon.Command = CommandEnum.Secondary;
+        }
         weapon.EnterWeapon();
 
         CanAttack = false;

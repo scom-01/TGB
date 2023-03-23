@@ -10,44 +10,63 @@ public class WeaponSprite : WeaponComponent<WeaponSpriteData, ActionSprites>
     private SpriteRenderer weaponSpriteRenderer;
     private GameObject baseObject;
 
-    private int currentWeaponSpriteIndex;
+    private int currentActionSpriteIndex;
+    private int currentSpriteCommandIndex;
     protected override void HandleEnter()
     {
         base.HandleEnter();
-        currentWeaponSpriteIndex = 0;
+        currentActionSpriteIndex = 0;
     }
 
     private void HandleBaseSpriteChange(SpriteRenderer sr)
     {
-        if(!isAttackActive)
+        if (!isAttackActive)
         {
             weaponSpriteRenderer.sprite = null;
             return;
         }
         Sprite[] currentAttackSprite = new Sprite[0];
-        
+
+        var currSprites = currentActionData.GroundedSprites;
+        if (weapon.BaseGameObject.GetComponent<Animator>().GetBool("inAir"))
+        {
+            currSprites = currentActionData.InAirSprites;
+        }
+
+
+        for (int i = 0; i < currSprites.Length; i++)
+        {
+            if (currSprites[i].Command == weapon.Command)
+            {
+                currentSpriteCommandIndex = i;
+                break;
+            }
+        }
+
         if (weapon.BaseGameObject.GetComponent<Animator>().GetBool("inAir"))
         {
             if (currentActionData.InAirSprites.Length > 0)
-                currentAttackSprite = currentActionData.InAirSprites;
+            {
+                currentAttackSprite = currSprites[currentSpriteCommandIndex].sprites;
+            }
         }
         else
         {
             if (currentActionData.GroundedSprites.Length > 0)
-                currentAttackSprite = currentActionData.GroundedSprites;
+                currentAttackSprite = currSprites[currentSpriteCommandIndex].sprites;
         }
 
         if (currentAttackSprite.Length < 0)
             return;
 
-        if(currentWeaponSpriteIndex >= currentAttackSprite.Length)
+        if (currentActionSpriteIndex >= currentAttackSprite.Length)
         {
             Debug.Log($"{weapon.name} weapon sprite length mismatch");
             return;
         }
 
-        weaponSpriteRenderer.sprite = currentAttackSprite[currentWeaponSpriteIndex];        
-        currentWeaponSpriteIndex++;
+        weaponSpriteRenderer.sprite = currentAttackSprite[currentActionSpriteIndex];
+        currentActionSpriteIndex++;
     }
 
     protected override void Start()

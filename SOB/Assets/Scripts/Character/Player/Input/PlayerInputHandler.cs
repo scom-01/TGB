@@ -298,6 +298,10 @@ public class PlayerInputHandler : MonoBehaviour
                 }
                 else if(playerInput.currentActionMap == playerInput.actions.FindActionMap("Cfg"))
                 {
+                    foreach(var btn in GameManager.Inst.CfgUI.ConfigPanelUI.cfgBtns)
+                    {
+                        btn.OnClickActiveUI(false);
+                    }
                     ChangeCurrentActionMap("GamePlay", false);
                 }
                 oldInputActionMap = playerInput.currentActionMap;
