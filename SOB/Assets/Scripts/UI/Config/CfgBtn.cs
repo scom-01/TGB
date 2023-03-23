@@ -5,7 +5,7 @@ using UnityEngine;
 public class CfgBtn : MonoBehaviour
 {
     public GameObject ActiveUI;
-    public void OnClickActiveUI()
+    public void OnClickActiveUI(bool isShow)
     {
         if(ActiveUI == null)
         {
@@ -13,6 +13,6 @@ public class CfgBtn : MonoBehaviour
             return;
         }
 
-        ActiveUI.SetActive(true);
+        ActiveUI.SetActive(isShow);
     }
 }

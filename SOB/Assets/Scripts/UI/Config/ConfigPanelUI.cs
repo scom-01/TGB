@@ -6,7 +6,11 @@ namespace SOB.Manager
 {
     public class ConfigPanelUI : MonoBehaviour
     {
-
+        public CfgBtn[] cfgBtns;
+        private void Awake()
+        {
+            cfgBtns = this.GetComponentsInChildren<CfgBtn>();
+        }
         // Start is called before the first frame update
         void Start()
         {
