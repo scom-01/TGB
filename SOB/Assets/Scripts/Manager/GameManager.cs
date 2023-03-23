@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     [Header("----UI----")]
     public MainUIManager MainUI;
     public SubUIManager SubUI;
+    public CfgUIManager CfgUI;
     public DamageUIManager DamageUI;
 
 
@@ -112,12 +113,40 @@ public class GameManager : MonoBehaviour
             Pause();
         else
             Continue();
+    }public void CheckPause(string actionMap, bool pause)
+    {
+        if (pause)
+            Pause(actionMap);
+        else
+            Continue(actionMap);
     }
 
+    private void Pause(string switchActionMap)
+    {
+        Time.timeScale = 0f;
+        switch (switchActionMap)
+        {
+            case "UI":
+                CfgUI.ConfigPanelUI.gameObject.SetActive(false);
+                SubUI.InventorySubUI.gameObject.SetActive(true);
+                break;
+            case "Cfg":
+                SubUI.InventorySubUI.gameObject.SetActive(false);
+                CfgUI.ConfigPanelUI.gameObject.SetActive(true);
+                break;
+        }
+    }
     private void Pause()
     {
         Time.timeScale = 0f;
+
         SubUI.InventorySubUI.gameObject.SetActive(true);
+    }
+    private void Continue(string switchActionMap)
+    {
+        Time.timeScale = 1f;
+        SubUI.InventorySubUI.gameObject.SetActive(false);
+        CfgUI.ConfigPanelUI.gameObject.SetActive(false);
     }
     private void Continue()
     {

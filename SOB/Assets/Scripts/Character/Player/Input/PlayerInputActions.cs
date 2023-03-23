@@ -408,7 +408,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
             ""id"": ""505c4398-024e-4595-b08b-0eee3f105bfd"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""ESC"",
                     ""type"": ""Button"",
                     ""id"": ""8a329b78-667b-4e1a-9978-9f6e4e961714"",
                     ""expectedControlType"": ""Button"",
@@ -421,11 +421,11 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""328d8e78-49ea-4636-9bf6-36ee30c315fd"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""New action"",
+                    ""action"": ""ESC"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -473,7 +473,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_UI_UIRight = m_UI.FindAction("UIRight", throwIfNotFound: true);
         // Cfg
         m_Cfg = asset.FindActionMap("Cfg", throwIfNotFound: true);
-        m_Cfg_Newaction = m_Cfg.FindAction("New action", throwIfNotFound: true);
+        m_Cfg_ESC = m_Cfg.FindAction("ESC", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -711,12 +711,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     // Cfg
     private readonly InputActionMap m_Cfg;
     private ICfgActions m_CfgActionsCallbackInterface;
-    private readonly InputAction m_Cfg_Newaction;
+    private readonly InputAction m_Cfg_ESC;
     public struct CfgActions
     {
         private @PlayerInputActions m_Wrapper;
         public CfgActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Cfg_Newaction;
+        public InputAction @ESC => m_Wrapper.m_Cfg_ESC;
         public InputActionMap Get() { return m_Wrapper.m_Cfg; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -726,16 +726,16 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_CfgActionsCallbackInterface != null)
             {
-                @Newaction.started -= m_Wrapper.m_CfgActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_CfgActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_CfgActionsCallbackInterface.OnNewaction;
+                @ESC.started -= m_Wrapper.m_CfgActionsCallbackInterface.OnESC;
+                @ESC.performed -= m_Wrapper.m_CfgActionsCallbackInterface.OnESC;
+                @ESC.canceled -= m_Wrapper.m_CfgActionsCallbackInterface.OnESC;
             }
             m_Wrapper.m_CfgActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
+                @ESC.started += instance.OnESC;
+                @ESC.performed += instance.OnESC;
+                @ESC.canceled += instance.OnESC;
             }
         }
     }
@@ -773,6 +773,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     }
     public interface ICfgActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnESC(InputAction.CallbackContext context);
     }
 }

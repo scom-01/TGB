@@ -290,7 +290,7 @@ public class PlayerInputHandler : MonoBehaviour
             {
                 if (playerInput.currentActionMap == playerInput.actions.FindActionMap("UI"))
                 {
-                    ChangeCurrentActionMap("Cfg", true);
+                    ChangeCurrentActionMap("GamePlay", false);
                 }
                 else if (playerInput.currentActionMap == playerInput.actions.FindActionMap("GamePlay"))
                 {
@@ -298,7 +298,7 @@ public class PlayerInputHandler : MonoBehaviour
                 }
                 else if(playerInput.currentActionMap == playerInput.actions.FindActionMap("Cfg"))
                 {
-                    ChangeCurrentActionMap(oldInputActionMap.name, false);
+                    ChangeCurrentActionMap("GamePlay", false);
                 }
                 oldInputActionMap = playerInput.currentActionMap;
             }
@@ -345,7 +345,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         oldInputActionMap = playerInput.currentActionMap;
         playerInput.SwitchCurrentActionMap(actionMapName);
-        GameManager.Inst.CheckPause(Pause);
+        GameManager.Inst.CheckPause(actionMapName, Pause);
     }
 
     public void UseInput(ref bool input) => input = false;
