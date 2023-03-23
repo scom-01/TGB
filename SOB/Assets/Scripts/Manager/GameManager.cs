@@ -113,7 +113,8 @@ public class GameManager : MonoBehaviour
             Pause();
         else
             Continue();
-    }public void CheckPause(string actionMap, bool pause)
+    }
+    public void CheckPause(string actionMap, bool pause)
     {
         if (pause)
             Pause(actionMap);
@@ -124,6 +125,7 @@ public class GameManager : MonoBehaviour
     private void Pause(string switchActionMap)
     {
         Time.timeScale = 0f;
+        MainUI.MainPanel.gameObject.SetActive(false);
         switch (switchActionMap)
         {
             case "UI":
@@ -139,12 +141,13 @@ public class GameManager : MonoBehaviour
     private void Pause()
     {
         Time.timeScale = 0f;
-
+        MainUI.MainPanel.gameObject.SetActive(false);
         SubUI.InventorySubUI.gameObject.SetActive(true);
     }
     private void Continue(string switchActionMap)
     {
         Time.timeScale = 1f;
+        MainUI.MainPanel.gameObject.SetActive(true);
         SubUI.InventorySubUI.gameObject.SetActive(false);
         CfgUI.ConfigPanelUI.gameObject.SetActive(false);
     }

@@ -9,6 +9,7 @@ namespace SOB.Manager
 {
     public class MainUIManager : MonoBehaviour
     {
+        public MainPanelUI MainPanel;
         [HideInInspector] public BuffPanelSystem BuffPanelSystem;
         [HideInInspector] public EnemyPanel EnemyPanelSystem;
         [HideInInspector] public StatsPanel StatsPanelSystem;
@@ -20,18 +21,6 @@ namespace SOB.Manager
             EnemyPanelSystem = this.GetComponentInChildren<EnemyPanel>();
             StatsPanelSystem = this.GetComponentInChildren<StatsPanel>();
             MinimapPanelSystem = this.GetComponentInChildren<MinimapPanel>();
-        }
-
-        // Use this for initialization
-        void Start()
-        {
-            
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            
         }
     }
 }
