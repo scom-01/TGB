@@ -37,11 +37,6 @@ namespace SOB.Weapons.Components
                     break;
                 }
             }
-            if (currentHitBoxIndex >= currHitBox.Length)
-            {
-                Debug.Log($"{weapon.name} HitBox length mismatch");
-                return;
-            }
 
             offset.Set(
                 transform.position.x + (currHitBox[currentHitBoxIndex].ActionRect.center.x * CoreMovement.FancingDirection),

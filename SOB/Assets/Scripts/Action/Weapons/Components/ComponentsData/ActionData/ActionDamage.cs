@@ -8,6 +8,15 @@ namespace SOB.Weapons.Components
     [Serializable]
     public class ActionDamage : ActionData
     {
-        [field : SerializeField] public float Amount { get; private set; }
+        [field : SerializeField] public DamageAmount[] AdditionalDamageGround { get; private set; }
+        [field : SerializeField] public DamageAmount[] AdditionalDamageInAir { get; private set; }
+
+        [Serializable]
+        public struct DamageAmount
+        {
+            public float Amount;
+            public CommandEnum Command;
+        }
+
     }
 }
