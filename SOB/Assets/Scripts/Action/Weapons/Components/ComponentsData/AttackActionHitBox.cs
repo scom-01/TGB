@@ -9,7 +9,6 @@ namespace SOB.Weapons.Components
     public class AttackActionHitBox : ActionData
     {
         [field: SerializeField] public HitAction[] ActionHit;
-        [field: SerializeField] public HitAction[] IsAirActionHit;
     }
 
     [Serializable]

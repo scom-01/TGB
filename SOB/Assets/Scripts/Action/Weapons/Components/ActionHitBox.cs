@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using static UnityEditor.Progress;
+using UnityEditor.Timeline.Actions;
 
 namespace SOB.Weapons.Components
 {
@@ -23,11 +24,40 @@ namespace SOB.Weapons.Components
 
         private void HandleAttackAction()
         {
-            var currHitBox = currentActionData.ActionHit;
-            if (weapon.BaseGameObject.GetComponent<Animator>().GetBool("inAir"))
+
+            if (currentGroundedActionData != null && currentAirActionData != null)
             {
-                currHitBox = currentActionData.IsAirActionHit;
+                if (weapon.BaseGameObject.GetComponent<Animator>().GetBool("inAir"))
+                {
+                    CheckAttackAction(currentAirActionData);
+                }
+                else
+                {
+                    CheckAttackAction(currentGroundedActionData);
+                }
             }
+            else if (currentGroundedActionData == null)
+            {
+                CheckAttackAction(currentAirActionData);
+            }
+            else if (currentAirActionData == null)
+            {
+                CheckAttackAction(currentGroundedActionData);
+            }
+
+            OnDetectedCollider2D?.Invoke(detected);
+            currentHitBoxIndex++;
+
+        }
+
+        private void CheckAttackAction(AttackActionHitBox actionData)
+        {
+            if (actionData == null)
+                return;
+
+            var currHitBox = actionData.ActionHit;
+            if (currHitBox.Length <= 0)
+                return;
 
             for (int i = 0; i < currHitBox.Length; i++)
             {
@@ -43,7 +73,7 @@ namespace SOB.Weapons.Components
                 transform.position.y + (currHitBox[currentHitBoxIndex].ActionRect.center.y)
                 );
 
-            if(weapon.Command == currHitBox[currentHitBoxIndex].Command)
+            if (weapon.Command == currHitBox[currentHitBoxIndex].Command)
             {
                 detected = Physics2D.OverlapBoxAll(offset, currHitBox[currentHitBoxIndex].ActionRect.size, 0f, data.DetectableLayers);
             }
@@ -77,10 +107,6 @@ namespace SOB.Weapons.Components
                 }
             }
             #endregion
-
-            OnDetectedCollider2D?.Invoke(detected);
-            currentHitBoxIndex++;
-
         }
 
         protected override void Start()
@@ -103,7 +129,7 @@ namespace SOB.Weapons.Components
 
             foreach (var item in data.ActionData)
             {                
-                if (item.ActionHit == null || item.IsAirActionHit == null)
+                if (item.ActionHit == null)
                     continue;
 
                 foreach (var action in item.ActionHit)
@@ -114,7 +140,28 @@ namespace SOB.Weapons.Components
                     Gizmos.DrawWireCube(transform.position + new Vector3(action.ActionRect.center.x * CoreMovement.FancingDirection, action.ActionRect.center.y, 0), action.ActionRect.size);
                 }
 
-                foreach (var action in item.IsAirActionHit)
+                foreach (var action in item.ActionHit)
+                {
+                    if (!action.Debug)
+                        continue;
+                    Gizmos.color = Color.white;
+                    Gizmos.DrawWireCube(transform.position + new Vector3(action.ActionRect.center.x * CoreMovement.FancingDirection, action.ActionRect.center.y, 0), action.ActionRect.size);
+                }
+            }
+            foreach (var item in data.InAirActionData)
+            {                
+                if (item.ActionHit == null)
+                    continue;
+
+                foreach (var action in item.ActionHit)
+                {
+                    if (!action.Debug)
+                        continue;
+                    Gizmos.color = Color.white;
+                    Gizmos.DrawWireCube(transform.position + new Vector3(action.ActionRect.center.x * CoreMovement.FancingDirection, action.ActionRect.center.y, 0), action.ActionRect.size);
+                }
+
+                foreach (var action in item.ActionHit)
                 {
                     if (!action.Debug)
                         continue;
