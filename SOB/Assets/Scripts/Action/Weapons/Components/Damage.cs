@@ -23,12 +23,37 @@ namespace SOB.Weapons.Components
         /// </summary>
         /// <param name="coll"></param>
         private void HandleDetectedCollider2D(Collider2D[] coll)
-        {
-            var currDamage = currentActionData.AdditionalDamageGround;
-            if (weapon.BaseGameObject.GetComponent<Animator>().GetBool("inAir"))
+        {            
+            if (currentGroundedActionData != null && currentAirActionData != null)
             {
-                currDamage = currentActionData.AdditionalDamageInAir;
+                if (weapon.BaseGameObject.GetComponent<Animator>().GetBool("inAir"))
+                {
+                    CheckAttackAction(currentAirActionData, coll);
+                }
+                else
+                {
+                    CheckAttackAction(currentGroundedActionData, coll);
+                }
             }
+            else if (currentGroundedActionData == null)
+            {
+                CheckAttackAction(currentAirActionData, coll);
+            }
+            else if (currentAirActionData == null)
+            {
+                CheckAttackAction(currentGroundedActionData, coll);
+            }
+            currentActionDamageIndex++;
+        }
+
+        private void CheckAttackAction(ActionDamage actionDamage, Collider2D[] coll)
+        {
+            if (actionDamage == null)
+                return;
+
+            var currDamage = actionDamage.AdditionalDamage;
+            if (currDamage.Length <= 0)
+                return;
 
             for (int i = 0; i < currDamage.Length; i++)
             {
@@ -89,7 +114,7 @@ namespace SOB.Weapons.Components
                             (CoreUnitStats.StatsData.DefaultPower + currDamage[currentActionDamageIndex].Amount) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
                         );
 
-                            Debug.Log("Enemy Type Big, Normal Dam = "+ 
+                            Debug.Log("Enemy Type Big, Normal Dam = " +
                                 CoreUnitStats.StatsData.DefaultPower + currDamage[currentActionDamageIndex].Amount
                                 + " Enemy_Size_WeakPer Additional Dam = " +
                                 (CoreUnitStats.StatsData.DefaultPower + currDamage[currentActionDamageIndex].Amount) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
@@ -98,8 +123,6 @@ namespace SOB.Weapons.Components
                     #endregion
                 }
             }
-
-            currentActionDamageIndex++;
         }
 
         protected override void Awake()
