@@ -7,7 +7,7 @@ namespace SOB.Weapons.Components
     {
         [SerializeField, HideInInspector] private string name;
 
-        public void SetAttackName(int i) => name = $"Action {i}";
+        public void SetAttackName(string actionName, int i) => name = $"{actionName} Action {i}";
     }
 
     public enum CommandEnum
