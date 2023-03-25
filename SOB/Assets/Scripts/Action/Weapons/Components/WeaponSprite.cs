@@ -25,14 +25,38 @@ public class WeaponSprite : WeaponComponent<WeaponSpriteData, ActionSprites>
             weaponSpriteRenderer.sprite = null;
             return;
         }
+
+        if(currentGroundedActionData !=null && currentAirActionData !=null)
+        {
+            if (weapon.BaseGameObject.GetComponent<Animator>().GetBool("inAir"))
+            {
+                CheckAttackAction(currentAirActionData);
+            }
+            else
+            {
+                CheckAttackAction(currentGroundedActionData);
+            }
+        }
+        else if(currentGroundedActionData == null)
+        {
+            CheckAttackAction(currentAirActionData);
+        }
+        else if(currentAirActionData == null)
+        {
+            CheckAttackAction(currentGroundedActionData);
+        }
+        currentActionSpriteIndex++;
+    }
+    private void CheckAttackAction(ActionSprites actionSprites)
+    {
+        if (actionSprites == null)
+            return;
+
         Sprite[] currentAttackSprite = new Sprite[0];
 
-        var currSprites = currentActionData.GroundedSprites;
-        if (weapon.BaseGameObject.GetComponent<Animator>().GetBool("inAir"))
-        {
-            currSprites = currentActionData.InAirSprites;
-        }
-
+        var currSprites = actionSprites.WeaponSprites;
+        if (currSprites.Length <= 0)
+            return;
 
         for (int i = 0; i < currSprites.Length; i++)
         {
@@ -45,14 +69,14 @@ public class WeaponSprite : WeaponComponent<WeaponSpriteData, ActionSprites>
 
         if (weapon.BaseGameObject.GetComponent<Animator>().GetBool("inAir"))
         {
-            if (currentActionData.InAirSprites.Length > 0)
+            if (currentGroundedActionData.WeaponSprites.Length > 0)
             {
                 currentAttackSprite = currSprites[currentSpriteCommandIndex].sprites;
             }
         }
         else
         {
-            if (currentActionData.GroundedSprites.Length > 0)
+            if (currentGroundedActionData.WeaponSprites.Length > 0)
                 currentAttackSprite = currSprites[currentSpriteCommandIndex].sprites;
         }
 
@@ -66,7 +90,6 @@ public class WeaponSprite : WeaponComponent<WeaponSpriteData, ActionSprites>
         }
 
         weaponSpriteRenderer.sprite = currentAttackSprite[currentActionSpriteIndex];
-        currentActionSpriteIndex++;
     }
 
     protected override void Start()
