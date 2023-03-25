@@ -23,14 +23,20 @@ namespace SOB.Weapons.Components
     [Serializable]
     public class ComponentData<T> : ComponentData where T : ActionData
     {
-        [SerializeField] private T[] actionData;
-        public T[] ActionData { get => actionData; private set => actionData = value; }
+        [SerializeField] private T[] groundactionData;
+        [SerializeField] private T[] airActionData;
+        public T[] ActionData { get => groundactionData; private set => groundactionData = value; }
+        public T[] InAirActionData { get => airActionData; private set => airActionData = value; }
         public override void SetActionDataNames()
         {
             base.SetActionDataNames();
             for (var i = 0; i < ActionData.Length; i++)
             {
-                ActionData[i].SetAttackName(i + 1);
+                ActionData[i].SetAttackName("Grounded",i + 1);
+            }
+            for (var i = 0; i < InAirActionData.Length; i++)
+            {
+                InAirActionData[i].SetAttackName("InAir",i + 1);
             }
         }
 
@@ -38,23 +44,38 @@ namespace SOB.Weapons.Components
         {
             base.InitializeActionData(numberOfActions);
 
-            var oldLen = ActionData != null ? actionData.Length : 0;
+            var oldLen = ActionData != null ? groundactionData.Length : 0;
+            var oldLenAir = InAirActionData != null ? airActionData.Length : 0;
 
-            if (oldLen == numberOfActions)
-                return;
-
-            Array.Resize(ref actionData, numberOfActions);
-
-            if (oldLen < numberOfActions)
+            if (oldLen != numberOfActions)
             {
-                for (var i = oldLen; i < actionData.Length; i++)
+                Array.Resize(ref groundactionData, numberOfActions);
+
+                if (oldLen < numberOfActions)
                 {
-                    var newObj = Activator.CreateInstance(typeof(T)) as T;
-                    actionData[i] = newObj;
+                    for (var i = oldLen; i < groundactionData.Length; i++)
+                    {
+                        var newObj = Activator.CreateInstance(typeof(T)) as T;
+                        groundactionData[i] = newObj;
+                    }
                 }
+                SetActionDataNames();
             }
 
-            SetActionDataNames();
+            if (oldLenAir != numberOfActions)
+            {
+                Array.Resize(ref airActionData, numberOfActions);
+
+                if (oldLenAir < numberOfActions)
+                {
+                    for (var i = oldLenAir; i < airActionData.Length; i++)
+                    {
+                        var newObj = Activator.CreateInstance(typeof(T)) as T;
+                        airActionData[i] = newObj;
+                    }
+                }
+                SetActionDataNames();
+            }
         }
     }
 }
