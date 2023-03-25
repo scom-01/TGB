@@ -28,20 +28,10 @@ namespace SOB.Weapons
         public event Action OnExit;
 
         //Value
-        [Tooltip("공격1 횟수")]  public int CurrentActionCounter
+        [Tooltip("공격 횟수")]  public int CurrentActionCounter
         {
             get => currentActionCounter;
             private set => currentActionCounter = value >= weaponData.NumberOfActions ? 0 : value;
-        }
-        [Tooltip("공격1 횟수")]  public int CurrentActionCounter_1
-        {
-            get => currentActionCounter_1;
-            private set => currentActionCounter_1 = value >= weaponData.NumberOfActionsPrimary ? 0 : value;
-        }
-        [Tooltip("공격2 횟수")]  public int CurrentActionCounter_2
-        {
-            get => currentActionCounter_2;
-            private set => currentActionCounter_2 = value >= weaponData.NumberOfActionsSecondary ? 0 : value;
         }
         [HideInInspector] public bool InAir;
         [HideInInspector]   protected string weaponAnimBoolStr;
@@ -51,9 +41,6 @@ namespace SOB.Weapons
         [SerializeField]    private float actionCounterResetCooldown;
 
         private int currentActionCounter;
-        private int currentActionCounter_1;
-        private int currentActionCounter_2;
-        
 
         protected virtual void Awake()
         {
@@ -99,15 +86,6 @@ namespace SOB.Weapons
                         
             SetBoolName("inAir", InAir);            
             SetBoolName("action", true);
-            if(Command == CommandEnum.Primary)
-            {
-                SetIntName("actionCounter_1", CurrentActionCounter_1);            
-            }
-            else
-            {
-                SetIntName("actionCounter_2", CurrentActionCounter_2);            
-            }
-
             SetIntName("actionCounter", CurrentActionCounter);            
             //SetIntName("actionCounter", CurrentActionCounter);            
 
@@ -120,14 +98,6 @@ namespace SOB.Weapons
         public virtual void ExitWeapon()
         {
             SetBoolName("action", false);
-            if (Command == CommandEnum.Primary)
-            {
-                CurrentActionCounter_1++;
-            }
-            else
-            {
-                CurrentActionCounter_2++;
-            }
             CurrentActionCounter++;
             actionCounterResetTimer.StartTimer();
             WeaponCore.Unit.AnimationFinishTrigger();
@@ -151,14 +121,12 @@ namespace SOB.Weapons
 
         public void ChangeActionCounter(int value)
         {
-            CurrentActionCounter_1 = value;
+            CurrentActionCounter = value;
         }
 
         public void ResetActionCounter()
         {
             CurrentActionCounter = 0;
-            CurrentActionCounter_1 = 0;
-            CurrentActionCounter_2 = 0;
         }
 
         #region Set Func
