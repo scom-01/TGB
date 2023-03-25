@@ -15,8 +15,8 @@ MonoBehaviour:
   <NumberOfActions>k__BackingField: 1
   <NumberOfActionsPrimary>k__BackingField: 0
   <NumberOfActionsSecondary>k__BackingField: 0
-  <CanJump>k__BackingField: 0
-  <CanAirAttack>k__BackingField: 0
+  <CanJump>k__BackingField: 1
+  <CanAirAttack>k__BackingField: 1
   <ComponentData>k__BackingField:
   - rid: 3615621236231503874
   - rid: 3615621236231503875
@@ -27,19 +27,11 @@ MonoBehaviour:
       type: {class: MovementData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: MovementData
-        actionData:
-        - name: 
-          <CanFlip>k__BackingField: 0
-          <CanMoveCtrl>k__BackingField: 0
-          <Direction>k__BackingField: {x: 0, y: 0}
-          <Velocity>k__BackingField: 0
+        groundactionData: []
+        airActionData: []
     - rid: 3615621236231503875
       type: {class: WeaponSpriteData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: WeaponSpriteData
-        actionData:
-        - name: 
-          <GroundedSprites>k__BackingField:
-          - {fileID: 1485345104, guid: 7c9c202ac74caff42a997d14a9d36ddf, type: 3}
-          - {fileID: 1424240167, guid: 7c9c202ac74caff42a997d14a9d36ddf, type: 3}
-          <InAirSprites>k__BackingField: []
+        groundactionData: []
+        airActionData: []

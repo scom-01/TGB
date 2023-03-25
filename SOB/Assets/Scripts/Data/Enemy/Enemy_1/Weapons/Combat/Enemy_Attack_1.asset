@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Enemy_Attack_1
   m_EditorClassIdentifier: 
   <NumberOfActions>k__BackingField: 1
+  <NumberOfActionsPrimary>k__BackingField: 0
+  <NumberOfActionsSecondary>k__BackingField: 0
   <CanJump>k__BackingField: 0
   <CanAirAttack>k__BackingField: 0
-  <EffectPrefab>k__BackingField: {fileID: 0}
   <ComponentData>k__BackingField:
   - rid: 1770984582361907200
   - rid: 1770984582361907201
@@ -28,17 +29,21 @@ MonoBehaviour:
       type: {class: ActionHitBoxData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: ActionHitBoxData
-        actionData:
-        - name: Action 1
+        groundactionData:
+        - name: Grounded Action 1
           ActionHit:
-          - Debug: 1
+          - Debug: 0
             ActionRect:
               serializedVersion: 2
               x: -1.14
               y: -1.52
               width: 3.17
               height: 2.49
-            EffectPrefab: {fileID: 0}
+            EffectPrefab: []
+            Command: 0
+        airActionData:
+        - name: InAir Action 1
+          ActionHit: []
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
           m_Bits: 2048
@@ -46,22 +51,36 @@ MonoBehaviour:
       type: {class: DamageData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: DamageData
-        actionData:
-        - name: Action 1
-          <Amount>k__BackingField: 10
+        groundactionData:
+        - name: Grounded Action 1
+          <AdditionalDamage>k__BackingField:
+          - Amount: 10
+            Command: 0
+        airActionData:
+        - name: InAir Action 1
+          <AdditionalDamage>k__BackingField: []
     - rid: 1770984582361907202
       type: {class: KnockbackData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: KnockbackData
-        actionData:
-        - name: Action 1
+        groundactionData:
+        - name: Grounded Action 1
           <KnockbackAngle>k__BackingField: {x: 10, y: 10}
+        airActionData:
+        - name: InAir Action 1
+          <KnockbackAngle>k__BackingField: {x: 0, y: 0}
     - rid: 1770984582361907203
       type: {class: MovementData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: MovementData
-        actionData:
-        - name: Action 1
+        groundactionData:
+        - name: Grounded Action 1
+          <CanFlip>k__BackingField: 0
+          <CanMoveCtrl>k__BackingField: 0
+          <Direction>k__BackingField: {x: 0, y: 0}
+          <Velocity>k__BackingField: 0
+        airActionData:
+        - name: InAir Action 1
           <CanFlip>k__BackingField: 0
           <CanMoveCtrl>k__BackingField: 0
           <Direction>k__BackingField: {x: 0, y: 0}
