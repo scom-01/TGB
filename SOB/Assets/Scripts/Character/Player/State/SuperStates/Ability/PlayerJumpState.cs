@@ -30,11 +30,14 @@ public class PlayerJumpState : PlayerAbilityState
     {
         player.InputHandler.UseInput(ref player.InputHandler.JumpInput);
         Movement.SetVelocityY(UnitStats.StatsData.JumpVelocity);
-        if(amountOfJumpLeft < player.playerData.amountOfJumps)
+        if (amountOfJumpLeft < player.playerData.amountOfJumps)
         {
             player.Core.GetCoreComponent<ParticleManager>().StartParticles(Jump_Effect, CollisionSenses.GroundCheck.position);
             player.Anim.SetBool("JumpFlip", true);
         }
+        
+        player.PrimaryAttackState.weapon.ResetActionCounter();
+
         DecreaseAmountOfJumpsLeft();
         player.InAirState.SetIsJumping();
     }
