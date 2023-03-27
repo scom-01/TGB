@@ -8,7 +8,7 @@ namespace SOB.Weapons.Components
     [Serializable]
     public class ActionParticle : ActionData
     {
-        [field: SerializeField] public EffectPrefab[] ParticlePrefabs { get; private set; }
+        [field: SerializeField] public EffectPrefabCommand[] ParticleCommands { get; private set; }
     }
 
     [Serializable]
@@ -30,6 +30,13 @@ namespace SOB.Weapons.Components
         /// Spawn Object
         /// </summary>
         public GameObject Object;
+        
+    }
+    [Serializable]
+    public struct EffectPrefabCommand
+    {
+        public EffectPrefab[] effectPrefabs;
+        public CommandEnum Command;
     }
 
 }

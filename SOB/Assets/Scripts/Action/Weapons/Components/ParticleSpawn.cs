@@ -10,43 +10,87 @@ namespace SOB.Weapons.Components
     {
 
         private int currentParticleSpawnIndex;
+        private int currentParticleCommandIndex;
         protected override void HandleEnter()
         {
             base.HandleEnter();
+            currentParticleCommandIndex = 0;
             currentParticleSpawnIndex = 0;
         }
 
         private void HandleParticleSpawn()
         {
-            EffectPrefab[] currentParticle = new EffectPrefab[0];
-            currentParticle = currentActionData.ParticlePrefabs;
-            if (currentParticle.Length < 0)
+            if (currentGroundedActionData != null && currentAirActionData != null)
+            {
+                if (weapon.InAir)
+                {
+                    CheckParticleAction(currentAirActionData);
+                }
+                else
+                {
+                    CheckParticleAction(currentGroundedActionData);
+                }
+            }
+            else if (currentGroundedActionData == null)
+            {
+                CheckParticleAction(currentAirActionData);
+            }
+            else if (currentAirActionData == null)
+            {
+                CheckParticleAction(currentGroundedActionData);
+            }
+            currentParticleSpawnIndex++;
+        }
+
+        private void CheckParticleAction(ActionParticle actionParticle)
+        {
+            if (actionParticle == null)
                 return;
 
-            if (currentParticleSpawnIndex >= currentParticle.Length)
+            var currParticles = actionParticle.ParticleCommands;
+            if (currParticles.Length <= 0)
+                return;
+
+            for (int i = 0; i < currParticles.Length; i++)
+            {
+                if (currParticles[i].Command == weapon.Command)
+                {
+                    currentParticleCommandIndex = i;
+                    break;
+                }
+                currentParticleCommandIndex = -1;
+            }
+
+            if (currentParticleCommandIndex == -1)
+            {
+                weapon.EventHandler.AnimationFinishedTrigger();
+                return;
+            }
+
+            if (currentParticleSpawnIndex >= currParticles[currentParticleCommandIndex].effectPrefabs.Length)
             {
                 Debug.Log($"{weapon.name} Particle Prefabs length mismatch");
                 return;
             }
 
-            if (currentActionData.ParticlePrefabs[currentParticleSpawnIndex].isGround)
-            {   
-                CoreParticleManager.StartParticles(currentActionData.ParticlePrefabs[currentParticleSpawnIndex].Object, CoreCollisionSenses.GroundCheck.position);
+            if (currParticles[currentParticleCommandIndex].effectPrefabs[currentParticleSpawnIndex].isGround)
+            {
+                CoreParticleManager.StartParticles(currParticles[currentParticleCommandIndex].effectPrefabs[currentParticleSpawnIndex].Object, CoreCollisionSenses.GroundCheck.position);
             }
             else
             {
-                if(currentActionData.ParticlePrefabs[currentParticleSpawnIndex].isRandomPosRot)
+                if (currParticles[currentParticleCommandIndex].effectPrefabs[currentParticleSpawnIndex].isRandomPosRot)
                 {
-                    CoreParticleManager.StartParticlesWithRandomPosRot(currentActionData.ParticlePrefabs[currentParticleSpawnIndex].Object, currentActionData.ParticlePrefabs[currentParticleSpawnIndex].isRandomRange);
+                    CoreParticleManager.StartParticlesWithRandomPosRot(
+                            currParticles[currentParticleCommandIndex].effectPrefabs[currentParticleSpawnIndex].Object, 
+                            currParticles[currentParticleCommandIndex].effectPrefabs[currentParticleSpawnIndex].isRandomRange);
                 }
                 else
                 {
-                    CoreParticleManager.StartParticles(currentActionData.ParticlePrefabs[currentParticleSpawnIndex].Object);
+                    CoreParticleManager.StartParticles(currParticles[currentParticleCommandIndex].effectPrefabs[currentParticleSpawnIndex].Object);
                 }
             }
-            currentParticleSpawnIndex++;
         }
-
         protected override void Start()
         {
             base.Start();
