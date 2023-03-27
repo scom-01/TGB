@@ -27,7 +27,7 @@ namespace SOB.Weapons.Components
 
             if (currentGroundedActionData != null && currentAirActionData != null)
             {
-                if (weapon.BaseGameObject.GetComponent<Animator>().GetBool("inAir"))
+                if (weapon.InAir)
                 {
                     CheckAttackAction(currentAirActionData);
                 }
@@ -98,10 +98,6 @@ namespace SOB.Weapons.Components
                     }
                     for (int i = 0; i < currHitBox[currentHitBoxIndex].EffectPrefab.Length; i++)
                     {
-                        //if (currentActionData.ActionHit[currentHitEffectIndex].EffectPrefab[i] == null)
-                        //{
-                        //    continue;
-                        //}
                         damageable.HitAction(currHitBox[currentHitBoxIndex].EffectPrefab[i], 0.5f);
                     }
                 }

@@ -16,6 +16,7 @@ public class WeaponSprite : WeaponComponent<WeaponSpriteData, ActionSprites>
     {
         base.HandleEnter();
         currentActionSpriteIndex = 0;
+        currentSpriteCommandIndex = 0;
     }
 
     private void HandleBaseSpriteChange(SpriteRenderer sr)
@@ -28,7 +29,7 @@ public class WeaponSprite : WeaponComponent<WeaponSpriteData, ActionSprites>
 
         if(currentGroundedActionData !=null && currentAirActionData !=null)
         {
-            if (weapon.BaseGameObject.GetComponent<Animator>().GetBool("inAir"))
+            if (weapon.InAir)
             {
                 CheckAttackAction(currentAirActionData);
             }
@@ -65,20 +66,17 @@ public class WeaponSprite : WeaponComponent<WeaponSpriteData, ActionSprites>
                 currentSpriteCommandIndex = i;
                 break;
             }
+            currentSpriteCommandIndex = -1;
         }
 
-        if (weapon.BaseGameObject.GetComponent<Animator>().GetBool("inAir"))
+        if (currentSpriteCommandIndex == -1)
         {
-            if (currentGroundedActionData.WeaponSprites.Length > 0)
-            {
-                currentAttackSprite = currSprites[currentSpriteCommandIndex].sprites;
-            }
+            weapon.EventHandler.AnimationFinishedTrigger();
+            return;
         }
-        else
-        {
-            if (currentGroundedActionData.WeaponSprites.Length > 0)
-                currentAttackSprite = currSprites[currentSpriteCommandIndex].sprites;
-        }
+
+        if (currentGroundedActionData.WeaponSprites.Length > 0)
+            currentAttackSprite = currSprites[currentSpriteCommandIndex].sprites;
 
         if (currentAttackSprite.Length < 0)
             return;

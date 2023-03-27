@@ -33,7 +33,7 @@ namespace SOB.Weapons
             get => currentActionCounter;
             private set => currentActionCounter = value >= weaponData.NumberOfActions ? 0 : value;
         }
-        [HideInInspector] public bool InAir;
+        [HideInInspector]   public bool InAir;
         [HideInInspector]   protected string weaponAnimBoolStr;
         
         protected Animator baseAnimator;
@@ -126,7 +126,7 @@ namespace SOB.Weapons
 
         public void ResetActionCounter()
         {
-            CurrentActionCounter = 0;
+            CurrentActionCounter = 0;            
         }
 
         #region Set Func

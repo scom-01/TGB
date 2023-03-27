@@ -26,7 +26,7 @@ namespace SOB.Weapons.Components
         {            
             if (currentGroundedActionData != null && currentAirActionData != null)
             {
-                if (weapon.BaseGameObject.GetComponent<Animator>().GetBool("inAir"))
+                if (weapon.InAir)
                 {
                     CheckAttackAction(currentAirActionData, coll);
                 }
