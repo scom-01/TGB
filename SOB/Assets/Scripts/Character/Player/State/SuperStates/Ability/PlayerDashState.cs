@@ -81,12 +81,18 @@ public class PlayerDashState : PlayerAbilityState
             if (player.InputHandler.ActionInputs[(int)CombatInputs.primary])
             {
                 player.PrimaryAttackState.SetWeapon(player.Inventory.weapons[(int)CombatInputs.primary]);
-                player.FSM.ChangeState(player.PrimaryAttackState);
+                if (player.PrimaryAttackState.CheckCommand(ref player.commandQ))
+                {
+                    player.FSM.ChangeState(player.PrimaryAttackState);
+                }
             }
             else if (player.InputHandler.ActionInputs[(int)CombatInputs.secondary])
             {
-                player.SecondaryAttackState.SetWeapon(player.Inventory.weapons[(int)CombatInputs.secondary]);
-                player.FSM.ChangeState(player.SecondaryAttackState);
+                player.SecondaryAttackState.SetWeapon(player.Inventory.weapons[(int)CombatInputs.primary]);
+                if (player.SecondaryAttackState.CheckCommand(ref player.commandQ))
+                {
+                    player.FSM.ChangeState(player.SecondaryAttackState);
+                }
             }
 
             //대쉬 지속시간 종료
