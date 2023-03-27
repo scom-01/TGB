@@ -8,6 +8,12 @@ namespace SOB.Weapons.Components
     [Serializable]
     public class ActionSoundClip : ActionData
     {
-        [field: SerializeField] public AudioClip[] audioClips;
+        [field: SerializeField] public AudioClipCommand[] audioClips;
+        [Serializable]
+        public struct AudioClipCommand
+        {
+            public AudioClip[] audioClips;
+            public CommandEnum Command;
+        }
     }
 }
