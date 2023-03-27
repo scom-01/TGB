@@ -1,5 +1,6 @@
 using SOB.CoreSystem;
 using SOB.Item;
+using SOB.Weapons.Components;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -42,6 +43,8 @@ public class Player : Unit
     #region Other Variables            
     private Vector2 workspace;
     //public float invincibleTime;
+
+    public List<CommandEnum> commandQ = new List<CommandEnum>();
     #endregion
 
     #region Unity Callback Func
@@ -49,7 +52,7 @@ public class Player : Unit
     {
         base.Awake();
         playerData = UnitData as PlayerData;
-        
+
         //각 State 생성
         IdleState = new PlayerIdleState(this, "idle");
         MoveState = new PlayerMoveState(this, "move");
@@ -59,8 +62,8 @@ public class Player : Unit
         WallSlideState = new PlayerWallSlideState(this, "wallSlide");
         WallJumpState = new PlayerWallJumpState(this, "inAir");
         DashState = new PlayerDashState(this, "dash");
-        PrimaryAttackState = new PlayerWeaponState(this, "action",((int)CombatInputs.primary== (int)CombatInputs.primary)); //, Inventory.weapons[(int)CombatInputs.primary]);
-        SecondaryAttackState = new PlayerWeaponState(this, "action",((int)CombatInputs.primary== (int)CombatInputs.secondary));//, Inventory.weapons[(int)CombatInputs.secondary]);
+        PrimaryAttackState = new PlayerWeaponState(this, "action", ((int)CombatInputs.primary == (int)CombatInputs.primary)); //, Inventory.weapons[(int)CombatInputs.primary]);
+        SecondaryAttackState = new PlayerWeaponState(this, "action", ((int)CombatInputs.primary == (int)CombatInputs.secondary));//, Inventory.weapons[(int)CombatInputs.secondary]);
         foreach (var weapon in Inventory.weapons)
         {
             weapon.SetCore(Core);

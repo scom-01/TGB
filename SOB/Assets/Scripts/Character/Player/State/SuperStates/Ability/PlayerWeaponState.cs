@@ -4,12 +4,13 @@ using UnityEngine;
 using SOB.Weapons;
 using SOB.CoreSystem;
 using SOB.Weapons.Components;
+using System.Linq;
 
 public class PlayerWeaponState : PlayerAbilityState
 {
     public bool CanAttack { get; private set; }
 
-    private Weapon weapon;
+    public Weapon weapon;
 
     private int xInput;
     private int yInput;
@@ -25,6 +26,10 @@ public class PlayerWeaponState : PlayerAbilityState
     {
         base.Enter();
         this.weapon.OnExit += ExitHandler;
+        int idx = 1;
+        if (isPrimary)
+            idx = 0;
+        player.InputHandler.UseInput(ref player.InputHandler.ActionInputs[idx]);
         //setVelocity = false;
 
         weapon.InAir = !CollisionSenses.CheckIfGrounded;
@@ -36,10 +41,9 @@ public class PlayerWeaponState : PlayerAbilityState
         {
             weapon.Command = CommandEnum.Secondary;
         }
+
         weapon.EnterWeapon();
-
         CanAttack = false;
-
         startTime = Time.time;
     }
 
@@ -105,5 +109,66 @@ public class PlayerWeaponState : PlayerAbilityState
     {
         this.weapon = weapon;
         weapon.InitializeWeapon(this, player.Core);
+    }
+
+    public bool CheckCommand(ref List<CommandEnum> q)
+    {
+        CommandEnum command = CommandEnum.Secondary;
+        if (isPrimary)
+            command = CommandEnum.Primary;
+        q.Add(command);
+        if (!CollisionSenses.CheckIfGrounded)
+        {
+            for (int i = 0; i < weapon.weaponData.AirCommandList.Count; i++)
+            {
+                bool pass = true;
+                for (int j = 0; j < q.Count; j++)
+                {
+                    if (weapon.weaponData.AirCommandList[i].commands.Count < j + 1 ||
+                        weapon.weaponData.AirCommandList[i].commands[j] != q[j]
+                        )
+                    {
+                        pass = false;
+                        break;
+                    }
+                }
+                if (pass)
+                {
+                    return true;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < weapon.weaponData.GroundedCommandList.Count; i++)
+            {
+                bool pass = true;
+                for (int j = 0;j < q.Count;j++)
+                {
+                    if (weapon.weaponData.GroundedCommandList[i].commands.Count < j + 1||
+                        weapon.weaponData.GroundedCommandList[i].commands[j] != q[j]
+                        )
+                    {
+                        pass = false;
+                        break;
+                    }
+                }
+                if(pass)
+                {
+                    return true;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+        }
+        weapon.ResetActionCounter();
+        q.Clear();
+        return false;
     }
 }

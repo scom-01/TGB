@@ -1,3 +1,5 @@
+using SOB.Weapons.Components;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,4 +17,12 @@ namespace SOB.Weapons.Components
         Primary,
         Secondary,
     }
+
+    
+}
+
+[Serializable]
+public struct CommandList
+{
+    public List<CommandEnum> commands;
 }
