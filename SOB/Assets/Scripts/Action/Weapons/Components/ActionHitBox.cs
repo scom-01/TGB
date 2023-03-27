@@ -66,12 +66,19 @@ namespace SOB.Weapons.Components
                     currentHitBoxIndex = i;
                     break;
                 }
+                currentHitBoxIndex = -1;
+            }
+            if (currentHitBoxIndex == -1)
+            {
+                weapon.EventHandler.AnimationFinishedTrigger();
+                return;
             }
 
+
             offset.Set(
-                transform.position.x + (currHitBox[currentHitBoxIndex].ActionRect.center.x * CoreMovement.FancingDirection),
-                transform.position.y + (currHitBox[currentHitBoxIndex].ActionRect.center.y)
-                );
+                    transform.position.x + (currHitBox[currentHitBoxIndex].ActionRect.center.x * CoreMovement.FancingDirection),
+                    transform.position.y + (currHitBox[currentHitBoxIndex].ActionRect.center.y)
+                    );
 
             if (weapon.Command == currHitBox[currentHitBoxIndex].Command)
             {
@@ -124,7 +131,7 @@ namespace SOB.Weapons.Components
                 return;
 
             foreach (var item in data.ActionData)
-            {                
+            {
                 if (item.ActionHit == null)
                     continue;
 
@@ -145,7 +152,7 @@ namespace SOB.Weapons.Components
                 }
             }
             foreach (var item in data.InAirActionData)
-            {                
+            {
                 if (item.ActionHit == null)
                     continue;
 

@@ -13,8 +13,13 @@ MonoBehaviour:
   m_Name: Sword1
   m_EditorClassIdentifier: 
   <NumberOfActions>k__BackingField: 3
-  <NumberOfActionsPrimary>k__BackingField: 3
-  <NumberOfActionsSecondary>k__BackingField: 3
+  GroundedCommandList:
+  - commands: 000000000000000000000000
+  - commands: 0000000001000000
+  - commands: 0100000001000000
+  AirCommandList:
+  - commands: 000000000000000000000000
+  - commands: 0100000001000000
   <CanJump>k__BackingField: 1
   <CanAirAttack>k__BackingField: 1
   <ComponentData>k__BackingField:

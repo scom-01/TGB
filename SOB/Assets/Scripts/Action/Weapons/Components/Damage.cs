@@ -62,8 +62,14 @@ namespace SOB.Weapons.Components
                     currentActionDamageIndex = i;
                     break;
                 }
+                currentActionDamageIndex = -1;
             }
 
+            if(currentActionDamageIndex == -1)
+            {
+                weapon.EventHandler.AnimationFinishedTrigger();
+                return;
+            }
             foreach (var item in coll)
             {
                 if (item.gameObject.tag == this.gameObject.tag)

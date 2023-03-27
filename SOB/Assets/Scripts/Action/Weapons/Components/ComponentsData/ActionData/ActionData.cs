@@ -12,15 +12,13 @@ namespace SOB.Weapons.Components
         public void SetAttackName(string actionName, int i) => name = $"{actionName} Action {i}";
     }
 
-    public enum CommandEnum
-    {
-        Primary,
-        Secondary,
-    }
-
     
 }
-
+public enum CommandEnum
+{
+    Primary,
+    Secondary,
+}
 [Serializable]
 public struct CommandList
 {

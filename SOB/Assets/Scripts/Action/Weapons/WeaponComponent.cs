@@ -80,9 +80,7 @@ namespace SOB.Weapons.Components
         {
             base.HandleEnter();
             currentGroundedActionData = data.ActionData[weapon.CurrentActionCounter] ?? null;
-            Debug.LogWarning($"{data.ActionData}[{weapon.CurrentActionCounter}] = {currentGroundedActionData}");
             currentAirActionData = data.InAirActionData[weapon.CurrentActionCounter] ?? null;
-            Debug.LogWarning($"{data.InAirActionData}[{weapon.CurrentActionCounter}] = {currentAirActionData}");
 
         }
 
