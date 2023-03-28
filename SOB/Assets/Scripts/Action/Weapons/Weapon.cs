@@ -10,7 +10,7 @@ namespace SOB.Weapons
 {
     public class Weapon : MonoBehaviour
     {
-        public AnimatorOverrideController oc;
+        public List<CommandEnum> CommandList = new List<CommandEnum>();
 
         //Component
         public WeaponDataSO weaponData { get; private set; }
@@ -21,6 +21,7 @@ namespace SOB.Weapons
         public AnimationEventHandler EventHandler { get; private set; }
 
         [HideInInspector] public CommandEnum Command;
+        [HideInInspector] public AnimatorOverrideController oc;
         protected UnitState state;
         
         private Timer actionCounterResetTimer;
@@ -125,10 +126,13 @@ namespace SOB.Weapons
         public void ChangeActionCounter(int value)
         {
             CurrentActionCounter = value;
+            //커맨드 List Clear
+            CommandList.Clear();
         }
 
         private void ResetActionCounter()
         {
+            CommandList.Clear();
             CurrentActionCounter = 0;            
         }
 

@@ -13,10 +13,10 @@ public class PlayerJumpState : PlayerAbilityState
     {
         amountOfJumpLeft = player.playerData.amountOfJumps;
 
-        if(Jump_Effect == null)
+        if (Jump_Effect == null)
         {
             Jump_Effect = Resources.Load<GameObject>("Prefabs/Particle/Jump_Smoke");
-        }        
+        }
     }
 
     public override void Enter()
@@ -35,8 +35,10 @@ public class PlayerJumpState : PlayerAbilityState
             player.Core.GetCoreComponent<ParticleManager>().StartParticles(Jump_Effect, CollisionSenses.GroundCheck.position);
             player.Anim.SetBool("JumpFlip", true);
         }
-        
-        player.PrimaryAttackState.weapon.ResetActionCounter();
+        if (player.PrimaryAttackState.weapon != null)
+        {
+            player.PrimaryAttackState.weapon.ChangeActionCounter(0);
+        }
 
         DecreaseAmountOfJumpsLeft();
         player.InAirState.SetIsJumping();

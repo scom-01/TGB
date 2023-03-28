@@ -5,7 +5,6 @@ using UnityEngine;
 using SOB.Weapons.Components;
 using System;
 
-
 [CreateAssetMenu(fileName = "newWeaponData", menuName = "Data/Weapon Data/Weapon Data")]
 public class WeaponDataSO : ScriptableObject
 {

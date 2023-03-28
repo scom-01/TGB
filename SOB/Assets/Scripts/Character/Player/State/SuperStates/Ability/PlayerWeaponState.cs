@@ -132,7 +132,6 @@ public class PlayerWeaponState : PlayerAbilityState
             }
         }
         weapon.ChangeActionCounter(0);
-        q.Clear();
         return false;
     }
 
