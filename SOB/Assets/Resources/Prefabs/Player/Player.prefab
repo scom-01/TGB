@@ -399,6 +399,7 @@ MonoBehaviour:
   IsAlive: 1
   playerData: {fileID: 11400000, guid: ae3d62f76bc500849819fd1f7f2f1900, type: 2}
   DamageTextPrefab: {fileID: 1081114584503966581, guid: ac79a3234d3f9384daeb57ffc2760fa4, type: 3}
+  commandQ: 
 --- !u!114 &840319699589423351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1028,6 +1029,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword1
       objectReference: {fileID: 0}
+    - target: {fileID: 3288319468661193168, guid: caaa93eb4d0c9654c81148506d463b68, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3288319468661193168, guid: caaa93eb4d0c9654c81148506d463b68, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 6d41fb0e25938fe44b8bfd74532c8924, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: caaa93eb4d0c9654c81148506d463b68, type: 3}
 --- !u!4 &840319699465386059 stripped
@@ -1035,3 +1044,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3288319467719998631, guid: caaa93eb4d0c9654c81148506d463b68, type: 3}
   m_PrefabInstance: {fileID: 2741319375709930732}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &840319700644566849 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3288319468764697517, guid: caaa93eb4d0c9654c81148506d463b68, type: 3}
+  m_PrefabInstance: {fileID: 2741319375709930732}
+  m_PrefabAsset: {fileID: 0}
+--- !u!111 &287015740286274766
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840319700644566849}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0

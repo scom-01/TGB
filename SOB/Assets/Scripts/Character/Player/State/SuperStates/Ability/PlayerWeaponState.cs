@@ -33,7 +33,7 @@ public class PlayerWeaponState : PlayerAbilityState
         //setVelocity = false;
 
         weapon.InAir = !CollisionSenses.CheckIfGrounded;
-        if(isPrimary)
+        if (isPrimary)
         {
             weapon.Command = CommandEnum.Primary;
         }
@@ -82,7 +82,7 @@ public class PlayerWeaponState : PlayerAbilityState
         }
 
         //shouldCheckFlip = weapon.weaponData.GetData<MovementData>().ActionData[weapon.CurrentActionCounter].CanFlip;
-         
+
         if (Movement.CanFlip)
         {
             Movement.CheckIfShouldFlip(xInput);
@@ -96,7 +96,7 @@ public class PlayerWeaponState : PlayerAbilityState
 
 
         if (player.InputHandler.DashInput && player.DashState.CheckIfCanDash())
-        {            
+        {
             weapon.EventHandler.AnimationFinishedTrigger();
             player.FSM.ChangeState(player.DashState);
             return;
@@ -119,56 +119,55 @@ public class PlayerWeaponState : PlayerAbilityState
         q.Add(command);
         if (!CollisionSenses.CheckIfGrounded)
         {
-            for (int i = 0; i < weapon.weaponData.AirCommandList.Count; i++)
+            if (CalCommand(weapon.weaponData.AirCommandList, q))
             {
-                bool pass = true;
-                for (int j = 0; j < q.Count; j++)
-                {
-                    if (weapon.weaponData.AirCommandList[i].commands.Count < j + 1 ||
-                        weapon.weaponData.AirCommandList[i].commands[j] != q[j]
-                        )
-                    {
-                        pass = false;
-                        break;
-                    }
-                }
-                if (pass)
-                {
-                    return true;
-                }
-                else
-                {
-                    continue;
-                }
+                return true;
             }
         }
         else
         {
-            for (int i = 0; i < weapon.weaponData.GroundedCommandList.Count; i++)
+            if(CalCommand(weapon.weaponData.GroundedCommandList, q))
             {
-                bool pass = true;
-                for (int j = 0;j < q.Count;j++)
+                return true;
+            }
+        }
+        weapon.ChangeActionCounter(0);
+        q.Clear();
+        return false;
+    }
+
+    private bool CalCommand(List<CommandList> commandLists, List<CommandEnum> q)
+    {
+        for (int i = 0; i < commandLists.Count; i++)
+        {
+            bool pass = true;
+            for (int j = 0; j < q.Count; j++)
+            {
+                if (commandLists[i].commands.Count < j + 1 ||
+                    commandLists[i].commands[j].command != q[j]
+                    )
                 {
-                    if (weapon.weaponData.GroundedCommandList[i].commands.Count < j + 1||
-                        weapon.weaponData.GroundedCommandList[i].commands[j] != q[j]
-                        )
-                    {
-                        pass = false;
-                        break;
-                    }
+                    pass = false;
+                    break;
                 }
-                if(pass)
+                if (commandLists[i].commands[j].animOC == null)
                 {
-                    return true;
+                    weapon.oc = weapon.weaponData.DefaultAnimator;
                 }
                 else
                 {
-                    continue;
+                    weapon.oc = commandLists[i].commands[j].animOC;
                 }
             }
+            if (pass)
+            {
+                return true;
+            }
+            else
+            {
+                continue;
+            }
         }
-        weapon.ResetActionCounter();
-        q.Clear();
         return false;
     }
 }

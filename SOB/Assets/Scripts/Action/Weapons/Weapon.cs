@@ -10,6 +10,8 @@ namespace SOB.Weapons
 {
     public class Weapon : MonoBehaviour
     {
+        public AnimatorOverrideController oc;
+
         //Component
         public WeaponDataSO weaponData { get; private set; }
 
@@ -83,12 +85,13 @@ namespace SOB.Weapons
             print($"{transform.name} EnterWeapon");
 
             actionCounterResetTimer.StopTimer();
-                        
+            if (oc != null)
+            {
+                baseAnimator.runtimeAnimatorController = oc;
+            }
             SetBoolName("inAir", InAir);            
             SetBoolName("action", true);
-            SetIntName("actionCounter", CurrentActionCounter);            
-            //SetIntName("actionCounter", CurrentActionCounter);            
-
+            SetIntName("actionCounter", CurrentActionCounter);
             OnEnter?.Invoke();
         }
 
@@ -124,7 +127,7 @@ namespace SOB.Weapons
             CurrentActionCounter = value;
         }
 
-        public void ResetActionCounter()
+        private void ResetActionCounter()
         {
             CurrentActionCounter = 0;            
         }

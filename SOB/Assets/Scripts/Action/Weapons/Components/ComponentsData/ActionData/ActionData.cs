@@ -22,5 +22,12 @@ public enum CommandEnum
 [Serializable]
 public struct CommandList
 {
-    public List<CommandEnum> commands;
+    public List<AnimCommand> commands;    
+}
+
+[Serializable]
+public struct AnimCommand
+{
+    public CommandEnum command;
+    public AnimatorOverrideController animOC;
 }
