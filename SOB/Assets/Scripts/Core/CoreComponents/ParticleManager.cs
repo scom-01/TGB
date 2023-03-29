@@ -28,6 +28,12 @@ namespace SOB.CoreSystem
                 return Instantiate(particlePrefab, pos, Quaternion.identity, particleContainer);
             return Instantiate(particlePrefab, pos, Quaternion.Euler(0f, 180.0f, 0f), particleContainer);
         }
+        public GameObject StartParticles(GameObject particlePrefab, Vector2 pos, Vector3 euler)
+        {
+            if (core.GetCoreComponent<Movement>().FancingDirection > 0)
+                return Instantiate(particlePrefab, pos, Quaternion.identity, particleContainer);
+            return Instantiate(particlePrefab, pos, Quaternion.Euler(euler.x, euler.y, euler.z), particleContainer);
+        }
 
         public GameObject StartParticles(GameObject particlePrefab)
         {

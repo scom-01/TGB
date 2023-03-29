@@ -44,7 +44,6 @@ public class Player : Unit
     private Vector2 workspace;
     //public float invincibleTime;
 
-    public List<CommandEnum> commandQ = new List<CommandEnum>();
     #endregion
 
     #region Unity Callback Func
@@ -63,7 +62,7 @@ public class Player : Unit
         WallJumpState = new PlayerWallJumpState(this, "inAir");
         DashState = new PlayerDashState(this, "dash");
         PrimaryAttackState = new PlayerWeaponState(this, "action", ((int)CombatInputs.primary == (int)CombatInputs.primary)); //, Inventory.weapons[(int)CombatInputs.primary]);
-        SecondaryAttackState = new PlayerWeaponState(this, "action", ((int)CombatInputs.primary == (int)CombatInputs.secondary));//, Inventory.weapons[(int)CombatInputs.secondary]);
+        SecondaryAttackState = new PlayerWeaponState(this, "action", ((int)CombatInputs.primary == (int)CombatInputs.secondary));//, Inventory.weapons[(int)CombatInputs.secondary]);        
         foreach (var weapon in Inventory.weapons)
         {
             weapon.SetCore(Core);

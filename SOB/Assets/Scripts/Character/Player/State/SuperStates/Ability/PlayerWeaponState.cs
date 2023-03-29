@@ -60,12 +60,12 @@ public class PlayerWeaponState : PlayerAbilityState
         yInput = player.InputHandler.NormInputY;
         JumpInput = player.InputHandler.JumpInput;
 
-        if (JumpInput && player.JumpState.CanJump() && weapon.weaponData.CanJump && CollisionSenses.CheckIfPlatform && yInput < 0)
+        if (JumpInput && player.JumpState.CanJump() && CollisionSenses.CheckIfPlatform && yInput < 0)
         {
             player.StartCoroutine(player.DisableCollision());
             return;
         }
-        else if (JumpInput && player.JumpState.CanJump() && weapon.weaponData.CanJump && !player.BC2D.isTrigger)
+        else if (JumpInput && player.JumpState.CanJump() && !player.BC2D.isTrigger)
         {
             weapon.EventHandler.AnimationFinishedTrigger();
             player.FSM.ChangeState(player.JumpState);
@@ -119,14 +119,14 @@ public class PlayerWeaponState : PlayerAbilityState
         q.Add(command);
         if (!CollisionSenses.CheckIfGrounded)
         {
-            if (CalCommand(weapon.weaponData.AirCommandList, q))
+            if (CalCommand(weapon.weaponCommandData.AirCommandList, q))
             {
                 return true;
             }
         }
         else
         {
-            if(CalCommand(weapon.weaponData.GroundedCommandList, q))
+            if(CalCommand(weapon.weaponCommandData.GroundedCommandList, q))
             {
                 return true;
             }
@@ -151,11 +151,13 @@ public class PlayerWeaponState : PlayerAbilityState
                 }
                 if (commandLists[i].commands[j].animOC == null)
                 {
-                    weapon.oc = weapon.weaponData.DefaultAnimator;
+                    weapon.oc = weapon.weaponCommandData.DefaultAnimator;
+                    weapon.weaponGenerator.GenerateWeapon(commandLists[i].commands[j].data);
                 }
                 else
                 {
                     weapon.oc = commandLists[i].commands[j].animOC;
+                    weapon.weaponGenerator.GenerateWeapon(commandLists[i].commands[j].data);
                 }
             }
             if (pass)

@@ -12,30 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 829d099c869488a49a5f24ab18f0f054, type: 3}
   m_Name: Sword1
   m_EditorClassIdentifier: 
-  <NumberOfActions>k__BackingField: 3
-  DefaultAnimator: {fileID: 22100000, guid: d03a71b72f3f2e14a87c735ab7b45e48, type: 2}
-  GroundedCommandList:
-  - commands:
-    - command: 0
-      animClip: {fileID: 7400000, guid: 016dc3d3794194d4499f2e36ab7d775f, type: 2}
-      animOC: {fileID: 22100000, guid: 32b0e0da2187b6c4b89b9229321ed9d1, type: 2}
-    - command: 0
-      animClip: {fileID: 7400000, guid: 016dc3d3794194d4499f2e36ab7d775f, type: 2}
-      animOC: {fileID: 22100000, guid: c141b9f774c3649488ccfbe327b96f47, type: 2}
-    - command: 0
-      animClip: {fileID: 7400000, guid: 016dc3d3794194d4499f2e36ab7d775f, type: 2}
-      animOC: {fileID: 22100000, guid: be749a8f2e4de154d98dc6f99662a3b5, type: 2}
-  AirCommandList:
-  - commands:
-    - command: 0
-      animClip: {fileID: 0}
-      animOC: {fileID: 0}
-    - command: 0
-      animClip: {fileID: 0}
-      animOC: {fileID: 0}
-    - command: 0
-      animClip: {fileID: 0}
-      animOC: {fileID: 0}
+  <NumberOfActions>k__BackingField: 1
   <CanJump>k__BackingField: 1
   <CanAirAttack>k__BackingField: 1
   <ComponentData>k__BackingField:
@@ -53,212 +30,36 @@ MonoBehaviour:
       type: {class: ParticleSpawnData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: ParticleSpawnData
-        groundactionData:
-        - name: Grounded Action 1
-          <ParticleCommands>k__BackingField:
-          - effectPrefabs:
-            - isGround: 1
-              isRandomPosRot: 0
-              isRandomRange: 0
-              Object: {fileID: 8924082236497946225, guid: 22379e21c7b451147ab25b1e916aafaf, type: 3}
-            Command: 0
-          - effectPrefabs:
-            - isGround: 1
-              isRandomPosRot: 0
-              isRandomRange: 0
-              Object: {fileID: 3951388831926086538, guid: 00152dbe409188e49a1640e7d780a185, type: 3}
-            Command: 1
-        - name: Grounded Action 2
-          <ParticleCommands>k__BackingField: []
-        - name: Grounded Action 3
-          <ParticleCommands>k__BackingField: []
-        airActionData:
-        - name: InAir Action 1
-          <ParticleCommands>k__BackingField: []
-        - name: InAir Action 2
-          <ParticleCommands>k__BackingField: []
-        - name: InAir Action 3
-          <ParticleCommands>k__BackingField: []
+        actionData:
+        - name: 
+          <EffectParticles>k__BackingField:
+          - isGround: 1
+            isRandomPosRot: 0
+            isRandomRange: 0
+            Object: {fileID: 8924082236497946225, guid: 22379e21c7b451147ab25b1e916aafaf, type: 3}
     - rid: 1770984693643870209
       type: {class: SoundClipData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: SoundClipData
-        groundactionData:
-        - name: Grounded Action 1
+        actionData:
+        - name: 
           audioClips:
-          - audioClips:
-            - {fileID: 8300000, guid: 7dfd8119742582c47832bf5ec01273db, type: 3}
-            Command: 0
-          - audioClips:
-            - {fileID: 8300000, guid: 7dfd8119742582c47832bf5ec01273db, type: 3}
-            Command: 1
-        - name: Grounded Action 2
-          audioClips:
-          - audioClips:
-            - {fileID: 8300000, guid: a43b3ed7a42c242489f8b5351bf08f67, type: 3}
-            Command: 0
-          - audioClips:
-            - {fileID: 8300000, guid: a43b3ed7a42c242489f8b5351bf08f67, type: 3}
-            Command: 1
-        - name: Grounded Action 3
-          audioClips:
-          - audioClips:
-            - {fileID: 8300000, guid: a90b7184fb02659469901edc3ceb6a19, type: 3}
-            Command: 0
-          - audioClips:
-            - {fileID: 8300000, guid: a90b7184fb02659469901edc3ceb6a19, type: 3}
-            Command: 1
-        airActionData:
-        - name: InAir Action 1
-          audioClips:
-          - audioClips:
-            - {fileID: 8300000, guid: 7dfd8119742582c47832bf5ec01273db, type: 3}
-            Command: 0
-          - audioClips:
-            - {fileID: 8300000, guid: 7dfd8119742582c47832bf5ec01273db, type: 3}
-            Command: 1
-        - name: InAir Action 2
-          audioClips:
-          - audioClips:
-            - {fileID: 8300000, guid: a43b3ed7a42c242489f8b5351bf08f67, type: 3}
-            Command: 0
-          - audioClips:
-            - {fileID: 8300000, guid: a43b3ed7a42c242489f8b5351bf08f67, type: 3}
-            Command: 1
-        - name: InAir Action 3
-          audioClips:
-          - audioClips:
-            - {fileID: 8300000, guid: a90b7184fb02659469901edc3ceb6a19, type: 3}
-            Command: 0
-          - audioClips:
-            - {fileID: 8300000, guid: a90b7184fb02659469901edc3ceb6a19, type: 3}
-            Command: 1
+          - {fileID: 8300000, guid: 7dfd8119742582c47832bf5ec01273db, type: 3}
     - rid: 3615621173780152320
       type: {class: ActionHitBoxData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: ActionHitBoxData
-        groundactionData:
-        - name: Grounded Action 1
+        actionData:
+        - name: 
           ActionHit:
-          - Debug: 0
+          - Debug: 1
             ActionRect:
               serializedVersion: 2
-              x: -0.77
-              y: -0.83
-              width: 3.83
-              height: 1.17
+              x: 0.29
+              y: -0.77
+              width: 2.93
+              height: 1.23
             EffectPrefab: []
-            Command: 0
-          - Debug: 0
-            ActionRect:
-              serializedVersion: 2
-              x: -0.77
-              y: -0.83
-              width: 3.83
-              height: 1.17
-            EffectPrefab: []
-            Command: 1
-        - name: Grounded Action 2
-          ActionHit:
-          - Debug: 0
-            ActionRect:
-              serializedVersion: 2
-              x: -0.77
-              y: -0.83
-              width: 3.83
-              height: 1.17
-            EffectPrefab: []
-            Command: 0
-          - Debug: 0
-            ActionRect:
-              serializedVersion: 2
-              x: -0.77
-              y: -0.83
-              width: 3.83
-              height: 1.17
-            EffectPrefab: []
-            Command: 1
-        - name: Grounded Action 3
-          ActionHit:
-          - Debug: 0
-            ActionRect:
-              serializedVersion: 2
-              x: -0.83
-              y: -0.83
-              width: 3.68
-              height: 2.22
-            EffectPrefab: []
-            Command: 0
-          - Debug: 0
-            ActionRect:
-              serializedVersion: 2
-              x: -0.83
-              y: -0.83
-              width: 3.68
-              height: 2.22
-            EffectPrefab: []
-            Command: 1
-        airActionData:
-        - name: InAir Action 1
-          ActionHit:
-          - Debug: 0
-            ActionRect:
-              serializedVersion: 2
-              x: -1.3
-              y: -0.54
-              width: 3.97
-              height: 0.8
-            EffectPrefab: []
-            Command: 0
-          - Debug: 0
-            ActionRect:
-              serializedVersion: 2
-              x: -1.3
-              y: -0.54
-              width: 3.97
-              height: 0.8
-            EffectPrefab: []
-            Command: 1
-        - name: InAir Action 2
-          ActionHit:
-          - Debug: 0
-            ActionRect:
-              serializedVersion: 2
-              x: -1.66
-              y: -0.2
-              width: 4.06
-              height: 0.86
-            EffectPrefab: []
-            Command: 0
-          - Debug: 0
-            ActionRect:
-              serializedVersion: 2
-              x: -1.66
-              y: -0.2
-              width: 4.06
-              height: 0.86
-            EffectPrefab: []
-            Command: 1
-        - name: InAir Action 3
-          ActionHit:
-          - Debug: 0
-            ActionRect:
-              serializedVersion: 2
-              x: -1.46
-              y: -0.81
-              width: 3.59
-              height: 2.09
-            EffectPrefab: []
-            Command: 0
-          - Debug: 0
-            ActionRect:
-              serializedVersion: 2
-              x: -1.46
-              y: -0.81
-              width: 3.59
-              height: 2.09
-            EffectPrefab: []
-            Command: 1
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
           m_Bits: 133120
@@ -266,185 +67,38 @@ MonoBehaviour:
       type: {class: MovementData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: MovementData
-        groundactionData:
-        - name: Grounded Action 1
-          <movementCommands>k__BackingField: []
-        - name: Grounded Action 2
-          <movementCommands>k__BackingField: []
-        - name: Grounded Action 3
-          <movementCommands>k__BackingField: []
-        airActionData:
-        - name: InAir Action 1
-          <movementCommands>k__BackingField: []
-        - name: InAir Action 2
-          <movementCommands>k__BackingField: []
-        - name: InAir Action 3
-          <movementCommands>k__BackingField: []
+        actionData:
+        - name: 
+          <movements>k__BackingField:
+            CanFlip: 0
+            CanMoveCtrl: 0
+            Direction: {x: 0.1, y: 0.1}
+            Velocity: 1
     - rid: 3615621236231503872
       type: {class: WeaponSpriteData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: WeaponSpriteData
-        groundactionData:
-        - name: Grounded Action 1
+        actionData:
+        - name: 
           <WeaponSprites>k__BackingField:
-          - sprites:
-            - {fileID: 51041346, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-            - {fileID: -1188008882, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-            - {fileID: 140725285, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-            - {fileID: 301393240, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-            - {fileID: -737698732, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-            Command: 0
-          - sprites:
-            - {fileID: 2024158448, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
-            - {fileID: 829565306, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
-            - {fileID: -1702336157, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
-            - {fileID: -832027921, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
-            - {fileID: -1552490490, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
-            Command: 1
-        - name: Grounded Action 2
-          <WeaponSprites>k__BackingField:
-          - sprites:
-            - {fileID: 675924838, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-            - {fileID: -1128788728, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-            - {fileID: -1554525141, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-            - {fileID: 783210583, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-            - {fileID: 100916829, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-            Command: 0
-          - sprites:
-            - {fileID: -85242271, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
-            - {fileID: -390544012, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
-            - {fileID: 2044384428, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
-            - {fileID: 107414174, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
-            - {fileID: 1203510556, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
-            Command: 1
-        - name: Grounded Action 3
-          <WeaponSprites>k__BackingField:
-          - sprites:
-            - {fileID: 577480298, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-            - {fileID: 653481542, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-            - {fileID: -1284737267, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-            - {fileID: 1848349252, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-            - {fileID: -1175468386, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-            Command: 0
-          - sprites:
-            - {fileID: -1882352595, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
-            - {fileID: 1071354061, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
-            - {fileID: -823431220, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
-            - {fileID: -2054684485, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
-            - {fileID: 1312805329, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
-            Command: 1
-        airActionData:
-        - name: InAir Action 1
-          <WeaponSprites>k__BackingField:
-          - sprites:
-            - {fileID: 648612261, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-            - {fileID: 1591889717, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-            - {fileID: 1017945547, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-            - {fileID: 1505583640, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-            - {fileID: -118192930, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-            - {fileID: 813284989, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-            Command: 0
-          - sprites:
-            - {fileID: 1213060584, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
-            - {fileID: -1786561542, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
-            - {fileID: 481340600, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
-            - {fileID: -1278682800, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
-            - {fileID: 94370055, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
-            - {fileID: 1987319174, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
-            Command: 1
-        - name: InAir Action 2
-          <WeaponSprites>k__BackingField:
-          - sprites:
-            - {fileID: 1626861925, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-            - {fileID: -389562703, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-            - {fileID: 243659706, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-            - {fileID: -1895856038, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-            - {fileID: 2055020914, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-            Command: 0
-          - sprites:
-            - {fileID: 1414451403, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
-            - {fileID: -1373038146, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
-            - {fileID: 757623960, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
-            - {fileID: -2104761717, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
-            - {fileID: -697474629, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
-            Command: 1
-        - name: InAir Action 3
-          <WeaponSprites>k__BackingField:
-          - sprites:
-            - {fileID: -859760171, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-            - {fileID: -2062899245, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-            - {fileID: 2006328060, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-            - {fileID: 590085780, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-            - {fileID: -502706545, guid: 0a3eb9122985c5a4489f4e3457f855bd, type: 3}
-            Command: 0
-          - sprites:
-            - {fileID: 2135411007, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
-            - {fileID: -209406829, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
-            - {fileID: -2027913737, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
-            - {fileID: -191111204, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
-            - {fileID: -1330394290, guid: 207d0d8190c0a68418b6f97506cb5735, type: 3}
-            Command: 1
+          - {fileID: 51041346, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: -1188008882, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: 140725285, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: 301393240, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: -737698732, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
     - rid: 3615621433789513728
       type: {class: DamageData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: DamageData
-        groundactionData:
-        - name: Grounded Action 1
+        actionData:
+        - name: 
           <AdditionalDamage>k__BackingField:
-          - Amount: 5
-            Command: 0
-          - Amount: 5
-            Command: 1
-        - name: Grounded Action 2
-          <AdditionalDamage>k__BackingField:
-          - Amount: 10
-            Command: 0
-          - Amount: 10
-            Command: 1
-        - name: Grounded Action 3
-          <AdditionalDamage>k__BackingField:
-          - Amount: 12
-            Command: 0
-          - Amount: 12
-            Command: 1
-        airActionData:
-        - name: InAir Action 1
-          <AdditionalDamage>k__BackingField:
-          - Amount: 5
-            Command: 0
-          - Amount: 5
-            Command: 1
-        - name: InAir Action 2
-          <AdditionalDamage>k__BackingField:
-          - Amount: 10
-            Command: 0
-          - Amount: 10
-            Command: 1
-        - name: InAir Action 3
-          <AdditionalDamage>k__BackingField:
-          - Amount: 12
-            Command: 0
-          - Amount: 12
-            Command: 1
+          - 5
     - rid: 8358215245741948929
       type: {class: KnockbackData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: KnockbackData
-        groundactionData:
-        - name: Grounded Action 1
-          <Knockback>k__BackingField:
-          - KnockbackAngle: {x: 5, y: 10}
-            Command: 0
-          - KnockbackAngle: {x: 5, y: 10}
-            Command: 1
-        - name: Grounded Action 2
-          <Knockback>k__BackingField: []
-        - name: Grounded Action 3
-          <Knockback>k__BackingField: []
-        airActionData:
-        - name: InAir Action 1
-          <Knockback>k__BackingField: []
-        - name: InAir Action 2
-          <Knockback>k__BackingField: []
-        - name: InAir Action 3
-          <Knockback>k__BackingField: []
+        actionData:
+        - name: 
+          <KnockbackAngle>k__BackingField:
+          - {x: 10, y: 5}

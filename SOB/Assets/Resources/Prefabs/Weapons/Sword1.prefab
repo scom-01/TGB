@@ -47,7 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b85d4bde7d2e8de4daefd1f2646b39a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CommandList: 
   Command: 0
+  oc: {fileID: 0}
   InAir: 0
   actionCounterResetCooldown: 0.6
 --- !u!114 &3288319468710893353
@@ -62,6 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48d301d0b1380ba46b1269e07d0ee177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponCommandData: {fileID: 11400000, guid: 666144be098a62045a45586d8c899704, type: 2}
   weaponData: {fileID: 11400000, guid: 8956c3b7bcbd406458e827279ec8cb68, type: 2}
 --- !u!1 &3288319468661193170
 GameObject:
