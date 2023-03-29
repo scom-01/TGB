@@ -42,14 +42,13 @@ namespace SOB.Weapons.Components
         protected virtual void Awake()
         {
             weapon = GetComponent<Weapon>();
-
+            weapon.OnEnter += HandleEnter;
+            weapon.OnExit += HandleExit;
             eventHandler = GetComponentInChildren<AnimationEventHandler>();
         }
 
         protected virtual void Start()
         {
-            weapon.OnEnter += HandleEnter;
-            weapon.OnExit += HandleExit;
         }
 
         protected virtual void HandleEnter()
@@ -73,14 +72,21 @@ namespace SOB.Weapons.Components
     public abstract class WeaponComponent<T1, T2> : WeaponComponent where T1 : ComponentData<T2> where T2 : ActionData
     {
         protected T1 data;
-        protected T2 currentGroundedActionData;
-        protected T2 currentAirActionData;
+        protected T2 currentActionData;
+        //protected T2 currentAirActionData;
 
         protected override void HandleEnter()
         {
             base.HandleEnter();
-            currentGroundedActionData = data.ActionData[weapon.CurrentActionCounter] ?? null;
-            currentAirActionData = data.InAirActionData[weapon.CurrentActionCounter] ?? null;
+            if(data.ActionData.Length != 0)
+            {
+                currentActionData = data.ActionData[0] ?? null;
+            }
+            else
+            {
+                currentActionData = null;
+            }
+            //currentAirActionData = data.InAirActionData[weapon.CurrentActionCounter] ?? null;
 
         }
 

@@ -11,7 +11,8 @@ namespace SOB.Weapons
     public class WeaponGenerator : MonoBehaviour
     {
         private Weapon weapon;
-        [SerializeField] private WeaponDataSO weaponData;
+        [SerializeField] private WeaponCommandDataSO weaponCommandData;
+        [SerializeField] public WeaponDataSO weaponData;
 
         private List<WeaponComponent> componentsAllreadyOnWeapon = new List<WeaponComponent>();
         private List<WeaponComponent> componentsAddedToWeapon = new List<WeaponComponent>();
@@ -22,13 +23,19 @@ namespace SOB.Weapons
         }
         private void Start()
         {
-            GenerateWeapon(weaponData);
+            if(weaponCommandData != null)
+                weapon.SetCommandData(weaponCommandData);
+            else
+            {
+                if (weaponData != null)
+                GenerateWeapon(weaponData);
+            }
         }
 
         [ContextMenu("Test Generate")]
         private void TestGeneration()
         {
-            GenerateWeapon(weaponData);
+            //GenerateWeapon(weaponCommandData);
         }
 
         public void GenerateWeapon(WeaponDataSO data)

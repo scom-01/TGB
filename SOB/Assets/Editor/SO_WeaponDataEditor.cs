@@ -27,13 +27,13 @@ namespace SOB.Weapons
         {
             base.OnInspectorGUI();
 
-            if(GUILayout.Button("Set Number of Actions"))
-            {
-                foreach (var item in dataSO.ComponentData)
-                {
-                    item.InitializeActionData(dataSO.NumberOfActions);
-                }
-            }
+            //if(GUILayout.Button("Set Number of Actions"))
+            //{
+            //    foreach (var item in dataSO.ComponentData)
+            //    {
+            //        item.InitializeActionData(dataSO.NumberOfActions);
+            //    }
+            //}
 
             showAddComponentButtons = EditorGUILayout.Foldout(showAddComponentButtons, "Add Components Buttons");            
 

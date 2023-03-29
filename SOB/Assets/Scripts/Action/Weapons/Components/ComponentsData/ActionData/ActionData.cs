@@ -9,10 +9,8 @@ namespace SOB.Weapons.Components
     {
         [SerializeField, HideInInspector] private string name;
 
-        public void SetAttackName(string actionName, int i) => name = $"{actionName} Action {i}";
+        public void SetAttackName(int i) => name = $"Action {i}";
     }
-
-    
 }
 public enum CommandEnum
 {
@@ -30,4 +28,5 @@ public struct AnimCommand
 {
     public CommandEnum command;
     public AnimatorOverrideController animOC;
+    public WeaponDataSO data;
 }

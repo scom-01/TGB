@@ -11,8 +11,15 @@ namespace SOB.Weapons
     public class Weapon : MonoBehaviour
     {
         public List<CommandEnum> CommandList = new List<CommandEnum>();
-
+        public WeaponGenerator weaponGenerator 
+        { 
+            get
+            {
+                return this.gameObject.GetComponent<WeaponGenerator>();
+            }
+        }
         //Component
+        public WeaponCommandDataSO weaponCommandData { get; private set; }
         public WeaponDataSO weaponData { get; private set; }
 
         public Core WeaponCore { get; private set; }
@@ -122,11 +129,15 @@ namespace SOB.Weapons
         {
             this.weaponData = data;
         }
+        public void SetCommandData(WeaponCommandDataSO data)
+        {
+            this.weaponCommandData = data;
+        }
 
         public void ChangeActionCounter(int value)
         {
             CurrentActionCounter = value;
-            //커맨드 List Clear
+            //커맨드 List 초기ㅎ
             CommandList.Clear();
         }
 
