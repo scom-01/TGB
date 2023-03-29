@@ -8,16 +8,15 @@ namespace SOB.Weapons.Components
     [Serializable]
     public class ActionMovement : ActionData
     {
-        [field: SerializeField] public MovementCommandData[] movementCommands { get; private set; }
+        [field: SerializeField] public MovementData movements { get; private set; }
 
         [Serializable]
-        public struct MovementCommandData
+        public struct MovementData
         {
             public bool CanFlip;
             public bool CanMoveCtrl ;
             public Vector2 Direction ;
             public float Velocity ;
-            public CommandEnum Command ;
         }    
     }
 }

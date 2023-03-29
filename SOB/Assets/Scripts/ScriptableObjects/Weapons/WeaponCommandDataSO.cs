@@ -11,12 +11,4 @@ public class WeaponCommandDataSO : ScriptableObject
 
     [field: SerializeField] public List<CommandList> GroundedCommandList;
     [field: SerializeField] public List<CommandList> AirCommandList;
-
-    [field: SerializeField] public WeaponDataSO data;
-}
-
-[Serializable]
-public struct CommandWeapon
-{
-    public CommandList CommandList;
 }

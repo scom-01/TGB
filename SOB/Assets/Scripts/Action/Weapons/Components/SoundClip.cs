@@ -9,34 +9,36 @@ namespace SOB.Weapons.Components
     {
         private ActionHitBox hitBox;
         private int currentSoundIndex;
-        private int currentSoundCommandIndex;
         protected override void HandleEnter()
         {
             base.HandleEnter();
-            currentSoundCommandIndex = 0;
             currentSoundIndex = 0;
         }
         public void HandleSoundClip()
         {
-            if (currentGroundedActionData != null && currentAirActionData != null)
+            if(currentActionData !=null)
             {
-                if (weapon.InAir)
-                {
-                    CheckSoundClipAction(currentAirActionData);
-                }
-                else
-                {
-                    CheckSoundClipAction(currentGroundedActionData);
-                }
+                CheckSoundClipAction(currentActionData);
             }
-            else if (currentGroundedActionData == null)
-            {
-                CheckSoundClipAction(currentAirActionData);
-            }
-            else if (currentAirActionData == null)
-            {
-                CheckSoundClipAction(currentGroundedActionData);
-            }
+            //if (currentActionData != null && currentAirActionData != null)
+            //{
+            //    if (weapon.InAir)
+            //    {
+            //        CheckSoundClipAction(currentAirActionData);
+            //    }
+            //    else
+            //    {
+            //        CheckSoundClipAction(currentActionData);
+            //    }
+            //}
+            //else if (currentActionData == null)
+            //{
+            //    CheckSoundClipAction(currentAirActionData);
+            //}
+            //else if (currentAirActionData == null)
+            //{
+            //    CheckSoundClipAction(currentActionData);
+            //}
 
             currentSoundIndex++;
         }
@@ -59,29 +61,13 @@ namespace SOB.Weapons.Components
             if (currSoundClips.Length <= 0)
                 return;
 
-            for (int i = 0; i < currSoundClips.Length; i++)
+            if (currentSoundIndex >= currSoundClips.Length)
             {
-                if (currSoundClips[i].Command == weapon.Command)
-                {
-                    currentSoundCommandIndex = i;
-                    break;
-                }
-                currentSoundCommandIndex = -1;
-            }
-
-            if (currentSoundCommandIndex == -1)
-            {
-                weapon.EventHandler.AnimationFinishedTrigger();
+                Debug.LogWarning(currSoundClips + "[" + currentSoundIndex + "].audioClips is Null");
                 return;
             }
 
-            if (currentSoundIndex >= currSoundClips[currentSoundCommandIndex].audioClips.Length)
-            {
-                Debug.LogWarning(currSoundClips + "[" + currentSoundCommandIndex + "].audioClips is Null");
-                return;
-            }
-
-            core.GetCoreComponent<SoundEffect>().AudioSpawn(currSoundClips[currentSoundCommandIndex].audioClips[currentSoundIndex]);
+            core.GetCoreComponent<SoundEffect>().AudioSpawn(currSoundClips[currentSoundIndex]);
         }
         protected override void Awake()
         {

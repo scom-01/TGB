@@ -11,12 +11,10 @@ public class WeaponSprite : WeaponComponent<WeaponSpriteData, ActionSprites>
     private GameObject baseObject;
 
     private int currentActionSpriteIndex;
-    private int currentSpriteCommandIndex;
     protected override void HandleEnter()
     {
         base.HandleEnter();
         currentActionSpriteIndex = 0;
-        currentSpriteCommandIndex = 0;
     }
 
     private void HandleBaseSpriteChange(SpriteRenderer sr)
@@ -27,25 +25,30 @@ public class WeaponSprite : WeaponComponent<WeaponSpriteData, ActionSprites>
             return;
         }
 
-        if(currentGroundedActionData !=null && currentAirActionData !=null)
+        if (currentActionData != null)
         {
-            if (weapon.InAir)
-            {
-                CheckAttackAction(currentAirActionData);
-            }
-            else
-            {
-                CheckAttackAction(currentGroundedActionData);
-            }
+            CheckAttackAction(currentActionData);
         }
-        else if(currentGroundedActionData == null)
-        {
-            CheckAttackAction(currentAirActionData);
-        }
-        else if(currentAirActionData == null)
-        {
-            CheckAttackAction(currentGroundedActionData);
-        }
+
+        //if (currentActionData !=null && currentAirActionData !=null)
+        //{
+        //    if (weapon.InAir)
+        //    {
+        //        CheckAttackAction(currentAirActionData);
+        //    }
+        //    else
+        //    {
+        //        CheckAttackAction(currentActionData);
+        //    }
+        //}
+        //else if(currentActionData == null)
+        //{
+        //    CheckAttackAction(currentAirActionData);
+        //}
+        //else if(currentAirActionData == null)
+        //{
+        //    CheckAttackAction(currentActionData);
+        //}
         currentActionSpriteIndex++;
     }
     private void CheckAttackAction(ActionSprites actionSprites)
@@ -59,24 +62,9 @@ public class WeaponSprite : WeaponComponent<WeaponSpriteData, ActionSprites>
         if (currSprites.Length <= 0)
             return;
 
-        for (int i = 0; i < currSprites.Length; i++)
-        {
-            if (currSprites[i].Command == weapon.Command)
-            {
-                currentSpriteCommandIndex = i;
-                break;
-            }
-            currentSpriteCommandIndex = -1;
-        }
 
-        if (currentSpriteCommandIndex == -1)
-        {
-            weapon.EventHandler.AnimationFinishedTrigger();
-            return;
-        }
-
-        if (currentGroundedActionData.WeaponSprites.Length > 0)
-            currentAttackSprite = currSprites[currentSpriteCommandIndex].sprites;
+        if (currentActionData.WeaponSprites.Length > 0)
+            currentAttackSprite = currSprites;
 
         if (currentAttackSprite.Length < 0)
             return;
@@ -99,8 +87,6 @@ public class WeaponSprite : WeaponComponent<WeaponSpriteData, ActionSprites>
 
         baseSpriteRenderer = weapon.BaseGameObject.GetComponent<SpriteRenderer>();
         weaponSpriteRenderer = weapon.WeaponSpriteGameObject.GetComponent<SpriteRenderer>();
-
-        data = weapon.weaponData.GetData<WeaponSpriteData>();
         baseSpriteRenderer.RegisterSpriteChangeCallback(HandleBaseSpriteChange);
     }
 

@@ -8,14 +8,6 @@ namespace SOB.Weapons.Components
     [Serializable]
     public class ActionSprites : ActionData
     {
-        [field: SerializeField] public CommandActionSprites[] WeaponSprites { get; private set; }
-
-        [Serializable]
-        public struct CommandActionSprites
-        {
-            public Sprite[] sprites;
-            public CommandEnum Command;
-        }
-
+        [field: SerializeField] public Sprite[] WeaponSprites { get; private set; }
     }
 }

@@ -11,39 +11,39 @@ namespace SOB.Weapons.Components
     {
         private ActionHitBox hitBox;
 
-        private int currentActionDamageIndex;
-
         protected override void HandleEnter()
         {
             base.HandleEnter();
-            currentActionDamageIndex = 0;
         }
         /// <summary>
         /// Hit Collider가 감지된 오브젝트에 Damage
         /// </summary>
         /// <param name="coll"></param>
         private void HandleDetectedCollider2D(Collider2D[] coll)
-        {            
-            if (currentGroundedActionData != null && currentAirActionData != null)
+        {
+            if (currentActionData != null)
             {
-                if (weapon.InAir)
-                {
-                    CheckAttackAction(currentAirActionData, coll);
-                }
-                else
-                {
-                    CheckAttackAction(currentGroundedActionData, coll);
-                }
+                CheckAttackAction(currentActionData, coll);
             }
-            else if (currentGroundedActionData == null)
-            {
-                CheckAttackAction(currentAirActionData, coll);
-            }
-            else if (currentAirActionData == null)
-            {
-                CheckAttackAction(currentGroundedActionData, coll);
-            }
-            currentActionDamageIndex++;
+            //if (currentActionData != null && currentAirActionData != null)
+            //{
+            //    if (weapon.InAir)
+            //    {
+            //        CheckAttackAction(currentAirActionData, coll);
+            //    }
+            //    else
+            //    {
+            //        CheckAttackAction(currentActionData, coll);
+            //    }
+            //}
+            //else if (currentActionData == null)
+            //{
+            //    CheckAttackAction(currentAirActionData, coll);
+            //}
+            //else if (currentAirActionData == null)
+            //{
+            //    CheckAttackAction(currentActionData, coll);
+            //}
         }
 
         private void CheckAttackAction(ActionDamage actionDamage, Collider2D[] coll)
@@ -55,21 +55,9 @@ namespace SOB.Weapons.Components
             if (currDamage.Length <= 0)
                 return;
 
-            for (int i = 0; i < currDamage.Length; i++)
-            {
-                if (currDamage[i].Command == weapon.Command)
-                {
-                    currentActionDamageIndex = i;
-                    break;
-                }
-                currentActionDamageIndex = -1;
-            }
-
-            if(currentActionDamageIndex == -1)
-            {
-                weapon.EventHandler.AnimationFinishedTrigger();
+            if (currDamage.Length <= hitBox.currentHitBoxIndex)
                 return;
-            }
+
             foreach (var item in coll)
             {
                 if (item.gameObject.tag == this.gameObject.tag)
@@ -85,7 +73,7 @@ namespace SOB.Weapons.Components
                         (
                             CoreUnitStats.StatsData,
                             item.GetComponentInParent<Unit>().UnitData.statsStats,
-                            CoreUnitStats.StatsData.DefaultPower + currDamage[currentActionDamageIndex].Amount
+                            CoreUnitStats.StatsData.DefaultPower + currDamage[hitBox.currentHitBoxIndex]
                         );
                         continue;
                     }
@@ -97,19 +85,19 @@ namespace SOB.Weapons.Components
                         (
                             CoreUnitStats.StatsData,
                             item.GetComponentInParent<Unit>().UnitData.statsStats,
-                            (CoreUnitStats.StatsData.DefaultPower + currDamage[currentActionDamageIndex].Amount) * (1.0f + GlobalValue.Enemy_Size_WeakPer)
+                            (CoreUnitStats.StatsData.DefaultPower + currDamage[hitBox.currentHitBoxIndex]) * (1.0f + GlobalValue.Enemy_Size_WeakPer)
                         );
                             Debug.Log("Enemy Type Small, Normal Dam = " +
-                                CoreUnitStats.StatsData.DefaultPower + currDamage[currentActionDamageIndex].Amount
+                                CoreUnitStats.StatsData.DefaultPower + currDamage[hitBox.currentHitBoxIndex]
                                 + " Enemy_Size_WeakPer Additional Dam = " +
-                                (CoreUnitStats.StatsData.DefaultPower + currDamage[currentActionDamageIndex].Amount) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
+                                (CoreUnitStats.StatsData.DefaultPower + currDamage[hitBox.currentHitBoxIndex]) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
                             break;
                         case ENEMY_Size.Medium:
                             damageable.Damage
                         (
                             CoreUnitStats.StatsData,
                             item.GetComponentInParent<Unit>().UnitData.statsStats,
-                            (CoreUnitStats.StatsData.DefaultPower + currDamage[currentActionDamageIndex].Amount)
+                            (CoreUnitStats.StatsData.DefaultPower + currDamage[hitBox.currentHitBoxIndex])
                         );
                             break;
                         case ENEMY_Size.Big:
@@ -117,13 +105,13 @@ namespace SOB.Weapons.Components
                         (
                             CoreUnitStats.StatsData,
                             item.GetComponentInParent<Unit>().UnitData.statsStats,
-                            (CoreUnitStats.StatsData.DefaultPower + currDamage[currentActionDamageIndex].Amount) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
+                            (CoreUnitStats.StatsData.DefaultPower + currDamage[hitBox.currentHitBoxIndex]) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
                         );
 
                             Debug.Log("Enemy Type Big, Normal Dam = " +
-                                CoreUnitStats.StatsData.DefaultPower + currDamage[currentActionDamageIndex].Amount
+                                CoreUnitStats.StatsData.DefaultPower + currDamage[hitBox.currentHitBoxIndex]
                                 + " Enemy_Size_WeakPer Additional Dam = " +
-                                (CoreUnitStats.StatsData.DefaultPower + currDamage[currentActionDamageIndex].Amount) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
+                                (CoreUnitStats.StatsData.DefaultPower + currDamage[hitBox.currentHitBoxIndex]) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
                             break;
                     }
                     #endregion

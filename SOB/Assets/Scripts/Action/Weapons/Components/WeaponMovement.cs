@@ -9,11 +9,9 @@ namespace SOB.Weapons.Components
 {
     public class WeaponMovement : WeaponComponent<MovementData, ActionMovement>
     {
-        private int currentMovementCommandIndex = 0;
         protected override void HandleEnter()
         {
             base.HandleEnter();
-            currentMovementCommandIndex = 0;
         }
         private void HandleStartMovement()
         {
@@ -23,26 +21,29 @@ namespace SOB.Weapons.Components
         //중력의 영향 x 
         private void HandleFixedStartMovement()
         {
-            if (currentGroundedActionData != null && currentAirActionData != null)
+            if (currentActionData != null)
             {
-                if (weapon.InAir)
-                {
-                    CheckMovementAction(currentAirActionData);
-                }
-                else
-                {
-                    CheckMovementAction(currentGroundedActionData);
-                }
+                CheckMovementAction(currentActionData);
             }
-            else if (currentGroundedActionData == null)
-            {
-                CheckMovementAction(currentAirActionData);
-            }
-            else if (currentAirActionData == null)
-            {
-                CheckMovementAction(currentGroundedActionData);
-            }
-            currentMovementCommandIndex++;
+            //if (currentActionData != null && currentAirActionData != null)
+            //{
+            //    if (weapon.InAir)
+            //    {
+            //        CheckMovementAction(currentAirActionData);
+            //    }
+            //    else
+            //    {
+            //        CheckMovementAction(currentActionData);
+            //    }
+            //}
+            //else if (currentActionData == null)
+            //{
+            //    CheckMovementAction(currentAirActionData);
+            //}
+            //else if (currentAirActionData == null)
+            //{
+            //    CheckMovementAction(currentActionData);
+            //}
             core.Unit.RB.gravityScale = 0f;            
         }
         private void HandleFixedStopMovement()
@@ -69,27 +70,9 @@ namespace SOB.Weapons.Components
         {
             if (actionData == null)
                 return;
-            var currMovement = actionData.movementCommands;
-            if (currMovement.Length <= 0)
-                return;
+            var currMovement = actionData.movements;
 
-            for (int i = 0; i < currMovement.Length; i++)
-            {
-                if (currMovement[i].Command == weapon.Command)
-                {
-                    currentMovementCommandIndex = i;
-                    break;
-                }
-                currentMovementCommandIndex = -1;
-
-                if (currentMovementCommandIndex == -1)
-                {
-                    weapon.EventHandler.AnimationFinishedTrigger();
-                    return;
-                }
-            }
-
-            CoreMovement.SetVelocity(currMovement[currentMovementCommandIndex].Velocity, currMovement[currentMovementCommandIndex].Direction, CoreMovement.FancingDirection);
+            CoreMovement.SetVelocity(currMovement.Velocity, currMovement.Direction, CoreMovement.FancingDirection);
         }
 
         protected override void Start()

@@ -15,7 +15,7 @@ namespace SOB.Weapons.Components
         private Vector2 offset;
         private Collider2D[] detected;
 
-        private int currentHitBoxIndex;
+        public int currentHitBoxIndex;
         protected override void HandleEnter()
         {
             base.HandleEnter();
@@ -24,26 +24,30 @@ namespace SOB.Weapons.Components
 
         private void HandleAttackAction()
         {
+            if (currentActionData != null)
+            {
+                CheckAttackAction(currentActionData);
+            }
 
-            if (currentGroundedActionData != null && currentAirActionData != null)
-            {
-                if (weapon.InAir)
-                {
-                    CheckAttackAction(currentAirActionData);
-                }
-                else
-                {
-                    CheckAttackAction(currentGroundedActionData);
-                }
-            }
-            else if (currentGroundedActionData == null)
-            {
-                CheckAttackAction(currentAirActionData);
-            }
-            else if (currentAirActionData == null)
-            {
-                CheckAttackAction(currentGroundedActionData);
-            }
+            //if (currentGroundedActionData != null && currentAirActionData != null)
+            //{
+            //    if (weapon.InAir)
+            //    {
+            //        CheckAttackAction(currentAirActionData);
+            //    }
+            //    else
+            //    {
+            //        CheckAttackAction(currentGroundedActionData);
+            //    }
+            //}
+            //else if (currentGroundedActionData == null)
+            //{
+            //    CheckAttackAction(currentAirActionData);
+            //}
+            //else if (currentAirActionData == null)
+            //{
+            //    CheckAttackAction(currentGroundedActionData);
+            //}
 
             OnDetectedCollider2D?.Invoke(detected);
             currentHitBoxIndex++;
@@ -59,31 +63,12 @@ namespace SOB.Weapons.Components
             if (currHitBox.Length <= 0)
                 return;
 
-            for (int i = 0; i < currHitBox.Length; i++)
-            {
-                if (currHitBox[i].Command == weapon.Command)
-                {
-                    currentHitBoxIndex = i;
-                    break;
-                }
-                currentHitBoxIndex = -1;
-            }
-            if (currentHitBoxIndex == -1)
-            {
-                weapon.EventHandler.AnimationFinishedTrigger();
-                return;
-            }
-
-
             offset.Set(
                     transform.position.x + (currHitBox[currentHitBoxIndex].ActionRect.center.x * CoreMovement.FancingDirection),
                     transform.position.y + (currHitBox[currentHitBoxIndex].ActionRect.center.y)
                     );
-
-            if (weapon.Command == currHitBox[currentHitBoxIndex].Command)
-            {
-                detected = Physics2D.OverlapBoxAll(offset, currHitBox[currentHitBoxIndex].ActionRect.size, 0f, data.DetectableLayers);
-            }
+                        
+            detected = Physics2D.OverlapBoxAll(offset, currHitBox[currentHitBoxIndex].ActionRect.size, 0f, data.DetectableLayers);
 
             if (detected.Length == 0)
             {
@@ -151,27 +136,27 @@ namespace SOB.Weapons.Components
                     Gizmos.DrawWireCube(transform.position + new Vector3(action.ActionRect.center.x * CoreMovement.FancingDirection, action.ActionRect.center.y, 0), action.ActionRect.size);
                 }
             }
-            foreach (var item in data.InAirActionData)
-            {
-                if (item.ActionHit == null)
-                    continue;
+            //foreach (var item in data.InAirActionData)
+            //{
+            //    if (item.ActionHit == null)
+            //        continue;
 
-                foreach (var action in item.ActionHit)
-                {
-                    if (!action.Debug)
-                        continue;
-                    Gizmos.color = Color.white;
-                    Gizmos.DrawWireCube(transform.position + new Vector3(action.ActionRect.center.x * CoreMovement.FancingDirection, action.ActionRect.center.y, 0), action.ActionRect.size);
-                }
+            //    foreach (var action in item.ActionHit)
+            //    {
+            //        if (!action.Debug)
+            //            continue;
+            //        Gizmos.color = Color.white;
+            //        Gizmos.DrawWireCube(transform.position + new Vector3(action.ActionRect.center.x * CoreMovement.FancingDirection, action.ActionRect.center.y, 0), action.ActionRect.size);
+            //    }
 
-                foreach (var action in item.ActionHit)
-                {
-                    if (!action.Debug)
-                        continue;
-                    Gizmos.color = Color.white;
-                    Gizmos.DrawWireCube(transform.position + new Vector3(action.ActionRect.center.x * CoreMovement.FancingDirection, action.ActionRect.center.y, 0), action.ActionRect.size);
-                }
-            }
+            //    foreach (var action in item.ActionHit)
+            //    {
+            //        if (!action.Debug)
+            //            continue;
+            //        Gizmos.color = Color.white;
+            //        Gizmos.DrawWireCube(transform.position + new Vector3(action.ActionRect.center.x * CoreMovement.FancingDirection, action.ActionRect.center.y, 0), action.ActionRect.size);
+            //    }
+            //}
         }
     }
 }

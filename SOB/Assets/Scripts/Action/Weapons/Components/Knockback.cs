@@ -7,53 +7,44 @@ namespace SOB.Weapons.Components
 {
     public class Knockback : WeaponComponent<KnockbackData, ActionKnockback>
     {
-        private int currentActionKnockbackIndex;
         private ActionHitBox hitBox;
         private void HandleDetectedCollider2D(Collider2D[] coll)
         {
-            if (currentGroundedActionData != null && currentAirActionData != null)
+            if (currentActionData != null)
             {
-                if (weapon.InAir)
-                {
-                    CheckKnockbackAction(currentAirActionData, coll);
-                }
-                else
-                {
-                    CheckKnockbackAction(currentGroundedActionData, coll);
-                }
+                CheckKnockbackAction(currentActionData, coll);
             }
-            else if (currentGroundedActionData == null)
-            {
-                CheckKnockbackAction(currentAirActionData, coll);
-            }
-            else if (currentAirActionData == null)
-            {
-                CheckKnockbackAction(currentGroundedActionData, coll);
-            }
+            //if (currentActionData != null && currentAirActionData != null)
+            //{
+            //    if (weapon.InAir)
+            //    {
+            //        CheckKnockbackAction(currentAirActionData, coll);
+            //    }
+            //    else
+            //    {
+            //        CheckKnockbackAction(currentActionData, coll);
+            //    }
+            //}
+            //else if (currentActionData == null)
+            //{
+            //    CheckKnockbackAction(currentAirActionData, coll);
+            //}
+            //else if (currentAirActionData == null)
+            //{
+            //    CheckKnockbackAction(currentActionData, coll);
+            //}
         }
         private void CheckKnockbackAction(ActionKnockback actionKnockback, Collider2D[] coll)
         {
             if (actionKnockback == null)
                 return;
 
-            var currKnockback = actionKnockback.Knockback;
+            var currKnockback = actionKnockback.KnockbackAngle;
             if (currKnockback.Length <= 0)
                 return;
 
-            for (int i = 0; i < currKnockback.Length; i++)
-            {
-                if (currKnockback[i].Command == weapon.Command)
-                {
-                    currentActionKnockbackIndex = i;
-                    break;
-                }
-                currentActionKnockbackIndex = -1;
-            }
-            if (currentActionKnockbackIndex == -1)
-            {
-                weapon.EventHandler.AnimationFinishedTrigger();
+            if (currKnockback.Length <= hitBox.currentHitBoxIndex)
                 return;
-            }
 
             foreach (var detecte in coll)
             {
@@ -62,7 +53,7 @@ namespace SOB.Weapons.Components
 
                 if (detecte.TryGetComponent(out IKnockBackable knockbackables))
                 {
-                    knockbackables.KnockBack(currKnockback[currentActionKnockbackIndex].KnockbackAngle, currKnockback[currentActionKnockbackIndex].KnockbackAngle.magnitude, CoreMovement.FancingDirection);
+                    knockbackables.KnockBack(currKnockback[hitBox.currentHitBoxIndex], currKnockback[hitBox.currentHitBoxIndex].magnitude, CoreMovement.FancingDirection);
                 }
             }
         }
