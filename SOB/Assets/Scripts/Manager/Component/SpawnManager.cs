@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace SOB.Manager
 {
     public class SpawnManager : MonoBehaviour
     {
         public SpawnCtrl[] SpawnCtrls;
+        bool isStageClear = false;
         public int UIEnemyCount
         {
             get
@@ -54,7 +56,21 @@ namespace SOB.Manager
         }
         private void Update()
         {
-            
+            if (SpawnCtrls == null)
+                return;
+            for(int i = 0; i< SpawnCtrls.Length;i++)
+            {
+                if(!SpawnCtrls[i].isSpawn)
+                {
+                    return;
+                }
+            }
+            if (isStageClear)
+                return;
+
+            Debug.Log("State Clear!!!");
+            isStageClear = true;
+            AsyncOperation operation = SceneManager.LoadSceneAsync("Test SOB 1");
         }
 
         private void OnEnable()

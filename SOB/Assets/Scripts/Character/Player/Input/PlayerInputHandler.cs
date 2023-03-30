@@ -59,15 +59,18 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void Awake()
     {
-        playerInputActions = new PlayerInputActions();
+        if (playerInputActions == null)
+            playerInputActions = new PlayerInputActions();
         MyAction = playerInputActions.GamePlay.Primary;
         int count = Enum.GetValues(typeof(CombatInputs)).Length;
         ActionInputs = new bool[count];
         ActionInputsStartTime = new float[count];
         ActionInputsStopTime = new float[count];
-        cam = Camera.main;
 
-        Debug.Log("This InputHandler ActionMap Name : " + playerInput.currentActionMap.name);
+        if(cam == null)
+            cam = Camera.main;
+
+        //Debug.Log("This InputHandler ActionMap Name : " + playerInput.currentActionMap.name);
     }
 
     private void OnEnable()

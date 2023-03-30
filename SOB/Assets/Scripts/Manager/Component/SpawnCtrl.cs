@@ -3,14 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnCtrl : MonoBehaviour
-{    
-    [HideInInspector]   public RespawnPoint[] respawnPoints;
+{
+    [HideInInspector] public RespawnPoint[] respawnPoints;
 
-    private bool isSpawn = false;
+    /// <summary>
+    /// 스폰 여부
+    /// </summary>
+    public bool isSpawn { get; private set; }
 
     public int CurrentEnemyCount;
     public int currentCount;
-
+    private void Awake()
+    {
+        isSpawn = false;
+    }
     private void Update()
     {
         if (!isSpawn)
@@ -19,21 +25,21 @@ public class SpawnCtrl : MonoBehaviour
         //currentCount = 0;
         //for (int i = 0; i < respawnPoints.Length; i++)
         //{    
-            
+
         //    if (respawnPoints[i].FinishSpawn)
         //    {
         //        currentCount--;
         //    }
         //}
         CurrentEnemyCount = currentCount;
-        if(CurrentEnemyCount == 0)
+        if (CurrentEnemyCount == 0)
         {
-            this.enabled = false;            
+            this.enabled = false;
         }
     }
     private void OnEnable()
     {
-        
+
     }
 
     private void OnDisable()

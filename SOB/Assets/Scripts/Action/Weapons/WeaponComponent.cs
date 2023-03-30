@@ -78,6 +78,9 @@ namespace SOB.Weapons.Components
         protected override void HandleEnter()
         {
             base.HandleEnter();
+            if (data == null)
+                return;
+
             if(data.ActionData.Length != 0)
             {
                 currentActionData = data.ActionData[0] ?? null;

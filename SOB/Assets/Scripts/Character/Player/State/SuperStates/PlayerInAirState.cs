@@ -82,7 +82,7 @@ public class PlayerInAirState : PlayerState
         skill1Input = player.InputHandler.Skill1Input;
         skill2Input = player.InputHandler.Skill2Input;
 
-        if (player.InputHandler.ActionInputs[(int)CombatInputs.primary] && player.Inventory.weapons[(int)CombatInputs.primary].weaponData.CanAirAttack)
+        if (player.InputHandler.ActionInputs[(int)CombatInputs.primary])
         {
             player.PrimaryAttackState.SetWeapon(player.Inventory.weapons[(int)CombatInputs.primary]);
             if (player.PrimaryAttackState.CheckCommand(ref player.Inventory.weapons[(int)CombatInputs.primary].CommandList))
@@ -90,7 +90,7 @@ public class PlayerInAirState : PlayerState
                 player.FSM.ChangeState(player.PrimaryAttackState);
             }
         }
-        else if (player.InputHandler.ActionInputs[(int)CombatInputs.secondary] && player.Inventory.weapons[(int)CombatInputs.primary].weaponData.CanAirAttack)
+        else if (player.InputHandler.ActionInputs[(int)CombatInputs.secondary])
         {
             player.SecondaryAttackState.SetWeapon(player.Inventory.weapons[(int)CombatInputs.primary]);
             if (player.SecondaryAttackState.CheckCommand(ref player.Inventory.weapons[(int)CombatInputs.primary].CommandList))
