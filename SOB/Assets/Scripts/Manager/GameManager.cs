@@ -50,19 +50,18 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Application.targetFrameRate = 60;
+        if (Inst)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
+        Application.targetFrameRate = 60;        
         playerGO = Instantiate(Player, respawnPoint);
         player = playerGO.GetComponent<Player>();
 
-        if (Inst == null)
-        {
-            Inst = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
+        Inst = this;
+        DontDestroyOnLoad(this.gameObject);
     }
 
     private void Start()
@@ -78,6 +77,7 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
+        Init();
         UserKeySettingLoad();
     }
 
@@ -104,8 +104,6 @@ public class GameManager : MonoBehaviour
     {
         
     }
-
-    
 
     public void CheckPause(bool pause)
     {
@@ -157,6 +155,13 @@ public class GameManager : MonoBehaviour
         SubUI.InventorySubUI.gameObject.SetActive(false);
     }
 
+    private void Init()
+    {
+        IM = GameObject.Find("ItemManager").GetComponent<ItemManager>();
+        SPM = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+        respawnPoint = GameObject.Find("SpawnPoint").GetComponent<Transform>();
+    }
+    
     public void UserKeySettingLoad()
     {
         string rebinds = PlayerPrefs.GetString(GlobalValue.RebindsKey, string.Empty);
