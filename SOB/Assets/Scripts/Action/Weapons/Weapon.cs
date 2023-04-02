@@ -132,6 +132,7 @@ namespace SOB.Weapons
         public void SetCommandData(WeaponCommandDataSO data)
         {
             this.weaponCommandData = data;
+            weaponGenerator.GenerateWeapon(data.DefaultWeaponDataSO);
         }
 
         public void ChangeActionCounter(int value)

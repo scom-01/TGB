@@ -24,7 +24,9 @@ namespace SOB.Weapons
         private void Start()
         {
             if(weaponCommandData != null)
-                weapon.SetCommandData(weaponCommandData);
+            {
+                weapon.SetCommandData(weaponCommandData);                
+            }
             else
             {
                 if (weaponData != null)
