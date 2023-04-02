@@ -19,12 +19,14 @@ public class Unit : MonoBehaviour
     public UnitData UnitData;
 
     public bool IsAlive = true;
+    private DamageFlash[] DamageFlash;
     #endregion
 
     #region Unity Callback Func
     protected virtual void Awake()
     {
         InitSetting();
+        DamageFlash = GetComponentsInChildren<DamageFlash>();
     }
 
     private void InitSetting()
@@ -121,11 +123,9 @@ public class Unit : MonoBehaviour
 
     public virtual void HitEffect()
     {
-        var sprites = this.GetComponentsInChildren<SpriteRenderer>();
-        for (int i = 0; i < sprites.Length; i++)
+        foreach(var flash in DamageFlash)
         {
-            var oldcolor = sprites[i].color;
-            StartCoroutine(HitEffect(sprites[i], oldcolor, 0.5f));
+            flash.CallFlashWhite();
         }
     }
     public IEnumerator DisableCollision()
@@ -133,13 +133,6 @@ public class Unit : MonoBehaviour
         BC2D.isTrigger = true;
         yield return new WaitForSeconds(0.25f);
         BC2D.isTrigger = false;
-    }
-
-    IEnumerator HitEffect(SpriteRenderer sr, Color oldcolor, float duration)
-    {
-        sr.color = Color.red;
-        yield return new WaitForSeconds(duration);
-        sr.color = oldcolor;
     }
 
     protected virtual void FixedUpdate()

@@ -8,6 +8,7 @@ public class WeaponCommandDataSO : ScriptableObject
 {
     [field: SerializeField] public int NumberOfActions { get; private set; }
     [field: SerializeField] public AnimatorOverrideController DefaultAnimator;
+    [field: SerializeField] public WeaponDataSO DefaultWeaponDataSO;
 
     [field: SerializeField] public List<CommandList> GroundedCommandList;
     [field: SerializeField] public List<CommandList> AirCommandList;

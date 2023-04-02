@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3027203238880253435}
   - component: {fileID: 4924774122573604344}
+  - component: {fileID: 6296605232770922857}
   m_Layer: 18
   m_Name: Weapon
   m_TagString: Untagged
@@ -52,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 28e1d2487285f6147ac93fab3e29c387, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,6 +85,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6296605232770922857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707639131062104458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3711a30ca745b044911bf05f79f8674, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashColor: {r: 1, g: 1, b: 1, a: 1}
+  _flashTime: 0.25
 --- !u!1 &1649730510779115559
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,6 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b85d4bde7d2e8de4daefd1f2646b39a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CommandList: 
+  Command: 0
+  oc: {fileID: 0}
   InAir: 0
   actionCounterResetCooldown: 0
 --- !u!114 &7465565771582179943
@@ -145,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48d301d0b1380ba46b1269e07d0ee177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponCommandData: {fileID: 0}
   weaponData: {fileID: 11400000, guid: 740c9585bdc604c459184db5537dc31e, type: 2}
 --- !u!1 &3640253521771939744
 GameObject:
@@ -192,6 +211,7 @@ GameObject:
   - component: {fileID: 3640253521839122300}
   - component: {fileID: 3640253521839122247}
   - component: {fileID: 6735750043806285471}
+  - component: {fileID: 3639027602819861585}
   m_Layer: 18
   m_Name: Enemy 1
   m_TagString: Untagged
@@ -238,7 +258,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 28e1d2487285f6147ac93fab3e29c387, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -367,6 +387,20 @@ MonoBehaviour:
   UnitData: {fileID: 11400000, guid: 18e5526c4f9924a4e9be2f0de80b92a9, type: 2}
   IsAlive: 1
   enemyData: {fileID: 0}
+--- !u!114 &3639027602819861585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3640253521839122302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3711a30ca745b044911bf05f79f8674, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashColor: {r: 1, g: 1, b: 1, a: 1}
+  _flashTime: 0.25
 --- !u!1 &3640253522240484911
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,6 +967,7 @@ GameObject:
   - component: {fileID: 7369422223260539701}
   - component: {fileID: 2961254050039803016}
   - component: {fileID: 8847654775907322523}
+  - component: {fileID: 7275522553182905371}
   m_Layer: 18
   m_Name: Base
   m_TagString: Untagged
@@ -975,7 +1010,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 28e1d2487285f6147ac93fab3e29c387, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1039,6 +1074,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8495350aff46ed942865ff716f8ec660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7275522553182905371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4242634074962048764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3711a30ca745b044911bf05f79f8674, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashColor: {r: 1, g: 1, b: 1, a: 1}
+  _flashTime: 0.25
 --- !u!1 &4894590047337453508
 GameObject:
   m_ObjectHideFlags: 0

@@ -257,6 +257,7 @@ GameObject:
   - component: {fileID: 840319699589423351}
   - component: {fileID: 840319699589423350}
   - component: {fileID: 3939928440848757511}
+  - component: {fileID: 6574620880019870620}
   m_Layer: 12
   m_Name: Player
   m_TagString: Player
@@ -279,7 +280,7 @@ Transform:
   - {fileID: 840319701408790961}
   - {fileID: 840319700151400673}
   - {fileID: 840319700217002437}
-  - {fileID: 840319700143600032}
+  - {fileID: 3055849114038440878}
   - {fileID: 6357665612903423686}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -304,7 +305,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 28e1d2487285f6147ac93fab3e29c387, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -399,7 +400,6 @@ MonoBehaviour:
   IsAlive: 1
   playerData: {fileID: 11400000, guid: ae3d62f76bc500849819fd1f7f2f1900, type: 2}
   DamageTextPrefab: {fileID: 1081114584503966581, guid: ac79a3234d3f9384daeb57ffc2760fa4, type: 3}
-  commandQ: 
 --- !u!114 &840319699589423351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,6 +447,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6574620880019870620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840319699589423306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3711a30ca745b044911bf05f79f8674, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashColor: {r: 1, g: 1, b: 1, a: 1}
+  _flashTime: 0.25
 --- !u!1 &840319699970983610
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,8 +545,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 840319700143600032}
+  - component: {fileID: 3055849114038440878}
   - component: {fileID: 840319700143600039}
+  - component: {fileID: 7181841546142764420}
   m_Layer: 6
   m_Name: MiniMap Obj
   m_TagString: Untagged
@@ -540,21 +555,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &840319700143600032
-Transform:
+--- !u!224 &3055849114038440878
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 840319700143600033}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.16, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.625, y: 1.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 840319699589423311}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -0.16}
+  m_SizeDelta: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &840319700143600039
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -607,6 +627,14 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!222 &7181841546142764420
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840319700143600033}
+  m_CullTransparentMesh: 1
 --- !u!1 &840319700151400674
 GameObject:
   m_ObjectHideFlags: 0
@@ -1029,6 +1057,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword1
       objectReference: {fileID: 0}
+    - target: {fileID: 3288319468661193167, guid: caaa93eb4d0c9654c81148506d463b68, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 28e1d2487285f6147ac93fab3e29c387, type: 2}
     - target: {fileID: 3288319468661193168, guid: caaa93eb4d0c9654c81148506d463b68, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1037,6 +1069,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 6d41fb0e25938fe44b8bfd74532c8924, type: 2}
+    - target: {fileID: 3288319468764697514, guid: caaa93eb4d0c9654c81148506d463b68, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 28e1d2487285f6147ac93fab3e29c387, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: caaa93eb4d0c9654c81148506d463b68, type: 3}
 --- !u!4 &840319699465386059 stripped
@@ -1044,23 +1080,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3288319467719998631, guid: caaa93eb4d0c9654c81148506d463b68, type: 3}
   m_PrefabInstance: {fileID: 2741319375709930732}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &840319700644566849 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3288319468764697517, guid: caaa93eb4d0c9654c81148506d463b68, type: 3}
-  m_PrefabInstance: {fileID: 2741319375709930732}
-  m_PrefabAsset: {fileID: 0}
---- !u!111 &287015740286274766
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 840319700644566849}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0

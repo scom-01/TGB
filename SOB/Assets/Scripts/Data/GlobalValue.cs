@@ -11,6 +11,8 @@ public class GlobalValue : MonoBehaviour
     public static float GV_SystemDeltatime = 0.02f;
     public static float GV_CharacterDeltatime = 0.02f;
 
+    //public static string FlashMtrlPath = "Material/FlashWhite";
+
     public const string RebindsKey = "rebinds";
     /// <summary>
     /// Elemetal 속성 공격에 따른 추가 데미지 퍼센트
