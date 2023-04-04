@@ -21,12 +21,12 @@ public class StatsPanel : MonoBehaviour
 
     private void Awake()
     {
-        Player = GameManager.Inst?.player;
+        Player = StageManager.Inst?.player;
     }
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
-        Player = GameManager.Inst?.player;
+        Player = StageManager.Inst?.player;
         if (Player)
         {
             float temp = Player.Core.GetCoreComponent<UnitStats>().CurrentHealth;
@@ -65,6 +65,10 @@ public class StatsPanel : MonoBehaviour
             ElementalPowerStat.text = " + " + temp.ToString("F1") + "%";
             temp = 100.0f + Player.Core.GetCoreComponent<UnitStats>().StatsData.PhysicsDefensivePer;
             DefensivePowerStat.text = " + " + temp.ToString("F1") + "%";
+        }
+        else
+        {
+            Player = StageManager.Inst?.player;
         }
     }
 }

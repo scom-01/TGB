@@ -97,10 +97,10 @@ public class Unit : MonoBehaviour
 
     private void CheckDeadLine()
     {
-        if (this.transform.position.y < GameManager.Inst.DeadLine)
+        if (this.transform.position.y < StageManager.Inst.DeadLine)
         {
             Core?.GetCoreComponent<Movement>().SetVelocityZero();
-            this.gameObject.transform.position = GameManager.Inst.respawnPoint.transform.position;
+            this.gameObject.transform.position = StageManager.Inst.respawnPoint.transform.position;
             var amount = Core.GetCoreComponent<UnitStats>().DecreaseHealth(E_Power.Normal, DAMAGE_ATT.Fixed, 50);
             if (Core.GetCoreComponent<DamageReceiver>().DefaultEffectPrefab == null)
             {

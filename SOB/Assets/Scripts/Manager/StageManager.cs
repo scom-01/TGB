@@ -1,0 +1,93 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using SOB.Manager;
+using Cinemachine;
+
+public class StageManager : MonoBehaviour
+{
+    public static StageManager Inst = null;
+    [Header("----Manager----")]
+    public ItemManager IM;
+    public SpawnManager SPM;
+
+    [Header("----Player----")]
+    [SerializeField]
+    public Transform respawnPoint;
+    [SerializeField]
+    public GameObject Player;
+    private GameObject playerGO;
+    public Player player;
+    [SerializeField]
+    public float respawnTime;
+    [SerializeField]
+    public float DeadLine;
+
+    private float respawnTimeStart;
+    private bool respawn;
+
+
+    private CinemachineVirtualCamera CVC;
+
+    private void Awake()
+    {
+        if (Inst)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
+        Application.targetFrameRate = 60;
+        playerGO = Instantiate(Player, respawnPoint);
+        player = playerGO.GetComponent<Player>();
+
+        Inst = this;
+        DontDestroyOnLoad(this.gameObject);
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+        CVC = GameObject.Find("Player Camera").GetComponent<CinemachineVirtualCamera>();
+        CVC.Follow = player.transform;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        CheckRespawn();
+
+    }
+
+    private void OnEnable()
+    {
+        Init();
+    }
+
+    public void Respawn()
+    {
+        respawnTimeStart = Time.time;
+        respawn = true;
+    }
+
+    //private bool CheckEnemy()
+    //{
+    //    if (SPM == null)
+    //    { return false; }
+
+    //    if(GameManager.Inst.gameObject)
+    //        GameManager.Inst.MainUI.EnemyPanelSystem.EnemyCountText.text = "Enemy : " + SPM.UIEnemyCount.ToString();
+    //    return true;
+    //}
+
+    private void CheckRespawn()
+    {
+
+    }
+
+    private void Init()
+    {
+        IM = GameObject.Find("ItemManager").GetComponent<ItemManager>();
+        SPM = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+        respawnPoint = GameObject.Find("SpawnPoint").GetComponent<Transform>();
+    }
+}

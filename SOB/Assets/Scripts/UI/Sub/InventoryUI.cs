@@ -60,7 +60,7 @@ namespace SOB.Manager
 
         private void Awake()
         {
-            Player = GameManager.Inst.player;
+            Player = StageManager.Inst.player;
             inputHandler = GameManager.Inst.inputHandler;
             PlayerInventory = Player.GetComponent<Inventory>();
         }

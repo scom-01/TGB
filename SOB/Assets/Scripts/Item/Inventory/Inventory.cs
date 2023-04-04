@@ -127,7 +127,7 @@ public class Inventory : MonoBehaviour
             GameManager.Inst.SubUI.InventorySubUI.InventoryItems.RemoveItem(itemData);
 
             //spawnItem
-            GameManager.Inst.SPM.SpawnItem(GameManager.Inst.IM.InventoryItem, unit.transform.position,GameManager.Inst.IM.transform, itemData);
+            StageManager.Inst.SPM.SpawnItem(StageManager.Inst.IM.InventoryItem, unit.transform.position, StageManager.Inst.IM.transform, itemData);
         }
         else
         {

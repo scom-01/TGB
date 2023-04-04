@@ -12,22 +12,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Inst = null;
 
-    [Header("----Manager----")]
-    public ItemManager IM;
-    public SpawnManager SPM;
-
-    [Header("----Player----")]
-    [SerializeField]
-    public Transform respawnPoint;
-    [SerializeField]
-    public GameObject Player;
-    private GameObject playerGO;
-    public Player player;
-    [SerializeField]
-    public float respawnTime;
-    [SerializeField]
-    public float DeadLine;
-
     public PlayerInputHandler inputHandler
     {
         get
@@ -35,18 +19,12 @@ public class GameManager : MonoBehaviour
             return this.GetComponent<PlayerInputHandler>();
         }
     }
-    private float respawnTimeStart;
-    private bool respawn;
-
 
     [Header("----UI----")]
     public MainUIManager MainUI;
     public SubUIManager SubUI;
     public CfgUIManager CfgUI;
     public DamageUIManager DamageUI;
-
-
-    private CinemachineVirtualCamera CVC;
 
     private void Awake()
     {
@@ -56,53 +34,25 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        Application.targetFrameRate = 60;        
-        playerGO = Instantiate(Player, respawnPoint);
-        player = playerGO.GetComponent<Player>();
-
         Inst = this;
         DontDestroyOnLoad(this.gameObject);
     }
 
     private void Start()
     {
-        CVC = GameObject.Find("Player Camera").GetComponent<CinemachineVirtualCamera>();
-        CVC.Follow = player.transform;
     }
     private void Update()
     {
-        CheckEnemy();
-        CheckRespawn();
     }
 
     private void OnEnable()
     {
-        Init();
         UserKeySettingLoad();
     }
 
     private void OnDisable()
     {
         UserKeySettingSave();
-    }
-
-    public void Respawn()
-    {
-        respawnTimeStart = Time.time;
-        respawn = true;
-    }
-
-    private bool CheckEnemy()
-    {
-        if (SPM == null)
-        { return false; }
-        MainUI.EnemyPanelSystem.EnemyCountText.text = "Enemy : " + SPM.UIEnemyCount.ToString();
-        return true;
-    }
-
-    private void CheckRespawn()
-    {
-        
     }
 
     public void CheckPause(bool pause)
@@ -145,8 +95,11 @@ public class GameManager : MonoBehaviour
     private void Continue(string switchActionMap)
     {
         Time.timeScale = 1f;
-        MainUI.MainPanel.gameObject.SetActive(true);
-        SubUI.InventorySubUI.gameObject.SetActive(false);
+        if(StageManager.Inst)
+        {
+            MainUI.MainPanel.gameObject.SetActive(true);
+            SubUI.InventorySubUI.gameObject.SetActive(false);
+        }
         CfgUI.ConfigPanelUI.gameObject.SetActive(false);
     }
     private void Continue()
@@ -155,12 +108,6 @@ public class GameManager : MonoBehaviour
         SubUI.InventorySubUI.gameObject.SetActive(false);
     }
 
-    private void Init()
-    {
-        IM = GameObject.Find("ItemManager").GetComponent<ItemManager>();
-        SPM = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
-        respawnPoint = GameObject.Find("SpawnPoint").GetComponent<Transform>();
-    }
     
     public void UserKeySettingLoad()
     {
