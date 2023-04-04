@@ -11,8 +11,19 @@ public class SpawnCtrl : MonoBehaviour
     /// </summary>
     public bool isSpawn { get; private set; }
 
-    public int CurrentEnemyCount;
-    public int currentCount;
+    public int CurrentEnemyCount
+    {
+        get 
+        { 
+            return currentCount; 
+        }
+        set
+        {
+            currentCount = value;
+        }
+    }
+
+    private int currentCount;
     private void Awake()
     {
         isSpawn = false;
@@ -22,16 +33,6 @@ public class SpawnCtrl : MonoBehaviour
         if (!isSpawn)
             return;
 
-        //currentCount = 0;
-        //for (int i = 0; i < respawnPoints.Length; i++)
-        //{    
-
-        //    if (respawnPoints[i].FinishSpawn)
-        //    {
-        //        currentCount--;
-        //    }
-        //}
-        CurrentEnemyCount = currentCount;
         if (CurrentEnemyCount == 0)
         {
             this.enabled = false;
@@ -47,7 +48,7 @@ public class SpawnCtrl : MonoBehaviour
         if (!isSpawn || CurrentEnemyCount != 0)
             return;
 
-        GameManager.Inst.SPM.CurrentSpawnIndex++;
+        StageManager.Inst.SPM.CurrentSpawnIndex++;
     }
 
     public void Spawn()
@@ -58,7 +59,8 @@ public class SpawnCtrl : MonoBehaviour
         for (int i = 0; i < respawnPoints.Length; i++)
         {
             respawnPoints[i].SpawnEffect(respawnPoints[i].SpawnEffectPrefab, respawnPoints[i].transform.position, respawnPoints[i].transform);
-            currentCount++;
+            StageManager.Inst.SPM.UIEnemyCount++;
+            CurrentEnemyCount++;
             //SpawnEnemy(respawnPoints[i].SpawnPrefab, respawnPoints[i].transform.position, respawnPoints[i].transform);
         }
         isSpawn = true;
@@ -67,11 +69,15 @@ public class SpawnCtrl : MonoBehaviour
     public void SpawnEnemy(GameObject EnemyPrefab, Vector3 pos, Transform transform)
     {
         var enemy = Instantiate(EnemyPrefab, pos, Quaternion.identity, transform);
+        if(enemy)
+            StageManager.Inst.SPM.UIEnemyCount++;
     }
 
     public void SpawnEnemy(GameObject EnemyPrefab, Vector3 pos, Transform transform, EnemyData enemyData)
     {
         var enemy = Instantiate(EnemyPrefab, pos, Quaternion.identity, transform);
+        if (enemy)
+            StageManager.Inst.SPM.UIEnemyCount++;
         enemy.GetComponent<Enemy>().enemyData = enemyData;
     }
 
@@ -84,5 +90,7 @@ public class SpawnCtrl : MonoBehaviour
         }
         var rnd = Random.Range(0, respawnPoints.Length);
         var enemy = Instantiate(EnemyPrefab, respawnPoints[rnd].transform.position, Quaternion.identity, respawnPoints[rnd].transform);
+        if (enemy)
+            StageManager.Inst.SPM.UIEnemyCount++;
     }
 }

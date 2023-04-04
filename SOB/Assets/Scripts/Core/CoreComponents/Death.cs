@@ -31,6 +31,10 @@ namespace SOB.CoreSystem
         
         public void Die()
         {
+            if(core.Unit.GetType() != typeof(Player))
+            {
+                StageManager.Inst.SPM.UIEnemyCount--;
+            }
             foreach (var particle in deathParticles)
             {
                 var particleObject = ParticleManager.StartParticlesWithRandomPos(particle,0.5f);

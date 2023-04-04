@@ -23,7 +23,7 @@ public class RespawnPoint : MonoBehaviour
         if (spawnPrefab != null && !spawnPrefab.activeSelf && isSpawn && !FinishSpawn)
         {
             FinishSpawn = true;
-            this.GetComponentInParent<SpawnCtrl>().currentCount--;
+            this.GetComponentInParent<SpawnCtrl>().CurrentEnemyCount--;
         }
     }
     public void SpawnEffect(GameObject effectPrefab, Vector3 pos, Transform transform)

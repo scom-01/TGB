@@ -15,12 +15,17 @@ namespace SOB.Manager
         {
             get
             {
-                if (SpawnCtrls[CurrentSpawnIndex] == null)
-                    return 0;
-                return SpawnCtrls[CurrentSpawnIndex].CurrentEnemyCount;
+                return _uiEnemyCount;
+            }
+            set
+            {
+                _uiEnemyCount = value;
+                if (GameManager.Inst.gameObject && StageManager.Inst)
+                    GameManager.Inst.MainUI.MainPanel.EnemyPanelSystem.EnemyCountText.text = "Enemy : " + StageManager.Inst.SPM.UIEnemyCount.ToString();
             }
         }
 
+        private int _uiEnemyCount = 0;
 
         public int CurrentSpawnIndex
         { 
