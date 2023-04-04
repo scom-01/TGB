@@ -27,8 +27,8 @@ public class BuffSystem : MonoBehaviour
     public void AddBuff(Buff buff)
     {
         buff.startTime = Time.time;
-        buffs.Add(buff);
-        GameManager.Inst.MainUI.BuffPanelSystem.BuffPanelAdd(buff);
+        buffs?.Add(buff);
+        GameManager.Inst?.MainUI?.MainPanel?.BuffPanelSystem.BuffPanelAdd(buff);
         PlayBuff(buff);
     }
 
