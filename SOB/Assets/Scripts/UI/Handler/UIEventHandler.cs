@@ -62,7 +62,7 @@ public class UIEventHandler : MonoBehaviour
         if (load_btn != null)
             load_btn.clickable.clicked += OnBtnClicked;
         if (option_btn != null)
-            option_btn.clickable.clicked += OnBtnClicked;
+            option_btn.clickable.clicked += OnBtnOptionClicked;
         if (exit_btn != null)
             exit_btn.clickable.clicked += OnBtnClicked;
 
@@ -71,14 +71,20 @@ public class UIEventHandler : MonoBehaviour
         //if(Loading_progressbar!= null)
             //Loading_progressbar.value=
     }
+    private void OnEnable()
+    {
+        GameManager.Inst?.MainUI.MainPanel.gameObject.SetActive(false);
+    }
     private void OnDestroy()
     {
+        GameManager.Inst?.MainUI.MainPanel.gameObject.SetActive(true);
+
         if (start_btn != null)
             start_btn.clickable.clicked -= OnBtnClicked;
         if (load_btn != null)
             load_btn.clickable.clicked -= OnBtnClicked;
         if (option_btn != null)
-            option_btn.clickable.clicked -= OnBtnClicked;
+            option_btn.clickable.clicked -= OnBtnOptionClicked;
         if (exit_btn != null)
             exit_btn.clickable.clicked -= OnBtnClicked;
     }
@@ -94,6 +100,12 @@ public class UIEventHandler : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    private void OnBtnOptionClicked()
+    {
+        GameManager.Inst?.inputHandler.ChangeCurrentActionMap("Cfg", true);
+        GameManager.Inst?.CfgUI.ConfigPanelUI.gameObject.SetActive(true);
     }
     // Update is called once per frame
     void Update()
