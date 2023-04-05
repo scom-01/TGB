@@ -73,11 +73,11 @@ public class UIEventHandler : MonoBehaviour
     }
     private void OnEnable()
     {
-        GameManager.Inst?.MainUI.MainPanel.gameObject.SetActive(false);
+        GameManager.Inst?.MainUI?.MainPanel?.gameObject.SetActive(false);
     }
     private void OnDestroy()
     {
-        GameManager.Inst?.MainUI.MainPanel.gameObject.SetActive(true);
+        GameManager.Inst?.MainUI?.MainPanel?.gameObject.SetActive(true);
 
         if (start_btn != null)
             start_btn.clickable.clicked -= OnBtnClicked;
