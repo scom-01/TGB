@@ -7,10 +7,36 @@ using SOB.CoreSystem;
 using static UnityEditor.Experimental.GraphView.GraphView;
 using System.Numerics;
 using UnityEngine.InputSystem;
+using Unity.VisualScripting;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Inst = null;
+    public static GameManager Inst
+    {
+        get
+        {
+            if (_Inst == null)
+            {
+                _Inst = FindObjectOfType(typeof(GameManager)) as GameManager;
+                if (_Inst == null)
+                    Debug.Log("no Singleton obj");
+            }
+            return _Inst;
+        }
+    }
+    private static GameManager _Inst = null;
+    private void Awake()
+    {
+        if (_Inst)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
+        _Inst = this;
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     public PlayerInputHandler inputHandler
     {
@@ -26,33 +52,24 @@ public class GameManager : MonoBehaviour
     public CfgUIManager CfgUI;
     public DamageUIManager DamageUI;
 
-    private void Awake()
-    {
-        if (Inst)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
-
-        Inst = this;
-        DontDestroyOnLoad(this.gameObject);
-    }
-
     private void Start()
     {
+        DataManager.Inst.UserKeySettingLoad();
     }
     private void Update()
     {
     }
-
     private void OnEnable()
     {
-        UserKeySettingLoad();
     }
 
     private void OnDisable()
+    {        
+    }
+
+    private void OnDestroy()
     {
-        UserKeySettingSave();
+        DataManager.Inst.UserKeySettingSave();        
     }
 
     public void CheckPause(bool pause)
@@ -95,7 +112,7 @@ public class GameManager : MonoBehaviour
     private void Continue(string switchActionMap)
     {
         Time.timeScale = 1f;
-        if(StageManager.Inst)
+        if (StageManager.Inst)
         {
             MainUI.MainPanel.gameObject.SetActive(true);
             SubUI.InventorySubUI.gameObject.SetActive(false);
@@ -106,24 +123,5 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SubUI.InventorySubUI.gameObject.SetActive(false);
-    }
-
-    
-    public void UserKeySettingLoad()
-    {
-        string rebinds = PlayerPrefs.GetString(GlobalValue.RebindsKey, string.Empty);
-        if (string.IsNullOrEmpty(rebinds))
-        {
-            Debug.LogWarning("Load Fails");
-            return;
-        }
-        inputHandler.playerInput.actions.LoadBindingOverridesFromJson(rebinds);
-        Debug.LogWarning("Load Success");
-    }
-    public void UserKeySettingSave()
-    {
-        string rebinds = inputHandler.playerInput.actions.SaveBindingOverridesAsJson();
-        PlayerPrefs.SetString(GlobalValue.RebindsKey, rebinds);
-        Debug.LogWarning("Save Success");
     }
 }
