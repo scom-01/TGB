@@ -16,9 +16,8 @@ public class CameraShake : MonoBehaviour
     /// <summary>
     /// 실행할 메소드 명
     /// </summary>
-    [field: SerializeField] public string methodName;
-    [field: SerializeField][Range(0.01f, 0.1f)] public float shakeRange = 0.5f;
-    [field: SerializeField][Range(0.1f, 1f)] public float duration;
+    [field: SerializeField] public float shakeRange = 0.5f;
+    [field: SerializeField] public float duration;
 
     public Camera mainCamera;
 
@@ -33,16 +32,17 @@ public class CameraShake : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.U))
         {
-            Shake();
+            Shake(repeatRate, shakeRange, duration);
         }
 
     }
 
-    public void Shake()
+    public void Shake(float _repeatRate = 0.0f, float _shakeRange = 0.0f, float _duration = 0.1f)
     {
         cameraPos = mainCamera.transform.position;
-        InvokeRepeating("StartShake", 0f, 0.005f);
-        Invoke("StopShake", duration);
+        shakeRange = _shakeRange;
+        InvokeRepeating("StartShake", 0f, _repeatRate);
+        Invoke("StopShake", _duration);
     }
     void StartShake()
     {

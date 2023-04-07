@@ -21,7 +21,7 @@ namespace SOB.Weapons.Components
                 Debug.LogWarning("The main camera does not have the CameraShake component.");
                 return;
             }
-            Debug.LogWarning($"{weapon.weaponData.name} {currentActionData} ??");
+
             CheckCamAction(currentActionData);
             currentShakeCaIdx++;
         }
