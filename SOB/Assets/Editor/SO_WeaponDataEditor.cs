@@ -27,35 +27,48 @@ namespace SOB.Weapons
         {
             base.OnInspectorGUI();
 
-            //if(GUILayout.Button("Set Number of Actions"))
-            //{
-            //    foreach (var item in dataSO.ComponentData)
-            //    {
-            //        item.InitializeActionData(dataSO.NumberOfActions);
-            //    }
-            //}
-
-            showAddComponentButtons = EditorGUILayout.Foldout(showAddComponentButtons, "Add Components Buttons");            
-
-            if(showAddComponentButtons)
+            if (GUILayout.Button("Setting Components"))
             {
                 foreach (var dataCompType in dataCompTypes)
                 {
-                    if (GUILayout.Button(dataCompType.Name))
+                    var comp = Activator.CreateInstance(dataCompType) as ComponentData;
+
+                    if (comp == null)
                     {
-                        var comp = Activator.CreateInstance(dataCompType) as ComponentData;
-
-                        if (comp == null)
-                        {
-                            return;
-                        }
-
-                        comp.InitializeActionData(dataSO.NumberOfActions);
-
-                        dataSO.AddData(comp);
+                        return;
                     }
+
+                    comp.InitializeActionData(dataSO.NumberOfActions);
+
+                    dataSO.AddData(comp);
                 }
+                    //foreach (var item in dataSO.ComponentData)
+                    //{
+                    //    item.InitializeActionData(dataSO.NumberOfActions);
+                    //}
             }
+
+            //showAddComponentButtons = EditorGUILayout.Foldout(showAddComponentButtons, "Add Components Buttons");            
+
+            //if(showAddComponentButtons)
+            //{
+            //    foreach (var dataCompType in dataCompTypes)
+            //    {
+            //        if (GUILayout.Button(dataCompType.Name))
+            //        {
+            //            var comp = Activator.CreateInstance(dataCompType) as ComponentData;
+
+            //            if (comp == null)
+            //            {
+            //                return;
+            //            }
+
+            //            comp.InitializeActionData(dataSO.NumberOfActions);
+
+            //            dataSO.AddData(comp);
+            //        }
+            //    }
+            //}
 
             showForceUpdateButtons = EditorGUILayout.Foldout(showForceUpdateButtons, "Force Update Buttons");
             if(showForceUpdateButtons)
