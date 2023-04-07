@@ -75,7 +75,7 @@ namespace SOB.Manager
 
             Debug.Log("Stage Clear!!!");
             isStageClear = true;
-            AsyncOperation operation = SceneManager.LoadSceneAsync("Test SOB 1");
+            AsyncOperation operation = SceneManager.LoadSceneAsync(StageManager.Inst.NextStageName);
         }
 
         private void OnEnable()

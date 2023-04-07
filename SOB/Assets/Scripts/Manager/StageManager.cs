@@ -10,6 +10,7 @@ public class StageManager : MonoBehaviour
     [Header("----Manager----")]
     public ItemManager IM;
     public SpawnManager SPM;
+    public string NextStageName;
 
     [Header("----Player----")]
     [SerializeField]
@@ -27,7 +28,7 @@ public class StageManager : MonoBehaviour
     private bool respawn;
 
 
-    private CinemachineVirtualCamera CVC;
+    [HideInInspector] public CinemachineVirtualCamera CVC;
 
     private void Awake()
     {
@@ -68,16 +69,6 @@ public class StageManager : MonoBehaviour
         respawnTimeStart = Time.time;
         respawn = true;
     }
-
-    //private bool CheckEnemy()
-    //{
-    //    if (SPM == null)
-    //    { return false; }
-
-    //    if(GameManager.Inst.gameObject)
-    //        GameManager.Inst.MainUI.EnemyPanelSystem.EnemyCountText.text = "Enemy : " + SPM.UIEnemyCount.ToString();
-    //    return true;
-    //}
 
     private void CheckRespawn()
     {
