@@ -14,13 +14,13 @@ public class EnemyState : UnitState
     {
         get => movement ?? enemy.Core.GetCoreComponent(ref movement);
     }
-    protected CollisionSenses CollisionSenses
+    protected EnemyCollisionSenses CollisionSenses
     {
         get => collisionSenses ?? enemy.Core.GetCoreComponent(ref collisionSenses);
     }
 
     private Movement movement;
-    private CollisionSenses collisionSenses;
+    private EnemyCollisionSenses collisionSenses;
     public EnemyState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
         enemy = unit as Enemy;

@@ -35,8 +35,10 @@ public abstract class EnemyRunState : EnemyState
     {
         base.LogicUpdate();
 
+        if (unit.UnitData.GetType() != typeof(EnemyData))
+            return;
 
-        if (CollisionSenses.UnitDectected && unit.Inventory.weapons.Count > 0)
+        if (CollisionSenses.UnitInAttackArea && unit.Inventory.weapons.Count > 0)
         {
             Enemy_Attack();
         }

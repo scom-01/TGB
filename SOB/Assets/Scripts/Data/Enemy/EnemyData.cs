@@ -11,6 +11,9 @@ public class EnemyData : UnitData
     public ENEMY_Size enemy_size = ENEMY_Size.Small;
     public ENEMY_Level enemy_level = ENEMY_Level.Normal;
 
+    /// <summary>
+    /// 유닛 공격 가능 거리
+    /// </summary>
     [Header("EnemyAttack")]
     public float UnitAttackDistance;
 

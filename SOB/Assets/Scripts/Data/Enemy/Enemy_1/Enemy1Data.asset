@@ -28,7 +28,7 @@ MonoBehaviour:
     ElementalAggressivePer: 0
   knockBackDuration: 0.2
   knockBackSpeed: {x: 1, y: 0}
-  invincibleTime: 1
+  invincibleTime: 0.125
   touchDamageinvincibleTime: 1
   standColliderOffset: {x: 0, y: -0.45}
   standColliderSize: {x: 1.5, y: 2.25}
@@ -49,6 +49,6 @@ MonoBehaviour:
   enemy_form: 0
   enemy_size: 2
   enemy_level: 0
-  UnitAttackDistance: 5
+  UnitAttackDistance: 1
   minIdleTime: 0
   maxIdleTime: 0

@@ -4,8 +4,8 @@ namespace SOB.CoreSystem
 {
     public class CollisionSenses : CoreComponent
     {
-        private Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
-        private Movement movement;
+        protected Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
+        protected Movement movement;
         public BoxCollider2D BC2D { get; private set; }
 
         #region Check Transforms
@@ -78,7 +78,19 @@ namespace SOB.CoreSystem
             }
         }
 
-        private void OnDrawGizmos()
+        public float UnitDistance
+        {
+            get
+            {
+                RaycastHit2D ray1 = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + 0.5f), Vector2.right * Movement.FancingDirection, core.Unit.UnitData.UnitDetectedDistance, core.Unit.UnitData.WhatIsEnemyUnit);
+                RaycastHit2D ray2 = Physics2D.Raycast(transform.position, Vector2.right * Movement.FancingDirection, core.Unit.UnitData.UnitDetectedDistance, core.Unit.UnitData.WhatIsEnemyUnit);
+                RaycastHit2D ray3 = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 0.5f), Vector2.right * Movement.FancingDirection, core.Unit.UnitData.UnitDetectedDistance, core.Unit.UnitData.WhatIsEnemyUnit);
+                float MinDis = Mathf.Min(ray1.distance, ray2.distance, ray3.distance);                
+                return MinDis;
+            }
+        }
+
+        protected void OnDrawGizmos()
         {
             Gizmos.color = Color.white;
             if (BC2D == null)
