@@ -15,6 +15,7 @@ public class AnimationEventHandler : MonoBehaviour
     public event Action OnAttackAction;
     public event Action OnParticleSpawn;
     public event Action OnSoundClip;
+    public event Action OnShakeCam;
 
 
     public void AnimationFinishedTrigger() => OnFinish?.Invoke();
@@ -27,4 +28,5 @@ public class AnimationEventHandler : MonoBehaviour
     public void AttackActionTrigger() => OnAttackAction?.Invoke();
     public void SpawnParticleTrigger() => OnParticleSpawn?.Invoke();
     public void SpawnSoundClipTrigger() => OnSoundClip?.Invoke();
+    public void ShakeCamTrigger() => OnShakeCam?.Invoke();
 }
