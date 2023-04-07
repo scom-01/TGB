@@ -78,18 +78,6 @@ namespace SOB.CoreSystem
             }
         }
 
-        public float UnitDistance
-        {
-            get
-            {
-                RaycastHit2D ray1 = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + 0.5f), Vector2.right * Movement.FancingDirection, core.Unit.UnitData.UnitDetectedDistance, core.Unit.UnitData.WhatIsEnemyUnit);
-                RaycastHit2D ray2 = Physics2D.Raycast(transform.position, Vector2.right * Movement.FancingDirection, core.Unit.UnitData.UnitDetectedDistance, core.Unit.UnitData.WhatIsEnemyUnit);
-                RaycastHit2D ray3 = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 0.5f), Vector2.right * Movement.FancingDirection, core.Unit.UnitData.UnitDetectedDistance, core.Unit.UnitData.WhatIsEnemyUnit);
-                float MinDis = Mathf.Min(ray1.distance, ray2.distance, ray3.distance);                
-                return MinDis;
-            }
-        }
-
         protected void OnDrawGizmos()
         {
             Gizmos.color = Color.white;
