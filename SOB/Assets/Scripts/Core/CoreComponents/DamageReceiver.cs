@@ -63,7 +63,7 @@ namespace SOB.CoreSystem
             var pos = new Vector2((Camera.main.WorldToViewportPoint(particle.transform.position).x * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x * 0.5f),
                                     (Camera.main.WorldToViewportPoint(particle.transform.position).y * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y * 0.5f) + 50);   //50 = DamageText의 높이
 
-            var damageText = Instantiate(StageManager.Inst.player.GetComponent<Player>().DamageTextPrefab,
+            var damageText = Instantiate(GameManager.Inst.StageManager.player.GetComponent<Player>().DamageTextPrefab,
                             new Vector3(pos.x, pos.y),
                             Quaternion.identity, GameManager.Inst.DamageUI.transform);
 
@@ -90,7 +90,7 @@ namespace SOB.CoreSystem
 
             var pos = new Vector2((Camera.main.WorldToViewportPoint(randomPos).x * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x * 0.5f),
                                     (Camera.main.WorldToViewportPoint(randomPos).y * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y * 0.5f) + 50);   //50 = DamageText의 높이
-            var damageText = Instantiate(StageManager.Inst.player.GetComponent<Player>().DamageTextPrefab,
+            var damageText = Instantiate(GameManager.Inst.StageManager.player.GetComponent<Player>().DamageTextPrefab,
                             new Vector3(pos.x, pos.y),
                             Quaternion.identity, GameManager.Inst.DamageUI.transform);
 

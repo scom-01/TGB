@@ -33,7 +33,7 @@ namespace SOB.CoreSystem
         {
             if(core.Unit.GetType() != typeof(Player))
             {
-                StageManager.Inst.SPM.UIEnemyCount--;
+                GameManager.Inst.StageManager.SPM.UIEnemyCount--;
             }
             foreach (var particle in deathParticles)
             {

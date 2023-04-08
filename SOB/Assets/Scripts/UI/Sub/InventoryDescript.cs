@@ -35,7 +35,7 @@ public class InventoryDescript : MonoBehaviour
         var item = GameManager.Inst.SubUI.InventorySubUI.InventoryItems.CurrentSelectItem;
         if (item != null)
         {
-            StageManager.Inst.player.Inventory.RemoveInventoryItem(item.StatsItemData);
+            GameManager.Inst.StageManager.player.Inventory.RemoveInventoryItem(item.StatsItemData);
             SetDescript();
         }
     }

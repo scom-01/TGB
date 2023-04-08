@@ -20,8 +20,8 @@ namespace SOB.Manager
             set
             {
                 _uiEnemyCount = value;
-                if (GameManager.Inst.gameObject && StageManager.Inst)
-                    GameManager.Inst.MainUI.MainPanel.EnemyPanelSystem.EnemyCountText.text = "Enemy : " + StageManager.Inst.SPM.UIEnemyCount.ToString();
+                if (GameManager.Inst.gameObject && GameManager.Inst.StageManager)
+                    GameManager.Inst.MainUI.MainPanel.EnemyPanelSystem.EnemyCountText.text = "Enemy : " + GameManager.Inst.StageManager.SPM.UIEnemyCount.ToString();
             }
         }
 
@@ -75,7 +75,7 @@ namespace SOB.Manager
 
             Debug.Log("Stage Clear!!!");
             isStageClear = true;
-            AsyncOperation operation = SceneManager.LoadSceneAsync(StageManager.Inst.NextStageName);
+            AsyncOperation operation = SceneManager.LoadSceneAsync(GameManager.Inst.StageManager.NextStageName);
         }
 
         private void OnEnable()

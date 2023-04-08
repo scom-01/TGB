@@ -46,6 +46,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public StageManager StageManager
+    {
+        get
+        {
+            return _stageManager;
+        }
+        set
+        {
+            _stageManager = value;
+        }
+    }
+    public StageManager _stageManager;
+
     [Header("----UI----")]
     public MainUIManager MainUI;
     public SubUIManager SubUI;
@@ -112,7 +125,7 @@ public class GameManager : MonoBehaviour
     private void Continue(string switchActionMap)
     {
         Time.timeScale = 1f;
-        if (StageManager.Inst)
+        if (StageManager)
         {
             MainUI.MainPanel.gameObject.SetActive(true);
             SubUI.InventorySubUI.gameObject.SetActive(false);

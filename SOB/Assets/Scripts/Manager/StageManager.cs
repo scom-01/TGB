@@ -6,7 +6,7 @@ using Cinemachine;
 
 public class StageManager : MonoBehaviour
 {
-    public static StageManager Inst = null;
+    //public static StageManager Inst = null;
     [Header("----Manager----")]
     public ItemManager IM;
     public SpawnManager SPM;
@@ -32,18 +32,22 @@ public class StageManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Inst)
+        if(GameManager.Inst)
         {
-            Destroy(this.gameObject);
-            return;
+            GameManager.Inst.StageManager = this;
         }
+        //if (Inst)
+        //{
+        //    Destroy(this.gameObject);
+        //    return;
+        //}
 
         Application.targetFrameRate = 60;
         playerGO = Instantiate(Player, respawnPoint);
         player = playerGO.GetComponent<Player>();
 
-        Inst = this;
-        DontDestroyOnLoad(this.gameObject);
+        //Inst = this;
+        //DontDestroyOnLoad(this.gameObject);
     }
     // Start is called before the first frame update
     void Start()

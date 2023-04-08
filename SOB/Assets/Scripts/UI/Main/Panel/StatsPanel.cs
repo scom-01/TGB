@@ -19,14 +19,17 @@ public class StatsPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI ElementalPowerStat;
     [SerializeField] private TextMeshProUGUI DefensivePowerStat;
 
-    private void Awake()
+    private void Start()
     {
-        Player = StageManager.Inst?.player;
+        Player = GameManager.Inst.StageManager?.player;
     }
     // Start is called before the first frame update
     void OnEnable()
     {
-        Player = StageManager.Inst?.player;
+        if(GameManager.Inst.StageManager)
+        {
+            Player = GameManager.Inst.StageManager.player;
+        }
         if (Player)
         {
             float temp = Player.Core.GetCoreComponent<UnitStats>().CurrentHealth;
@@ -68,7 +71,7 @@ public class StatsPanel : MonoBehaviour
         }
         else
         {
-            Player = StageManager.Inst?.player;
+            Player = GameManager.Inst.StageManager?.player;
         }
     }
 }
