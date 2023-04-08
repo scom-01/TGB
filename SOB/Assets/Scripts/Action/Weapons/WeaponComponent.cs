@@ -97,7 +97,7 @@ namespace SOB.Weapons.Components
         {
             base.Init();
 
-            data = weapon.weaponData.GetData<T1>();
+            data = weapon.weaponData.weaponDataSO.GetData<T1>();
         }
     }
 }

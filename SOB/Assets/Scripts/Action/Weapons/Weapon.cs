@@ -10,7 +10,7 @@ namespace SOB.Weapons
 {
     public class Weapon : MonoBehaviour
     {
-        public List<CommandEnum> CommandList = new List<CommandEnum>();
+        [HideInInspector] public List<CommandEnum> CommandList = new List<CommandEnum>();
         public WeaponGenerator weaponGenerator 
         { 
             get
@@ -18,15 +18,17 @@ namespace SOB.Weapons
                 return this.gameObject.GetComponent<WeaponGenerator>();
             }
         }
+
         //Component
-        public WeaponCommandDataSO weaponCommandData { get; private set; }
-        public WeaponDataSO weaponData { get; private set; }
+
+        [field: SerializeField] public WeaponData weaponData;
 
         public Core WeaponCore { get; private set; }
         public GameObject BaseGameObject { get; private set; }
         public GameObject WeaponSpriteGameObject { get; private set; }
         public AnimationEventHandler EventHandler { get; private set; }
 
+        //현재 커맨드상태
         [HideInInspector] public CommandEnum Command;
         [HideInInspector] public AnimatorOverrideController oc;
         protected UnitState state;
@@ -41,7 +43,7 @@ namespace SOB.Weapons
         [Tooltip("공격 횟수")]  public int CurrentActionCounter
         {
             get => currentActionCounter;
-            private set => currentActionCounter = value >= weaponData.NumberOfActions ? 0 : value;
+            private set => currentActionCounter = value >= weaponData.weaponDataSO.NumberOfActions ? 0 : value;
         }
         [HideInInspector]   public bool InAir;
         [HideInInspector]   protected string weaponAnimBoolStr;
@@ -127,11 +129,11 @@ namespace SOB.Weapons
         }
         public void SetData(WeaponDataSO data)
         {
-            this.weaponData = data;
+            this.weaponData.weaponDataSO = data;
         }
         public void SetCommandData(WeaponCommandDataSO data)
         {
-            this.weaponCommandData = data;
+            this.weaponData.weaponCommandDataSO = data;
             weaponGenerator.GenerateWeapon(data.DefaultWeaponDataSO);
         }
 

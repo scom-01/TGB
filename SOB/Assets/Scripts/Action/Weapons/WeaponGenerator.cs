@@ -8,11 +8,17 @@ using UnityEngine;
 
 namespace SOB.Weapons
 {
+    [Serializable]
+    public struct WeaponData
+    {
+        public WeaponCommandDataSO weaponCommandDataSO;
+        public WeaponDataSO weaponDataSO;
+    }
+
     public class WeaponGenerator : MonoBehaviour
     {
         private Weapon weapon;
-        [SerializeField] private WeaponCommandDataSO weaponCommandData;
-        [SerializeField] public WeaponDataSO weaponData;
+        [SerializeField] public WeaponData weaponData;
 
         private List<WeaponComponent> componentsAllreadyOnWeapon = new List<WeaponComponent>();
         private List<WeaponComponent> componentsAddedToWeapon = new List<WeaponComponent>();
@@ -23,14 +29,14 @@ namespace SOB.Weapons
         }
         private void Start()
         {
-            if(weaponCommandData != null)
+            if(weaponData.weaponCommandDataSO != null)
             {
-                weapon.SetCommandData(weaponCommandData);                
+                weapon.SetCommandData(weaponData.weaponCommandDataSO);                
             }
             else
             {
-                if (weaponData != null)
-                GenerateWeapon(weaponData);
+                if (weaponData.weaponDataSO != null)
+                GenerateWeapon(weaponData.weaponDataSO);
             }
         }
 

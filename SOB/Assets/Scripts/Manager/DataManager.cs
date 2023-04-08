@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class DataManager : MonoBehaviour
 {
     public static DataManager Inst = null;
-    public List<Weapon> Playerweapons = new List<Weapon>();
+    public List<WeaponData> Playerweapons = new List<WeaponData>();
     public List<StatsItemSO> Playeritems = new List<StatsItemSO>();
 
     private void Awake()
@@ -53,15 +53,18 @@ public class DataManager : MonoBehaviour
 
     public void PlayerDataLoad(Inventory inventory)
     {
-        inventory.weapons = Playerweapons;
+        //inventory.weapons = Playerweapons;
         inventory.items = Playeritems;
     }
 
     public void PlayerDataSave(List<Weapon> weaponList, List<StatsItemSO> itemList)
     {
-        if(weaponList.Count>0)
+        if(weaponList.Count > 0)
         {
-            Playerweapons = weaponList;
+            for(int i = 0; i<weaponList.Count;i++)
+            {
+                Playerweapons.Add(weaponList[i].weaponData); 
+            }
         }
 
         if(itemList.Count>0)

@@ -119,14 +119,14 @@ public class PlayerWeaponState : PlayerAbilityState
         q.Add(command);
         if (!CollisionSenses.CheckIfGrounded)
         {
-            if (CalCommand(weapon.weaponCommandData.AirCommandList, q))
+            if (CalCommand(weapon.weaponData.weaponCommandDataSO.AirCommandList, q))
             {
                 return true;
             }
         }
         else
         {
-            if(CalCommand(weapon.weaponCommandData.GroundedCommandList, q))
+            if(CalCommand(weapon.weaponData.weaponCommandDataSO.GroundedCommandList, q))
             {
                 return true;
             }
@@ -151,7 +151,7 @@ public class PlayerWeaponState : PlayerAbilityState
                 }
                 if (commandLists[i].commands[j].animOC == null)
                 {
-                    weapon.oc = weapon.weaponCommandData.DefaultAnimator;
+                    weapon.oc = weapon.weaponData.weaponCommandDataSO.DefaultAnimator;
                     weapon.weaponGenerator.GenerateWeapon(commandLists[i].commands[j].data);
                 }
                 else

@@ -32,7 +32,7 @@ public class StageManager : MonoBehaviour
 
     private void Awake()
     {
-        if(GameManager.Inst)
+        if (GameManager.Inst)
         {
             GameManager.Inst.StageManager = this;
         }
@@ -45,7 +45,6 @@ public class StageManager : MonoBehaviour
         Application.targetFrameRate = 60;
         playerGO = Instantiate(Player, respawnPoint);
         player = playerGO.GetComponent<Player>();
-
         //Inst = this;
         //DontDestroyOnLoad(this.gameObject);
     }
@@ -54,6 +53,12 @@ public class StageManager : MonoBehaviour
     {
         CVC = GameObject.Find("Player Camera").GetComponent<CinemachineVirtualCamera>();
         CVC.Follow = player.transform;
+
+        if (player != null && DataManager.Inst != null)
+        {
+            DataManager.Inst?.PlayerDataLoad(player.Inventory);
+        }
+
     }
 
     // Update is called once per frame
