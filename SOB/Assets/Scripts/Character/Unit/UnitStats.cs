@@ -63,7 +63,7 @@ namespace SOB.CoreSystem
         /// </summary>
         public DAMAGE_ATT DamageAttiribute { get => statsData.DamageAttiribute; set => statsData.DamageAttiribute = value; }
         #endregion
-
+        private bool isSetup = false;
         [SerializeField]
         private GameObject
             deathChunkParticle,
@@ -72,11 +72,12 @@ namespace SOB.CoreSystem
         protected override void Awake()
         {
             base.Awake();
+            isSetup = false;
         }
 
         private void Start()
         {
-            if (core.Unit.UnitData != null)
+            if (core.Unit.UnitData != null && !isSetup)
             {
                 StatsData = core.Unit.UnitData.statsStats;
                 invincibleTime = core.Unit.UnitData.invincibleTime;
@@ -348,5 +349,11 @@ namespace SOB.CoreSystem
             return amount;
         }
 
+        public void SetStat(StatsData _statData, float _currentHealth)
+        {
+            StatsData = _statData;
+            CurrentHealth = _currentHealth;
+            isSetup = true;
+        }
     }
 }

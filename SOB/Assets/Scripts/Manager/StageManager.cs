@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SOB.Manager;
 using Cinemachine;
+using SOB.CoreSystem;
 
 public class StageManager : MonoBehaviour
 {
@@ -57,6 +58,7 @@ public class StageManager : MonoBehaviour
         if (player != null && DataManager.Inst != null)
         {
             DataManager.Inst?.PlayerDataLoad(player.Inventory);
+            DataManager.Inst?.PlayerStatLoad(player.Core.GetCoreComponent<UnitStats>());
         }
 
     }

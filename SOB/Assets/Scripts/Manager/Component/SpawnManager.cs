@@ -1,3 +1,4 @@
+using SOB.CoreSystem;
 using SOB.Item;
 using System.Collections;
 using System.Collections.Generic;
@@ -78,6 +79,8 @@ namespace SOB.Manager
             DataManager.Inst.PlayerDataSave(
                 GameManager.Inst.StageManager.player.Inventory.weapons,
                 GameManager.Inst.StageManager.player.Inventory.items);
+            DataManager.Inst?.PlayerStatSave(
+                GameManager.Inst.StageManager.player.Core.GetCoreComponent<UnitStats>());
             AsyncOperation operation = SceneManager.LoadSceneAsync(GameManager.Inst.StageManager.NextStageName);
         }
 
