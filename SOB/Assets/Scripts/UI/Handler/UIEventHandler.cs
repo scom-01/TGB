@@ -69,13 +69,14 @@ public class UIEventHandler : MonoBehaviour
         if (Loading_Lb != null)
             Loading_Lb.text = "Loading...";
         //if(Loading_progressbar!= null)
-            //Loading_progressbar.value=
+        //Loading_progressbar.value=
     }
     private void OnEnable()
     {
         GameManager.Inst.MainUI.MainPanel.gameObject.SetActive(false);
     }
-    private void OnDestroy()
+
+    private void OnDisable()
     {
         GameManager.Inst.MainUI.MainPanel.gameObject.SetActive(true);
 
