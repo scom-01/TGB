@@ -11607,7 +11607,7 @@ PlatformEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 134483968
+    m_Bits: 142872576
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
@@ -12943,6 +12943,7 @@ MonoBehaviour:
   player: {fileID: 0}
   respawnTime: 2
   DeadLine: -50
+  CVC: {fileID: 0}
 --- !u!1001 &1507030020
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13409,7 +13410,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: 0
   repeatRate: 0
-  methodName: 
   shakeRange: 0.0315
   duration: 0.5
   mainCamera: {fileID: 0}

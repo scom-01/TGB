@@ -147,6 +147,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CommandList: 
+  weaponData:
+    weaponCommandDataSO: {fileID: 0}
+    weaponDataSO: {fileID: 0}
   Command: 0
   oc: {fileID: 0}
   InAir: 0
@@ -163,8 +166,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48d301d0b1380ba46b1269e07d0ee177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponCommandData: {fileID: 0}
-  weaponData: {fileID: 11400000, guid: 740c9585bdc604c459184db5537dc31e, type: 2}
+  weaponData:
+    weaponCommandDataSO: {fileID: 0}
+    weaponDataSO: {fileID: 11400000, guid: 740c9585bdc604c459184db5537dc31e, type: 2}
 --- !u!1 &3640253521771939744
 GameObject:
   m_ObjectHideFlags: 0
