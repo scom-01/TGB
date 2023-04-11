@@ -78,8 +78,6 @@ public class UIEventHandler : MonoBehaviour
 
     private void OnDisable()
     {
-        GameManager.Inst.MainUI.MainPanel.gameObject.SetActive(true);
-
         if (start_btn != null)
             start_btn.clickable.clicked -= OnBtnClicked;
         if (load_btn != null)

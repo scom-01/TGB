@@ -37,6 +37,7 @@ public class StageManager : MonoBehaviour
         {
             GameManager.Inst.StageManager = this;
         }
+        GameManager.Inst?.MainUI.MainPanel.gameObject.SetActive(true);
         //if (Inst)
         //{
         //    Destroy(this.gameObject);
