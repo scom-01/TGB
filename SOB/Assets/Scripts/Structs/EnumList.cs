@@ -88,3 +88,11 @@ public enum Sound
     MaxCount,
 }
 #endregion
+
+#region Cfg Setting
+public enum Resolution_Level
+{
+    _1080x720,
+    _1920x1080,
+}
+#endregion

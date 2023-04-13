@@ -17,6 +17,7 @@ public class GlobalValue : MonoBehaviour
     public const string RebindsKey = "rebinds";
     public const string SFX = "SFX";
     public const string BGM = "BGM";
+    public const string Quality = "Quality";
 
 
     /// <summary>

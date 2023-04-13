@@ -73,33 +73,6 @@ public class DataManager : MonoBehaviour
         Debug.LogWarning("Save UserKeySetting Success");
     }
 
-    public void PlayerInventoryDataLoad(Inventory inventory)
-    {
-        if (!isWeaponDataSave)
-        {
-            Debug.Log("저장된 Inventory Data가 없습니다.");
-            return;
-        }
-
-        //inventory.weapons = Playerweapons;
-
-        if(Playerweapons.Count > inventory.weaponDatas.Count)
-        {
-            for(int i = inventory.weaponDatas.Count; i< Playerweapons.Count;i++)
-            {
-                inventory.AddWeapon(Playerweapons[i]);
-            }
-        }
-
-        for (int i = 0; i < inventory.weapons.Count; i++)
-        {
-            inventory.weapons[i].weaponData = Playerweapons[i];
-            inventory.weapons[i].weaponGenerator.Init();
-        }
-        inventory.items = Playeritems;
-        Debug.LogWarning("Success Inventory Data Load");
-    }
-
     public void PlayerCfgSFXSave(float sfx)
     {
         //string _sfx = GameManager.Inst.inputHandler.playerInput.actions.SaveBindingOverridesAsJson();
@@ -125,7 +98,46 @@ public class DataManager : MonoBehaviour
         BGM_Volume = bgm;
         Debug.LogWarning("Success Cfg BGM Data Load");
     }
+
+    public void PlayerCfgQualityLoad()
+    {
+        int quality = PlayerPrefs.GetInt(GlobalValue.Quality, QualitySettings.names.Length);
+        QualitySettings.SetQualityLevel(quality);
+        Debug.LogWarning("Success Cfg QualityLevel Data Load");
+    }
+    public void PlayerCfgQualitySave()
+    {
+        PlayerPrefs.SetInt(GlobalValue.Quality, QualitySettings.GetQualityLevel());
+        Debug.LogWarning("Success Cfg QualityLevel Data Save");
+    }
     #endregion
+
+    public void PlayerInventoryDataLoad(Inventory inventory)
+    {
+        if (!isWeaponDataSave)
+        {
+            Debug.Log("저장된 Inventory Data가 없습니다.");
+            return;
+        }
+
+        //inventory.weapons = Playerweapons;
+
+        if (Playerweapons.Count > inventory.weaponDatas.Count)
+        {
+            for (int i = inventory.weaponDatas.Count; i < Playerweapons.Count; i++)
+            {
+                inventory.AddWeapon(Playerweapons[i]);
+            }
+        }
+
+        for (int i = 0; i < inventory.weapons.Count; i++)
+        {
+            inventory.weapons[i].weaponData = Playerweapons[i];
+            inventory.weapons[i].weaponGenerator.Init();
+        }
+        inventory.items = Playeritems;
+        Debug.LogWarning("Success Inventory Data Load");
+    }
 
     public void PlayerInventoryDataSave(List<Weapon> weaponList, List<StatsItemSO> itemList)
     {
