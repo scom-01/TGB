@@ -76,13 +76,7 @@ namespace SOB.Manager
 
             Debug.Log("Stage Clear!!!");
             isStageClear = true;
-            DataManager.Inst.PlayerInventoryDataSave(
-                GameManager.Inst.StageManager.player.Inventory.weapons,
-                GameManager.Inst.StageManager.player.Inventory.items);
-            DataManager.Inst?.PlayerStatSave(
-                GameManager.Inst.StageManager.player.Core.GetCoreComponent<UnitStats>());
-            DataManager.Inst.SceneName = GameManager.Inst.StageManager.NextStageName;
-            AsyncOperation operation = SceneManager.LoadSceneAsync("LoadingScene");
+            GameManager.Inst.ClearScene();
         }
 
         private void OnEnable()

@@ -9,6 +9,7 @@ using System.Numerics;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -139,5 +140,10 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SubUI.InventorySubUI.gameObject.SetActive(false);
+    }
+
+    public void ClearScene()
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync("LoadingScene");
     }
 }

@@ -13,7 +13,7 @@ public class DataManager : MonoBehaviour
     [HideInInspector]
     public List<StatsItemSO> Playeritems = new List<StatsItemSO>();
 
-    public string SceneName;
+    public string SceneName { get; private set; }
 
     private bool isWeaponDataSave = false;
 
