@@ -62,6 +62,23 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public bool AddWeapon(WeaponData weaponObject)
+    {
+        if(weaponDatas.Contains(weaponObject))
+        {
+            return false;
+        }
+        else
+        {
+            Debug.Log($"Add Success add {weaponObject.weaponCommandDataSO.name}");
+            var weapon =  Instantiate(DataManager.Inst?.BaseWeaponPrefab);
+            weapon.GetComponent<Weapon>().weaponData = weaponObject;
+            weapon.GetComponent<Weapon>().weaponGenerator.Init();
+            weaponDatas.Add(weaponObject);
+        }
+        return true;
+    }
+
     public bool AddInventoryItem(GameObject itemObject)
     {
         StatsItemSO itemData = itemObject.GetComponent<SOB_Item>().Item;

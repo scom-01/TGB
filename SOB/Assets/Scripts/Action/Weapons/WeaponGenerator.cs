@@ -29,14 +29,19 @@ namespace SOB.Weapons
         }
         private void Start()
         {
-            if(weaponData.weaponCommandDataSO != null)
+            Init();
+        }
+
+        public void Init()
+        {
+            if (weaponData.weaponCommandDataSO != null)
             {
-                weapon.SetCommandData(weaponData.weaponCommandDataSO);                
+                weapon.SetCommandData(weaponData.weaponCommandDataSO);
             }
             else
             {
                 if (weaponData.weaponDataSO != null)
-                GenerateWeapon(weaponData.weaponDataSO);
+                    GenerateWeapon(weaponData.weaponDataSO);
             }
         }
 

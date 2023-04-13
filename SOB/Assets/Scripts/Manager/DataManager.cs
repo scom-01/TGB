@@ -8,6 +8,8 @@ using UnityEngine.InputSystem;
 public class DataManager : MonoBehaviour
 {
     public static DataManager Inst = null;
+
+    public GameObject BaseWeaponPrefab;
     [HideInInspector]
     public List<WeaponData> Playerweapons = new List<WeaponData>();
     [HideInInspector]
@@ -73,9 +75,18 @@ public class DataManager : MonoBehaviour
 
         //inventory.weapons = Playerweapons;
 
+        if(Playerweapons.Count > inventory.weaponDatas.Count)
+        {
+            for(int i = inventory.weaponDatas.Count; i< Playerweapons.Count;i++)
+            {
+                inventory.AddWeapon(Playerweapons[i]);
+            }
+        }
+
         for (int i = 0; i < inventory.weapons.Count; i++)
         {
             inventory.weapons[i].weaponData = Playerweapons[i];
+            inventory.weapons[i].weaponGenerator.Init();
         }
         inventory.items = Playeritems;
         Debug.LogWarning("Success Inventory Data Load");
