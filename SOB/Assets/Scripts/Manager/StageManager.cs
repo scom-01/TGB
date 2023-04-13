@@ -4,10 +4,10 @@ using UnityEngine;
 using SOB.Manager;
 using Cinemachine;
 using SOB.CoreSystem;
+using UnityEngine.SceneManagement;
 
 public class StageManager : MonoBehaviour
 {
-    //public static StageManager Inst = null;
     [Header("----Manager----")]
     public ItemManager IM;
     public SpawnManager SPM;
@@ -62,7 +62,7 @@ public class StageManager : MonoBehaviour
             DataManager.Inst?.PlayerStatLoad(player.Core.GetCoreComponent<UnitStats>());
         }
 
-        DataManager.Inst.SaveScene();
+        SaveData();
     }
 
     // Update is called once per frame
@@ -75,6 +75,18 @@ public class StageManager : MonoBehaviour
     private void OnEnable()
     {
         Init();
+    }
+    private void SaveData()
+    {
+        if (DataManager.Inst == null)
+            return;
+
+        DataManager.Inst?.SaveScene();
+        DataManager.Inst.PlayerInventoryDataSave(
+            GameManager.Inst.StageManager.player.Inventory.weapons,
+            GameManager.Inst.StageManager.player.Inventory.items);
+        DataManager.Inst?.PlayerStatSave(
+            GameManager.Inst.StageManager.player.Core.GetCoreComponent<UnitStats>());
     }
 
     public void Respawn()
