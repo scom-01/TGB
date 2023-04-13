@@ -9,6 +9,7 @@ using SOB.CoreSystem;
 public class Inventory : MonoBehaviour
 {
     private Unit unit;
+    public List<WeaponData> weaponDatas = new List<WeaponData>();
     public List<Weapon> weapons = new List<Weapon>();
     public List<StatsItemSO> items = new List<StatsItemSO>();
     public GameObject CheckItem;
@@ -29,6 +30,7 @@ public class Inventory : MonoBehaviour
             for (int i = 0; i < weaponItems.Length; i++)
             {
                 this.weapons.Add(weaponItems[i]);
+                this.weaponDatas.Add(weaponItems[i].weaponData);
             }
 
             if (this.weapons == null)

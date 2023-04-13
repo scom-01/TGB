@@ -21,7 +21,7 @@ namespace SOB.Weapons
 
         //Component
 
-        [field: SerializeField] public WeaponData weaponData;
+        public WeaponData weaponData;
 
         public Core WeaponCore { get; private set; }
         public GameObject BaseGameObject { get; private set; }
