@@ -24,6 +24,13 @@ public class DataManager : MonoBehaviour
     public float PlayerHealth;
     private bool isStatsDataSave = false;
 
+    #region Setting
+    [HideInInspector][Range(0.0f, 1.0f)] public float BGM_Volume;
+    [HideInInspector][Range(0.0f, 1.0f)] public float SFX_Volume;
+    #endregion
+
+
+
     private void Awake()
     {
         if (Inst)
@@ -47,6 +54,7 @@ public class DataManager : MonoBehaviour
 
     }
 
+    #region Setting Func
     public void UserKeySettingLoad()
     {
         string rebinds = PlayerPrefs.GetString(GlobalValue.RebindsKey, string.Empty);
@@ -91,6 +99,33 @@ public class DataManager : MonoBehaviour
         inventory.items = Playeritems;
         Debug.LogWarning("Success Inventory Data Load");
     }
+
+    public void PlayerCfgSFXSave(float sfx)
+    {
+        //string _sfx = GameManager.Inst.inputHandler.playerInput.actions.SaveBindingOverridesAsJson();
+        SFX_Volume = sfx;
+        PlayerPrefs.SetFloat(GlobalValue.SFX, SFX_Volume);
+        Debug.LogWarning("Success Cfg SFX Data Save");
+    }
+    public void PlayerCfgSFXLoad()
+    {
+        float sfx = PlayerPrefs.GetFloat(GlobalValue.SFX, 1.0f);
+        SFX_Volume = sfx;
+        Debug.LogWarning("Success Cfg SFX Data Load");
+    }
+    public void PlayerCfgBGMSave(float bgm)
+    {
+        BGM_Volume = bgm;
+        PlayerPrefs.SetFloat(GlobalValue.BGM, BGM_Volume);
+        Debug.LogWarning("Success Cfg BGM Data Save");
+    }
+    public void PlayerCfgBGMLoad()
+    {
+        float bgm = PlayerPrefs.GetFloat(GlobalValue.BGM, 1.0f);
+        BGM_Volume = bgm;
+        Debug.LogWarning("Success Cfg BGM Data Load");
+    }
+    #endregion
 
     public void PlayerInventoryDataSave(List<Weapon> weaponList, List<StatsItemSO> itemList)
     {

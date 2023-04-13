@@ -33,7 +33,7 @@ namespace SOB.CoreSystem
             audioSource.clip = audioClip;
             audioSource.playOnAwake = true;
             audioSource.loop = false;
-            audioSource.volume = 1.0f;
+            audioSource.volume = DataManager.Inst.SFX_Volume;
             audioSource.Play();
             Destroy(audioSource, audioSource.clip.length);
         }

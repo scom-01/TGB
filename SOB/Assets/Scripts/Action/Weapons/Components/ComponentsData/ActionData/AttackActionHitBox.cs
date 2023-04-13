@@ -15,9 +15,21 @@ namespace SOB.Weapons.Components
     public struct HitAction
     {
         public bool Debug;
+        /// <summary>
+        /// 공격 범위
+        /// </summary>
         public Rect ActionRect;
+        /// <summary>
+        /// 공격 시 효과
+        /// </summary>
         public EffectPrefab[] EffectPrefab;
+        /// <summary>
+        /// 공격 시 사운드
+        /// </summary>
         public AudioClip[] audioClip;
+        /// <summary>
+        /// 공격 시 ShakeCam
+        /// </summary>
         public CamData[] camDatas;
     }
 }
