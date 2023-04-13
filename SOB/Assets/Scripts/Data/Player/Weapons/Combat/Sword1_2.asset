@@ -46,13 +46,12 @@ MonoBehaviour:
         - name: 
           audioClips:
           - {fileID: 8300000, guid: a90b7184fb02659469901edc3ceb6a19, type: 3}
-          - {fileID: 8300000, guid: 7dfd8119742582c47832bf5ec01273db, type: 3}
     - rid: 2811500880619372554
       type: {class: ShakeCamData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: ShakeCamData
         actionData:
-        - name: Action 1
+        - name: 
           <ShakeCamData>k__BackingField: []
     - rid: 3615621173780152320
       type: {class: ActionHitBoxData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
@@ -69,8 +68,12 @@ MonoBehaviour:
               width: 2
               height: 2
             EffectPrefab:
-            - {fileID: 5279545542555632717, guid: 54c319e2f98e0b04384f32b5f2f6b28b, type: 3}
-            - {fileID: 6994026979909216902, guid: d0ba99a8a595fd74e9cb4f4357ba3266, type: 3}
+            - isGround: 0
+              isRandomPosRot: 0
+              isRandomRange: 0
+              Object: {fileID: 0}
+            audioClip: []
+            camDatas: []
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
           m_Bits: 133120
