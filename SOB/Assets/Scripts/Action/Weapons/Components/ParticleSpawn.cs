@@ -22,25 +22,7 @@ namespace SOB.Weapons.Components
             {
                 CheckParticleAction(currentActionData);
             }
-            //if (currentActionData != null && currentAirActionData != null)
-            //{
-            //    if (weapon.InAir)
-            //    {
-            //        CheckParticleAction(currentAirActionData);
-            //    }
-            //    else
-            //    {
-            //        CheckParticleAction(currentActionData);
-            //    }
-            //}
-            //else if (currentActionData == null)
-            //{
-            //    CheckParticleAction(currentAirActionData);
-            //}
-            //else if (currentAirActionData == null)
-            //{
-            //    CheckParticleAction(currentActionData);
-            //}
+
             currentParticleSpawnIndex++;
         }
 

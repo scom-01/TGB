@@ -20,25 +20,6 @@ namespace SOB.Weapons.Components
             {
                 CheckSoundClipAction(currentActionData);
             }
-            //if (currentActionData != null && currentAirActionData != null)
-            //{
-            //    if (weapon.InAir)
-            //    {
-            //        CheckSoundClipAction(currentAirActionData);
-            //    }
-            //    else
-            //    {
-            //        CheckSoundClipAction(currentActionData);
-            //    }
-            //}
-            //else if (currentActionData == null)
-            //{
-            //    CheckSoundClipAction(currentAirActionData);
-            //}
-            //else if (currentAirActionData == null)
-            //{
-            //    CheckSoundClipAction(currentActionData);
-            //}
 
             currentSoundIndex++;
         }
@@ -67,7 +48,7 @@ namespace SOB.Weapons.Components
                 return;
             }
 
-            core.GetCoreComponent<SoundEffect>().AudioSpawn(currSoundClips[currentSoundIndex]);
+            CoreSoundEffect.AudioSpawn(currSoundClips[currentSoundIndex]);
         }
         protected override void Awake()
         {

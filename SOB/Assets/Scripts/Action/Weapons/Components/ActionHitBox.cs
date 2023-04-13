@@ -29,29 +29,8 @@ namespace SOB.Weapons.Components
                 CheckAttackAction(currentActionData);
             }
 
-            //if (currentGroundedActionData != null && currentAirActionData != null)
-            //{
-            //    if (weapon.InAir)
-            //    {
-            //        CheckAttackAction(currentAirActionData);
-            //    }
-            //    else
-            //    {
-            //        CheckAttackAction(currentGroundedActionData);
-            //    }
-            //}
-            //else if (currentGroundedActionData == null)
-            //{
-            //    CheckAttackAction(currentAirActionData);
-            //}
-            //else if (currentAirActionData == null)
-            //{
-            //    CheckAttackAction(currentGroundedActionData);
-            //}
-
             OnDetectedCollider2D?.Invoke(detected);
             currentHitBoxIndex++;
-
         }
 
         private void CheckAttackAction(AttackActionHitBox actionData)
@@ -67,7 +46,7 @@ namespace SOB.Weapons.Components
                     transform.position.x + (currHitBox[currentHitBoxIndex].ActionRect.center.x * CoreMovement.FancingDirection),
                     transform.position.y + (currHitBox[currentHitBoxIndex].ActionRect.center.y)
                     );
-                        
+
             detected = Physics2D.OverlapBoxAll(offset, currHitBox[currentHitBoxIndex].ActionRect.size, 0f, data.DetectableLayers);
 
             if (detected.Length == 0)
@@ -82,15 +61,46 @@ namespace SOB.Weapons.Components
                 if (c.gameObject.tag == this.gameObject.tag)
                     continue;
 
+                //Hit시 효과
                 if (c.TryGetComponent(out IDamageable damageable))
                 {
-                    if (currHitBox[currentHitBoxIndex].EffectPrefab == null)
-                    {
-                        continue;
-                    }
+                    //EffectPrefab
                     for (int i = 0; i < currHitBox[currentHitBoxIndex].EffectPrefab.Length; i++)
                     {
-                        damageable.HitAction(currHitBox[currentHitBoxIndex].EffectPrefab[i], 0.5f);
+                        //if (currHitBox[currentHitBoxIndex].EffectPrefab[i].isGround)
+                        //{
+                        //    CoreParticleManager.StartParticles(currHitBox[currentHitBoxIndex].EffectPrefab[i].Object, CoreCollisionSenses.GroundCheck.position);
+                        //}
+                        //else
+                        //{
+                        //    if (currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomPosRot)
+                        //    {
+                        //        CoreParticleManager.StartParticlesWithRandomPosRot(
+                        //                currHitBox[currentHitBoxIndex].EffectPrefab[i].Object,
+                        //                currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomRange);
+                        //    }
+                        //    else
+                        //    {
+                        //        CoreParticleManager.StartParticles(currHitBox[currentHitBoxIndex].EffectPrefab[i].Object);
+                        //    }
+                        //}
+                        damageable.HitAction(currHitBox[currentHitBoxIndex].EffectPrefab[i].Object, currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomRange);
+                    }
+
+                    //AudioClip
+                    for (int i = 0; i < currHitBox[currentHitBoxIndex].audioClip.Length; i++)
+                    {
+                        CoreSoundEffect.AudioSpawn(currHitBox[currentHitBoxIndex].audioClip[i]);
+                    }
+
+                    //ShakeCam
+                    for (int i = 0; i < currHitBox[currentHitBoxIndex].camDatas.Length; i++)
+                    {
+                        Camera.main.GetComponent<CameraShake>().Shake(
+                            currHitBox[currentHitBoxIndex].camDatas[i].ShakgeCamRepeatRate,
+                            currHitBox[currentHitBoxIndex].camDatas[i].ShakeCamRange,
+                            currHitBox[currentHitBoxIndex].camDatas[i].ShakeCamDuration
+                            );
                     }
                 }
             }
@@ -136,27 +146,6 @@ namespace SOB.Weapons.Components
                     Gizmos.DrawWireCube(transform.position + new Vector3(action.ActionRect.center.x * CoreMovement.FancingDirection, action.ActionRect.center.y, 0), action.ActionRect.size);
                 }
             }
-            //foreach (var item in data.InAirActionData)
-            //{
-            //    if (item.ActionHit == null)
-            //        continue;
-
-            //    foreach (var action in item.ActionHit)
-            //    {
-            //        if (!action.Debug)
-            //            continue;
-            //        Gizmos.color = Color.white;
-            //        Gizmos.DrawWireCube(transform.position + new Vector3(action.ActionRect.center.x * CoreMovement.FancingDirection, action.ActionRect.center.y, 0), action.ActionRect.size);
-            //    }
-
-            //    foreach (var action in item.ActionHit)
-            //    {
-            //        if (!action.Debug)
-            //            continue;
-            //        Gizmos.color = Color.white;
-            //        Gizmos.DrawWireCube(transform.position + new Vector3(action.ActionRect.center.x * CoreMovement.FancingDirection, action.ActionRect.center.y, 0), action.ActionRect.size);
-            //    }
-            //}
         }
     }
 }

@@ -22,8 +22,6 @@ public class Unit : MonoBehaviour
     private DamageFlash[] DamageFlash;
     #endregion
 
-    public Transform WeaponTransform;
-
     #region Unity Callback Func
     protected virtual void Awake()
     {

@@ -16,6 +16,8 @@ namespace SOB.Weapons.Components
     {
         public bool Debug;
         public Rect ActionRect;
-        public GameObject[] EffectPrefab;
+        public EffectPrefab[] EffectPrefab;
+        public AudioClip[] audioClip;
+        public CamData[] camDatas;
     }
 }
