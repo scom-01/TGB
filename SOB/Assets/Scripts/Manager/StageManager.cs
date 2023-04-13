@@ -56,12 +56,7 @@ public class StageManager : MonoBehaviour
         CVC = GameObject.Find("Player Camera").GetComponent<CinemachineVirtualCamera>();
         CVC.Follow = player.transform;
 
-        if (player != null && DataManager.Inst != null)
-        {
-            DataManager.Inst?.PlayerInventoryDataLoad(player.Inventory);
-            DataManager.Inst?.PlayerStatLoad(player.Core.GetCoreComponent<UnitStats>());
-        }
-
+        LoadData();
         SaveData();
     }
 
@@ -76,6 +71,16 @@ public class StageManager : MonoBehaviour
     {
         Init();
     }
+
+    private void LoadData()
+    {
+        if (DataManager.Inst == null)
+            return;
+
+        DataManager.Inst?.PlayerInventoryDataLoad(player.Inventory); 
+        DataManager.Inst?.PlayerStatLoad(player.Core.GetCoreComponent<UnitStats>());
+    }
+
     private void SaveData()
     {
         if (DataManager.Inst == null)
