@@ -13,8 +13,11 @@ public class DataManager : MonoBehaviour
     [HideInInspector]
     public List<StatsItemSO> Playeritems = new List<StatsItemSO>();
 
+    public string SceneName;
+
     private bool isWeaponDataSave = false;
 
+    [HideInInspector]
     public StatsData PlayerStatData;
     public float PlayerHealth;
     private bool isStatsDataSave = false;
@@ -51,16 +54,16 @@ public class DataManager : MonoBehaviour
             return;
         }
         GameManager.Inst.inputHandler.playerInput.actions.LoadBindingOverridesFromJson(rebinds);
-        Debug.LogWarning("Load Success");
+        Debug.LogWarning("Load UserKeySetting Success");
     }
     public void UserKeySettingSave()
     {
         string rebinds = GameManager.Inst.inputHandler.playerInput.actions.SaveBindingOverridesAsJson();
         PlayerPrefs.SetString(GlobalValue.RebindsKey, rebinds);
-        Debug.LogWarning("Save Success");
+        Debug.LogWarning("Save UserKeySetting Success");
     }
 
-    public void PlayerDataLoad(Inventory inventory)
+    public void PlayerInventoryDataLoad(Inventory inventory)
     {
         if (!isWeaponDataSave)
         {
@@ -69,11 +72,16 @@ public class DataManager : MonoBehaviour
         }
 
         //inventory.weapons = Playerweapons;
+
+        for (int i = 0; i < inventory.weapons.Count; i++)
+        {
+            inventory.weapons[i].weaponData = Playerweapons[i];
+        }
         inventory.items = Playeritems;
-        Debug.Log("Success Inventory Data Load");
+        Debug.LogWarning("Success Inventory Data Load");
     }
 
-    public void PlayerDataSave(List<Weapon> weaponList, List<StatsItemSO> itemList)
+    public void PlayerInventoryDataSave(List<Weapon> weaponList, List<StatsItemSO> itemList)
     {
         if (weaponList.Count > 0)
         {
@@ -89,6 +97,7 @@ public class DataManager : MonoBehaviour
         }
 
         isWeaponDataSave = true;
+        Debug.LogWarning("Success Inventory Data Save");
     }
 
     public void PlayerStatLoad(UnitStats stat)
@@ -99,12 +108,29 @@ public class DataManager : MonoBehaviour
             return;
         }
         stat.SetStat(PlayerStatData, PlayerHealth);
-        Debug.Log("Success StatsData Load");
+
+
+        Debug.LogWarning("Success StatsData Load");
     }
     public void PlayerStatSave(UnitStats stat)
     {
         PlayerStatData = stat.StatsData;
         PlayerHealth = stat.CurrentHealth;
         isStatsDataSave = true;
+        Debug.LogWarning("Success StatsData Save");
+    }
+
+    public void SaveScene()
+    {
+        string stage = SceneName;
+        PlayerPrefs.SetString(GlobalValue.NextStageName, stage);
+        Debug.LogWarning("Save SceneData Success");
+    }
+
+    public void LoadScene()
+    {
+        string stage = PlayerPrefs.GetString(GlobalValue.NextStageName, "Stage1");
+        SceneName = stage;
+        Debug.LogWarning("Load SceneData Success");
     }
 }

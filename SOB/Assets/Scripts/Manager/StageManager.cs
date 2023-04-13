@@ -58,7 +58,7 @@ public class StageManager : MonoBehaviour
 
         if (player != null && DataManager.Inst != null)
         {
-            DataManager.Inst?.PlayerDataLoad(player.Inventory);
+            DataManager.Inst?.PlayerInventoryDataLoad(player.Inventory);
             DataManager.Inst?.PlayerStatLoad(player.Core.GetCoreComponent<UnitStats>());
         }
 

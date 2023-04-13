@@ -11,6 +11,7 @@ public class GlobalValue : MonoBehaviour
     public static float GV_SystemDeltatime = 0.02f;
     public static float GV_CharacterDeltatime = 0.02f;
 
+    public const string NextStageName = "NextStage";
     //public static string FlashMtrlPath = "Material/FlashWhite";
 
     public const string RebindsKey = "rebinds";

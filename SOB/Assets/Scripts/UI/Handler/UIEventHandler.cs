@@ -57,6 +57,7 @@ public class UIEventHandler : MonoBehaviour
         if (start_btn!=null)
             start_btn.clickable.clicked += (() =>
             {
+                DataManager.Inst.LoadScene();
                 SceneManager.LoadSceneAsync("LoadingScene");
             });
         if (load_btn != null)

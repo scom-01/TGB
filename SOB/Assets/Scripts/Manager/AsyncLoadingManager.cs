@@ -7,8 +7,7 @@ namespace SOB.Manager
 {
     public class AsyncLoadingManager : MonoBehaviour
     {
-        public UIEventHandler UIEvent;
-        public string SceneName;
+        public UIEventHandler UIEvent;        
 
         public float Timer;
         private void Start()
@@ -19,7 +18,7 @@ namespace SOB.Manager
         IEnumerator LoadAsyncSceneCoroutine()
         {
             var time = 0.0f;
-            AsyncOperation operation = SceneManager.LoadSceneAsync(SceneName);
+            AsyncOperation operation = SceneManager.LoadSceneAsync(DataManager.Inst.SceneName);
             operation.allowSceneActivation = false;
 
             while (!operation.isDone)
