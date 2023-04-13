@@ -62,6 +62,7 @@ public class StageManager : MonoBehaviour
             DataManager.Inst?.PlayerStatLoad(player.Core.GetCoreComponent<UnitStats>());
         }
 
+        DataManager.Inst.SaveScene();
     }
 
     // Update is called once per frame
