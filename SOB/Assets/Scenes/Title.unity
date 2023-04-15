@@ -1560,7 +1560,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1636,7 +1636,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2905,7 +2905,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &192539157
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8846,7 +8846,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1015373977}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1801668153}
+        m_TargetAssemblyTypeName: SOB.CfgSetting.ResolutionSetting, Assembly-CSharp
+        m_MethodName: OnClickRight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1015373977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10153,7 +10165,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10397,7 +10409,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -15562,7 +15574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb7da8e5cb2b937469864fe17038a5dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resolution: 0
+  CurrentResolution: 0
   LevelTxt: {fileID: 131731925}
 --- !u!1 &1811828027
 GameObject:
@@ -16600,6 +16612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActiveUI: {fileID: 192539156}
+  isShow: 1
 --- !u!114 &1939917744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16647,7 +16660,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1939917743}
         m_TargetAssemblyTypeName: CfgBtn, Assembly-CSharp
         m_MethodName: OnClickActiveUI
-        m_Mode: 6
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -17396,7 +17409,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2003882591}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1801668153}
+        m_TargetAssemblyTypeName: SOB.CfgSetting.ResolutionSetting, Assembly-CSharp
+        m_MethodName: OnClickLeft
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2003882591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23302,6 +23327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActiveUI: {fileID: 3450347898743114445}
+  isShow: 1
 --- !u!224 &3450347899649907717
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23400,7 +23426,7 @@ MonoBehaviour:
       - m_Target: {fileID: 3450347899649907716}
         m_TargetAssemblyTypeName: CfgBtn, Assembly-CSharp
         m_MethodName: OnClickActiveUI
-        m_Mode: 6
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

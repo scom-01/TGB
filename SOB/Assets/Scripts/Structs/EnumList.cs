@@ -94,5 +94,6 @@ public enum Resolution_Level
 {
     _1080x720,
     _1920x1080,
+    Count,
 }
 #endregion
