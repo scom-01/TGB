@@ -1,8 +1,5 @@
 using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.UIElements;
 using UnityEngine;
 
 namespace SOB.CoreSystem
@@ -29,6 +26,14 @@ namespace SOB.CoreSystem
                 return;
             }
 
+            var soundlist = soundContainer.GetComponents<AudioSource>();
+            for (int i = 0; i < soundContainer.GetComponents<AudioSource>().Length; i++)
+            {
+                if(soundlist[i].clip == audioClip)
+                {
+                    return;
+                }
+            }
             var audioSource = soundContainer.AddComponent<AudioSource>();
             audioSource.clip = audioClip;
             audioSource.playOnAwake = true;
