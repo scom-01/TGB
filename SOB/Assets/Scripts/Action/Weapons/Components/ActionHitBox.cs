@@ -60,42 +60,51 @@ namespace SOB.Weapons.Components
                 if (c.TryGetComponent(out IDamageable damageable))
                 {
                     //EffectPrefab
-                    for (int i = 0; i < currHitBox[currentHitBoxIndex].EffectPrefab.Length; i++)
+                    if (currHitBox[currentHitBoxIndex].EffectPrefab != null)
                     {
-                        //if (currHitBox[currentHitBoxIndex].EffectPrefab[i].isGround)
-                        //{
-                        //    CoreParticleManager.StartParticles(currHitBox[currentHitBoxIndex].EffectPrefab[i].Object, CoreCollisionSenses.GroundCheck.position);
-                        //}
-                        //else
-                        //{
-                        //    if (currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomPosRot)
-                        //    {
-                        //        CoreParticleManager.StartParticlesWithRandomPosRot(
-                        //                currHitBox[currentHitBoxIndex].EffectPrefab[i].Object,
-                        //                currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomRange);
-                        //    }
-                        //    else
-                        //    {
-                        //        CoreParticleManager.StartParticles(currHitBox[currentHitBoxIndex].EffectPrefab[i].Object);
-                        //    }
-                        //}
-                        damageable.HitAction(currHitBox[currentHitBoxIndex].EffectPrefab[i].Object, currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomRange);
+                        for (int i = 0; i < currHitBox[currentHitBoxIndex].EffectPrefab.Length; i++)
+                        {
+                            //if (currHitBox[currentHitBoxIndex].EffectPrefab[i].isGround)
+                            //{
+                            //    CoreParticleManager.StartParticles(currHitBox[currentHitBoxIndex].EffectPrefab[i].Object, CoreCollisionSenses.GroundCheck.position);
+                            //}
+                            //else
+                            //{
+                            //    if (currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomPosRot)
+                            //    {
+                            //        CoreParticleManager.StartParticlesWithRandomPosRot(
+                            //                currHitBox[currentHitBoxIndex].EffectPrefab[i].Object,
+                            //                currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomRange);
+                            //    }
+                            //    else
+                            //    {
+                            //        CoreParticleManager.StartParticles(currHitBox[currentHitBoxIndex].EffectPrefab[i].Object);
+                            //    }
+                            //}
+                            damageable.HitAction(currHitBox[currentHitBoxIndex].EffectPrefab[i].Object, currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomRange);
+                        }
                     }
 
                     //AudioClip
-                    for (int i = 0; i < currHitBox[currentHitBoxIndex].audioClip.Length; i++)
+                    if (currHitBox[currentHitBoxIndex].audioClip != null)
                     {
-                        CoreSoundEffect.AudioSpawn(currHitBox[currentHitBoxIndex].audioClip[i]);
+                        for (int i = 0; i < currHitBox[currentHitBoxIndex].audioClip.Length; i++)
+                        {
+                            CoreSoundEffect.AudioSpawn(currHitBox[currentHitBoxIndex].audioClip[i]);
+                        }
                     }
 
                     //ShakeCam
-                    for (int i = 0; i < currHitBox[currentHitBoxIndex].camDatas.Length; i++)
+                    if (currHitBox[currentHitBoxIndex].camDatas != null)
                     {
-                        Camera.main.GetComponent<CameraShake>().Shake(
-                            currHitBox[currentHitBoxIndex].camDatas[i].ShakgeCamRepeatRate,
-                            currHitBox[currentHitBoxIndex].camDatas[i].ShakeCamRange,
-                            currHitBox[currentHitBoxIndex].camDatas[i].ShakeCamDuration
-                            );
+                        for (int i = 0; i < currHitBox[currentHitBoxIndex].camDatas.Length; i++)
+                        {
+                            Camera.main.GetComponent<CameraShake>().Shake(
+                                currHitBox[currentHitBoxIndex].camDatas[i].ShakgeCamRepeatRate,
+                                currHitBox[currentHitBoxIndex].camDatas[i].ShakeCamRange,
+                                currHitBox[currentHitBoxIndex].camDatas[i].ShakeCamDuration
+                                );
+                        }
                     }
                 }
             }
