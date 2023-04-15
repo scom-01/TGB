@@ -16,7 +16,7 @@ public class Detector : MonoBehaviour
 
     private List<GameObject> DetectedList = new List<GameObject>();
     private GameObject currentGO;
-    private float currentDistance = 0.0f;
+    //private float currentDistance = 0.0f;
     private void Awake()
     {
         unit = GetComponentInParent<Unit>();
