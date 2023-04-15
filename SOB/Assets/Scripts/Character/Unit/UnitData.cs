@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "newUnitData",menuName ="Data/Unit Data")]
@@ -43,5 +40,5 @@ public class UnitData : ScriptableObject
     public LayerMask WhatIsEnemyUnit;
 
     [Header("Animator")]
-    public AnimatorController UnitAnimator;
+    public RuntimeAnimatorController UnitAnimator;
 }

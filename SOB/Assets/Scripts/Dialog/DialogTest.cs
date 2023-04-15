@@ -38,7 +38,10 @@ namespace SOB.Dialog
 
             yield return new WaitForSeconds(2);
 
+#if UNITY_EDITOR
             UnityEditor.EditorApplication.ExitPlaymode();
+#endif
+
         }
 
         // Update is called once per frame

@@ -1,14 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Cinemachine;
 using SOB.Manager;
-using SOB.CoreSystem;
-using static UnityEditor.Experimental.GraphView.GraphView;
-using System.Numerics;
-using UnityEngine.InputSystem;
-using Unity.VisualScripting;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour

@@ -1,10 +1,5 @@
-using SOB.CoreSystem;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
-using static UnityEditor.Progress;
-using UnityEditor.Timeline.Actions;
+using UnityEngine;
 
 namespace SOB.Weapons.Components
 {
