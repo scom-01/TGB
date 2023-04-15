@@ -31,7 +31,8 @@ namespace SOB.CoreSystem
             {
                 if(soundlist[i].clip == audioClip)
                 {
-                    return;
+                    Destroy(soundlist[i]);
+                    break;
                 }
             }
             var audioSource = soundContainer.AddComponent<AudioSource>();
