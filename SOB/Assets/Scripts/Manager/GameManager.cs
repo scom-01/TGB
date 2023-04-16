@@ -12,8 +12,13 @@ public class GameManager : MonoBehaviour
             {
                 _Inst = FindObjectOfType(typeof(GameManager)) as GameManager;
                 if (_Inst == null)
+                {
                     Debug.Log("no Singleton obj");
-                DontDestroyOnLoad(_Inst.gameObject);
+                }
+                else
+                {
+                    DontDestroyOnLoad(_Inst.gameObject);
+                }
             }
             return _Inst;
         }
@@ -61,6 +66,9 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         DataManager.Inst.UserKeySettingLoad();
+        DataManager.Inst.PlayerCfgBGMLoad();
+        DataManager.Inst.PlayerCfgSFXLoad();
+        DataManager.Inst.PlayerCfgQualityLoad();
     }
     private void Update()
     {

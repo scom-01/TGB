@@ -14,10 +14,16 @@ namespace SOB.CfgSetting
         private void Awake()
         {
             slider = GetComponent<Slider>();
+            SoundsSettingInit();
             volume = slider.value;
         }
 
         private void OnEnable()
+        {
+            SoundsSettingInit();
+        }
+
+        public void SoundsSettingInit()
         {
             if (isBGM)
             {
@@ -29,6 +35,7 @@ namespace SOB.CfgSetting
                 DataManager.Inst.PlayerCfgSFXLoad();
                 slider.value = DataManager.Inst.SFX_Volume;
             }
+            OnChangeVolume();
         }
         public void OnChangeVolume()
         {
@@ -36,12 +43,35 @@ namespace SOB.CfgSetting
                 slider = GetComponent<Slider>();
 
             volume = slider.value;
+            var sounds = GameObject.FindGameObjectsWithTag(GlobalValue.SoundContainerTagName);
             if (isBGM)
-            {
+            {                
+                foreach(var sound in sounds)
+                {
+                    if(sound.GetComponent<SoundSync>().isBGM)
+                    {
+                        var sources = sound.GetComponents<AudioSource>();
+                        foreach (var source in sources)
+                        {
+                            source.volume = volume;
+                        }
+                    }                    
+                }
                 DataManager.Inst.PlayerCfgBGMSave(volume);
             }
             else
             {
+                foreach (var sound in sounds)
+                {
+                    if (!sound.GetComponent<SoundSync>().isBGM)
+                    {
+                        var sources = sound.GetComponents<AudioSource>();
+                        foreach (var source in sources)
+                        {
+                            source.volume = volume;
+                        }
+                    }
+                }
                 DataManager.Inst.PlayerCfgSFXSave(volume);
             }
         }

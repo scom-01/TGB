@@ -6,15 +6,13 @@ namespace SOB.CoreSystem
 {
     public class SoundEffect : CoreComponent
     {
-        [TagField]
-        [field: SerializeField] private string soundContainerTagName;
         private Transform soundContainer;
         protected override void Awake()
         {
             base.Awake();
-            if (GameObject.FindGameObjectWithTag(soundContainerTagName).transform != null)
+            if (GameObject.FindGameObjectWithTag(GlobalValue.SoundContainerTagName).transform != null)
             {
-                soundContainer = GameObject.FindGameObjectWithTag(soundContainerTagName).transform;
+                soundContainer = GameObject.FindGameObjectWithTag(GlobalValue.SoundContainerTagName).transform;
             }
         }
 

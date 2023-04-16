@@ -7,7 +7,27 @@ using UnityEngine.InputSystem;
 
 public class DataManager : MonoBehaviour
 {
-    public static DataManager Inst = null;
+    public static DataManager Inst
+    {
+        get
+        {
+            if (_Inst == null)
+            {
+                _Inst = FindObjectOfType(typeof(DataManager)) as DataManager;
+                if (_Inst == null)
+                {
+                    Debug.Log("no Singleton obj");
+                }
+                else
+                {
+                    DontDestroyOnLoad(_Inst.gameObject);
+                }
+            }
+            return _Inst;
+        }
+    }
+
+    private static DataManager _Inst = null;
 
     public GameObject BaseWeaponPrefab;
     [HideInInspector]
@@ -33,13 +53,13 @@ public class DataManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Inst)
+        if (_Inst)
         {
             Destroy(this.gameObject);
             return;
         }
 
-        Inst = this;
+        _Inst = this;
         DontDestroyOnLoad(this.gameObject);
     }
     // Start is called before the first frame update
@@ -84,7 +104,7 @@ public class DataManager : MonoBehaviour
     {
         float sfx = PlayerPrefs.GetFloat(GlobalValue.SFX, 1.0f);
         SFX_Volume = sfx;
-        Debug.LogWarning("Success Cfg SFX Data Load");
+        Debug.LogWarning($"Success Cfg SFX Data Load {SFX_Volume}");
     }
     public void PlayerCfgBGMSave(float bgm)
     {
@@ -96,7 +116,7 @@ public class DataManager : MonoBehaviour
     {
         float bgm = PlayerPrefs.GetFloat(GlobalValue.BGM, 1.0f);
         BGM_Volume = bgm;
-        Debug.LogWarning("Success Cfg BGM Data Load");
+        Debug.LogWarning($"Success Cfg BGM Data Load {BGM_Volume}");
     }
 
     public void PlayerCfgQualityLoad()
