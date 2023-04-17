@@ -61,11 +61,11 @@ public class UIEventHandler : MonoBehaviour
                 SceneManager.LoadSceneAsync("LoadingScene");
             });
         if (load_btn != null)
-            load_btn.clickable.clicked += OnBtnClicked;
+            load_btn.clickable.clicked += OnExitBtnClicked;
         if (option_btn != null)
-            option_btn.clickable.clicked += OnBtnOptionClicked;
+            option_btn.clickable.clicked += OnOptionBtnClicked;
         if (exit_btn != null)
-            exit_btn.clickable.clicked += OnBtnClicked;
+            exit_btn.clickable.clicked += OnExitBtnClicked;
 
         if (Loading_Lb != null)
             Loading_Lb.text = "Loading...";
@@ -80,20 +80,20 @@ public class UIEventHandler : MonoBehaviour
     private void OnDisable()
     {
         if (start_btn != null)
-            start_btn.clickable.clicked -= OnBtnClicked;
+            start_btn.clickable.clicked -= OnExitBtnClicked;
         if (load_btn != null)
-            load_btn.clickable.clicked -= OnBtnClicked;
+            load_btn.clickable.clicked -= OnExitBtnClicked;
         if (option_btn != null)
-            option_btn.clickable.clicked -= OnBtnOptionClicked;
+            option_btn.clickable.clicked -= OnOptionBtnClicked;
         if (exit_btn != null)
-            exit_btn.clickable.clicked -= OnBtnClicked;
+            exit_btn.clickable.clicked -= OnExitBtnClicked;
     }
 
     private void OnButtonCallBack(ChangeEvent<string> evt)
     {
         Debug.Log(evt);
     }
-    private void OnBtnClicked()
+    public void OnExitBtnClicked()
     {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
@@ -102,7 +102,7 @@ public class UIEventHandler : MonoBehaviour
 #endif
     }
 
-    private void OnBtnOptionClicked()
+    private void OnOptionBtnClicked()
     {
         GameManager.Inst?.inputHandler.ChangeCurrentActionMap("Cfg", true);
         GameManager.Inst?.CfgUI.ConfigPanelUI.gameObject.SetActive(true);
