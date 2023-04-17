@@ -74,6 +74,10 @@ public class DataManager : MonoBehaviour
 
     }
 
+    private void OnDestroy()
+    {
+        UserKeySettingSave();
+    }
     #region Setting Func
     public void UserKeySettingLoad()
     {
