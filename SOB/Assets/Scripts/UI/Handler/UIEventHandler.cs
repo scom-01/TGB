@@ -58,7 +58,7 @@ public class UIEventHandler : MonoBehaviour
             start_btn.clickable.clicked += (() =>
             {
                 DataManager.Inst.LoadScene();
-                SceneManager.LoadSceneAsync("LoadingScene");
+                SceneManager.LoadSceneAsync("CutScene1");
             });
         if (load_btn != null)
             load_btn.clickable.clicked += OnExitBtnClicked;

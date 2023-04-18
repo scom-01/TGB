@@ -211,7 +211,7 @@ public class DataManager : MonoBehaviour
 
     public void LoadScene()
     {
-        string stage = PlayerPrefs.GetString(GlobalValue.NextStageName, "Stage1");
+        string stage = PlayerPrefs.GetString(GlobalValue.NextStageName, "CutScene1");
         SceneName = stage;
         Debug.LogWarning("Load SceneData Success");
     }
