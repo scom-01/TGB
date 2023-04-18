@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 namespace SOB.CfgSetting
@@ -10,7 +11,7 @@ namespace SOB.CfgSetting
         Slider slider;
         float volume;
         [SerializeField] private bool isBGM;
-
+        [SerializeField] private AudioMixerGroup mixerGroup;
         private void Awake()
         {
             slider = GetComponent<Slider>();
@@ -53,7 +54,9 @@ namespace SOB.CfgSetting
                         var sources = sound.GetComponents<AudioSource>();
                         foreach (var source in sources)
                         {
+                            source.outputAudioMixerGroup = mixerGroup;
                             source.volume = volume;
+                            mixerGroup.audioMixer.SetFloat("BGM_Volume", Mathf.Log10(volume) * 20);
                         }
                     }                    
                 }
@@ -68,7 +71,9 @@ namespace SOB.CfgSetting
                         var sources = sound.GetComponents<AudioSource>();
                         foreach (var source in sources)
                         {
+                            source.outputAudioMixerGroup = mixerGroup;
                             source.volume = volume;
+                            mixerGroup.audioMixer.SetFloat("SFX_Volume", Mathf.Log10(volume) * 20);
                         }
                     }
                 }
