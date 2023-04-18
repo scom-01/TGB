@@ -16,8 +16,14 @@ public class GlobalValue : MonoBehaviour
     //PlayerPrefs Data
     public const string NextStageName = "NextStage";
     public const string RebindsKey = "rebinds";
-    public const string SFX = "SFX";
-    public const string BGM = "BGM";
+    /// <summary>
+    /// AudioMixer의 SFX Parameter값과 일치해야함
+    /// </summary>
+    public const string SFX_Vol = "SFX_Vol";
+    /// <summary>
+    /// AudioMixer의 BGM Parameter값과 일치해야함
+    /// </summary>
+    public const string BGM_Vol = "BGM_Vol";
     public const string Quality = "Quality";
 
 

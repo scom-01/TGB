@@ -2,6 +2,7 @@ using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Timeline;
 
 namespace SOB.CoreSystem
 {
@@ -37,8 +38,8 @@ namespace SOB.CoreSystem
             var audioSource = soundContainer.AddComponent<AudioSource>();
             audioSource.clip = audioClip;
             audioSource.playOnAwake = true;
+            audioSource.outputAudioMixerGroup = DataManager.Inst.SFX;
             audioSource.loop = false;
-            audioSource.volume = DataManager.Inst.SFX_Volume;
             audioSource.Play();
             Destroy(audioSource, audioSource.clip.length);
         }

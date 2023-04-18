@@ -3,6 +3,7 @@ using SOB.Weapons;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 
 public class DataManager : MonoBehaviour
@@ -45,6 +46,8 @@ public class DataManager : MonoBehaviour
     private bool isStatsDataSave = false;
 
     #region Setting
+    public AudioMixerGroup BGM;
+    public AudioMixerGroup SFX;
     [HideInInspector][Range(0.0f, 1.0f)] public float BGM_Volume;
     [HideInInspector][Range(0.0f, 1.0f)] public float SFX_Volume;
     #endregion
@@ -101,24 +104,26 @@ public class DataManager : MonoBehaviour
     {
         //string _sfx = GameManager.Inst.inputHandler.playerInput.actions.SaveBindingOverridesAsJson();
         SFX_Volume = sfx;
-        PlayerPrefs.SetFloat(GlobalValue.SFX, SFX_Volume);
+        PlayerPrefs.SetFloat(GlobalValue.SFX_Vol, SFX_Volume);
         Debug.LogWarning("Success Cfg SFX Data Save");
     }
     public void PlayerCfgSFXLoad()
     {
-        float sfx = PlayerPrefs.GetFloat(GlobalValue.SFX, 1.0f);
+        float sfx = PlayerPrefs.GetFloat(GlobalValue.SFX_Vol, 1.0f);
+        SFX.audioMixer.SetFloat(GlobalValue.SFX_Vol, Mathf.Log10(sfx) * 20);
         SFX_Volume = sfx;
         Debug.LogWarning($"Success Cfg SFX Data Load {SFX_Volume}");
     }
     public void PlayerCfgBGMSave(float bgm)
     {
         BGM_Volume = bgm;
-        PlayerPrefs.SetFloat(GlobalValue.BGM, BGM_Volume);
-        Debug.LogWarning("Success Cfg BGM Data Save");
+        PlayerPrefs.SetFloat(GlobalValue.BGM_Vol, BGM_Volume);
+        Debug.LogWarning($"Success Cfg BGM Data Save {BGM_Volume}");
     }
     public void PlayerCfgBGMLoad()
     {
-        float bgm = PlayerPrefs.GetFloat(GlobalValue.BGM, 1.0f);
+        float bgm = PlayerPrefs.GetFloat(GlobalValue.BGM_Vol, 1.0f);
+        BGM.audioMixer.SetFloat(GlobalValue.BGM_Vol, Mathf.Log10(bgm) * 20);
         BGM_Volume = bgm;
         Debug.LogWarning($"Success Cfg BGM Data Load {BGM_Volume}");
     }

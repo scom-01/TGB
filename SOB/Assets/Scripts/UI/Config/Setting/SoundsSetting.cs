@@ -10,7 +10,6 @@ namespace SOB.CfgSetting
     {
         Slider slider;
         float volume;
-        [SerializeField] private bool isBGM;
         [SerializeField] private AudioMixerGroup mixerGroup;
         private void Awake()
         {
@@ -26,59 +25,51 @@ namespace SOB.CfgSetting
 
         public void SoundsSettingInit()
         {
-            if (isBGM)
+            if(mixerGroup == DataManager.Inst.BGM)
             {
                 DataManager.Inst.PlayerCfgBGMLoad();
                 slider.value = DataManager.Inst.BGM_Volume;
+                SetBGMVolume();
             }
-            else
+            else if(mixerGroup == DataManager.Inst.SFX)
             {
                 DataManager.Inst.PlayerCfgSFXLoad();
                 slider.value = DataManager.Inst.SFX_Volume;
+                SetSFXVolume();
             }
-            OnChangeVolume();
         }
-        public void OnChangeVolume()
+        public void SetBGMVolume()
         {
             if (slider == null)
                 slider = GetComponent<Slider>();
 
             volume = slider.value;
-            var sounds = GameObject.FindGameObjectsWithTag(GlobalValue.SoundContainerTagName);
-            if (isBGM)
-            {                
-                foreach(var sound in sounds)
-                {
-                    if(sound.GetComponent<SoundSync>().isBGM)
-                    {
-                        var sources = sound.GetComponents<AudioSource>();
-                        foreach (var source in sources)
-                        {
-                            source.outputAudioMixerGroup = mixerGroup;
-                            source.volume = volume;
-                            mixerGroup.audioMixer.SetFloat("BGM_Volume", Mathf.Log10(volume) * 20);
-                        }
-                    }                    
-                }
+            Debug.Log("BGM vol =" + volume);
+            if (DataManager.Inst != null)
+            {
+                DataManager.Inst.BGM.audioMixer.SetFloat(GlobalValue.BGM_Vol, Mathf.Log10(volume) * 20);
                 DataManager.Inst.PlayerCfgBGMSave(volume);
             }
             else
-            {
-                foreach (var sound in sounds)
-                {
-                    if (!sound.GetComponent<SoundSync>().isBGM)
-                    {
-                        var sources = sound.GetComponents<AudioSource>();
-                        foreach (var source in sources)
-                        {
-                            source.outputAudioMixerGroup = mixerGroup;
-                            source.volume = volume;
-                            mixerGroup.audioMixer.SetFloat("SFX_Volume", Mathf.Log10(volume) * 20);
-                        }
-                    }
-                }
+                mixerGroup.audioMixer.SetFloat(GlobalValue.BGM_Vol, Mathf.Log10(volume) * 20);
+
+            
+        }
+
+        public void SetSFXVolume()
+        {
+            if (slider == null)
+                slider = GetComponent<Slider>();
+
+            volume = slider.value;
+
+            if (DataManager.Inst != null)
+            { 
+                DataManager.Inst.SFX.audioMixer.SetFloat(GlobalValue.SFX_Vol, Mathf.Log10(volume) * 20);
                 DataManager.Inst.PlayerCfgSFXSave(volume);
             }
+            else
+                mixerGroup.audioMixer.SetFloat(GlobalValue.SFX_Vol, Mathf.Log10(volume) * 20);
         }
     }
 }

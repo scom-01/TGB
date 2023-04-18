@@ -14,8 +14,7 @@ public class TitleManager : MonoBehaviour
         var audio =  BGM.AddComponent<AudioSource>();
         audio.clip = TitleBGM;
         DataManager.Inst.PlayerCfgBGMLoad();
-        audio.volume = DataManager.Inst.BGM_Volume;
-        Debug.Log($"TitleManager audioVolume{audio.volume}");
+        audio.outputAudioMixerGroup = DataManager.Inst.BGM;
         audio.Play();
     }
 
