@@ -25,7 +25,9 @@ public class GlobalValue : MonoBehaviour
     /// </summary>
     public const string BGM_Vol = "BGM_Vol";
     public const string Quality = "Quality";
+    public const string Language = "Language";
 
+    public const string UI_Table = "Localization/StringTables/UI Table";
 
     /// <summary>
     /// Elemetal 속성 공격에 따른 추가 데미지 퍼센트

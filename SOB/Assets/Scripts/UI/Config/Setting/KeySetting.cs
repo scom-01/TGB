@@ -1,13 +1,8 @@
-using SOB.Manager;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using static UnityEngine.InputSystem.InputActionRebindingExtensions;
-using static UnityEngine.InputSystem.InputBindingCompositeContext;
-using static UnityEngine.Rendering.DebugUI.Table;
 
 public class KeySetting : MonoBehaviour
 {

@@ -97,3 +97,11 @@ public enum Resolution_Level
     Count,
 }
 #endregion
+
+#region UI
+public enum Localization
+{
+    en,
+    kr,
+}
+#endregion

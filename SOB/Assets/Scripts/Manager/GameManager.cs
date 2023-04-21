@@ -65,10 +65,12 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        //해당 함수들은 GameManager에서 참조할 변수들이 있어 GameManager에서 선언
         DataManager.Inst.UserKeySettingLoad();
         DataManager.Inst.PlayerCfgBGMLoad();
         DataManager.Inst.PlayerCfgSFXLoad();
         DataManager.Inst.PlayerCfgQualityLoad();
+        DataManager.Inst.PlayerCfgLanguageLoad();
     }
     private void Update()
     {
@@ -81,8 +83,9 @@ public class GameManager : MonoBehaviour
     {
         if (Inst != null)
         {
+            DataManager.Inst.UserKeySettingSave();
             return;
-        }         
+        }
     }
 
     public void CheckPause(bool pause)

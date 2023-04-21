@@ -22,7 +22,7 @@ namespace SOB.Manager
             {
                 _uiEnemyCount = value;
                 if (GameManager.Inst.gameObject && GameManager.Inst.StageManager)
-                    GameManager.Inst.MainUI.MainPanel.EnemyPanelSystem.EnemyCountText.text = "Enemy : " + GameManager.Inst.StageManager.SPM.UIEnemyCount.ToString();
+                    GameManager.Inst.MainUI.MainPanel.EnemyPanelSystem.EnemyCountText.text = GameManager.Inst.StageManager.SPM.UIEnemyCount.ToString();
             }
         }
 

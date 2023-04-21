@@ -2,9 +2,11 @@ using SOB.CoreSystem;
 using SOB.Weapons;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Localization.Editor;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
+using UnityEngine.Localization.Settings;
 
 public class DataManager : MonoBehaviour
 {
@@ -50,6 +52,9 @@ public class DataManager : MonoBehaviour
     public AudioMixerGroup SFX;
     [HideInInspector][Range(0.0f, 1.0f)] public float BGM_Volume;
     [HideInInspector][Range(0.0f, 1.0f)] public float SFX_Volume;
+    public Localization localizaion;
+    public int localizationIdx;
+    public LocalizationSettings localizationSettings;
     #endregion
 
 
@@ -65,21 +70,9 @@ public class DataManager : MonoBehaviour
         _Inst = this;
         DontDestroyOnLoad(this.gameObject);
     }
-    // Start is called before the first frame update
-    void Start()
+    private void OnDisable()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    private void OnDestroy()
-    {
-        UserKeySettingSave();
+        //UserKeySettingSave();
     }
     #region Setting Func
     public void UserKeySettingLoad()
@@ -90,19 +83,18 @@ public class DataManager : MonoBehaviour
             Debug.LogWarning("Load Fails");
             return;
         }
-        GameManager.Inst.inputHandler.playerInput.actions.LoadBindingOverridesFromJson(rebinds);
+        GameManager.Inst?.inputHandler.playerInput.actions.LoadBindingOverridesFromJson(rebinds);
         Debug.LogWarning("Load UserKeySetting Success");
     }
     public void UserKeySettingSave()
     {
-        string rebinds = GameManager.Inst.inputHandler.playerInput.actions.SaveBindingOverridesAsJson();
+        string rebinds = GameManager.Inst?.inputHandler.playerInput.actions.SaveBindingOverridesAsJson();
         PlayerPrefs.SetString(GlobalValue.RebindsKey, rebinds);
         Debug.LogWarning("Save UserKeySetting Success");
     }
 
     public void PlayerCfgSFXSave(float sfx)
     {
-        //string _sfx = GameManager.Inst.inputHandler.playerInput.actions.SaveBindingOverridesAsJson();
         SFX_Volume = sfx;
         PlayerPrefs.SetFloat(GlobalValue.SFX_Vol, SFX_Volume);
         Debug.LogWarning("Success Cfg SFX Data Save");
@@ -138,6 +130,24 @@ public class DataManager : MonoBehaviour
     {
         PlayerPrefs.SetInt(GlobalValue.Quality, QualitySettings.GetQualityLevel());
         Debug.LogWarning("Success Cfg QualityLevel Data Save");
+    }
+
+    public void PlayerCfgLanguageLoad()
+    {
+        localizationIdx = PlayerPrefs.GetInt(GlobalValue.Language, 0);
+        StartCoroutine(ChangeRoutine(localizationIdx));
+        Debug.LogWarning("Success Cfg Language Data Load");
+    }
+    public void PlayerCfgLanguageSave()
+    {
+        PlayerPrefs.SetInt(GlobalValue.Language, localizationIdx);
+        Debug.LogWarning("Success Cfg Language Data Save");
+    }
+
+    IEnumerator ChangeRoutine(int index)
+    {
+        yield return LocalizationSettings.InitializationOperation;
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[index];
     }
     #endregion
 
