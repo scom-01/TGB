@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: UI Table Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: UI Table
+  m_TableCollectionNameGuidString: 9d5524b774fcd414cb16bcd906e1c9c2
+  m_Entries:
+  - m_Id: 232602886144
+    m_Key: UI_KeySetting
+    m_Metadata:
+      m_Items: []
+  - m_Id: 715430191104
+    m_Key: UI_Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9027106267136
+    m_Key: UI_Option
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765939314688
+    m_Key: UI_Close
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20298182582272
+    m_Key: UI_Graphics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20644351074304
+    m_Key: UI_Quality
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20763595137024
+    m_Key: UI_Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20906293747712
+    m_Key: UI_FullScreen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21035771912192
+    m_Key: UI_Sounds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21133457252352
+    m_Key: UI_BGM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21205414731776
+    m_Key: UI_SFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21322637139968
+    m_Key: UI_Data
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21434910269440
+    m_Key: UI_CutScene
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21703354114048
+    m_Key: UI_Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30622558347264
+    m_Key: UI_Localization
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37200153960448
+    m_Key: LOW
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37298648801280
+    m_Key: MEDIUM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37439782936576
+    m_Key: HIGH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44864892198912
+    m_Key: UI_Reset
+    m_Metadata:
+      m_Items: []
+  - m_Id: 45296708378624
+    m_Key: UI_CheckExit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 45586161491968
+    m_Key: UI_Cancel
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 2811501187607560222
+  references:
+    version: 2
+    RefIds:
+    - rid: 2811501187607560222
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1682042200872
