@@ -359,7 +359,11 @@ public class PlayerInputHandler : MonoBehaviour
     {
         //현재와 동일한 ActionMap으로 변경하려하면 ActionMap변경을 원치않으므로 Pause기능만 하도록
         if (playerInput.currentActionMap == playerInput.actions.FindActionMap(actionMapName))
-        {
+        {            
+            if(actionMapName == "GamePlay")
+            {
+                return;
+            }
             GameManager.Inst.CheckPause(actionMapName);
         }
         else
