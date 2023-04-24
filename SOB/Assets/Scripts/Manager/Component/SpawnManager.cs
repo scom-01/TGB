@@ -10,6 +10,7 @@ namespace SOB.Manager
 {
     public class SpawnManager : MonoBehaviour
     {
+        private StageManager stageManager;
         public SpawnCtrl[] SpawnCtrls;
         bool isStageClear = false;
         public int UIEnemyCount
@@ -54,7 +55,8 @@ namespace SOB.Manager
 
         private void Awake()
         {
-            SpawnCtrls = this.GetComponentsInChildren<SpawnCtrl>();            
+            SpawnCtrls = this.GetComponentsInChildren<SpawnCtrl>();
+            stageManager = this.GetComponentInParent<StageManager>();
         }
         private void Start()
         {
@@ -76,6 +78,7 @@ namespace SOB.Manager
 
             Debug.Log("Stage Clear!!!");
             isStageClear = true;
+            stageManager.SaveData();
             GameManager.Inst.ClearScene();
         }
 
