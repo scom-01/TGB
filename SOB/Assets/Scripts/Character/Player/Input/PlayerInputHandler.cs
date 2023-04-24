@@ -67,7 +67,7 @@ public class PlayerInputHandler : MonoBehaviour
         ActionInputsStartTime = new float[count];
         ActionInputsStopTime = new float[count];
 
-        if(cam == null)
+        if (cam == null)
             cam = Camera.main;
 
         //Debug.Log("This InputHandler ActionMap Name : " + playerInput.currentActionMap.name);
@@ -299,13 +299,20 @@ public class PlayerInputHandler : MonoBehaviour
                 {
                     ChangeCurrentActionMap("Cfg", true);
                 }
-                else if(playerInput.currentActionMap == playerInput.actions.FindActionMap("Cfg"))
+                else if (playerInput.currentActionMap == playerInput.actions.FindActionMap("Cfg"))
                 {
-                    foreach(var btn in GameManager.Inst.CfgUI.ConfigPanelUI.cfgBtns)
+                    if (GameManager.Inst.StageManager == null)
                     {
-                        btn.OnClickActiveUI(false);
+                        ChangeCurrentActionMap("Cfg", true);
                     }
-                    ChangeCurrentActionMap("GamePlay", false);
+                    else
+                    {
+                        foreach (var btn in GameManager.Inst.CfgUI.ConfigPanelUI.cfgBtns)
+                        {
+                            btn.OnClickActiveUI(false);
+                        }
+                        ChangeCurrentActionMap("GamePlay", false);
+                    }
                 }
                 oldInputActionMap = playerInput.currentActionMap;
             }
@@ -318,7 +325,7 @@ public class PlayerInputHandler : MonoBehaviour
     //UI움직임 Input
     public void OnUIMoveLeftInput(InputAction.CallbackContext context)
     {
-        if(context.started)
+        if (context.started)
         {
             RawUIMoveInputLeft = true;
             normUIInputLeftStartTime = Time.time;
@@ -331,7 +338,7 @@ public class PlayerInputHandler : MonoBehaviour
     }
     public void OnUIMoveRightInput(InputAction.CallbackContext context)
     {
-        if(context.started)
+        if (context.started)
         {
             RawUIMoveInputRight = true;
             normUIInputRightStartTime = Time.time;
@@ -339,7 +346,7 @@ public class PlayerInputHandler : MonoBehaviour
 
         if (context.canceled)
         {
-            RawUIMoveInputRight = false;            
+            RawUIMoveInputRight = false;
         }
     }
     #endregion
@@ -350,9 +357,17 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void ChangeCurrentActionMap(string actionMapName, bool Pause)
     {
-        oldInputActionMap = playerInput.currentActionMap;
-        playerInput.SwitchCurrentActionMap(actionMapName);
-        GameManager.Inst.CheckPause(actionMapName, Pause);
+        //현재와 동일한 ActionMap으로 변경하려하면 ActionMap변경을 원치않으므로 Pause기능만 하도록
+        if (playerInput.currentActionMap == playerInput.actions.FindActionMap(actionMapName))
+        {
+            GameManager.Inst.CheckPause(actionMapName);
+        }
+        else
+        {
+            oldInputActionMap = playerInput.currentActionMap;
+            playerInput.SwitchCurrentActionMap(actionMapName);
+            GameManager.Inst.CheckPause(actionMapName, Pause);
+        }
     }
 
     public void UseInput(ref bool input) => input = false;
