@@ -14,6 +14,7 @@ public class GlobalValue : MonoBehaviour
     public const string SoundContainerTagName = "SoundContainer";
 
     //PlayerPrefs Data
+    public const string StageName = "StageName";
     public const string NextStageName = "NextStage";
     public const string RebindsKey = "rebinds";
     /// <summary>

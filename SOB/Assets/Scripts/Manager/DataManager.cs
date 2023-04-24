@@ -217,17 +217,20 @@ public class DataManager : MonoBehaviour
         Debug.LogWarning("Success StatsData Save");
     }
 
-    public void SaveScene()
+    public void SaveScene(string stage)
     {
-        string stage = SceneName;
-        PlayerPrefs.SetString(GlobalValue.NextStageName, stage);
+        PlayerPrefs.SetString(GlobalValue.StageName, stage);
         Debug.LogWarning("Save SceneData Success");
     }
 
     public void LoadScene()
     {
-        string stage = PlayerPrefs.GetString(GlobalValue.NextStageName, "CutScene1");
+        string stage = PlayerPrefs.GetString(GlobalValue.StageName, "CutScene1");
+        Debug.LogWarning($"Load SceneData Success {stage}");
+    }
+
+    public void NextStage(string stage)
+    {
         SceneName = stage;
-        Debug.LogWarning("Load SceneData Success");
     }
 }

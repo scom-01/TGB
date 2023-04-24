@@ -11,6 +11,7 @@ public class StageManager : MonoBehaviour
     [Header("----Manager----")]
     public ItemManager IM;
     public SpawnManager SPM;
+    public string CurrStageName;
     public string NextStageName;
 
     [Header("----Player----")]
@@ -55,7 +56,8 @@ public class StageManager : MonoBehaviour
     {
         CVC = GameObject.Find("Player Camera").GetComponent<CinemachineVirtualCamera>();
         CVC.Follow = player.transform;
-
+        
+        GameManager.Inst.inputHandler.ChangeCurrentActionMap("GamePlay", true);
         LoadData();
         SaveData();
     }
@@ -86,7 +88,8 @@ public class StageManager : MonoBehaviour
         if (DataManager.Inst == null)
             return;
 
-        DataManager.Inst?.SaveScene();
+        DataManager.Inst?.SaveScene(this.CurrStageName);
+        DataManager.Inst?.NextStage(this.NextStageName);
         DataManager.Inst.PlayerInventoryDataSave(
             GameManager.Inst.StageManager.player.Inventory.weapons,
             GameManager.Inst.StageManager.player.Inventory.items);
