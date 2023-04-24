@@ -11,7 +11,6 @@ public class BuffPanelItem : MonoBehaviour
     [SerializeField] private Image IconImg;
     [SerializeField] private Image BackImg;
     [SerializeField] private Image FilledImg;
-
     /// <summary>
     /// 버프 총 지속 시간
     /// </summary>

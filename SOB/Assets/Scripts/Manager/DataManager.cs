@@ -32,20 +32,24 @@ public class DataManager : MonoBehaviour
 
     private static DataManager _Inst = null;
 
+    #region GameData Value
     public GameObject BaseWeaponPrefab;
     [HideInInspector]
     public List<WeaponData> Playerweapons = new List<WeaponData>();
     [HideInInspector]
     public List<StatsItemSO> Playeritems = new List<StatsItemSO>();
-
-    public string SceneName { get; private set; }
-
     private bool isWeaponDataSave = false;
+
+    public float PlayerHealth;
+
+    public List<Buff> Playerbuffs = new List<Buff>();
+
 
     [HideInInspector]
     public StatsData PlayerStatData;
-    public float PlayerHealth;
     private bool isStatsDataSave = false;
+    public string SceneName { get; private set; }
+    #endregion
 
     #region Setting
     public AudioMixerGroup BGM;
@@ -151,6 +155,8 @@ public class DataManager : MonoBehaviour
     }
     #endregion
 
+
+    #region GameData
     public void PlayerInventoryDataLoad(Inventory inventory)
     {
         if (!isWeaponDataSave)
@@ -217,6 +223,17 @@ public class DataManager : MonoBehaviour
         Debug.LogWarning("Success StatsData Save");
     }
 
+    public void PlayerBuffSave(List<Buff> buffs)
+    {
+        Playerbuffs = buffs;
+        Debug.LogWarning("Success BuffData Save");
+    }
+    public void PlayerBuffLoad(BuffSystem buffSystem)
+    {
+        buffSystem.buffs = Playerbuffs;
+        Debug.LogWarning("Success BuffData Load");
+    }
+
     public void SaveScene(string stage)
     {
         PlayerPrefs.SetString(GlobalValue.StageName, stage);
@@ -228,9 +245,11 @@ public class DataManager : MonoBehaviour
         string stage = PlayerPrefs.GetString(GlobalValue.StageName, "CutScene1");
         Debug.LogWarning($"Load SceneData Success {stage}");
     }
+    #endregion
 
     public void NextStage(string stage)
     {
         SceneName = stage;
     }
+   
 }
