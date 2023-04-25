@@ -72,6 +72,8 @@ public class BuffSystem : MonoBehaviour
         //PlayBuff(buff);
     }
 
+
+    //무쓸모 예정
     public void RemoveBuff(Buff buff)
     {
         if (buffs.Contains(buff))
@@ -85,15 +87,18 @@ public class BuffSystem : MonoBehaviour
         }
     }
 
+    //무쓸모 예정
     public void PlayBuff(Buff buff)
     {
         StartCoroutine(ChangeStats(buff, buff.statsData, buff.durationTime));
     }
-
+    //무쓸모 예정
     public void ClearBuff(Buff buff)
     {
         StopCoroutine(ChangeStats(buff, buff.statsData, buff.durationTime));
     }
+
+    //무쓸모 예정
     #region IEnumerator
 
     IEnumerator ChangeStats(Buff buff, StatsData statsData, float duration)
