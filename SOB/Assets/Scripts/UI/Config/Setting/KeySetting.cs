@@ -28,11 +28,11 @@ public class KeySetting : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI KeyNameTxt;
     [SerializeField] private TextMeshProUGUI CurrentKeyBtnNameTxt;
+    [SerializeField] private TextMeshPro CurrentKeyBtnNameTxt_3D;
     [SerializeField] private string keyName;
 
     private InputActionRebindingExtensions.RebindingOperation m_Rebind;
     private int m_BindingIndex;
-    private Button btn;
 
     private void OnEnable()
     {
@@ -56,21 +56,23 @@ public class KeySetting : MonoBehaviour
     private void UpdateDisplayText()
     {
         m_Rebind?.Dispose();
-
-        CurrentKeyBtnNameTxt.text = InputControlPath.ToHumanReadableString(
+        if (CurrentKeyBtnNameTxt != null)
+        {
+            CurrentKeyBtnNameTxt.text = InputControlPath.ToHumanReadableString(
             m_Action.action.bindings[m_BindingIndex].effectivePath,
             InputControlPath.HumanReadableStringOptions.OmitDevice);
+        }
+
+        if (CurrentKeyBtnNameTxt_3D != null)
+        {
+            CurrentKeyBtnNameTxt_3D.text = InputControlPath.ToHumanReadableString(
+            m_Action.action.bindings[m_BindingIndex].effectivePath,
+            InputControlPath.HumanReadableStringOptions.OmitDevice);
+        }
     }
 
     private void Awake()
     {
-        btn = this.GetComponentInChildren<Button>();
-        //KeyName = keyName;
-        //string rebinds = PlayerPrefs.GetString(RebindsKey, string.Empty);
-        //if (string.IsNullOrEmpty(rebinds))
-        //    return;
-        //m_PlayerInputHandler.playerInput.actions.LoadBindingOverridesFromJson(rebinds);
-        //UpdateDisplayText();
     }
 
     public void OnClickChange()
@@ -84,5 +86,5 @@ public class KeySetting : MonoBehaviour
         .OnComplete(_ => UpdateDisplayText())
         .Start();
         m_PlayerInputHandler.SwitchActionMap("GamePlay");
-    }    
+    }
 }
