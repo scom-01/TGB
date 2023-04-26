@@ -23,6 +23,7 @@ namespace SOB.CoreSystem
         public float WallCheckDistance { get => core.Unit.UnitData.wallCheckDistance; }
 
         public LayerMask WhatIsGround { get => core.Unit.UnitData.whatIsGround; }
+        public LayerMask WhatIsWall { get => core.Unit.UnitData.whatIsWall; }
         public LayerMask WhatIsPlatform { get => core.Unit.UnitData.whatIsPlatform; }
 
         [SerializeField] protected Transform groundCheck;
@@ -48,13 +49,13 @@ namespace SOB.CoreSystem
         public bool CheckIfTouchingWall
         {
             //Debug.DrawRay(wallCheck.position, Vector2.right * core.Movement.FancingDirection * wallCheckDistance, Color.green);
-            get => Physics2D.Raycast(wallCheck.position, Vector2.right * Movement.FancingDirection, WallCheckDistance, WhatIsGround);
+            get => Physics2D.Raycast(wallCheck.position, Vector2.right * Movement.FancingDirection, WallCheckDistance, WhatIsWall);
         }
 
         public bool CheckIfTouchingWallBack
         {
             //Debug.DrawRay(wallCheck.position, Vector2.right * -core.Movement.FancingDirection * wallCheckDistance, Color.red);
-            get => Physics2D.Raycast(wallCheck.position, Vector2.right * -Movement.FancingDirection, WallCheckDistance, WhatIsGround);
+            get => Physics2D.Raycast(wallCheck.position, Vector2.right * -Movement.FancingDirection, WallCheckDistance, WhatIsWall);
         }
 
         public bool CheckIfStayGrounded
@@ -64,7 +65,7 @@ namespace SOB.CoreSystem
 
         public bool CheckIfCliff
         {
-            get => Physics2D.Raycast(groundCheck.position + new Vector3(BC2D.offset.x + BC2D.size.x / 2, 0, 0) * Movement.FancingDirection, Vector2.down, 0.2f, WhatIsGround);
+            get => Physics2D.Raycast(groundCheck.position + new Vector3(BC2D.offset.x + BC2D.size.x / 2, 0, 0) * Movement.FancingDirection, Vector2.down, 0.2f, WhatIsWall);
         }
 
         public bool UnitDectected
