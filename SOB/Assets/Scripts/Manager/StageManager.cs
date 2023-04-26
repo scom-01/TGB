@@ -57,9 +57,7 @@ public class StageManager : MonoBehaviour
         CVC = GameObject.Find("Player Camera").GetComponent<CinemachineVirtualCamera>();
         CVC.Follow = player.transform;
         
-        GameManager.Inst.inputHandler.ChangeCurrentActionMap("GamePlay", false);
-        LoadData();
-        SaveData();
+        
     }
 
     // Update is called once per frame
@@ -118,5 +116,18 @@ public class StageManager : MonoBehaviour
         IM = GameObject.Find("ItemManager").GetComponent<ItemManager>();
         SPM = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         respawnPoint = GameObject.Find("SpawnPoint").GetComponent<Transform>();
+        GameManager.Inst.inputHandler.ChangeCurrentActionMap("GamePlay", false);
+        LoadData();
+        SaveData();
+    }
+
+    public void CutSceneStart()
+    {
+        GameManager.Inst.inputHandler.ChangeCurrentActionMap("Cfg", false);
+    }
+
+    public void CutSceneEnd()
+    {
+        GameManager.Inst.inputHandler.ChangeCurrentActionMap("GamePlay", false);
     }
 }

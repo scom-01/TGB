@@ -9926,6 +9926,8 @@ MonoBehaviour:
   BaseWeaponPrefab: {fileID: 3288319467719998632, guid: 35b10fe5a7d4fdd429676907ebb5a378, type: 3}
   Playerweapons: []
   Playeritems: []
+  PlayerHealth: 0
+  Playerbuffs: []
   PlayerStatData:
     MaxHealth: 0
     MovementVelocity: 0
@@ -9940,7 +9942,6 @@ MonoBehaviour:
     MyElemental: 0
     ElementalDefensivePer: 0
     ElementalAggressivePer: 0
-  PlayerHealth: 0
   BGM: {fileID: -3819941863319329255, guid: 627eeb06f17324d4691ad4d62526af6c, type: 2}
   SFX: {fileID: 5162785712843760549, guid: 627eeb06f17324d4691ad4d62526af6c, type: 2}
   BGM_Volume: 0
@@ -22781,6 +22782,7 @@ MonoBehaviour:
   m_Action: {fileID: 1172321988610390200, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
   KeyNameTxt: {fileID: 3450347898539264806}
   CurrentKeyBtnNameTxt: {fileID: 3450347899196396279}
+  CurrentKeyBtnNameTxt_3D: {fileID: 0}
   keyName: Down
 --- !u!1 &3450347898447324040
 GameObject:
@@ -24719,6 +24721,7 @@ MonoBehaviour:
   m_Action: {fileID: 1172321988610390200, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
   KeyNameTxt: {fileID: 3450347898345866712}
   CurrentKeyBtnNameTxt: {fileID: 3450347898582256661}
+  CurrentKeyBtnNameTxt_3D: {fileID: 0}
   keyName: Left
 --- !u!224 &3450347898651058161
 RectTransform:
@@ -24980,6 +24983,7 @@ MonoBehaviour:
   m_Action: {fileID: 4136438745065761487, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
   KeyNameTxt: {fileID: 3450347898458418718}
   CurrentKeyBtnNameTxt: {fileID: 3450347898650240767}
+  CurrentKeyBtnNameTxt_3D: {fileID: 0}
   keyName: Tap
 --- !u!224 &3450347898804501182
 RectTransform:
@@ -25243,6 +25247,7 @@ MonoBehaviour:
   m_Action: {fileID: 1172321988610390200, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
   KeyNameTxt: {fileID: 3450347899845517364}
   CurrentKeyBtnNameTxt: {fileID: 3450347900449505370}
+  CurrentKeyBtnNameTxt_3D: {fileID: 0}
   keyName: Right
 --- !u!224 &3450347898869425593
 RectTransform:
@@ -26012,6 +26017,7 @@ MonoBehaviour:
   m_Action: {fileID: 849095682613746056, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
   KeyNameTxt: {fileID: 3450347899457009277}
   CurrentKeyBtnNameTxt: {fileID: 3450347898549659519}
+  CurrentKeyBtnNameTxt_3D: {fileID: 0}
   keyName: Command Attack2
 --- !u!224 &3450347899182362027
 RectTransform:
@@ -26202,6 +26208,7 @@ MonoBehaviour:
   m_Action: {fileID: -3231042697741060887, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
   KeyNameTxt: {fileID: 3450347899652504904}
   CurrentKeyBtnNameTxt: {fileID: 3450347900275028691}
+  CurrentKeyBtnNameTxt_3D: {fileID: 0}
   keyName: Skill2
 --- !u!224 &3450347899255260427
 RectTransform:
@@ -26279,6 +26286,7 @@ MonoBehaviour:
   m_Action: {fileID: 701637411946163291, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
   KeyNameTxt: {fileID: 3450347899169193310}
   CurrentKeyBtnNameTxt: {fileID: 3450347899840429529}
+  CurrentKeyBtnNameTxt_3D: {fileID: 0}
   keyName: Command Attack
 --- !u!1 &3450347899268980218
 GameObject:
@@ -26312,6 +26320,7 @@ MonoBehaviour:
   m_Action: {fileID: 7362042947304280454, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
   KeyNameTxt: {fileID: 3450347898646583354}
   CurrentKeyBtnNameTxt: {fileID: 3450347899803139798}
+  CurrentKeyBtnNameTxt_3D: {fileID: 0}
   keyName: Jump
 --- !u!224 &3450347899268980221
 RectTransform:
@@ -26367,6 +26376,7 @@ MonoBehaviour:
   m_Action: {fileID: -6152377101488576760, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
   KeyNameTxt: {fileID: 3450347898474001458}
   CurrentKeyBtnNameTxt: {fileID: 3450347898348849938}
+  CurrentKeyBtnNameTxt_3D: {fileID: 0}
   keyName: Dash
 --- !u!224 &3450347899291395227
 RectTransform:
@@ -28072,6 +28082,7 @@ MonoBehaviour:
   m_Action: {fileID: 2836663159072329735, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
   KeyNameTxt: {fileID: 3450347900055844879}
   CurrentKeyBtnNameTxt: {fileID: 3450347899838261371}
+  CurrentKeyBtnNameTxt_3D: {fileID: 0}
   keyName: Interaction
 --- !u!224 &3450347899907717977
 RectTransform:
@@ -29124,6 +29135,7 @@ MonoBehaviour:
   m_Action: {fileID: 6937146174194068168, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
   KeyNameTxt: {fileID: 3450347900379134498}
   CurrentKeyBtnNameTxt: {fileID: 3450347900297225662}
+  CurrentKeyBtnNameTxt_3D: {fileID: 0}
   keyName: Change
 --- !u!222 &3450347900422865280
 CanvasRenderer:
@@ -29604,6 +29616,7 @@ MonoBehaviour:
   m_Action: {fileID: 1172321988610390200, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
   KeyNameTxt: {fileID: 3450347900422865281}
   CurrentKeyBtnNameTxt: {fileID: 3450347900215832678}
+  CurrentKeyBtnNameTxt_3D: {fileID: 0}
   keyName: Up
 --- !u!224 &3450347900484440805
 RectTransform:
