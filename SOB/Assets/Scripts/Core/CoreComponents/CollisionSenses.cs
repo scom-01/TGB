@@ -65,7 +65,7 @@ namespace SOB.CoreSystem
 
         public bool CheckIfCliff
         {
-            get => Physics2D.Raycast(groundCheck.position + new Vector3(BC2D.offset.x + BC2D.size.x / 2, 0, 0) * Movement.FancingDirection, Vector2.down, 0.2f, WhatIsWall);
+            get => Physics2D.Raycast(groundCheck.position + new Vector3(BC2D.offset.x + BC2D.size.x / 2, 0, 0) * Movement.FancingDirection, Vector2.down, 0.2f, WhatIsGround);
         }
 
         public bool UnitDectected
