@@ -1,0 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class InteractiveObject : MonoBehaviour, IInteractive
+{
+    public LayerMask Interactive_Layer;
+    public virtual void Interactive()
+    {
+
+    }
+}
