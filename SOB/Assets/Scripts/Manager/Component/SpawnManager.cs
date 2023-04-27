@@ -12,7 +12,6 @@ namespace SOB.Manager
     {
         private StageManager stageManager;
         public SpawnCtrl[] SpawnCtrls;
-        bool isStageClear = false;
         public int UIEnemyCount
         {
             get
@@ -30,7 +29,7 @@ namespace SOB.Manager
         private int _uiEnemyCount = 0;
 
         public int CurrentSpawnIndex
-        { 
+        {
             get
             {
                 return currentSpawnIndex;
@@ -38,13 +37,13 @@ namespace SOB.Manager
             set
             {
                 currentSpawnIndex = value;
-                if(currentSpawnIndex < SpawnCtrls.Length)
+                if (currentSpawnIndex < SpawnCtrls.Length)
                 {
                     if (SpawnCtrls[currentSpawnIndex] != null)
                     {
                         SpawnCtrls[currentSpawnIndex].Spawn();
                     }
-                }     
+                }
                 else
                 {
                     currentSpawnIndex = SpawnCtrls.Length - 1;
@@ -66,25 +65,35 @@ namespace SOB.Manager
         {
             if (SpawnCtrls == null)
                 return;
-            for(int i = 0; i< SpawnCtrls.Length;i++)
+            if(stageManager == null)
             {
-                if(!SpawnCtrls[i].isSpawn)
+                stageManager = this.GetComponentInParent<StageManager>();
+            }
+
+            if (stageManager.isStageClear)
+            {
+
+                return;
+            }
+
+            for (int i = 0; i < SpawnCtrls.Length; i++)
+            {
+                if (!SpawnCtrls[i].isSpawn || !SpawnCtrls[i].isClear)
                 {
+                    Debug.Log($"{SpawnCtrls[i]} isSPawn = false");
                     return;
                 }
             }
-            if (isStageClear)
-                return;
 
             Debug.Log("Stage Clear!!!");
-            isStageClear = true;
-            stageManager.SaveData();
-            GameManager.Inst.ClearScene();
+            stageManager.isStageClear = true;
+            GameManager.Inst.SaveData();
+            stageManager.OpenGate(stageManager.isStageClear);
         }
 
         private void OnEnable()
         {
-            SpawnCtrls = this.GetComponentsInChildren<SpawnCtrl>();            
+            SpawnCtrls = this.GetComponentsInChildren<SpawnCtrl>();
         }
 
         private void OnDisable()

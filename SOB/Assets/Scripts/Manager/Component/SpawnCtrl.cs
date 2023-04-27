@@ -10,6 +10,7 @@ public class SpawnCtrl : MonoBehaviour
     /// 스폰 여부
     /// </summary>
     public bool isSpawn { get; private set; }
+    public bool isClear;
 
     public int CurrentEnemyCount
     {
@@ -27,6 +28,7 @@ public class SpawnCtrl : MonoBehaviour
     private void Awake()
     {
         isSpawn = false;
+        isClear = false;
     }
     private void Update()
     {
@@ -35,6 +37,7 @@ public class SpawnCtrl : MonoBehaviour
 
         if (CurrentEnemyCount == 0)
         {
+            isClear = true;
             this.enabled = false;
         }
     }
