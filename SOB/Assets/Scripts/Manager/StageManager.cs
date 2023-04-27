@@ -18,6 +18,8 @@ public class StageManager : MonoBehaviour
     [SerializeField]
     public Transform respawnPoint;
     [SerializeField]
+    public Transform EndPoint;
+    [SerializeField]
     public GameObject Player;
     private GameObject playerGO;
     public Player player;
@@ -27,7 +29,8 @@ public class StageManager : MonoBehaviour
     public float DeadLine;
 
     private float respawnTimeStart;
-    private bool respawn;
+
+    public bool isStageClear = false;
 
 
     [HideInInspector] public CinemachineVirtualCamera CVC;
@@ -56,15 +59,14 @@ public class StageManager : MonoBehaviour
     {
         CVC = GameObject.Find("Player Camera").GetComponent<CinemachineVirtualCamera>();
         CVC.Follow = player.transform;
-        
-        
+
+        isStageClear = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         CheckRespawn();
-
     }
 
     private void OnEnable()
@@ -72,43 +74,14 @@ public class StageManager : MonoBehaviour
         Init();
     }
 
-    public void LoadData()
-    {
-        if (DataManager.Inst == null)
-            return;
-
-        DataManager.Inst?.PlayerInventoryDataLoad(player.Inventory); 
-        DataManager.Inst?.PlayerStatLoad(player.Core.GetCoreComponent<UnitStats>());
-        DataManager.Inst?.PlayerBuffLoad(player.GetComponent<BuffSystem>());
-    }
-
-    public void SaveData()
-    {
-        if (DataManager.Inst == null)
-            return;
-
-        DataManager.Inst?.SaveScene(this.CurrStageName);
-        DataManager.Inst?.NextStage(this.NextStageName);
-        DataManager.Inst.PlayerInventoryDataSave(
-            GameManager.Inst.StageManager.player.Inventory.weapons,
-            GameManager.Inst.StageManager.player.Inventory.items);
-        DataManager.Inst?.PlayerStatSave(
-            GameManager.Inst.StageManager.player.Core.GetCoreComponent<UnitStats>());
-        DataManager.Inst?.PlayerBuffSave(
-            GameManager.Inst.StageManager.player.GetComponent<BuffSystem>().buffs
-            );
-
-    }
-
     public void Respawn()
     {
         respawnTimeStart = Time.time;
-        respawn = true;
     }
 
     private void CheckRespawn()
     {
-
+        
     }
 
     private void Init()
@@ -117,9 +90,20 @@ public class StageManager : MonoBehaviour
         SPM = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         respawnPoint = GameObject.Find("SpawnPoint").GetComponent<Transform>();
         GameManager.Inst.inputHandler.ChangeCurrentActionMap("GamePlay", false);
-        LoadData();
-        SaveData();
+        GameManager.Inst.LoadData();
+        GameManager.Inst.SaveData();
     }
+
+    public void OpenGate(bool isClear)
+    {
+        if (!isClear)
+            return;
+
+        //End 애니메이션
+        EndPoint.GetComponentInChildren<Animator>().SetBool("Action", true);
+        EndPoint.GetComponent<BoxCollider2D>().enabled = true;
+    }
+
 
     public void CutSceneStart()
     {

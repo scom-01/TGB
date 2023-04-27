@@ -1,3 +1,4 @@
+using SOB.CoreSystem;
 using SOB.Manager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -161,8 +162,40 @@ public class GameManager : MonoBehaviour
         isPause = false;
     }
 
+    public void LoadData()
+    {
+        if (DataManager.Inst == null)
+            return;
+
+        if(GameManager.Inst.StageManager == null)
+        {
+            return;
+        }
+
+        DataManager.Inst?.PlayerInventoryDataLoad(StageManager.player.Inventory);
+        DataManager.Inst?.PlayerStatLoad(StageManager.player.Core.GetCoreComponent<UnitStats>());
+        DataManager.Inst?.PlayerBuffLoad(StageManager.player.GetComponent<BuffSystem>());
+    }
+    public void SaveData()
+    {
+        if (DataManager.Inst == null)
+            return;
+
+        DataManager.Inst?.SaveScene(StageManager.CurrStageName);
+        DataManager.Inst?.NextStage(StageManager.NextStageName);
+        DataManager.Inst.PlayerInventoryDataSave(
+            GameManager.Inst.StageManager.player.Inventory.weapons,
+            GameManager.Inst.StageManager.player.Inventory.items);
+        DataManager.Inst?.PlayerStatSave(
+            GameManager.Inst.StageManager.player.Core.GetCoreComponent<UnitStats>());
+        DataManager.Inst?.PlayerBuffSave(
+            GameManager.Inst.StageManager.player.GetComponent<BuffSystem>().buffs
+            );
+    }
+
     public void ClearScene()
     {
+        SaveData();
         AsyncOperation operation = SceneManager.LoadSceneAsync("LoadingScene");
     }
 }
