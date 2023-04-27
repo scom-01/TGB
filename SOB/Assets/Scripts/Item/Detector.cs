@@ -4,6 +4,7 @@ using UnityEngine;
 using SOB.Item;
 using SOB.CoreSystem;
 using UnityEditor;
+using static UnityEditor.Progress;
 
 public class Detector : MonoBehaviour
 {
@@ -42,21 +43,33 @@ public class Detector : MonoBehaviour
                 Debug.Log("player is null");
                 return;
             }
-
-            if (player.InputHandler.InteractionInput)
+            if (currentGO.tag == "Item")
             {
-                player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
-                Debug.Log($"{currentGO.transform.parent.name} is Add Inventory");
-                if (player.Inventory.AddInventoryItem(currentGO.transform.parent.gameObject))
+                if (player.InputHandler.InteractionInput)
                 {
-                    Destroy(currentGO.transform.parent.gameObject);
-                    currentGO = null;
-                }
-                else
-                {
+                    player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
+                    Debug.Log($"{currentGO.transform.parent.name} is Add Inventory");
+                    if (player.Inventory.AddInventoryItem(currentGO.transform.parent.gameObject))
+                    {
+                        Destroy(currentGO.transform.parent.gameObject);
+                        currentGO = null;
+                    }
+                    else
+                    {
 
+                    }
                 }
             }
+            else if (currentGO.tag == "Interaction")
+            {
+                if (player.InputHandler.InteractionInput)
+                {
+                    player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
+                    Debug.Log($"{currentGO} interactive");
+                    currentGO.GetComponent<InteractiveObject>()?.Interactive();
+                }
+            }
+            
         }
     }
     IEnumerator CheckCurrentGO()
@@ -69,8 +82,16 @@ public class Detector : MonoBehaviour
                 {
                     currentGO = go;
                     Debug.Log($"제일 가까운 오브젝트 {currentGO.transform.parent.name}");
-                    currentGO.GetComponentInParent<SOB_Item>().unit = unit;
-                    currentGO.GetComponentInParent<SOB_Item>().Detected(this.gameObject.transform.position.x < currentGO.transform.position.x);
+                    if(currentGO.tag == "Item")
+                    {
+                        currentGO.GetComponentInParent<SOB_Item>().unit = unit;
+                        currentGO.GetComponentInParent<SOB_Item>().Detected(this.gameObject.transform.position.x < currentGO.transform.position.x);
+                    }
+                    else if(go.tag == "Interaction")
+                    {
+
+                    }
+                    
                     continue;
                 }
 
@@ -79,12 +100,23 @@ public class Detector : MonoBehaviour
 
                 if (Vector2.Distance(currentGO.transform.position, this.gameObject.transform.position) > Vector2.Distance(go.transform.position, this.gameObject.transform.position))
                 {
+                    //이전 아이템 UnDetected
+                    if(currentGO.tag =="Item")
+                    {
+                        currentGO.GetComponentInParent<SOB_Item>().UnDetected();
+                    }
                     //가장 가까운 Detected 오브젝트
                     currentGO = go;
                     Debug.Log($"제일 가까운 오브젝트 {currentGO.transform.parent.name}");
-                    currentGO.GetComponentInParent<SOB_Item>().unit = unit;
-                    currentGO.GetComponentInParent<SOB_Item>().Detected(this.gameObject.transform.position.x < currentGO.transform.position.x);
+                    if (currentGO.tag == "Item")
+                    {
+                        currentGO.GetComponentInParent<SOB_Item>().unit = unit;
+                        currentGO.GetComponentInParent<SOB_Item>().Detected(this.gameObject.transform.position.x < currentGO.transform.position.x);
+                    }
+                    else if (go.tag == "Interaction")
+                    {
 
+                    }
                     continue;
                 }
 
@@ -122,6 +154,15 @@ public class Detector : MonoBehaviour
                 }
                 StartCoroutine(CheckCurrentGO());
             }
+        }
+        //아이템이 아닌 상호작용 가능한 오브젝트
+        else if(collision.tag == "Interaction")
+        {
+            if (!DetectedList.Contains(collision.gameObject))
+            {
+                DetectedList.Add(collision.gameObject);
+            }
+            StartCoroutine(CheckCurrentGO());
         }
 
 
