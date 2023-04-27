@@ -73,7 +73,6 @@ public class Unit : MonoBehaviour
     protected virtual void Update()
     {
         CheckLife(this);
-        CheckDeadLine();
 
         if (Core != null)
             Core.LogicUpdate();
@@ -95,22 +94,27 @@ public class Unit : MonoBehaviour
         FSM.CurrentState.LogicUpdate();
     }
 
-    private void CheckDeadLine()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (this.transform.position.y < GameManager.Inst.StageManager.DeadLine)
-        {
-            Core?.GetCoreComponent<Movement>().SetVelocityZero();
+        if (collision.tag != "DeadArea")
+            return;
+
+        Core?.GetCoreComponent<Movement>().SetVelocityZero();
+
+        //지정된 리스폰 위치로 이동
+        if(GameManager.Inst?.StageManager?.respawnPoint != null)
             this.gameObject.transform.position = GameManager.Inst.StageManager.respawnPoint.transform.position;
-            var amount = Core.GetCoreComponent<UnitStats>().DecreaseHealth(E_Power.Normal, DAMAGE_ATT.Fixed, 50);
-            if (Core.GetCoreComponent<DamageReceiver>().DefaultEffectPrefab == null)
-            {
-                Core.GetCoreComponent<DamageReceiver>().RandomParticleInstantiate(0.5f, amount, 50, DAMAGE_ATT.Fixed);
-            }
-            else
-            {
-                Core.GetCoreComponent<DamageReceiver>().RandomParticleInstantiate(Core.GetCoreComponent<DamageReceiver>().DefaultEffectPrefab, 0.5f, amount, 50, DAMAGE_ATT.Fixed);
-            }
+
+        var amount = Core.GetCoreComponent<UnitStats>().DecreaseHealth(E_Power.Normal, DAMAGE_ATT.Fixed, 10);
+        if (Core.GetCoreComponent<DamageReceiver>().DefaultEffectPrefab == null)
+        {
+            Core.GetCoreComponent<DamageReceiver>().RandomParticleInstantiate(0.5f, amount, 50, DAMAGE_ATT.Fixed);
         }
+        else
+        {
+            Core.GetCoreComponent<DamageReceiver>().RandomParticleInstantiate(Core.GetCoreComponent<DamageReceiver>().DefaultEffectPrefab, 0.5f, amount, 50, DAMAGE_ATT.Fixed);
+        }
+
     }
 
     private void CheckLife(Unit unit)
