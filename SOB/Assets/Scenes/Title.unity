@@ -15118,12 +15118,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentHealthText: {fileID: 511981031}
   CurrentHealthFillImg: {fileID: 973116758}
-  AttackSpeedStat: {fileID: 1547633652}
-  AttackPowerStat: {fileID: 1495630658}
-  JumpPowerStat: {fileID: 1474958633}
-  MoveSpeedStat: {fileID: 376570384}
-  ElementalPowerStat: {fileID: 1876866277}
-  DefensivePowerStat: {fileID: 65650487}
+  MovementVelocityStat: {fileID: 376570384}
+  JumpVelocityStat: {fileID: 1474958633}
+  DefaultPowerStat: {fileID: 1495630658}
+  AttackSpeedPerStat: {fileID: 1547633652}
+  PhysicsDefensivePerStat: {fileID: 65650487}
+  MagicDefensivePerStat: {fileID: 0}
+  PhysicsAggressivePerStat: {fileID: 0}
+  MagicAggressivePerStat: {fileID: 0}
+  ElementalDefensivePerStat: {fileID: 0}
+  ElementalAggressivePerStat: {fileID: 1876866277}
 --- !u!1 &1495630656
 GameObject:
   m_ObjectHideFlags: 0
@@ -17729,6 +17733,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1737984679}
   - component: {fileID: 1737984680}
+  - component: {fileID: 1737984681}
   m_Layer: 0
   m_Name: Stats
   m_TagString: Untagged
@@ -17792,6 +17797,30 @@ MonoBehaviour:
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
+--- !u!114 &1737984681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737984678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5d195c2f7f4b6e498c7a4afd2456fc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentHealthText: {fileID: 0}
+  CurrentHealthFillImg: {fileID: 0}
+  MovementVelocityStat: {fileID: 1336129151}
+  JumpVelocityStat: {fileID: 978464726}
+  DefaultPowerStat: {fileID: 193439554}
+  AttackSpeedPerStat: {fileID: 1320162394}
+  PhysicsDefensivePerStat: {fileID: 632589183}
+  MagicDefensivePerStat: {fileID: 2086010690}
+  PhysicsAggressivePerStat: {fileID: 2002705665}
+  MagicAggressivePerStat: {fileID: 1858417409}
+  ElementalDefensivePerStat: {fileID: 36446477}
+  ElementalAggressivePerStat: {fileID: 1461940511}
 --- !u!1 &1762308715
 GameObject:
   m_ObjectHideFlags: 0

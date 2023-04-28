@@ -87,7 +87,6 @@ namespace SOB.Manager
 
             Debug.Log("Stage Clear!!!");
             stageManager.isStageClear = true;
-            GameManager.Inst.SaveData();
             stageManager.OpenGate(stageManager.isStageClear);
         }
 

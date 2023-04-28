@@ -181,6 +181,11 @@ public class GameManager : MonoBehaviour
         if (DataManager.Inst == null)
             return;
 
+        if(StageManager == null)
+        {
+            return;
+        }
+
         DataManager.Inst?.SaveScene(StageManager.CurrStageName);
         DataManager.Inst?.NextStage(StageManager.NextStageName);
         DataManager.Inst.PlayerInventoryDataSave(
