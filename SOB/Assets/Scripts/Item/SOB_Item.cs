@@ -90,15 +90,9 @@ namespace SOB.Item
             {
                 Buff buff = new Buff();
                 var items = Item as BuffItemSO;
-                unit.Core.GetCoreComponent<SoundEffect>().AudioSpawn(Item.AcquiredSoundEffect);
-                for (int i = 0; i < items.StatsDatas.Count; i++)
-                {
-                    buff.statsData = items.StatsDatas[i];
-                    buff.durationTime = items.BuffData[i].DurationTime;
-                    buff.buffType = items.BuffData[i].BuffType;
-                    buff.buffSprite = items.ItemSprite;
-                    unit.gameObject.GetComponent<BuffSystem>().AddBuff(buff);
-                }                
+                buff.buffItem = items;
+                unit.Core.GetCoreComponent<SoundEffect>().AudioSpawn(Item.AcquiredSoundEffect);                
+                unit.gameObject.GetComponent<BuffSystem>().AddBuff(buff);
             }
 
             //Effect

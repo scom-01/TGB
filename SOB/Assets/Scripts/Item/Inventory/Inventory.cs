@@ -106,13 +106,10 @@ public class Inventory : MonoBehaviour
             items.Add(itemData);
 
             ItemCount++;
-            foreach (var statsData in itemData.StatsDatas)
+            SetStat(itemData.StatsDatas);
+            if (itemData.StatsDatas.MaxHealth != 0.0f)
             {
-                SetStat(statsData);
-                if (statsData.MaxHealth != 0.0f)
-                {
-                    unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += statsData.MaxHealth;
-                }
+                unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += itemData.StatsDatas.MaxHealth;
             }
             Debug.Log($"Change UnitStats {unit.Core.GetCoreComponent<UnitStats>().StatsData}");            
         }
@@ -134,13 +131,10 @@ public class Inventory : MonoBehaviour
         if (items.Contains(itemData))
         {
             Debug.Log($"Remove Item {itemData.name}");
-            foreach (var statsData in itemData.StatsDatas)
+            SetStat(itemData.StatsDatas * -1f);
+            if (itemData.StatsDatas.MaxHealth != 0.0f)
             {
-                SetStat(statsData * -1f);
-                if (statsData.MaxHealth != 0.0f)
-                {
-                    unit.Core.GetCoreComponent<UnitStats>().CurrentHealth -= statsData.MaxHealth;
-                }
+                unit.Core.GetCoreComponent<UnitStats>().CurrentHealth -= itemData.StatsDatas.MaxHealth;
             }
             items.Remove(itemData);
             GameManager.Inst.SubUI.InventorySubUI.InventoryItems.RemoveItem(itemData);

@@ -6,7 +6,7 @@ using UnityEngine;
 public class StatsItemSO : ItemDataSO
 {
     [Tooltip("아이템이 갖는 스탯")]
-    public List<StatsData> StatsDatas;
+    public StatsData StatsDatas;
     //--Collider--
     [field: Header("Collider Use")]
     [field: Tooltip("획득 시 이펙트")]
