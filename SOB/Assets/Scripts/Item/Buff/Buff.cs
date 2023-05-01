@@ -7,10 +7,8 @@ using UnityEngine;
 [Serializable]
 public class Buff 
 {
-    public StatsData statsData;
-    public Sprite buffSprite;
-    public float durationTime;
-    public EVENT_BUFF_TYPE buffType;
+    public BuffItemSO buffItem;
+    public int CurrBuffCount = 0;
 
     public float startTime;
 }
