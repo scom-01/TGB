@@ -59,7 +59,7 @@ public class UIEventHandler : MonoBehaviour
             {
                 DataManager.Inst.LoadScene();
                 //강제로 CutScene1
-                DataManager.Inst?.NextStage("CutScene1");
+                DataManager.Inst?.NextStage("Stage1");
                 GameManager.Inst.ClearScene();
             });
         if (load_btn != null)

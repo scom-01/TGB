@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7774ae76107dc54e8991bca2af96082, type: 3}
-  m_Name: BuffItemData
+  m_Name: BuffItemData 1
   m_EditorClassIdentifier: 
   ItemName: HealthUpBuff
   ItemDescription: HealthUpBuff
   ItemSprite: {fileID: 21300000, guid: 15cc575b0d9a36846838578bfb080819, type: 3}
   StatsDatas:
-  - MaxHealth: 30
+  - MaxHealth: 3
     MovementVelocity: 0
     JumpVelocity: 0
-    DefaultPower: 0
+    DefaultPower: 500
     AttackSpeedPer: 0
     PhysicsDefensivePer: 0
     MagicDefensivePer: 0
@@ -34,8 +34,8 @@ MonoBehaviour:
   <isEquipment>k__BackingField: 0
   <DetailSubUI>k__BackingField: 0
   BuffData:
-    DurationTime: 5
+    DurationTime: 6
     BuffType: 0
-    isOverlap: 1
+    isOverlap: 0
     BuffCountMax: 0
     isBuffInit: 1

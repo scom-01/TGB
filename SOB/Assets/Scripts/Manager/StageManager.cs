@@ -20,13 +20,11 @@ public class StageManager : MonoBehaviour
     [SerializeField]
     public Transform EndPoint;
     [SerializeField]
-    public GameObject Player;
+    public GameObject PlayerPrefab;
     private GameObject playerGO;
     public Player player;
     [SerializeField]
     public float respawnTime;
-    [SerializeField]
-    public float DeadLine;
 
     private float respawnTimeStart;
 
@@ -49,7 +47,7 @@ public class StageManager : MonoBehaviour
         //}
 
         Application.targetFrameRate = 60;
-        playerGO = Instantiate(Player, respawnPoint);
+        playerGO = Instantiate(PlayerPrefab, respawnPoint);
         player = playerGO.GetComponent<Player>();
         //Inst = this;
         //DontDestroyOnLoad(this.gameObject);
