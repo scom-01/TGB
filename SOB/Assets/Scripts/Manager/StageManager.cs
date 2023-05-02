@@ -5,6 +5,7 @@ using SOB.Manager;
 using Cinemachine;
 using SOB.CoreSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Playables;
 
 public class StageManager : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class StageManager : MonoBehaviour
     private float respawnTimeStart;
 
     public bool isStageClear = false;
-
+    public PlayableDirector CutSceneDirector;
 
     [HideInInspector] public CinemachineVirtualCamera CVC;
 
@@ -51,6 +52,14 @@ public class StageManager : MonoBehaviour
         player = playerGO.GetComponent<Player>();
         //Inst = this;
         //DontDestroyOnLoad(this.gameObject);
+        var FadeIn = Resources.Load<GameObject>(GlobalValue.FadeInCutScene);
+        if (FadeIn != null)
+        {
+            var Fadeobject = Instantiate(FadeIn);
+            Fadeobject.GetComponent<PlayableDirector>().Play();
+        }
+        //if (CutSceneDirector != null)
+        //    CutSceneDirector.Play();
     }
     // Start is called before the first frame update
     void Start()

@@ -1,6 +1,7 @@
 using SOB.CoreSystem;
 using SOB.Manager;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -199,6 +200,17 @@ public class GameManager : MonoBehaviour
     }
 
     public void ClearScene()
+    {
+        var FadeOut = Resources.Load<GameObject>(GlobalValue.FadeOutCutScene);
+        if (FadeOut != null)
+        {
+            var Fadeobject = Instantiate(FadeOut);
+            Fadeobject.GetComponent<PlayableDirector>().Play();
+        }
+        Invoke("MoveScene", 1.5f);
+    }
+
+    private void MoveScene()
     {
         SaveData();
         AsyncOperation operation = SceneManager.LoadSceneAsync("LoadingScene");

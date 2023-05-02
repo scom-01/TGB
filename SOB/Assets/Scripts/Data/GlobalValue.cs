@@ -30,6 +30,9 @@ public class GlobalValue : MonoBehaviour
 
     public const string UI_Table = "Localization/StringTables/UI Table";
 
+    public const string FadeInCutScene = "TimeLine/FadeIn";
+    public const string FadeOutCutScene = "TimeLine/FadeOut";
+
     /// <summary>
     /// Elemetal 속성 공격에 따른 추가 데미지 퍼센트
     /// ex) 0.3f일때 Weak Elemental에 대한 추가 데미지는 30%이다.
