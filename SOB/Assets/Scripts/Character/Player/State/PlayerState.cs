@@ -25,6 +25,14 @@ public class PlayerState : UnitState
     {
         get => particleManager ?? player.Core.GetCoreComponent(ref particleManager);
     }
+    protected SoundEffect SoundEffect
+    {
+        get => soundEffect ?? player.Core.GetCoreComponent(ref soundEffect);
+    }
+    protected Death Death
+    {
+        get => death ?? player.Core.GetCoreComponent(ref death);
+    }
 
     public void SetInput(ref bool input) => this.input = input;
 
@@ -33,6 +41,8 @@ public class PlayerState : UnitState
     private CollisionSenses collisionSenses;
     private UnitStats unitStats;
     private ParticleManager particleManager;
+    private SoundEffect soundEffect;
+    private Death death;
 
     public PlayerState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
