@@ -14,10 +14,16 @@ namespace SOB.Manager
             keySettings = GetComponentsInChildren<KeySetting>();
         }
 
-        // Update is called once per frame
-        void Update()
+        private void OnDisable()
         {
-        
+            if(DataManager.Inst != null)
+            {
+                DataManager.Inst.UserKeySettingSave();
+            }
+            else
+            {
+                Debug.LogWarning("UserKeySettint Save Fail");
+            }
         }
     }
 }

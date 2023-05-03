@@ -85,11 +85,7 @@ public class GameManager : MonoBehaviour
 
     private void OnDisable()
     {
-        if (Inst != null)
-        {
-            DataManager.Inst.UserKeySettingSave();
-            return;
-        }
+        
     }
 
     public void CheckPause(bool pause)
