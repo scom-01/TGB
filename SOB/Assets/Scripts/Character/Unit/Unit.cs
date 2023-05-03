@@ -16,6 +16,8 @@ public class Unit : MonoBehaviour
 
     public Inventory Inventory { get; private set; }
 
+    public Transform RespawnPoint;
+
     public UnitData UnitData;
 
     public bool IsAlive = true;
@@ -63,10 +65,12 @@ public class Unit : MonoBehaviour
 
         Inventory = GetComponent<Inventory>();
         if (Inventory == null) Inventory = this.GameObject().AddComponent<Inventory>();
+
     }
 
     protected virtual void Start()
     {
+        RespawnPoint = GameManager.Inst.StageManager.respawnPoint.transform;
     }
 
     // Update is called once per frame
@@ -102,8 +106,8 @@ public class Unit : MonoBehaviour
         Core?.GetCoreComponent<Movement>().SetVelocityZero();
 
         //지정된 리스폰 위치로 이동
-        if(GameManager.Inst?.StageManager?.respawnPoint != null)
-            this.gameObject.transform.position = GameManager.Inst.StageManager.respawnPoint.transform.position;
+        if (GameManager.Inst?.StageManager?.respawnPoint != null)
+            this.gameObject.transform.position = RespawnPoint.position;// GameManager.Inst.StageManager.respawnPoint.transform.position;
 
         var amount = Core.GetCoreComponent<UnitStats>().DecreaseHealth(E_Power.Normal, DAMAGE_ATT.Fixed, 10);
         if (Core.GetCoreComponent<DamageReceiver>().DefaultEffectPrefab == null)
