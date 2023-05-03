@@ -1,3 +1,4 @@
+using SOB.CoreSystem;
 using SOB.Weapons;
 using System;
 using System.Collections;
@@ -37,6 +38,7 @@ public abstract class EnemyAttackState : EnemyState
     public override void Exit()
     {
         base.Exit();
+        weapon.EventHandler.AnimationFinishedTrigger();
     }
 
     public override void LogicUpdate()
