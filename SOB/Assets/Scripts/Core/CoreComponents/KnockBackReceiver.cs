@@ -16,6 +16,7 @@ namespace SOB.CoreSystem
 
         private CoreComp<Movement> movement;
         private CoreComp<CollisionSenses> collisionSenses;
+        private CoreComp<Death> death;
 
         public override void LogicUpdate()
         {
@@ -25,6 +26,12 @@ namespace SOB.CoreSystem
         
         public void KnockBack(Vector2 angle, float strength, int direction)
         {
+            
+            if(death.Comp.isDead)
+            {
+                Debug.Log(core.Unit.name + "is Dead");
+                return;
+            }
             movement.Comp?.SetVelocity(strength, angle, direction);
             movement.Comp.CanSetVelocity = false;
             isKnockBackActive = true;
@@ -48,6 +55,7 @@ namespace SOB.CoreSystem
 
             movement = new CoreComp<Movement>(core);
             collisionSenses = new CoreComp<CollisionSenses>(core);
+            death = new CoreComp<Death>(core);
         }
     }
 }
