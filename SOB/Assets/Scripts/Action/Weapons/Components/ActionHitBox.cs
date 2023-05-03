@@ -1,3 +1,4 @@
+using SOB.CoreSystem;
 using System;
 using UnityEngine;
 
@@ -55,7 +56,12 @@ namespace SOB.Weapons.Components
             {
                 if (c.gameObject.tag == this.gameObject.tag)
                     continue;
-
+                
+                //객체 사망 시 무시
+                if(c.gameObject.GetComponentInParent<Unit>().Core.GetCoreComponent<Death>().isDead)
+                {
+                    continue;
+                }
                 //Hit시 효과
                 if (c.TryGetComponent(out IDamageable damageable))
                 {

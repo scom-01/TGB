@@ -60,7 +60,10 @@ public class StatsPanel : MonoBehaviour
         {
             Player = GameManager.Inst.StageManager?.player;
             if (Player)
+            {
+                unitStats = Player.Core.GetCoreComponent<UnitStats>();
                 unitStats.StatsData = Player.Core.GetCoreComponent<UnitStats>().StatsData;
+            }
             
         }
     }
@@ -69,7 +72,11 @@ public class StatsPanel : MonoBehaviour
     {
         if (Player == null)
             return;
-
+        if (Player)
+        {
+            unitStats = Player.Core.GetCoreComponent<UnitStats>();
+            unitStats.StatsData = Player.Core.GetCoreComponent<UnitStats>().StatsData;
+        }
         float temp = Player.Core.GetCoreComponent<UnitStats>().CurrentHealth;
         if (CurrentHealthText != null)
             CurrentHealthText.text = temp.ToString("F0") + " / " + unitStats.StatsData.MaxHealth.ToString();

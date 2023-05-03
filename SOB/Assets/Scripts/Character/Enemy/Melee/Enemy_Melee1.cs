@@ -10,7 +10,7 @@ public class Enemy_Melee1 : Enemy
     public Enemy_Melee1_IdleState IdleState { get; private set; }
     public Enemy_Melee1_MoveState RunState { get; private set; }
     public Enemy_Melee1_HitState HitState { get; private set; }
-    public Enemy_Melee1_DeadState DeadState { get; private set; }
+    public Enemy_Melee1_DeathState DeathState { get; private set; }
     #endregion
 
     #region Unity Callback Func
@@ -22,7 +22,7 @@ public class Enemy_Melee1 : Enemy
         IdleState = new Enemy_Melee1_IdleState(this, "idle");
         RunState = new Enemy_Melee1_MoveState(this, "run");
         HitState = new Enemy_Melee1_HitState(this, "hit");
-        DeadState = new Enemy_Melee1_DeadState(this, "dead");
+        DeathState = new Enemy_Melee1_DeathState(this, "death");
     }
 
     // Start is called before the first frame update
@@ -56,6 +56,12 @@ public class Enemy_Melee1 : Enemy
     {
         base.HitEffect();
         FSM.ChangeState(HitState);
+    }
+
+    public override void DieEffect()
+    {
+        base.DieEffect();
+        FSM.ChangeState(DeathState);
     }
 
     protected override void Init()

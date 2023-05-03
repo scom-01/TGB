@@ -8,6 +8,7 @@ namespace SOB.CoreSystem
 
         private CoreComp<UnitStats> stats;
         private CoreComp<ParticleManager> particleManager;
+        private CoreComp<Death> death;
         private BoxCollider2D BC2D;
 
         public bool isHit
@@ -24,6 +25,12 @@ namespace SOB.CoreSystem
 
         public void Damage(StatsData AttackterCommonData, StatsData VictimCommonData, float amount)
         {
+            if(death.Comp.isDead)
+            {
+                Debug.Log(core.Unit.name + "is Dead");
+                return;
+            }
+
             if (isHit)
             {
                 Debug.Log(core.Unit.name + " isHit = true");
@@ -117,6 +124,7 @@ namespace SOB.CoreSystem
             BC2D = GetComponent<BoxCollider2D>();
             stats = new CoreComp<UnitStats>(core);
             particleManager = new CoreComp<ParticleManager>(core);
+            death = new CoreComp<Death>(core);
         }
     }
 }

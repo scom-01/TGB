@@ -127,10 +127,19 @@ public class Unit : MonoBehaviour
 
     public virtual void HitEffect()
     {
-        foreach(var flash in DamageFlash)
+        foreach (var flash in DamageFlash)
         {
             flash.CallFlashWhite();
         }
+    }
+
+    public virtual void DieEffect()
+    {
+    }
+
+    public void SetActiveFalse()
+    {
+        gameObject.SetActive(false);
     }
     public IEnumerator DisableCollision()
     {

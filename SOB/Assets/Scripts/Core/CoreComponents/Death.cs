@@ -24,13 +24,18 @@ namespace SOB.CoreSystem
         private UnitStats Stats => stats ? stats : core.GetCoreComponent(ref stats);
         private UnitStats stats;
 
+        [HideInInspector] public bool isDead = false;
         
         public void Die()
         {
+            if (isDead)
+                return;
+
             if(core.Unit.GetType() != typeof(Player))
             {
                 GameManager.Inst.StageManager.SPM.UIEnemyCount--;
             }
+            isDead = true;
             foreach (var particle in deathParticles)
             {
                 var particleObject = ParticleManager.StartParticlesWithRandomPos(particle,0.5f);
@@ -42,8 +47,8 @@ namespace SOB.CoreSystem
             {
                 core.Unit.Inventory.RemoveInventoryItem(item[0]);
             }
-
-            core.transform.parent.gameObject.SetActive(false);
+            core.Unit.DieEffect();
+            //core.transform.parent.gameObject.SetActive(false);
         }
 
         private void OnEnable()
