@@ -1,3 +1,4 @@
+using SOB.CoreSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,12 +14,14 @@ public class PlayerDashState : PlayerAbilityState
     private Vector2 lastAIPos;
 
     private GameObject Dash_Effect;
+    private AudioClip Dash_SFX;
     
     public PlayerDashState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
         if(Dash_Effect == null)
         {
             Dash_Effect = Resources.Load<GameObject>("Prefabs/Particle/Dash_Smoke");
+            Dash_SFX = Resources.Load<AudioClip>("Sounds/Effects/SFX_Dash_01");
         }
     }
 
@@ -27,6 +30,7 @@ public class PlayerDashState : PlayerAbilityState
         base.Enter();
         Movement.CheckIfShouldFlip(player.InputHandler.NormInputX);
         IsGrounded = CollisionSenses.CheckIfGrounded;
+        SoundEffect.AudioSpawn(Dash_SFX);
         if (IsGrounded)
         {
             //콜라이더 크기 변경
