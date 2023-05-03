@@ -64,10 +64,6 @@ namespace SOB.CoreSystem
         public DAMAGE_ATT DamageAttiribute { get => statsData.DamageAttiribute; set => statsData.DamageAttiribute = value; }
         #endregion
         private bool isSetup = false;
-        [SerializeField]
-        private GameObject
-            deathChunkParticle,
-            deathBloodParticle;
 
         protected override void Awake()
         {
@@ -327,13 +323,13 @@ namespace SOB.CoreSystem
             {
                 case DAMAGE_ATT.Physics:
                     amount *= (1.0f + AttackerData.PhysicsAggressivePer / 100);
-                    amount *= (1.0f - VictimData.PhysicsDefensivePer);
+                    amount *= (1.0f - VictimData.PhysicsDefensivePer / 100);
                     if (amount <= 0.0f)
                         return 0;
                     break;
                 case DAMAGE_ATT.Magic:
                     amount *= (1.0f + AttackerData.MagicAggressivePer / 100);
-                    amount *= (1.0f - VictimData.MagicDefensivePer);
+                    amount *= (1.0f - VictimData.MagicDefensivePer / 100);
                     if (amount <= 0.0f)
                         return 0;
                     break;
