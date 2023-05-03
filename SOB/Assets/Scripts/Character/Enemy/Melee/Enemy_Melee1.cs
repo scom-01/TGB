@@ -52,6 +52,12 @@ public class Enemy_Melee1 : Enemy
         //Gizmos.DrawLine(Core.CollisionSenses.transform.position, Core.CollisionSenses.transform.position + Vector3.right * Core.Movement.FancingDirection * enemyData.playerDetectedDistance);
     }
 
+    public override void HitEffect()
+    {
+        base.HitEffect();
+        FSM.ChangeState(HitState);
+    }
+
     protected override void Init()
     {
         base.Init();
