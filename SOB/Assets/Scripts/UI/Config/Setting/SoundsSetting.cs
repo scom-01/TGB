@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -10,6 +11,7 @@ namespace SOB.CfgSetting
     {
         Slider slider;
         float volume;
+        [SerializeField] TextMeshProUGUI GaugeText;
         [SerializeField] private AudioMixerGroup mixerGroup;
         private void Awake()
         {
@@ -53,7 +55,8 @@ namespace SOB.CfgSetting
             else
                 mixerGroup.audioMixer.SetFloat(GlobalValue.BGM_Vol, Mathf.Log10(volume) * 20);
 
-            
+            if (GaugeText != null)
+                GaugeText.text = ((int)(volume * 100f)).ToString();
         }
 
         public void SetSFXVolume()
@@ -70,6 +73,9 @@ namespace SOB.CfgSetting
             }
             else
                 mixerGroup.audioMixer.SetFloat(GlobalValue.SFX_Vol, Mathf.Log10(volume) * 20);
+
+            if (GaugeText != null)
+                GaugeText.text = ((int)(volume * 100f)).ToString();
         }
     }
 }
