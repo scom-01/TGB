@@ -1,6 +1,9 @@
 using SOB.CoreSystem;
 using SOB.Manager;
+using UnityEditor;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
@@ -116,9 +119,18 @@ public class GameManager : MonoBehaviour
         MainUI.MainPanel.gameObject.SetActive(false);
         switch (switchActionMap)
         {
+            //InventoryOpen
             case "UI":
                 CfgUI.ConfigPanelUI.gameObject.SetActive(false);
                 SubUI.InventorySubUI.gameObject.SetActive(true);
+                if (SubUI.InventorySubUI.InventoryItems.CurrentSelectItem == null)
+                {
+                    EventSystem.current.SetSelectedGameObject(SubUI.InventorySubUI.InventoryItems.items[0].gameObject);
+                }
+                else
+                {
+                    EventSystem.current.SetSelectedGameObject(SubUI.InventorySubUI.InventoryItems.CurrentSelectItem.gameObject);
+                }
                 break;
             case "Cfg":
                 SubUI.InventorySubUI.gameObject.SetActive(false);

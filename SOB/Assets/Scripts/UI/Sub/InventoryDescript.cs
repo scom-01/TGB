@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 
 public class InventoryDescript : MonoBehaviour
 {
@@ -36,6 +36,8 @@ public class InventoryDescript : MonoBehaviour
         if (item != null)
         {
             GameManager.Inst.StageManager.player.Inventory.RemoveInventoryItem(item.StatsItemData);
+            GameManager.Inst.SubUI.InventorySubUI.InventoryItems.CurrentSelectItemIndex--;
+            EventSystem.current.SetSelectedGameObject(GameManager.Inst.SubUI.InventorySubUI.InventoryItems.CurrentSelectItem.gameObject);
             SetDescript();
         }
     }

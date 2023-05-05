@@ -1,6 +1,9 @@
 using System;
 using Unity.VisualScripting;
+using UnityEditor;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace SOB.Manager
 {
@@ -74,14 +77,14 @@ namespace SOB.Manager
                 return;
             }
 
-            if (inputHandler.RawUIMoveInputRight)
-            {
-                OnRawUIMoveInputRight.Invoke();
-            }
-            else if (inputHandler.RawUIMoveInputLeft)
-            {
-                OnRawUIMoveInputLeft.Invoke();
-            }
+            //if (inputHandler.RawUIMoveInputRight)
+            //{
+            //    OnRawUIMoveInputRight.Invoke();
+            //}
+            //else if (inputHandler.RawUIMoveInputLeft)
+            //{
+            //    OnRawUIMoveInputLeft.Invoke();
+            //}
 
             if (inputHandler.InteractionInput)
             {
@@ -157,6 +160,8 @@ namespace SOB.Manager
             }
             PlayerInventory.RemoveInventoryItem(this.InventoryItems.CurrentSelectItem.StatsItemData);
             this.InventoryItems.CurrentSelectItemIndex--;
+            EventSystem.current.SetSelectedGameObject(this.InventoryItems.CurrentSelectItem.gameObject);
+            GameManager.Inst.SubUI.InventorySubUI.InventoryDescript.SetDescript();
             inputHandler.UseInput(ref inputHandler.InteractionInput);
         }
 
