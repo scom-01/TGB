@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class InventoryItem : MonoBehaviour
+public class InventoryItem : MonoBehaviour, ISelectHandler
 {
     /// <summary>
     /// 인벤토리 Data
@@ -24,10 +25,10 @@ public class InventoryItem : MonoBehaviour
         }
     }
     [SerializeField] private StatsItemSO statsItemData;
-    public bool isSelect
-    {
-        set => BackImgAlpha = value ? 1f : 0.5f;
-    }
+    public bool isSelect;
+    //{
+    //    set => BackImgAlpha = value ? 1f : 0.5f;
+    //}
 
     public int Index;
 
@@ -63,6 +64,16 @@ public class InventoryItem : MonoBehaviour
         {
             iconImg.sprite = null;
             iconImg.color = new Color(iconImg.color.r, iconImg.color.g, iconImg.color.b, 0);
+        }
+    }
+
+    //OnSelect
+    void ISelectHandler.OnSelect(BaseEventData eventData)
+    {
+        if(eventData.selectedObject == this.gameObject)
+        {
+            Debug.Log($"{this.gameObject.name} selected");
+            CurrentItem();
         }
     }
 }
