@@ -158,7 +158,8 @@ namespace SOB.Manager
                 Debug.Log("선택된 아이템 없음");
                 return;
             }
-            PlayerInventory.RemoveInventoryItem(this.InventoryItems.CurrentSelectItem.StatsItemData);
+            if (!PlayerInventory.RemoveInventoryItem(this.InventoryItems.CurrentSelectItem.StatsItemData))
+                return;
             this.InventoryItems.CurrentSelectItemIndex--;
             EventSystem.current.SetSelectedGameObject(this.InventoryItems.CurrentSelectItem.gameObject);
             GameManager.Inst.SubUI.InventorySubUI.InventoryDescript.SetDescript();
@@ -172,7 +173,8 @@ namespace SOB.Manager
                 Debug.Log("선택된 아이템 없음");
                 return;
             }
-            PlayerInventory.RemoveInventoryItem(this.InventoryItems.CurrentSelectItem.StatsItemData);
+            if (!PlayerInventory.RemoveInventoryItem(this.InventoryItems.CurrentSelectItem.StatsItemData))
+                return;
             PlayerInventory.AddInventoryItem(PlayerInventory.CheckItem);
             Destroy(PlayerInventory.CheckItem.GameObject());
             PlayerInventory.CheckItem = null;

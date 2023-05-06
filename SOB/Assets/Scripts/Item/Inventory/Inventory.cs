@@ -120,12 +120,12 @@ public class Inventory : MonoBehaviour
     /// Item 제거, Destory하지 않고 InventoryItem의 StatsItemSO 데이터값을 없앤다.
     /// </summary>
     /// <param name="itemData"></param>
-    public void RemoveInventoryItem(StatsItemSO itemData)
+    public bool RemoveInventoryItem(StatsItemSO itemData)
     {
         if (itemData == null)
         {
             Debug.Log("Find not InventoryItem");
-            return;
+            return false;
         }
 
         if (items.Contains(itemData))
@@ -146,6 +146,7 @@ public class Inventory : MonoBehaviour
         {
             Debug.Log($"Not Contians {itemData.name}, fail remove");
         }
+        return true;
     }
 
 
