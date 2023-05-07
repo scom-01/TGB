@@ -20,14 +20,20 @@ public class InventoryDescript : MonoBehaviour
         var item = GameManager.Inst.SubUI.InventorySubUI.InventoryItems.CurrentSelectItem;
         if (item != null && item.StatsItemData != null)
         {
-            ItemName.text = item.StatsItemData.ItemName;
-            ItemDescript.text = item.StatsItemData.ItemDescription;
-            DropButton.enabled = true;
+            if (ItemName != null) 
+                ItemName.text = item.StatsItemData.ItemName;
+            if (ItemDescript != null)
+                ItemDescript.text = item.StatsItemData.ItemDescription;
+            if (DropButton != null)
+                DropButton.enabled = true;
             return;
         }
-        ItemName.text = "";
-        ItemDescript.text = "";
-        DropButton.enabled = false;
+        if (ItemName != null)
+            ItemName.text = "";
+        if (ItemDescript != null)
+            ItemDescript.text = "";
+        if (DropButton != null)
+            DropButton.enabled = false;
     }
 
     public void Drop()
