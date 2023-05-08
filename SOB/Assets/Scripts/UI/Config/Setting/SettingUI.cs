@@ -26,5 +26,15 @@ namespace SOB.Manager
                 Debug.LogWarning("UserKeySettint Save Fail");
             }
         }
+
+        public void ResetKeyRebind()
+        {
+            GameManager.Inst?.inputHandler.playerInput.actions.RemoveAllBindingOverrides();
+            foreach(var keySetting in keySettings)
+            {
+                keySetting.UpdateDisplayText();
+            }
+            PlayerPrefs.DeleteKey(GlobalValue.RebindsKey);
+        }
     }
 }
