@@ -45,7 +45,7 @@ namespace SOB.CoreSystem
             int count = item.Count;
             for(int i = 0; i < count; i++)
             {
-                core.Unit.Inventory.RemoveInventoryItem(item[0]);
+                core.Unit.Inventory.RemoveInventoryItem(item[i]);
             }
             core.Unit.DieEffect();
             //core.transform.parent.gameObject.SetActive(false);

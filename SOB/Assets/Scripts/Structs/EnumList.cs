@@ -32,6 +32,12 @@ public enum ITEM_TPYE
     Collision = 1,
 }
 
+public enum GOODS_TPYE
+{
+    Gold = 0,
+    ElementalSculpture = 1,
+}
+
 #endregion
 
 #region Stats
@@ -78,6 +84,13 @@ public enum ENEMY_Level
     Boss = 2,
 }
 
+#endregion
+
+#region CC
+public enum CrowdControl
+{
+    Stun,
+}
 #endregion
 
 #region Sound

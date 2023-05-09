@@ -237,10 +237,9 @@ public class DataManager : MonoBehaviour
         Debug.LogWarning("Success BuffData Load");
     }
 
-    public int GameGoldLoad()
+    public void GameGoldLoad()
     {
-        int gold = PlayerPrefs.GetInt(GlobalValue.GoldCount, 0);
-        return gold;
+        GoldCount = PlayerPrefs.GetInt(GlobalValue.GoldCount, 0);
     }
     public bool GameGoldSave(int gold)
     {
@@ -250,10 +249,9 @@ public class DataManager : MonoBehaviour
         PlayerPrefs.SetInt(GlobalValue.GoldCount, gold);
         return true;
     }
-    public int GameElementalsculptureLoad()
+    public void GameElementalsculptureLoad()
     {
-        int Elementalsculpture = PlayerPrefs.GetInt(GlobalValue.ElementalCount, 0);
-        return Elementalsculpture;
+        ElementalsculptureCount = PlayerPrefs.GetInt(GlobalValue.ElementalCount, 0);
     }
     public bool GameElementalsculptureSave(int Elementalsculpture)
     {
@@ -288,22 +286,22 @@ public class DataManager : MonoBehaviour
     public void IncreaseGold(int gold)
     {
         GoldCount += gold;
-        GameGoldSave(gold);
+        GameGoldSave(GoldCount);
     }
     public void DecreseGold(int gold)
     {
         GoldCount -= gold;
-        GameGoldSave(gold);
+        GameGoldSave(GoldCount);
     }
     public void IncreaseElementalsculpture(int sculpture)
     {
         ElementalsculptureCount += sculpture;
-        GameElementalsculptureSave(sculpture);
+        GameElementalsculptureSave(ElementalsculptureCount);
     }
     public void DecreseElementalsculpture(int sculpture)
     {
         ElementalsculptureCount -= sculpture;
-        GameElementalsculptureSave(sculpture);
+        GameElementalsculptureSave(ElementalsculptureCount);
     }
     #endregion
 
