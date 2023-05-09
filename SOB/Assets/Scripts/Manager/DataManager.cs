@@ -41,6 +41,9 @@ public class DataManager : MonoBehaviour
     private bool isWeaponDataSave = false;
 
     public float PlayerHealth;
+    //Goods
+    public int GoldCount;
+    public int ElementalsculptureCount;
 
     public List<Buff> Playerbuffs = new List<Buff>();
 
@@ -234,6 +237,33 @@ public class DataManager : MonoBehaviour
         Debug.LogWarning("Success BuffData Load");
     }
 
+    public int GameGoldLoad()
+    {
+        int gold = PlayerPrefs.GetInt(GlobalValue.GoldCount, 0);
+        return gold;
+    }
+    public bool GameGoldSave(int gold)
+    {
+        if (gold <= 0)
+            return false;
+
+        PlayerPrefs.SetInt(GlobalValue.GoldCount, gold);
+        return true;
+    }
+    public int GameElementalsculptureLoad()
+    {
+        int Elementalsculpture = PlayerPrefs.GetInt(GlobalValue.ElementalCount, 0);
+        return Elementalsculpture;
+    }
+    public bool GameElementalsculptureSave(int Elementalsculpture)
+    {
+        if (Elementalsculpture <= 0)
+            return false;
+
+        PlayerPrefs.SetInt(GlobalValue.ElementalCount, Elementalsculpture);
+        return true;
+    }
+
     public void SaveScene(string stage)
     {
         PlayerPrefs.SetString(GlobalValue.StageName, stage);
@@ -247,9 +277,35 @@ public class DataManager : MonoBehaviour
     }
     #endregion
 
+    #region Data Controll Func
+
     public void NextStage(string stage)
     {
         SceneName = stage;
     }
-   
+
+
+    public void IncreaseGold(int gold)
+    {
+        GoldCount += gold;
+        GameGoldSave(gold);
+    }
+    public void DecreseGold(int gold)
+    {
+        GoldCount -= gold;
+        GameGoldSave(gold);
+    }
+    public void IncreaseElementalsculpture(int sculpture)
+    {
+        ElementalsculptureCount += sculpture;
+        GameElementalsculptureSave(sculpture);
+    }
+    public void DecreseElementalsculpture(int sculpture)
+    {
+        ElementalsculptureCount -= sculpture;
+        GameElementalsculptureSave(sculpture);
+    }
+    #endregion
+
+
 }

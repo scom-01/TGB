@@ -78,6 +78,8 @@ public class GameManager : MonoBehaviour
         DataManager.Inst.PlayerCfgSFXLoad();
         DataManager.Inst.PlayerCfgQualityLoad();
         DataManager.Inst.PlayerCfgLanguageLoad();
+        DataManager.Inst.GameGoldLoad();
+        DataManager.Inst.GameElementalsculptureLoad();
     }
     private void Update()
     {
