@@ -1,10 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using SOB.CoreSystem;
 using SOB.Utilities;
-using SOB.Weapons.Components;
+using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace SOB.Weapons
 {
@@ -70,6 +68,8 @@ namespace SOB.Weapons
         {
             if (WeaponCore == null)
                 return;
+
+            
             BaseGameObject.GetComponent<Animator>().speed = 1f + (WeaponCore.GetCoreComponent<UnitStats>().StatsData.AttackSpeedPer * 1 / 100);
             actionCounterResetTimer.Tick();
         }
@@ -140,7 +140,7 @@ namespace SOB.Weapons
         public void ChangeActionCounter(int value)
         {
             CurrentActionCounter = value;
-            //커맨드 List 초기ㅎ
+            //커맨드 List 초기화
             CommandList.Clear();
         }
 

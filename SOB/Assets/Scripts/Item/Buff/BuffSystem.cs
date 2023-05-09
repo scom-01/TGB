@@ -1,8 +1,6 @@
 using SOB.CoreSystem;
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 
@@ -54,7 +52,7 @@ public class BuffSystem : MonoBehaviour
             }
             else
             {
-                Debug.Log($"{Time.time} <= {buffs[i].startTime + buffs[i].buffItem.BuffData.DurationTime}");
+
             }
             i++;
         }

@@ -1,8 +1,5 @@
-using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Audio;
-using UnityEngine.Timeline;
 
 namespace SOB.CoreSystem
 {
@@ -31,8 +28,7 @@ namespace SOB.CoreSystem
             {
                 if(soundlist[i].clip == audioClip)
                 {
-                    Destroy(soundlist[i]);
-                    break;
+                    Destroy(soundlist[i]);                    
                 }
             }
             var audioSource = soundContainer.AddComponent<AudioSource>();
