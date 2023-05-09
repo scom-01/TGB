@@ -148,7 +148,7 @@ public class Unit : MonoBehaviour
     public IEnumerator DisableCollision()
     {
         BC2D.isTrigger = true;
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.2f);
         BC2D.isTrigger = false;
     }
 
