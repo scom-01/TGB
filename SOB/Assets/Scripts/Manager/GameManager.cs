@@ -64,13 +64,13 @@ public class GameManager : MonoBehaviour
     {
         if (_Inst)
         {
-            var managers = FindObjectsOfTypeAll(typeof(GameManager));
+            var managers = Resources.FindObjectsOfTypeAll(typeof(GameManager));
             for (int i = 0; i < managers.Length; i++)
             {
                 Debug.Log($"{managers[i]} = {i}");
                 if (i > 0)
                 {
-                    Destroy(managers[i]);
+                    Destroy(managers[i].GameObject());
                 }
             }
             return;

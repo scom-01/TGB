@@ -71,13 +71,13 @@ public class DataManager : MonoBehaviour
     {
         if (_Inst)
         {
-            var managers = FindObjectsOfTypeAll(typeof(DataManager));
+            var managers = Resources.FindObjectsOfTypeAll(typeof(DataManager));
             for (int i = 0; i < managers.Length; i++)
             {
                 Debug.Log($"{managers[i]} = {i}");
                 if (i > 0)
                 {
-                    Destroy(managers[i]);
+                    Destroy(managers[i].GameObject());
                 }
             }
             return;
