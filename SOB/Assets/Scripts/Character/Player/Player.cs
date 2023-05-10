@@ -135,8 +135,14 @@ public class Player : Unit
 
     #endregion
 
-    #region IEnumerator
+    #region Override
 
+    public override void DieEffect()
+    {
+        base.DieEffect();
+        GameManager.Inst.ResultUI.resultPanel.gameObject.SetActive(true);
+        GameManager.Inst.inputHandler.ChangeCurrentActionMap("Cfg", false);
+    }
     #endregion
 
     private void OnDrawGizmos()
