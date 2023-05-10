@@ -2,6 +2,7 @@ using SOB.CoreSystem;
 using SOB.Weapons;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Localization.Editor;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -70,7 +71,15 @@ public class DataManager : MonoBehaviour
     {
         if (_Inst)
         {
-            Destroy(this.gameObject);
+            var managers = FindObjectsOfTypeAll(typeof(DataManager));
+            for (int i = 0; i < managers.Length; i++)
+            {
+                Debug.Log($"{managers[i]} = {i}");
+                if (i > 0)
+                {
+                    Destroy(managers[i]);
+                }
+            }
             return;
         }
 
@@ -81,6 +90,13 @@ public class DataManager : MonoBehaviour
     {
         //UserKeySettingSave();
     }
+
+    public void Init()
+    {
+        isStatsDataSave = false;
+        isWeaponDataSave = false;
+    }
+
     #region Setting Func
     public void UserKeySettingLoad()
     {

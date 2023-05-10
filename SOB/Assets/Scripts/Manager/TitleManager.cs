@@ -8,6 +8,14 @@ public class TitleManager : MonoBehaviour
 {
     [SerializeField] private AudioClip TitleBGM;
     [SerializeField] private Transform BGM;
+
+    private void OnEnable()
+    {
+        if (DataManager.Inst != null)
+        {
+            DataManager.Inst.Init();
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {

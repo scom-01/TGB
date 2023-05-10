@@ -1,5 +1,6 @@
 using SOB.CoreSystem;
 using SOB.Manager;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
@@ -31,18 +32,6 @@ public class GameManager : MonoBehaviour
     private static GameManager _Inst = null;
 
     private bool isPause = false;
-    private void Awake()
-    {
-        if (_Inst)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
-
-        _Inst = this;
-        DontDestroyOnLoad(this.gameObject);
-    }
-
     public PlayerInputHandler inputHandler
     {
         get
@@ -69,6 +58,46 @@ public class GameManager : MonoBehaviour
     public SubUIManager SubUI;
     public CfgUIManager CfgUI;
     public DamageUIManager DamageUI;
+    public ResultUIManager ResultUI;
+
+    private void Awake()
+    {
+        if (_Inst)
+        {
+            var managers = FindObjectsOfTypeAll(typeof(GameManager));
+            for (int i = 0; i < managers.Length; i++)
+            {
+                Debug.Log($"{managers[i]} = {i}");
+                if (i > 0)
+                {
+                    Destroy(managers[i]);
+                }
+            }
+            return;
+        }
+
+        _Inst = this;
+        DontDestroyOnLoad(this.gameObject);
+
+        if (MainUI == null)
+
+            MainUI = this.GetComponentInChildren<MainUIManager>();
+
+        if (SubUI == null)
+
+            SubUI = this.GetComponentInChildren<SubUIManager>();
+
+        if (CfgUI == null)
+
+            CfgUI = this.GetComponentInChildren<CfgUIManager>();
+
+        if (DamageUI == null)
+
+            DamageUI = this.GetComponentInChildren<DamageUIManager>();
+
+        if (ResultUI == null)
+            ResultUI = this.GetComponentInChildren<ResultUIManager>();
+    }
 
     private void Start()
     {
@@ -90,7 +119,7 @@ public class GameManager : MonoBehaviour
 
     private void OnDisable()
     {
-        
+
     }
 
     public void CheckPause(bool pause)
@@ -178,7 +207,7 @@ public class GameManager : MonoBehaviour
         if (DataManager.Inst == null)
             return;
 
-        if(GameManager.Inst.StageManager == null)
+        if (GameManager.Inst.StageManager == null)
         {
             return;
         }
@@ -192,7 +221,7 @@ public class GameManager : MonoBehaviour
         if (DataManager.Inst == null)
             return;
 
-        if(StageManager == null)
+        if (StageManager == null)
         {
             return;
         }
@@ -209,6 +238,13 @@ public class GameManager : MonoBehaviour
             );
     }
 
+    public void ClearData()
+    {
+        if (DataManager.Inst == null)
+            return;
+        DataManager.Inst?.NextStage("Title");
+    }
+
     public void ClearScene()
     {
         var FadeOut = Resources.Load<GameObject>(GlobalValue.FadeOutCutScene);
@@ -219,10 +255,25 @@ public class GameManager : MonoBehaviour
         }
         Invoke("MoveScene", 1.5f);
     }
+    public void GoTitleScene()
+    {
+        var FadeOut = Resources.Load<GameObject>(GlobalValue.FadeOutCutScene);
+        if (FadeOut != null)
+        {
+            var Fadeobject = Instantiate(FadeOut);
+            Fadeobject.GetComponent<PlayableDirector>().Play();
+        }
+        Invoke("MoveTitle", 1.5f);
+    }
 
     private void MoveScene()
     {
         SaveData();
+        AsyncOperation operation = SceneManager.LoadSceneAsync("LoadingScene");
+    }
+    private void MoveTitle()
+    {
+        ClearData();
         AsyncOperation operation = SceneManager.LoadSceneAsync("LoadingScene");
     }
 }

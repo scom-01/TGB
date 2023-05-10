@@ -17,11 +17,13 @@ public class UIEventHandler : MonoBehaviour
     }
     // Start is called before the first frame update
     void Start()
-    {   
+    {
+        
     }
     private void OnEnable()
     {
         GameManager.Inst.MainUI.MainPanel.gameObject.SetActive(false);
+        GameManager.Inst.ResultUI.resultPanel.gameObject.SetActive(false);
     }
 
     private void OnButtonCallBack(ChangeEvent<string> evt)
@@ -32,6 +34,9 @@ public class UIEventHandler : MonoBehaviour
     public void OnStartBtnClicked()
     {
         if (isDone)
+            return;
+
+        if (DataManager.Inst == null)
             return;
 
         DataManager.Inst.LoadScene();
