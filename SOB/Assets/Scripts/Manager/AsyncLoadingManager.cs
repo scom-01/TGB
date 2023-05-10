@@ -18,6 +18,7 @@ namespace SOB.Manager
         IEnumerator LoadAsyncSceneCoroutine()
         {
             var time = 0.0f;
+            Debug.Log($"Scene Load {DataManager.Inst.SceneName}");
             AsyncOperation operation = SceneManager.LoadSceneAsync(DataManager.Inst.SceneName);
             operation.allowSceneActivation = false;
 
@@ -30,7 +31,6 @@ namespace SOB.Manager
                     {
 
                         UIEvent.Loading_progressbar.value = time / Timer;
-                        Debug.Log(UIEvent.Loading_progressbar.value);
                     }
                 }
                 if (time > Timer)

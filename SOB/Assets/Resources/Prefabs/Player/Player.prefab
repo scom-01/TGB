@@ -396,6 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea4697895990f0d409243616bbf1f4c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RespawnPoint: {fileID: 0}
   UnitData: {fileID: 11400000, guid: ae3d62f76bc500849819fd1f7f2f1900, type: 2}
   IsAlive: 1
   playerData: {fileID: 11400000, guid: ae3d62f76bc500849819fd1f7f2f1900, type: 2}
@@ -427,6 +428,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4865ea70498b9774f9a584b1c8ea7ae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buffs: []
+  buffItems: []
 --- !u!95 &3939928440848757511
 Animator:
   serializedVersion: 4
@@ -536,7 +539,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d951751a5143a7548893b8be23de17fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundContainerTagName: SoundContainer
 --- !u!1 &840319700143600033
 GameObject:
   m_ObjectHideFlags: 0
@@ -852,8 +854,6 @@ MonoBehaviour:
     ElementalAggressivePer: 0
   invincibleTime: 0
   currentHealth: 0
-  deathChunkParticle: {fileID: 0}
-  deathBloodParticle: {fileID: 0}
 --- !u!1 &840319700660627236
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,6 +951,7 @@ MonoBehaviour:
   - {fileID: 8440674159513887227, guid: ea44d35b9ec31d145b8bc1d7eb93f4da, type: 3}
   - {fileID: 8440674159513887227, guid: ea44d35b9ec31d145b8bc1d7eb93f4da, type: 3}
   - {fileID: 8440674159513887227, guid: ea44d35b9ec31d145b8bc1d7eb93f4da, type: 3}
+  isDead: 0
 --- !u!1 &840319701408790962
 GameObject:
   m_ObjectHideFlags: 0

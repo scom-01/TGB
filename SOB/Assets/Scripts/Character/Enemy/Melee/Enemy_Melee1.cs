@@ -61,6 +61,8 @@ public class Enemy_Melee1 : Enemy
     public override void DieEffect()
     {
         base.DieEffect();
+        if (GameManager.Inst != null)
+            GameManager.Inst.StageManager.SPM.UIEnemyCount--;
         FSM.ChangeState(DeathState);
     }
 

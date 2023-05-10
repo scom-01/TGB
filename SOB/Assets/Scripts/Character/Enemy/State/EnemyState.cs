@@ -51,6 +51,8 @@ public class EnemyState : UnitState
     {
         base.LogicUpdate();
 
+        if (Death.isDead)
+            return;
         //if (isAnimationFinished)
         //{
         //    enemy.FSM.ChangeState(enemy.IdleState);

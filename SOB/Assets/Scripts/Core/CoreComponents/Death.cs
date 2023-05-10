@@ -5,8 +5,8 @@ namespace SOB.CoreSystem
     public class Death : CoreComponent
     {
         [SerializeField]
-        private GameObject[] deathParticles;
-        private ParticleManager ParticleManager
+        protected GameObject[] deathParticles;
+        protected ParticleManager ParticleManager
         {
             get
             {
@@ -21,20 +21,16 @@ namespace SOB.CoreSystem
         private ParticleManager particleManager;
 
 
-        private UnitStats Stats => stats ? stats : core.GetCoreComponent(ref stats);
+        protected UnitStats Stats => stats ? stats : core.GetCoreComponent(ref stats);
         private UnitStats stats;
 
         [HideInInspector] public bool isDead = false;
         
-        public void Die()
+        public virtual void Die()
         {
             if (isDead)
                 return;
 
-            if(core.Unit.GetType() != typeof(Player))
-            {
-                GameManager.Inst.StageManager.SPM.UIEnemyCount--;
-            }
             isDead = true;
             foreach (var particle in deathParticles)
             {
@@ -51,12 +47,12 @@ namespace SOB.CoreSystem
             //core.transform.parent.gameObject.SetActive(false);
         }
 
-        private void OnEnable()
+        protected void OnEnable()
         {
             Stats.OnHealthZero += Die;
         }
 
-        private void OnDisable()
+        protected void OnDisable()
         {
             Stats.OnHealthZero -= Die;
         }

@@ -1,3 +1,4 @@
+using SOB.CoreSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,39 @@ public class UnitState
     protected float startTime;
 
     protected string animBoolName;
+    protected Movement Movement
+    {
+        get => movement ?? unit.Core.GetCoreComponent(ref movement);
+    }
+    protected CollisionSenses CollisionSenses
+    {
+        get => collisionSenses ?? unit.Core.GetCoreComponent(ref collisionSenses);
+    }
+    protected UnitStats UnitStats
+    {
+        get => unitStats ?? unit.Core.GetCoreComponent(ref unitStats);
+    }
 
+    protected ParticleManager ParticleManager
+    {
+        get => particleManager ?? unit.Core.GetCoreComponent(ref particleManager);
+    }
+    protected SoundEffect SoundEffect
+    {
+        get => soundEffect ?? unit.Core.GetCoreComponent(ref soundEffect);
+    }
+    protected Death Death
+    {
+        get => death ?? unit.Core.GetCoreComponent(ref death);
+    }
+
+
+    private Movement movement;
+    private CollisionSenses collisionSenses;
+    private UnitStats unitStats;
+    private ParticleManager particleManager;
+    private SoundEffect soundEffect;
+    private Death death;
     public UnitState(Unit unit, string animBoolName)
     {
         this.unit = unit;
@@ -35,7 +68,6 @@ public class UnitState
 
     public virtual void LogicUpdate()
     {
-
     }
 
     public virtual void PhysicsUpdate()
