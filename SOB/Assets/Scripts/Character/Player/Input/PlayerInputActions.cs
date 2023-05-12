@@ -325,24 +325,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""UILeft"",
-                    ""type"": ""Button"",
-                    ""id"": ""aa50e02b-8718-430e-a703-6db520704812"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""UIRight"",
-                    ""type"": ""Button"",
-                    ""id"": ""f3bd8583-ebe6-4fd9-8828-f566bcb18933"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -376,28 +358,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""ESC"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""80f103b8-de55-42b9-97c6-bdcb16eb47f4"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""UILeft"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""704c977a-d465-4154-a34b-7699f8b060f2"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""UIRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -469,8 +429,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_UI_Interaction = m_UI.FindAction("Interaction", throwIfNotFound: true);
         m_UI_Tap = m_UI.FindAction("Tap", throwIfNotFound: true);
         m_UI_ESC = m_UI.FindAction("ESC", throwIfNotFound: true);
-        m_UI_UILeft = m_UI.FindAction("UILeft", throwIfNotFound: true);
-        m_UI_UIRight = m_UI.FindAction("UIRight", throwIfNotFound: true);
         // Cfg
         m_Cfg = asset.FindActionMap("Cfg", throwIfNotFound: true);
         m_Cfg_ESC = m_Cfg.FindAction("ESC", throwIfNotFound: true);
@@ -649,8 +607,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Interaction;
     private readonly InputAction m_UI_Tap;
     private readonly InputAction m_UI_ESC;
-    private readonly InputAction m_UI_UILeft;
-    private readonly InputAction m_UI_UIRight;
     public struct UIActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -658,8 +614,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @Interaction => m_Wrapper.m_UI_Interaction;
         public InputAction @Tap => m_Wrapper.m_UI_Tap;
         public InputAction @ESC => m_Wrapper.m_UI_ESC;
-        public InputAction @UILeft => m_Wrapper.m_UI_UILeft;
-        public InputAction @UIRight => m_Wrapper.m_UI_UIRight;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -678,12 +632,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @ESC.started -= m_Wrapper.m_UIActionsCallbackInterface.OnESC;
                 @ESC.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnESC;
                 @ESC.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnESC;
-                @UILeft.started -= m_Wrapper.m_UIActionsCallbackInterface.OnUILeft;
-                @UILeft.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnUILeft;
-                @UILeft.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnUILeft;
-                @UIRight.started -= m_Wrapper.m_UIActionsCallbackInterface.OnUIRight;
-                @UIRight.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnUIRight;
-                @UIRight.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnUIRight;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -697,12 +645,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @ESC.started += instance.OnESC;
                 @ESC.performed += instance.OnESC;
                 @ESC.canceled += instance.OnESC;
-                @UILeft.started += instance.OnUILeft;
-                @UILeft.performed += instance.OnUILeft;
-                @UILeft.canceled += instance.OnUILeft;
-                @UIRight.started += instance.OnUIRight;
-                @UIRight.performed += instance.OnUIRight;
-                @UIRight.canceled += instance.OnUIRight;
             }
         }
     }
@@ -768,8 +710,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnInteraction(InputAction.CallbackContext context);
         void OnTap(InputAction.CallbackContext context);
         void OnESC(InputAction.CallbackContext context);
-        void OnUILeft(InputAction.CallbackContext context);
-        void OnUIRight(InputAction.CallbackContext context);
     }
     public interface ICfgActions
     {

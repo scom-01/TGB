@@ -36,14 +36,23 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            return this.GetComponent<PlayerInputHandler>();
+            if (_inputHandler == null)
+            {
+                _inputHandler = this.GetComponent<PlayerInputHandler>();
+            }
+
+            return _inputHandler;
         }
     }
+    private PlayerInputHandler _inputHandler;
 
     public StageManager StageManager
     {
         get
         {
+            if (Inst == null)
+                return null;
+
             return _stageManager;
         }
         set
@@ -51,7 +60,7 @@ public class GameManager : MonoBehaviour
             _stageManager = value;
         }
     }
-    public StageManager _stageManager = null;
+    private StageManager _stageManager = null;
 
     [Header("----UI----")]
     public MainUIManager MainUI;

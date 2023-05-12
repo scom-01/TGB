@@ -36,10 +36,6 @@ public class PlayerInputHandler : MonoBehaviour
                     , InteractionInput = false;
 
     [HideInInspector]
-    public bool RawUIMoveInputLeft
-                , RawUIMoveInputRight = false;
-
-    [HideInInspector]
     public bool[] ActionInputs;
 
     [SerializeField]
@@ -53,9 +49,6 @@ public class PlayerInputHandler : MonoBehaviour
     private float interactionInputStartTime;
     private float[] ActionInputsStartTime;
     private float[] ActionInputsStopTime;
-
-    private float normUIInputLeftStartTime;
-    private float normUIInputRightStartTime;
 
     private void Awake()
     {
@@ -102,9 +95,6 @@ public class PlayerInputHandler : MonoBehaviour
         bool interacInput = InteractionInput;
         bool[] attackInputs = ActionInputs;
 
-        bool normUIInputLeft = RawUIMoveInputLeft;
-        bool normUIInputRight = RawUIMoveInputRight;
-
         CheckHoldTime(ref jumpInput, ref jumpInputStartTime);
         CheckHoldTime(ref dashInput, ref dashInputStartTime);
         CheckHoldTime(ref blockInput, ref blockInputStartTime);
@@ -112,8 +102,6 @@ public class PlayerInputHandler : MonoBehaviour
         CheckHoldTime(ref skill2Input, ref skill2InputStartTime);
         //CheckHoldTime(ref attackInputs, ref ActionInputsStartTime);
         CheckHoldTime(ref interacInput, ref interactionInputStartTime);
-        CheckHoldTime(ref normUIInputLeft, ref normUIInputLeftStartTime);
-        CheckHoldTime(ref normUIInputRight, ref normUIInputRightStartTime);
 
         JumpInput = jumpInput;
         DashInput = dashInput;
@@ -122,8 +110,6 @@ public class PlayerInputHandler : MonoBehaviour
         Skill2Input = skill2Input;
         //ActionInputs = attackInputs;
         InteractionInput = interacInput;
-        RawUIMoveInputLeft = normUIInputLeft;
-        RawUIMoveInputRight = normUIInputRight;
     }
 
     #region GamePlay
@@ -320,33 +306,6 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.canceled)
         {
             Debug.Log("OnTapInput Cancled");
-        }
-    }
-    //UI움직임 Input
-    public void OnUIMoveLeftInput(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            RawUIMoveInputLeft = true;
-            normUIInputLeftStartTime = Time.time;
-        }
-
-        if (context.canceled)
-        {
-            RawUIMoveInputLeft = false;
-        }
-    }
-    public void OnUIMoveRightInput(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            RawUIMoveInputRight = true;
-            normUIInputRightStartTime = Time.time;
-        }
-
-        if (context.canceled)
-        {
-            RawUIMoveInputRight = false;
         }
     }
     #endregion

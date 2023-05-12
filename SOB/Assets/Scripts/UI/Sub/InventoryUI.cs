@@ -13,8 +13,6 @@ namespace SOB.Manager
         private Inventory PlayerInventory;
         private PlayerInputHandler inputHandler;
 
-        public event Action OnRawUIMoveInputLeft;
-        public event Action OnRawUIMoveInputRight;
         public event Action OnInteractionInput;
 
         public InventoryItems InventoryItems
@@ -107,8 +105,6 @@ namespace SOB.Manager
 
         public bool NullCheckInput()
         {
-            OnRawUIMoveInputLeft = null;
-            OnRawUIMoveInputRight = null;
             OnInteractionInput = null;
             return true;
         }
@@ -120,9 +116,6 @@ namespace SOB.Manager
         {
             //Input 초기화
             NullCheckInput();
-
-            OnRawUIMoveInputLeft += CurrentSelectItemLeft;
-            OnRawUIMoveInputRight += CurrentSelectItemRight;
             OnInteractionInput += PutItem;
         }
 
@@ -133,21 +126,7 @@ namespace SOB.Manager
         {
             //Input 초기화
             NullCheckInput();
-
-            OnRawUIMoveInputLeft += CurrentSelectItemLeft;
-            OnRawUIMoveInputRight += CurrentSelectItemRight;
             OnInteractionInput += ChangeItem;
-        }
-        public void CurrentSelectItemLeft()
-        {
-            InventoryItems.CurrentSelectItemIndex--;
-            inputHandler.UseInput(ref inputHandler.RawUIMoveInputLeft);
-        }
-
-        public void CurrentSelectItemRight()
-        {
-            InventoryItems.CurrentSelectItemIndex++;
-            inputHandler.UseInput(ref inputHandler.RawUIMoveInputRight);
         }
 
         public void PutItem()
@@ -175,6 +154,8 @@ namespace SOB.Manager
             }
             if (!PlayerInventory.RemoveInventoryItem(this.InventoryItems.CurrentSelectItem.StatsItemData))
                 return;
+            EventSystem.current.SetSelectedGameObject(this.InventoryItems.CurrentSelectItem.gameObject);
+            GameManager.Inst.SubUI.InventorySubUI.InventoryDescript.SetDescript();
             PlayerInventory.AddInventoryItem(PlayerInventory.CheckItem);
             Destroy(PlayerInventory.CheckItem.GameObject());
             PlayerInventory.CheckItem = null;

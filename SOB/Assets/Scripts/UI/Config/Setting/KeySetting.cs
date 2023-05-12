@@ -87,11 +87,6 @@ public class KeySetting : MonoBehaviour
     {
         Debug.Log("OnClick = " + keyName);
         m_PlayerInputHandler.SwitchActionMap("UI");
-        //for(int i = 0;i <m_Actions.Count;i++)
-        //{
-        //    m_Actions[i].action = m_Action.ToInputAction();
-        //}
-        //m_Action.ToInputAction();
         if (settingUI != null)
         {
             settingUI.waitforinputText.gameObject.SetActive(true);
@@ -100,7 +95,14 @@ public class KeySetting : MonoBehaviour
         .WithTargetBinding(m_BindingIndex)
         .WithControlsExcluding("Mouse")
         .OnMatchWaitForAnother(0.1f)
-        .OnComplete(_ => UpdateDisplayText())
+        .OnComplete(_ => {
+            UpdateDisplayText();
+            for (int i = 0; i < m_Actions.Count; i++)
+            {
+                m_PlayerInputHandler.SwitchActionMap(m_Actions[i].action.actionMap.name);
+                m_Actions[i].action.ChangeBinding(0).WithPath($"<{m_Action.action.controls[m_BindingIndex].parent.name}>/{m_Action.action.controls[m_BindingIndex].name}");
+            }
+        })
         .Start();        
         m_PlayerInputHandler.SwitchActionMap("GamePlay");
     }

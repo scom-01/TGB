@@ -303,24 +303,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "UILeft",
-                    "type": "Button",
-                    "id": "aa50e02b-8718-430e-a703-6db520704812",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "UIRight",
-                    "type": "Button",
-                    "id": "f3bd8583-ebe6-4fd9-8828-f566bcb18933",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -354,28 +336,6 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "ESC",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "80f103b8-de55-42b9-97c6-bdcb16eb47f4",
-                    "path": "<Keyboard>/leftArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "UILeft",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "704c977a-d465-4154-a34b-7699f8b060f2",
-                    "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "UIRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
