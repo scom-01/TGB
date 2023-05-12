@@ -57,9 +57,17 @@ public class Inventory : MonoBehaviour
 
         if (items.Count != ItemCount)
         {
-
             ChangeItemAttribute();
         }
+    }
+
+    public bool ItemEffectExcute()
+    {
+        for (int i = 0; i < items.Count; i++)
+        {
+            items[i].Use(unit);
+        }
+        return true;
     }
 
     public bool AddWeapon(WeaponData weaponObject)

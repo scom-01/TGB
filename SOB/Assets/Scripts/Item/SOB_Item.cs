@@ -31,6 +31,12 @@ namespace SOB.Item
                 Debug.Log("Item Init");
             }
         }
+
+        private void OnDisable()
+        {
+            Destroy(this.gameObject, 5f);
+        }
+
         public bool Init()
         {
             if (Item == null)
@@ -45,10 +51,6 @@ namespace SOB.Item
             return true;
         }
 
-        private void OnDisable()
-        {            
-            Destroy(this.gameObject, 5f);
-        }
 
         private void InitializeItem(Core core)
         {

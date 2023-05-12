@@ -1,5 +1,7 @@
+using SOB.Item;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "newItemData", menuName = "Data/Item Data/Stats Data")]
@@ -21,4 +23,14 @@ public class StatsItemSO : ItemDataSO
     [field: Header("Detect Use")]
     [field: Tooltip("Detect 시 SubUI 표시 여부")]
     [field: SerializeField] public bool DetailSubUI { get; private set; }
+
+    [field: SerializeField] public List<ItemEffectSO> ItemEffects = new List<ItemEffectSO>();
+
+    public virtual void Use(Unit unit)
+    {
+        foreach(ItemEffectSO effect in ItemEffects)
+        {
+            effect.ExcuteEffect(this, unit);
+        }
+    }
 }

@@ -18,35 +18,16 @@ namespace SOB.Weapons.Components
         /// <summary>
         /// Hit Collider가 감지된 오브젝트에 Damage
         /// </summary>
-        /// <param name="coll"></param>
-        private void HandleDetectedCollider2D(Collider2D[] coll)
+        /// <param name="colls"></param>
+        private void HandleDetectedCollider2D(Collider2D[] colls)
         {
             if (currentActionData != null)
             {
-                CheckAttackAction(currentActionData, coll);
+                CheckAttackAction(currentActionData, colls);
             }
-            //if (currentActionData != null && currentAirActionData != null)
-            //{
-            //    if (weapon.InAir)
-            //    {
-            //        CheckAttackAction(currentAirActionData, coll);
-            //    }
-            //    else
-            //    {
-            //        CheckAttackAction(currentActionData, coll);
-            //    }
-            //}
-            //else if (currentActionData == null)
-            //{
-            //    CheckAttackAction(currentAirActionData, coll);
-            //}
-            //else if (currentAirActionData == null)
-            //{
-            //    CheckAttackAction(currentActionData, coll);
-            //}
         }
 
-        private void CheckAttackAction(ActionDamage actionDamage, Collider2D[] coll)
+        private void CheckAttackAction(ActionDamage actionDamage, Collider2D[] colls)
         {
             if (actionDamage == null)
                 return;
@@ -58,33 +39,33 @@ namespace SOB.Weapons.Components
             if (currDamage.Length <= hitBox.currentHitBoxIndex)
                 return;
 
-            foreach (var item in coll)
+            foreach (var coll in colls)
             {
-                if (item.gameObject.tag == this.gameObject.tag)
+                if (coll.gameObject.tag == this.gameObject.tag)
                     continue;
 
-                if (item.TryGetComponent(out IDamageable damageable))
+                if (coll.TryGetComponent(out IDamageable damageable))
                 {
                     #region 타입계산
                     //플레이어는 EnemyType이 없기때문에 생략
-                    if (item.gameObject.tag == "Player")
+                    if (coll.gameObject.tag == "Player")
                     {
                         damageable.Damage
                         (
                             CoreUnitStats.StatsData,
-                            item.GetComponentInParent<Unit>().UnitData.statsStats,
+                            coll.GetComponentInParent<Unit>().UnitData.statsStats,
                             CoreUnitStats.StatsData.DefaultPower + currDamage[hitBox.currentHitBoxIndex]
                         );
                         continue;
                     }
 
-                    switch (item.GetComponentInParent<Enemy>().enemyData.enemy_size)
+                    switch (coll.GetComponentInParent<Enemy>().enemyData.enemy_size)
                     {
                         case ENEMY_Size.Small:
                             damageable.Damage
                         (
                             CoreUnitStats.StatsData,
-                            item.GetComponentInParent<Unit>().UnitData.statsStats,
+                            coll.GetComponentInParent<Unit>().UnitData.statsStats,
                             (CoreUnitStats.StatsData.DefaultPower + currDamage[hitBox.currentHitBoxIndex]) * (1.0f + GlobalValue.Enemy_Size_WeakPer)
                         );
                             Debug.Log("Enemy Type Small, Normal Dam = " +
@@ -96,7 +77,7 @@ namespace SOB.Weapons.Components
                             damageable.Damage
                         (
                             CoreUnitStats.StatsData,
-                            item.GetComponentInParent<Unit>().UnitData.statsStats,
+                            coll.GetComponentInParent<Unit>().UnitData.statsStats,
                             (CoreUnitStats.StatsData.DefaultPower + currDamage[hitBox.currentHitBoxIndex])
                         );
                             break;
@@ -104,7 +85,7 @@ namespace SOB.Weapons.Components
                             damageable.Damage
                         (
                             CoreUnitStats.StatsData,
-                            item.GetComponentInParent<Unit>().UnitData.statsStats,
+                            coll.GetComponentInParent<Unit>().UnitData.statsStats,
                             (CoreUnitStats.StatsData.DefaultPower + currDamage[hitBox.currentHitBoxIndex]) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
                         );
 

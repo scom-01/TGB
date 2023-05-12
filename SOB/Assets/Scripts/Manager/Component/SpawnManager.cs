@@ -80,7 +80,6 @@ namespace SOB.Manager
             {
                 if (!SpawnCtrls[i].isSpawn || !SpawnCtrls[i].isClear)
                 {
-                    Debug.Log($"{SpawnCtrls[i]} isSPawn = false");
                     return;
                 }
             }

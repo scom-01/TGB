@@ -65,6 +65,7 @@ namespace SOB.Weapons.Components
                 //Hit시 효과
                 if (c.TryGetComponent(out IDamageable damageable))
                 {
+                    core.Unit.Inventory.ItemEffectExcute();
                     //EffectPrefab
                     if (currHitBox[currentHitBoxIndex].EffectPrefab != null)
                     {
