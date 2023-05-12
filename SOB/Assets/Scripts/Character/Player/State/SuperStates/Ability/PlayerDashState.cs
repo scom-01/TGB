@@ -21,6 +21,9 @@ public class PlayerDashState : PlayerAbilityState
         if(Dash_Effect == null)
         {
             Dash_Effect = Resources.Load<GameObject>("Prefabs/Particle/Dash_Smoke");
+        }
+        if (Dash_SFX == null)
+        {
             Dash_SFX = Resources.Load<AudioClip>("Sounds/Effects/SFX_Dash_01");
         }
     }
