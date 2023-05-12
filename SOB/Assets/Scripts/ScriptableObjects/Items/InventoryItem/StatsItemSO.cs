@@ -2,6 +2,7 @@ using SOB.Item;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "newItemData", menuName = "Data/Item Data/Stats Data")]
@@ -26,11 +27,25 @@ public class StatsItemSO : ItemDataSO
 
     [field: SerializeField] public List<ItemEffectSO> ItemEffects = new List<ItemEffectSO>();
 
-    public virtual void Use(Unit unit)
+    public virtual void ExeUse(Unit unit)
     {
         foreach(ItemEffectSO effect in ItemEffects)
         {
-            effect.ExcuteEffect(this, unit);
+            effect.ExecuteEffect(this, unit);
+        }
+    }
+    public virtual void ExeUse(Unit unit, Unit Enemy)
+    {
+        foreach(ItemEffectSO effect in ItemEffects)
+        {
+            effect.ExecuteEffect(this, unit, Enemy);
+        }
+    }
+    public virtual void ExeUpdate(Unit unit)
+    {
+        foreach(ItemEffectSO effect in ItemEffects)
+        {            
+            effect.ContinouseEffectExcute(this, unit);
         }
     }
 }
