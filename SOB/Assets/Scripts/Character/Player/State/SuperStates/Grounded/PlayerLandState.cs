@@ -15,7 +15,7 @@ public class PlayerLandState : PlayerGroundedState
             Land_Effect = Resources.Load<GameObject>("Prefabs/Particle/Landing_Smoke");
         }
 
-        if(Land_SFX==null)
+        if (Land_SFX == null) 
         {
             Land_SFX = Resources.Load<AudioClip>("Sounds/Effects/SFX_Player_Land_1");
         }
