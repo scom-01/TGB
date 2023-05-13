@@ -13,8 +13,8 @@ public class Inventory : MonoBehaviour
     public List<Weapon> weapons = new List<Weapon>();
     public List<StatsItemSO> items = new List<StatsItemSO>();
     public GameObject CheckItem;
+    
     private int ItemCount;
-
     private void Awake()
     {
         
@@ -59,16 +59,36 @@ public class Inventory : MonoBehaviour
         {
             ChangeItemAttribute();
         }
+
+        ItemExeUpdate(unit);
     }
 
-    public bool ItemEffectExcute()
+    public bool ItemEffectExecute(Unit unit)
     {
         for (int i = 0; i < items.Count; i++)
         {
-            items[i].Use(unit);
+            items[i].ExeUse(unit);
         }
         return true;
     }
+    public bool ItemEffectExecute(Unit unit, Unit Enemy)
+    {
+        for (int i = 0; i < items.Count; i++)
+        {
+            items[i].ExeUse(unit, Enemy);
+        }
+        return true;
+    }
+
+    public bool ItemExeUpdate(Unit unit)
+    {
+        for (int i = 0; i < items.Count; i++)
+        {
+            items[i].ExeUpdate(unit);
+        }
+        return true;
+    }
+
 
     public bool AddWeapon(WeaponData weaponObject)
     {

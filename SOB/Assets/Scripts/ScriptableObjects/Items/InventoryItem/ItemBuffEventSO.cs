@@ -6,9 +6,10 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "newItemEffectData", menuName = "Data/Item Data/ItemBuffEvent Data")]
 public class ItemBuffEventSO : ItemEffectSO
-{    
+{
+    private int AttackCount = 0;
     public BuffItemSO buffItem;
-
+    private float startTime = 0;
     public override void ContinouseEffectExcute(StatsItemSO parentItem, Unit unit)
     {
         if (Time.time >= startTime + durationTime) 
@@ -17,8 +18,10 @@ public class ItemBuffEventSO : ItemEffectSO
             {
                 Buff buff = new Buff();
                 buff.buffItem = buffItem;
-                unit.Core.GetCoreComponent<SoundEffect>().AudioSpawn(buffItem.AcquiredSoundEffect);
-                unit.gameObject.GetComponent<BuffSystem>().AddBuff(buff);
+                if(unit.Core.GetCoreComponent<SoundEffect>())
+                    unit.Core.GetCoreComponent<SoundEffect>().AudioSpawn(buffItem.AcquiredSoundEffect);
+                if (unit.GetComponent<BuffSystem>())
+                    unit.GetComponent<BuffSystem>().AddBuff(buff);
             }
             startTime = Time.time;
         }

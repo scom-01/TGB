@@ -2,6 +2,7 @@ using SOB.Item;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using Unity.VisualScripting;
 using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 
@@ -26,6 +27,23 @@ public class StatsItemSO : ItemDataSO
     [field: SerializeField] public bool DetailSubUI { get; private set; }
 
     [field: SerializeField] public List<ItemEffectSO> ItemEffects = new List<ItemEffectSO>();
+    private List<ItemEffectSO> clone = new List<ItemEffectSO>();
+
+    private List<ItemEffectSO> itemEffects
+    {
+        get
+        {
+            if(clone.Count == ItemEffects.Count)
+            {
+                return clone;
+            }
+            for (int i = 0; i < ItemEffects.Count; i++) 
+            {
+                clone.Add(Instantiate(ItemEffects[i]) as ItemEffectSO);
+            }
+            return clone;
+        }
+    }
 
     public virtual void ExeUse(Unit unit)
     {
@@ -43,9 +61,14 @@ public class StatsItemSO : ItemDataSO
     }
     public virtual void ExeUpdate(Unit unit)
     {
-        foreach(ItemEffectSO effect in ItemEffects)
-        {            
-            effect.ContinouseEffectExcute(this, unit);
+        //foreach(ItemEffectSO effect in ItemEffects)
+        //{
+        //    effect.ContinouseEffectExcute(this, unit, startTime);
+        //}
+
+        for (int i = 0; i < itemEffects.Count; i++)
+        {
+            itemEffects[i].ContinouseEffectExcute(this, unit);
         }
     }
 }

@@ -52,20 +52,20 @@ namespace SOB.Weapons.Components
             }
 
             #region HitAction Effect Spawn
-            foreach (Collider2D c in detected)
+            foreach (Collider2D coll in detected)
             {
-                if (c.gameObject.tag == this.gameObject.tag)
+                if (coll.gameObject.tag == this.gameObject.tag)
                     continue;
                 
                 //객체 사망 시 무시
-                if(c.gameObject.GetComponentInParent<Unit>().Core.GetCoreComponent<Death>().isDead)
+                if(coll.gameObject.GetComponentInParent<Unit>().Core.GetCoreComponent<Death>().isDead)
                 {
                     continue;
                 }
                 //Hit시 효과
-                if (c.TryGetComponent(out IDamageable damageable))
+                if (coll.TryGetComponent(out IDamageable damageable))
                 {
-                    core.Unit.Inventory.ItemEffectExcute();
+                    core.Unit.Inventory.ItemEffectExecute(core.Unit, coll.GetComponentInParent<Unit>());
                     //EffectPrefab
                     if (currHitBox[currentHitBoxIndex].EffectPrefab != null)
                     {

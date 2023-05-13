@@ -4,10 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "newItemEffectData", menuName = "Data/Item Data/ItemEffect Data")]
 public abstract class ItemEffectSO : ScriptableObject, IExecuteEffect, IExecuteContinuousEffect
 {
-    [HideInInspector] public int AttackCount = 0;
     [Range(1, 99)]
     public int MaxCount;
-    [HideInInspector] public float startTime;
     public float durationTime;
     [HideInInspector] public bool isExecute = false;
     /// <summary>
