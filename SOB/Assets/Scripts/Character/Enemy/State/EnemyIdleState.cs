@@ -35,7 +35,7 @@ public abstract class EnemyIdleState : EnemyState
     {
         base.LogicUpdate();
 
-        if(CollisionSenses.UnitDectected)
+        if(EnemyCollisionSenses.UnitDectected)
         {
             RunState();            
         }

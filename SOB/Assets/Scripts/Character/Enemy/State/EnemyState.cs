@@ -10,16 +10,11 @@ public class EnemyState : UnitState
     protected bool isGrounded;
     protected Enemy enemy;
 
-    protected Movement Movement
-    {
-        get => movement ?? enemy.Core.GetCoreComponent(ref movement);
-    }
-    protected EnemyCollisionSenses CollisionSenses
+    protected EnemyCollisionSenses EnemyCollisionSenses
     {
         get => collisionSenses ?? enemy.Core.GetCoreComponent(ref collisionSenses);
     }
 
-    private Movement movement;
     private EnemyCollisionSenses collisionSenses;
     public EnemyState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
@@ -30,8 +25,8 @@ public class EnemyState : UnitState
     {
         base.DoChecks();
 
-        if (CollisionSenses)
-            isGrounded = CollisionSenses.CheckIfGrounded;
+        if (EnemyCollisionSenses)
+            isGrounded = EnemyCollisionSenses.CheckIfGrounded;
     }
 
 

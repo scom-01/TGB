@@ -16,9 +16,9 @@ public abstract class EnemyRunState : EnemyState
     {
         base.DoChecks();
 
-        checkifCliff = CollisionSenses.CheckIfCliff;
-        checkifTouchingWall = CollisionSenses.CheckIfTouchingWall;
-        checkifTouchingGrounded = CollisionSenses.CheckIfStayGrounded;
+        checkifCliff = EnemyCollisionSenses.CheckIfCliff;
+        checkifTouchingWall = EnemyCollisionSenses.CheckIfTouchingWall;
+        checkifTouchingGrounded = EnemyCollisionSenses.CheckIfStayGrounded;
     }
 
     public override void Enter()
@@ -38,7 +38,7 @@ public abstract class EnemyRunState : EnemyState
         if (unit.UnitData.GetType() != typeof(EnemyData))
             return;
 
-        if (CollisionSenses.UnitInAttackArea && unit.Inventory.weapons.Count > 0)
+        if (EnemyCollisionSenses.UnitInAttackArea && unit.Inventory.weapons.Count > 0)
         {
             Enemy_Attack();
         }
