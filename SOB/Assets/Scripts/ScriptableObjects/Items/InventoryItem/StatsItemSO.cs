@@ -47,25 +47,20 @@ public class StatsItemSO : ItemDataSO
 
     public virtual void ExeUse(Unit unit)
     {
-        foreach(ItemEffectSO effect in ItemEffects)
+        for (int i = 0; i < itemEffects.Count; i++)
         {
-            effect.ExecuteEffect(this, unit);
+            itemEffects[i].ExecuteEffect(this, unit);
         }
     }
     public virtual void ExeUse(Unit unit, Unit Enemy)
     {
-        foreach(ItemEffectSO effect in ItemEffects)
+        for (int i = 0; i < itemEffects.Count; i++)
         {
-            effect.ExecuteEffect(this, unit, Enemy);
+            itemEffects[i].ExecuteEffect(this, unit, Enemy);
         }
     }
     public virtual void ExeUpdate(Unit unit)
     {
-        //foreach(ItemEffectSO effect in ItemEffects)
-        //{
-        //    effect.ContinouseEffectExcute(this, unit, startTime);
-        //}
-
         for (int i = 0; i < itemEffects.Count; i++)
         {
             itemEffects[i].ContinouseEffectExcute(this, unit);
