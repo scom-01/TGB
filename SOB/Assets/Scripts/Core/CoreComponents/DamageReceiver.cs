@@ -54,6 +54,7 @@ namespace SOB.CoreSystem
                 
             particleManager.Comp.StartParticlesWithRandomPos(EffectPrefab, Range);
         }
+
         /// <summary>
         /// Random위치에 파티클을 생성하고 UI상으로 같은 위치에 DamageText를 생성하는 로직
         /// </summary>
