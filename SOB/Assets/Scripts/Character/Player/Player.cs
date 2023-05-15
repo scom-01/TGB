@@ -141,6 +141,8 @@ public class Player : Unit
     {
         base.DieEffect();
         GameManager.Inst.ResultUI.resultPanel.gameObject.SetActive(true);
+        GameManager.Inst.SubUI.DetailSubUI.gameObject.SetActive(false);
+        GameManager.Inst.SubUI.InventorySubUI.gameObject.SetActive(false);
         GameManager.Inst.inputHandler.ChangeCurrentActionMap("Cfg", false);
     }
     #endregion

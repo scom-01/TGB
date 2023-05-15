@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 829d099c869488a49a5f24ab18f0f054, type: 3}
+  m_Name: Fire_1_Sword_1 3
+  m_EditorClassIdentifier: 
+  <NumberOfActions>k__BackingField: 1
+  <CanJump>k__BackingField: 1
+  <CanAirAttack>k__BackingField: 1
+  <ComponentData>k__BackingField:
+  - rid: 3615621173780152320
+  - rid: 3615621173780152321
+  - rid: 3615621236231503872
+  - rid: 3615621433789513728
+  - rid: 8358215245741948929
+  - rid: 1770984693643870208
+  - rid: 1770984693643870209
+  - rid: 2811500879843950592
+  references:
+    version: 2
+    RefIds:
+    - rid: 1770984693643870208
+      type: {class: ParticleSpawnData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ParticleSpawnData
+        actionData:
+        - name: 
+          <EffectParticles>k__BackingField:
+          - isGround: 1
+            isRandomPosRot: 0
+            isRandomRange: 0
+            Object: {fileID: 8924082236497946225, guid: 22379e21c7b451147ab25b1e916aafaf, type: 3}
+    - rid: 1770984693643870209
+      type: {class: SoundClipData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: SoundClipData
+        actionData: []
+    - rid: 2811500879843950592
+      type: {class: ShakeCamData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ShakeCamData
+        actionData: []
+    - rid: 3615621173780152320
+      type: {class: ActionHitBoxData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ActionHitBoxData
+        actionData:
+        - name: 
+          ActionHit:
+          - Debug: 1
+            ActionRect:
+              serializedVersion: 2
+              x: 0.29
+              y: -0.77
+              width: 2.93
+              height: 1.23
+            EffectPrefab:
+            - isGround: 0
+              isRandomPosRot: 1
+              isRandomRange: 0.5
+              Object: {fileID: 5279545542555632717, guid: 54c319e2f98e0b04384f32b5f2f6b28b, type: 3}
+            - isGround: 0
+              isRandomPosRot: 0
+              isRandomRange: 0
+              Object: {fileID: 1380205584940949931, guid: 25eeb04a9fb5a3a43993139050154f68, type: 3}
+            audioClip:
+            - {fileID: 8300000, guid: 7dfd8119742582c47832bf5ec01273db, type: 3}
+            camDatas: []
+        <DetectableLayers>k__BackingField:
+          serializedVersion: 2
+          m_Bits: 133120
+    - rid: 3615621173780152321
+      type: {class: MovementData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: MovementData
+        actionData:
+        - name: 
+          <movements>k__BackingField:
+            CanFlip: 0
+            CanMoveCtrl: 0
+            Direction: {x: 0, y: 1}
+            Velocity: 5
+    - rid: 3615621236231503872
+      type: {class: WeaponSpriteData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: WeaponSpriteData
+        actionData:
+        - name: 
+          <WeaponSprites>k__BackingField:
+          - {fileID: 648369791, guid: c35d9502f2ada634592d079801c15dcb, type: 3}
+          - {fileID: 1118894025, guid: c35d9502f2ada634592d079801c15dcb, type: 3}
+          - {fileID: 1696006253, guid: c35d9502f2ada634592d079801c15dcb, type: 3}
+          - {fileID: -1647957830, guid: c35d9502f2ada634592d079801c15dcb, type: 3}
+          - {fileID: -1263320664, guid: c35d9502f2ada634592d079801c15dcb, type: 3}
+    - rid: 3615621433789513728
+      type: {class: DamageData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: DamageData
+        actionData:
+        - name: 
+          <AdditionalDamage>k__BackingField:
+          - 4
+    - rid: 8358215245741948929
+      type: {class: KnockbackData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: KnockbackData
+        actionData:
+        - name: 
+          <KnockbackAngle>k__BackingField:
+          - {x: 10, y: 0}

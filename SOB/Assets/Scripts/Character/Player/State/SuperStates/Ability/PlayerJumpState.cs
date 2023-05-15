@@ -22,12 +22,15 @@ public class PlayerJumpState : PlayerAbilityState
     public override void Enter()
     {
         base.Enter();
+        unit.RB.gravityScale = GlobalValue.GravityPower;
         isAbilityDone = true;
         Jump();
     }
 
     public void Jump()
     {
+        Debug.Log("Jump");
+        Debug.Log("Gravity = "+unit.RB.gravityScale);
         player.InputHandler.UseInput(ref player.InputHandler.JumpInput);
         Movement.SetVelocityY(UnitStats.StatsData.JumpVelocity);
         if (amountOfJumpLeft < player.playerData.amountOfJumps)

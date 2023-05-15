@@ -251,6 +251,9 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.started)
         {
+            if (GameManager.Inst.StageManager == null)
+                return;
+
             Debug.Log("OnTapInput Start");
             if (playerInput.actions.actionMaps.ToArray().Length > 0)
             {

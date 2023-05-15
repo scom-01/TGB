@@ -67,6 +67,7 @@ public class PlayerWeaponState : PlayerAbilityState
         }
         else if (JumpInput && player.JumpState.CanJump() && !player.BC2D.isTrigger)
         {
+            Movement.SetVelocityZero();
             weapon.EventHandler.AnimationFinishedTrigger();
             player.FSM.ChangeState(player.JumpState);
             return;

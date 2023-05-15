@@ -7,6 +7,7 @@ public class GlobalValue : MonoBehaviour
     private static GlobalValue Inst = null;
 
     /*Param*/
+    public static float GravityPower = 5f;
 
     public static float GV_SystemDeltatime = 0.02f;
     public static float GV_CharacterDeltatime = 0.02f;

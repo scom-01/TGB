@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab28b1b28bebb3d418384ac1ecb8b7fd, type: 3}
+  m_Name: CommandSword_Fire_1
+  m_EditorClassIdentifier: 
+  <NumberOfActions>k__BackingField: 1
+  DefaultAnimator: {fileID: 22100000, guid: 8d42da303ebae9c4f92431ca5517d38e, type: 2}
+  DefaultWeaponDataSO: {fileID: 11400000, guid: e8590521b78bef648a833c6fe7d76f6f, type: 2}
+  GroundedCommandList:
+  - commands:
+    - command: 0
+      animOC: {fileID: 22100000, guid: d977b6f029305fb44936f26bfa0c2d07, type: 2}
+      data: {fileID: 11400000, guid: e8590521b78bef648a833c6fe7d76f6f, type: 2}
+    - command: 1
+      animOC: {fileID: 22100000, guid: 30d8f2ac631234e40b322905915e24b8, type: 2}
+      data: {fileID: 11400000, guid: 1709398e621d8b24b99b38131530e36d, type: 2}
+    - command: 1
+      animOC: {fileID: 22100000, guid: e3f2a430363a82c4eb5c135de3f282c5, type: 2}
+      data: {fileID: 11400000, guid: 8cb01cf607cf1c74f964fad10635253b, type: 2}
+  AirCommandList:
+  - commands:
+    - command: 0
+      animOC: {fileID: 22100000, guid: d977b6f029305fb44936f26bfa0c2d07, type: 2}
+      data: {fileID: 11400000, guid: 775b1ea944e26fc449fcbe9d29035e5e, type: 2}
+    - command: 0
+      animOC: {fileID: 22100000, guid: 9457496352dcdb4419bef291250cc5d0, type: 2}
+      data: {fileID: 11400000, guid: ab281679ad1b44943a2e36429f92dde7, type: 2}
+    - command: 0
+      animOC: {fileID: 22100000, guid: 520ee0f9d29a904409c93a3457b08557, type: 2}
+      data: {fileID: 11400000, guid: 780cee7718564dd418e8d7248b69279e, type: 2}

@@ -23,6 +23,9 @@ public class GoodsItem : MonoBehaviour
 
     public void DropGoods()
     {
+        if (GameManager.Inst == null)
+            return;
+
         if (GameManager.Inst.StageManager == null)
             return;
 

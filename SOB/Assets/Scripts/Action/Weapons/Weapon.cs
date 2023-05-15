@@ -110,6 +110,8 @@ namespace SOB.Weapons
         /// </summary>
         public virtual void ExitWeapon()
         {
+            Debug.Log("Exit Weapon");
+            WeaponCore.Unit.RB.gravityScale = GlobalValue.GravityPower;
             SetBoolName("action", false);
             CurrentActionCounter++;
             actionCounterResetTimer.StartTimer();

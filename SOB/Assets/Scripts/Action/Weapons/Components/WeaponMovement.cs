@@ -13,50 +13,40 @@ namespace SOB.Weapons.Components
         {
             base.HandleEnter();
         }
+
+
+        #region 공격시 방향키 이동이 가능한 Movement
+        //만약 방향키를 누르지 않으면 
         private void HandleStartMovement()
         {
             CoreMovement.CanMovement = true;
         }
-
-        //중력의 영향 x 
-        private void HandleFixedStartMovement()
-        {
-            if (currentActionData != null)
-            {
-                CheckMovementAction(currentActionData);
-            }
-            //if (currentActionData != null && currentAirActionData != null)
-            //{
-            //    if (weapon.InAir)
-            //    {
-            //        CheckMovementAction(currentAirActionData);
-            //    }
-            //    else
-            //    {
-            //        CheckMovementAction(currentActionData);
-            //    }
-            //}
-            //else if (currentActionData == null)
-            //{
-            //    CheckMovementAction(currentAirActionData);
-            //}
-            //else if (currentAirActionData == null)
-            //{
-            //    CheckMovementAction(currentActionData);
-            //}
-            core.Unit.RB.gravityScale = 0f;            
-        }
-        private void HandleFixedStopMovement()
-        {
-            CoreMovement.SetVelocityX(0f);
-            core.Unit.RB.gravityScale = 5f;            
-        }
-
         private void HandleStopMovement()
         {
             CoreMovement.CanMovement = false;
             CoreMovement.SetVelocityX(0f);
         }
+        #endregion
+
+        #region 고정 Movement
+        private void HandleFixedStartMovement()
+        {
+            Debug.Log("HandleFixedStart");
+            if (currentActionData != null)
+            {
+                CheckMovementAction(currentActionData);
+            }
+            core.Unit.RB.gravityScale = 0f;            
+        }
+        private void HandleFixedStopMovement()
+        {
+            Debug.Log("HandleFixedStop");
+            CoreMovement.SetVelocityX(0f);
+            core.Unit.RB.gravityScale = GlobalValue.GravityPower;
+        }
+        #endregion
+
+        #region Handle Flip
         private void HandleStartFlip()
         {
             CoreMovement.CanFlip = true;
@@ -65,6 +55,7 @@ namespace SOB.Weapons.Components
         {
             CoreMovement.CanFlip = false;
         }
+        #endregion
 
         public void CheckMovementAction(ActionMovement actionData)
         {
