@@ -8,7 +8,7 @@ public class InventoryDescript : MonoBehaviour
 {
     public TextMeshProUGUI ItemName;
     public TextMeshProUGUI ItemDescript;
-    public TextMeshProUGUI DropButton;
+    public GameObject DropButton;
 
     public void OnEnable()
     {
@@ -25,7 +25,7 @@ public class InventoryDescript : MonoBehaviour
             if (ItemDescript != null)
                 ItemDescript.text = item.StatsItemData.ItemDescription;
             if (DropButton != null)
-                DropButton.enabled = true;
+                DropButton.SetActive(true);
             return;
         }
         if (ItemName != null)
@@ -33,7 +33,7 @@ public class InventoryDescript : MonoBehaviour
         if (ItemDescript != null)
             ItemDescript.text = "";
         if (DropButton != null)
-            DropButton.enabled = false;
+            DropButton.SetActive(false);
     }
 
     public void Drop()
