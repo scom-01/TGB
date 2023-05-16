@@ -27,7 +27,13 @@ public class EquipWeapon : WeaponMiniPanel
             return;
         }
         data.parentWeaponCommandDataSO = this.weaponCommandDataSO;
-        if (this.weaponCommandDataSO.UpgradeWeaponCommandDataSO[data.ReforgingWeaponIdx] != null)
+        if (this.weaponCommandDataSO.UpgradeWeaponCommandDataSO.Count > 0 && this.weaponCommandDataSO.UpgradeWeaponCommandDataSO[data.ReforgingWeaponIdx] != null)
+        {
             data.SetWeaponCommandData(this.weaponCommandDataSO.UpgradeWeaponCommandDataSO[data.ReforgingWeaponIdx]);
+        }
+        else
+        {
+            Debug.LogWarning($"{this.weaponCommandDataSO.UpgradeWeaponCommandDataSO}[{data.ReforgingWeaponIdx}] WeaponCommandDataSO is Null");
+        }
     }
 }
