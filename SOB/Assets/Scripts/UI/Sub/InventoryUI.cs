@@ -55,12 +55,25 @@ namespace SOB.Manager
         private InventoryItems inventoryItems;
         private InventoryStats inventoryStats;
         private InventoryDescript inventoryDescript;
-
+        public Canvas Canvas
+        {
+            get
+            {
+                if (canvas == null)
+                {
+                    canvas = GetComponent<Canvas>();
+                }
+                return canvas;
+            }
+        }
+        private Canvas canvas;
         private void Awake()
         {
-            Player = GameManager.Inst.StageManager.player;
+            if (GameManager.Inst.StageManager != null)
+                Player = GameManager.Inst.StageManager.player;
             inputHandler = GameManager.Inst.inputHandler;
-            PlayerInventory = Player.GetComponent<Inventory>();
+            if (Player != null)
+                PlayerInventory = Player.GetComponent<Inventory>();
         }
         private void Update()
         {
@@ -92,10 +105,11 @@ namespace SOB.Manager
 
         private void OnEnable()
         {
-            for (int i = 0; i < PlayerInventory.items.Count; i++)
-            {
-                InventoryItems.items[i].StatsItemData = PlayerInventory.items[i];
-            }
+            if (PlayerInventory != null)
+                for (int i = 0; i < PlayerInventory.items.Count; i++)
+                {
+                    InventoryItems.items[i].StatsItemData = PlayerInventory.items[i];
+                }
         }
 
         private void OnDisable()

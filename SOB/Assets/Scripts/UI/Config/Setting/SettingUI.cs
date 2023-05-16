@@ -8,8 +8,19 @@ namespace SOB.Manager
 {
     public class SettingUI : MonoBehaviour
     {
+        public Canvas Canvas
+        {
+            get
+            {
+                if (canvas == null)
+                {
+                    canvas = GetComponent<Canvas>();
+                }
+                return canvas;
+            }
+        }
+        private Canvas canvas;
         private KeySetting[] keySettings;
-        public GameObject waitforinputText;
         void Start()
         {
             keySettings = GetComponentsInChildren<KeySetting>();

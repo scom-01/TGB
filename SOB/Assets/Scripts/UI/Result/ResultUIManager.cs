@@ -6,14 +6,29 @@ namespace SOB.Manager
 {
     public class ResultUIManager : MonoBehaviour
     {
-        public ResultPanelUI resultPanel;
-        // Start is called before the first frame update
-        void Start()
+        public ResultPanelUI resultPanel
         {
-            if(resultPanel == null)
+            get
             {
-                resultPanel = this.GetComponentInChildren<ResultPanelUI>();
+                if (_resultPanel == null)
+                {
+                    _resultPanel = this.GetComponentInChildren<ResultPanelUI>();
+                }
+                return _resultPanel;
             }
         }
+        private ResultPanelUI _resultPanel;
+        public Canvas Canvas
+        {
+            get
+            {
+                if (canvas == null)
+                {
+                    canvas = GetComponent<Canvas>();
+                }
+                return canvas;
+            }
+        }
+        private Canvas canvas;
     }
 }

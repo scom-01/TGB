@@ -59,11 +59,6 @@ public class KeySetting : MonoBehaviour
     {
         m_Rebind?.Dispose();
 
-        if (settingUI != null)
-        {
-            if (settingUI.waitforinputText != null)
-                settingUI.waitforinputText.gameObject.SetActive(false);
-        }
         if (CurrentKeyBtnNameTxt != null)
         {
             CurrentKeyBtnNameTxt.text = InputControlPath.ToHumanReadableString(
@@ -87,10 +82,6 @@ public class KeySetting : MonoBehaviour
     {
         Debug.Log("OnClick = " + keyName);
         m_PlayerInputHandler.SwitchActionMap("UI");
-        if (settingUI != null)
-        {
-            settingUI.waitforinputText.gameObject.SetActive(true);
-        }
         m_Rebind = m_Action.action.PerformInteractiveRebinding()
         .WithTargetBinding(m_BindingIndex)
         .WithControlsExcluding("Mouse")
@@ -104,6 +95,6 @@ public class KeySetting : MonoBehaviour
             }
         })
         .Start();        
-        m_PlayerInputHandler.SwitchActionMap("GamePlay");
+        m_PlayerInputHandler.SwitchActionMap("Cfg");
     }
 }

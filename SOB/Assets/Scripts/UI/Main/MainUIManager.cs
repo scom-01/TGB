@@ -10,9 +10,17 @@ namespace SOB.Manager
     public class MainUIManager : MonoBehaviour
     {
         public MainPanelUI MainPanel;
-
-        private void Awake()
+        public Canvas Canvas
         {
+            get
+            {
+                if (canvas == null)
+                {
+                    canvas = GetComponent<Canvas>();
+                }
+                return canvas;
+            }
         }
+        private Canvas canvas;
     }
 }

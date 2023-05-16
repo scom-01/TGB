@@ -7,6 +7,7 @@ using UnityEditor.Localization.Editor;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
+using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 
 public class DataManager : MonoBehaviour
@@ -158,6 +159,11 @@ public class DataManager : MonoBehaviour
     public void PlayerCfgLanguageLoad()
     {
         localizationIdx = PlayerPrefs.GetInt(GlobalValue.Language, 0);
+        if (localizationIdx < 0)
+        {
+            localizationIdx = 0;
+            PlayerPrefs.SetInt(GlobalValue.Language, localizationIdx);
+        }
         StartCoroutine(ChangeRoutine(localizationIdx));
         Debug.LogWarning("Success Cfg Language Data Load");
     }

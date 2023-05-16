@@ -9,7 +9,18 @@ namespace SOB.Manager
     {        
         public DetailUI DetailSubUI;
         public InventoryUI InventorySubUI;
-
+        public Canvas Canvas
+        {
+            get
+            {
+                if (canvas == null)
+                {
+                    canvas = GetComponent<Canvas>();
+                }
+                return canvas;
+            }
+        }
+        private Canvas canvas;
         private void Awake()
         {
             //DetailSubUI = this.GetComponentInChildren<DetailUI>();

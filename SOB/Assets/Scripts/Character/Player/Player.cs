@@ -140,9 +140,9 @@ public class Player : Unit
     public override void DieEffect()
     {
         base.DieEffect();
-        GameManager.Inst.ResultUI.resultPanel.gameObject.SetActive(true);
-        GameManager.Inst.SubUI.DetailSubUI.gameObject.SetActive(false);
-        GameManager.Inst.SubUI.InventorySubUI.gameObject.SetActive(false);
+        GameManager.Inst.ResultUI.Canvas.enabled = true;
+        GameManager.Inst.SubUI.DetailSubUI.Canvas.enabled = false;
+        GameManager.Inst.SubUI.InventorySubUI.Canvas.enabled = false;
         GameManager.Inst.inputHandler.ChangeCurrentActionMap("Cfg", false);
     }
     #endregion

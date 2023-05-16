@@ -5,7 +5,9 @@ using UnityEditor;
 using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.Playables;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -53,6 +55,9 @@ public class GameManager : MonoBehaviour
             if (Inst == null)
                 return null;
 
+            if (_stageManager == null)
+                return null;
+
             return _stageManager;
         }
         set
@@ -66,8 +71,9 @@ public class GameManager : MonoBehaviour
     public MainUIManager MainUI;
     public SubUIManager SubUI;
     public CfgUIManager CfgUI;
-    public DamageUIManager DamageUI;
+    public ReforgingUIManager ReforgingUI;
     public ResultUIManager ResultUI;
+    public DamageUIManager DamageUI;
 
     private void Awake()
     {
@@ -87,21 +93,20 @@ public class GameManager : MonoBehaviour
 
         _Inst = this;
         DontDestroyOnLoad(this.gameObject);
-
+        GraphicsSettings.useScriptableRenderPipelineBatching = true;
         if (MainUI == null)
-
             MainUI = this.GetComponentInChildren<MainUIManager>();
 
         if (SubUI == null)
-
             SubUI = this.GetComponentInChildren<SubUIManager>();
 
         if (CfgUI == null)
-
             CfgUI = this.GetComponentInChildren<CfgUIManager>();
 
-        if (DamageUI == null)
+        if (ReforgingUI == null)
+            ReforgingUI = this.GetComponentInChildren<ReforgingUIManager>();
 
+        if (DamageUI == null)
             DamageUI = this.GetComponentInChildren<DamageUIManager>();
 
         if (ResultUI == null)
@@ -156,13 +161,13 @@ public class GameManager : MonoBehaviour
     private void Pause(string switchActionMap)
     {
         Time.timeScale = 0f;
-        MainUI.MainPanel.gameObject.SetActive(false);
+        MainUI.Canvas.enabled = false;
         switch (switchActionMap)
         {
             //InventoryOpen
             case "UI":
-                CfgUI.ConfigPanelUI.gameObject.SetActive(false);
-                SubUI.InventorySubUI.gameObject.SetActive(true);
+                CfgUI.Canvas.enabled = false;                
+                SubUI.InventorySubUI.Canvas.enabled = true;
                 if (SubUI.InventorySubUI.InventoryItems.CurrentSelectItem == null)
                 {
                     EventSystem.current.SetSelectedGameObject(SubUI.InventorySubUI.InventoryItems.items[0].gameObject);
@@ -173,12 +178,14 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case "Cfg":
-                SubUI.InventorySubUI.gameObject.SetActive(false);
-                CfgUI.ConfigPanelUI.gameObject.SetActive(true);
+                SubUI.InventorySubUI.Canvas.enabled = false;
+                CfgUI.Canvas.enabled = true;
+                EventSystem.current.SetSelectedGameObject(CfgUI.ConfigPanelUI.cfgBtns[0].gameObject);
                 break;
             case "Empty":
-                SubUI.InventorySubUI.gameObject.SetActive(false);
-                CfgUI.ConfigPanelUI.gameObject.SetActive(true);
+                SubUI.InventorySubUI.Canvas.enabled = false;
+                CfgUI.Canvas.enabled = true;
+                EventSystem.current.SetSelectedGameObject(CfgUI.ConfigPanelUI.cfgBtns[0].gameObject);
                 break;
         }
         isPause = true;
@@ -186,8 +193,8 @@ public class GameManager : MonoBehaviour
     private void Pause()
     {
         Time.timeScale = 0f;
-        MainUI.MainPanel.gameObject.SetActive(false);
-        SubUI.InventorySubUI.gameObject.SetActive(true);
+        MainUI.Canvas.enabled = false;
+        SubUI.InventorySubUI.Canvas.enabled = true;
         isPause = true;
     }
     private void Continue(string switchActionMap)
@@ -196,18 +203,47 @@ public class GameManager : MonoBehaviour
             return;
 
         Time.timeScale = 1f;
+
         if (StageManager)
         {
-            MainUI.MainPanel.gameObject.SetActive(true);
-            SubUI.InventorySubUI.gameObject.SetActive(false);
+            MainUI.Canvas.enabled = true;
+            SubUI.InventorySubUI.Canvas.enabled = false;
         }
-        CfgUI.ConfigPanelUI.gameObject.SetActive(false);
+
+        //SettingUI들 Canvas.enabled = false
+        if (CfgUI.ConfigPanelUI.cfgBtns.Length>0)
+        {
+            for(int i = 0;i < CfgUI.ConfigPanelUI.cfgBtns.Length;i++)
+            {
+                if (CfgUI.ConfigPanelUI.cfgBtns[i].ActiveUI != null)
+                    CfgUI.ConfigPanelUI.cfgBtns[i].ActiveUI.GetComponent<SettingUI>().Canvas.enabled = false;
+            }
+        }
+
+        CfgUI.Canvas.enabled = false;
         isPause = false;
     }
-    private void Continue()
+    public void Continue()
     {
         Time.timeScale = 1f;
-        SubUI.InventorySubUI.gameObject.SetActive(false);
+
+        if (StageManager)
+        {
+            MainUI.Canvas.enabled = true;
+            SubUI.InventorySubUI.Canvas.enabled = false;
+        }
+        //SettingUI들 Canvas.enabled = false
+        if (CfgUI.ConfigPanelUI.cfgBtns.Length > 0)
+        {
+            for (int i = 0; i < CfgUI.ConfigPanelUI.cfgBtns.Length; i++)
+            {
+                if (CfgUI.ConfigPanelUI.cfgBtns[i].ActiveUI != null)
+                    CfgUI.ConfigPanelUI.cfgBtns[i].ActiveUI.GetComponent<SettingUI>().Canvas.enabled = false;
+            }
+        }
+        if (StageManager != null)
+            inputHandler.playerInput.currentActionMap = inputHandler.playerInput.actions.FindActionMap("GamePlay");
+        CfgUI.Canvas.enabled = false;
         isPause = false;
     }
 

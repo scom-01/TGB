@@ -25,6 +25,19 @@ public class DetailUI : MonoBehaviour
     }
     private string mainItemName;
 
+    public Canvas Canvas
+    {
+        get
+        {
+            if (canvas == null)
+            {
+                canvas = GetComponent<Canvas>();
+            }
+            return canvas;
+        }
+    }
+    private Canvas canvas;
+
     public Image Icon;
 
     [Header("---Sub---")]    
