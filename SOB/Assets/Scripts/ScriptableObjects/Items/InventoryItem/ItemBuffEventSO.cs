@@ -40,8 +40,10 @@ public class ItemBuffEventSO : ItemEffectSO
             {
                 Buff buff = new Buff();                
                 buff.buffItem = buffItem;
-                unit.Core.GetCoreComponent<SoundEffect>().AudioSpawn(buffItem.AcquiredSoundEffect);
-                unit.gameObject.GetComponent<BuffSystem>().AddBuff(buff);
+                if (unit.Core.GetCoreComponent<SoundEffect>())
+                    unit.Core.GetCoreComponent<SoundEffect>().AudioSpawn(buffItem.AcquiredSoundEffect);
+                if (unit.GetComponent<BuffSystem>())
+                    unit.gameObject.GetComponent<BuffSystem>().AddBuff(buff);
             }
 
             AttackCount = 0;
@@ -61,8 +63,10 @@ public class ItemBuffEventSO : ItemEffectSO
             {
                 Buff buff = new Buff();
                 buff.buffItem = buffItem;
-                unit.Core.GetCoreComponent<SoundEffect>().AudioSpawn(buffItem.AcquiredSoundEffect);
-                unit.gameObject.GetComponent<BuffSystem>().AddBuff(buff);
+                if (unit.Core.GetCoreComponent<SoundEffect>())
+                    unit.Core.GetCoreComponent<SoundEffect>().AudioSpawn(buffItem.AcquiredSoundEffect);
+                if (unit.GetComponent<BuffSystem>())
+                    unit.gameObject.GetComponent<BuffSystem>().AddBuff(buff);
             }
 
             AttackCount = 0;
