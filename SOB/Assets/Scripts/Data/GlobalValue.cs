@@ -29,7 +29,7 @@ public class GlobalValue : MonoBehaviour
     public const string Quality = "Quality";
     public const string Language = "Language";
 
-    public const string UI_Table = "Localization/StringTables/UI Table";
+    public const string UI_Table = "Localization/StringTables/UI_Table";
 
     public const string FadeInCutScene = "TimeLine/FadeIn";
     public const string FadeOutCutScene = "TimeLine/FadeOut";
