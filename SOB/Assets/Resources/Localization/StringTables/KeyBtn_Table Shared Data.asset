@@ -10,67 +10,67 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: Tutorial Table Shared Data
+  m_Name: KeyBtn_Table Shared Data
   m_EditorClassIdentifier: 
-  m_TableCollectionName: Tutorial Table
-  m_TableCollectionNameGuidString: a2d3b65508cf98c41b4fde5deb666416
+  m_TableCollectionName: KeyBtn_Table
+  m_TableCollectionNameGuidString: 5f42f055c7542c24f81379ad10c07482
   m_Entries:
-  - m_Id: 6945136640
+  - m_Id: 7532339200
+    m_Key: Up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 475214012416
+    m_Key: Down
+    m_Metadata:
+      m_Items: []
+  - m_Id: 651450277888
+    m_Key: Left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 689513586688
+    m_Key: Right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 767653470208
     m_Key: Jump
     m_Metadata:
       m_Items: []
-  - m_Id: 6980969586688
+  - m_Id: 829188104192
     m_Key: Dash
     m_Metadata:
       m_Items: []
-  - m_Id: 7201220878336
-    m_Key: Double Dash
+  - m_Id: 868568424448
+    m_Key: Command Attack1
     m_Metadata:
       m_Items: []
-  - m_Id: 7487553429504
-    m_Key: Double Jump
+  - m_Id: 949581406208
+    m_Key: Tap
     m_Metadata:
       m_Items: []
-  - m_Id: 7862138331136
-    m_Key: Climb
+  - m_Id: 1074999484416
+    m_Key: Interaction
     m_Metadata:
       m_Items: []
-  - m_Id: 8553598705664
-    m_Key: Jump Off
+  - m_Id: 1141709889536
+    m_Key: Change
     m_Metadata:
       m_Items: []
-  - m_Id: 15955857399808
-    m_Key: Climb State
+  - m_Id: 1185108353024
+    m_Key: Skill
     m_Metadata:
       m_Items: []
-  - m_Id: 390994217820160
-    m_Key: Ineraction_item
-    m_Metadata:
-      m_Items: []
-  - m_Id: 391391745564672
-    m_Key: CommandAction1
-    m_Metadata:
-      m_Items: []
-  - m_Id: 392283186159616
-    m_Key: CommandCombo
-    m_Metadata:
-      m_Items: []
-  - m_Id: 393768267571200
-    m_Key: Ineraction_gate
-    m_Metadata:
-      m_Items: []
-  - m_Id: 394396729499648
-    m_Key: Inventory
+  - m_Id: 29658635984896
+    m_Key: CommandAttack2
     m_Metadata:
       m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 2811501309053632512
+    rid: 2811501187607560271
   references:
     version: 2
     RefIds:
-    - rid: 2811501309053632512
+    - rid: 2811501187607560271
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1682505068650
+        m_CustomEpoch: 1682046095667
