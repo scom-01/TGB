@@ -22,8 +22,8 @@ public class UIEventHandler : MonoBehaviour
     }
     private void OnEnable()
     {
-        GameManager.Inst.MainUI.MainPanel.gameObject.SetActive(false);
-        GameManager.Inst.ResultUI.resultPanel.gameObject.SetActive(false);
+        GameManager.Inst.MainUI.Canvas.enabled = false;
+        GameManager.Inst.ResultUI.Canvas.enabled = false;
     }
 
     private void OnButtonCallBack(ChangeEvent<string> evt)

@@ -13,8 +13,15 @@ MonoBehaviour:
   m_Name: CommandSword_Fire_1
   m_EditorClassIdentifier: 
   <NumberOfActions>k__BackingField: 1
+  <WeaponImg>k__BackingField: {fileID: 0}
+  <Elelemental_Power>k__BackingField: 1
+  <WeaponClassLevel>k__BackingField: 1
   DefaultAnimator: {fileID: 22100000, guid: 8d42da303ebae9c4f92431ca5517d38e, type: 2}
   DefaultWeaponDataSO: {fileID: 11400000, guid: e8590521b78bef648a833c6fe7d76f6f, type: 2}
+  UpgradeWeaponCommandDataSO:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   GroundedCommandList:
   - commands:
     - command: 0

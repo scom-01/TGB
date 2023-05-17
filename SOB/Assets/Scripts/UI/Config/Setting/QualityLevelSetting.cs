@@ -58,15 +58,15 @@ namespace SOB.CfgSetting
         {
             Locale currentLocale = LocalizationSettings.SelectedLocale;
             var str = Resources.Load(GlobalValue.UI_Table).name;
-            //Quality의 설정값과 동일한 Key값을 미리 UI Table안에 설정해놓음 ex)LOW : 낮음
+            //Quality의 설정값과 동일한 Key값을 미리 UI Table안에 설정해놓음 ex)LOW : 낮음            
             LevelTxt.text = LocalizationSettings.StringDatabase.GetLocalizedString(str, (QualitySettings.names[QualitySettings.GetQualityLevel()]).ToString().ToUpper(), currentLocale);
         }
         private void ChangeText(Locale locale)
         {
             Locale currentLocale = LocalizationSettings.SelectedLocale;
             var str = Resources.Load(GlobalValue.UI_Table).name;
-            //Quality의 설정값과 동일한 Key값을 미리 UI Table안에 설정해놓음 ex)LOW : 낮음
-            LevelTxt.text = LocalizationSettings.StringDatabase.GetLocalizedString(str, (QualitySettings.names[QualitySettings.GetQualityLevel()]).ToString().ToUpper(), currentLocale);
+            //Quality의 설정값과 동일한 Key값을 미리 UI Table안에 설정해놓음 ex)LOW : 낮음);
+            LevelTxt.text = LocalizationSettings.StringDatabase.GetLocalizedString(str, (QualitySettings.names[QualitySettings.GetQualityLevel()]).ToString().ToUpper(), currentLocale);            
         }
     }
 }

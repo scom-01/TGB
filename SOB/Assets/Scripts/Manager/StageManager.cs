@@ -40,18 +40,12 @@ public class StageManager : MonoBehaviour
         {
             GameManager.Inst.StageManager = this;
         }
-        GameManager.Inst?.MainUI.MainPanel.gameObject.SetActive(true);
-        //if (Inst)
-        //{
-        //    Destroy(this.gameObject);
-        //    return;
-        //}
+        GameManager.Inst.MainUI.Canvas.enabled = true;
 
         Application.targetFrameRate = 60;
         playerGO = Instantiate(PlayerPrefab, respawnPoint);
         player = playerGO.GetComponent<Player>();
-        //Inst = this;
-        //DontDestroyOnLoad(this.gameObject);
+
         var FadeIn = Resources.Load<GameObject>(GlobalValue.FadeInCutScene);
         if (FadeIn != null)
         {
