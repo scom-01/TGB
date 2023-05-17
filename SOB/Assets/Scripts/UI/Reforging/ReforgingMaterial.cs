@@ -47,9 +47,10 @@ public class ReforgingMaterial : MonoBehaviour
             DataManager.Inst.GameElementalsculptureLoad();
         }
 
-        CanvasUpdate();
+        SetRendering();
     }
-    public void CanvasUpdate()
+    
+    private void GetCurrentGoods()
     {
         if (DataManager.Inst != null)
         {
@@ -68,6 +69,25 @@ public class ReforgingMaterial : MonoBehaviour
         if (CurrentSculptureAmountText != null)
             CurrentSculptureAmountText.text = string.Format("{0:#,###}", currentSculptureAmount);
 
+    }
+    private bool CheckReforging()
+    {
+        if (reforgingCostGoldAmount == -1 || reforgingCostSculptureAmount == -1)
+        {
+            Debug.Log("There is impossible reforging weapon");
+            return false;
+        }
+
+        if (currentGoldAmount > reforgingCostGoldAmount && currentSculptureAmount > reforgingCostSculptureAmount)
+        {            
+            return true;
+        }
+
+        return false;
+    }
+    public void SetRendering()
+    {
+        GetCurrentGoods();
 
         if (ReforgingWeaponDataSO == null)
         {
@@ -82,22 +102,61 @@ public class ReforgingMaterial : MonoBehaviour
         }
         else
         {
+            reforgingCostGoldAmount = ReforgingWeaponDataSO.WeaponClassLevel * 500;
+            reforgingCostSculptureAmount = ReforgingWeaponDataSO.WeaponClassLevel * 1000;
+
             if (ReforgingCostGoldAmountText != null)
             {
-                ReforgingCostGoldAmountText.color = reforgingCostGoldAmount > currentGoldAmount ? enoughColor : ShortageColor;
+                ReforgingCostGoldAmountText.color = currentGoldAmount < reforgingCostGoldAmount ? ShortageColor : enoughColor;
                 ReforgingCostGoldAmountText.text = string.Format("{0:#,###}", reforgingCostGoldAmount);
             }
             if (ReforgingCostSculptureAmountText != null)
             {
-                ReforgingCostSculptureAmountText.color = reforgingCostSculptureAmount > currentSculptureAmount ? enoughColor : ShortageColor;
+                ReforgingCostSculptureAmountText.color = currentSculptureAmount < reforgingCostSculptureAmount ? ShortageColor : enoughColor;
                 ReforgingCostSculptureAmountText.text = string.Format("{0:#,###}", reforgingCostSculptureAmount);
             }
         }
     }
 
-    public void SetReforgingWeapon(WeaponCommandDataSO data)
+    public void ClearRendering()
+    {
+        GetCurrentGoods();
+
+        reforgingCostGoldAmount = -1;
+        reforgingCostSculptureAmount = -1;
+
+        if (ReforgingCostGoldAmountText != null)
+        {
+            ReforgingCostGoldAmountText.text = "";
+        }
+        if (ReforgingCostSculptureAmountText != null)
+        {
+            ReforgingCostSculptureAmountText.text = "";
+        }
+    }
+    public void SetReforgingMaterial(WeaponCommandDataSO data)
     {
         ReforgingWeaponDataSO = data;
-        CanvasUpdate();
+        SetRendering();
+    }
+
+    public void Reforging(EquipWeapon equip)
+    {
+        if (equip == null)
+            return;
+        
+        if (ReforgingWeaponDataSO == null)
+            return;
+
+        if (CheckReforging())
+        {
+            currentGoldAmount -= reforgingCostGoldAmount;
+            currentSculptureAmount -= reforgingCostSculptureAmount;
+            equip.SetWeaponCommandData(ReforgingWeaponDataSO);
+        }
+        else
+        {
+            Debug.Log("There is not enough goods");
+        }
     }
 }
