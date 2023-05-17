@@ -10,6 +10,19 @@ public class WeaponMiniPanel : MonoBehaviour
     [Header("Data")]
     public WeaponCommandDataSO weaponCommandDataSO;
 
+    [HideInInspector] public Button Btn
+    { 
+        get
+        {
+            if(_btn == null)
+            {
+                _btn = GetComponent<Button>();
+            }
+            return _btn;
+        }
+    }
+    private Button _btn;
+
     [Header("Setting")]
     [Tooltip("속성 이미지")]
     [SerializeField] protected Image Symbol_Img;
@@ -38,7 +51,22 @@ public class WeaponMiniPanel : MonoBehaviour
         SetRendering();
     }
 
-    public void SetWeaponCommandData(WeaponCommandDataSO dataSO)
+    public void SetWeaponCommandPanel(WeaponCommandPanel panel)
+    {
+        panel.SetWeaponData(this.weaponCommandDataSO);
+    }
+
+    public void SetReforgigngMaterial(ReforgingMaterial reforgingMaterial)
+    {
+        if (this.weaponCommandDataSO == null)
+        {
+            Debug.LogWarning($"{this.name} WeaponCommandDataSO is Null");
+            return;
+        }
+        reforgingMaterial.SetReforgingMaterial(this.weaponCommandDataSO);
+    }
+
+    public virtual void SetWeaponCommandData(WeaponCommandDataSO dataSO)
     {
         weaponCommandDataSO = dataSO;
         SetRendering();
@@ -46,12 +74,13 @@ public class WeaponMiniPanel : MonoBehaviour
 
     private void SetRendering()
     {
+        Canvas.enabled = weaponCommandDataSO != null ? true : false;
+        Btn.enabled = weaponCommandDataSO != null ? true : false;
+
         if (weaponCommandDataSO == null)
         {
-            Canvas.enabled = false;
             return;
         }
-        Canvas.enabled = true;
 
         if (ClassLevel != null)
         {

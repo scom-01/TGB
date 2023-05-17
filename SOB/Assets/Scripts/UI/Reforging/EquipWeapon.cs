@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class EquipWeapon : WeaponMiniPanel
 {
+    
     protected override void OnEnable()
     {
         if (GameManager.Inst != null) ;
@@ -19,6 +20,17 @@ public class EquipWeapon : WeaponMiniPanel
 
         base.OnEnable();
     }
+
+    public void ClearReforgigngMaterial(ReforgingMaterial reforgingMaterial)
+    {
+        reforgingMaterial.ClearRendering();
+    }
+
+    public override void SetWeaponCommandData(WeaponCommandDataSO dataSO)
+    {
+        base.SetWeaponCommandData(dataSO);
+        Btn.onClick?.Invoke();
+    }
     public void SetReforgingWeapon(ReforgingWeapon data)
     {
         if(this.weaponCommandDataSO == null)
@@ -27,7 +39,7 @@ public class EquipWeapon : WeaponMiniPanel
             return;
         }
         data.parentWeaponCommandDataSO = this.weaponCommandDataSO;
-        if (this.weaponCommandDataSO.UpgradeWeaponCommandDataSO.Count > 0 && this.weaponCommandDataSO.UpgradeWeaponCommandDataSO[data.ReforgingWeaponIdx] != null)
+        if (0 < this.weaponCommandDataSO.UpgradeWeaponCommandDataSO.Count && data.ReforgingWeaponIdx < this.weaponCommandDataSO.UpgradeWeaponCommandDataSO.Count)
         {
             data.SetWeaponCommandData(this.weaponCommandDataSO.UpgradeWeaponCommandDataSO[data.ReforgingWeaponIdx]);
         }
