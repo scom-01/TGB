@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 
 [CreateAssetMenu(fileName = "newWeaponCommandData", menuName = "Data/Weapon Data/WeaponCommand Data")]
 public class WeaponCommandDataSO : ScriptableObject
@@ -9,6 +11,9 @@ public class WeaponCommandDataSO : ScriptableObject
     [field: SerializeField] public int NumberOfActions { get; private set; }
     [Tooltip("Weapon Image")]
     [field: SerializeField] public Sprite WeaponImg { get; private set; }
+    [Tooltip("Weapon Name")]
+    [field: SerializeField] public string WeaponName { get; private set; }
+    [field: SerializeField] public LocalizedString WeaponNameLocal { get; private set; }
     [Tooltip("Weapon Elemental Power")]
     [field: SerializeField] public E_Power Elelemental_Power { get; private set; }
     [Tooltip("Weapon ClassLevel")]

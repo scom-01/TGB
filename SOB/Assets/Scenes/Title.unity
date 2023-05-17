@@ -4549,12 +4549,12 @@ RectTransform:
   - {fileID: 3938193}
   - {fileID: 1859455579}
   m_Father: {fileID: 1108112458}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 10}
-  m_SizeDelta: {x: 0, y: -220}
+  m_AnchoredPosition: {x: 0, y: -40}
+  m_SizeDelta: {x: 0, y: -320}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &181449197
 GameObject:
@@ -7008,10 +7008,10 @@ GameObject:
   - component: {fileID: 324294146}
   - component: {fileID: 324294152}
   - component: {fileID: 324294151}
+  - component: {fileID: 324294147}
   - component: {fileID: 324294150}
   - component: {fileID: 324294149}
   - component: {fileID: 324294148}
-  - component: {fileID: 324294147}
   - component: {fileID: 324294153}
   m_Layer: 0
   m_Name: ReforgingWeaponPanel_1
@@ -7253,6 +7253,58 @@ MonoBehaviour:
         - m_Target: {fileID: 1014657357}
           m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
           m_MethodName: Play
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+        - m_Target: {fileID: 324294148}
+          m_TargetAssemblyTypeName: WeaponMiniPanel, Assembly-CSharp
+          m_MethodName: SetWeaponCommandPanel
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 872132491}
+            m_ObjectArgumentAssemblyTypeName: WeaponCommandPanel, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+        - m_Target: {fileID: 324294148}
+          m_TargetAssemblyTypeName: WeaponMiniPanel, Assembly-CSharp
+          m_MethodName: SetReforgigngMaterial
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1108112459}
+            m_ObjectArgumentAssemblyTypeName: ReforgingMaterial, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+  - eventID: 15
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1014657357}
+          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+          m_MethodName: Play
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+        - m_Target: {fileID: 381957531}
+          m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+          m_MethodName: Select
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -8343,7 +8395,7 @@ RectTransform:
   m_Children:
   - {fileID: 132377174}
   m_Father: {fileID: 1108112458}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -9797,10 +9849,10 @@ GameObject:
   - component: {fileID: 442192559}
   - component: {fileID: 442192564}
   - component: {fileID: 442192563}
+  - component: {fileID: 442192565}
   - component: {fileID: 442192562}
   - component: {fileID: 442192561}
   - component: {fileID: 442192560}
-  - component: {fileID: 442192565}
   - component: {fileID: 442192566}
   m_Layer: 0
   m_Name: ReforgingWeaponPanel_0
@@ -10042,6 +10094,58 @@ MonoBehaviour:
         - m_Target: {fileID: 1014657357}
           m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
           m_MethodName: Play
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+        - m_Target: {fileID: 442192560}
+          m_TargetAssemblyTypeName: WeaponMiniPanel, Assembly-CSharp
+          m_MethodName: SetWeaponCommandPanel
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 872132491}
+            m_ObjectArgumentAssemblyTypeName: WeaponCommandPanel, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+        - m_Target: {fileID: 442192560}
+          m_TargetAssemblyTypeName: WeaponMiniPanel, Assembly-CSharp
+          m_MethodName: SetReforgigngMaterial
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1108112459}
+            m_ObjectArgumentAssemblyTypeName: ReforgingMaterial, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+  - eventID: 15
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1014657357}
+          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+          m_MethodName: Play
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+        - m_Target: {fileID: 381957531}
+          m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+          m_MethodName: Select
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -13668,6 +13772,182 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 683957065}
   m_CullTransparentMesh: 1
+--- !u!1 &684964629
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 684964630}
+  - component: {fileID: 684964632}
+  - component: {fileID: 684964631}
+  - component: {fileID: 684964633}
+  m_Layer: 0
+  m_Name: Weapon Name Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &684964630
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684964629}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1108112458}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -150}
+  m_SizeDelta: {x: 460, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &684964631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684964629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8198f7e38954cd94a8a6d7e3ced8f31f, type: 2}
+  m_sharedMaterial: {fileID: -5692886325435048767, guid: 8198f7e38954cd94a8a6d7e3ced8f31f, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 70
+  m_fontSizeBase: 70
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 0
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &684964632
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684964629}
+  m_CullTransparentMesh: 1
+--- !u!114 &684964633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684964629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 684964631}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &686193526
 GameObject:
   m_ObjectHideFlags: 0
@@ -13679,10 +13959,10 @@ GameObject:
   - component: {fileID: 686193527}
   - component: {fileID: 686193533}
   - component: {fileID: 686193532}
+  - component: {fileID: 686193528}
   - component: {fileID: 686193531}
   - component: {fileID: 686193530}
   - component: {fileID: 686193529}
-  - component: {fileID: 686193528}
   - component: {fileID: 686193534}
   m_Layer: 0
   m_Name: ReforgingWeaponPanel_3
@@ -13924,6 +14204,58 @@ MonoBehaviour:
         - m_Target: {fileID: 1014657357}
           m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
           m_MethodName: Play
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+        - m_Target: {fileID: 686193529}
+          m_TargetAssemblyTypeName: WeaponMiniPanel, Assembly-CSharp
+          m_MethodName: SetWeaponCommandPanel
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 872132491}
+            m_ObjectArgumentAssemblyTypeName: WeaponCommandPanel, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+        - m_Target: {fileID: 686193529}
+          m_TargetAssemblyTypeName: WeaponMiniPanel, Assembly-CSharp
+          m_MethodName: SetReforgigngMaterial
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1108112459}
+            m_ObjectArgumentAssemblyTypeName: ReforgingMaterial, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+  - eventID: 15
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1014657357}
+          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+          m_MethodName: Play
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+        - m_Target: {fileID: 381957531}
+          m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+          m_MethodName: Select
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -15372,7 +15704,7 @@ MonoBehaviour:
   m_Direction: 2
   m_Value: 0
   m_Size: 1
-  m_NumberOfSteps: 0
+  m_NumberOfSteps: 3
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -22244,10 +22576,10 @@ RectTransform:
   m_Father: {fileID: 1108112458}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -50}
-  m_SizeDelta: {x: -40, y: 50}
+  m_SizeDelta: {x: 460, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1047358715
 MonoBehaviour:
@@ -23110,6 +23442,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1047358714}
+  - {fileID: 684964630}
   - {fileID: 158017713}
   - {fileID: 381957529}
   m_Father: {fileID: 1038081405}
@@ -23118,7 +23451,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 300, y: 320}
-  m_SizeDelta: {x: 500, y: 550}
+  m_SizeDelta: {x: 500, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1108112459
 MonoBehaviour:
@@ -23132,7 +23465,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348ad87438e304646846d4fe5e27f65c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EquipWeaon: {fileID: 1955808568}
   ReforgingWeaponDataSO: {fileID: 0}
+  WeaponName: {fileID: 684964631}
   CurrentGoldAmountText: {fileID: 808415346}
   ReforgingCostGoldAmountText: {fileID: 1393104999}
   CurrentSculptureAmountText: {fileID: 1220868676}
@@ -28432,7 +28767,7 @@ MonoBehaviour:
   m_Direction: 2
   m_Value: 0
   m_Size: 1
-  m_NumberOfSteps: 0
+  m_NumberOfSteps: 3
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -39652,12 +39987,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1955808564}
+  - component: {fileID: 1955808567}
   - component: {fileID: 1955808566}
+  - component: {fileID: 1955808571}
   - component: {fileID: 1955808570}
   - component: {fileID: 1955808569}
   - component: {fileID: 1955808568}
-  - component: {fileID: 1955808567}
-  - component: {fileID: 1955808571}
   - component: {fileID: 1955808572}
   m_Layer: 0
   m_Name: WeaponPanel
@@ -39827,8 +40162,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 1
       - m_Target: {fileID: 1955808568}
-        m_TargetAssemblyTypeName: EquipWeapon, Assembly-CSharp
-        m_MethodName: ClearReforgigngMaterial
+        m_TargetAssemblyTypeName: WeaponMiniPanel, Assembly-CSharp
+        m_MethodName: SetReforgigngMaterial
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1108112459}
@@ -39937,6 +40272,78 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+        - m_Target: {fileID: 1955808568}
+          m_TargetAssemblyTypeName: EquipWeapon, Assembly-CSharp
+          m_MethodName: SetReforgingWeapon
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 442192560}
+            m_ObjectArgumentAssemblyTypeName: ReforgingWeapon, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+        - m_Target: {fileID: 1955808568}
+          m_TargetAssemblyTypeName: EquipWeapon, Assembly-CSharp
+          m_MethodName: SetReforgingWeapon
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 324294148}
+            m_ObjectArgumentAssemblyTypeName: ReforgingWeapon, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+        - m_Target: {fileID: 1955808568}
+          m_TargetAssemblyTypeName: EquipWeapon, Assembly-CSharp
+          m_MethodName: SetReforgingWeapon
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2030722102}
+            m_ObjectArgumentAssemblyTypeName: ReforgingWeapon, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+        - m_Target: {fileID: 1955808568}
+          m_TargetAssemblyTypeName: EquipWeapon, Assembly-CSharp
+          m_MethodName: SetReforgingWeapon
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 686193529}
+            m_ObjectArgumentAssemblyTypeName: ReforgingWeapon, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+        - m_Target: {fileID: 1955808568}
+          m_TargetAssemblyTypeName: WeaponMiniPanel, Assembly-CSharp
+          m_MethodName: SetReforgigngMaterial
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1108112459}
+            m_ObjectArgumentAssemblyTypeName: ReforgingMaterial, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+        - m_Target: {fileID: 1955808568}
+          m_TargetAssemblyTypeName: WeaponMiniPanel, Assembly-CSharp
+          m_MethodName: SetWeaponCommandPanel
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 872132491}
+            m_ObjectArgumentAssemblyTypeName: WeaponCommandPanel, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -41108,10 +41515,10 @@ GameObject:
   - component: {fileID: 2030722100}
   - component: {fileID: 2030722106}
   - component: {fileID: 2030722105}
+  - component: {fileID: 2030722101}
   - component: {fileID: 2030722104}
   - component: {fileID: 2030722103}
   - component: {fileID: 2030722102}
-  - component: {fileID: 2030722101}
   - component: {fileID: 2030722107}
   m_Layer: 0
   m_Name: ReforgingWeaponPanel_2
@@ -41353,6 +41760,58 @@ MonoBehaviour:
         - m_Target: {fileID: 1014657357}
           m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
           m_MethodName: Play
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+        - m_Target: {fileID: 2030722102}
+          m_TargetAssemblyTypeName: WeaponMiniPanel, Assembly-CSharp
+          m_MethodName: SetWeaponCommandPanel
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 872132491}
+            m_ObjectArgumentAssemblyTypeName: WeaponCommandPanel, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+        - m_Target: {fileID: 2030722102}
+          m_TargetAssemblyTypeName: WeaponMiniPanel, Assembly-CSharp
+          m_MethodName: SetReforgigngMaterial
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1108112459}
+            m_ObjectArgumentAssemblyTypeName: ReforgingMaterial, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+  - eventID: 15
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1014657357}
+          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+          m_MethodName: Play
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+        - m_Target: {fileID: 381957531}
+          m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+          m_MethodName: Select
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
