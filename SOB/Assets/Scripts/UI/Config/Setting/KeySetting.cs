@@ -64,6 +64,22 @@ public class KeySetting : MonoBehaviour
             CurrentKeyBtnNameTxt.text = InputControlPath.ToHumanReadableString(
             m_Action.action.bindings[m_BindingIndex].effectivePath,
             InputControlPath.HumanReadableStringOptions.OmitDevice);
+            if(CurrentKeyBtnNameTxt.text == "Up Arrow")
+            {
+                CurrentKeyBtnNameTxt.text = "↑";
+            }
+            else if(CurrentKeyBtnNameTxt.text == "Down Arrow")
+            {
+                CurrentKeyBtnNameTxt.text = "↓";
+            }
+            else if (CurrentKeyBtnNameTxt.text == "Left Arrow")
+            {
+                CurrentKeyBtnNameTxt.text = "←";
+            }
+            else if (CurrentKeyBtnNameTxt.text == "Right Arrow")
+            {
+                CurrentKeyBtnNameTxt.text = "→";
+            }
         }
 
         if (CurrentKeyBtnNameTxt_3D != null)
