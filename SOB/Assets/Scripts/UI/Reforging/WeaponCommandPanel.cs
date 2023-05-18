@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 
 public class WeaponCommandPanel : MonoBehaviour
 {
     [Header("Data")]
     [SerializeField] private WeaponCommandDataSO WeaponCommandDataSO;
+    [Tooltip("선택된 무기 이름")]
+    [SerializeField] private TextMeshProUGUI WeaponName;
 
     public Transform GroundContent;
     public Transform InAirContent;
@@ -54,6 +58,11 @@ public class WeaponCommandPanel : MonoBehaviour
     }
     private Canvas canvas;
 
+    private void OnEnable()
+    {
+        SetRendering();
+    }
+
     private void CommandPanel(CommandEnum command, Transform _transform)
     {
         if (command == CommandEnum.Primary)
@@ -81,11 +90,11 @@ public class WeaponCommandPanel : MonoBehaviour
 
     public void SetWeaponData(WeaponCommandDataSO data)
     {
-        if(data == WeaponCommandDataSO)
+        if (data == WeaponCommandDataSO)
         {
             Debug.Log("동일한 WeaponCommandDataSO 데이터");
             return;
-        }    
+        }
         WeaponCommandDataSO = data;
         SetRendering();
     }
@@ -93,8 +102,32 @@ public class WeaponCommandPanel : MonoBehaviour
     public void SetRendering()
     {
         ClearCommandPanel();
-        
-        Canvas.enabled = WeaponCommandDataSO != null ? true : false;
+
+        if (WeaponCommandDataSO != null)
+        {
+            if (WeaponName != null)
+            {
+                WeaponName.text = WeaponCommandDataSO.WeaponName;
+                var local = WeaponName.GetComponent<LocalizeStringEvent>();
+                if (local)
+                {
+                    if (WeaponCommandDataSO.WeaponNameLocal != null)
+                    {
+                        local.StringReference = WeaponCommandDataSO.WeaponNameLocal;
+                    }
+                }
+                else
+                {
+                    Debug.Log($"{WeaponName.text} have not Localize String Event");
+                }
+            }
+        }
+        else
+        {
+            if (WeaponName != null)
+                WeaponName.text = "";
+        }
+
 
         if (GroundedCommandList != null)
         {
@@ -109,7 +142,7 @@ public class WeaponCommandPanel : MonoBehaviour
                 }
             }
         }
-        
+
         if (InAirCommandList != null)
         {
             Debug.Log($"InAirCommandList = {InAirCommandList}");
