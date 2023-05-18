@@ -15,20 +15,16 @@ public class TitleManager : MonoBehaviour
         {
             DataManager.Inst.Init();
         }
+        Init();
     }
-    // Start is called before the first frame update
-    void Start()
+
+    private void Init()
     {
-        var audio =  BGM.AddComponent<AudioSource>();
+        var audio = BGM.AddComponent<AudioSource>();
         audio.clip = TitleBGM;
-        DataManager.Inst.PlayerCfgBGMLoad();
+        DataManager.Inst?.PlayerCfgBGMLoad();
         audio.outputAudioMixerGroup = DataManager.Inst.BGM;
+        audio.loop = true;
         audio.Play();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
