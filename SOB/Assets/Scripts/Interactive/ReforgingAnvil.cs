@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 
 public class ReforgingAnvil : InteractiveObject
@@ -19,6 +20,7 @@ public class ReforgingAnvil : InteractiveObject
         GameManager.Inst.ReforgingUI.EnabledChildrensCanvas(true);
         GameManager.Inst.ReforgingUI.equipWeapon.SetWeaponCommandData(GameManager.Inst.StageManager.player.Inventory.weaponData.weaponCommandDataSO);
         GameManager.Inst.StageManager.player.Inventory.weaponData = GameManager.Inst.StageManager.player.Inventory.weaponData;
+        EventSystem.current.SetSelectedGameObject(GameManager.Inst.ReforgingUI.equipWeapon.gameObject);
         GameManager.Inst.ReforgingUI.equipWeapon.Btn.onClick?.Invoke();
         //GameManager.Inst.SubUI.InventorySubUI.NullCheckInput();
         //GameManager.Inst.inputHandler.ChangeCurrentActionMap("UI", true);

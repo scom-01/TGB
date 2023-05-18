@@ -92,8 +92,7 @@ public class Detector : MonoBehaviour
                         currentGO.GetComponentInParent<SOB_Item>().Detected(this.gameObject.transform.position.x < currentGO.transform.position.x);
                     }
                     else if(go.tag == "Interaction")
-                    {
-                        EventSystem.current.SetSelectedGameObject(GameManager.Inst.ReforgingUI.equipWeapon.gameObject);
+                    {                        
                         currentGO.GetComponent<InteractiveObject>().SetActiveBtnObj(true);
                         if (player.InputHandler.InteractionInput)
                         {

@@ -201,11 +201,16 @@ public class ReforgingMaterial : MonoBehaviour
                 Debug.Log("StageManager is Null");
                 return;
             }
+                        
+            if(DataManager.Inst!=null)
+            {
+                DataManager.Inst.DecreseGold(reforgingCostGoldAmount);
+                DataManager.Inst.DecreseElementalsculpture(reforgingCostSculptureAmount);
+            }
 
-            currentGoldAmount -= reforgingCostGoldAmount;
-            currentSculptureAmount -= reforgingCostSculptureAmount;
             equip.SetWeaponCommandData(ReforgingWeaponDataSO);
-            GameManager.Inst.StageManager?.player.Inventory.Weapon.SetCommandData(ReforgingWeaponDataSO);
+            GameManager.Inst.StageManager.player.Inventory.Weapon.SetCommandData(ReforgingWeaponDataSO);
+            GameManager.Inst.StageManager.player.Inventory.weaponData = GameManager.Inst.StageManager.player.Inventory.Weapon.weaponData;
         }
         else
         {
