@@ -9,9 +9,42 @@ namespace SOB.Manager
 {
     public class InventoryUI : MonoBehaviour
     {
-        private Player Player;
-        private Inventory PlayerInventory;
-        private PlayerInputHandler inputHandler;
+        private Player Player
+        {
+            get
+            {
+                if(GameManager.Inst!=null)
+                {
+                    if(GameManager.Inst.StageManager!= null)
+                    {
+                        return GameManager.Inst.StageManager.player;
+                    }
+                }
+                return null;
+            }
+        }
+        private Inventory PlayerInventory
+        {
+            get
+            {
+                if(Player != null)
+                {
+                    return Player.Inventory;
+                }
+                return null;
+            }
+        }
+        private PlayerInputHandler inputHandler
+        { 
+            get
+            {
+                if(GameManager.Inst==null)
+                {
+                    return null;
+                }
+                return GameManager.Inst.inputHandler;
+            }
+        }
 
         public event Action OnInteractionInput;
 
@@ -67,14 +100,7 @@ namespace SOB.Manager
             }
         }
         private Canvas canvas;
-        private void Awake()
-        {
-            if (GameManager.Inst.StageManager != null)
-                Player = GameManager.Inst.StageManager.player;
-            inputHandler = GameManager.Inst.inputHandler;
-            if (Player != null)
-                PlayerInventory = Player.GetComponent<Inventory>();
-        }
+
         private void Update()
         {
             InputCheck();
@@ -88,28 +114,21 @@ namespace SOB.Manager
                 return;
             }
 
-            //if (inputHandler.RawUIMoveInputRight)
-            //{
-            //    OnRawUIMoveInputRight.Invoke();
-            //}
-            //else if (inputHandler.RawUIMoveInputLeft)
-            //{
-            //    OnRawUIMoveInputLeft.Invoke();
-            //}
-
             if (inputHandler.InteractionInput)
             {
-                OnInteractionInput.Invoke();
+                OnInteractionInput?.Invoke();
             }
         }
 
         private void OnEnable()
         {
             if (PlayerInventory != null)
+            {
                 for (int i = 0; i < PlayerInventory.items.Count; i++)
                 {
                     InventoryItems.items[i].StatsItemData = PlayerInventory.items[i];
                 }
+            }                
         }
 
         private void OnDisable()

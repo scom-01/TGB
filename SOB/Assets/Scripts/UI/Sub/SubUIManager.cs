@@ -43,7 +43,7 @@ namespace SOB.Manager
         {
             if(DetailSubUI != null)
             {
-                DetailSubUI.gameObject.SetActive(OnOff);                
+                DetailSubUI.Canvas.enabled = OnOff;
             }
         }
     }

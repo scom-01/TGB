@@ -136,13 +136,6 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void CheckPause(bool pause)
-    {
-        if (pause)
-            Pause();
-        else
-            Continue();
-    }
     public void CheckPause(string actionMap, bool pause)
     {
         if (pause)
@@ -166,7 +159,7 @@ public class GameManager : MonoBehaviour
         {
             //InventoryOpen
             case "UI":
-                CfgUI.Canvas.enabled = false;                
+                CfgUI.Canvas.enabled = false;
                 SubUI.InventorySubUI.Canvas.enabled = true;
                 if (SubUI.InventorySubUI.InventoryItems.CurrentSelectItem == null)
                 {
@@ -178,23 +171,19 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case "Cfg":
+                SubUI.InventorySubUI.NullCheckInput();
                 SubUI.InventorySubUI.Canvas.enabled = false;
+
                 CfgUI.Canvas.enabled = true;
-                EventSystem.current.SetSelectedGameObject(CfgUI.ConfigPanelUI.cfgBtns[0].gameObject);
+                EventSystem.current.SetSelectedGameObject(null);
                 break;
             case "Empty":
+                SubUI.InventorySubUI.NullCheckInput();
                 SubUI.InventorySubUI.Canvas.enabled = false;
                 CfgUI.Canvas.enabled = true;
-                EventSystem.current.SetSelectedGameObject(CfgUI.ConfigPanelUI.cfgBtns[0].gameObject);
+                EventSystem.current.SetSelectedGameObject(null);
                 break;
         }
-        isPause = true;
-    }
-    private void Pause()
-    {
-        Time.timeScale = 0f;
-        MainUI.Canvas.enabled = false;
-        SubUI.InventorySubUI.Canvas.enabled = true;
         isPause = true;
     }
     private void Continue(string switchActionMap)
@@ -202,6 +191,7 @@ public class GameManager : MonoBehaviour
         if (!isPause)
             return;
 
+        SubUI.InventorySubUI.NullCheckInput();
         Time.timeScale = 1f;
 
         if (StageManager)
@@ -274,7 +264,7 @@ public class GameManager : MonoBehaviour
         DataManager.Inst?.SaveScene(StageManager.CurrStageName);
         DataManager.Inst?.NextStage(StageManager.NextStageName);
         DataManager.Inst.PlayerInventoryDataSave(
-            GameManager.Inst.StageManager.player.Inventory.weapons,
+            GameManager.Inst.StageManager.player.Inventory.Weapon,
             GameManager.Inst.StageManager.player.Inventory.items);
         DataManager.Inst?.PlayerStatSave(
             GameManager.Inst.StageManager.player.Core.GetCoreComponent<UnitStats>());

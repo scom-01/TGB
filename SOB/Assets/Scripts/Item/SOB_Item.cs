@@ -62,12 +62,18 @@ namespace SOB.Item
         /// <param name="isright">Detector의 오른쪽인지(Default true)</param>
         public void Detected(bool isright = true)
         {
+            if (GameManager.Inst == null)
+            {
+                Debug.LogWarning("GameMamanger.Inst is Null");
+                return;
+            }
+
             GameManager.Inst.SubUI.isRight(isright);
             GameManager.Inst.SubUI.DetailSubUI.Icon.sprite = Item.ItemSprite;
             GameManager.Inst.SubUI.DetailSubUI.MainItemName = Item.ItemName;
             GameManager.Inst.SubUI.DetailSubUI.SubItemName = Item.ItemDescription;
 
-            if (GameManager.Inst.SubUI.DetailSubUI.gameObject.activeSelf)
+            if (GameManager.Inst.SubUI.DetailSubUI.Canvas.enabled)
             {
                 //대충 SubUI 내용 바꾸는 코드                
                 Debug.Log($"Change {GameManager.Inst.SubUI.DetailSubUI.gameObject.name} Text");

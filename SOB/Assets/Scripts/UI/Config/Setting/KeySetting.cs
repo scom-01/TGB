@@ -28,6 +28,7 @@ public class KeySetting : MonoBehaviour
     [SerializeField] private TextMeshProUGUI CurrentKeyBtnNameTxt;
     [SerializeField] private TextMeshPro CurrentKeyBtnNameTxt_3D;
     [SerializeField] private string keyName;
+    [SerializeField] private Canvas WaitforInputCanvas;
     
     private InputActionRebindingExtensions.RebindingOperation m_Rebind;
     private int m_BindingIndex;
@@ -59,6 +60,10 @@ public class KeySetting : MonoBehaviour
     {
         m_Rebind?.Dispose();
 
+        if (WaitforInputCanvas != null) 
+        {
+            WaitforInputCanvas.enabled = false;
+        }
         if (CurrentKeyBtnNameTxt != null)
         {
             CurrentKeyBtnNameTxt.text = InputControlPath.ToHumanReadableString(
