@@ -57,7 +57,7 @@ public class UIEventHandler : MonoBehaviour
 
     public void OnOptionBtnClicked()
     {
-        if (GameManager.Inst != null) ;
+        if (GameManager.Inst != null)
         {
             GameManager.Inst.inputHandler.ChangeCurrentActionMap("Cfg", true);
             GameManager.Inst.CfgUI.Canvas.enabled = true;

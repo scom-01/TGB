@@ -9,11 +9,27 @@ using SOB.CoreSystem;
 public class Inventory : MonoBehaviour
 {
     private Unit unit;
-    public List<WeaponData> weaponDatas = new List<WeaponData>();
-    public List<Weapon> weapons = new List<Weapon>();
+    public WeaponData weaponData;
+    public Weapon Weapon
+    {
+        get
+        {
+            if (m_weapon == null)
+            {
+                m_weapon = this.GetComponentInChildren<Weapon>();
+            }
+            return m_weapon;
+        }
+        set
+        {
+            m_weapon = value;
+        }
+    }
+
     public List<StatsItemSO> items = new List<StatsItemSO>();
     public GameObject CheckItem;
-    
+
+    private Weapon m_weapon;
     private int ItemCount;
     private void Awake()
     {
@@ -22,23 +38,7 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         unit = this.GetComponent<Unit>();
-
-        if (weapons == null || weapons?.Count == 0)
-        {
-            weapons = new List<Weapon>();
-            var weaponItems = this.GetComponentsInChildren<Weapon>();
-            for (int i = 0; i < weaponItems.Length; i++)
-            {
-                this.weapons.Add(weaponItems[i]);
-                this.weaponDatas.Add(weaponItems[i].weaponData);
-            }
-
-            if (this.weapons == null)
-            {
-                Debug.LogWarning($"{transform.name}'s Weapons is empty in The Inventory");
-            }
-        }
-
+        weaponData = Weapon.weaponData;
         if (items == null || items?.Count == 0)
         {
             Debug.LogWarning($"{transform.name}'s Items is empty in The Inventory");
@@ -49,8 +49,8 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
-        var oldWeapon = weapons;
-        if (weapons != oldWeapon)
+        var oldWeapon = Weapon;
+        if (Weapon != oldWeapon)
         {
             ChangeWeaponAttribute();
         }
@@ -90,20 +90,17 @@ public class Inventory : MonoBehaviour
     }
 
 
-    public bool AddWeapon(WeaponData weaponObject)
+    public bool SetWeapon(WeaponData weaponObject)
     {
-        if(weaponDatas.Contains(weaponObject))
+        if(this.weaponData.weaponCommandDataSO == weaponObject.weaponCommandDataSO)
         {
             return false;
         }
-        else
-        {
-            Debug.Log($"Add Success add {weaponObject.weaponCommandDataSO.name}");
-            var weapon =  Instantiate(DataManager.Inst?.BaseWeaponPrefab);
-            weapon.GetComponent<Weapon>().weaponData = weaponObject;
-            weapon.GetComponent<Weapon>().weaponGenerator.Init();
-            weaponDatas.Add(weaponObject);
-        }
+
+        this.Weapon.SetData(weaponObject.weaponDataSO);
+        this.Weapon.SetCommandData(weaponObject.weaponCommandDataSO);
+        weaponData = weaponObject;
+        
         return true;
     }
 

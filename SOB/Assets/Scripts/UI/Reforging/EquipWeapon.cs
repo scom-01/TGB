@@ -10,11 +10,11 @@ public class EquipWeapon : WeaponMiniPanel
     
     protected override void OnEnable()
     {
-        if (GameManager.Inst != null) ;
+        if (GameManager.Inst != null)
         {
             if (GameManager.Inst.StageManager != null)
             {
-                weaponCommandDataSO = GameManager.Inst.StageManager.player.Inventory.weaponDatas[0].weaponCommandDataSO;
+                weaponCommandDataSO = GameManager.Inst.StageManager.player.Inventory.weaponData.weaponCommandDataSO;
             }
         }
 

@@ -12,7 +12,7 @@ public class Enemy_Melee1_MoveState : EnemyRunState
 
     public override void Enemy_Attack()
     {
-        enemy_Melee.AttackState.SetWeapon(unit.Inventory.weapons[0]);
+        enemy_Melee.AttackState.SetWeapon(unit.Inventory.Weapon);
         unit.FSM.ChangeState(enemy_Melee.AttackState);
         Debug.LogWarning("ChanegEnemy_Melee1");
     }

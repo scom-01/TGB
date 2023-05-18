@@ -31,10 +31,7 @@ public class Enemy : Unit
     protected override void Start()
     {
         base.Start();
-        foreach (var weapon in Inventory.weapons)
-        {
-            weapon.SetCore(Core);
-        }
+        Inventory.Weapon.SetCore(Core);
         Init();        
     }
 

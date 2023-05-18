@@ -98,8 +98,6 @@ public class ReforgingMaterial : MonoBehaviour
     {
         GetCurrentGoods();
 
-        
-
         if (ReforgingWeaponDataSO == null)
         {            
             if (WeaponName != null)
@@ -200,7 +198,7 @@ public class ReforgingMaterial : MonoBehaviour
         {
             currentGoldAmount -= reforgingCostGoldAmount;
             currentSculptureAmount -= reforgingCostSculptureAmount;
-            equip.SetWeaponCommandData(ReforgingWeaponDataSO);
+            equip.SetWeaponCommandData(ReforgingWeaponDataSO);            
         }
         else
         {

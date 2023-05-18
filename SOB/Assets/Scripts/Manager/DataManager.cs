@@ -37,7 +37,7 @@ public class DataManager : MonoBehaviour
     #region GameData Value
     public GameObject BaseWeaponPrefab;
     [HideInInspector]
-    public List<WeaponData> Playerweapons = new List<WeaponData>();
+    public WeaponData Playerweapon;
     [HideInInspector]
     public List<StatsItemSO> Playeritems = new List<StatsItemSO>();
     private bool isWeaponDataSave = false;
@@ -190,34 +190,22 @@ public class DataManager : MonoBehaviour
             return;
         }
 
-        //inventory.weapons = Playerweapons;
-
-        if (Playerweapons.Count > inventory.weaponDatas.Count)
+        if (inventory.Weapon != null)
         {
-            for (int i = inventory.weaponDatas.Count; i < Playerweapons.Count; i++)
-            {
-                inventory.AddWeapon(Playerweapons[i]);
-            }
+            inventory.Weapon.SetCommandData(Playerweapon.weaponCommandDataSO);
+        }
+        else
+        {
+            Debug.LogWarning("Inventory.weapon is Null");
         }
 
-        for (int i = 0; i < inventory.weapons.Count; i++)
-        {
-            inventory.weapons[i].weaponData = Playerweapons[i];
-            inventory.weapons[i].weaponGenerator.Init();
-        }
         inventory.items = Playeritems;
         Debug.LogWarning("Success Inventory Data Load");
     }
 
-    public void PlayerInventoryDataSave(List<Weapon> weaponList, List<StatsItemSO> itemList)
+    public void PlayerInventoryDataSave(Weapon weapon, List<StatsItemSO> itemList)
     {
-        if (weaponList.Count > 0)
-        {
-            for (int i = 0; i < weaponList.Count; i++)
-            {
-                Playerweapons.Add(weaponList[i].weaponData);
-            }
-        }
+        Playerweapon = weapon.weaponData;
 
         if (itemList.Count > 0)
         {
