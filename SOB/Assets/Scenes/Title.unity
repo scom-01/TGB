@@ -9385,7 +9385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89a6ea0b4f058ee42b6b0393c4718e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StageName: Stage1
+  StageName: ReforgingScene
 --- !u!1 &412476544
 GameObject:
   m_ObjectHideFlags: 0
@@ -10180,7 +10180,7 @@ GameObject:
   - component: {fileID: 444941452}
   - component: {fileID: 444941451}
   m_Layer: 0
-  m_Name: Reforging Weapon
+  m_Name: Reforging Weapon Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14726,7 +14726,7 @@ GameObject:
   - component: {fileID: 731824638}
   - component: {fileID: 731824640}
   m_Layer: 0
-  m_Name: 'Equip Weapon '
+  m_Name: Equip Weapon Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28839,7 +28839,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: 359373.3}
+  m_AnchoredPosition: {x: 7, y: 104199.48}
   m_SizeDelta: {x: 21.1497, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1368125264
@@ -35921,6 +35921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adee4e72ec860f146baaa71c6e5851b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equipWeapon: {fileID: 1955808568}
 --- !u!114 &1722998509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40316,7 +40317,7 @@ GameObject:
   - component: {fileID: 1955808568}
   - component: {fileID: 1955808572}
   m_Layer: 0
-  m_Name: WeaponPanel
+  m_Name: EquipWeaponPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40386,7 +40387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f7967a0074a1c449944a945822a89fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponCommandDataSO: {fileID: 11400000, guid: 666144be098a62045a45586d8c899704, type: 2}
+  weaponCommandDataSO: {fileID: 0}
   Symbol_Img: {fileID: 824620597}
   ClassLevel: {fileID: 1636643043}
   WeaponImg: {fileID: 228134179}
@@ -44334,7 +44335,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: -91805.664}
+  m_AnchoredPosition: {x: 7, y: -28990.598}
   m_SizeDelta: {x: 21.1497, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2125587133

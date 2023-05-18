@@ -37,8 +37,8 @@ namespace SOB.Manager
 
         public void EnabledChildrensCanvas(bool enabled)
         {
-            for(int i =0;i< ChildrensCanvas.Length;i++)
-            {
+            for (int i = 0; i < ChildrensCanvas.Length; i++)
+            {                
                 ChildrensCanvas[i].enabled = enabled;
             }
         }

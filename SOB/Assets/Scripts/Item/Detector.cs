@@ -5,6 +5,7 @@ using SOB.Item;
 using SOB.CoreSystem;
 using UnityEditor;
 using static UnityEditor.Progress;
+using UnityEngine.EventSystems;
 
 public class Detector : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class Detector : MonoBehaviour
     public LayerMask DetectorMask { get; private set; }
 
     private List<GameObject> DetectedList = new List<GameObject>();
-    private GameObject currentGO;
+    [SerializeField]private GameObject currentGO;
     //private float currentDistance = 0.0f;
     private void Awake()
     {
@@ -70,7 +71,7 @@ public class Detector : MonoBehaviour
                     currentGO.GetComponent<InteractiveObject>()?.Interactive();
                 }
             }
-            
+
         }
     }
     IEnumerator CheckCurrentGO()
@@ -92,6 +93,7 @@ public class Detector : MonoBehaviour
                     }
                     else if(go.tag == "Interaction")
                     {
+                        EventSystem.current.SetSelectedGameObject(GameManager.Inst.ReforgingUI.equipWeapon.gameObject);
                         currentGO.GetComponent<InteractiveObject>().SetActiveBtnObj(true);
                         if (player.InputHandler.InteractionInput)
                         {
@@ -128,7 +130,7 @@ public class Detector : MonoBehaviour
                         currentGO.GetComponentInParent<SOB_Item>().Detected(this.gameObject.transform.position.x < currentGO.transform.position.x);
                     }
                     else if (go.tag == "Interaction")
-                    {
+                    {                        
                         currentGO.GetComponent<InteractiveObject>().SetActiveBtnObj(true);
                         if (player.InputHandler.InteractionInput)
                         {
@@ -255,6 +257,12 @@ public class Detector : MonoBehaviour
                     currentGO = null;
                 }
             }
+        }
+        else if(collision.tag == "Interaction")
+        {
+            currentGO.GetComponent<InteractiveObject>().SetActiveBtnObj(false);
+            currentGO.GetComponent<InteractiveObject>().UnInteractive();
+            currentGO = null;
         }
     }
 

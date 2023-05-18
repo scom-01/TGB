@@ -45,6 +45,7 @@ public class EquipWeapon : WeaponMiniPanel
         }
         else
         {
+            data.SetWeaponCommandData(null);
             Debug.LogWarning($"{this.weaponCommandDataSO.UpgradeWeaponCommandDataSO}[{data.ReforgingWeaponIdx}] WeaponCommandDataSO is Null");
         }
     }
