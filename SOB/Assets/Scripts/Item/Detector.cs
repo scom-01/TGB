@@ -62,6 +62,7 @@ public class Detector : MonoBehaviour
             }
             else if (currentGO.tag == "Interaction")
             {
+                currentGO.GetComponent<InteractiveObject>().SetActiveBtnObj(true);
                 if (player.InputHandler.InteractionInput)
                 {
                     player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
@@ -78,6 +79,8 @@ public class Detector : MonoBehaviour
         {
             foreach (GameObject go in DetectedList)
             {
+
+                var player = unit as Player;
                 if (currentGO == null)
                 {
                     currentGO = go;
@@ -89,7 +92,13 @@ public class Detector : MonoBehaviour
                     }
                     else if(go.tag == "Interaction")
                     {
-
+                        currentGO.GetComponent<InteractiveObject>().SetActiveBtnObj(true);
+                        if (player.InputHandler.InteractionInput)
+                        {
+                            player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
+                            Debug.Log($"{currentGO} interactive");
+                            currentGO.GetComponent<InteractiveObject>()?.Interactive();
+                        }
                     }
                     
                     continue;
@@ -101,9 +110,14 @@ public class Detector : MonoBehaviour
                 if (Vector2.Distance(currentGO.transform.position, this.gameObject.transform.position) > Vector2.Distance(go.transform.position, this.gameObject.transform.position))
                 {
                     //이전 아이템 UnDetected
-                    if(currentGO.tag =="Item")
+                    if (currentGO.tag =="Item")
                     {
                         currentGO.GetComponentInParent<SOB_Item>().UnDetected();
+                    }
+                    else if(currentGO.tag == "Interaction")
+                    {
+                        currentGO.GetComponent<InteractiveObject>().SetActiveBtnObj(false);
+                        currentGO.GetComponent<InteractiveObject>().UnInteractive();
                     }
                     //가장 가까운 Detected 오브젝트
                     currentGO = go;
@@ -115,7 +129,13 @@ public class Detector : MonoBehaviour
                     }
                     else if (go.tag == "Interaction")
                     {
-
+                        currentGO.GetComponent<InteractiveObject>().SetActiveBtnObj(true);
+                        if (player.InputHandler.InteractionInput)
+                        {
+                            player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
+                            Debug.Log($"{currentGO} interactive");
+                            currentGO.GetComponent<InteractiveObject>()?.Interactive();
+                        }
                     }
                     continue;
                 }
@@ -242,20 +262,5 @@ public class Detector : MonoBehaviour
     //Collider
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        ////Detected이면 return
-        //if (collision.gameObject.layer == LayerMask.NameToLayer("Invisible"))
-        //    return;
-
-        ////DetectorMask 의 LayerMask가 아니면 return
-        //if ((DetectorMask.value & (1 << collision.gameObject.layer)) <= 0)
-        //    return;
-
-        //if (collision.gameObject.tag == "Item")
-        //{
-        //    Debug.Log($"Conflict {collision.gameObject.name}");
-        //    var collItem = collision.gameObject.GetComponent<SOB_Item>();
-        //    collItem.unit = unit;
-        //    collItem.CallCoroutine(ItemGetType.Collision.ToString());
-        //}
     }
 }

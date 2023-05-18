@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IInteractive
 {
     public void Interactive();
+    public void UnInteractive();
 }

@@ -196,9 +196,16 @@ public class ReforgingMaterial : MonoBehaviour
 
         if (CheckReforging())
         {
+            if (GameManager.Inst.StageManager == null)
+            {
+                Debug.Log("StageManager is Null");
+                return;
+            }
+
             currentGoldAmount -= reforgingCostGoldAmount;
             currentSculptureAmount -= reforgingCostSculptureAmount;
-            equip.SetWeaponCommandData(ReforgingWeaponDataSO);            
+            equip.SetWeaponCommandData(ReforgingWeaponDataSO);
+            GameManager.Inst.StageManager?.player.Inventory.Weapon.SetCommandData(ReforgingWeaponDataSO);
         }
         else
         {

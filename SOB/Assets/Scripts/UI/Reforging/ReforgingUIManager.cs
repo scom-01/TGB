@@ -33,6 +33,8 @@ namespace SOB.Manager
         }
         private Canvas[] childrensCanvas;
 
+        public EquipWeapon equipWeapon;
+
         public void EnabledChildrensCanvas(bool enabled)
         {
             for(int i =0;i< ChildrensCanvas.Length;i++)
