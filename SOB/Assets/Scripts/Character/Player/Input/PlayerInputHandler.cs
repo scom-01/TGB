@@ -14,8 +14,6 @@ public class PlayerInputHandler : MonoBehaviour
         get => GetComponent<PlayerInput>();
     }
     PlayerInputActions playerInputActions;
-    private InputActionMap oldInputActionMap;
-    private InputAction MyAction;
     private Camera cam;
     public Vector2 RawMovementInput { get; private set; }
     public int NormInputX { get; private set; }
@@ -54,7 +52,6 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (playerInputActions == null)
             playerInputActions = new PlayerInputActions();
-        MyAction = playerInputActions.GamePlay.Primary;
         int count = Enum.GetValues(typeof(CombatInputs)).Length;
         ActionInputs = new bool[count];
         ActionInputsStartTime = new float[count];
@@ -257,14 +254,14 @@ public class PlayerInputHandler : MonoBehaviour
             Debug.Log("OnTapInput Start");
             if (playerInput.actions.actionMaps.ToArray().Length > 0)
             {
-                if (playerInput.currentActionMap == playerInput.actions.FindActionMap("UI"))
+                if (playerInput.currentActionMap == playerInput.actions.FindActionMap(InputEnum.UI.ToString()))
                 {
-                    ChangeCurrentActionMap("GamePlay", false);
+                    ChangeCurrentActionMap(InputEnum.GamePlay, false);
                 }
-                else if (playerInput.currentActionMap == playerInput.actions.FindActionMap("GamePlay"))
+                else if (playerInput.currentActionMap == playerInput.actions.FindActionMap(InputEnum.GamePlay.ToString()))
                 {
                     GameManager.Inst.SubUI.InventorySubUI.PutInventoryItem();
-                    ChangeCurrentActionMap("UI", true);
+                    ChangeCurrentActionMap(InputEnum.UI, true);
                 }
             }
         }
@@ -280,19 +277,19 @@ public class PlayerInputHandler : MonoBehaviour
             Debug.Log("OnESCInput Start");
             if (playerInput.actions.actionMaps.ToArray().Length > 0)
             {
-                if (playerInput.currentActionMap == playerInput.actions.FindActionMap("UI"))
+                if (playerInput.currentActionMap == playerInput.actions.FindActionMap(InputEnum.UI.ToString()))
                 {
-                    ChangeCurrentActionMap("GamePlay", false);
+                    ChangeCurrentActionMap(InputEnum.GamePlay, false);
                 }
-                else if (playerInput.currentActionMap == playerInput.actions.FindActionMap("GamePlay"))
+                else if (playerInput.currentActionMap == playerInput.actions.FindActionMap(InputEnum.GamePlay.ToString()))
                 {
-                    ChangeCurrentActionMap("Cfg", true);
+                    ChangeCurrentActionMap(InputEnum.Cfg, true);
                 }
-                else if (playerInput.currentActionMap == playerInput.actions.FindActionMap("Cfg"))
+                else if (playerInput.currentActionMap == playerInput.actions.FindActionMap(InputEnum.Cfg.ToString()))
                 {
                     if (GameManager.Inst.StageManager == null)
                     {
-                        ChangeCurrentActionMap("Cfg", true);
+                        ChangeCurrentActionMap(InputEnum.Cfg, true);
                     }
                     else
                     {
@@ -300,10 +297,9 @@ public class PlayerInputHandler : MonoBehaviour
                         {
                             btn.OnClickActiveUI(false);
                         }
-                        ChangeCurrentActionMap("GamePlay", false);
+                        ChangeCurrentActionMap(InputEnum.GamePlay, false);
                     }
                 }
-                oldInputActionMap = playerInput.currentActionMap;
             }
         }
         if (context.canceled)
@@ -317,22 +313,21 @@ public class PlayerInputHandler : MonoBehaviour
     {
     }
 
-    public void ChangeCurrentActionMap(string actionMapName, bool Pause)
+    public void ChangeCurrentActionMap(InputEnum inputEnum, bool Pause)
     {
         //현재와 동일한 ActionMap으로 변경하려하면 ActionMap변경을 원치않으므로 Pause기능만 하도록
-        if (playerInput.currentActionMap == playerInput.actions.FindActionMap(actionMapName))
+        if (playerInput.currentActionMap == playerInput.actions.FindActionMap(inputEnum.ToString()))
         {            
-            if(actionMapName == "GamePlay")
+            if(inputEnum == InputEnum.GamePlay)
             {
                 return;
             }
-            GameManager.Inst.CheckPause(actionMapName);
+            GameManager.Inst.CheckPause(inputEnum);
         }
         else
         {
-            oldInputActionMap = playerInput.currentActionMap;
-            playerInput.SwitchCurrentActionMap(actionMapName);
-            GameManager.Inst.CheckPause(actionMapName, Pause);
+            playerInput.SwitchCurrentActionMap(inputEnum.ToString());
+            GameManager.Inst.CheckPause(inputEnum, Pause);
         }
     }
 

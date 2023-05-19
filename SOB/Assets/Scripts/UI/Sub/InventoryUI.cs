@@ -193,7 +193,7 @@ namespace SOB.Manager
             Destroy(PlayerInventory.CheckItem.GameObject());
             PlayerInventory.CheckItem = null;
             inputHandler.UseInput(ref inputHandler.InteractionInput);
-            GameManager.Inst.inputHandler.ChangeCurrentActionMap("GamePlay", false);
+            GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, false);
         }
     }
 }

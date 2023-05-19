@@ -51,6 +51,7 @@ public class StageManager : MonoBehaviour
         {
             var Fadeobject = Instantiate(FadeIn);
             Fadeobject.GetComponent<PlayableDirector>().Play();
+            Destroy(Fadeobject, (float)Fadeobject.GetComponent<PlayableDirector>().duration);
         }
         //if (CutSceneDirector != null)
         //    CutSceneDirector.Play();
@@ -90,7 +91,7 @@ public class StageManager : MonoBehaviour
         IM = GameObject.Find("ItemManager").GetComponent<ItemManager>();
         SPM = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         respawnPoint = GameObject.Find("SpawnPoint").GetComponent<Transform>();
-        GameManager.Inst.inputHandler.ChangeCurrentActionMap("GamePlay", false);
+        GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, false);
         GameManager.Inst.LoadData();
         GameManager.Inst.SaveData();
     }
@@ -108,11 +109,11 @@ public class StageManager : MonoBehaviour
 
     public void CutSceneStart()
     {
-        GameManager.Inst.inputHandler.ChangeCurrentActionMap("Cfg", false);
+        GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.Cfg, false);
     }
 
     public void CutSceneEnd()
     {
-        GameManager.Inst.inputHandler.ChangeCurrentActionMap("GamePlay", false);
+        GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, false);
     }
 }

@@ -113,7 +113,7 @@ public class Inventory : MonoBehaviour
             Debug.LogWarning("Inventory is full");
 
             GameManager.Inst.SubUI.InventorySubUI.ChangeInventoryItem();
-            GameManager.Inst.inputHandler.ChangeCurrentActionMap("UI", true);
+            GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.UI, true);
             //아이템 교체하는 코드
             return false;
         }

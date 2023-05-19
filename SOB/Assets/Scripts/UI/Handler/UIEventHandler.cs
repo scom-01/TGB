@@ -59,7 +59,7 @@ public class UIEventHandler : MonoBehaviour
     {
         if (GameManager.Inst != null)
         {
-            GameManager.Inst.inputHandler.ChangeCurrentActionMap("Cfg", true);
+            GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.Cfg, true);
             GameManager.Inst.CfgUI.Canvas.enabled = true;
         }
     }

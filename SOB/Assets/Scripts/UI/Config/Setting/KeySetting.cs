@@ -102,7 +102,7 @@ public class KeySetting : MonoBehaviour
     public void OnClickChange()
     {
         Debug.Log("OnClick = " + keyName);
-        m_PlayerInputHandler.SwitchActionMap("UI");
+        m_PlayerInputHandler.SwitchActionMap(InputEnum.UI.ToString());
         m_Rebind = m_Action.action.PerformInteractiveRebinding()
         .WithTargetBinding(m_BindingIndex)
         .WithControlsExcluding("Mouse")
@@ -116,6 +116,6 @@ public class KeySetting : MonoBehaviour
             }
         })
         .Start();        
-        m_PlayerInputHandler.SwitchActionMap("Cfg");
+        m_PlayerInputHandler.SwitchActionMap(InputEnum.Cfg.ToString());
     }
 }

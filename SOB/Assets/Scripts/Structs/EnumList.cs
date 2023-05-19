@@ -1,7 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+#region Input
+public enum InputEnum
+{
+    GamePlay,
+    UI,
+    Cfg,
+}
+
+[Serializable]
+public enum UI_State
+{
+    GamePlay,
+    Inventory,
+    Reforging,
+    Cfg,
+    CutScene,
+    Result,
+}
+
+#endregion
 
 #region Item
 public enum EVENT_BUFF_TYPE
