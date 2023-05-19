@@ -158,7 +158,7 @@ public class GameManager : MonoBehaviour
                 break;
             case InputEnum.Cfg:
                 ChangeUI(UI_State.Cfg);
-                EventSystem.current.SetSelectedGameObject(CfgUI.ConfigPanelUI.cfgBtns[0].gameObject);
+                
                 break;
         }
         isPause = true;
@@ -267,7 +267,7 @@ public class GameManager : MonoBehaviour
 
                 ReforgingUI.EnabledChildrensCanvas(true);
                 ReforgingUI.Canvas.enabled = true;
-
+                EventSystem.current.SetSelectedGameObject(ReforgingUI.equipWeapon.gameObject);
                 break;
             case UI_State.Cfg:
                 MainUI.Canvas.enabled = false;
@@ -279,7 +279,7 @@ public class GameManager : MonoBehaviour
                 ReforgingUI.Canvas.enabled = false;
 
                 CfgUI.Canvas.enabled = true;
-
+                EventSystem.current.SetSelectedGameObject(CfgUI.ConfigPanelUI.cfgBtns[0].gameObject);
                 break;
             case UI_State.CutScene:
                 break;
@@ -301,7 +301,7 @@ public class GameManager : MonoBehaviour
                 ReforgingUI.Canvas.enabled = false;
 
                 ResultUI.Canvas.enabled = true;
-
+                
                 break;
 
         }

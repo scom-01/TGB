@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 #region Input
+[Serializable]
 public enum InputEnum
 {
     GamePlay,
