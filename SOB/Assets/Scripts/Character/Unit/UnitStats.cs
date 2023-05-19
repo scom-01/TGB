@@ -206,6 +206,19 @@ namespace SOB.CoreSystem
             }
             return amount;
         }
+        public float DecreaseHealth(StatsData AttackerData, float amount)
+        {
+            core.Unit.HitEffect();
+            amount = CalculateDamage(AttackerData, amount);
+            CurrentHealth -= amount;
+
+            Debug.Log($"{core.transform.parent.name} Health = {currentHealth}");
+            if (CurrentHealth == 0.0f)
+            {
+                OnHealthZero?.Invoke();
+            }
+            return amount;
+        }
 
         public float CalculateDamage(E_Power elemental, DAMAGE_ATT attiribute, float amount)
         {
@@ -345,6 +358,77 @@ namespace SOB.CoreSystem
             return amount;
         }
 
+        public float CalculateDamage(StatsData AttackerData, float amount)
+        {
+            #region 원소속성 계산
+            Debug.Log($"Before Calculator ElementalPower = {amount}");
+
+            amount *= (1.0f + AttackerData.ElementalAggressivePer);
+            //Water(4) > Earth(3) > Wind(2) > Fire(1) > Water
+            if ((int)AttackerData.MyElemental == (int)MyElemental)
+            {
+                Debug.Log($"ElementalPower is Normal! Not Increase and Not Decrease");
+            }
+            else
+            {
+                if ((int)AttackerData.MyElemental > (int)MyElemental)
+                {
+                    if ((int)AttackerData.MyElemental == 4 && (int)MyElemental == 1)
+                    {
+                        amount *= (1.0f - GlobalValue.E_WeakPer * (1.0f - ElementalDefensivePer / 100));
+                    }
+                    else
+                    {
+                        amount *= (1.0f + GlobalValue.E_WeakPer * (1.0f - ElementalDefensivePer / 100));
+                    }
+                }
+                else if ((int)AttackerData.MyElemental < (int)MyElemental)
+                {
+                    if ((int)AttackerData.MyElemental == 1 && (int)MyElemental == 4)
+                    {
+                        amount *= (1.0f - GlobalValue.E_WeakPer * (1.0f - ElementalDefensivePer / 100));
+                    }
+                    else
+                    {
+                        amount *= (1.0f + GlobalValue.E_WeakPer * (1.0f - ElementalDefensivePer / 100));
+                    }
+                }
+                //elemental == MyElemental 같거나 Normal일때
+                else
+                {
+                    Debug.Log($"{core.transform.parent.name}의 MyElemental 과 받는 ElememtalPower가 같음! Elemental 증가 및 감소 없음");
+                }
+            }
+            Debug.Log($"After Calculator ElementalPower = {amount}");
+            #endregion
+
+            #region 속성 계산
+            Debug.Log($"Before Calculator DamageAttribute = {amount}");
+            switch (DamageAttiribute)
+            {
+                case DAMAGE_ATT.Physics:
+                    amount *= (1.0f + AttackerData.PhysicsAggressivePer / 100);
+                    amount *= (1.0f - PhysicsDefensivePer / 100);
+                    if (amount <= 0.0f)
+                        return 0;
+                    break;
+                case DAMAGE_ATT.Magic:
+                    amount *= (1.0f + AttackerData.MagicAggressivePer / 100);
+                    amount *= (1.0f - MagicDefensivePer / 100);
+                    if (amount <= 0.0f)
+                        return 0;
+                    break;
+                case DAMAGE_ATT.Fixed:
+                    //고정 데미지는 Physics와 Magic AggressivePer 합의 곱
+                    amount *= (1.0f + AttackerData.PhysicsAggressivePer / 100 + AttackerData.MagicAggressivePer / 100);
+                    //고정 데미지 일 시 감소 없음
+                    break;
+            }
+            Debug.Log($"Atfer Calculator DamageAttribute = {amount}");
+            #endregion
+
+            return amount;
+        }
         public void SetStat(StatsData _statData, float _currentHealth)
         {
             StatsData = _statData;

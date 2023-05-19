@@ -56,6 +56,9 @@ namespace SOB.Weapons.Components
             {
                 if (coll.gameObject.tag == this.gameObject.tag)
                     continue;
+
+                if (coll.gameObject.tag == "Trap")
+                    continue;
                 
                 //객체 사망 시 무시
                 if(coll.gameObject.GetComponentInParent<Unit>().Core.GetCoreComponent<Death>().isDead)

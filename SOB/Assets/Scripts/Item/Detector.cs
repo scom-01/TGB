@@ -190,17 +190,17 @@ public class Detector : MonoBehaviour
         }
 
 
-        //Trap
-        if (collision.gameObject.tag == "Trap")
-        {
-            //collision.GetComponent<Trap>().UnitData
-            if (unit.Core.GetCoreComponent<UnitStats>().invincibleTime == 0f)
-            {
-                var amount = unit.Core.GetCoreComponent<UnitStats>().DecreaseHealth(E_Power.Normal, DAMAGE_ATT.Fixed, 50);
-                unit.Core.GetCoreComponent<DamageReceiver>().RandomParticleInstantiate(unit.Core.GetCoreComponent<DamageReceiver>().DefaultEffectPrefab, 0.5f, amount, 50, DAMAGE_ATT.Fixed);                
-                unit.Core.GetCoreComponent<UnitStats>().invincibleTime = 1.5f;
-            }
-        }
+        ////Trap
+        //if (collision.gameObject.tag == "Trap")
+        //{
+        //    //collision.GetComponent<Trap>().UnitData
+        //    if (unit.Core.GetCoreComponent<UnitStats>().invincibleTime == 0f)
+        //    {
+        //        var amount = unit.Core.GetCoreComponent<UnitStats>().DecreaseHealth(E_Power.Normal, DAMAGE_ATT.Fixed, 50);
+        //        unit.Core.GetCoreComponent<DamageReceiver>().RandomParticleInstantiate(unit.Core.GetCoreComponent<DamageReceiver>().DefaultEffectPrefab, 0.5f, amount, 50, DAMAGE_ATT.Fixed);                
+        //        unit.Core.GetCoreComponent<UnitStats>().invincibleTime = 1.5f;
+        //    }
+        //}
     }
     //Detected
     private void OnTriggerEnter2D(Collider2D collision)

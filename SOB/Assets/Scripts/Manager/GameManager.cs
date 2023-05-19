@@ -211,7 +211,10 @@ public class GameManager : MonoBehaviour
                 ReforgingUI.EnabledChildrensCanvas(false);
                 ReforgingUI.Canvas.enabled = false;
 
-                MainUI.Canvas.enabled = true;
+                if (StageManager != null)
+                    MainUI.Canvas.enabled = true;
+                else
+                    MainUI.Canvas.enabled = false;
 
                 if (CfgUI.ConfigPanelUI.cfgBtns.Length > 0)
                 {
@@ -390,7 +393,7 @@ public class GameManager : MonoBehaviour
         SaveData();
         AsyncOperation operation = SceneManager.LoadSceneAsync("LoadingScene");
     }
-    private void MoveTitle()
+    public void MoveTitle()
     {
         ClearData();
         AsyncOperation operation = SceneManager.LoadSceneAsync("LoadingScene");

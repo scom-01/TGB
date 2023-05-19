@@ -16,7 +16,7 @@ MonoBehaviour:
     MaxHealth: 0
     MovementVelocity: 0
     JumpVelocity: 0
-    DefaultPower: 0
+    DefaultPower: 10
     AttackSpeedPer: 0
     PhysicsDefensivePer: 0
     MagicDefensivePer: 0
@@ -30,13 +30,22 @@ MonoBehaviour:
   knockBackSpeed: {x: 0, y: 0}
   invincibleTime: 1
   touchDamageinvincibleTime: 1
-  standColliderHeight: 0
+  standColliderOffset: {x: 0, y: 0}
+  standColliderSize: {x: 0, y: 0}
+  UnitColliderMaterial: {fileID: 0}
   groundCheckRadius: 0.1
   wallCheckDistance: 0.5
   UnitDetectedDistance: 0.5
   whatIsGround:
     serializedVersion: 2
     m_Bits: 128
+  whatIsWall:
+    serializedVersion: 2
+    m_Bits: 0
+  whatIsPlatform:
+    serializedVersion: 2
+    m_Bits: 0
   WhatIsEnemyUnit:
     serializedVersion: 2
     m_Bits: 0
+  UnitAnimator: {fileID: 0}
