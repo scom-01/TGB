@@ -37,6 +37,19 @@ namespace SOB.CoreSystem
             isKnockBackActive = true;
             knockBackStartTime = Time.time;
         }
+        public void KnockBack(Vector2 angle, float strength)
+        {
+            
+            if(death.Comp.isDead)
+            {
+                Debug.Log(core.Unit.name + "is Dead");
+                return;
+            }
+            movement.Comp?.SetVelocity(strength, angle, movement.Comp.FancingDirection);
+            movement.Comp.CanSetVelocity = false;
+            isKnockBackActive = true;
+            knockBackStartTime = Time.time;
+        }
         private void CheckKnockBack()
         {
             if (isKnockBackActive

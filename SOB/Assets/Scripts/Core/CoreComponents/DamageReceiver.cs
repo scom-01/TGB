@@ -43,6 +43,26 @@ namespace SOB.CoreSystem
             stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
             RandomParticleInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
         }
+        public void Damage(StatsData AttackterCommonData, float amount)
+        {
+            if(death.Comp.isDead)
+            {
+                Debug.Log(core.Unit.name + "is Dead");
+                return;
+            }
+
+            if (isHit)
+            {
+                Debug.Log(core.Unit.name + " isHit = true");
+                return;
+            }
+            Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
+
+            var damage = stats.Comp.DecreaseHealth(AttackterCommonData, amount);
+            isHit = true;
+            stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
+            RandomParticleInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
+        }
         public void HitAction(GameObject EffectPrefab, float Range)
         {
             if (EffectPrefab == null)
