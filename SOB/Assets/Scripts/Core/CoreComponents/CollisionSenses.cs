@@ -65,7 +65,7 @@ namespace SOB.CoreSystem
 
         public bool CheckIfCliff
         {
-            get => Physics2D.Raycast(groundCheck.position + new Vector3(BC2D.offset.x + BC2D.size.x / 2, 0, 0) * Movement.FancingDirection, Vector2.down, 0.2f, WhatIsGround);
+            get => Physics2D.Raycast(groundCheck.position + new Vector3((BC2D.offset.x - 0.05f) + BC2D.size.x / 2, 0, 0) * Movement.FancingDirection, Vector2.down, 0.5f, WhatIsGround);
         }
 
         public bool UnitDectected
@@ -88,6 +88,12 @@ namespace SOB.CoreSystem
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube(groundCheck.position, new Vector2(BC2D.bounds.size.x * 0.95f, BC2D.bounds.size.y * GroundCheckRadius));
             Debug.DrawRay(groundCheck.position, Vector2.down * GroundCheckRadius *4, Color.red);
+
+            //CheckIfTouchingWallBack
+            Debug.DrawRay(wallCheck.position, Vector2.right * -Movement.FancingDirection * WallCheckDistance, Color.red);
+
+            //CheckIfTouchingWall
+            Debug.DrawRay(wallCheck.position, Vector2.right * Movement.FancingDirection * WallCheckDistance, Color.green);
         }
     }
 }

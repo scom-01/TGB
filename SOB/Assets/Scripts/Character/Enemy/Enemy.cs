@@ -12,7 +12,17 @@ public class Enemy : Unit
 
     [HideInInspector]
     public EnemyData enemyData;
+    [HideInInspector]
+    public Unit EOE { get; private set; }
     #endregion
+
+    public void SetEOE(Unit unit)
+    {
+        if (unit == null)
+            return;
+
+        EOE = unit;
+    }
 
     #region Unity Callback Func
     protected override void Awake()

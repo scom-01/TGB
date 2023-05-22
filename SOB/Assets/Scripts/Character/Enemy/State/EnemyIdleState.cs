@@ -35,8 +35,9 @@ public abstract class EnemyIdleState : EnemyState
     {
         base.LogicUpdate();
 
-        if(EnemyCollisionSenses.UnitDectected)
+        if(EnemyCollisionSenses.isUnitInDetectedArea)
         {
+            enemy.SetEOE(EnemyCollisionSenses.UnitDetectArea?.GetComponent<Unit>());
             RunState();            
         }
 
