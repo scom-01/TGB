@@ -42,7 +42,7 @@ namespace SOB.Weapons.Components
         {
             Debug.Log("HandleFixedStop");
             CoreMovement.SetVelocityX(0f);
-            core.Unit.RB.gravityScale = GlobalValue.GravityPower;
+            core.Unit.RB.gravityScale = core.Unit.UnitData.UnitGravity;
         }
         #endregion
 
