@@ -7815,8 +7815,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1341986425}
   m_Layer: 0
-  m_Name: Particles
-  m_TagString: ParticleContainer
+  m_Name: Effects
+  m_TagString: EffectContainer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14236,6 +14236,7 @@ MonoBehaviour:
   PlayerPrefab: {fileID: 840319699589423306, guid: 842ba7b90e3d58f4baa7c0b00def52ec, type: 3}
   player: {fileID: 0}
   respawnTime: 2
+  SceneNameFade: {fileID: 0}
   isStageClear: 0
   CutSceneDirector: {fileID: 0}
   CVC: {fileID: 0}

@@ -200,6 +200,7 @@ public class GameManager : MonoBehaviour
 
     public void ChangeUI(UI_State ui)
     {
+        Debug.Log($"Switch UI {ui}");
         switch (ui)
         {
             case UI_State.GamePlay:
@@ -306,7 +307,24 @@ public class GameManager : MonoBehaviour
                 ResultUI.Canvas.enabled = true;
                 
                 break;
-
+            case UI_State.Loading:
+                MainUI.Canvas.enabled = false;
+                if (CfgUI.ConfigPanelUI.cfgBtns.Length > 0)
+                {
+                    for (int i = 0; i < CfgUI.ConfigPanelUI.cfgBtns.Length; i++)
+                    {
+                        if (CfgUI.ConfigPanelUI.cfgBtns[i].ActiveUI != null)
+                            CfgUI.ConfigPanelUI.cfgBtns[i].ActiveUI.GetComponent<SettingUI>().Canvas.enabled = false;
+                    }
+                }
+                CfgUI.Canvas.enabled = false;
+                SubUI.InventorySubUI.Canvas.enabled = false;
+                SubUI.InventorySubUI.NullCheckInput();
+                SubUI.DetailSubUI.Canvas.enabled = false;
+                ReforgingUI.EnabledChildrensCanvas(false);
+                ReforgingUI.Canvas.enabled = false;
+                ResultUI.Canvas.enabled = false;
+                break;
         }
     }
 
@@ -390,11 +408,13 @@ public class GameManager : MonoBehaviour
     }
     private void MoveScene()
     {
+        ChangeUI(UI_State.Loading);
         SaveData();
         AsyncOperation operation = SceneManager.LoadSceneAsync("LoadingScene");
     }
     public void MoveTitle()
     {
+        ChangeUI(UI_State.Loading);
         ClearData();
         AsyncOperation operation = SceneManager.LoadSceneAsync("LoadingScene");
     }

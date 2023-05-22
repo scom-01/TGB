@@ -27,7 +27,7 @@ public class StageManager : MonoBehaviour
     [SerializeField]
     public float respawnTime;
 
-    private float respawnTimeStart;
+    [SerializeField] private GameObject SceneNameFade;
 
     public bool isStageClear = false;
     public PlayableDirector CutSceneDirector;
@@ -65,25 +65,9 @@ public class StageManager : MonoBehaviour
         isStageClear = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        CheckRespawn();
-    }
-
     private void OnEnable()
     {
         Init();
-    }
-
-    public void Respawn()
-    {
-        respawnTimeStart = Time.time;
-    }
-
-    private void CheckRespawn()
-    {
-        
     }
 
     private void Init()
@@ -94,6 +78,10 @@ public class StageManager : MonoBehaviour
         GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, false);
         GameManager.Inst.LoadData();
         GameManager.Inst.SaveData();
+
+        //씬 이름 애니메이션 Instantiate
+        if (SceneNameFade != null)
+            Instantiate(SceneNameFade);
     }
 
     public void OpenGate(bool isClear)

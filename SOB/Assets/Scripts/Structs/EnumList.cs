@@ -21,6 +21,7 @@ public enum UI_State
     Cfg,
     CutScene,
     Result,
+    Loading,
 }
 
 #endregion

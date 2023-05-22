@@ -13542,6 +13542,7 @@ MonoBehaviour:
   PlayerPrefab: {fileID: 840319699589423306, guid: 842ba7b90e3d58f4baa7c0b00def52ec, type: 3}
   player: {fileID: 0}
   respawnTime: 2
+  SceneNameFade: {fileID: 1714188898339614809, guid: 2521cea28fa98a74ab099a73a3fd1d6f, type: 3}
   isStageClear: 0
   CutSceneDirector: {fileID: 0}
   CVC: {fileID: 0}
@@ -15358,9 +15359,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1938419459}
+  - component: {fileID: 1938419460}
   m_Layer: 0
-  m_Name: Particles
-  m_TagString: ParticleContainer
+  m_Name: Effects
+  m_TagString: EffectContainer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15380,6 +15382,19 @@ Transform:
   m_Father: {fileID: 1498734594}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1938419460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938419458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb43d862fe2b37346823b397b057a3e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EffectList: []
 --- !u!1 &1949248083
 GameObject:
   m_ObjectHideFlags: 0
