@@ -22,6 +22,8 @@ public class Unit : MonoBehaviour
 
     public bool IsAlive = true;
     private DamageFlash[] DamageFlash;
+
+    public bool isCCimmunity = false;
     #endregion
 
     #region Unity Callback Func
