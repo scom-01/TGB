@@ -11,6 +11,8 @@ public class UnitData : ScriptableObject
     [Tooltip("넉백 속도")]
     public Vector2 knockBackSpeed;
 
+    [Header("RigidBody2D")]
+    public float UnitGravity;
 
     [Header("InvincibleTime")]
     [Tooltip("피격 쿨타임")]

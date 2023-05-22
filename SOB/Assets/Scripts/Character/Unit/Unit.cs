@@ -53,6 +53,8 @@ public class Unit : MonoBehaviour
         RB = GetComponent<Rigidbody2D>();
         if (RB == null) RB = this.GameObject().AddComponent<Rigidbody2D>();
 
+        RB.gravityScale = UnitData.UnitGravity;
+
         BC2D = GetComponent<BoxCollider2D>();
         if (BC2D == null)
         {
@@ -109,7 +111,7 @@ public class Unit : MonoBehaviour
 
         //지정된 리스폰 위치로 이동
         if (GameManager.Inst?.StageManager?.respawnPoint != null)
-            this.gameObject.transform.position = RespawnPoint.position;// GameManager.Inst.StageManager.respawnPoint.transform.position;
+            this.gameObject.transform.position = RespawnPoint.position;
 
         var amount = Core.GetCoreComponent<UnitStats>().DecreaseHealth(E_Power.Normal, DAMAGE_ATT.Fixed, 10);
         if (Core.GetCoreComponent<DamageReceiver>().DefaultEffectPrefab == null)

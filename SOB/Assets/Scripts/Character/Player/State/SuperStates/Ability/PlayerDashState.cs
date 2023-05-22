@@ -61,7 +61,7 @@ public class PlayerDashState : PlayerAbilityState
     public override void Exit()
     {
         base.Exit();
-        player.RB.gravityScale = GlobalValue.GravityPower;
+        player.RB.gravityScale = unit.UnitData.UnitGravity;
 
         if (IsGrounded)
         {

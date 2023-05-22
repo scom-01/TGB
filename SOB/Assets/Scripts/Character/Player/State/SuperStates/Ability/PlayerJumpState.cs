@@ -22,7 +22,7 @@ public class PlayerJumpState : PlayerAbilityState
     public override void Enter()
     {
         base.Enter();
-        unit.RB.gravityScale = GlobalValue.GravityPower;
+        unit.RB.gravityScale = unit.UnitData.UnitGravity;
         isAbilityDone = true;
         Jump();
     }
