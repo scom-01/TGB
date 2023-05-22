@@ -256,7 +256,7 @@ public class PlayerInputHandler : MonoBehaviour
             {
                 if (playerInput.currentActionMap == playerInput.actions.FindActionMap(InputEnum.UI.ToString()))
                 {
-                    ChangeCurrentActionMap(InputEnum.GamePlay, false);
+                    ChangeCurrentActionMap(InputEnum.GamePlay, true);
                 }
                 else if (playerInput.currentActionMap == playerInput.actions.FindActionMap(InputEnum.GamePlay.ToString()))
                 {
@@ -279,7 +279,7 @@ public class PlayerInputHandler : MonoBehaviour
             {
                 if (playerInput.currentActionMap == playerInput.actions.FindActionMap(InputEnum.UI.ToString()))
                 {
-                    ChangeCurrentActionMap(InputEnum.GamePlay, false);
+                    ChangeCurrentActionMap(InputEnum.GamePlay, true);
                 }
                 else if (playerInput.currentActionMap == playerInput.actions.FindActionMap(InputEnum.GamePlay.ToString()))
                 {
@@ -297,7 +297,7 @@ public class PlayerInputHandler : MonoBehaviour
                         {
                             btn.OnClickActiveUI(false);
                         }
-                        ChangeCurrentActionMap(InputEnum.GamePlay, false);
+                        ChangeCurrentActionMap(InputEnum.GamePlay, true);
                     }
                 }
             }
@@ -313,6 +313,11 @@ public class PlayerInputHandler : MonoBehaviour
     {
     }
 
+    /// <summary>
+    /// Pause가 true이면 현재 isPause상태를 변경하고자 함
+    /// </summary>
+    /// <param name="inputEnum"></param>
+    /// <param name="Pause"></param>
     public void ChangeCurrentActionMap(InputEnum inputEnum, bool Pause)
     {
         //현재와 동일한 ActionMap으로 변경하려하면 ActionMap변경을 원치않으므로 Pause기능만 하도록
@@ -322,12 +327,20 @@ public class PlayerInputHandler : MonoBehaviour
             {
                 return;
             }
-            GameManager.Inst.CheckPause(inputEnum);
+
+            if(Pause)
+            {
+                GameManager.Inst.CheckPause(inputEnum);
+            }
         }
         else
         {
             playerInput.SwitchCurrentActionMap(inputEnum.ToString());
-            GameManager.Inst.CheckPause(inputEnum, Pause);
+
+            if(Pause)
+            {
+                GameManager.Inst.CheckPause(inputEnum);
+            }
         }
     }
 

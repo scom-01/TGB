@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace SOB.CoreSystem
@@ -68,11 +69,27 @@ namespace SOB.CoreSystem
             if (EffectPrefab == null)
             {
                 if (DefaultEffectPrefab != null)
-                    effectManager.Comp.StartEffectsWithRandomPos(DefaultEffectPrefab, Range);
+                {
+                    if(DefaultEffectPrefab.GetComponent<EffectController>().isDestroy)
+                    {
+                        effectManager.Comp.StartChunkEffectsWithRandomPos(DefaultEffectPrefab, Range);
+                    }
+                    else
+                    {
+                        effectManager.Comp.StartEffectsWithRandomPos(DefaultEffectPrefab, Range);
+                    }
+                }
                 return;
             }
                 
-            effectManager.Comp.StartEffectsWithRandomPos(EffectPrefab, Range);
+            if(EffectPrefab.GetComponent<EffectController>().isDestroy)
+            {
+                effectManager.Comp.StartChunkEffectsWithRandomPos(EffectPrefab, Range);
+            }
+            else
+            {
+                effectManager.Comp.StartEffectsWithRandomPos(EffectPrefab, Range);
+            }
         }
 
         /// <summary>

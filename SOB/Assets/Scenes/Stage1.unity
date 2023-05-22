@@ -543,44 +543,32 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 236811254}
     m_ColliderPaths:
-    - - X: 118750000
-        Y: -10000000
-      - X: 114375000
-        Y: -10000000
-      - X: 114375000
+    - - X: 110000000
+        Y: -11891937
+      - X: 110000000
+        Y: -11884594
+      - X: 100000000
+        Y: -11891937
+      - X: 100000000
         Y: -20000000
-      - X: 118750000
+      - X: 130000000
         Y: -20000000
-    - - X: 127500000
-        Y: -11875000
-      - X: 122500000
-        Y: -11875000
-      - X: 122500000
-        Y: -20000000
-      - X: 127500000
-        Y: -20000000
-    - - X: 137500000
-        Y: -11875000
-      - X: 132500000
-        Y: -11875000
-      - X: 132500000
-        Y: -20000000
-      - X: 137500000
-        Y: -20000000
+      - X: 130000000
+        Y: -11884594
+      - X: 120000000
+        Y: -11891937
+      - X: 120000000
+        Y: -11884594
   m_CompositePaths:
     m_Paths:
-    - - {x: 11.87497, y: -2}
-      - {x: 11.87497, y: -1}
-      - {x: 11.4375, y: -1.0000293}
-      - {x: 11.43753, y: -2}
-    - - {x: 13.749971, y: -2}
-      - {x: 13.749971, y: -1.1875}
-      - {x: 13.25, y: -1.1875293}
-      - {x: 13.25003, y: -2}
-    - - {x: 12.74997, y: -2}
-      - {x: 12.74997, y: -1.1875}
-      - {x: 12.25, y: -1.1875293}
-      - {x: 12.25003, y: -2}
+    - - {x: 12.99997, y: -2}
+      - {x: 12.99997, y: -1.1884595}
+      - {x: 12, y: -1.1891643}
+      - {x: 11.99997, y: -1.1884595}
+      - {x: 11, y: -1.1891643}
+      - {x: 10.99997, y: -1.1884595}
+      - {x: 10, y: -1.1892229}
+      - {x: 10.00003, y: -2}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!50 &236811253
@@ -678,11 +666,21 @@ Tilemap:
   m_GameObject: {fileID: 236811249}
   m_Enabled: 1
   m_Tiles:
+  - first: {x: 10, y: -2, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 2
+      m_TileSpriteIndex: 2
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: 11, y: -2, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 2
+      m_TileSpriteIndex: 2
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -691,18 +689,8 @@ Tilemap:
   - first: {x: 12, y: -2, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 13, y: -2, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileIndex: 2
+      m_TileSpriteIndex: 2
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -710,15 +698,19 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 2
-    m_Data: {fileID: 11400000, guid: ded283e9e10d6b84288a22531b6d9e54, type: 2}
-  - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: afe71c1d05b779946abeccc42260f265, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 3
+    m_Data: {fileID: 11400000, guid: 32326cb847279024ebb5ee1f6e44f6f9, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 2
-    m_Data: {fileID: 495561526, guid: e881444c7506f6f4c9b008800b7b28d8, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: -964761888, guid: e881444c7506f6f4c9b008800b7b28d8, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 3
+    m_Data: {fileID: 1427082600, guid: eda04477c45973c46864a777622421d8, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 3
     m_Data:
@@ -15395,6 +15387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EffectList: []
+  EffectControllerList: []
 --- !u!1 &1949248083
 GameObject:
   m_ObjectHideFlags: 0

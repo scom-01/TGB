@@ -28,6 +28,7 @@ MonoBehaviour:
     ElementalAggressivePer: 0
   knockBackDuration: 0.2
   knockBackSpeed: {x: 1, y: 0}
+  UnitGravity: 5
   invincibleTime: 0.125
   touchDamageinvincibleTime: 1
   standColliderOffset: {x: 0, y: -0.45}
@@ -39,6 +40,9 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 896
+  whatIsWall:
+    serializedVersion: 2
+    m_Bits: 0
   whatIsPlatform:
     serializedVersion: 2
     m_Bits: 512
