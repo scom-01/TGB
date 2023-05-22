@@ -19,6 +19,13 @@ public abstract class EnemyRunState : EnemyState
         checkifCliff = EnemyCollisionSenses.CheckIfCliff;
         checkifTouchingWall = EnemyCollisionSenses.CheckIfTouchingWall;
         checkifTouchingGrounded = EnemyCollisionSenses.CheckIfStayGrounded;
+
+        if (!checkifCliff || checkifTouchingGrounded || checkifTouchingWall)
+        {
+            Movement.SetVelocityX(0);
+            Movement.Flip();
+        }
+        Movement.SetVelocityX(enemy.enemyData.statsStats.MovementVelocity * Movement.FancingDirection);
     }
 
     public override void Enter()
@@ -38,18 +45,11 @@ public abstract class EnemyRunState : EnemyState
         if (unit.UnitData.GetType() != typeof(EnemyData))
             return;
 
-        if (EnemyCollisionSenses.UnitInAttackArea && unit.Inventory.Weapon != null)
+        if (EnemyCollisionSenses.isUnitInAttackArea && unit.Inventory.Weapon != null)
         {
+            Debug.Log($"{enemy.name}'s EOE = {enemy.EOE}");
             Enemy_Attack();
-        }
-
-        if (!checkifCliff || checkifTouchingGrounded || checkifTouchingWall)
-        {
-            Movement.Flip();
-        }
-        else
-        {
-            Movement.SetVelocityX(enemy.enemyData.statsStats.MovementVelocity * Movement.FancingDirection);
+            return;
         }
     }
 
