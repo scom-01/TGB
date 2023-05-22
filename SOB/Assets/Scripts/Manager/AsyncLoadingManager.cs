@@ -1,14 +1,13 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 
 namespace SOB.Manager
 {
     public class AsyncLoadingManager : MonoBehaviour
     {
-        public UIEventHandler UIEvent;        
-
+        [SerializeField] private Slider Slider;
         public float Timer;
         private void Start()
         {
@@ -25,14 +24,12 @@ namespace SOB.Manager
             while (!operation.isDone)
             {
                 time += Time.time;
-                if (UIEvent != null)
-                {
-                    if (UIEvent.Loading_progressbar != null)
-                    {
 
-                        UIEvent.Loading_progressbar.value = time / Timer;
-                    }
+                if (Slider != null)
+                {
+                    Slider.value = time / Timer;
                 }
+
                 if (time > Timer)
                 {
                     operation.allowSceneActivation = true;
