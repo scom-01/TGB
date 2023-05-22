@@ -18,10 +18,10 @@ namespace SOB.Item
 
         private SpriteRenderer SR;
         private CircleCollider2D CC2D;
-        private Transform particleContainer;
+        private Transform effectContainer;
         private void Awake()
         {
-            particleContainer = GameObject.FindGameObjectWithTag("ParticleContainer").transform;
+            effectContainer = GameObject.FindGameObjectWithTag("EffectContainer").transform;
         }
         private void OnEnable()
         {
@@ -122,7 +122,7 @@ namespace SOB.Item
             if (Item != null ? true : false)
             {
                 if (Item.AcquiredEffectPrefab != null)
-                    Instantiate(Item.AcquiredEffectPrefab, this.gameObject.transform.position, Quaternion.identity, particleContainer);
+                    Instantiate(Item.AcquiredEffectPrefab, this.gameObject.transform.position, Quaternion.identity, effectContainer);
 
                 Debug.LogWarning($"Get {this.name}");
                 //this.gameObject.SetActive(false);

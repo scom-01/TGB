@@ -648,8 +648,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 480ea422138f0204ebec5ebb59c25bdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDatas: []
-  weapons: []
+  weaponData:
+    weaponCommandDataSO: {fileID: 0}
+    weaponDataSO: {fileID: 0}
   items:
   - {fileID: 11400000, guid: 95208878e233e92409560005b58d7636, type: 2}
   CheckItem: {fileID: 0}
@@ -742,7 +743,7 @@ GameObject:
   - component: {fileID: 3640253522650953881}
   - component: {fileID: 3640253522650953880}
   m_Layer: 18
-  m_Name: ParticleManager
+  m_Name: EffectManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -775,7 +776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dbfb8afd8d07ea46877f2a0730681d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleContainerTagName: ParticleContainer
+  effectContainerTagName: EffectContainer
 --- !u!1 &3640253523003701948
 GameObject:
   m_ObjectHideFlags: 0
@@ -1030,7 +1031,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36c7d8aa4e90af849950f4a2c64e7c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathParticles:
+  deathChunk:
+  - {fileID: 8440674159513887227, guid: ea44d35b9ec31d145b8bc1d7eb93f4da, type: 3}
   - {fileID: 8440674159513887227, guid: ea44d35b9ec31d145b8bc1d7eb93f4da, type: 3}
   - {fileID: 8440674159513887227, guid: ea44d35b9ec31d145b8bc1d7eb93f4da, type: 3}
   - {fileID: 8440674159513887227, guid: ea44d35b9ec31d145b8bc1d7eb93f4da, type: 3}

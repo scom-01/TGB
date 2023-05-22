@@ -12,7 +12,7 @@ public class PlayerLandState : PlayerGroundedState
     {
         if (Land_Effect == null)
         {
-            Land_Effect = Resources.Load<GameObject>("Prefabs/Particle/Landing_Smoke");
+            Land_Effect = Resources.Load<GameObject>("Prefabs/Effects/Landing_Smoke");
         }
 
         if (Land_SFX == null) 
@@ -25,7 +25,7 @@ public class PlayerLandState : PlayerGroundedState
     {
         base.Enter();
         SoundEffect.AudioSpawn(Land_SFX);
-        player.Core.GetCoreComponent<ParticleManager>().StartParticles(Land_Effect, CollisionSenses.GroundCheck.position);
+        player.Core.GetCoreComponent<EffectManager>().StartEffects(Land_Effect, CollisionSenses.GroundCheck.position);
     }
 
     public override void LogicUpdate()

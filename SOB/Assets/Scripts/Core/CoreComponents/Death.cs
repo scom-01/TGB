@@ -5,20 +5,20 @@ namespace SOB.CoreSystem
     public class Death : CoreComponent
     {
         [SerializeField]
-        protected GameObject[] deathParticles;
-        protected ParticleManager ParticleManager
+        protected GameObject[] deathChunk;
+        protected EffectManager EffectManager
         {
             get
             {
-                if(particleManager == null)
+                if(effectManager == null)
                 {
-                    core.GetCoreComponent(ref particleManager);
+                    core.GetCoreComponent(ref effectManager);
                 }
-                return particleManager;
+                return effectManager;
             }
         }
             
-        private ParticleManager particleManager;
+        private EffectManager effectManager;
 
 
         protected UnitStats Stats => stats ? stats : core.GetCoreComponent(ref stats);
@@ -32,9 +32,9 @@ namespace SOB.CoreSystem
                 return;
 
             isDead = true;
-            foreach (var particle in deathParticles)
+            foreach (var effect in deathChunk)
             {
-                var particleObject = ParticleManager.StartParticlesWithRandomPos(particle,0.5f);
+                var particleObject = EffectManager.StartChunkEffectsWithRandomPos(effect, 0.5f);
                 particleObject.GetComponent<Animator>().speed = Random.Range(0.3f, 1f);
             }
             var item = core.Unit.Inventory.items;
@@ -44,7 +44,6 @@ namespace SOB.CoreSystem
                 core.Unit.Inventory.RemoveInventoryItem(item[i]);
             }
             core.Unit.DieEffect();
-            //core.transform.parent.gameObject.SetActive(false);
         }
 
         protected void OnEnable()

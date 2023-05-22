@@ -20,7 +20,7 @@ public class PlayerDashState : PlayerAbilityState
     {
         if(Dash_Effect == null)
         {
-            Dash_Effect = Resources.Load<GameObject>("Prefabs/Particle/Dash_Smoke");
+            Dash_Effect = Resources.Load<GameObject>("Prefabs/Effects/Dash_Smoke");
         }
         if (Dash_SFX == null)
         {
@@ -50,7 +50,7 @@ public class PlayerDashState : PlayerAbilityState
         player.InputHandler.UseInput(ref player.InputHandler.DashInput);
         if(Dash_Effect!=null)
         {
-            ParticleManager.StartParticles(Dash_Effect, CollisionSenses.GroundCheck.position);
+            EffectManager.StartEffects(Dash_Effect, CollisionSenses.GroundCheck.position);
         }
         Movement.SetVelocityY(0f);
         player.RB.gravityScale = 0f;

@@ -21,23 +21,17 @@ MonoBehaviour:
   - rid: 3615621236231503872
   - rid: 3615621433789513728
   - rid: 8358215245741948929
-  - rid: 1770984693643870208
   - rid: 1770984693643870209
   - rid: 2811500879843950592
+  - rid: 942642603132715030
   references:
     version: 2
     RefIds:
-    - rid: 1770984693643870208
-      type: {class: ParticleSpawnData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+    - rid: 942642603132715030
+      type: {class: EffectSpawnData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
-        name: ParticleSpawnData
-        actionData:
-        - name: 
-          <EffectParticles>k__BackingField:
-          - isGround: 1
-            isRandomPosRot: 0
-            isRandomRange: 0
-            Object: {fileID: 8924082236497946225, guid: 22379e21c7b451147ab25b1e916aafaf, type: 3}
+        name: EffectSpawnData
+        actionData: []
     - rid: 1770984693643870209
       type: {class: SoundClipData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -53,7 +47,7 @@ MonoBehaviour:
       data:
         name: ActionHitBoxData
         actionData:
-        - name: 
+        - name: Action 1
           ActionHit:
           - Debug: 1
             ActionRect:
@@ -85,7 +79,7 @@ MonoBehaviour:
       data:
         name: MovementData
         actionData:
-        - name: 
+        - name: Action 1
           <movements>k__BackingField:
             CanFlip: 0
             CanMoveCtrl: 0
@@ -96,7 +90,7 @@ MonoBehaviour:
       data:
         name: WeaponSpriteData
         actionData:
-        - name: 
+        - name: Action 1
           <WeaponSprites>k__BackingField:
           - {fileID: 51041346, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
           - {fileID: -1188008882, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
@@ -108,7 +102,7 @@ MonoBehaviour:
       data:
         name: DamageData
         actionData:
-        - name: 
+        - name: Action 1
           <AdditionalDamage>k__BackingField:
           - 5
     - rid: 8358215245741948929
@@ -116,6 +110,6 @@ MonoBehaviour:
       data:
         name: KnockbackData
         actionData:
-        - name: 
+        - name: Action 1
           <KnockbackAngle>k__BackingField:
           - {x: 10, y: 5}

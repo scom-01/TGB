@@ -17,7 +17,7 @@ public class ItemAttackEventSO : ItemEffectSO
         if(AttackCount >= MaxCount)
         {
             if(VFX != null)
-                unit.Core.GetCoreComponent<ParticleManager>().StartParticles(VFX, unit.Core.GetCoreComponent<CollisionSenses>().GroundCheck.position);
+                unit.Core.GetCoreComponent<EffectManager>().StartEffects(VFX, unit.Core.GetCoreComponent<CollisionSenses>().GroundCheck.position);
             AttackCount = 0;
         }
     }
@@ -28,7 +28,7 @@ public class ItemAttackEventSO : ItemEffectSO
         if(AttackCount >= MaxCount)
         {
             if(VFX != null)
-                unit.Core.GetCoreComponent<ParticleManager>().StartParticles(VFX, enemy.Core.GetCoreComponent<CollisionSenses>().GroundCheck.position);
+                unit.Core.GetCoreComponent<EffectManager>().StartEffects(VFX, enemy.Core.GetCoreComponent<CollisionSenses>().GroundCheck.position);
             AttackCount = 0;
         }
     }

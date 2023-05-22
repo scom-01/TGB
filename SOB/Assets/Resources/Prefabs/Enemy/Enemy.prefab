@@ -105,7 +105,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1968435467
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -192850721, guid: 9e7dd6b4eac06e54593a66799f9627f3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -210,8 +210,6 @@ MonoBehaviour:
     ElementalAggressivePer: 0
   invincibleTime: 0
   currentHealth: 0
-  deathChunkParticle: {fileID: 0}
-  deathBloodParticle: {fileID: 0}
 --- !u!1 &5562365450266649061
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,6 +263,7 @@ MonoBehaviour:
   - {fileID: 8440674159513887227, guid: ea44d35b9ec31d145b8bc1d7eb93f4da, type: 3}
   - {fileID: 8440674159513887227, guid: ea44d35b9ec31d145b8bc1d7eb93f4da, type: 3}
   - {fileID: 8440674159513887227, guid: ea44d35b9ec31d145b8bc1d7eb93f4da, type: 3}
+  isDead: 0
 --- !u!1 &5562365450298025395
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,7 +553,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DefaultEffectPrefab: {fileID: 0}
-  isHit: 0
 --- !u!61 &5562365451077781083
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -703,7 +701,7 @@ GameObject:
   - component: {fileID: 5562365451664819320}
   - component: {fileID: 5562365451664819321}
   m_Layer: 18
-  m_Name: ParticleManager
+  m_Name: EffectManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -736,7 +734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dbfb8afd8d07ea46877f2a0730681d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleContainerTagName: 
+  effectContainerTagName: EffectContainer
 --- !u!1 &5562365451927788447
 GameObject:
   m_ObjectHideFlags: 0
@@ -817,7 +815,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1968435467
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -2122478362, guid: a6a61a156cc7a904b87d8621db1c284a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -909,6 +907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2cf2922a9d38540a5cb4565608d154, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RespawnPoint: {fileID: 0}
   UnitData: {fileID: 11400000, guid: 18e5526c4f9924a4e9be2f0de80b92a9, type: 2}
   IsAlive: 1
   enemyData: {fileID: 11400000, guid: 18e5526c4f9924a4e9be2f0de80b92a9, type: 2}
@@ -924,11 +923,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 480ea422138f0204ebec5ebb59c25bdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapons: []
+  weaponData:
+    weaponCommandDataSO: {fileID: 0}
+    weaponDataSO: {fileID: 0}
   items:
   - {fileID: 11400000, guid: e62b3b3537581f9489e40b34bdbddf1c, type: 2}
   - {fileID: 11400000, guid: 8d7d4022d5cc5f143b28ef1fefab337c, type: 2}
   - {fileID: 11400000, guid: 7be42284a95baa545bf8f0a1592a4fb0, type: 2}
+  CheckItem: {fileID: 0}
 --- !u!1 &5562365451994839873
 GameObject:
   m_ObjectHideFlags: 0
@@ -1004,11 +1006,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 7588775972796011718}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a760ae3cf33120499be59753609a323, type: 3}
+  m_Script: {fileID: 11500000, guid: b85d4bde7d2e8de4daefd1f2646b39a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CommandList: 
+  weaponData:
+    weaponCommandDataSO: {fileID: 0}
+    weaponDataSO: {fileID: 0}
+  Command: 0
+  oc: {fileID: 0}
   InAir: 0
-  actionCounterResetCooldown: 1
+  actionCounterResetCooldown: 0
 --- !u!114 &1742539155635893894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1021,7 +1029,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48d301d0b1380ba46b1269e07d0ee177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponData: {fileID: 11400000, guid: 740c9585bdc604c459184db5537dc31e, type: 2}
+  weaponData:
+    weaponCommandDataSO: {fileID: 0}
+    weaponDataSO: {fileID: 0}
 --- !u!1 &8531982257773415787
 GameObject:
   m_ObjectHideFlags: 0
@@ -1093,7 +1103,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1968435467
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1
   m_Sprite: {fileID: -192850721, guid: 9e7dd6b4eac06e54593a66799f9627f3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -26,9 +26,9 @@ public class UnitState
         get => unitStats ?? unit.Core.GetCoreComponent(ref unitStats);
     }
 
-    protected ParticleManager ParticleManager
+    protected EffectManager EffectManager
     {
-        get => particleManager ?? unit.Core.GetCoreComponent(ref particleManager);
+        get => effectManager ?? unit.Core.GetCoreComponent(ref effectManager);
     }
     protected SoundEffect SoundEffect
     {
@@ -43,7 +43,7 @@ public class UnitState
     private Movement movement;
     private CollisionSenses collisionSenses;
     private UnitStats unitStats;
-    private ParticleManager particleManager;
+    private EffectManager effectManager;
     private SoundEffect soundEffect;
     private Death death;
     public UnitState(Unit unit, string animBoolName)

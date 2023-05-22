@@ -7,7 +7,7 @@ namespace SOB.CoreSystem
         public GameObject DefaultEffectPrefab;
 
         private CoreComp<UnitStats> stats;
-        private CoreComp<ParticleManager> particleManager;
+        private CoreComp<EffectManager> effectManager;
         private CoreComp<Death> death;
         private BoxCollider2D BC2D;
 
@@ -41,7 +41,7 @@ namespace SOB.CoreSystem
             var damage = stats.Comp.DecreaseHealth(AttackterCommonData, VictimCommonData, amount);
             isHit = true;
             stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
-            RandomParticleInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
+            RandomEffectInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
         }
         public void Damage(StatsData AttackterCommonData, float amount)
         {
@@ -61,18 +61,18 @@ namespace SOB.CoreSystem
             var damage = stats.Comp.DecreaseHealth(AttackterCommonData, amount);
             isHit = true;
             stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
-            RandomParticleInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
+            RandomEffectInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
         }
         public void HitAction(GameObject EffectPrefab, float Range)
         {
             if (EffectPrefab == null)
             {
                 if (DefaultEffectPrefab != null)
-                    particleManager.Comp.StartParticlesWithRandomPos(DefaultEffectPrefab, Range);
+                    effectManager.Comp.StartEffectsWithRandomPos(DefaultEffectPrefab, Range);
                 return;
             }
                 
-            particleManager.Comp.StartParticlesWithRandomPos(EffectPrefab, Range);
+            effectManager.Comp.StartEffectsWithRandomPos(EffectPrefab, Range);
         }
 
         /// <summary>
@@ -84,12 +84,12 @@ namespace SOB.CoreSystem
         /// <param name="fontSize">DamageText 폰트 사이즈</param>
         /// <param name="damageAttiribute">Damage속성</param>
         /// <returns></returns>
-        public GameObject RandomParticleInstantiate(GameObject effectPrefab, float range, float damage, float fontSize, DAMAGE_ATT damageAttiribute)
+        public GameObject RandomEffectInstantiate(GameObject effectPrefab, float range, float damage, float fontSize, DAMAGE_ATT damageAttiribute)
         {
-            var particle = particleManager.Comp?.StartParticlesWithRandomPos(effectPrefab, range);
+            var effect = effectManager.Comp?.StartEffectsWithRandomPos(effectPrefab, range);
 
-            var pos = new Vector2((Camera.main.WorldToViewportPoint(particle.transform.position).x * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x * 0.5f),
-                                    (Camera.main.WorldToViewportPoint(particle.transform.position).y * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y * 0.5f) + 50);   //50 = DamageText의 높이
+            var pos = new Vector2((Camera.main.WorldToViewportPoint(effect.transform.position).x * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x * 0.5f),
+                                    (Camera.main.WorldToViewportPoint(effect.transform.position).y * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y * 0.5f) + 50);   //50 = DamageText의 높이
 
             var damageText = Instantiate(GameManager.Inst.StageManager.player.GetComponent<Player>().DamageTextPrefab,
                             new Vector3(pos.x, pos.y),
@@ -112,7 +112,7 @@ namespace SOB.CoreSystem
             return damageText;
         }
 
-        public GameObject RandomParticleInstantiate(float range, float damage, float fontSize, DAMAGE_ATT damageAttiribute)
+        public GameObject RandomEffectInstantiate(float range, float damage, float fontSize, DAMAGE_ATT damageAttiribute)
         {
             var randomPos = new Vector2(transform.position.x + Random.Range(-range, range), transform.position.y + Random.Range(-range, range));
 
@@ -144,7 +144,7 @@ namespace SOB.CoreSystem
             base.Awake();
             BC2D = GetComponent<BoxCollider2D>();
             stats = new CoreComp<UnitStats>(core);
-            particleManager = new CoreComp<ParticleManager>(core);
+            effectManager = new CoreComp<EffectManager>(core);
             death = new CoreComp<Death>(core);
         }
     }

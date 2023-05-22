@@ -21,18 +21,18 @@ MonoBehaviour:
   - rid: 3615621236231503872
   - rid: 3615621433789513728
   - rid: 8358215245741948929
-  - rid: 1770984693643870208
   - rid: 1770984693643870209
   - rid: 2811500880619372554
+  - rid: 942642603132715032
   references:
     version: 2
     RefIds:
-    - rid: 1770984693643870208
-      type: {class: ParticleSpawnData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+    - rid: 942642603132715032
+      type: {class: EffectSpawnData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
-        name: ParticleSpawnData
+        name: EffectSpawnData
         actionData:
-        - name: 
+        - name: Action 1
           <EffectParticles>k__BackingField: []
     - rid: 1770984693643870209
       type: {class: SoundClipData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}

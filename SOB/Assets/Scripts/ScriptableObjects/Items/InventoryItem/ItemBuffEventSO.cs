@@ -34,7 +34,7 @@ public class ItemBuffEventSO : ItemEffectSO
         {
             Debug.Log("ExecuteEffect Buff Event ");
             if (VFX != null)
-                unit.Core.GetCoreComponent<ParticleManager>().StartParticles(VFX, unit.Core.GetCoreComponent<CollisionSenses>().GroundCheck.position);
+                unit.Core.GetCoreComponent<EffectManager>().StartEffects(VFX, unit.Core.GetCoreComponent<CollisionSenses>().GroundCheck.position);
             
             if (buffItem != null)
             {
@@ -57,7 +57,7 @@ public class ItemBuffEventSO : ItemEffectSO
         {
             Debug.Log("ExecuteEffect Buff Event ");
             if (VFX != null)
-                unit.Core.GetCoreComponent<ParticleManager>().StartParticles(VFX, enemy.Core.GetCoreComponent<CollisionSenses>().GroundCheck.position);
+                unit.Core.GetCoreComponent<EffectManager>().StartEffects(VFX, enemy.Core.GetCoreComponent<CollisionSenses>().GroundCheck.position);
 
             if (buffItem != null)
             {

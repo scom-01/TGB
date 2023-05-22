@@ -23,10 +23,10 @@ namespace SOB.Weapons.Components
         {
             get => coreCollisionSenses ? coreCollisionSenses : core.GetCoreComponent(ref coreCollisionSenses);
         }
-        private CoreSystem.ParticleManager coreParticleManager;
-        protected CoreSystem.ParticleManager CoreParticleManager
+        private CoreSystem.EffectManager coreEffectManager;
+        protected CoreSystem.EffectManager CoreEffectManager
         {
-            get => coreParticleManager ? coreParticleManager : core.GetCoreComponent(ref coreParticleManager);
+            get => coreEffectManager ? coreEffectManager : core.GetCoreComponent(ref coreEffectManager);
         }
 
         private CoreSystem.UnitStats coreUnitStats;
