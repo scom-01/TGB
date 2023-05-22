@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class EffectController : MonoBehaviour
 {
+    public bool isDestroy = false;
     private void FinishAnim()
     {
-        this.gameObject.SetActive(false);        
-    }
-
-    private void DestroyAnim()
-    {
-        Destroy(gameObject);
+        if(isDestroy)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            this.gameObject.SetActive(false);
+        }        
     }
 }
