@@ -59,12 +59,18 @@ namespace SOB.Weapons.Components
 
                 if (coll.gameObject.tag == "Trap")
                     continue;
-                
+
                 //객체 사망 시 무시
                 if(coll.gameObject.GetComponentInParent<Unit>().Core.GetCoreComponent<Death>().isDead)
                 {
                     continue;
                 }
+
+                if (coll.gameObject.GetComponentInParent<Enemy>() != null)
+                {
+                    coll.gameObject.GetComponentInParent<Enemy>().SetEOE(core.Unit);
+                }
+
                 //Hit시 효과
                 if (coll.TryGetComponent(out IDamageable damageable))
                 {
