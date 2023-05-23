@@ -5,7 +5,24 @@ using SOB.Weapons;
 using SOB.Item;
 using Unity.VisualScripting;
 using SOB.CoreSystem;
+using System;
+using TMPro;
+using static UnityEditor.Progress;
+using UnityEngine.Localization.SmartFormat.Utilities;
 
+[Serializable]
+public struct ItemSet
+{
+    public StatsItemSO item;
+    public float startTime;
+    public int attackCount;
+    public ItemSet(StatsItemSO itemSO, float startTime = 0, int attackCount = 0)
+    {
+        this.item = itemSO;
+        this.startTime = startTime;
+        this.attackCount = attackCount;
+    }
+}
 public class Inventory : MonoBehaviour
 {
     private Unit unit;
@@ -26,25 +43,37 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public List<StatsItemSO> items = new List<StatsItemSO>();
+    //public List<StatsItemSO> items = new List<StatsItemSO>();
+    public List<ItemSet> _items = new List<ItemSet>();
+    public List<StatsItemSO> Inititems = new List<StatsItemSO>();
     public GameObject CheckItem;
 
     private Weapon m_weapon;
     private int ItemCount;
     private void Awake()
     {
-        
+
     }
     private void Start()
     {
         unit = this.GetComponent<Unit>();
         weaponData = Weapon.weaponData;
-        if (items == null || items?.Count == 0)
+        if (_items == null || _items?.Count == 0)
         {
             Debug.LogWarning($"{transform.name}'s Items is empty in The Inventory");
-            items = new List<StatsItemSO>();
+            _items = new List<ItemSet>();
         }
-        ItemCount = items.Count;
+
+        if (Inititems.Count != 0)
+        {
+            foreach (var item in Inititems)
+            {
+                ItemSet _item = new ItemSet(item, Time.time);
+                _items.Add(_item);
+            }
+        }
+
+        ItemCount = _items.Count;
     }
 
     private void Update()
@@ -55,36 +84,51 @@ public class Inventory : MonoBehaviour
             ChangeWeaponAttribute();
         }
 
-        if (items.Count != ItemCount)
+        if (_items.Count != ItemCount)
         {
             ChangeItemAttribute();
         }
 
         ItemExeUpdate(unit);
     }
-
+        
     public bool ItemEffectExecute(Unit unit)
     {
-        for (int i = 0; i < items.Count; i++)
+        for (int i = 0; i < _items.Count; i++)
         {
-            items[i].ExeUse(unit);
+            for(int j = 0; j < _items[i].item.ItemEffects.Count; j++)
+            {
+                var temp = _items[i].item.ExeUse(unit, _items[i].item.ItemEffects[j], _items[i].attackCount);
+                ItemSet tempItem = new ItemSet(_items[i].item, _items[i].startTime, temp);
+                _items[i] = tempItem;
+            }
         }
         return true;
     }
     public bool ItemEffectExecute(Unit unit, Unit Enemy)
     {
-        for (int i = 0; i < items.Count; i++)
+        for (int i = 0; i < _items.Count; i++)
         {
-            items[i].ExeUse(unit, Enemy);
+            for (int j = 0; j < _items[i].item.ItemEffects.Count; j++)
+            {
+                var temp = _items[i].item.ExeUse(unit, Enemy, _items[i].item.ItemEffects[j], _items[i].attackCount);
+                ItemSet tempItem = new ItemSet(_items[i].item, _items[i].startTime, temp);
+                _items[i] = tempItem;
+            }
         }
         return true;
     }
 
     public bool ItemExeUpdate(Unit unit)
     {
-        for (int i = 0; i < items.Count; i++)
+        for (int i = 0; i < _items.Count; i++)
         {
-            items[i].ExeUpdate(unit);
+            for (int j = 0; j < _items[i].item.ItemEffects.Count; j++)
+            {
+                var temp = _items[i].item.ExeUpdate(unit, _items[i].item.ItemEffects[j], _items[i].startTime);
+                ItemSet tempItem = new ItemSet(_items[i].item, temp, _items[i].attackCount);
+                _items[i] = tempItem;
+            }
         }
         return true;
     }
@@ -92,7 +136,7 @@ public class Inventory : MonoBehaviour
 
     public bool SetWeapon(WeaponData weaponObject)
     {
-        if(this.weaponData.weaponCommandDataSO == weaponObject.weaponCommandDataSO)
+        if (this.weaponData.weaponCommandDataSO == weaponObject.weaponCommandDataSO)
         {
             return false;
         }
@@ -100,44 +144,105 @@ public class Inventory : MonoBehaviour
         this.Weapon.SetData(weaponObject.weaponDataSO);
         this.Weapon.SetCommandData(weaponObject.weaponCommandDataSO);
         weaponData = weaponObject;
-        
+
         return true;
     }
 
     public bool AddInventoryItem(GameObject itemObject)
     {
         StatsItemSO itemData = itemObject.GetComponent<SOB_Item>().Item;
-        if (items.Count >= 8)
+        if (_items.Count >= 8)
         {
             CheckItem = itemObject;
             Debug.LogWarning("Inventory is full");
 
-            GameManager.Inst.SubUI.InventorySubUI.ChangeInventoryItem();
-            GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.UI, true);
+            if (unit.GetType() == typeof(Player))
+                GameManager.Inst.SubUI.InventorySubUI.ChangeInventoryItem();
+            if (unit.GetType() == typeof(Player))
+                GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.UI, true);
             //아이템 교체하는 코드
             return false;
         }
 
-        //중복금지
-        if (items.Contains(itemData))
+        for(int i = 0; i < _items.Count;i++)
         {
-            Debug.Log($"Contians {itemData.name}, fail add");
+            if (_items[i].item == itemData)
+            {
+                Debug.Log($"Contians {itemData.name}, fail add");
+                return false;
+            }
+        }
+
+        ////중복금지
+        //if (_items.Contains(itemData))
+        //{
+            
+        //}
+        //else
+        //{
+        Debug.Log($"Add {itemData.name}, Success add {itemData.name}");
+        if (unit.GetType() == typeof(Player))
+            GameManager.Inst.SubUI.InventorySubUI.InventoryItems.AddItem(itemData);
+
+        ItemSet item = new ItemSet(itemData, Time.time);
+        _items.Add(item);
+
+        ItemCount++;
+        SetStat(itemData.StatsDatas);
+        if (itemData.StatsDatas.MaxHealth != 0.0f)
+        {
+            unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += itemData.StatsDatas.MaxHealth;
+        }
+        Debug.Log($"Change UnitStats {unit.Core.GetCoreComponent<UnitStats>().StatsData}");
+        //}
+        return true;
+    }
+    public bool AddInventoryItem(StatsItemSO itemObject)
+    {
+        if (_items.Count >= 8)
+        {
+            CheckItem = itemObject.GameObject();
+            Debug.LogWarning("Inventory is full");
+
+            if (unit.GetType() == typeof(Player))
+                GameManager.Inst.SubUI.InventorySubUI.ChangeInventoryItem();
+            if (unit.GetType() == typeof(Player))
+                GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.UI, true);
+            //아이템 교체하는 코드
             return false;
         }
-        else
+
+        for (int i = 0; i < _items.Count; i++)
         {
-            Debug.Log($"Add {itemData.name}, Success add {itemData.name}");
-            GameManager.Inst.SubUI.InventorySubUI.InventoryItems.AddItem(itemData);
-            items.Add(itemData);
+            if (_items[i].item == itemObject)
+            {
+                Debug.Log($"Contians {itemObject.name}, fail add");
+                return false;
+            }
+        }
+
+        ////중복금지
+        //if (items.Contains(itemObject))
+        //{
+        //    Debug.Log($"Contians {itemObject.name}, fail add");
+        //    return false;
+        //}
+        //else
+        //{
+            Debug.Log($"Add {itemObject.name}, Success add {itemObject.name}");
+            if(unit.GetType() == typeof(Player))
+                GameManager.Inst.SubUI.InventorySubUI.InventoryItems.AddItem(itemObject);
+        ItemSet item = new ItemSet(itemObject, Time.time);
+        _items.Add(item);
 
             ItemCount++;
-            SetStat(itemData.StatsDatas);
-            if (itemData.StatsDatas.MaxHealth != 0.0f)
+            SetStat(itemObject.StatsDatas);
+            if (itemObject.StatsDatas.MaxHealth != 0.0f)
             {
-                unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += itemData.StatsDatas.MaxHealth;
+                unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += itemObject.StatsDatas.MaxHealth;
             }
-            Debug.Log($"Change UnitStats {unit.Core.GetCoreComponent<UnitStats>().StatsData}");            
-        }
+            Debug.Log($"Change UnitStats {unit.Core.GetCoreComponent<UnitStats>().StatsData}");
+        //}
         return true;
     }
 
@@ -153,23 +258,67 @@ public class Inventory : MonoBehaviour
             return false;
         }
 
-        if (items.Contains(itemData))
+        for(int i = 0;i < _items.Count;i++)
         {
-            Debug.Log($"Remove Item {itemData.name}");
-            SetStat(itemData.StatsDatas * -1f);
-            if (itemData.StatsDatas.MaxHealth != 0.0f)
+            if (_items[i].item == itemData)
             {
-                unit.Core.GetCoreComponent<UnitStats>().CurrentHealth -= itemData.StatsDatas.MaxHealth;
+                Debug.Log($"Remove Item {itemData.name}");
+                SetStat(itemData.StatsDatas * -1f);
+                if (itemData.StatsDatas.MaxHealth != 0.0f)
+                {
+                    unit.Core.GetCoreComponent<UnitStats>().CurrentHealth -= itemData.StatsDatas.MaxHealth;
+                }
+
+                _items.RemoveAt(i);
+
+                if (unit.GetType() == typeof(Player))
+                    GameManager.Inst.SubUI.InventorySubUI.InventoryItems.RemoveItem(itemData);
+
+                //spawnItem
+                GameManager.Inst.StageManager.SPM.SpawnItem(GameManager.Inst.StageManager.IM.InventoryItem, unit.transform.position, GameManager.Inst.StageManager.IM.transform, itemData);
+                break;
             }
-            items.Remove(itemData);
-            GameManager.Inst.SubUI.InventorySubUI.InventoryItems.RemoveItem(itemData);
+        }
+
+        //if (_items.Contains(itemData))
+        //{
+            
+        //}
+        //else
+        //{
+        //    Debug.Log($"Not Contians {itemData.name}, fail remove");
+        //}
+        return true;
+    }
+public bool RemoveInventoryItem(ItemSet itemData)
+    {
+        if (itemData.item == null)
+        {
+            Debug.Log("Find not InventoryItem");
+            return false;
+        }
+
+        if (_items.Contains(itemData))
+        {
+            Debug.Log($"Remove Item {itemData.item.name}");
+            SetStat(itemData.item.StatsDatas * -1f);
+            if (itemData.item.StatsDatas.MaxHealth != 0.0f)
+            {
+                unit.Core.GetCoreComponent<UnitStats>().CurrentHealth -= itemData.item.StatsDatas.MaxHealth;
+            }
+
+            _items.Remove(itemData);
+
+            if (unit.GetType() == typeof(Player))
+                GameManager.Inst.SubUI.InventorySubUI.InventoryItems.RemoveItem(itemData.item);
 
             //spawnItem
-            GameManager.Inst.StageManager.SPM.SpawnItem(GameManager.Inst.StageManager.IM.InventoryItem, unit.transform.position, GameManager.Inst.StageManager.IM.transform, itemData);
+            GameManager.Inst.StageManager.SPM.SpawnItem(GameManager.Inst.StageManager.IM.InventoryItem, unit.transform.position, GameManager.Inst.StageManager.IM.transform, itemData.item);
+
         }
         else
         {
-            Debug.Log($"Not Contians {itemData.name}, fail remove");
+            Debug.Log($"Not Contians {itemData.item.name}, fail remove");
         }
         return true;
     }

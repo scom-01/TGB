@@ -33,7 +33,7 @@ public class BuffPanelItem : MonoBehaviour
         if (buff == null)
             return;
 
-        BuffDurationTime = buff.buffItem.BuffData.DurationTime;
+        BuffDurationTime = buff.buffItem.DurationTime;
         BuffCurrentTime = ((Time.time - buff.startTime) / BuffDurationTime);
         FilledImg.fillAmount = BuffCurrentTime;
         if(buff.CurrBuffCount <= 1)
@@ -49,9 +49,9 @@ public class BuffPanelItem : MonoBehaviour
         {
             if(GameManager.Inst != null && GameManager.Inst.StageManager != null)
             {   
-                if (GameManager.Inst.StageManager.player.GetComponent<BuffSystem>().buffItems.Contains(buffItem))
+                if (GameManager.Inst.StageManager.player.GetComponent<BuffSystem>().buffItems.Contains(buff.buffItem))
                 {
-                    GameManager.Inst.StageManager.player.GetComponent<BuffSystem>().buffItems.Remove(buffItem);
+                    GameManager.Inst.StageManager.player.GetComponent<BuffSystem>().buffItems.Remove(buff.buffItem);
                 }           
             }
             Destroy(this.gameObject);
@@ -63,7 +63,7 @@ public class BuffPanelItem : MonoBehaviour
     {
         if (IconImg != null)
         {
-            IconImg.sprite = buff.buffItem.ItemSprite;
+            IconImg.sprite = buff.itemData.ItemSprite;
         }
 
         if (BackImg != null)

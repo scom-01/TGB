@@ -371,7 +371,7 @@ public class GameManager : MonoBehaviour
         DataManager.Inst?.NextStage(StageManager.NextStageName);
         DataManager.Inst.PlayerInventoryDataSave(
             GameManager.Inst.StageManager.player.Inventory.Weapon,
-            GameManager.Inst.StageManager.player.Inventory.items);
+            GameManager.Inst.StageManager.player.Inventory._items);
         DataManager.Inst?.PlayerStatSave(
             GameManager.Inst.StageManager.player.Core.GetCoreComponent<UnitStats>());
         DataManager.Inst?.PlayerBuffSave(

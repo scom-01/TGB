@@ -124,9 +124,9 @@ namespace SOB.Manager
         {
             if (PlayerInventory != null)
             {
-                for (int i = 0; i < PlayerInventory.items.Count; i++)
+                for (int i = 0; i < PlayerInventory._items.Count; i++)
                 {
-                    InventoryItems.items[i].StatsItemData = PlayerInventory.items[i];
+                    InventoryItems.items[i].StatsItemData = PlayerInventory._items[i].item;
                 }
             }                
         }
@@ -193,7 +193,7 @@ namespace SOB.Manager
             Destroy(PlayerInventory.CheckItem.GameObject());
             PlayerInventory.CheckItem = null;
             inputHandler.UseInput(ref inputHandler.InteractionInput);
-            GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, false);
+            GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, true);
         }
     }
 }

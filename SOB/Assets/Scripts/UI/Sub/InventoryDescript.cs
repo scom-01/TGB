@@ -21,9 +21,9 @@ public class InventoryDescript : MonoBehaviour
         if (item != null && item.StatsItemData != null)
         {
             if (ItemName != null) 
-                ItemName.text = item.StatsItemData.ItemName;
+                ItemName.text = item.StatsItemData.itemData.ItemName;
             if (ItemDescript != null)
-                ItemDescript.text = item.StatsItemData.ItemDescription;
+                ItemDescript.text = item.StatsItemData.itemData.ItemDescription;
             if (DropButton != null)
                 DropButton.SetActive(true);
             return;

@@ -57,7 +57,7 @@ public class InventoryItem : MonoBehaviour, ISelectHandler
     {
         if (statsItemData != null)
         {
-            iconImg.sprite = statsItemData.ItemSprite;
+            iconImg.sprite = statsItemData.itemData.ItemSprite;
             iconImg.color = new Color(iconImg.color.r, iconImg.color.g, iconImg.color.b, 1f);
         }
         else

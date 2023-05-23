@@ -22,7 +22,6 @@ public class BuffPanelSystem : MonoBehaviour
     {
         BuffPanelItem item = Instantiate(buffPanelPrefab, this.transform).GetComponent<BuffPanelItem>();
         item.buff = buff;
-        item.buffItem = buff.buffItem;
         item.Setting();
     }
 }

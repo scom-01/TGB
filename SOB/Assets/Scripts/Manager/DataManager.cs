@@ -39,7 +39,7 @@ public class DataManager : MonoBehaviour
     [HideInInspector]
     public WeaponData Playerweapon;
     [HideInInspector]
-    public List<StatsItemSO> Playeritems = new List<StatsItemSO>();
+    public List<ItemSet> Playeritems = new List<ItemSet>();
     private bool isWeaponDataSave = false;
 
     public float PlayerHealth;
@@ -199,11 +199,11 @@ public class DataManager : MonoBehaviour
             Debug.LogWarning("Inventory.weapon is Null");
         }
 
-        inventory.items = Playeritems;
+        inventory._items = Playeritems;
         Debug.LogWarning("Success Inventory Data Load");
     }
 
-    public void PlayerInventoryDataSave(Weapon weapon, List<StatsItemSO> itemList)
+    public void PlayerInventoryDataSave(Weapon weapon, List<ItemSet> itemList)
     {
         Playerweapon = weapon.weaponData;
 
