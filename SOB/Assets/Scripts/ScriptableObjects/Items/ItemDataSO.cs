@@ -8,6 +8,14 @@ using UnityEditor;
 [CreateAssetMenu(fileName = "newItemData", menuName = "Data/Item Data/Item Data")]
 public class ItemDataSO : ScriptableObject
 {
+    public ItemData itemData;
+    //[field: Tooltip("아이템 GUID")]
+    //public Guid GUID; 
+}
+
+[Serializable]
+public struct ItemData
+{
     [field: Header("Item")]
     [field: Tooltip("아이템 이름")]
     public string ItemName;
@@ -16,6 +24,4 @@ public class ItemDataSO : ScriptableObject
     public string ItemDescription;
     [field: Tooltip("아이템 Sprite아이콘")]
     public Sprite ItemSprite;
-    //[field: Tooltip("아이템 GUID")]
-    //public Guid GUID; 
 }

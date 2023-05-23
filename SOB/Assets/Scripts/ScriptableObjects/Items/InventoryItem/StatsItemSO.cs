@@ -1,17 +1,68 @@
 using SOB.Item;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using Unity.VisualScripting;
 using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "newItemData", menuName = "Data/Item Data/Stats Data")]
 public class StatsItemSO : ItemDataSO
 {
     [Tooltip("아이템이 갖는 스탯")]
     public StatsData StatsDatas;
-    //--Collider--
+
+    public EffectData effectData;
+
+    [field: SerializeField] public List<ItemEffectSO> ItemEffects = new List<ItemEffectSO>();
+    private List<ItemEffectSO> clone = new List<ItemEffectSO>();
+
+    private List<ItemEffectSO> itemEffects
+    {
+        get
+        {
+            if (clone.Count == ItemEffects.Count)
+            {
+                return clone;
+            }
+            clone.Clear();
+            for (int i = 0; i < ItemEffects.Count; i++)
+            {
+                var str = ItemEffects[i].name;
+                clone.Add(Instantiate(ItemEffects[i]) as ItemEffectSO);
+                clone[clone.Count - 1].name = str;
+            }
+            return clone;
+        }
+    }
+
+    public virtual int ExeUse(Unit unit, ItemEffectSO itemEffect ,int attackCount = 0)
+    {
+        return attackCount = itemEffect.ExecuteEffect(this,unit, attackCount);
+    }
+    public virtual int ExeUse(Unit unit, Unit Enemy, ItemEffectSO itemEffect, int attackCount = 0)
+    {
+        return attackCount = itemEffect.ExecuteEffect(this, unit, Enemy, attackCount);
+    }
+    public virtual float ExeUpdate(Unit unit, float startTime = 0)
+    {
+        for (int i = 0; i < itemEffects.Count; i++)
+        {
+            itemEffects[i].ContinouseEffectExcute(this, unit, startTime);            
+        }
+        return startTime;
+    }
+    public virtual float ExeUpdate(Unit unit, ItemEffectSO itemEffect, float startTime = 0)
+    {
+        return startTime = itemEffect.ContinouseEffectExcute(this, unit, startTime);
+    }
+}
+
+[Serializable]
+public struct EffectData
+{
     [field: Header("Collider Use")]
     [field: Tooltip("획득 시 이펙트")]
     [field: SerializeField] public GameObject AcquiredEffectPrefab { get; private set; }
@@ -25,45 +76,4 @@ public class StatsItemSO : ItemDataSO
     [field: Header("Detect Use")]
     [field: Tooltip("Detect 시 SubUI 표시 여부")]
     [field: SerializeField] public bool DetailSubUI { get; private set; }
-
-    [field: SerializeField] public List<ItemEffectSO> ItemEffects = new List<ItemEffectSO>();
-    private List<ItemEffectSO> clone = new List<ItemEffectSO>();
-
-    private List<ItemEffectSO> itemEffects
-    {
-        get
-        {
-            if(clone.Count == ItemEffects.Count)
-            {
-                return clone;
-            }
-            for (int i = 0; i < ItemEffects.Count; i++) 
-            {
-                clone.Add(Instantiate(ItemEffects[i]) as ItemEffectSO);
-            }
-            return clone;
-        }
-    }
-
-    public virtual void ExeUse(Unit unit)
-    {
-        for (int i = 0; i < itemEffects.Count; i++)
-        {
-            itemEffects[i].ExecuteEffect(this, unit);
-        }
-    }
-    public virtual void ExeUse(Unit unit, Unit Enemy)
-    {
-        for (int i = 0; i < itemEffects.Count; i++)
-        {
-            itemEffects[i].ExecuteEffect(this, unit, Enemy);
-        }
-    }
-    public virtual void ExeUpdate(Unit unit)
-    {
-        for (int i = 0; i < itemEffects.Count; i++)
-        {
-            itemEffects[i].ContinouseEffectExcute(this, unit);
-        }
-    }
 }

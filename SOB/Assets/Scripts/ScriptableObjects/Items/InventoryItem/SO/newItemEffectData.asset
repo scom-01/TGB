@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 114cca44a24bc4d4ead930bce3927dd7, type: 3}
   m_Name: newItemEffectData
   m_EditorClassIdentifier: 
-  AttackCount: 0
-  MaxCount: 3
-  VFX: {fileID: 1380205584940949931, guid: a848577a5db00404c98f8ed2b04e3c7e, type: 3}
+  itemEffectData:
+    MaxCount: 0
+    durationTime: 0
+    isExecute: 0
+    VFX: {fileID: 6994026979909216902, guid: d0ba99a8a595fd74e9cb4f4357ba3266, type: 3}
+  buffItem: {fileID: 0}

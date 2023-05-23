@@ -12,10 +12,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12c7189b5730eb047911b8d6ef4727da, type: 3}
   m_Name: BuffEventData
   m_EditorClassIdentifier: 
+  itemEffectData:
+    MaxCount: 0
+    durationTime: 0
+    isExecute: 0
+    VFX: {fileID: 6994026979909216902, guid: d0ba99a8a595fd74e9cb4f4357ba3266, type: 3}
   AttackCount: 1
-  MaxCount: 2
-  startTime: 82.27088
-  durationTime: 2
-  isExecute: 1
-  VFX: {fileID: 1380205584940949931, guid: a848577a5db00404c98f8ed2b04e3c7e, type: 3}
+  buff:
+    buffItem:
+      DurationTime: 0
+      BuffType: 0
+      isOverlap: 0
+      BuffCountMax: 0
+      isBuffInit: 0
+    statsData:
+      MaxHealth: 0
+      MovementVelocity: 0
+      JumpVelocity: 0
+      DefaultPower: 0
+      AttackSpeedPer: 0
+      PhysicsDefensivePer: 0
+      MagicDefensivePer: 0
+      PhysicsAggressivePer: 0
+      MagicAggressivePer: 0
+      DamageAttiribute: 0
+      MyElemental: 0
+      ElementalDefensivePer: 0
+      ElementalAggressivePer: 0
+    effectData:
+      <AcquiredEffectPrefab>k__BackingField: {fileID: 0}
+      <AcquiredSoundEffect>k__BackingField: {fileID: 0}
+      <isEquipment>k__BackingField: 0
+      <DetailSubUI>k__BackingField: 0
+    itemData:
+      ItemName: 
+      ItemDescription: 
+      ItemSprite: {fileID: 0}
+    CurrBuffCount: 0
+    itemEffects: []
+    startTime: 0
   buffItem: {fileID: 11400000, guid: f5f6bf61883408944a354d09b44662dc, type: 2}
+  startTime: 82.27088

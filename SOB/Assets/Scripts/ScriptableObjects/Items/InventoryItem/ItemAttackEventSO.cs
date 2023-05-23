@@ -6,30 +6,31 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "newItemEffectData", menuName = "Data/Item Data/ItemAttackEvent Data")]
 public class ItemAttackEventSO : ItemEffectSO
 {
-    private int AttackCount = 0;
     public BuffItemSO buffItem;
 
     private float startTime;
-    public override void ExecuteEffect(StatsItemSO parentItem, Unit unit)
+    public override int ExecuteEffect(StatsItemSO parentItem, Unit unit, int attackCount)
     {
-        AttackCount++;
+        attackCount++;
         Debug.Log("ExcuteEffect Attack!");
-        if(AttackCount >= MaxCount)
+        if(attackCount >= itemEffectData.MaxCount)
         {
-            if(VFX != null)
-                unit.Core.GetCoreComponent<EffectManager>().StartEffects(VFX, unit.Core.GetCoreComponent<CollisionSenses>().GroundCheck.position);
-            AttackCount = 0;
+            if(itemEffectData.VFX != null)
+                unit.Core.GetCoreComponent<EffectManager>().StartEffects(itemEffectData.VFX, unit.Core.GetCoreComponent<CollisionSenses>().GroundCheck.position);
+            attackCount = 0;
         }
+        return attackCount;
     }
-    public override void ExecuteEffect(StatsItemSO parentItem, Unit unit, Unit enemy)
+    public override int ExecuteEffect(StatsItemSO parentItem, Unit unit, Unit enemy, int attackCount)
     {
-        AttackCount++;
+        attackCount++;
         Debug.Log("ExcuteEffect Attack!");
-        if(AttackCount >= MaxCount)
+        if(attackCount >= itemEffectData.MaxCount)
         {
-            if(VFX != null)
-                unit.Core.GetCoreComponent<EffectManager>().StartEffects(VFX, enemy.Core.GetCoreComponent<CollisionSenses>().GroundCheck.position);
-            AttackCount = 0;
+            if(itemEffectData.VFX != null)
+                unit.Core.GetCoreComponent<EffectManager>().StartEffects(itemEffectData.VFX, enemy.Core.GetCoreComponent<CollisionSenses>().GroundCheck.position);
+            attackCount = 0;
         }
+        return attackCount;
     }
 }
