@@ -170,7 +170,7 @@ public class Detector : MonoBehaviour
                 return;
 
             //EquipmentItem
-            if (item.Item.isEquipment)
+            if (item.Item.effectData.isEquipment)
             {
                 if (!DetectedList.Contains(collision.gameObject))
                 {
@@ -204,7 +204,7 @@ public class Detector : MonoBehaviour
                 return;
 
             //Item
-            if (item.Item.isEquipment)
+            if (item.Item.effectData.isEquipment)
             {
                 //Debug.Log($"Detected {collision.name} {this.name}");
                 //var collItem = collision.GetComponentInParent<SOB_Item>();
@@ -234,7 +234,7 @@ public class Detector : MonoBehaviour
             if (item == null)
                 return;
             //Item
-            if (item.Item.isEquipment)
+            if (item.Item.effectData.isEquipment)
             {
                 Debug.Log($"UnDetected {this.name}");
                 if (currentGO == collision.gameObject)

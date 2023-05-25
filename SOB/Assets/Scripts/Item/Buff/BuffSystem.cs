@@ -7,7 +7,7 @@ using UnityEngine;
 public class BuffSystem : MonoBehaviour
 {
     public List<Buff> buffs = new List<Buff>();
-    public List<BuffItemSO> buffItems = new List<BuffItemSO>();
+    public List<BuffItem_Data> buffItems = new List<BuffItem_Data>();
     private Unit unit;
 
     private void Awake()
@@ -33,14 +33,15 @@ public class BuffSystem : MonoBehaviour
         for (int i = 0; i < buffs.Count;)
         {
             
-            if (Time.time >= buffs[i].startTime + buffs[i].buffItem.BuffData.DurationTime)
+            if (Time.time >= buffs[i].startTime + buffs[i].buffItem.DurationTime)
             {
-                unit.Core.GetCoreComponent<UnitStats>().StatsData += buffs[i].buffItem.StatsDatas * -1f * buffs[i].CurrBuffCount;
-                if (unit.Core.GetCoreComponent<UnitStats>().CurrentHealth > buffs[i].buffItem.StatsDatas.MaxHealth)
+                unit.Core.GetCoreComponent<UnitStats>().StatsData += buffs[i].statsData * -1f * buffs[i].CurrBuffCount;
+                if (unit.Core.GetCoreComponent<UnitStats>().CurrentHealth > buffs[i].statsData.MaxHealth)
                 {
-                    unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += buffs[i].buffItem.StatsDatas.MaxHealth * -1f * buffs[i].CurrBuffCount;
+                    unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += buffs[i].statsData.MaxHealth * -1f * buffs[i].CurrBuffCount;
                 }
                 buffs.RemoveAt(i);
+                buffItems.RemoveAt(i);
                 if (buffs.Count <= 0)
                 {
                     break;
@@ -66,28 +67,28 @@ public class BuffSystem : MonoBehaviour
         {
             for (int i = 0; i < buffItems.Count; i++)
             {
-                if (buffItems[i] == buff.buffItem)
-                {
+                //if (buffItems[i] == buff.buffItem)
+                //{
                     //지속효과 초기화
-                    if (buffItems[i].BuffData.isBuffInit)
+                    if (buffItems[i].isBuffInit)
                     {
                         buffs[i].startTime = Time.time;
                     }
 
                     //중복 X
-                    if (!buffItems[i].BuffData.isOverlap)
+                    if (!buffItems[i].isOverlap)
                     {
                         return;
                     }
 
                     //중복 최대치 
-                    if (buffs[i].CurrBuffCount >= buffItems[i].BuffData.BuffCountMax)
+                    if (buffs[i].CurrBuffCount >= buffItems[i].BuffCountMax)
                     {
                         return;
                     }
 
                     buffs[i].CurrBuffCount++;
-                }
+                //}
             }
         }
         else
@@ -95,13 +96,17 @@ public class BuffSystem : MonoBehaviour
             buffs?.Add(buff);
             buff.CurrBuffCount++;
             buffItems?.Add(buff.buffItem);
-            GameManager.Inst?.MainUI?.MainPanel?.BuffPanelSystem.BuffPanelAdd(buff);
+
+            if(unit.GetType() == typeof(Player))
+            {
+                GameManager.Inst?.MainUI?.MainPanel?.BuffPanelSystem.BuffPanelAdd(buff);
+            }
         }
 
-        unit.Core.GetCoreComponent<UnitStats>().StatsData += buff.buffItem.StatsDatas;
-        if (buff.buffItem.StatsDatas.MaxHealth != 0.0f)
+        unit.Core.GetCoreComponent<UnitStats>().StatsData += buff.statsData;
+        if (buff.statsData.MaxHealth != 0.0f)
         {
-            unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += buff.buffItem.StatsDatas.MaxHealth;
+            unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += buff.statsData.MaxHealth;
         }
         //PlayBuff(buff);
     }
@@ -124,12 +129,12 @@ public class BuffSystem : MonoBehaviour
     //무쓸모 예정
     public void PlayBuff(Buff buff)
     {
-        StartCoroutine(ChangeStats(buff, buff.buffItem.StatsDatas, buff.buffItem.BuffData.DurationTime));
+        StartCoroutine(ChangeStats(buff, buff.statsData, buff.buffItem.DurationTime));
     }
     //무쓸모 예정
     public void ClearBuff(Buff buff)
     {
-        StopCoroutine(ChangeStats(buff, buff.buffItem.StatsDatas, buff.buffItem.BuffData.DurationTime));
+        StopCoroutine(ChangeStats(buff, buff.statsData, buff.buffItem.DurationTime));
     }
 
     //무쓸모 예정

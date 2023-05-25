@@ -3,5 +3,5 @@ using UnityEngine;
 
 public interface IExecuteContinuousEffect
 {
-    public void ContinouseEffectExcute(StatsItemSO parentItem, Unit unit);
+    public float ContinouseEffectExcute(StatsItemSO parentItem, Unit unit, float startTime);
 }

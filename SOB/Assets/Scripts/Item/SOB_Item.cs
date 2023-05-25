@@ -41,7 +41,7 @@ namespace SOB.Item
         {
             if (Item == null)
                 return false;
-            SR.sprite = Item.ItemSprite;
+            SR.sprite = Item.itemData.ItemSprite;
             CC2D = GetComponentInChildren<CircleCollider2D>();
             if (CC2D != null)
             {
@@ -69,9 +69,9 @@ namespace SOB.Item
             }
 
             GameManager.Inst.SubUI.isRight(isright);
-            GameManager.Inst.SubUI.DetailSubUI.Icon.sprite = Item.ItemSprite;
-            GameManager.Inst.SubUI.DetailSubUI.MainItemName = Item.ItemName;
-            GameManager.Inst.SubUI.DetailSubUI.SubItemName = Item.ItemDescription;
+            GameManager.Inst.SubUI.DetailSubUI.Icon.sprite = Item.itemData.ItemSprite;
+            GameManager.Inst.SubUI.DetailSubUI.MainItemName = Item.itemData.ItemName;
+            GameManager.Inst.SubUI.DetailSubUI.SubItemName = Item.itemData.ItemDescription;
 
             if (GameManager.Inst.SubUI.DetailSubUI.Canvas.enabled)
             {
@@ -98,8 +98,11 @@ namespace SOB.Item
             {
                 Buff buff = new Buff();
                 var items = Item as BuffItemSO;
-                buff.buffItem = items;
-                unit.Core.GetCoreComponent<SoundEffect>().AudioSpawn(Item.AcquiredSoundEffect);                
+                buff.buffItem = items.BuffData;
+                buff.statsData = items.StatsDatas;
+                buff.effectData = items.effectData;
+                buff.itemEffects = items.ItemEffects;
+                unit.Core.GetCoreComponent<SoundEffect>().AudioSpawn(Item.effectData.AcquiredSoundEffect);                
                 unit.gameObject.GetComponent<BuffSystem>().AddBuff(buff);
             }
 
@@ -121,8 +124,8 @@ namespace SOB.Item
             Debug.LogWarning($"Conflict {this.name}");
             if (Item != null ? true : false)
             {
-                if (Item.AcquiredEffectPrefab != null)
-                    Instantiate(Item.AcquiredEffectPrefab, this.gameObject.transform.position, Quaternion.identity, effectContainer);
+                if (Item.effectData.AcquiredEffectPrefab != null)
+                    Instantiate(Item.effectData.AcquiredEffectPrefab, this.gameObject.transform.position, Quaternion.identity, effectContainer);
 
                 Debug.LogWarning($"Get {this.name}");
                 //this.gameObject.SetActive(false);

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836f02ead74e6a24db24927dd939c743, type: 3}
   m_Name: StatsItem 10
   m_EditorClassIdentifier: 
-  ItemName: StatsItem10
-  ItemDescription: StatsItem1 Description
-  ItemSprite: {fileID: 21300000, guid: cfb9534e88f2cca4f998d9620eccbdf9, type: 3}
+  itemData:
+    ItemName: Stat10
+    ItemDescription: Stat10
+    ItemSprite: {fileID: 1614517988, guid: a0e4db65e203e1540af7f570753abfaa, type: 3}
   StatsDatas:
     MaxHealth: 10
     MovementVelocity: 0
@@ -29,7 +30,9 @@ MonoBehaviour:
     MyElemental: 0
     ElementalDefensivePer: 10
     ElementalAggressivePer: 10
-  <AcquiredEffectPrefab>k__BackingField: {fileID: 5279545542555632717, guid: 54c319e2f98e0b04384f32b5f2f6b28b, type: 3}
-  <AcquiredSoundEffect>k__BackingField: {fileID: 0}
-  <isEquipment>k__BackingField: 1
-  <DetailSubUI>k__BackingField: 0
+  effectData:
+    <AcquiredEffectPrefab>k__BackingField: {fileID: 0}
+    <AcquiredSoundEffect>k__BackingField: {fileID: 0}
+    <isEquipment>k__BackingField: 1
+    <DetailSubUI>k__BackingField: 0
+  ItemEffects: []

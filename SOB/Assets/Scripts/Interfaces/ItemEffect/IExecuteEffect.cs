@@ -3,6 +3,6 @@ using UnityEngine;
 
 public interface IExecuteEffect
 {
-    public void ExecuteEffect(StatsItemSO parentItem, Unit unit);
-    public void ExecuteEffect(StatsItemSO parentItem, Unit unit, Unit enemy);
+    public int ExecuteEffect(StatsItemSO parentItem, Unit unit, int attackCount);
+    public int ExecuteEffect(StatsItemSO parentItem, Unit unit, Unit enemy, int attackCount);
 }
