@@ -10,31 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: SceneTable Shared Data
+  m_Name: Char_Table Shared Data
   m_EditorClassIdentifier: 
-  m_TableCollectionName: SceneTable
-  m_TableCollectionNameGuidString: c7ed3ef4247f1fd44a44b568a119ad78
+  m_TableCollectionName: Char_Table
+  m_TableCollectionNameGuidString: 624403414fdcaad4497611155e8721fa
   m_Entries:
-  - m_Id: 7679139840
-    m_Key: Scene_Reforging
-    m_Metadata:
-      m_Items: []
-  - m_Id: 686675084075008
-    m_Key: Scene_Stage1
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2153620560044032
-    m_Key: Scene_Boss_Stage1
+  - m_Id: 7792386048
+    m_Key: Agitator
     m_Metadata:
       m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 942642537449127936
+    rid: 942642657160069122
   references:
     version: 2
     RefIds:
-    - rid: 942642537449127936
+    - rid: 942642657160069122
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1684463157273
+        m_CustomEpoch: 1684921024575
