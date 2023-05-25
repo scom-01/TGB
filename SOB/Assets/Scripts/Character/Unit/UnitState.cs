@@ -62,6 +62,7 @@ public class UnitState
     }
     public virtual void Exit()
     {
+        Debug.Log(unit.name + " Exit State : " + animBoolName);
         unit.Anim.SetBool(animBoolName, false);
         isExitingState = true;
     }
@@ -78,7 +79,11 @@ public class UnitState
 
     public virtual void AnimationTrigger() { }
 
-    public virtual void AnimationFinishTrigger() => isAnimationFinished = true;
+    public virtual void AnimationFinishTrigger()
+    {
+        isAnimationFinished = true;
+        unit.RB.gravityScale = unit.UnitData.UnitGravity;
+    }
 
     public virtual void UseInput(ref bool input) => input = false;
 }
