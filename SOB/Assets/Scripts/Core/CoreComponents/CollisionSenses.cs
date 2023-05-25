@@ -80,12 +80,12 @@ namespace SOB.CoreSystem
 
         public bool CheckIfCliff
         {
-            get => Physics2D.Raycast(groundCheck.position + new Vector3((BC2D.offset.x + 0.05f) + BC2D.size.x / 2, 0, 0) * Movement.FancingDirection, Vector2.down, 0.5f, WhatIsGround);
+            get => Physics2D.Raycast(groundCheck.position + new Vector3((BC2D.offset.x + 1) + BC2D.size.x / 2, 0, 0) * Movement.FancingDirection, Vector2.down, 0.5f, WhatIsGround);
         }
 
         public bool CheckIfCliffBack
         {
-            get => Physics2D.Raycast(groundCheck.position + new Vector3((BC2D.offset.x + 0.05f) + BC2D.size.x / 2, 0, 0) * -Movement.FancingDirection, Vector2.down, 0.5f, WhatIsGround);
+            get => Physics2D.Raycast(groundCheck.position + new Vector3((BC2D.offset.x + 1) + BC2D.size.x / 2, 0, 0) * -Movement.FancingDirection, Vector2.down, 0.5f, WhatIsGround);
         }
 
         public bool UnitDectected
