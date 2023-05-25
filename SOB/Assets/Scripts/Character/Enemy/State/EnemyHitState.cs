@@ -14,6 +14,15 @@ public abstract class EnemyHitState : EnemyState
         base.Enter();
         //enemy.Anim.speed = 0.0f;
         startTime = Time.time;
+        Movement.SetVelocityX(0);
+        if (enemy.EOE != null)
+        {
+            if((enemy.EOE.transform.position.x - enemy.transform.position.x > 0)&& (Movement.FancingDirection == -1) ||
+                (enemy.EOE.transform.position.x - enemy.transform.position.x < 0) && (Movement.FancingDirection == 1))
+            {
+                Movement.Flip();
+            }
+        }
     }
 
     public override void Exit()

@@ -6,7 +6,23 @@ namespace SOB.CoreSystem
     {
         protected Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
         protected Movement movement;
-        public BoxCollider2D BC2D { get; private set; }
+        public BoxCollider2D BC2D 
+        {
+            get 
+            { 
+                if(bc2d == null)
+                {
+                    bc2d = GetComponentInParent<BoxCollider2D>();
+                }
+                return bc2d; 
+            }
+            private set
+            {
+                bc2d = value;
+            }
+        }
+
+        private BoxCollider2D bc2d;
 
         #region Check Transforms
 
@@ -32,7 +48,6 @@ namespace SOB.CoreSystem
         protected override void Awake()
         {
             base.Awake();
-            BC2D = GetComponentInParent<BoxCollider2D>();
         }
 
         public bool CheckIfPlatform
@@ -49,13 +64,13 @@ namespace SOB.CoreSystem
         public bool CheckIfTouchingWall
         {
             //Debug.DrawRay(wallCheck.position, Vector2.right * core.Movement.FancingDirection * wallCheckDistance, Color.green);
-            get => Physics2D.Raycast(wallCheck.position, Vector2.right * Movement.FancingDirection, WallCheckDistance, WhatIsWall);
+            get => Physics2D.Raycast(wallCheck.position, Vector2.right * Movement.FancingDirection, BC2D.size.x / 2 + WallCheckDistance, WhatIsWall);
         }
 
         public bool CheckIfTouchingWallBack
         {
             //Debug.DrawRay(wallCheck.position, Vector2.right * -core.Movement.FancingDirection * wallCheckDistance, Color.red);
-            get => Physics2D.Raycast(wallCheck.position, Vector2.right * -Movement.FancingDirection, WallCheckDistance, WhatIsWall);
+            get => Physics2D.Raycast(wallCheck.position, Vector2.right * -Movement.FancingDirection, BC2D.size.x / 2 + WallCheckDistance, WhatIsWall);
         }
 
         public bool CheckIfStayGrounded
@@ -65,7 +80,12 @@ namespace SOB.CoreSystem
 
         public bool CheckIfCliff
         {
-            get => Physics2D.Raycast(groundCheck.position + new Vector3((BC2D.offset.x - 0.05f) + BC2D.size.x / 2, 0, 0) * Movement.FancingDirection, Vector2.down, 0.5f, WhatIsGround);
+            get => Physics2D.Raycast(groundCheck.position + new Vector3((BC2D.offset.x + 0.05f) + BC2D.size.x / 2, 0, 0) * Movement.FancingDirection, Vector2.down, 0.5f, WhatIsGround);
+        }
+
+        public bool CheckIfCliffBack
+        {
+            get => Physics2D.Raycast(groundCheck.position + new Vector3((BC2D.offset.x + 0.05f) + BC2D.size.x / 2, 0, 0) * -Movement.FancingDirection, Vector2.down, 0.5f, WhatIsGround);
         }
 
         public bool UnitDectected
@@ -90,10 +110,10 @@ namespace SOB.CoreSystem
             Debug.DrawRay(groundCheck.position, Vector2.down * GroundCheckRadius *4, Color.red);
 
             //CheckIfTouchingWallBack
-            Debug.DrawRay(wallCheck.position, Vector2.right * -Movement.FancingDirection * WallCheckDistance, Color.red);
+            Debug.DrawRay(wallCheck.position, Vector2.right * -Movement.FancingDirection * (WallCheckDistance + BC2D.bounds.size.x / 2), Color.red);
 
             //CheckIfTouchingWall
-            Debug.DrawRay(wallCheck.position, Vector2.right * Movement.FancingDirection * WallCheckDistance, Color.green);
+            Debug.DrawRay(wallCheck.position, Vector2.right * Movement.FancingDirection * (WallCheckDistance + BC2D.bounds.size.x / 2), Color.green);
         }
     }
 }

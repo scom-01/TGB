@@ -8,7 +8,23 @@ namespace SOB.CoreSystem
 
     public class CoreComponent : MonoBehaviour, ILogicUpdate
     {
-        protected Core core;
+        protected Core core
+        {
+            get
+            {
+                if (_core == null)
+                {
+                    _core = transform.parent.GetComponent<Core>();
+                }
+                return _core;
+            }
+            set
+            {
+                _core = value;
+            }
+        }
+
+        private Core _core;
 
         protected virtual void Awake()
         {

@@ -6,8 +6,10 @@ using UnityEngine;
 public abstract class EnemyRunState : EnemyState
 {
     private bool checkifCliff;
+    private bool checkifCliffBack;
     private bool checkifTouchingGrounded;
     private bool checkifTouchingWall;
+    private bool checkifTouchingWallBack;
     public EnemyRunState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
     }
@@ -17,10 +19,25 @@ public abstract class EnemyRunState : EnemyState
         base.DoChecks();
 
         checkifCliff = EnemyCollisionSenses.CheckIfCliff;
+        checkifCliffBack = EnemyCollisionSenses.CheckIfCliffBack;
         checkifTouchingWall = EnemyCollisionSenses.CheckIfTouchingWall;
+        Debug.Log($"TouchingWall is {checkifTouchingWall}");
+        checkifTouchingWallBack = EnemyCollisionSenses.CheckIfTouchingWallBack;
         checkifTouchingGrounded = EnemyCollisionSenses.CheckIfStayGrounded;
+                
+        if(!isGrounded)
+        {
+            IdleState();
+            return;
+        }
 
-        if (!checkifCliff || checkifTouchingGrounded || checkifTouchingWall)
+        if((!checkifCliff && !checkifCliffBack ) || (checkifTouchingWall && checkifTouchingWallBack))
+        {
+            enemy.SetEOE(null);
+            IdleState();
+            return;
+        }
+        else if(!checkifCliff || checkifTouchingWall)
         {
             Movement.SetVelocityX(0);
             Movement.Flip();
@@ -54,6 +71,7 @@ public abstract class EnemyRunState : EnemyState
     }
 
     public abstract void Enemy_Attack();
+    public abstract void IdleState();
 
     public override void PhysicsUpdate()
     {

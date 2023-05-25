@@ -35,6 +35,10 @@ public abstract class EnemyIdleState : EnemyState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        if(enemy.enemyData.enemy_form == ENEMY_Form.Grounded && !isGrounded)
+        {            
+            return;
+        }
 
         if(EnemyCollisionSenses.isUnitInDetectedArea)
         {
@@ -43,11 +47,12 @@ public abstract class EnemyIdleState : EnemyState
 
         if (enemy.EOE != null)
         {
-            if (((enemy.transform.position.x - enemy.EOE.transform.position.x) > 0) != Movement.FancingDirection > 0)
-            {
-                Movement.Flip();
-            }
+            //if (((enemy.transform.position.x - enemy.EOE.transform.position.x) > 0) != Movement.FancingDirection > 0)
+            //{
+            //    Movement.Flip();
+            //}
             RunState();
+            return;
         }
 
         if (Time.time >= startTime + idleTime)
