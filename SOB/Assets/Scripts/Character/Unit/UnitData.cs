@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Localization;
 
 [CreateAssetMenu(fileName = "newUnitData",menuName ="Data/Unit Data")]
 public class UnitData : ScriptableObject
@@ -6,6 +7,9 @@ public class UnitData : ScriptableObject
     [Header("Status")]
     [Tooltip("기본 Status")]
     public StatsData statsStats;
+
+    public string UnitName;
+    public LocalizedString UnitNameLocal;
     [Tooltip("넉백지속시간")]
     public float knockBackDuration;
     [Tooltip("넉백 속도")]
