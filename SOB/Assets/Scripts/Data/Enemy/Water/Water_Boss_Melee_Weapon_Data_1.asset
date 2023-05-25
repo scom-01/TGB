@@ -20,23 +20,55 @@ MonoBehaviour:
   - rid: 1770984582361907201
   - rid: 1770984582361907202
   - rid: 1770984582361907203
+  - rid: 942642657160069128
+  - rid: 942642657160069129
+  - rid: 942642657160069130
+  - rid: 942642657160069131
   references:
     version: 2
     RefIds:
+    - rid: 942642657160069128
+      type: {class: EffectSpawnData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: EffectSpawnData
+        actionData:
+        - name: Action 1
+          <EffectParticles>k__BackingField: []
+    - rid: 942642657160069129
+      type: {class: ShakeCamData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ShakeCamData
+        actionData:
+        - name: Action 1
+          <ShakeCamData>k__BackingField: []
+    - rid: 942642657160069130
+      type: {class: SoundClipData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: SoundClipData
+        actionData:
+        - name: Action 1
+          audioClips: []
+    - rid: 942642657160069131
+      type: {class: WeaponSpriteData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: WeaponSpriteData
+        actionData:
+        - name: Action 1
+          <WeaponSprites>k__BackingField: []
     - rid: 1770984582361907200
       type: {class: ActionHitBoxData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: ActionHitBoxData
         actionData:
-        - name: 
+        - name: Action 1
           ActionHit:
           - Debug: 1
             ActionRect:
               serializedVersion: 2
-              x: -0
-              y: -0.77
-              width: 2.42
-              height: 1.63
+              x: -3.34
+              y: -1.87
+              width: 9.14
+              height: 4.17
             EffectPrefab: []
             audioClip: []
             camDatas:
@@ -51,7 +83,7 @@ MonoBehaviour:
       data:
         name: DamageData
         actionData:
-        - name: 
+        - name: Action 1
           <AdditionalDamage>k__BackingField:
           - 5
     - rid: 1770984582361907202
@@ -59,7 +91,7 @@ MonoBehaviour:
       data:
         name: KnockbackData
         actionData:
-        - name: 
+        - name: Action 1
           <KnockbackAngle>k__BackingField:
           - {x: 2, y: 2}
     - rid: 1770984582361907203
@@ -67,7 +99,7 @@ MonoBehaviour:
       data:
         name: MovementData
         actionData:
-        - name: 
+        - name: Action 1
           <movements>k__BackingField:
             CanFlip: 0
             CanMoveCtrl: 0

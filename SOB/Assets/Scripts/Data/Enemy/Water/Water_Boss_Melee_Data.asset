@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Water_Boss_Melee_Data
   m_EditorClassIdentifier: 
   statsStats:
-    MaxHealth: 90
-    MovementVelocity: 5
+    MaxHealth: 5000
+    MovementVelocity: 2
     JumpVelocity: 10
     DefaultPower: 5
     AttackSpeedPer: 0
@@ -22,7 +22,7 @@ MonoBehaviour:
     MagicDefensivePer: 5
     PhysicsAggressivePer: 0
     MagicAggressivePer: 0
-    DamageAttiribute: 0
+    DamageAttiribute: 1
     MyElemental: 4
     ElementalDefensivePer: 0
     ElementalAggressivePer: 0
@@ -63,7 +63,7 @@ MonoBehaviour:
   enemy_form: 0
   enemy_size: 2
   enemy_level: 2
-  UnitAttackDistance: 1
+  UnitAttackDistance: 4.3
   minIdleTime: 0
   maxIdleTime: 0
   references:
