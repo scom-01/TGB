@@ -51,7 +51,15 @@ namespace SOB.CoreSystem
 
         public Unit Unit
         {
-            get => GenericNotImplementedError<Unit>.TryGet(unit, transform.parent.name);
+            get
+            {
+                if(unit==null)
+                {
+                    unit = GetComponentInParent<Unit>();
+                }
+                return unit;
+            }
+            //=> GenericNotImplementedError<Unit>.TryGet(unit, transform.parent.name);
             private set => unit = value;
         }
         private Unit unit;

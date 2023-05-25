@@ -16,4 +16,9 @@ public class Enemy_Melee1_MoveState : EnemyRunState
         unit.FSM.ChangeState(enemy_Melee.AttackState);
         Debug.LogWarning("ChanegEnemy_Melee1");
     }
+
+    public override void IdleState()
+    {
+        unit.FSM.ChangeState(enemy_Melee.IdleState);
+    }
 }

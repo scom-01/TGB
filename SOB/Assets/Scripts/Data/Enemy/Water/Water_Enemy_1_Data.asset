@@ -26,8 +26,19 @@ MonoBehaviour:
     MyElemental: 4
     ElementalDefensivePer: 0
     ElementalAggressivePer: 0
+  UnitName: 
+  UnitNameLocal:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   knockBackDuration: 0.2
   knockBackSpeed: {x: 1, y: 0}
+  UnitGravity: 0
   invincibleTime: 0.125
   touchDamageinvincibleTime: 1
   standColliderOffset: {x: 0.003388971, y: 0.05835938}
@@ -48,10 +59,13 @@ MonoBehaviour:
   WhatIsEnemyUnit:
     serializedVersion: 2
     m_Bits: 4096
-  UnitAnimator: {fileID: 9100000, guid: 628b92869e056ac4396d23487ffdb69a, type: 2}
+  UnitAnimator: {fileID: 22100000, guid: 0af0785d1d158a845b0ab0011f5a03ad, type: 2}
   enemy_form: 0
-  enemy_size: 2
+  enemy_size: 0
   enemy_level: 0
   UnitAttackDistance: 2
   minIdleTime: 0
   maxIdleTime: 0
+  references:
+    version: 2
+    RefIds: []

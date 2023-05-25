@@ -26,6 +26,16 @@ MonoBehaviour:
     MyElemental: 0
     ElementalDefensivePer: 0
     ElementalAggressivePer: 0
+  UnitName: Agitator
+  UnitNameLocal:
+    m_TableReference:
+      m_TableCollectionName: GUID:624403414fdcaad4497611155e8721fa
+    m_TableEntryReference:
+      m_KeyId: 7792386048
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   knockBackDuration: 0.2
   knockBackSpeed: {x: 1, y: 0}
   UnitGravity: 5
@@ -33,7 +43,7 @@ MonoBehaviour:
   touchDamageinvincibleTime: 1
   standColliderOffset: {x: 0, y: -0.45}
   standColliderSize: {x: 1.5, y: 2.25}
-  UnitColliderMaterial: {fileID: 0}
+  UnitColliderMaterial: {fileID: 6200000, guid: 5cc90d2fd1f3c2d4ba56287afb0442d4, type: 2}
   groundCheckRadius: 0.1
   wallCheckDistance: 0.5
   UnitDetectedDistance: 5
@@ -42,7 +52,7 @@ MonoBehaviour:
     m_Bits: 896
   whatIsWall:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   whatIsPlatform:
     serializedVersion: 2
     m_Bits: 512
@@ -56,3 +66,6 @@ MonoBehaviour:
   UnitAttackDistance: 2
   minIdleTime: 0
   maxIdleTime: 0
+  references:
+    version: 2
+    RefIds: []

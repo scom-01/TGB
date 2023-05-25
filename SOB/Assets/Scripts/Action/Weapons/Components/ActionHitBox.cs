@@ -11,6 +11,7 @@ namespace SOB.Weapons.Components
         private Vector2 offset;
         private Collider2D[] detected;
 
+        public int currentHitIdx = 0;
         public int currentHitBoxIndex;
         protected override void HandleEnter()
         {
@@ -79,24 +80,7 @@ namespace SOB.Weapons.Components
                     if (currHitBox[currentHitBoxIndex].EffectPrefab != null)
                     {
                         for (int i = 0; i < currHitBox[currentHitBoxIndex].EffectPrefab.Length; i++)
-                        {
-                            //if (currHitBox[currentHitBoxIndex].EffectPrefab[i].isGround)
-                            //{
-                            //    CoreParticleManager.StartParticles(currHitBox[currentHitBoxIndex].EffectPrefab[i].Object, CoreCollisionSenses.GroundCheck.position);
-                            //}
-                            //else
-                            //{
-                            //    if (currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomPosRot)
-                            //    {
-                            //        CoreParticleManager.StartParticlesWithRandomPosRot(
-                            //                currHitBox[currentHitBoxIndex].EffectPrefab[i].Object,
-                            //                currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomRange);
-                            //    }
-                            //    else
-                            //    {
-                            //        CoreParticleManager.StartParticles(currHitBox[currentHitBoxIndex].EffectPrefab[i].Object);
-                            //    }
-                            //}
+                        {                            
                             damageable.HitAction(currHitBox[currentHitBoxIndex].EffectPrefab[i].Object, currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomRange);
                         }
                     }
@@ -116,9 +100,9 @@ namespace SOB.Weapons.Components
                         for (int i = 0; i < currHitBox[currentHitBoxIndex].camDatas.Length; i++)
                         {
                             Camera.main.GetComponent<CameraShake>().Shake(
-                                currHitBox[currentHitBoxIndex].camDatas[i].ShakgeCamRepeatRate,
-                                currHitBox[currentHitBoxIndex].camDatas[i].ShakeCamRange,
-                                currHitBox[currentHitBoxIndex].camDatas[i].ShakeCamDuration
+                                currHitBox[currentHitBoxIndex].camDatas[i].RepeatRate,
+                                currHitBox[currentHitBoxIndex].camDatas[i].Range,
+                                currHitBox[currentHitBoxIndex].camDatas[i].Duration
                                 );
                         }
                     }

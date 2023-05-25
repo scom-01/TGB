@@ -44,9 +44,9 @@ namespace SOB.Weapons.Components
             }
             Debug.Log("Shake Cam");
             Camera.main.GetComponent<CameraShake>().Shake(
-                currCamAction[currentShakeCaIdx].ShakgeCamRepeatRate,
-                currCamAction[currentShakeCaIdx].ShakeCamRange,
-                currCamAction[currentShakeCaIdx].ShakeCamDuration
+                currCamAction[currentShakeCaIdx].RepeatRate,
+                currCamAction[currentShakeCaIdx].Range,
+                currCamAction[currentShakeCaIdx].Duration
                 );
             return true;
         }
