@@ -39,6 +39,16 @@ namespace SOB.Weapons.Components
         {
             get => coreSoundEffect ? coreSoundEffect : core.GetCoreComponent(ref coreSoundEffect);
         }
+        private CoreSystem.DamageReceiver coreDamageReceiver;
+        protected CoreSystem.DamageReceiver CoreDamageReceiver
+        {
+            get => coreDamageReceiver ? coreDamageReceiver : core.GetCoreComponent(ref coreDamageReceiver);
+        }
+        private CoreSystem.KnockBackReceiver coreKnockBackReceiver;
+        protected CoreSystem.KnockBackReceiver CoreKnockBackReceiver
+        {
+            get => coreKnockBackReceiver ? coreKnockBackReceiver : core.GetCoreComponent(ref coreKnockBackReceiver);
+        }
 
         public virtual void Init()
         {

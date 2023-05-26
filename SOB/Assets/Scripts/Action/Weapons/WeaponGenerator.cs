@@ -89,5 +89,10 @@ namespace SOB.Weapons
                 Destroy(weaponComponent);
             }
         }
+        public void GenerateWeapon(AnimCommand CommandData)
+        {
+            weapon.oc = CommandData.animOC;
+            GenerateWeapon(CommandData.data);
+        }
     }
 }

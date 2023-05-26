@@ -62,13 +62,14 @@ namespace SOB.Weapons
             EventHandler = BaseGameObject.GetComponent<AnimationEventHandler>();
             
             actionCounterResetTimer = new Timer(actionCounterResetCooldown);
+
+            this.gameObject.tag = this.GetComponentInParent<Unit>().gameObject.tag;
         }
 
         private void Update()
         {
             if (WeaponCore == null)
                 return;
-
             
             BaseGameObject.GetComponent<Animator>().speed = 1f + (WeaponCore.GetCoreComponent<UnitStats>().StatsData.AttackSpeedPer * 1 / 100);
             actionCounterResetTimer.Tick();
