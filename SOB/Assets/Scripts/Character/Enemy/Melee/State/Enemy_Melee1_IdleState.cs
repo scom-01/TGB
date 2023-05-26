@@ -9,7 +9,7 @@ public class Enemy_Melee1_IdleState : EnemyIdleState
     {
         enemy_Melee1 = enemy as Enemy_Melee1;
     }
-    public override void RunState()
+    public override void ChangeState()
     {
         unit.FSM.ChangeState(enemy_Melee1.RunState);
     }

@@ -157,8 +157,7 @@ public class PlayerWeaponState : PlayerAbilityState
                 }
                 else
                 {
-                    weapon.oc = commandLists[i].commands[j].animOC;
-                    weapon.weaponGenerator.GenerateWeapon(commandLists[i].commands[j].data);
+                    weapon.weaponGenerator.GenerateWeapon(commandLists[i].commands[j]);
                 }
             }
             if (pass)

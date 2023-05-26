@@ -69,7 +69,7 @@ namespace SOB.Weapons.Components
 
                 if (coll.gameObject.GetComponentInParent<Enemy>() != null)
                 {
-                    coll.gameObject.GetComponentInParent<Enemy>().SetEOE(core.Unit);
+                    coll.gameObject.GetComponentInParent<Enemy>().SetTarget(core.Unit);
                 }
 
                 //Hit시 효과

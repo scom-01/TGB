@@ -31,17 +31,23 @@ MonoBehaviour:
       type: {class: EffectSpawnData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: EffectSpawnData
-        actionData: []
+        actionData:
+        - name: 
+          <EffectParticles>k__BackingField: []
     - rid: 1770984693643870209
       type: {class: SoundClipData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: SoundClipData
-        actionData: []
+        actionData:
+        - name: 
+          audioClips: []
     - rid: 2811500879843950592
       type: {class: ShakeCamData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: ShakeCamData
-        actionData: []
+        actionData:
+        - name: 
+          <ShakeCamData>k__BackingField: []
     - rid: 3615621173780152320
       type: {class: ActionHitBoxData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -68,9 +74,9 @@ MonoBehaviour:
             audioClip:
             - {fileID: 8300000, guid: 7dfd8119742582c47832bf5ec01273db, type: 3}
             camDatas:
-            - ShakeCamDuration: 0.2
-              ShakeCamRange: 0.01
-              ShakgeCamRepeatRate: 0.005
+            - Duration: 0.1
+              Range: 0.01
+              RepeatRate: 0.001
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
           m_Bits: 133120

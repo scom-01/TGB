@@ -8,6 +8,7 @@ public class AnimationEventHandler : MonoBehaviour
     public event Action OnFinish;
     public event Action OnFixedStartMovement;
     public event Action OnFixedStopMovement;
+    public event Action OnTeleportToTarget;
     public event Action OnStartMovement;
     public event Action OnStopMovement;
     public event Action OnStartFlip;
@@ -17,10 +18,13 @@ public class AnimationEventHandler : MonoBehaviour
     public event Action OnSoundClip;
     public event Action OnShakeCam;
 
+    public event Action OnStartInvincible;
+    public event Action OnStopInvincible;
 
     public void AnimationFinishedTrigger() => OnFinish?.Invoke();
     public void FixedStartMovementTrigger() => OnFixedStartMovement?.Invoke();
     public void FixedStopMovementTrigger() => OnFixedStopMovement?.Invoke();
+    public void TeleportToTargetTrigger() => OnTeleportToTarget?.Invoke();
     public void StartMovementTrigger() => OnStartMovement?.Invoke();
     public void StopMovementTrigger() => OnStopMovement?.Invoke();
     public void StartFlipTrigger() => OnStartFlip?.Invoke();
@@ -29,4 +33,6 @@ public class AnimationEventHandler : MonoBehaviour
     public void SpawnEffectTrigger() => OnEffectSpawn?.Invoke();
     public void SpawnSoundClipTrigger() => OnSoundClip?.Invoke();
     public void ShakeCamTrigger() => OnShakeCam?.Invoke();
+    public void StartInvincibleTrigger() => OnStartInvincible?.Invoke();
+    public void StopInvincibleTrigger() => OnStopInvincible?.Invoke();
 }

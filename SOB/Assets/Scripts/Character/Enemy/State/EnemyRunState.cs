@@ -33,7 +33,7 @@ public abstract class EnemyRunState : EnemyState
 
         if((!checkifCliff && !checkifCliffBack ) || (checkifTouchingWall && checkifTouchingWallBack))
         {
-            enemy.SetEOE(null);
+            enemy.SetTarget(null);
             IdleState();
             return;
         }
@@ -64,7 +64,7 @@ public abstract class EnemyRunState : EnemyState
 
         if (EnemyCollisionSenses.isUnitInAttackArea && unit.Inventory.Weapon != null)
         {
-            Debug.Log($"{enemy.name}'s EOE = {enemy.EOE}");
+            Debug.Log($"{enemy.name}'s EOE = {enemy.TargetUnit}");
             Enemy_Attack();
             return;
         }

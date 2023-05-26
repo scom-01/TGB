@@ -39,7 +39,7 @@ MonoBehaviour:
       data:
         name: SoundClipData
         actionData:
-        - name: 
+        - name: Action 1
           audioClips:
           - {fileID: 8300000, guid: a90b7184fb02659469901edc3ceb6a19, type: 3}
     - rid: 2811500880619372554
@@ -47,14 +47,14 @@ MonoBehaviour:
       data:
         name: ShakeCamData
         actionData:
-        - name: 
+        - name: Action 1
           <ShakeCamData>k__BackingField: []
     - rid: 3615621173780152320
       type: {class: ActionHitBoxData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: ActionHitBoxData
         actionData:
-        - name: 
+        - name: Action 1
           ActionHit:
           - Debug: 1
             ActionRect:
@@ -63,11 +63,7 @@ MonoBehaviour:
               y: -0.72
               width: 3.47
               height: 1.01
-            EffectPrefab:
-            - isGround: 0
-              isRandomPosRot: 0
-              isRandomRange: 0
-              Object: {fileID: 0}
+            EffectPrefab: []
             audioClip: []
             camDatas: []
         <DetectableLayers>k__BackingField:
@@ -78,7 +74,7 @@ MonoBehaviour:
       data:
         name: MovementData
         actionData:
-        - name: 
+        - name: Action 1
           <movements>k__BackingField:
             CanFlip: 0
             CanMoveCtrl: 0
@@ -89,7 +85,7 @@ MonoBehaviour:
       data:
         name: WeaponSpriteData
         actionData:
-        - name: 
+        - name: Action 1
           <WeaponSprites>k__BackingField:
           - {fileID: 2024158448, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
           - {fileID: 829565306, guid: f2bfc0de04e35ce4c8eda5f06225190f, type: 3}
@@ -101,7 +97,7 @@ MonoBehaviour:
       data:
         name: DamageData
         actionData:
-        - name: 
+        - name: Action 1
           <AdditionalDamage>k__BackingField:
           - 10
     - rid: 8358215245741948929

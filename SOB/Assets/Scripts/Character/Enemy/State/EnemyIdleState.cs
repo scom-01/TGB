@@ -6,9 +6,13 @@ using UnityEngine;
 
 public abstract class EnemyIdleState : EnemyState
 {
-    protected bool isIdleTimeOver;
-
     protected float idleTime;
+    protected bool isIdleTimeOver;
+    protected bool checkifCliff;
+    private bool checkifCliffBack;
+    private bool checkifTouchingGrounded;
+    private bool checkifTouchingWall;
+    private bool checkifTouchingWallBack;
 
     public EnemyIdleState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
@@ -35,23 +39,31 @@ public abstract class EnemyIdleState : EnemyState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if(enemy.enemyData.enemy_form == ENEMY_Form.Grounded && !isGrounded)
+
+        checkifCliff = EnemyCollisionSenses.CheckIfCliff;
+        checkifCliffBack = EnemyCollisionSenses.CheckIfCliffBack;
+        checkifTouchingWall = EnemyCollisionSenses.CheckIfTouchingWall;
+        checkifTouchingWallBack = EnemyCollisionSenses.CheckIfTouchingWallBack;
+        checkifTouchingGrounded = EnemyCollisionSenses.CheckIfStayGrounded;
+
+        if (enemy.enemyData.enemy_form == ENEMY_Form.Grounded && !isGrounded)
         {            
             return;
         }
 
         if(EnemyCollisionSenses.isUnitInDetectedArea)
         {
-            enemy.SetEOE(EnemyCollisionSenses.UnitDetectArea?.GetComponent<Unit>());
+            enemy.SetTarget(EnemyCollisionSenses.UnitDetectArea?.GetComponent<Unit>());
         }
 
-        if (enemy.EOE != null)
+        if (enemy.TargetUnit != null)
         {
-            //if (((enemy.transform.position.x - enemy.EOE.transform.position.x) > 0) != Movement.FancingDirection > 0)
-            //{
-            //    Movement.Flip();
-            //}
-            RunState();
+            if ((!checkifCliff && !checkifCliffBack) || (checkifTouchingWall && checkifTouchingWallBack))
+            {
+                FollowTarget();
+                return;
+            }
+            ChangeState();
             return;
         }
 
@@ -61,7 +73,7 @@ public abstract class EnemyIdleState : EnemyState
         }
     }
 
-    public abstract void RunState();
+    public abstract void ChangeState();
 
     public override void PhysicsUpdate()
     {

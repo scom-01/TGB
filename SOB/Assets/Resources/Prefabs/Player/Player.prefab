@@ -399,6 +399,7 @@ MonoBehaviour:
   RespawnPoint: {fileID: 0}
   UnitData: {fileID: 11400000, guid: ae3d62f76bc500849819fd1f7f2f1900, type: 2}
   IsAlive: 1
+  isCCimmunity: 0
   playerData: {fileID: 11400000, guid: ae3d62f76bc500849819fd1f7f2f1900, type: 2}
   DamageTextPrefab: {fileID: 1081114584503966581, guid: ac79a3234d3f9384daeb57ffc2760fa4, type: 3}
 --- !u!114 &840319699589423351
@@ -666,7 +667,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7179104609834817446}
+  - {fileID: 3038567696293431248}
   m_Father: {fileID: 840319699589423311}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1003,7 +1004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0be52e1d9e69699499c88eb85bfd1a58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &5621399127643482881
+--- !u!1001 &543066499883973495
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1056,12 +1057,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3288319467719998632, guid: caaa93eb4d0c9654c81148506d463b68, type: 3}
       propertyPath: m_Name
-      value: Sword1
+      value: PlayerWeapon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: caaa93eb4d0c9654c81148506d463b68, type: 3}
---- !u!4 &7179104609834817446 stripped
+--- !u!4 &3038567696293431248 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3288319467719998631, guid: caaa93eb4d0c9654c81148506d463b68, type: 3}
-  m_PrefabInstance: {fileID: 5621399127643482881}
+  m_PrefabInstance: {fileID: 543066499883973495}
   m_PrefabAsset: {fileID: 0}
