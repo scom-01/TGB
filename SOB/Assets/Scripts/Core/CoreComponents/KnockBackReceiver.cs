@@ -4,6 +4,7 @@ using UnityEngine;
 using SOB.CoreSystem;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine.Serialization;
+using UnityEditor.Localization.Plugins.XLIFF.V20;
 
 namespace SOB.CoreSystem
 {
@@ -32,6 +33,13 @@ namespace SOB.CoreSystem
                 Debug.Log(core.Unit.name + "is Dead");
                 return;
             }
+
+            //CC기 면역
+            if(core.Unit.isCCimmunity)
+            {
+                return;
+            }
+
             movement.Comp?.SetVelocity(strength, angle, direction);
             movement.Comp.CanSetVelocity = false;
             isKnockBackActive = true;

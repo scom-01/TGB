@@ -23,7 +23,32 @@ public class Unit : MonoBehaviour
     public bool IsAlive = true;
     private DamageFlash[] DamageFlash;
 
-    public bool isCCimmunity = false;
+    /// <summary>
+    /// 절대 면역값
+    /// </summary>
+    public bool isImmunity = false;
+        
+    public bool isCCimmunity
+    {
+        get
+        {
+            if(isImmunity)
+            {
+                _isCCimmunity = true;
+            }
+            return _isCCimmunity;
+        }
+        set
+        {
+            _isCCimmunity = value;
+            if (isImmunity)
+            {
+                _isCCimmunity = true;
+            }
+        }
+    }
+
+    private bool _isCCimmunity;
     [HideInInspector]
     public Unit TargetUnit { get; private set; }
 

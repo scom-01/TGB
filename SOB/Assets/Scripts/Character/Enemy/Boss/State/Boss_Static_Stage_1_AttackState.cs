@@ -10,6 +10,11 @@ public class Boss_Static_Stage_1_AttackState : EnemyAttackState
     {
         boss_Static_Stage_1 = enemy as Boss_Static_Stage_1;
     }
+    public override void Enter()
+    {
+        base.Enter();
+        FollowTarget();
+    }
     public override void IdleState()
     {
         enemy.FSM.ChangeState(boss_Static_Stage_1.IdleState);
