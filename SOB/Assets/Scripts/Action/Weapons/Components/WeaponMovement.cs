@@ -46,6 +46,35 @@ namespace SOB.Weapons.Components
         }
         #endregion
 
+        #region Teleport
+        private void HandleTeleport()
+        {
+            if (core.Unit.TargetUnit == null)
+            {
+                Debug.LogWarning("Target not found");
+                return;
+            }
+            CoreMovement.SetVelocityZero();
+            core.Unit.transform.position = core.Unit.TargetUnit.transform.position;
+        }
+        #endregion
+
+        #region
+
+        private void HandleStartInvincible()
+        {
+            CoreDamageReceiver.isHit = true;
+            core.Unit.isCCimmunity = true;
+        }
+
+        private void HandleStopInvincible()
+        {
+            CoreDamageReceiver.isHit = false;
+            core.Unit.isCCimmunity = false;
+        }
+
+        #endregion
+
         #region Handle Flip
         private void HandleStartFlip()
         {
@@ -72,10 +101,17 @@ namespace SOB.Weapons.Components
 
             eventHandler.OnFixedStartMovement += HandleFixedStartMovement;
             eventHandler.OnFixedStopMovement += HandleFixedStopMovement;
+            eventHandler.OnTeleportToTarget += HandleTeleport;
             eventHandler.OnStartMovement += HandleStartMovement;
             eventHandler.OnStopMovement += HandleStopMovement;
+            eventHandler.OnStartInvincible += HandleStartInvincible;
             eventHandler.OnStartFlip += HandleStartFlip;
             eventHandler.OnStopFlip += HandleStopFlip;
+            eventHandler.OnStopInvincible += HandleStopInvincible;
+
+            //애니메이션 종료 시 원래 상태로 돌리기 위함
+            eventHandler.OnFinish += HandleStopInvincible;
+            eventHandler.OnFinish += HandleFixedStopMovement;
         }
 
         protected override void OnDestory()
@@ -84,10 +120,17 @@ namespace SOB.Weapons.Components
 
             eventHandler.OnFixedStartMovement -= HandleFixedStartMovement;
             eventHandler.OnFixedStopMovement -= HandleFixedStopMovement;
+            eventHandler.OnTeleportToTarget -= HandleTeleport;
             eventHandler.OnStartMovement -= HandleStartMovement;
             eventHandler.OnStopMovement -= HandleStopMovement;
+            eventHandler.OnStartInvincible -= HandleStartInvincible;
             eventHandler.OnStartFlip -= HandleStartFlip;
             eventHandler.OnStopFlip -= HandleStopFlip;
+            eventHandler.OnStopInvincible -= HandleStopInvincible;
+
+            //애니메이션 종료 시 원래 상태로 돌리기 위함
+            eventHandler.OnFinish -= HandleStopInvincible;
+            eventHandler.OnFinish -= HandleFixedStopMovement;
         }
     }
 }

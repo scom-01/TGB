@@ -48,15 +48,17 @@ public class EnemyState : UnitState
 
         if (Death.isDead)
             return;
-        //if (isAnimationFinished)
-        //{
-        //    enemy.FSM.ChangeState(enemy.IdleState);
-        //}
+    }
 
-        //if (enemy.Core.GetCoreComponent<DamageReceiver>().isHit && enemy.FSM.CurrentState != enemy.HitState)
-        //{
-        //    enemy.FSM.ChangeState(enemy.HitState);
-        //    return;
-        //}
+    public void FollowTarget()
+    {
+        if (enemy.TargetUnit == null)
+            return;
+
+        if ((enemy.TargetUnit.transform.position.x - enemy.transform.position.x > 0) && (Movement.FancingDirection == -1) ||
+                (enemy.TargetUnit.transform.position.x - enemy.transform.position.x < 0) && (Movement.FancingDirection == 1))
+        {
+            Movement.Flip();
+        }
     }
 }

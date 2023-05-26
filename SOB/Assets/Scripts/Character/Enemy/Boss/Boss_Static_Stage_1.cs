@@ -7,8 +7,9 @@ public class Boss_Static_Stage_1 : Enemy
 {
     #region State Variables
     public Boss_Static_Stage_1_AttackState AttackState { get; private set; }
+    public Boss_Static_Stage_1_TeleportState TeleportState { get; private set; }
     public Boss_Static_Stage_1_IdleState IdleState { get; private set; }
-    public Boss_Static_Stage_1_MoveState RunState { get; private set; }
+    //public Boss_Static_Stage_1_MoveState RunState { get; private set; }
     public Boss_Static_Stage_1_HitState HitState { get; private set; }
     public Boss_Static_Stage_1_DeathState DeathState { get; private set; }
     #endregion
@@ -19,8 +20,9 @@ public class Boss_Static_Stage_1 : Enemy
         base.Awake();
 
         AttackState = new Boss_Static_Stage_1_AttackState(this, "action");
+        TeleportState = new Boss_Static_Stage_1_TeleportState(this, "action");
         IdleState = new Boss_Static_Stage_1_IdleState(this, "idle");
-        RunState = new Boss_Static_Stage_1_MoveState(this, "run");
+        //RunState = new Boss_Static_Stage_1_MoveState(this, "run");
         HitState = new Boss_Static_Stage_1_HitState(this, "hit");
         DeathState = new Boss_Static_Stage_1_DeathState(this, "death");
     }

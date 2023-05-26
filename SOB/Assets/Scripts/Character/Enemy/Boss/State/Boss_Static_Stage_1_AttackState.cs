@@ -12,6 +12,6 @@ public class Boss_Static_Stage_1_AttackState : EnemyAttackState
     }
     public override void IdleState()
     {
-        enemy.FSM.ChangeState(boss_Static_Stage_1.RunState);
+        enemy.FSM.ChangeState(boss_Static_Stage_1.IdleState);
     }
 }

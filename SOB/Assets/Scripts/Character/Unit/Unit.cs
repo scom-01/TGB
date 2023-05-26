@@ -24,7 +24,10 @@ public class Unit : MonoBehaviour
     private DamageFlash[] DamageFlash;
 
     public bool isCCimmunity = false;
-    #endregion
+    [HideInInspector]
+    public Unit TargetUnit { get; private set; }
+
+#endregion
 
     #region Unity Callback Func
     protected virtual void Awake()
@@ -100,6 +103,14 @@ public class Unit : MonoBehaviour
         }
 
         FSM.CurrentState.LogicUpdate();
+    }
+
+    public void SetTarget(Unit unit)
+    {
+        if (unit == null)
+            return;
+
+        TargetUnit = unit;
     }
 
     protected void OnTriggerEnter2D(Collider2D collision)
