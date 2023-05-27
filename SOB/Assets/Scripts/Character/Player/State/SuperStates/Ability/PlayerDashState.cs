@@ -44,11 +44,12 @@ public class PlayerDashState : PlayerAbilityState
             //콜라이더 크기 변경
             player.SetColliderHeight(player.playerData.dashColliderHeight, false);            
         }
-        
+
+        DamageReceiver.isHit = true;
 
         CanDash = false;
         player.InputHandler.UseInput(ref player.InputHandler.DashInput);
-        if(Dash_Effect!=null)
+        if (Dash_Effect != null)
         {
             EffectManager.StartEffects(Dash_Effect, CollisionSenses.GroundCheck.position);
         }
@@ -62,7 +63,7 @@ public class PlayerDashState : PlayerAbilityState
     {
         base.Exit();
         player.RB.gravityScale = unit.UnitData.UnitGravity;
-
+        DamageReceiver.isHit = false;
         if (IsGrounded)
         {
             //콜라이더 크기 변경
