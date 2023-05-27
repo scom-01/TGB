@@ -11,9 +11,6 @@ public class DataParsing : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //UnitStatData_FilePath = "Json/UnitStatData";
-        //TextAsset textAsset = Resources.Load<TextAsset>(UnitStatData_FilePath);        
-        //Debug.Log(textAsset);
         StatsData js = new StatsData();
         js.MaxHealth = 1010;
         string j = JsonUtility.ToJson(js);

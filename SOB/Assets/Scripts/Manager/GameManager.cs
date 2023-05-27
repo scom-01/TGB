@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
     public ReforgingUIManager ReforgingUI;
     public ResultUIManager ResultUI;
     public DamageUIManager DamageUI;
+    public CutSceneManagerUI CutSceneUI;
 
     private void Awake()
     {
@@ -112,6 +113,9 @@ public class GameManager : MonoBehaviour
 
         if (ResultUI == null)
             ResultUI = this.GetComponentInChildren<ResultUIManager>();
+
+        if (CutSceneUI == null)
+            CutSceneUI = this.GetComponentInChildren<CutSceneManagerUI>();
     }
 
     private void Start()
@@ -201,49 +205,18 @@ public class GameManager : MonoBehaviour
     public void ChangeUI(UI_State ui)
     {
         Debug.Log($"Switch UI {ui}");
-        switch (ui)
-        {
-            case UI_State.GamePlay:
-                EventSystem.current.SetSelectedGameObject(null);                
-                SubUI.InventorySubUI.NullCheckInput();
-                SubUI.InventorySubUI.Canvas.enabled = false;
-                SubUI.DetailSubUI.Canvas.enabled = false;
-                ResultUI.Canvas.enabled = false;
-                ReforgingUI.EnabledChildrensCanvas(false);
-                ReforgingUI.Canvas.enabled = false;
+        UI_Init();
 
+        switch (ui)
+        {            
+            case UI_State.GamePlay:
+                EventSystem.current.SetSelectedGameObject(null);
                 if (StageManager != null)
                     MainUI.Canvas.enabled = true;
                 else
                     MainUI.Canvas.enabled = false;
-
-                if (CfgUI.ConfigPanelUI.cfgBtns.Length > 0)
-                {
-                    for (int i = 0; i < CfgUI.ConfigPanelUI.cfgBtns.Length; i++)
-                    {
-                        if (CfgUI.ConfigPanelUI.cfgBtns[i].ActiveUI != null)
-                            CfgUI.ConfigPanelUI.cfgBtns[i].ActiveUI.GetComponent<SettingUI>().Canvas.enabled = false;
-                    }
-                }
-                CfgUI.Canvas.enabled = false;
-
                 break;
             case UI_State.Inventory:
-                MainUI.Canvas.enabled = false;
-                if (CfgUI.ConfigPanelUI.cfgBtns.Length > 0)
-                {
-                    for (int i = 0; i < CfgUI.ConfigPanelUI.cfgBtns.Length; i++)
-                    {
-                        if (CfgUI.ConfigPanelUI.cfgBtns[i].ActiveUI != null)
-                            CfgUI.ConfigPanelUI.cfgBtns[i].ActiveUI.GetComponent<SettingUI>().Canvas.enabled = false;
-                    }
-                }
-                CfgUI.Canvas.enabled = false;
-                ResultUI.Canvas.enabled = false;
-                ReforgingUI.EnabledChildrensCanvas(false);
-                ReforgingUI.Canvas.enabled = false;
-                SubUI.DetailSubUI.Canvas.enabled = false;
-                SubUI.InventorySubUI.Canvas.enabled = true;
                 if (SubUI.InventorySubUI.InventoryItems.CurrentSelectItem == null)
                 {
                     EventSystem.current.SetSelectedGameObject(SubUI.InventorySubUI.InventoryItems.items[0].gameObject);
@@ -254,80 +227,47 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case UI_State.Reforging:
-                MainUI.Canvas.enabled = false;
-                if (CfgUI.ConfigPanelUI.cfgBtns.Length > 0)
-                {
-                    for (int i = 0; i < CfgUI.ConfigPanelUI.cfgBtns.Length; i++)
-                    {
-                        if (CfgUI.ConfigPanelUI.cfgBtns[i].ActiveUI != null)
-                            CfgUI.ConfigPanelUI.cfgBtns[i].ActiveUI.GetComponent<SettingUI>().Canvas.enabled = false;
-                    }
-                }
-                CfgUI.Canvas.enabled = false;
-                ResultUI.Canvas.enabled = false;
-                SubUI.InventorySubUI.NullCheckInput();
-                SubUI.InventorySubUI.Canvas.enabled = false;
-                SubUI.DetailSubUI.Canvas.enabled = false;
-
                 ReforgingUI.EnabledChildrensCanvas(true);
                 ReforgingUI.Canvas.enabled = true;
                 EventSystem.current.SetSelectedGameObject(ReforgingUI.equipWeapon.gameObject);
                 break;
             case UI_State.Cfg:
-                MainUI.Canvas.enabled = false;
-                ResultUI.Canvas.enabled = false;
-                SubUI.InventorySubUI.NullCheckInput();
-                SubUI.InventorySubUI.Canvas.enabled = false;
-                SubUI.DetailSubUI.Canvas.enabled = false;
-                ReforgingUI.EnabledChildrensCanvas(false);
-                ReforgingUI.Canvas.enabled = false;
-
                 CfgUI.Canvas.enabled = true;
                 EventSystem.current.SetSelectedGameObject(CfgUI.ConfigPanelUI.cfgBtns[0].gameObject);
                 break;
             case UI_State.CutScene:
+                CutSceneUI.Canvas.enabled = true;
+                CutSceneUI.Director_SetAsset(CutSceneUI.FadeIn);
                 break;
             case UI_State.Result:
-                MainUI.Canvas.enabled = false;
-                if (CfgUI.ConfigPanelUI.cfgBtns.Length > 0)
-                {
-                    for (int i = 0; i < CfgUI.ConfigPanelUI.cfgBtns.Length; i++)
-                    {
-                        if (CfgUI.ConfigPanelUI.cfgBtns[i].ActiveUI != null)
-                            CfgUI.ConfigPanelUI.cfgBtns[i].ActiveUI.GetComponent<SettingUI>().Canvas.enabled = false;
-                    }
-                }
-                CfgUI.Canvas.enabled = false;
-                SubUI.InventorySubUI.Canvas.enabled = false;
-                SubUI.InventorySubUI.NullCheckInput();
-                SubUI.DetailSubUI.Canvas.enabled = false;
-                ReforgingUI.EnabledChildrensCanvas(false);
-                ReforgingUI.Canvas.enabled = false;
-
                 ResultUI.Canvas.enabled = true;
                 
                 break;
             case UI_State.Loading:
-                MainUI.Canvas.enabled = false;
-                if (CfgUI.ConfigPanelUI.cfgBtns.Length > 0)
-                {
-                    for (int i = 0; i < CfgUI.ConfigPanelUI.cfgBtns.Length; i++)
-                    {
-                        if (CfgUI.ConfigPanelUI.cfgBtns[i].ActiveUI != null)
-                            CfgUI.ConfigPanelUI.cfgBtns[i].ActiveUI.GetComponent<SettingUI>().Canvas.enabled = false;
-                    }
-                }
-                CfgUI.Canvas.enabled = false;
-                SubUI.InventorySubUI.Canvas.enabled = false;
-                SubUI.InventorySubUI.NullCheckInput();
-                SubUI.DetailSubUI.Canvas.enabled = false;
-                ReforgingUI.EnabledChildrensCanvas(false);
-                ReforgingUI.Canvas.enabled = false;
-                ResultUI.Canvas.enabled = false;
                 break;
         }
     }
 
+    private void UI_Init()
+    {
+        MainUI.Canvas.enabled = false;
+        if (CfgUI.ConfigPanelUI.cfgBtns.Length > 0)
+        {
+            for (int i = 0; i < CfgUI.ConfigPanelUI.cfgBtns.Length; i++)
+            {
+                if (CfgUI.ConfigPanelUI.cfgBtns[i].ActiveUI != null)
+                    CfgUI.ConfigPanelUI.cfgBtns[i].ActiveUI.GetComponent<SettingUI>().Canvas.enabled = false;
+            }
+        }
+        CfgUI.Canvas.enabled = false;
+        SubUI.InventorySubUI.Canvas.enabled = false;
+        SubUI.InventorySubUI.NullCheckInput();
+        SubUI.DetailSubUI.Canvas.enabled = false;
+        ReforgingUI.EnabledChildrensCanvas(false);
+        ReforgingUI.Canvas.enabled = false;
+        CutSceneUI.Canvas.enabled = false;
+        CutSceneUI.Director_SetAsset(CutSceneUI.FadeOut);
+    }
 
     /// <summary>
     /// Inspector EventTrigger 에서 ChangeUI를 사용하기 위함

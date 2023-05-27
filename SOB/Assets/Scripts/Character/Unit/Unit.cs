@@ -27,7 +27,10 @@ public class Unit : MonoBehaviour
     /// 절대 면역값
     /// </summary>
     public bool isImmunity = false;
-        
+    
+    /// <summary>
+    /// 면역값
+    /// </summary>
     public bool isCCimmunity
     {
         get
@@ -49,7 +52,12 @@ public class Unit : MonoBehaviour
     }
 
     private bool _isCCimmunity;
+
+    /// <summary>
+    /// 타겟 유닛
+    /// </summary>
     [HideInInspector]
+
     public Unit TargetUnit { get; private set; }
 
 #endregion

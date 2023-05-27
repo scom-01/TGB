@@ -21,6 +21,14 @@ public class UnitState
     {
         get => collisionSenses ?? unit.Core.GetCoreComponent(ref collisionSenses);
     }
+    protected DamageReceiver DamageReceiver
+    {
+        get => damageReceiver ?? unit.Core.GetCoreComponent(ref damageReceiver);
+    }
+    protected KnockBackReceiver KnockBackReceiver
+    {
+        get => knockBackReceiver ?? unit.Core.GetCoreComponent(ref knockBackReceiver);
+    }
     protected UnitStats UnitStats
     {
         get => unitStats ?? unit.Core.GetCoreComponent(ref unitStats);
@@ -42,6 +50,8 @@ public class UnitState
 
     private Movement movement;
     private CollisionSenses collisionSenses;
+    private DamageReceiver damageReceiver;
+    private KnockBackReceiver knockBackReceiver;
     private UnitStats unitStats;
     private EffectManager effectManager;
     private SoundEffect soundEffect;

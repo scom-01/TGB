@@ -35,7 +35,10 @@ public class DataManager : MonoBehaviour
     private static DataManager _Inst = null;
 
     #region GameData Value
-    public GameObject BaseWeaponPrefab;
+    [Header("DB")]
+    public ItemDB ItemDB;
+    public WeaponDB WeaponDB;
+
     [HideInInspector]
     public WeaponData Playerweapon;
     [HideInInspector]
@@ -65,8 +68,6 @@ public class DataManager : MonoBehaviour
     public int localizationIdx;
     public LocalizationSettings localizationSettings;
     #endregion
-
-
 
     private void Awake()
     {
