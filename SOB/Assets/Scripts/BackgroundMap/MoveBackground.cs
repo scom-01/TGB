@@ -19,6 +19,6 @@ public class MoveBackground : MonoBehaviour
         if (cam == null)
             return;
 
-        transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y, 0);
+        transform.position = new Vector3(cam.transform.position.x* MoveSpeed, cam.transform.position.y* MoveSpeed, 0);
     }
 }
