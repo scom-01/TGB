@@ -48,7 +48,14 @@ public abstract class EnemyIdleState : EnemyState
 
         if (enemy.enemyData.enemy_form == ENEMY_Form.Grounded && !isGrounded)
         {            
-            return;
+            if(checkifTouchingGrounded)
+            {
+                enemy.transform.Translate(Vector2.up * 0.05f);
+            }
+            else
+            {
+                return;
+            }
         }
 
         if(EnemyCollisionSenses.isUnitInDetectedArea)
@@ -61,7 +68,6 @@ public abstract class EnemyIdleState : EnemyState
             if ((!checkifCliff && !checkifCliffBack) || (checkifTouchingWall && checkifTouchingWallBack))
             {
                 FollowTarget();
-                return;
             }
             ChangeState();
             return;

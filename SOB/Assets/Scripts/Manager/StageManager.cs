@@ -57,7 +57,7 @@ public class StageManager : MonoBehaviour
         //    CutSceneDirector.Play();
     }
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         CVC = GameObject.Find("Player Camera").GetComponent<CinemachineVirtualCamera>();
         CVC.Follow = player.transform;

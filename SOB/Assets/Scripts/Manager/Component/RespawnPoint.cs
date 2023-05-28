@@ -26,12 +26,21 @@ public class RespawnPoint : MonoBehaviour
             this.GetComponentInParent<SpawnCtrl>().CurrentEnemyCount--;
         }
     }
+
     public void SpawnEffect(GameObject effectPrefab, Vector3 pos, Transform transform)
     {
         spawnEffectPrefab = Instantiate(effectPrefab, pos, Quaternion.identity, transform);
         isEffectSpawn = true;
     }
-
+    /// <summary>
+    /// TimeLine
+    /// </summary>
+    /// <param name="effectPrefab"></param>
+    public void SpawnEffect(GameObject director)
+    {
+        spawnEffectPrefab = Instantiate(director);
+        isEffectSpawn = true;
+    }
     public void Spawn(GameObject spawn, Vector3 pos, Transform transform)
     {
         spawnPrefab = Instantiate(spawn, pos, Quaternion.identity, transform);
