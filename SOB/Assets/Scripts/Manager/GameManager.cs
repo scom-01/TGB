@@ -217,6 +217,7 @@ public class GameManager : MonoBehaviour
                     MainUI.Canvas.enabled = false;
                 break;
             case UI_State.Inventory:
+                SubUI.InventorySubUI.Canvas.enabled = true;
                 if (SubUI.InventorySubUI.InventoryItems.CurrentSelectItem == null)
                 {
                     EventSystem.current.SetSelectedGameObject(SubUI.InventorySubUI.InventoryItems.items[0].gameObject);

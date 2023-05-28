@@ -14,6 +14,7 @@ public class StageManager : MonoBehaviour
     public SpawnManager SPM;
     public string CurrStageName;
     public string NextStageName;
+    public UI_State Start_UIState;
 
     [Header("----Player----")]
     [SerializeField]
@@ -76,6 +77,7 @@ public class StageManager : MonoBehaviour
         SPM = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         respawnPoint = GameObject.Find("SpawnPoint").GetComponent<Transform>();
         GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, false);
+        GameManager.Inst.ChangeUI(Start_UIState);
         GameManager.Inst.LoadData();
         GameManager.Inst.SaveData();
 
