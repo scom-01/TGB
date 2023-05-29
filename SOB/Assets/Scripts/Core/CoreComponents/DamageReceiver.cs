@@ -163,6 +163,7 @@ namespace SOB.CoreSystem
             stats = new CoreComp<UnitStats>(core);
             effectManager = new CoreComp<EffectManager>(core);
             death = new CoreComp<Death>(core);
+            this.tag = core.Unit.gameObject.tag;
         }
     }
 }

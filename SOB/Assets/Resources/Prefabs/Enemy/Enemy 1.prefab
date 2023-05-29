@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 7465565771582179943}
   m_Layer: 18
   m_Name: Attack1
-  m_TagString: NormEnemy
+  m_TagString: SmallEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -492,7 +492,7 @@ GameObject:
   - component: {fileID: 8530842778410030304}
   m_Layer: 18
   m_Name: Enemy 1
-  m_TagString: Untagged
+  m_TagString: SmallEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -671,7 +671,7 @@ MonoBehaviour:
   RespawnPoint: {fileID: 0}
   UnitData: {fileID: 11400000, guid: 18e5526c4f9924a4e9be2f0de80b92a9, type: 2}
   IsAlive: 1
-  isCCimmunity: 0
+  isImmunity: 0
   enemyData: {fileID: 0}
 --- !u!114 &3639027602819861585
 MonoBehaviour:
