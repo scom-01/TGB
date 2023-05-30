@@ -76,10 +76,14 @@ public class InventoryItems : MonoBehaviour
         {
             if (items[i].StatsItemData != null)
             {
+                if (items[i].StatsItemData == StatsItem)
+                {
+                    break;
+                }
                 continue;
             }
             else
-            {
+            {   
                 Debug.LogWarning($"{items[i].name}.StatsItemData is Null");
                 items[i].StatsItemData = StatsItem;
                 CurrentSelectItemIndex = i;
