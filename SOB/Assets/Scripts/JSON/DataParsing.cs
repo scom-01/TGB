@@ -12,7 +12,17 @@ using UnityEngine;
 
 public class DataParsing : MonoBehaviour
 {
-    public string UnitStatData_FilePath;
+    public string UnitInventoryData_FilePath
+    {
+        get
+        {
+            string str = UnitInventoryData_DirectoryPath + UnitInventoryData_FileName + ".json";
+            return str;
+        }
+    }
+
+    public string UnitInventoryData_DirectoryPath;
+    public string UnitInventoryData_FileName;
 
     public ItemDB ItemDB;
     public WeaponDB WeaponDB;
@@ -20,49 +30,11 @@ public class DataParsing : MonoBehaviour
     public List<int> ItemListIdx;
     public List<int> WeaponListIdx;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        try
-        {
-            FileStream stream = new FileStream(Application.dataPath + UnitStatData_FilePath, FileMode.Open);
-
-            byte[] data = new byte[stream.Length];
-            stream.Read(data, 0, data.Length);
-            stream.Close();
-            string jsonData = Encoding.UTF8.GetString(data);
-            JSON_Inventory jtest2 = JsonConvert.DeserializeObject<JSON_Inventory>(jsonData);
-            jtest2.Print();
-            ItemListIdx = jtest2.items.ToList();
-            WeaponListIdx = jtest2.weapons.ToList();
-            foreach (var item in ItemListIdx)
-            {
-                Debug.Log($"ItemListIdx = {item}");
-            }
-            foreach (var item in WeaponListIdx)
-            {
-                Debug.Log($"WeaponListIdx = {item}");
-            }
-        }
-        catch (Exception e)
-        {
-            FileStream stream = new FileStream(Application.dataPath + UnitStatData_FilePath, FileMode.OpenOrCreate);
-            JSON_Inventory jTest1 = new JSON_Inventory();
-            string jsonData = JsonConvert.SerializeObject(jTest1);
-            byte[] data = Encoding.UTF8.GetBytes(jsonData);
-            stream.Write(data, 0, data.Length);
-            stream.Close();
-
-            Debug.LogWarning("stream is null");
-            Debug.LogWarning(e.Message);
-        }
-    }
-
     private bool Json_Parsing()
     {
         try
         {
-            FileStream stream = new FileStream(Application.dataPath + UnitStatData_FilePath, FileMode.Open);
+            FileStream stream = new FileStream(Application.dataPath + UnitInventoryData_FilePath, FileMode.Open, FileAccess.ReadWrite);
             byte[] data = new byte[stream.Length];
             stream.Read(data, 0, data.Length);
             stream.Close();
@@ -82,22 +54,27 @@ public class DataParsing : MonoBehaviour
         }
         catch (Exception e)
         {
-            FileStream stream = new FileStream(Application.dataPath + UnitStatData_FilePath, FileMode.OpenOrCreate);
+            if (!Directory.Exists(Application.dataPath + UnitInventoryData_DirectoryPath))
+            {
+                Directory.CreateDirectory(Application.dataPath + UnitInventoryData_DirectoryPath);
+            }
+            FileStream stream = new FileStream(Application.dataPath + UnitInventoryData_FilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
             JSON_Inventory jTest1 = new JSON_Inventory();
             string jsonData = JsonConvert.SerializeObject(jTest1);
-            byte[] data = Encoding.UTF8.GetBytes(jsonData);
-            stream.Write(data, 0, data.Length);
+            StreamWriter sw = new StreamWriter(stream, Encoding.UTF8);
+            sw.WriteLine(jsonData);
+            sw.Close();
             stream.Close();
             Debug.LogWarning(e.Message);
             return false;
         }
         return true;
     }
-private JSON_Inventory Json_Parsing_Stream()
+    private JSON_Inventory Json_Parsing_Stream()
     {
         try
         {
-            FileStream stream = new FileStream(Application.dataPath + UnitStatData_FilePath, FileMode.Open);
+            FileStream stream = new FileStream(Application.dataPath + UnitInventoryData_FilePath, FileMode.Open, FileAccess.ReadWrite);
             byte[] data = new byte[stream.Length];
             stream.Read(data, 0, data.Length);
             stream.Close();
@@ -118,14 +95,15 @@ private JSON_Inventory Json_Parsing_Stream()
         }
         catch (Exception e)
         {
-            FileStream stream = new FileStream(Application.dataPath + UnitStatData_FilePath, FileMode.OpenOrCreate);
-            JSON_Inventory jTest1 = new JSON_Inventory();
-            string jsonData = JsonConvert.SerializeObject(jTest1);
-            byte[] data = Encoding.UTF8.GetBytes(jsonData);
-            stream.Write(data, 0, data.Length);
-            stream.Close();
-            Debug.LogWarning(e.Message);
-            return jTest1;
+            //FileStream stream = new FileStream(Application.dataPath + UnitStatData_FilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            //JSON_Inventory jTest1 = new JSON_Inventory();
+            //string jsonData = JsonConvert.SerializeObject(jTest1);            
+            //byte[] data = Encoding.UTF8.GetBytes(jsonData);
+            //stream.Write(data, 0, data.Length);
+            //stream.Close();
+            //Debug.LogWarning(e.Message);
+            //return jTest1;
+            return null;
         }
     }
 
@@ -216,12 +194,16 @@ private JSON_Inventory Json_Parsing_Stream()
     {
         try
         {
-            inventory.Print();
-            FileStream stream = new FileStream(Application.dataPath + UnitStatData_FilePath, FileMode.Open);
-            string jsonData = JsonConvert.SerializeObject(inventory);
-            byte[] data = Encoding.UTF8.GetBytes(jsonData);
-            stream.Write(data, 0, data.Length);
-            stream.Close();
+            inventory.Print();            
+            if(!Directory.Exists(Application.dataPath + UnitInventoryData_DirectoryPath))
+            {
+                Directory.CreateDirectory(Application.dataPath + UnitInventoryData_DirectoryPath);
+            }
+            if(File.Exists(Application.dataPath + UnitInventoryData_FilePath))
+            {
+                string jsonData = JsonUtility.ToJson(inventory);
+                File.WriteAllText(Application.dataPath + UnitInventoryData_FilePath, jsonData);
+            }
         }
         catch (Exception e)
         {
