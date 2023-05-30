@@ -8,6 +8,7 @@ using UnityEngine.Localization;
 [CreateAssetMenu(fileName = "newWeaponCommandData", menuName = "Data/Weapon Data/WeaponCommand Data")]
 public class WeaponCommandDataSO : ScriptableObject
 {
+    [field: SerializeField] public int WeaponIdx;
     [field: SerializeField] public int NumberOfActions { get; private set; }
     [Tooltip("Weapon Image")]
     [field: SerializeField] public Sprite WeaponImg { get; private set; }

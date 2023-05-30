@@ -8,9 +8,9 @@ using UnityEditor;
 [CreateAssetMenu(fileName = "newItemData", menuName = "Data/Item Data/Item Data")]
 public class ItemDataSO : ScriptableObject
 {
+    [field: Tooltip("아이템 index")]
+    public int ItemIdx;
     public ItemData itemData;
-    //[field: Tooltip("아이템 GUID")]
-    //public Guid GUID; 
 }
 
 [Serializable]

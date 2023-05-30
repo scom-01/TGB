@@ -34,6 +34,14 @@ public class DataManager : MonoBehaviour
 
     private static DataManager _Inst = null;
 
+    private DataParsing JsonDataParsing
+    {
+        get
+        {
+            return this.GetComponent<DataParsing>();
+        }
+    }
+
     #region GameData Value
     [Header("DB")]
     public ItemDB ItemDB;
@@ -185,27 +193,48 @@ public class DataManager : MonoBehaviour
     #region GameData
     public void PlayerInventoryDataLoad(Inventory inventory)
     {
-        if (!isWeaponDataSave)
+        for (int i = 0; i< JsonDataParsing.Json_Read_item().Count;i++)
         {
-            Debug.Log("저장된 Inventory Data가 없습니다.");
-            return;
+            //ItemSet item = new ItemSet(ItemDB.ItemDBList[JsonDataParsing.Json_Read_item()[i]]);            
+            //inventory._items.Add(item);
+            inventory.AddInventoryItem(ItemDB.ItemDBList[JsonDataParsing.Json_Read_item()[i]]);
         }
+
+        
+
+        //if (!isWeaponDataSave)
+        //{
+        //    Debug.Log("저장된 Inventory Data가 없습니다.");
+        //    return;
+        //}
 
         if (inventory.Weapon != null)
         {
-            inventory.Weapon.SetCommandData(Playerweapon.weaponCommandDataSO);
+            inventory.Weapon.SetCommandData(WeaponDB.WeaponDBList[JsonDataParsing.Json_Read_weapon()[0]]);
+            //inventory.Weapon.SetCommandData(Playerweapon.weaponCommandDataSO);
         }
         else
         {
             Debug.LogWarning("Inventory.weapon is Null");
         }
 
-        inventory._items = Playeritems;
-        Debug.LogWarning("Success Inventory Data Load");
+        //inventory._items = Playeritems;
+        //Debug.LogWarning("Success Inventory Data Load");
     }
 
     public void PlayerInventoryDataSave(Weapon weapon, List<ItemSet> itemList)
     {
+        List<int> items = new List<int>();
+        for(int i = 0; i< itemList.Count; i++)
+        {
+            items.Add(itemList[i].item.ItemIdx);
+        }
+        JsonDataParsing.Json_Overwrite_item(items);
+
+        List<int> weapons = new List<int>();
+        weapons.Add(weapon.weaponData.weaponCommandDataSO.WeaponIdx);
+        JsonDataParsing.Json_Overwrite_weapon(weapons);
+
         Playerweapon = weapon.weaponData;
 
         if (itemList.Count > 0)
@@ -219,33 +248,33 @@ public class DataManager : MonoBehaviour
 
     public void PlayerStatLoad(UnitStats stat)
     {
-        if (!isStatsDataSave)
-        {
-            Debug.Log("저장된 StatsData가 없습니다.");
-            return;
-        }
-        stat.SetStat(PlayerStatData, PlayerHealth);
+        //if (!isStatsDataSave)
+        //{
+        //    Debug.Log("저장된 StatsData가 없습니다.");
+        //    return;
+        //}
+        //stat.SetStat(PlayerStatData, PlayerHealth);
 
 
-        Debug.LogWarning("Success StatsData Load");
+        //Debug.LogWarning("Success StatsData Load");
     }
     public void PlayerStatSave(UnitStats stat)
     {
-        PlayerStatData = stat.StatsData;
-        PlayerHealth = stat.CurrentHealth;
-        isStatsDataSave = true;
-        Debug.LogWarning("Success StatsData Save");
+        //PlayerStatData = stat.StatsData;
+        //PlayerHealth = stat.CurrentHealth;
+        //isStatsDataSave = true;
+        //Debug.LogWarning("Success StatsData Save");
     }
 
     public void PlayerBuffSave(List<Buff> buffs)
     {
-        Playerbuffs = buffs;
-        Debug.LogWarning("Success BuffData Save");
+        //Playerbuffs = buffs;
+        //Debug.LogWarning("Success BuffData Save");
     }
     public void PlayerBuffLoad(BuffSystem buffSystem)
     {
-        buffSystem.buffs = Playerbuffs;
-        Debug.LogWarning("Success BuffData Load");
+        //buffSystem.buffs = Playerbuffs;
+        //Debug.LogWarning("Success BuffData Load");
     }
 
     public void GameGoldLoad()
