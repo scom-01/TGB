@@ -24,9 +24,6 @@ public class DataParsing : MonoBehaviour
     public string UnitInventoryData_DirectoryPath;
     public string UnitInventoryData_FileName;
 
-    public ItemDB ItemDB;
-    public WeaponDB WeaponDB;
-
     public List<int> ItemListIdx;
     public List<int> WeaponListIdx;
 
@@ -95,15 +92,18 @@ public class DataParsing : MonoBehaviour
         }
         catch (Exception e)
         {
-            //FileStream stream = new FileStream(Application.dataPath + UnitStatData_FilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-            //JSON_Inventory jTest1 = new JSON_Inventory();
-            //string jsonData = JsonConvert.SerializeObject(jTest1);            
-            //byte[] data = Encoding.UTF8.GetBytes(jsonData);
-            //stream.Write(data, 0, data.Length);
-            //stream.Close();
-            //Debug.LogWarning(e.Message);
-            //return jTest1;
-            return null;
+            if (!Directory.Exists(Application.dataPath + UnitInventoryData_DirectoryPath))
+            {
+                Directory.CreateDirectory(Application.dataPath + UnitInventoryData_DirectoryPath);
+            }
+            FileStream stream = new FileStream(Application.dataPath + UnitInventoryData_FilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            JSON_Inventory jTest1 = new JSON_Inventory();
+            string jsonData = JsonConvert.SerializeObject(jTest1);
+            byte[] data = Encoding.UTF8.GetBytes(jsonData);
+            stream.Write(data, 0, data.Length);
+            stream.Close();
+            Debug.LogWarning(e.Message);
+            return jTest1;
         }
     }
 
