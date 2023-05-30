@@ -25,6 +25,17 @@ public struct ItemSet
 }
 public class Inventory : MonoBehaviour
 {
+    public Unit Unit
+    {
+        get
+        {
+            if (unit == null)
+            {
+                unit = this.GetComponent<Unit>();
+            }
+            return unit;
+        }
+    }
     private Unit unit;
     public WeaponData weaponData;
     public Weapon Weapon
@@ -56,7 +67,6 @@ public class Inventory : MonoBehaviour
     }
     private void Start()
     {
-        unit = this.GetComponent<Unit>();
         weaponData = Weapon.weaponData;
         if (_items == null || _items?.Count == 0)
         {
@@ -89,14 +99,14 @@ public class Inventory : MonoBehaviour
             ChangeItemAttribute();
         }
 
-        ItemExeUpdate(unit);
+        ItemExeUpdate(Unit);
     }
-        
+
     public bool ItemEffectExecute(Unit unit)
     {
         for (int i = 0; i < _items.Count; i++)
         {
-            for(int j = 0; j < _items[i].item.ItemEffects.Count; j++)
+            for (int j = 0; j < _items[i].item.ItemEffects.Count; j++)
             {
                 var temp = _items[i].item.ExeUse(unit, _items[i].item.ItemEffects[j], _items[i].attackCount);
                 ItemSet tempItem = new ItemSet(_items[i].item, _items[i].startTime, temp);
@@ -156,15 +166,15 @@ public class Inventory : MonoBehaviour
             CheckItem = itemObject;
             Debug.LogWarning("Inventory is full");
 
-            if (unit.GetType() == typeof(Player))
+            if (Unit.GetType() == typeof(Player))
                 GameManager.Inst.SubUI.InventorySubUI.ChangeInventoryItem();
-            if (unit.GetType() == typeof(Player))
+            if (Unit.GetType() == typeof(Player))
                 GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.UI, true);
             //아이템 교체하는 코드
             return false;
         }
 
-        for(int i = 0; i < _items.Count;i++)
+        for (int i = 0; i < _items.Count; i++)
         {
             if (_items[i].item == itemData)
             {
@@ -176,7 +186,7 @@ public class Inventory : MonoBehaviour
         ////중복금지
         //if (_items.Contains(itemData))
         //{
-            
+
         //}
         //else
         //{
@@ -191,7 +201,7 @@ public class Inventory : MonoBehaviour
         SetStat(itemData.StatsDatas);
         if (itemData.StatsDatas.MaxHealth != 0.0f)
         {
-            unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += itemData.StatsDatas.MaxHealth;
+            Unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += itemData.StatsDatas.MaxHealth;
         }
         Debug.Log($"Change UnitStats {unit.Core.GetCoreComponent<UnitStats>().StatsData}");
         //}
@@ -204,9 +214,9 @@ public class Inventory : MonoBehaviour
             CheckItem = itemObject.GameObject();
             Debug.LogWarning("Inventory is full");
 
-            if (unit.GetType() == typeof(Player))
+            if (Unit.GetType() == typeof(Player))
                 GameManager.Inst.SubUI.InventorySubUI.ChangeInventoryItem();
-            if (unit.GetType() == typeof(Player))
+            if (Unit.GetType() == typeof(Player))
                 GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.UI, true);
             //아이템 교체하는 코드
             return false;
@@ -229,19 +239,19 @@ public class Inventory : MonoBehaviour
         //}
         //else
         //{
-            Debug.Log($"Add {itemObject.name}, Success add {itemObject.name}");
-            if(unit.GetType() == typeof(Player))
-                GameManager.Inst.SubUI.InventorySubUI.InventoryItems.AddItem(itemObject);
+        Debug.Log($"Add {itemObject.name}, Success add {itemObject.name}");
+        if (Unit.GetType() == typeof(Player))
+            GameManager.Inst.SubUI.InventorySubUI.InventoryItems.AddItem(itemObject);
         ItemSet item = new ItemSet(itemObject, Time.time);
         _items.Add(item);
 
-            ItemCount++;
-            SetStat(itemObject.StatsDatas);
-            if (itemObject.StatsDatas.MaxHealth != 0.0f)
-            {
-                unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += itemObject.StatsDatas.MaxHealth;
-            }
-            Debug.Log($"Change UnitStats {unit.Core.GetCoreComponent<UnitStats>().StatsData}");
+        ItemCount++;
+        SetStat(itemObject.StatsDatas);
+        if (itemObject.StatsDatas.MaxHealth != 0.0f)
+        {
+            Unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += itemObject.StatsDatas.MaxHealth;
+        }
+        Debug.Log($"Change UnitStats {Unit.Core.GetCoreComponent<UnitStats>().StatsData}");
         //}
         return true;
     }
@@ -258,7 +268,7 @@ public class Inventory : MonoBehaviour
             return false;
         }
 
-        for(int i = 0;i < _items.Count;i++)
+        for (int i = 0; i < _items.Count; i++)
         {
             if (_items[i].item == itemData)
             {
@@ -266,7 +276,7 @@ public class Inventory : MonoBehaviour
                 SetStat(itemData.StatsDatas * -1f);
                 if (itemData.StatsDatas.MaxHealth != 0.0f)
                 {
-                    unit.Core.GetCoreComponent<UnitStats>().CurrentHealth -= itemData.StatsDatas.MaxHealth;
+                    Unit.Core.GetCoreComponent<UnitStats>().CurrentHealth -= itemData.StatsDatas.MaxHealth;
                 }
 
                 _items.RemoveAt(i);
@@ -275,14 +285,14 @@ public class Inventory : MonoBehaviour
                     GameManager.Inst.SubUI.InventorySubUI.InventoryItems.RemoveItem(itemData);
 
                 //spawnItem
-                GameManager.Inst.StageManager.SPM.SpawnItem(GameManager.Inst.StageManager.IM.InventoryItem, unit.transform.position, GameManager.Inst.StageManager.IM.transform, itemData);
+                GameManager.Inst.StageManager.SPM.SpawnItem(GameManager.Inst.StageManager.IM.InventoryItem, Unit.transform.position, GameManager.Inst.StageManager.IM.transform, itemData);
                 break;
             }
         }
 
         //if (_items.Contains(itemData))
         //{
-            
+
         //}
         //else
         //{
@@ -290,7 +300,7 @@ public class Inventory : MonoBehaviour
         //}
         return true;
     }
-public bool RemoveInventoryItem(ItemSet itemData)
+    public bool RemoveInventoryItem(ItemSet itemData)
     {
         if (itemData.item == null)
         {
@@ -304,16 +314,16 @@ public bool RemoveInventoryItem(ItemSet itemData)
             SetStat(itemData.item.StatsDatas * -1f);
             if (itemData.item.StatsDatas.MaxHealth != 0.0f)
             {
-                unit.Core.GetCoreComponent<UnitStats>().CurrentHealth -= itemData.item.StatsDatas.MaxHealth;
+                Unit.Core.GetCoreComponent<UnitStats>().CurrentHealth -= itemData.item.StatsDatas.MaxHealth;
             }
 
             _items.Remove(itemData);
 
-            if (unit.GetType() == typeof(Player))
+            if (Unit.GetType() == typeof(Player))
                 GameManager.Inst.SubUI.InventorySubUI.InventoryItems.RemoveItem(itemData.item);
 
             //spawnItem
-            GameManager.Inst.StageManager.SPM.SpawnItem(GameManager.Inst.StageManager.IM.InventoryItem, unit.transform.position, GameManager.Inst.StageManager.IM.transform, itemData.item);
+            GameManager.Inst.StageManager.SPM.SpawnItem(GameManager.Inst.StageManager.IM.InventoryItem, Unit.transform.position, GameManager.Inst.StageManager.IM.transform, itemData.item);
 
         }
         else
@@ -341,6 +351,6 @@ public bool RemoveInventoryItem(ItemSet itemData)
     /// <param name="plus">Plus = true, Minus = false</param>
     private void SetStat(StatsData statsData)
     {
-        unit.Core.GetCoreComponent<UnitStats>().StatsData += statsData;
+        Unit.Core.GetCoreComponent<UnitStats>().StatsData += statsData;
     }
 }

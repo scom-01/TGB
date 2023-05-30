@@ -69,10 +69,6 @@ namespace SOB.CoreSystem
         {
             base.Awake();
             isSetup = false;
-        }
-
-        private void Start()
-        {
             if (core.Unit.UnitData != null && !isSetup)
             {
                 StatsData = core.Unit.UnitData.statsStats;
