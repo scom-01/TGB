@@ -2297,7 +2297,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &111313431
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18291,28 +18291,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemDB: {fileID: 11400000, guid: 48eeecaa05ed4694d82a80cd99463d62, type: 2}
   WeaponDB: {fileID: 11400000, guid: f7e1ee73251e4e740bde3e2ec6f15d22, type: 2}
-  Playerweapon:
-    weaponCommandDataSO: {fileID: 0}
-    weaponDataSO: {fileID: 0}
-  Playeritems: []
   PlayerHealth: 0
   GoldCount: 0
   ElementalsculptureCount: 0
   Playerbuffs: []
-  PlayerStatData:
-    MaxHealth: 0
-    MovementVelocity: 0
-    JumpVelocity: 0
-    DefaultPower: 0
-    AttackSpeedPer: 0
-    PhysicsDefensivePer: 0
-    MagicDefensivePer: 0
-    PhysicsAggressivePer: 0
-    MagicAggressivePer: 0
-    DamageAttiribute: 0
-    MyElemental: 0
-    ElementalDefensivePer: 0
-    ElementalAggressivePer: 0
   BGM: {fileID: -3819941863319329255, guid: 627eeb06f17324d4691ad4d62526af6c, type: 2}
   SFX: {fileID: 5162785712843760549, guid: 627eeb06f17324d4691ad4d62526af6c, type: 2}
   BGM_Volume: 0
@@ -25859,7 +25841,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: 9454.143}
+  m_AnchoredPosition: {x: 7, y: 101144.28}
   m_SizeDelta: {x: 21.1497, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1368125264
@@ -39568,7 +39550,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: -3070.045}
+  m_AnchoredPosition: {x: 7, y: -30970.781}
   m_SizeDelta: {x: 21.1497, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2125587133

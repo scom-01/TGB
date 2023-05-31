@@ -36,6 +36,7 @@ public class GoodsItem : MonoBehaviour
             var goodsData =  goods.GetComponent<GoodsData>();
             goodsData.SR.sprite = GoodsSprite;
             goodsData.CircleSize = CircleSize;
+            goodsData.RB2D.AddForce(Vector2.up);
             goodsData.Goods = Goods;
             goodsData.Amount = Amount;
             goodsData.EquipSoundClip = EquipSoundClip;

@@ -47,12 +47,6 @@ public class DataManager : MonoBehaviour
     public ItemDB ItemDB;
     public WeaponDB WeaponDB;
 
-    [HideInInspector]
-    public WeaponData Playerweapon;
-    [HideInInspector]
-    public List<ItemSet> Playeritems = new List<ItemSet>();
-    private bool isWeaponDataSave = false;
-
     public float PlayerHealth;
     //Goods
     public int GoldCount;
@@ -60,10 +54,6 @@ public class DataManager : MonoBehaviour
 
     public List<Buff> Playerbuffs = new List<Buff>();
 
-
-    [HideInInspector]
-    public StatsData PlayerStatData;
-    private bool isStatsDataSave = false;
     public string SceneName { get; private set; }
     #endregion
 
@@ -103,8 +93,6 @@ public class DataManager : MonoBehaviour
 
     public void Init()
     {
-        isStatsDataSave = false;
-        isWeaponDataSave = false;
     }
 
     #region Setting Func
@@ -201,7 +189,7 @@ public class DataManager : MonoBehaviour
 
         var inventory_Itemlist = JsonDataParsing.Json_Read_item();
 
-        for (int i = 0; i< inventory_Itemlist.Count;i++)
+        for (int i = 0; i < inventory_Itemlist.Count; i++)
         {
             inventory.AddInventoryItem(ItemDB.ItemDBList[inventory_Itemlist[i]]);
         }
@@ -214,44 +202,64 @@ public class DataManager : MonoBehaviour
 
         var inventory_Weaponlist = JsonDataParsing.Json_Read_weapon();
 
-        if (inventory.Weapon != null)
+        if(inventory_Weaponlist.Count > 0)
         {
-            inventory.Weapon.SetCommandData(WeaponDB.WeaponDBList[inventory_Weaponlist[0]]);
+            if (inventory.Weapon != null)
+            {
+                inventory.Weapon.SetCommandData(WeaponDB.WeaponDBList[inventory_Weaponlist[0]]);
+            }
+            else
+            {
+                Debug.LogWarning("Inventory.weapon is Null");
+            }
         }
         else
         {
-            Debug.LogWarning("Inventory.weapon is Null");
-        }
+            
+        }        
     }
 
     public void PlayerInventoryDataSave(Weapon weapon, List<ItemSet> itemList)
     {
         List<int> items = new List<int>();
-        for(int i = 0; i< itemList.Count; i++)
+        if (itemList == null)
         {
-            items.Add(itemList[i].item.ItemIdx);
+            if (!JsonDataParsing.Json_Overwrite_item(null))
+            {
+                Debug.Log($"{items} is null");
+            }
+        }
+        else
+        {
+            for (int i = 0; i < itemList.Count; i++)
+            {
+                items.Add(itemList[i].item.ItemIdx);
+            }
+
+            if (!JsonDataParsing.Json_Overwrite_item(items))
+            {
+                Debug.Log($"{items} is null");
+            }
         }
 
-        if(!JsonDataParsing.Json_Overwrite_item(items))
-        {
-            Debug.Log($"{items} is null");
-        }
 
         List<int> weapons = new List<int>();
-        weapons.Add(weapon.weaponData.weaponCommandDataSO.WeaponIdx);
-        if(!JsonDataParsing.Json_Overwrite_weapon(weapons))
+        if (weapon == null)
         {
-            Debug.Log($"{weapons} is null");
+            if (!JsonDataParsing.Json_Overwrite_weapon(null))
+            {
+                Debug.Log($"{weapons} is null");
+            }
+        }
+        else
+        {
+            weapons.Add(weapon.weaponData.weaponCommandDataSO.WeaponIdx);
+            if (!JsonDataParsing.Json_Overwrite_weapon(weapons))
+            {
+                Debug.Log($"{weapons} is null");
+            }
         }
 
-        Playerweapon = weapon.weaponData;
-
-        if (itemList.Count > 0)
-        {
-            Playeritems = itemList;
-        }
-
-        isWeaponDataSave = true;
         Debug.LogWarning("Success Inventory Data Save");
     }
 
@@ -295,7 +303,7 @@ public class DataManager : MonoBehaviour
         if (gold <= 0)
             return false;
 
-        if(!JsonDataParsing.Json_Overwrite_gold(gold))
+        if (!JsonDataParsing.Json_Overwrite_gold(gold))
         {
             Debug.Log($"{gold} is save fail");
             return false;
@@ -341,26 +349,25 @@ public class DataManager : MonoBehaviour
         SceneName = stage;
     }
 
-
     public void IncreaseGold(int gold)
     {
         GoldCount += gold;
-        GameGoldSave(GoldCount);
+        //GameGoldSave(GoldCount);
     }
     public void DecreseGold(int gold)
     {
         GoldCount -= gold;
-        GameGoldSave(GoldCount);
+        //GameGoldSave(GoldCount);
     }
     public void IncreaseElementalsculpture(int sculpture)
     {
         ElementalsculptureCount += sculpture;
-        GameElementalsculptureSave(ElementalsculptureCount);
+        //GameElementalsculptureSave(ElementalsculptureCount);
     }
     public void DecreseElementalsculpture(int sculpture)
     {
         ElementalsculptureCount -= sculpture;
-        GameElementalsculptureSave(ElementalsculptureCount);
+        //GameElementalsculptureSave(ElementalsculptureCount);
     }
     #endregion
 

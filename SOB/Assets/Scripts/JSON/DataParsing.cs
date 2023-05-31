@@ -271,7 +271,19 @@ public class DataParsing : MonoBehaviour
     public bool Json_Overwrite_item(List<int> itemlist)
     {
         if (itemlist == null)
+        {
+            List<int> ints = new List<int>();
+            ItemListIdx = ints;
+            JSON_Inventory json = new JSON_Inventory();
+            json.items = ItemListIdx.ToArray();
+            json.weapons = WeaponListIdx.ToArray();
+            if (!JSON_InventorySave(json))
+            {
+                Debug.Log("Inventory Item Save Fail");
+                return false;
+            }
             return false;
+        }
 
         //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
         if (!Json_Parsing())
@@ -307,7 +319,19 @@ public class DataParsing : MonoBehaviour
     public bool Json_Overwrite_weapon(List<int> weaponlist)
     {
         if (weaponlist == null)
+        {
+            List<int> ints = new List<int>();
+            WeaponListIdx = ints;
+            JSON_Inventory json = new JSON_Inventory();
+            json.items = ItemListIdx.ToArray();
+            json.weapons = WeaponListIdx.ToArray();
+            if (!JSON_InventorySave(json))
+            {
+                Debug.Log("Inventory Item Save Fail");
+                return false;
+            }
             return false;
+        }
 
         //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
         if (!Json_Parsing())
@@ -387,7 +411,7 @@ public class DataParsing : MonoBehaviour
         //기존 저장된 JSON파일을 덧씌울 때
         else
         {
-            GoldAmount = _elementalsculpture;
+            ElementalSculptureAmount = _elementalsculpture;
             JSON_Goods json = new JSON_Goods();
             json.gold = GoldAmount;
             json.elementalSculpture = ElementalSculptureAmount;

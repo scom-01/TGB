@@ -239,7 +239,7 @@ public class GameManager : MonoBehaviour
                 break;
             case UI_State.CutScene:
                 CutSceneUI.Canvas.enabled = true;
-                CutSceneUI.Director_SetAsset(CutSceneUI.FadeIn);
+                //CutSceneUI.Director_SetAsset(CutSceneUI.FadeIn);
                 break;
             case UI_State.Result:
                 ResultUI.Canvas.enabled = true;
@@ -268,7 +268,7 @@ public class GameManager : MonoBehaviour
         ReforgingUI.EnabledChildrensCanvas(false);
         ReforgingUI.Canvas.enabled = false;
         CutSceneUI.Canvas.enabled = false;
-        CutSceneUI.Director_SetAsset(CutSceneUI.FadeOut);
+        //CutSceneUI.Director_SetAsset(CutSceneUI.FadeOut);
     }
 
     /// <summary>
@@ -321,12 +321,19 @@ public class GameManager : MonoBehaviour
         DataManager.Inst?.PlayerBuffSave(
             GameManager.Inst.StageManager.player.GetComponent<BuffSystem>().buffs
             );
+        DataManager.Inst?.GameGoldSave(DataManager.Inst.GoldCount);
+        DataManager.Inst?.GameElementalsculptureSave(DataManager.Inst.ElementalsculptureCount);
     }
 
     public void ClearData()
     {
         if (DataManager.Inst == null)
             return;
+
+        DataManager.Inst.PlayerInventoryDataSave(null, null);
+        DataManager.Inst?.GameGoldSave(0);
+        DataManager.Inst?.GameElementalsculptureSave(0);
+
         DataManager.Inst?.NextStage("Title");
     }
 

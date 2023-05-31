@@ -26,6 +26,17 @@ public class GoodsData : MonoBehaviour
     }
 
     private CircleCollider2D CC2D;    
+    public Rigidbody2D RB2D
+    {
+        get
+        {
+            if (rb2d == null)
+                rb2d = this.GetComponent<Rigidbody2D>();
+            return rb2d;
+        }
+    }
+
+    private Rigidbody2D rb2d;    
     public float CircleSize
     {
         set
