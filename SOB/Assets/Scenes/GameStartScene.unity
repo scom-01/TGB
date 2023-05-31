@@ -18347,12 +18347,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8042d2fc6943ce54eaa5cb7a4e92496e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitInventoryData_DirectoryPath: /Resources/json/
+  UnitData_DirectoryPath: /Resources/json/
   UnitInventoryData_FileName: UnitInventoryData
-  ItemDB: {fileID: 0}
-  WeaponDB: {fileID: 0}
+  UnitGoodsData_FileName: UnitGoodsData
   ItemListIdx: 
   WeaponListIdx: 
+  GoldAmount: 0
+  ElementalSculptureAmount: 0
 --- !u!1 &945814747
 GameObject:
   m_ObjectHideFlags: 0
@@ -25858,7 +25859,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: 172996.55}
+  m_AnchoredPosition: {x: 7, y: 9454.143}
   m_SizeDelta: {x: 21.1497, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1368125264
@@ -39567,7 +39568,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: -55398.01}
+  m_AnchoredPosition: {x: 7, y: -3070.045}
   m_SizeDelta: {x: 21.1497, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2125587133

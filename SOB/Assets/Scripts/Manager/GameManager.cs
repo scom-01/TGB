@@ -298,6 +298,8 @@ public class GameManager : MonoBehaviour
         DataManager.Inst?.PlayerInventoryDataLoad(StageManager.player.Inventory);
         DataManager.Inst?.PlayerStatLoad(StageManager.player.Core.GetCoreComponent<UnitStats>());
         DataManager.Inst?.PlayerBuffLoad(StageManager.player.GetComponent<BuffSystem>());
+        DataManager.Inst?.GameGoldLoad();
+        DataManager.Inst?.GameElementalsculptureLoad();
     }
     public void SaveData()
     {

@@ -193,33 +193,35 @@ public class DataManager : MonoBehaviour
     #region GameData
     public void PlayerInventoryDataLoad(Inventory inventory)
     {
-        for (int i = 0; i< JsonDataParsing.Json_Read_item().Count;i++)
+        if (JsonDataParsing.Json_Read_item() == null)
         {
-            //ItemSet item = new ItemSet(ItemDB.ItemDBList[JsonDataParsing.Json_Read_item()[i]]);            
-            //inventory._items.Add(item);
-            inventory.AddInventoryItem(ItemDB.ItemDBList[JsonDataParsing.Json_Read_item()[i]]);
+            Debug.Log("Json_Read_item is Fail");
+            return;
         }
 
-        
+        var inventory_Itemlist = JsonDataParsing.Json_Read_item();
 
-        //if (!isWeaponDataSave)
-        //{
-        //    Debug.Log("저장된 Inventory Data가 없습니다.");
-        //    return;
-        //}
+        for (int i = 0; i< inventory_Itemlist.Count;i++)
+        {
+            inventory.AddInventoryItem(ItemDB.ItemDBList[inventory_Itemlist[i]]);
+        }
+
+        if (JsonDataParsing.Json_Read_weapon() == null)
+        {
+            Debug.Log("Json_Read_weapon is Fail");
+            return;
+        }
+
+        var inventory_Weaponlist = JsonDataParsing.Json_Read_weapon();
 
         if (inventory.Weapon != null)
         {
-            inventory.Weapon.SetCommandData(WeaponDB.WeaponDBList[JsonDataParsing.Json_Read_weapon()[0]]);
-            //inventory.Weapon.SetCommandData(Playerweapon.weaponCommandDataSO);
+            inventory.Weapon.SetCommandData(WeaponDB.WeaponDBList[inventory_Weaponlist[0]]);
         }
         else
         {
             Debug.LogWarning("Inventory.weapon is Null");
         }
-
-        //inventory._items = Playeritems;
-        //Debug.LogWarning("Success Inventory Data Load");
     }
 
     public void PlayerInventoryDataSave(Weapon weapon, List<ItemSet> itemList)
@@ -229,11 +231,18 @@ public class DataManager : MonoBehaviour
         {
             items.Add(itemList[i].item.ItemIdx);
         }
-        JsonDataParsing.Json_Overwrite_item(items);
+
+        if(!JsonDataParsing.Json_Overwrite_item(items))
+        {
+            Debug.Log($"{items} is null");
+        }
 
         List<int> weapons = new List<int>();
         weapons.Add(weapon.weaponData.weaponCommandDataSO.WeaponIdx);
-        JsonDataParsing.Json_Overwrite_weapon(weapons);
+        if(!JsonDataParsing.Json_Overwrite_weapon(weapons))
+        {
+            Debug.Log($"{weapons} is null");
+        }
 
         Playerweapon = weapon.weaponData;
 
@@ -279,26 +288,36 @@ public class DataManager : MonoBehaviour
 
     public void GameGoldLoad()
     {
-        GoldCount = PlayerPrefs.GetInt(GlobalValue.GoldCount, 0);
+        GoldCount = JsonDataParsing.Json_Read_gold();
     }
     public bool GameGoldSave(int gold)
     {
         if (gold <= 0)
             return false;
 
-        PlayerPrefs.SetInt(GlobalValue.GoldCount, gold);
+        if(!JsonDataParsing.Json_Overwrite_gold(gold))
+        {
+            Debug.Log($"{gold} is save fail");
+            return false;
+        }
+
         return true;
     }
     public void GameElementalsculptureLoad()
     {
-        ElementalsculptureCount = PlayerPrefs.GetInt(GlobalValue.ElementalCount, 0);
+        ElementalsculptureCount = JsonDataParsing.Json_Read_elementalSculpture();
     }
     public bool GameElementalsculptureSave(int Elementalsculpture)
     {
         if (Elementalsculpture <= 0)
             return false;
 
-        PlayerPrefs.SetInt(GlobalValue.ElementalCount, Elementalsculpture);
+        if (!JsonDataParsing.Json_Overwrite_sculpture(Elementalsculpture))
+        {
+            Debug.Log($"{Elementalsculpture} is save fail");
+            return false;
+        }
+
         return true;
     }
 
