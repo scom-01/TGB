@@ -36,11 +36,12 @@ public class GoodsItem : MonoBehaviour
             var goodsData =  goods.GetComponent<GoodsData>();
             goodsData.SR.sprite = GoodsSprite;
             goodsData.CircleSize = CircleSize;
-            goodsData.RB2D.AddForce(Vector2.up);
             goodsData.Goods = Goods;
             goodsData.Amount = Amount;
             goodsData.EquipSoundClip = EquipSoundClip;
             goodsData.InvokeTime = DestroyTime;    //DestroyTime
+            var vec = Vector2.right * Random.Range(-2f, 2f) + Vector2.up * Random.Range(100f, 500f);
+            goodsData.RB2D.AddForce(vec);
             goodsData.isInit = true;
         }
     }
