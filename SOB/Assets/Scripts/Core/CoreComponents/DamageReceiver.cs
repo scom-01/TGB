@@ -70,26 +70,12 @@ namespace SOB.CoreSystem
             {
                 if (DefaultEffectPrefab != null)
                 {
-                    if(DefaultEffectPrefab.GetComponent<EffectController>().isDestroy)
-                    {
-                        effectManager.Comp.StartChunkEffectsWithRandomPos(DefaultEffectPrefab, Range);
-                    }
-                    else
-                    {
-                        effectManager.Comp.StartEffectsWithRandomPos(DefaultEffectPrefab, Range);
-                    }
+                    effectManager.Comp.StartEffectsWithRandomPos(DefaultEffectPrefab, Range);
                 }
                 return;
             }
-                
-            if(EffectPrefab.GetComponent<EffectController>().isDestroy)
-            {
-                effectManager.Comp.StartChunkEffectsWithRandomPos(EffectPrefab, Range);
-            }
-            else
-            {
-                effectManager.Comp.StartEffectsWithRandomPos(EffectPrefab, Range);
-            }
+
+            effectManager.Comp.StartEffectsWithRandomPos(EffectPrefab, Range);
         }
 
         /// <summary>
