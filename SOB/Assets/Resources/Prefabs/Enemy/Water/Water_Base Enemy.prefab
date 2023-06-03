@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 3639027602819861585}
   m_Layer: 18
   m_Name: Water_Base Enemy
-  m_TagString: Untagged
+  m_TagString: NormEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -283,9 +283,9 @@ SpriteRenderer:
   m_SortingLayerID: 1968435467
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 712906899, guid: 4979143c4804b444b9a0e14046730c59, type: 3}
+  m_Sprite: {fileID: -626630878, guid: 61f7cc02c30b7724caa89ddee27cb56c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 9.375, y: 9.375}
@@ -304,7 +304,7 @@ Animator:
   m_GameObject: {fileID: 3640253521839122302}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 0af0785d1d158a845b0ab0011f5a03ad, type: 2}
+  m_Controller: {fileID: 22100000, guid: 487909955f307f0438a85ffa651e49d5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -351,8 +351,8 @@ BoxCollider2D:
   m_Offset: {x: 0.003388971, y: 0.058359385}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.25}
-    oldSize: {x: 12, y: 8}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 9.375, y: 9.375}
     newSize: {x: 9.375, y: 9.375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -394,7 +394,7 @@ MonoBehaviour:
   RespawnPoint: {fileID: 0}
   UnitData: {fileID: 11400000, guid: 1c4463ccba2e6da41a10f45658f2f1d6, type: 2}
   IsAlive: 1
-  isCCimmunity: 0
+  isImmunity: 0
   enemyData: {fileID: 0}
 --- !u!114 &3639027602819861585
 MonoBehaviour:
