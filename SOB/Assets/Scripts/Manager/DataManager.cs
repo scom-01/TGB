@@ -34,13 +34,17 @@ public class DataManager : MonoBehaviour
 
     private static DataManager _Inst = null;
 
-    private DataParsing JsonDataParsing
+    public DataParsing JSON_DataParsing
     {
         get
         {
-            return this.GetComponent<DataParsing>();
+            if (JsonDataParsing == null)
+                JsonDataParsing = this.GetComponent<DataParsing>();
+            return JsonDataParsing;
         }
     }
+
+    private DataParsing JsonDataParsing;
 
     #region GameData Value
     [Header("DB")]
@@ -179,28 +183,43 @@ public class DataManager : MonoBehaviour
 
 
     #region GameData
+
+    public bool CheckJSONFile()
+    {
+        if (!JSON_DataParsing.FileCheck(JSON_DataParsing.UnitInventoryData_FilePath))
+        {
+            return false;
+        }
+
+        if (!JSON_DataParsing.FileCheck(JSON_DataParsing.UnitGoodsData_FilePath))
+        {
+            return false;
+        }
+
+        return true;
+    }
     public void PlayerInventoryDataLoad(Inventory inventory)
     {
-        if (JsonDataParsing.Json_Read_item() == null)
+        if (JSON_DataParsing.Json_Read_item() == null)
         {
             Debug.Log("Json_Read_item is Fail");
             return;
         }
 
-        var inventory_Itemlist = JsonDataParsing.Json_Read_item();
+        var inventory_Itemlist = JSON_DataParsing.Json_Read_item();
 
         for (int i = 0; i < inventory_Itemlist.Count; i++)
         {
             inventory.AddInventoryItem(ItemDB.ItemDBList[inventory_Itemlist[i]]);
         }
 
-        if (JsonDataParsing.Json_Read_weapon() == null)
+        if (JSON_DataParsing.Json_Read_weapon() == null)
         {
             Debug.Log("Json_Read_weapon is Fail");
             return;
         }
 
-        var inventory_Weaponlist = JsonDataParsing.Json_Read_weapon();
+        var inventory_Weaponlist = JSON_DataParsing.Json_Read_weapon();
 
         if(inventory_Weaponlist.Count > 0)
         {
@@ -224,7 +243,7 @@ public class DataManager : MonoBehaviour
         List<int> items = new List<int>();
         if (itemList == null)
         {
-            if (!JsonDataParsing.Json_Overwrite_item(null))
+            if (!JSON_DataParsing.Json_Overwrite_item(null))
             {
                 Debug.Log($"{items} is null");
             }
@@ -236,7 +255,7 @@ public class DataManager : MonoBehaviour
                 items.Add(itemList[i].item.ItemIdx);
             }
 
-            if (!JsonDataParsing.Json_Overwrite_item(items))
+            if (!JSON_DataParsing.Json_Overwrite_item(items))
             {
                 Debug.Log($"{items} is null");
             }
@@ -246,7 +265,7 @@ public class DataManager : MonoBehaviour
         List<int> weapons = new List<int>();
         if (weapon == null)
         {
-            if (!JsonDataParsing.Json_Overwrite_weapon(null))
+            if (!JSON_DataParsing.Json_Overwrite_weapon(null))
             {
                 Debug.Log($"{weapons} is null");
             }
@@ -254,7 +273,7 @@ public class DataManager : MonoBehaviour
         else
         {
             weapons.Add(weapon.weaponData.weaponCommandDataSO.WeaponIdx);
-            if (!JsonDataParsing.Json_Overwrite_weapon(weapons))
+            if (!JSON_DataParsing.Json_Overwrite_weapon(weapons))
             {
                 Debug.Log($"{weapons} is null");
             }
@@ -296,14 +315,14 @@ public class DataManager : MonoBehaviour
 
     public void GameGoldLoad()
     {
-        GoldCount = JsonDataParsing.Json_Read_gold();
+        GoldCount = JSON_DataParsing.Json_Read_gold();
     }
     public bool GameGoldSave(int gold)
     {
         if (gold <= 0)
             return false;
 
-        if (!JsonDataParsing.Json_Overwrite_gold(gold))
+        if (!JSON_DataParsing.Json_Overwrite_gold(gold))
         {
             Debug.Log($"{gold} is save fail");
             return false;
@@ -313,14 +332,14 @@ public class DataManager : MonoBehaviour
     }
     public void GameElementalsculptureLoad()
     {
-        ElementalsculptureCount = JsonDataParsing.Json_Read_elementalSculpture();
+        ElementalsculptureCount = JSON_DataParsing.Json_Read_elementalSculpture();
     }
     public bool GameElementalsculptureSave(int Elementalsculpture)
     {
         if (Elementalsculpture <= 0)
             return false;
 
-        if (!JsonDataParsing.Json_Overwrite_sculpture(Elementalsculpture))
+        if (!JSON_DataParsing.Json_Overwrite_sculpture(Elementalsculpture))
         {
             Debug.Log($"{Elementalsculpture} is save fail");
             return false;

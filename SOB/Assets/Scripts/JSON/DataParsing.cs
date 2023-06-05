@@ -315,7 +315,6 @@ public class DataParsing : MonoBehaviour
         return true;
     }
 
-
     public bool Json_Overwrite_weapon(List<int> weaponlist)
     {
         if (weaponlist == null)
@@ -470,6 +469,18 @@ public class DataParsing : MonoBehaviour
             return false;
         }
         return true;
+    }
+
+    public bool FileCheck(string filePath)
+    {
+        if(File.Exists(Application.dataPath + filePath))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public class JSON_Goods

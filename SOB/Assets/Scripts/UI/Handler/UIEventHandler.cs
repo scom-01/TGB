@@ -10,6 +10,9 @@ using UnityEngine.UIElements;
 public class UIEventHandler : MonoBehaviour
 {
     public string StageName;
+    /// <summary>
+    /// 버튼 중복 클릭 입력 방지
+    /// </summary>
     private bool isDone = false;
     public ProgressBar Loading_progressbar;
     private void Awake()
@@ -39,6 +42,11 @@ public class UIEventHandler : MonoBehaviour
         if (DataManager.Inst == null)
             return;
 
+        if(!DataManager.Inst.CheckJSONFile())
+        {
+            Debug.LogWarning("File is not found");
+        }
+
         DataManager.Inst.LoadScene();
         //강제로 CutScene1
         if (StageName != null && StageName != "")
@@ -46,6 +54,22 @@ public class UIEventHandler : MonoBehaviour
         GameManager.Inst.ClearScene();
         isDone = true;
     }
+    public void OnLoadBtnClicked()
+    {
+        if (isDone)
+            return;
+
+        if (DataManager.Inst == null)
+            return;
+
+        DataManager.Inst.LoadScene();
+        ////강제로 CutScene1
+        //if (StageName != null && StageName != "")
+        //    DataManager.Inst?.NextStage(StageName);
+        GameManager.Inst.ClearScene();
+        isDone = true;
+    }
+
     public void OnExitBtnClicked()
     {
 #if UNITY_EDITOR

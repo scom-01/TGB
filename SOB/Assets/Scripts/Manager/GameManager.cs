@@ -282,6 +282,11 @@ public class GameManager : MonoBehaviour
     {
         ChangeUI(panel.UI_State);
     }
+
+    public void EventSystemSetSelectedNull()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+    }
     #endregion
 
 
