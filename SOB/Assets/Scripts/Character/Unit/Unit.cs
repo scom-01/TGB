@@ -194,7 +194,7 @@ public class Unit : MonoBehaviour
         gameObject.SetActive(false);
     }
     public IEnumerator DisableCollision()
-    {
+    {        
         BC2D.isTrigger = true;
         yield return new WaitForSeconds(0.2f);
         BC2D.isTrigger = false;
