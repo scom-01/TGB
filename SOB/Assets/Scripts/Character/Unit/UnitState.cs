@@ -63,6 +63,12 @@ public class UnitState
     }
     public virtual void Enter()
     {
+        if (!isExitingState)
+        {
+            Debug.Log(unit.name + " Exit State : " + animBoolName);
+            unit.Anim.SetBool(animBoolName, false);
+            isExitingState = true;
+        }
         DoChecks();
         unit.Anim.SetBool(animBoolName, true);
         startTime = Time.time;

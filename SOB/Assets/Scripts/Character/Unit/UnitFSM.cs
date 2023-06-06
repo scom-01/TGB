@@ -6,15 +6,15 @@ public class UnitFSM
 {
     public UnitState CurrentState { get; private set; }
 
-    //State º¯°æ ÈÄ È£ÃâµÇ´Â ÇÔ¼ö
+    //State ë³€ê²½ í›„ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜
     public void Initialize(UnitState startingState)
     {
-        //ÇöÀç State Àû¿ë
+        //í˜„ì¬ State ì ìš©
         CurrentState = startingState;
         CurrentState.Enter();
     }
 
-    //State º¯°æ ½Ã È£ÃâµÇ´Â ÇÔ¼ö
+    //State ë³€ê²½ ì‹œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜
     public void ChangeState(UnitState newState)
     {
         CurrentState.Exit();
