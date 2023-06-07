@@ -29,14 +29,15 @@ public class Boss_Static_Stage_1_IdleState : EnemyIdleState
     private void Teleport()
     {
         boss_Static_Stage_1.TeleportState.SetWeapon(unit.Inventory.Weapon);
-        unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[1].commands[0]);
+        unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.AirCommandList[0].commands[0]);
         unit.FSM.ChangeState(boss_Static_Stage_1.TeleportState);
     }
 
     private void Attack()
     {
         boss_Static_Stage_1.AttackState.SetWeapon(unit.Inventory.Weapon);
-        unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[0].commands[0]);
+        var max = unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList.Count;
+        unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[Random.Range(0, max)].commands[0]);
         unit.FSM.ChangeState(boss_Static_Stage_1.AttackState);
     }
 }
