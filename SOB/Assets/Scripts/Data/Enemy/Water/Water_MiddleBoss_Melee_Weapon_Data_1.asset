@@ -62,26 +62,26 @@ MonoBehaviour:
         actionData:
         - name: Action 1
           ActionHit:
-          - Debug: 1
+          - Debug: 0
             ActionRect:
               serializedVersion: 2
-              x: -3.47
+              x: -9.01
               y: 0
-              width: 7.1
-              height: 1.43
+              width: 9.92
+              height: 1.85
             EffectPrefab: []
             audioClip: []
             camDatas:
             - Duration: 0.2
               Range: 0.01
               RepeatRate: 0.001
-          - Debug: 0
+          - Debug: 1
             ActionRect:
               serializedVersion: 2
-              x: -2.06
+              x: -1.28
               y: 0
-              width: 2.71
-              height: 1.43
+              width: 2.51
+              height: 1.73
             EffectPrefab: []
             audioClip: []
             camDatas:
@@ -108,6 +108,7 @@ MonoBehaviour:
         - name: Action 1
           <KnockbackAngle>k__BackingField:
           - {x: 2, y: 2}
+          - {x: 1, y: 1}
     - rid: 1770984582361907203
       type: {class: MovementData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:

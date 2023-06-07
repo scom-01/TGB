@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab28b1b28bebb3d418384ac1ecb8b7fd, type: 3}
   m_Name: Water_Boss_Melee_WeaponCommand_Data_1
   m_EditorClassIdentifier: 
+  WeaponIdx: 0
   <NumberOfActions>k__BackingField: 0
   <WeaponImg>k__BackingField: {fileID: 0}
   <WeaponName>k__BackingField: 
@@ -34,11 +35,11 @@ MonoBehaviour:
     - command: 0
       animOC: {fileID: 22100000, guid: 14b21d11e06a64f48b442ec1f42e5c93, type: 2}
       data: {fileID: 11400000, guid: a60216086783271478af0290878bab0c, type: 2}
+  AirCommandList:
   - commands:
     - command: 0
       animOC: {fileID: 22100000, guid: 146447123def39142901493597c1c748, type: 2}
       data: {fileID: 11400000, guid: a60216086783271478af0290878bab0c, type: 2}
-  AirCommandList: []
   references:
     version: 2
     RefIds: []

@@ -141,14 +141,6 @@ namespace SOB.Weapons.Components
                     Gizmos.color = Color.white;
                     Gizmos.DrawWireCube(transform.position + new Vector3(action.ActionRect.center.x * CoreMovement.FancingDirection, action.ActionRect.center.y, 0), action.ActionRect.size);
                 }
-
-                foreach (var action in item.ActionHit)
-                {
-                    if (!action.Debug)
-                        continue;
-                    Gizmos.color = Color.white;
-                    Gizmos.DrawWireCube(transform.position + new Vector3(action.ActionRect.center.x * CoreMovement.FancingDirection, action.ActionRect.center.y, 0), action.ActionRect.size);
-                }
             }
         }
     }

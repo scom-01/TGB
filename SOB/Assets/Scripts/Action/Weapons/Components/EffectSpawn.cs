@@ -38,7 +38,7 @@ namespace SOB.Weapons.Components
 
             if (currentEffectSpawnIndex >= currParticles.Length)
             {
-                Debug.Log($"{weapon.name} Particle Prefabs length mismatch");
+                Debug.Log($"{Weapon.name} Particle Prefabs length mismatch");
                 return;
             }
 

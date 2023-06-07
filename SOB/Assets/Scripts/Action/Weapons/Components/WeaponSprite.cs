@@ -71,7 +71,7 @@ public class WeaponSprite : WeaponComponent<WeaponSpriteData, ActionSprites>
 
         if (currentActionSpriteIndex >= currentAttackSprite.Length)
         {
-            Debug.Log($"{weapon.name} weapon sprite length mismatch");
+            Debug.Log($"{Weapon.name} weapon sprite length mismatch");
             return;
         }
 
@@ -85,8 +85,8 @@ public class WeaponSprite : WeaponComponent<WeaponSpriteData, ActionSprites>
         //baseSpriteRenderer = transform.Find("Base").GetComponent<SpriteRenderer>();
         //weaponSpriteRenderer = transform.Find("Weapon").GetComponent<SpriteRenderer>();
 
-        baseSpriteRenderer = weapon.BaseGameObject.GetComponent<SpriteRenderer>();
-        weaponSpriteRenderer = weapon.WeaponSpriteGameObject.GetComponent<SpriteRenderer>();
+        baseSpriteRenderer = Weapon.BaseGameObject.GetComponent<SpriteRenderer>();
+        weaponSpriteRenderer = Weapon.WeaponSpriteGameObject.GetComponent<SpriteRenderer>();
         baseSpriteRenderer.RegisterSpriteChangeCallback(HandleBaseSpriteChange);
     }
 

@@ -6,7 +6,20 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
     #region Component
-    public Core Core { get; private set; }
+    public Core Core
+    {
+        get
+        {
+            if (core == null)
+                core = this.GetComponentInChildren<Core>();
+            return core;
+        }
+        private set
+        {
+            core = value;
+        }
+    }
+    private Core core;
     public UnitFSM FSM { get; private set; }
     public Animator Anim { get; private set; }
     public Rigidbody2D RB { get; private set; }
@@ -71,7 +84,6 @@ public class Unit : MonoBehaviour
 
     private void InitSetting()
     {
-        Core = GetComponentInChildren<Core>();
         FSM = new UnitFSM();
 
         if (UnitData == null)

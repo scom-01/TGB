@@ -435,7 +435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData:
     weaponCommandDataSO: {fileID: 11400000, guid: ace31054136ad2940bb7a9ced63539e5, type: 2}
-    weaponDataSO: {fileID: 11400000, guid: 4319cff07b5b5d04e9910cba7a5b4843, type: 2}
+    weaponDataSO: {fileID: 11400000, guid: 6bf6647384e3c0644a05cb647c9a8bb9, type: 2}
 --- !u!1 &2509519018235985345
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,6 +1144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d97953454d73a429821a37579dc88c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fancingDirection: 1
   CanFlip: 0
   CanMovement: 0
 --- !u!1 &3640253523459399150
@@ -1394,7 +1395,7 @@ Animator:
   m_GameObject: {fileID: 4242634074962048764}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 2f82af94d7b0ae7458aafe1b019d34da, type: 2}
+  m_Controller: {fileID: 22100000, guid: ba03097bbacbb3e45829848e70c58b07, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

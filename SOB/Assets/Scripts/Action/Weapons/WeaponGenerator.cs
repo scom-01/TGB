@@ -17,16 +17,26 @@ namespace SOB.Weapons
 
     public class WeaponGenerator : MonoBehaviour
     {
+        protected Weapon Weapon
+        {
+            get
+            {
+                if (weapon == null)
+                    weapon = this.GetComponent<Weapon>();
+                return weapon;
+            }
+            set
+            {
+                weapon = value;
+            }
+        }
         private Weapon weapon;
         [SerializeField] public WeaponData weaponData;
 
         private List<WeaponComponent> componentsAllreadyOnWeapon = new List<WeaponComponent>();
         private List<WeaponComponent> componentsAddedToWeapon = new List<WeaponComponent>();
         private List<Type> componentsDependencies = new List<Type>();
-        private void Awake()
-        {
-            weapon = this.GetComponent<Weapon>();
-        }
+
         private void Start()
         {
             Init();
@@ -36,7 +46,7 @@ namespace SOB.Weapons
         {
             if (weaponData.weaponCommandDataSO != null)
             {
-                weapon.SetCommandData(weaponData.weaponCommandDataSO);
+                Weapon.SetCommandData(weaponData.weaponCommandDataSO);
             }
             else
             {
@@ -45,15 +55,28 @@ namespace SOB.Weapons
             }
         }
 
-        [ContextMenu("Test Generate")]
+        [ContextMenu("Set Weapon Generate")]
         private void TestGeneration()
         {
-            //GenerateWeapon(weaponCommandData);
+            GenerateWeapon(weaponData.weaponDataSO);
+        }
+
+        [ContextMenu("Clear Weapon Generate")]
+        private void ClearGeneration()
+        {
+            componentsAllreadyOnWeapon.Clear();
+            componentsAddedToWeapon.Clear();
+            componentsDependencies.Clear();
+            componentsAllreadyOnWeapon = GetComponents<WeaponComponent>().ToList();
+            foreach (var weaponComponent in componentsAllreadyOnWeapon)
+            {
+                DestroyImmediate(weaponComponent);
+            }
         }
 
         public void GenerateWeapon(WeaponDataSO data)
         {
-            weapon.SetData(data);
+            Weapon.SetData(data);
             componentsAllreadyOnWeapon.Clear();
             componentsAddedToWeapon.Clear();
             componentsDependencies.Clear();
@@ -91,7 +114,7 @@ namespace SOB.Weapons
         }
         public void GenerateWeapon(AnimCommand CommandData)
         {
-            weapon.oc = CommandData.animOC;
+            Weapon.oc = CommandData.animOC;
             GenerateWeapon(CommandData.data);
         }
     }

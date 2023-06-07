@@ -8,9 +8,22 @@ namespace SOB.Weapons.Components
 {
     public abstract class WeaponComponent : MonoBehaviour
     {
-        protected Weapon weapon;
+        protected Weapon Weapon
+        {
+            get
+            {
+                if (weapon == null)
+                    weapon = this.GetComponent<Weapon>();
+                return weapon;
+            }
+            set
+            {
+                weapon = value;
+            }
+        }
+        private Weapon weapon;
         protected AnimationEventHandler eventHandler;
-        protected Core core => weapon.WeaponCore ?? weapon.GetComponentInParent<Unit>().Core;
+        protected Core core => Weapon.WeaponCore ?? Weapon.GetComponentInParent<Unit>().Core;
         protected bool isAttackActive;
 
         private CoreSystem.Movement coreMovement;
@@ -56,9 +69,8 @@ namespace SOB.Weapons.Components
         }
         protected virtual void Awake()
         {
-            weapon = GetComponent<Weapon>();
-            weapon.OnEnter += HandleEnter;
-            weapon.OnExit += HandleExit;
+            Weapon.OnEnter += HandleEnter;
+            Weapon.OnExit += HandleExit;
             eventHandler = GetComponentInChildren<AnimationEventHandler>();
         }
 
@@ -78,8 +90,8 @@ namespace SOB.Weapons.Components
 
         protected virtual void OnDestory()
         {
-            weapon.OnEnter -= HandleEnter;
-            weapon.OnExit -= HandleExit;
+            Weapon.OnEnter -= HandleEnter;
+            Weapon.OnExit -= HandleExit;
         }
 
 
@@ -112,7 +124,7 @@ namespace SOB.Weapons.Components
         {
             base.Init();
 
-            data = weapon.weaponData.weaponDataSO.GetData<T1>();
+            data = Weapon.weaponData.weaponDataSO.GetData<T1>();
         }
     }
 }

@@ -8,7 +8,15 @@ namespace SOB.CoreSystem
     {
         public Rigidbody2D RB { get; private set; }
 
-        public int FancingDirection { get; private set; }
+        public int FancingDirection
+        {
+            get
+            {
+                return fancingDirection;
+            }
+            private set { fancingDirection = value; }
+        }
+        public int fancingDirection = 1;
         public bool CanSetVelocity { get; set; }
         public Vector2 CurrentVelocity { get; private set; }
 
@@ -62,7 +70,7 @@ namespace SOB.CoreSystem
 
         private void SetFinalVelocity()
         {
-            if(CanSetVelocity)
+            if (CanSetVelocity)
             {
                 RB.velocity = workspace;
                 CurrentVelocity = workspace;
