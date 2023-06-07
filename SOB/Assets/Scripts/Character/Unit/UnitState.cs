@@ -8,7 +8,7 @@ public class UnitState
     protected Unit unit;
 
     protected bool isAnimationFinished;
-    protected bool isExitingState;
+    public bool isExitingState = true;
 
     protected float startTime;
 
@@ -63,18 +63,12 @@ public class UnitState
     }
     public virtual void Enter()
     {
-        if (!isExitingState)
-        {
-            Debug.Log(unit.name + " Exit State : " + animBoolName);
-            unit.Anim.SetBool(animBoolName, false);
-            isExitingState = true;
-        }
-        DoChecks();
-        unit.Anim.SetBool(animBoolName, true);
         startTime = Time.time;
+        unit.Anim.SetBool(animBoolName, true);
         Debug.Log(unit.name + " Enter State : " + animBoolName);
         isAnimationFinished = false;
         isExitingState = false;
+        DoChecks();
     }
     public virtual void Exit()
     {
