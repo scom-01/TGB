@@ -92,7 +92,7 @@ public class StageManager : MonoBehaviour
             return;
 
         //End 애니메이션
-        EndPoint.GetComponentInChildren<Animator>().SetBool("Action", true);
+        EndPoint.GetComponentInChildren<Animator>()?.SetBool("Action", true);
         EndPoint.GetComponent<BoxCollider2D>().enabled = true;
     }
 
