@@ -22,7 +22,15 @@ namespace SOB.CoreSystem
             }
         }
         private bool ishit = false;
-
+        public bool isTouch
+        {
+            get => istouch;
+            set
+            {
+                istouch = value;
+            }
+        }
+        private bool istouch = false;
 
         public void Damage(StatsData AttackterCommonData, StatsData VictimCommonData, float amount)
         {
@@ -62,6 +70,26 @@ namespace SOB.CoreSystem
             var damage = stats.Comp.DecreaseHealth(AttackterCommonData, amount);
             isHit = true;
             stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
+            RandomEffectInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
+        }
+
+        public void TrapDamage(StatsData AttackterCommonData, float amount)
+        {
+            if(death.Comp.isDead)
+            {
+                Debug.Log(core.Unit.name + "is Dead");
+                return;
+            }
+            if (isTouch)
+            {
+                return;
+            }
+
+            Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
+            isTouch = true;
+            var damage = stats.Comp.DecreaseHealth(AttackterCommonData, amount);            
+            stats.Comp.TouchinvincibleTime = core.Unit.UnitData.touchDamageinvincibleTime;
+
             RandomEffectInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
         }
         public void HitAction(GameObject EffectPrefab, float Range)

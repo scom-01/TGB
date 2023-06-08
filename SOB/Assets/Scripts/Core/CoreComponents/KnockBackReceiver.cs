@@ -18,6 +18,7 @@ namespace SOB.CoreSystem
         private CoreComp<Movement> movement;
         private CoreComp<CollisionSenses> collisionSenses;
         private CoreComp<Death> death;
+        private CoreComp<DamageReceiver> damageReceiver;
 
         public override void LogicUpdate()
         {
@@ -58,6 +59,23 @@ namespace SOB.CoreSystem
             isKnockBackActive = true;
             knockBackStartTime = Time.time;
         }
+        public void TrapKnockBack(Vector2 angle, float strength)
+        {
+            
+            if(death.Comp.isDead)
+            {
+                Debug.Log(core.Unit.name + "is Dead");
+                return;
+            }
+            if(damageReceiver.Comp.isTouch)
+            {
+                return;
+            }
+            movement.Comp?.SetVelocity(strength, angle, movement.Comp.FancingDirection);
+            movement.Comp.CanSetVelocity = false;
+            isKnockBackActive = true;
+            knockBackStartTime = Time.time;
+        }
         private void CheckKnockBack()
         {
             if (isKnockBackActive
@@ -77,6 +95,7 @@ namespace SOB.CoreSystem
             movement = new CoreComp<Movement>(core);
             collisionSenses = new CoreComp<CollisionSenses>(core);
             death = new CoreComp<Death>(core);
+            damageReceiver = new CoreComp<DamageReceiver>(core);
         }
     }
 }

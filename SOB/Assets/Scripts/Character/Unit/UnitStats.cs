@@ -15,6 +15,7 @@ namespace SOB.CoreSystem
         [field: SerializeField] private StatsData statsData;
 
         public float invincibleTime;
+        public float TouchinvincibleTime;
         public float CurrentHealth { get => currentHealth; set => currentHealth = value <= 0 ? 0 : value; }
         [SerializeField] private float currentHealth;
 

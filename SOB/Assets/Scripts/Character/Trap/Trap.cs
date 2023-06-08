@@ -1,6 +1,7 @@
 using SOB.CoreSystem;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 
 
@@ -11,17 +12,18 @@ public class Trap : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        var damage = collision.GetComponent<DamageReceiver>();
-        if (damage != null) 
-        {
-            damage.Damage(UnitData.statsStats, UnitData.statsStats.DefaultPower);
-            Debug.LogWarning(collision.name + "DamageReceiver" + "Trap");
-        }
         var knockback = collision.GetComponent<KnockBackReceiver>();
         if (knockback != null)
         {
-            knockback.KnockBack(knockbackAngle, knockbackAngle.magnitude);
+            knockback.TrapKnockBack(knockbackAngle, knockbackAngle.magnitude);
             Debug.LogWarning(collision.name + "KnockBackReceiver" + "Trap");
+        }
+
+        var damage = collision.GetComponent<DamageReceiver>();
+        if (damage != null) 
+        {
+            damage.TrapDamage(UnitData.statsStats, UnitData.statsStats.DefaultPower);
+            Debug.LogWarning(collision.name + "DamageReceiver" + "Trap");
         }
     }
 }

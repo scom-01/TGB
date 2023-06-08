@@ -147,6 +147,17 @@ public class Unit : MonoBehaviour
             }
         }
 
+        if (Core.GetCoreComponent<UnitStats>().TouchinvincibleTime > 0.0f)
+        {
+            Core.GetCoreComponent<UnitStats>().TouchinvincibleTime -= Time.deltaTime;
+
+            if (Core.GetCoreComponent<UnitStats>().TouchinvincibleTime <= 0.0f)
+            {
+                Core.GetCoreComponent<DamageReceiver>().isTouch = false;
+                Core.GetCoreComponent<UnitStats>().TouchinvincibleTime = 0f;
+            }
+        }
+
         FSM.CurrentState.LogicUpdate();
     }
 

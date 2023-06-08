@@ -8,7 +8,7 @@ namespace SOB.Weapons.Components
     [Serializable]
     public class ActionMovement : ActionData
     {
-        [field: SerializeField] public MovementData movements { get; private set; }
+        [field: SerializeField] public MovementData[] movements { get; private set; }
 
         [Serializable]
         public struct MovementData
