@@ -79,8 +79,8 @@ namespace SOB.Weapons.Components
                     if (currHitBox[currentHitBoxIndex].EffectPrefab != null)
                     {
                         for (int i = 0; i < currHitBox[currentHitBoxIndex].EffectPrefab.Length; i++)
-                        {                            
-                            damageable.HitAction(currHitBox[currentHitBoxIndex].EffectPrefab[i].Object, currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomRange);
+                        {
+                            damageable.HitAction(currHitBox[currentHitBoxIndex].EffectPrefab[i].Object, currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomRange, CoreMovement.FancingDirection);
                         }
                     }
 
@@ -122,8 +122,8 @@ namespace SOB.Weapons.Components
             eventHandler.OnAttackAction -= HandleAttackAction;
         }
 
-        //Hierarchy에서 선택 시 기즈모 표시
-        private void OnDrawGizmosSelected()
+
+        private void OnDrawGizmos()
         {
             if (data == null)
                 return;

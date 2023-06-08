@@ -137,6 +137,21 @@ namespace SOB.CoreSystem
                                                     transform.position.y + Random.Range(-Range, Range)),
                                                     Quaternion.Euler(0f, 180.0f, 0f));
         }
+        public GameObject StartEffectsWithRandomPos(GameObject effectPrefab, float Range, int FancingDirection)
+        {
+            if (FancingDirection > 0)
+            {
+                return StartEffects(effectPrefab, new Vector2(
+                                                    transform.position.x + Random.Range(-Range, Range),
+                                                    transform.position.y + Random.Range(-Range, Range)),
+                                                    Quaternion.identity);
+            }
+
+            return StartEffects(effectPrefab, new Vector2(
+                                                    transform.position.x + Random.Range(-Range, Range),
+                                                    transform.position.y + Random.Range(-Range, Range)),
+                                                    Quaternion.Euler(0f, 180.0f, 0f));
+        }
        
         public GameObject StartEffectsWithRandomPosRot(GameObject effectPrefab, float Range)
         {

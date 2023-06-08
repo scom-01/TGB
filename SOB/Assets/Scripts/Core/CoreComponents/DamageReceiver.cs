@@ -92,18 +92,18 @@ namespace SOB.CoreSystem
 
             RandomEffectInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
         }
-        public void HitAction(GameObject EffectPrefab, float Range)
+        public void HitAction(GameObject EffectPrefab, float Range, int FancingDirection)
         {
             if (EffectPrefab == null)
             {
                 if (DefaultEffectPrefab != null)
                 {
-                    effectManager.Comp.StartEffectsWithRandomPos(DefaultEffectPrefab, Range);
+                    effectManager.Comp.StartEffectsWithRandomPos(DefaultEffectPrefab, Range, FancingDirection);
                 }
                 return;
             }
 
-            effectManager.Comp.StartEffectsWithRandomPos(EffectPrefab, Range);
+            effectManager.Comp.StartEffectsWithRandomPos(EffectPrefab, Range, FancingDirection);
         }
 
         /// <summary>
