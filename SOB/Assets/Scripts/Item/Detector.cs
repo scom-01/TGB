@@ -246,6 +246,9 @@ public class Detector : MonoBehaviour
         }
         else if(collision.tag == "Interaction")
         {
+            if (currentGO == null)
+                return;
+
             currentGO.GetComponent<InteractiveObject>()?.SetActiveBtnObj(false);
             currentGO.GetComponent<InteractiveObject>()?.UnInteractive();
             currentGO = null;
