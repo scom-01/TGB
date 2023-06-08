@@ -76,6 +76,10 @@ public class GameManager : MonoBehaviour
     public ResultUIManager ResultUI;
     public DamageUIManager DamageUI;
     public CutSceneManagerUI CutSceneUI;
+    public PlayTimeManagerUI PlayTimeUI;
+
+    [HideInInspector]
+    public float PlayTime;
 
     private void Awake()
     {
@@ -116,8 +120,18 @@ public class GameManager : MonoBehaviour
 
         if (CutSceneUI == null)
             CutSceneUI = this.GetComponentInChildren<CutSceneManagerUI>();
+
+        if (PlayTimeUI == null)
+            PlayTimeUI = this.GetComponentInChildren<PlayTimeManagerUI>();
     }
 
+    private void Update()
+    {
+        if(StageManager != null)
+        {
+            PlayTime += Time.deltaTime;
+        }
+    }
     private void Start()
     {
         //해당 함수들은 GameManager에서 참조할 변수들이 있어 GameManager에서 선언
@@ -217,6 +231,7 @@ public class GameManager : MonoBehaviour
                     MainUI.Canvas.enabled = false;
                 break;
             case UI_State.Inventory:
+                PlayTimeUI.Canvas.enabled = true;
                 SubUI.InventorySubUI.PutInventoryItem();
                 SubUI.InventorySubUI.Canvas.enabled = true;
                 if (SubUI.InventorySubUI.InventoryItems.CurrentSelectItem == null)
@@ -234,6 +249,10 @@ public class GameManager : MonoBehaviour
                 EventSystem.current.SetSelectedGameObject(ReforgingUI.equipWeapon.gameObject);
                 break;
             case UI_State.Cfg:
+                if(StageManager != null)
+                {
+                    PlayTimeUI.Canvas.enabled = true;
+                }
                 CfgUI.Canvas.enabled = true;
                 EventSystem.current.SetSelectedGameObject(CfgUI.ConfigPanelUI.cfgBtns[0].gameObject);
                 break;
@@ -268,6 +287,7 @@ public class GameManager : MonoBehaviour
         ReforgingUI.EnabledChildrensCanvas(false);
         ReforgingUI.Canvas.enabled = false;
         CutSceneUI.Canvas.enabled = false;
+        PlayTimeUI.Canvas.enabled = false;
         //CutSceneUI.Director_SetAsset(CutSceneUI.FadeOut);
     }
 
