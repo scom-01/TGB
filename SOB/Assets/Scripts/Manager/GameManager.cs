@@ -301,7 +301,7 @@ public class GameManager : MonoBehaviour
         }
 
         DataManager.Inst?.PlayerInventoryDataLoad(StageManager.player.Inventory);
-        DataManager.Inst?.PlayerStatLoad(StageManager.player.Core.GetCoreComponent<UnitStats>());
+        DataManager.Inst?.PlayerCurrHealthLoad(StageManager.player.Core.GetCoreComponent<UnitStats>());
         DataManager.Inst?.PlayerBuffLoad(StageManager.player.GetComponent<BuffSystem>());
         DataManager.Inst?.GameGoldLoad();
         DataManager.Inst?.GameElementalsculptureLoad();
@@ -321,8 +321,8 @@ public class GameManager : MonoBehaviour
         DataManager.Inst.PlayerInventoryDataSave(
             GameManager.Inst.StageManager.player.Inventory.Weapon,
             GameManager.Inst.StageManager.player.Inventory._items);
-        DataManager.Inst?.PlayerStatSave(
-            GameManager.Inst.StageManager.player.Core.GetCoreComponent<UnitStats>());
+        DataManager.Inst?.PlayerCurrHealthSave(
+            (int)GameManager.Inst.StageManager.player.Core.GetCoreComponent<UnitStats>().CurrentHealth);
         DataManager.Inst?.PlayerBuffSave(
             GameManager.Inst.StageManager.player.GetComponent<BuffSystem>().buffs
             );

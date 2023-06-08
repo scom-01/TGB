@@ -29,6 +29,14 @@ public class DataParsing : MonoBehaviour
             return str;
         }
     }
+    public string SceneData_FilePath
+    {
+        get
+        {
+            string str = UnitData_DirectoryPath + SceneData_FileName + ".json";
+            return str;
+        }
+    }
 
     public string UnitData_DirectoryPath = "/Resources/json/";
 
@@ -40,11 +48,76 @@ public class DataParsing : MonoBehaviour
     /// 재화 데이터
     /// </summary>
     public string UnitGoodsData_FileName;
+    public string SceneData_FileName;
 
+    #region JSON_Inventory
+    public class JSON_Inventory
+    {
+        public int[] items;
+        public int[] weapons;
+        public JSON_Inventory()
+        {
+            items = new int[0];
+            weapons = new int[0];
+        }
+
+        public void Print()
+        {
+            foreach (int item in items)
+            {
+                Debug.Log($"items = {item}");
+            }
+            foreach (int item in weapons)
+            {
+                Debug.Log($"weapons = {item}");
+            }
+        }
+    }
     public List<int> ItemListIdx;
     public List<int> WeaponListIdx;
+    #endregion
+
+    #region JSON_Goods
+    public class JSON_Goods
+    {
+        public int gold;
+        public int elementalSculpture;
+        public JSON_Goods(int _gold = 0, int _elementalSculpture = 0)
+        {
+            gold = _gold;
+            elementalSculpture = _elementalSculpture;
+        }
+
+        public void Print()
+        {
+            Debug.Log($"Gold = {gold}");
+            Debug.Log($"ElementalSculpture = {elementalSculpture}");
+        }
+    }
     public int GoldAmount;
     public int ElementalSculptureAmount;
+    #endregion
+
+    #region JSON_SceneData
+    public class JSON_SceneData
+    {
+        public string SceneName;
+        public int PlayerHealth;
+        public JSON_SceneData(string sceneName = "", int playerHealth = -1)
+        {
+            SceneName = sceneName;
+            PlayerHealth = playerHealth;
+        }
+        public void Print()
+        {
+            Debug.Log($"SceneName = {SceneName}");
+            Debug.Log($"PlayerHealth = {PlayerHealth}");
+        }
+    }
+    public string SceneName;
+    public int PlayerHealth;
+    #endregion
+
 
     private bool Json_InventoryParsing()
     {
@@ -142,7 +215,7 @@ public class DataParsing : MonoBehaviour
         return true;
     }
 
-    private JSON_Inventory Json_Read_Inventory()
+    public JSON_Inventory Json_Read_Inventory()
     {
         if (!Directory.Exists(Application.dataPath + UnitData_DirectoryPath))
         {
@@ -157,23 +230,23 @@ public class DataParsing : MonoBehaviour
                 stream.Read(data, 0, data.Length);
                 stream.Close();
                 string jsonData = Encoding.UTF8.GetString(data);
-                JSON_Inventory jtest2 = JsonConvert.DeserializeObject<JSON_Inventory>(jsonData);
-                jtest2.Print();
-                ItemListIdx = jtest2.items.ToList();
-                WeaponListIdx = jtest2.weapons.ToList();
-                return jtest2;
+                JSON_Inventory json = JsonConvert.DeserializeObject<JSON_Inventory>(jsonData);
+                json.Print();
+                ItemListIdx = json.items.ToList();
+                WeaponListIdx = json.weapons.ToList();
+                return json;
             }
             else
             {
                 FileStream stream = new FileStream(Application.dataPath + UnitInventoryData_FilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-                JSON_Inventory jTest1 = new JSON_Inventory();
-                ItemListIdx = jTest1.items.ToList();
-                WeaponListIdx = jTest1.weapons.ToList();
-                string jsonData = JsonConvert.SerializeObject(jTest1);
+                JSON_Inventory json = new JSON_Inventory();
+                ItemListIdx = json.items.ToList();
+                WeaponListIdx = json.weapons.ToList();
+                string jsonData = JsonConvert.SerializeObject(json);
                 byte[] data = Encoding.UTF8.GetBytes(jsonData);
                 stream.Write(data, 0, data.Length);
                 stream.Close();
-                return jTest1;
+                return json;
             }           
         }
         catch (Exception e)
@@ -183,7 +256,7 @@ public class DataParsing : MonoBehaviour
         }
     }
 
-    private JSON_Goods Json_Read_Goods()
+    public JSON_Goods Json_Read_Goods()
     {
         if (!Directory.Exists(Application.dataPath + UnitData_DirectoryPath))
         {
@@ -198,22 +271,63 @@ public class DataParsing : MonoBehaviour
                 stream.Read(data, 0, data.Length);
                 stream.Close();
                 string jsonData = Encoding.UTF8.GetString(data);
-                JSON_Goods jtest2 = JsonConvert.DeserializeObject<JSON_Goods>(jsonData);
-                jtest2.Print();
-                GoldAmount = jtest2.gold;
-                return jtest2;
+                JSON_Goods json = JsonConvert.DeserializeObject<JSON_Goods>(jsonData);
+                json.Print();
+                GoldAmount = json.gold;
+                ElementalSculptureAmount = json.elementalSculpture;
+                return json;
             }
             else
             {
                 FileStream stream = new FileStream(Application.dataPath + UnitGoodsData_FilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-                JSON_Goods jTest1 = new JSON_Goods();
-                ElementalSculptureAmount = jTest1.elementalSculpture;
-                ElementalSculptureAmount = jTest1.elementalSculpture;
-                string jsonData = JsonConvert.SerializeObject(jTest1);
+                JSON_Goods json = new JSON_Goods();
+                GoldAmount = json.gold;
+                ElementalSculptureAmount = json.elementalSculpture;
+                string jsonData = JsonConvert.SerializeObject(json);
                 byte[] data = Encoding.UTF8.GetBytes(jsonData);
                 stream.Write(data, 0, data.Length);
                 stream.Close();
-                return jTest1;
+                return json;
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning(e.Message);
+            return null;
+        }
+    }
+    public JSON_SceneData Json_Read_SceneData()
+    {
+        if (!Directory.Exists(Application.dataPath + UnitData_DirectoryPath))
+        {
+            Directory.CreateDirectory(Application.dataPath + UnitData_DirectoryPath);
+        }
+        try
+        {
+            if (File.Exists(Application.dataPath + SceneData_FilePath))
+            {
+                FileStream stream = new FileStream(Application.dataPath + SceneData_FilePath, FileMode.Open, FileAccess.ReadWrite);
+                byte[] data = new byte[stream.Length];
+                stream.Read(data, 0, data.Length);
+                stream.Close();
+                string jsonData = Encoding.UTF8.GetString(data);
+                JSON_SceneData json = JsonConvert.DeserializeObject<JSON_SceneData>(jsonData);
+                json.Print();
+                SceneName = json.SceneName;
+                PlayerHealth = json.PlayerHealth;
+                return json;
+            }
+            else
+            {
+                FileStream stream = new FileStream(Application.dataPath + SceneData_FilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                JSON_SceneData json = new JSON_SceneData();
+                SceneName = json.SceneName;
+                PlayerHealth = json.PlayerHealth;
+                string jsonData = JsonConvert.SerializeObject(json);
+                byte[] data = Encoding.UTF8.GetBytes(jsonData);
+                stream.Write(data, 0, data.Length);
+                stream.Close();
+                return json;
             }
         }
         catch (Exception e)
@@ -247,30 +361,9 @@ public class DataParsing : MonoBehaviour
         return weapons;
     }
 
-    public int Json_Read_gold()
-    {        
-        if (Json_Read_Goods() == null)
-        {
-            Debug.Log($"Json_Read_Goods Exception");
-            return 0;
-        }
-        int gold = Json_Read_Goods().gold;
-        return gold;
-    }
-
-    public int Json_Read_elementalSculpture()
-    {        
-        if (Json_Read_Goods() == null)
-        {
-            Debug.Log($"Json_Read_Goods Exception");
-            return 0;
-        }
-        int elementalSculpture = Json_Read_Goods().elementalSculpture;
-        return elementalSculpture;
-    }
-    public bool Json_Overwrite_item(List<int> itemlist)
+    public bool Json_Overwrite_item(List<int> _itemlist)
     {
-        if (itemlist == null)
+        if (_itemlist == null)
         {
             List<int> ints = new List<int>();
             ItemListIdx = ints;
@@ -288,9 +381,9 @@ public class DataParsing : MonoBehaviour
         //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
         if (!Json_Parsing())
         {
-            ItemListIdx = itemlist;
+            ItemListIdx = _itemlist;
             JSON_Inventory json = new JSON_Inventory();
-            json.items = itemlist.ToArray();
+            json.items = _itemlist.ToArray();
 
             if (!JSON_InventorySave(json))
             {
@@ -301,7 +394,7 @@ public class DataParsing : MonoBehaviour
         //기존 저장된 JSON파일을 덧씌울 때
         else
         {
-            ItemListIdx = itemlist;
+            ItemListIdx = _itemlist;
             JSON_Inventory json = new JSON_Inventory();
             json.items = ItemListIdx.ToArray();
             json.weapons = WeaponListIdx.ToArray();
@@ -315,9 +408,9 @@ public class DataParsing : MonoBehaviour
         return true;
     }
 
-    public bool Json_Overwrite_weapon(List<int> weaponlist)
+    public bool Json_Overwrite_weapon(List<int> _weaponlist)
     {
-        if (weaponlist == null)
+        if (_weaponlist == null)
         {
             List<int> ints = new List<int>();
             WeaponListIdx = ints;
@@ -335,7 +428,7 @@ public class DataParsing : MonoBehaviour
         //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
         if (!Json_Parsing())
         {
-            WeaponListIdx = weaponlist;
+            WeaponListIdx = _weaponlist;
             JSON_Inventory json = new JSON_Inventory();
             json.weapons = WeaponListIdx.ToArray();
 
@@ -348,7 +441,7 @@ public class DataParsing : MonoBehaviour
         //기존 저장된 JSON파일을 덧씌울 때
         else
         {
-            WeaponListIdx = weaponlist;
+            WeaponListIdx = _weaponlist;
             JSON_Inventory json = new JSON_Inventory();
             json.items = ItemListIdx.ToArray();
             json.weapons = WeaponListIdx.ToArray();
@@ -392,6 +485,67 @@ public class DataParsing : MonoBehaviour
 
         return true;
     }
+    public bool Json_Overwrite_sceneName(string _scenename)
+    {
+        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
+        if (!Json_Parsing())
+        {
+            SceneName = _scenename;
+            JSON_SceneData json = new JSON_SceneData();
+            json.PlayerHealth = PlayerHealth;
+
+            if (!JSON_SceneDataSave(json))
+            {
+                Debug.Log("SceneData Save Fail");
+                return false;
+            }
+        }
+        //기존 저장된 JSON파일을 덧씌울 때
+        else
+        {
+            SceneName = _scenename;
+            JSON_SceneData json = new JSON_SceneData();
+            json.SceneName = SceneName;
+            json.PlayerHealth = PlayerHealth;
+            if (!JSON_SceneDataSave(json))
+            {
+                Debug.Log("SceneData Save Fail");
+                return false;
+            }
+        }
+        return true;
+    }
+    public bool Json_Overwrite_PlayerHealth(int _playerHealth)
+    {
+        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
+        if (!Json_Parsing())
+        {
+            PlayerHealth = _playerHealth;
+            JSON_SceneData json = new JSON_SceneData();
+            json.SceneName = SceneName;
+
+            if (!JSON_SceneDataSave(json))
+            {
+                Debug.Log("SceneData Save Fail");
+                return false;
+            }
+        }
+        //기존 저장된 JSON파일을 덧씌울 때
+        else
+        {
+            PlayerHealth = _playerHealth;
+            JSON_SceneData json = new JSON_SceneData();
+            json.SceneName = SceneName;
+            json.PlayerHealth = PlayerHealth;
+            if (!JSON_SceneDataSave(json))
+            {
+                Debug.Log("SceneData Save Fail");
+                return false;
+            }
+        }
+        return true;
+    }
+
     public bool Json_Overwrite_sculpture(int _elementalsculpture)
     {
         //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
@@ -470,6 +624,29 @@ public class DataParsing : MonoBehaviour
         }
         return true;
     }
+    private bool JSON_SceneDataSave(JSON_SceneData sceneData)
+    {
+        try
+        {
+            sceneData.Print();
+            if (!Directory.Exists(Application.dataPath + UnitData_DirectoryPath))
+            {
+                Directory.CreateDirectory(Application.dataPath + UnitData_DirectoryPath);
+            }
+            if (File.Exists(Application.dataPath + SceneData_FilePath))
+            {
+                string jsonData = JsonUtility.ToJson(sceneData);
+                File.WriteAllText(Application.dataPath + SceneData_FilePath, jsonData);
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning("File not found");
+            Debug.LogWarning(e.Message);
+            return false;
+        }
+        return true;
+    }
 
     public bool FileCheck(string filePath)
     {
@@ -483,43 +660,5 @@ public class DataParsing : MonoBehaviour
         }
     }
 
-    public class JSON_Goods
-    {
-        public int gold;
-        public int elementalSculpture;
-        public JSON_Goods(int _gold = 0, int _elementalSculpture = 0)
-        {
-            gold = _gold;
-            elementalSculpture = _elementalSculpture;
-        }
-
-        public void Print()
-        {
-            Debug.Log($"Gold = {gold}");
-            Debug.Log($"ElementalSculpture = {elementalSculpture}");
-        }
-    }
-
-    public class JSON_Inventory
-    {
-        public int[] items = { };
-        public int[] weapons;
-        public JSON_Inventory()
-        {
-            items = new int[0];
-            weapons = new int[0];
-        }
-
-        public void Print()
-        {
-            foreach (int item in items)
-            {
-                Debug.Log($"items = {item}");
-            }
-            foreach (int item in weapons)
-            {
-                Debug.Log($"weapons = {item}");
-            }
-        }
-    }
+    
 }

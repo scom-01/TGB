@@ -3,12 +3,14 @@ using SOB.Weapons;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEditor.Localization.Editor;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
+using UnityEngine.SceneManagement;
 
 public class DataManager : MonoBehaviour
 {
@@ -282,24 +284,27 @@ public class DataManager : MonoBehaviour
         Debug.LogWarning("Success Inventory Data Save");
     }
 
-    public void PlayerStatLoad(UnitStats stat)
+    public void PlayerCurrHealthLoad(UnitStats stats)
     {
-        //if (!isStatsDataSave)
-        //{
-        //    Debug.Log("저장된 StatsData가 없습니다.");
-        //    return;
-        //}
-        //stat.SetStat(PlayerStatData, PlayerHealth);
-
-
-        //Debug.LogWarning("Success StatsData Load");
+        if (JSON_DataParsing.Json_Read_SceneData() == null)
+        {
+            Debug.LogWarning("CurrHealth Load Fail");
+            return;
+        }
+        if(JSON_DataParsing.Json_Read_SceneData().PlayerHealth == -1)
+        {
+            return;
+        }    
+        stats.CurrentHealth = JSON_DataParsing.Json_Read_SceneData().PlayerHealth;
+        Debug.LogWarning("Success CurrHealth Save");
     }
-    public void PlayerStatSave(UnitStats stat)
+    public void PlayerCurrHealthSave(int _playerHealth)
     {
-        //PlayerStatData = stat.StatsData;
-        //PlayerHealth = stat.CurrentHealth;
-        //isStatsDataSave = true;
-        //Debug.LogWarning("Success StatsData Save");
+        if(!JSON_DataParsing.Json_Overwrite_PlayerHealth(_playerHealth))
+        {
+            Debug.LogWarning("CurrHealth Save Fail");
+        }
+        Debug.LogWarning("Success CurrHealth Save");
     }
 
     public void PlayerBuffSave(List<Buff> buffs)
@@ -315,7 +320,12 @@ public class DataManager : MonoBehaviour
 
     public void GameGoldLoad()
     {
-        GoldCount = JSON_DataParsing.Json_Read_gold();
+        if (JSON_DataParsing.Json_Read_Goods() == null)
+        {
+            GoldCount = 0;
+            return;
+        }
+        GoldCount = JSON_DataParsing.Json_Read_Goods().gold;
     }
     public bool GameGoldSave(int gold)
     {
@@ -332,7 +342,12 @@ public class DataManager : MonoBehaviour
     }
     public void GameElementalsculptureLoad()
     {
-        ElementalsculptureCount = JSON_DataParsing.Json_Read_elementalSculpture();
+        if(JSON_DataParsing.Json_Read_Goods() ==null)
+        {
+            ElementalsculptureCount = 0;
+            return;
+        }
+        ElementalsculptureCount = JSON_DataParsing.Json_Read_Goods().elementalSculpture;
     }
     public bool GameElementalsculptureSave(int Elementalsculpture)
     {
@@ -348,16 +363,40 @@ public class DataManager : MonoBehaviour
         return true;
     }
 
-    public void SaveScene(string stage)
+    public void SaveScene(string _stage)
     {
-        PlayerPrefs.SetString(GlobalValue.StageName, stage);
-        Debug.LogWarning("Save SceneData Success");
+        JSON_DataParsing.Json_Overwrite_sceneName(_stage);
+
+        //PlayerPrefs.SetString(GlobalValue.StageName, _stage);
+        //Debug.LogWarning("Save SceneData Success");
     }
 
     public void LoadScene()
     {
-        string stage = PlayerPrefs.GetString(GlobalValue.StageName, "CutScene1");
-        Debug.LogWarning($"Load SceneData Success {stage}");
+        if (JSON_DataParsing.Json_Read_SceneData() == null)
+        {
+            Debug.LogWarning("SceneName Load Fail");
+            return;
+        }
+        if (JSON_DataParsing.Json_Read_SceneData().SceneName == "")
+        {
+            List<string> SceneList = new List<string>();
+
+            for (int i = 0; i<SceneManager.sceneCountInBuildSettings; i++)
+            {
+                SceneList.Add(System.IO.Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(i)));
+            }
+
+            SceneName = SceneList[3];
+            SceneList = null;
+            Debug.LogWarning("Default SceneName Save");
+            return;
+        }
+        SceneName = JSON_DataParsing.Json_Read_SceneData().SceneName;
+        Debug.LogWarning("Success SceneName Save");
+
+        //string stage = PlayerPrefs.GetString(GlobalValue.StageName, "CutScene1");
+        //Debug.LogWarning($"Load SceneName Success {stage}");
     }
     #endregion
 
