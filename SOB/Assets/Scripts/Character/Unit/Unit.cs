@@ -2,6 +2,8 @@ using SOB.CoreSystem;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.U2D.IK;
+using static UnityEngine.Rendering.DebugUI;
 
 public class Unit : MonoBehaviour
 {
@@ -23,7 +25,55 @@ public class Unit : MonoBehaviour
     public UnitFSM FSM { get; private set; }
     public Animator Anim { get; private set; }
     public Rigidbody2D RB { get; private set; }
-    public BoxCollider2D BC2D { get; private set; }
+    public BoxCollider2D BC2D
+    {
+        get
+        {
+            if (bc2d == null)
+            {
+                bc2d = this.GetComponent<BoxCollider2D>();
+                if (bc2d != null)
+                {
+                    return bc2d;
+                }
+                bc2d = this.GameObject().AddComponent<BoxCollider2D>();
+                bc2d.sharedMaterial = UnitData.UnitBC2DMaterial ?? UnitData.UnitBC2DMaterial;
+                bc2d.offset = UnitData.standBC2DOffset;
+                bc2d.size = UnitData.standBC2DSize;
+            }
+            return bc2d;
+        }
+        private set
+        {
+            bc2d = value;
+        }
+    }
+
+    private BoxCollider2D bc2d;
+    public CircleCollider2D CC2D
+    {
+        get
+        {
+            if (cc2d == null)
+            {
+                cc2d = this.GetComponent<CircleCollider2D>();
+                if (cc2d != null)
+                {
+                    return cc2d;
+                }
+                cc2d = this.GameObject().AddComponent<CircleCollider2D>();                
+                cc2d.sharedMaterial = UnitData.UnitCC2DMaterial ?? UnitData.UnitCC2DMaterial;
+                cc2d.offset = UnitData.standCC2DOffset;
+                cc2d.radius = UnitData.standCC2DRadius;
+            }
+            return cc2d;
+        }
+        private set
+        {
+            cc2d = value;
+        }
+    }
+    private CircleCollider2D cc2d;
 
     public SpriteRenderer SR { get; private set; }
 
@@ -40,7 +90,7 @@ public class Unit : MonoBehaviour
     /// 절대 면역값
     /// </summary>
     public bool isImmunity = false;
-    
+
     /// <summary>
     /// 면역값
     /// </summary>
@@ -48,7 +98,7 @@ public class Unit : MonoBehaviour
     {
         get
         {
-            if(isImmunity)
+            if (isImmunity)
             {
                 _isCCimmunity = true;
             }
@@ -73,7 +123,7 @@ public class Unit : MonoBehaviour
 
     public Unit TargetUnit { get; private set; }
 
-#endregion
+    #endregion
 
     #region Unity Callback Func
     protected virtual void Awake()
@@ -103,13 +153,9 @@ public class Unit : MonoBehaviour
 
         RB.gravityScale = UnitData.UnitGravity;
 
-        BC2D = GetComponent<BoxCollider2D>();
-        if (BC2D == null)
+        CC2D = GetComponent<CircleCollider2D>();
         {
-            BC2D = this.GameObject().AddComponent<BoxCollider2D>();
-            BC2D.sharedMaterial = UnitData.UnitColliderMaterial;
-            BC2D.offset = UnitData.standColliderOffset;
-            BC2D.size = UnitData.standColliderSize;
+
         }
 
         SR = GetComponent<SpriteRenderer>();
@@ -217,10 +263,18 @@ public class Unit : MonoBehaviour
         gameObject.SetActive(false);
     }
     public IEnumerator DisableCollision()
-    {        
+    {
         BC2D.isTrigger = true;
+        if (CC2D != null)
+        {
+            CC2D.isTrigger = true;
+        }
         yield return new WaitForSeconds(0.2f);
         BC2D.isTrigger = false;
+        if (CC2D != null)
+        {
+            CC2D.isTrigger = false;
+        }
     }
 
     protected virtual void FixedUpdate()

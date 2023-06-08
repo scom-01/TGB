@@ -25,12 +25,18 @@ public class UnitData : ScriptableObject
     public float touchDamageinvincibleTime = 1f;
 
     [Header("Collider")]
-    [Tooltip("기본 콜라이더 Offset")]
-    public Vector2 standColliderOffset;
-    [Tooltip("기본 콜라이더 Size")]
-    public Vector2 standColliderSize;
-    [Tooltip("콜라이더 PhysicsMtrl2D")]
-    public PhysicsMaterial2D UnitColliderMaterial;
+    [Tooltip("기본 박스 콜라이더 Offset")]
+    public Vector2 standBC2DOffset;
+    [Tooltip("기본 박스 콜라이더 Size")]
+    public Vector2 standBC2DSize;
+    [Tooltip("박스 콜라이더 PhysicsMtrl2D")]
+    public PhysicsMaterial2D UnitBC2DMaterial;
+    [Tooltip("Circle 콜라이더 Offset")]
+    public Vector2 standCC2DOffset;
+    [Tooltip("Circle 콜라이더 Radius")]
+    public float standCC2DRadius;
+    [Tooltip("Circle PhysicsMtrl2D")]
+    public PhysicsMaterial2D UnitCC2DMaterial;
 
     [Header("Check Variables")]
     [Tooltip("지면 감지 거리")]

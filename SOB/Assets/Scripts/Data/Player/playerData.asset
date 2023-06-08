@@ -26,14 +26,27 @@ MonoBehaviour:
     MyElemental: 0
     ElementalDefensivePer: 0
     ElementalAggressivePer: 0
+  UnitName: 
+  UnitNameLocal:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   knockBackDuration: 0
   knockBackSpeed: {x: 0, y: 0}
   UnitGravity: 5
   invincibleTime: 1.5
   touchDamageinvincibleTime: 1
-  standColliderOffset: {x: 0, y: -0.16}
-  standColliderSize: {x: 0.625, y: 1.3}
-  UnitColliderMaterial: {fileID: 6200000, guid: 5cc90d2fd1f3c2d4ba56287afb0442d4, type: 2}
+  standBC2DOffset: {x: 0, y: 0}
+  standBC2DSize: {x: 0.625, y: 1}
+  UnitBC2DMaterial: {fileID: 6200000, guid: 5cc90d2fd1f3c2d4ba56287afb0442d4, type: 2}
+  standCC2DOffset: {x: 0, y: -0.48}
+  standCC2DRadius: 0.32
+  UnitCC2DMaterial: {fileID: 6200000, guid: 276e6b76b7c10234da4b8bbe6b28d093, type: 2}
   groundCheckRadius: 0.1
   wallCheckDistance: 0.4
   UnitDetectedDistance: 0.5
@@ -71,3 +84,6 @@ MonoBehaviour:
   distBetweenAfterImages: 0.75
   blockTime: 1
   blockCooldown: 0.5
+  references:
+    version: 2
+    RefIds: []

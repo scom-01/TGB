@@ -5,14 +5,14 @@ using UnityEngine;
 public class UnitBoxColliderSizeSet : MonoBehaviour
 {
     private BoxCollider2D BC2D;
-    private GameObject BC2D1;
-        
+    private Unit Unit;
+
     void Start()
     {
-        BC2D1 = GetComponentInParent<Unit>().gameObject;
+        Unit = GetComponentInParent<Unit>();
         BC2D = GetComponent<BoxCollider2D>();
         BC2D.isTrigger = true;
-        BC2D.offset = BC2D1.GetComponent<BoxCollider2D>().offset;
-        BC2D.size = BC2D1.GetComponent<BoxCollider2D>().size;
+        BC2D.offset = Unit.BC2D.offset + new Vector2(0, -(Unit.CC2D.radius / 2));
+        BC2D.size = Unit.BC2D.size + new Vector2(0, Unit.CC2D.radius);
     }
 }

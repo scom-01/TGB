@@ -553,6 +553,7 @@ GameObject:
   - component: {fileID: 3640253521839122298}
   - component: {fileID: 3640253521839122299}
   - component: {fileID: 3640253521839122300}
+  - component: {fileID: 4354319701612886301}
   - component: {fileID: 3640253521839122247}
   - component: {fileID: 3639027602819861585}
   - component: {fileID: 1382525594973546584}
@@ -690,7 +691,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.11634803, y: 0.64816153}
+  m_Offset: {x: -0.11634803, y: 0.8780104}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.75, y: 0}
@@ -701,8 +702,24 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.88060236, y: 1.2961342}
+  m_Size: {x: 0.88060236, y: 0.8558328}
   m_EdgeRadius: 0
+--- !u!58 &4354319701612886301
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3640253521839122302}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.116348, y: 0.45}
+  serializedVersion: 2
+  m_Radius: 0.4403012
 --- !u!114 &3640253521839122247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -748,7 +765,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RespawnPoint: {fileID: 0}
-  UnitData: {fileID: 11400000, guid: 1c4463ccba2e6da41a10f45658f2f1d6, type: 2}
+  UnitData: {fileID: 11400000, guid: 356091147e584bf4fab2a05579c164d1, type: 2}
   IsAlive: 1
   isImmunity: 1
   enemyData: {fileID: 0}

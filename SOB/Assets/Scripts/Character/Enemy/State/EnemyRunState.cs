@@ -21,7 +21,6 @@ public abstract class EnemyRunState : EnemyState
         checkifCliff = EnemyCollisionSenses.CheckIfCliff;
         checkifCliffBack = EnemyCollisionSenses.CheckIfCliffBack;
         checkifTouchingWall = EnemyCollisionSenses.CheckIfTouchingWall;
-        Debug.Log($"TouchingWall is {checkifTouchingWall}");
         checkifTouchingWallBack = EnemyCollisionSenses.CheckIfTouchingWallBack;
         checkifTouchingGrounded = EnemyCollisionSenses.CheckIfStayGrounded;
                 

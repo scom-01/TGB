@@ -23,6 +23,23 @@ namespace SOB.CoreSystem
         }
 
         private BoxCollider2D bc2d;
+        public CircleCollider2D CC2D 
+        {
+            get 
+            { 
+                if(cc2d == null)
+                {
+                    cc2d = GetComponentInParent<CircleCollider2D>();
+                }
+                return cc2d; 
+            }
+            private set
+            {
+                cc2d = value;
+            }
+        }
+
+        private CircleCollider2D cc2d;
 
         #region Check Transforms
 
@@ -52,12 +69,26 @@ namespace SOB.CoreSystem
 
         public bool CheckIfPlatform
         {
-            get => Physics2D.OverlapBox(groundCheck.position, new Vector2(BC2D.bounds.size.x * 0.95f, BC2D.bounds.size.y * GroundCheckRadius), 0f, WhatIsPlatform);
+            get
+            {
+                if (CC2D == null)
+                {
+                    return Physics2D.OverlapBox(groundCheck.position, new Vector2(BC2D.bounds.size.x * 0.95f, BC2D.bounds.size.y * GroundCheckRadius), 0f, WhatIsPlatform);
+                }
+                return  Physics2D.OverlapBox(groundCheck.position, new Vector2(BC2D.bounds.size.x * 0.95f, (BC2D.bounds.size.y + CC2D.radius) * GroundCheckRadius), 0f, WhatIsPlatform);
+            }
         }
 
         public bool CheckIfGrounded
         {
-            get => Physics2D.OverlapBox(groundCheck.position, new Vector2(BC2D.bounds.size.x * 0.95f, BC2D.bounds.size.y * GroundCheckRadius), 0f, WhatIsGround);
+            get
+            {
+                if (CC2D == null)
+                {
+                    return Physics2D.OverlapBox(groundCheck.position, new Vector2(BC2D.bounds.size.x * 0.95f, BC2D.bounds.size.y * GroundCheckRadius), 0f, WhatIsGround);
+                }
+                return Physics2D.OverlapBox(groundCheck.position, new Vector2(BC2D.bounds.size.x * 0.95f, (BC2D.bounds.size.y + CC2D.radius) * GroundCheckRadius), 0f, WhatIsGround);
+            }
             //get => Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
         }
 
@@ -75,7 +106,14 @@ namespace SOB.CoreSystem
 
         public bool CheckIfStayGrounded
         {
-            get => Physics2D.OverlapBox(transform.position + new Vector3((BC2D.offset.x + 0.1f) * Movement.FancingDirection, BC2D.offset.y), new Vector2(BC2D.bounds.size.x, BC2D.bounds.size.y * 0.95f), 0f, WhatIsGround);
+            get
+            {
+                if(CC2D == null)
+                {
+                    return Physics2D.OverlapBox(transform.position + new Vector3((BC2D.offset.x + 0.1f) * Movement.FancingDirection, BC2D.offset.y), new Vector2(BC2D.bounds.size.x, BC2D.bounds.size.y * 0.95f), 0f, WhatIsGround); ;
+                }
+                return Physics2D.OverlapBox(transform.position + new Vector3((BC2D.offset.x + 0.1f) * Movement.FancingDirection, BC2D.offset.y - (CC2D.radius / 2)), new Vector2(BC2D.bounds.size.x, (BC2D.bounds.size.y + CC2D.radius) * 0.95f), 0f, WhatIsGround); ;
+            }
         }
 
         public bool CheckIfCliff
@@ -99,14 +137,17 @@ namespace SOB.CoreSystem
             }
         }
 
-        protected void OnDrawGizmos()
+        protected virtual void OnDrawGizmos()
         {
             Gizmos.color = Color.white;
             if (BC2D == null)
                 return;
-            Gizmos.DrawWireCube(transform.position + new Vector3((BC2D.offset.x) * Movement.FancingDirection, BC2D.offset.y), new Vector2(BC2D.bounds.size.x, BC2D.bounds.size.y * 0.95f));
+            if (CC2D == null)
+                return;
+
+            Gizmos.DrawWireCube(transform.position + new Vector3((BC2D.offset.x) * Movement.FancingDirection, BC2D.offset.y - (CC2D.radius/2)), new Vector2(BC2D.bounds.size.x, (BC2D.bounds.size.y + CC2D.radius) * 0.95f));
             Gizmos.color = Color.red;
-            Gizmos.DrawWireCube(groundCheck.position, new Vector2(BC2D.bounds.size.x * 0.95f, BC2D.bounds.size.y * GroundCheckRadius));
+            Gizmos.DrawWireCube(groundCheck.position + new Vector3((BC2D.offset.x) * Movement.FancingDirection,0), new Vector2(BC2D.bounds.size.x * 0.95f, BC2D.bounds.size.y  * GroundCheckRadius));
             Debug.DrawRay(groundCheck.position, Vector2.down * GroundCheckRadius *4, Color.red);
 
             //CheckIfTouchingWallBack

@@ -40,13 +40,17 @@ public class EnemyCollisionSenses : CollisionSenses
         }
     }
 
-    protected void OnDrawGizmos()
+    protected override void OnDrawGizmos()
     {
+        base.OnDrawGizmos();
         Gizmos.color = Color.cyan;
         //Gizmos.DrawWireCube(transform.position + new Vector3((BC2D.offset.x+ (core.Unit.UnitData as EnemyData).UnitDetectedDistance/2) * Movement.FancingDirection, BC2D.offset.y), new Vector2(BC2D.bounds.size.x/2+ (core.Unit.UnitData as EnemyData).UnitDetectedDistance, BC2D.bounds.size.y * 0.95f));
         if (BC2D == null)
             return;
-        Gizmos.DrawWireCube(transform.position + new Vector3((BC2D.offset.x + 0.1f) * Movement.FancingDirection, BC2D.offset.y), new Vector2(BC2D.bounds.size.x, BC2D.bounds.size.y * 0.95f));
+        if (CC2D == null)
+            return;
+
+        Gizmos.DrawWireCube(transform.position + new Vector3((BC2D.offset.x) * Movement.FancingDirection, (BC2D.offset.y - (CC2D.radius / 2))), new Vector2(BC2D.bounds.size.x, (BC2D.bounds.size.y + CC2D.radius) * 0.95f));
 
         Debug.DrawRay(new Vector2(groundCheck.position.x, groundCheck.position.y + BC2D.bounds.size.y * 0.5f), Vector2.right * Movement.FancingDirection * (core.Unit.UnitData as EnemyData).UnitDetectedDistance, Color.cyan);        
         Debug.DrawRay(new Vector2(groundCheck.position.x, groundCheck.position.y + BC2D.bounds.size.y), Vector2.right * Movement.FancingDirection * (core.Unit.UnitData as EnemyData).UnitDetectedDistance, Color.cyan);
@@ -57,7 +61,7 @@ public class EnemyCollisionSenses : CollisionSenses
         Debug.DrawRay(new Vector2(groundCheck.position.x, groundCheck.position.y), Vector2.right * Movement.FancingDirection * (core.Unit.UnitData as EnemyData).UnitAttackDistance, Color.red);
 
         //CheckIfCliff
-        Debug.DrawRay(groundCheck.position + new Vector3((BC2D.offset.x + 0.05f) + BC2D.size.x / 2, 0, 0) * Movement.FancingDirection, Vector2.down * 0.5f, Color.blue);
+        Debug.DrawRay(groundCheck.position + new Vector3((BC2D.offset.x + 1) + BC2D.size.x / 2, 0, 0) * Movement.FancingDirection, Vector2.down * 0.5f, Color.blue);
 
         //CheckIfTouchingWallBack
         Debug.DrawRay(wallCheck.position, Vector2.right * -Movement.FancingDirection * (WallCheckDistance+ BC2D.bounds.size.x/2), Color.red);

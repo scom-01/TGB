@@ -24,6 +24,7 @@ public class Player : Unit
     public PlayerJumpState JumpState { get; private set; }
     public PlayerWallJumpState WallJumpState { get; private set; }
     public PlayerDashState DashState { get; private set; }
+    public PlayerDashState AirDashState { get; private set; }
     public PlayerWeaponState BlockState { get; private set; }
 
     public PlayerWeaponState PrimaryAttackState { get; private set; }
@@ -61,6 +62,7 @@ public class Player : Unit
         WallSlideState = new PlayerWallSlideState(this, "wallSlide");
         WallJumpState = new PlayerWallJumpState(this, "inAir");
         DashState = new PlayerDashState(this, "dash");
+        AirDashState = new PlayerDashState(this, "airdash");
         PrimaryAttackState = new PlayerWeaponState(this, "action", ((int)CombatInputs.primary == (int)CombatInputs.primary)); //, Inventory.weapon);
         SecondaryAttackState = new PlayerWeaponState(this, "action", ((int)CombatInputs.primary == (int)CombatInputs.secondary));//, Inventory.weapons[(int)CombatInputs.secondary]);        
         Inventory.Weapon.SetCore(Core);
@@ -95,7 +97,7 @@ public class Player : Unit
 
     #region Set Func
 
-    public void SetColliderHeight(float height, bool pivot = true)
+    public void SetColliderHeight(float height, bool ground = true, bool isDashState = true)
     {
         if (BC2D == null)
         {
@@ -103,24 +105,29 @@ public class Player : Unit
             return;
         }
 
-        //pivot = true -> offset 고정하고 Height 변경, false -> offset 무시하고 Height 변경
-        if (pivot)
+        BC2D.offset = UnitData.standBC2DOffset;
+        CC2D.offset = UnitData.standCC2DOffset;
+
+        if (isDashState)
         {
-            Vector2 center = BC2D.offset;
             workspace.Set(BC2D.size.x, height);
-
-            center.y += (height - BC2D.size.y) / 2;
-
+            if (ground)
+            {
+                Vector2 center = new Vector2(BC2D.offset.x, BC2D.offset.y + CC2D.offset.y + (CC2D.radius / 2));                
+                BC2D.offset = center;
+                CC2D.offset = center;
+            }
+            else
+            {
+                BC2D.offset = Vector2.zero;
+                CC2D.offset = Vector2.zero;
+            }
             BC2D.size = workspace;
-            BC2D.offset = center;
         }
         else
         {
-            Vector2 center = BC2D.offset;
             workspace.Set(BC2D.size.x, height);
-
             BC2D.size = workspace;
-            BC2D.offset = center;
         }
     }
 

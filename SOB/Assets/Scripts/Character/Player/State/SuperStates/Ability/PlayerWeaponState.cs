@@ -99,7 +99,14 @@ public class PlayerWeaponState : PlayerAbilityState
         if (player.InputHandler.DashInput && player.DashState.CheckIfCanDash())
         {
             weapon.EventHandler.AnimationFinishedTrigger();
-            player.FSM.ChangeState(player.DashState);
+            if (CollisionSenses.CheckIfGrounded)
+            {
+                player.FSM.ChangeState(player.DashState);
+            }
+            else
+            {
+                player.FSM.ChangeState(player.AirDashState);
+            }
             return;
         }
 
