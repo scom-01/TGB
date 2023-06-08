@@ -62,7 +62,7 @@ MonoBehaviour:
             - isGround: 0
               isRandomPosRot: 1
               isRandomRange: 0.5
-              Object: {fileID: 5279545542555632717, guid: 54c319e2f98e0b04384f32b5f2f6b28b, type: 3}
+              Object: {fileID: 1380205584940949931, guid: 07623d638bfe48c4bbf7a6dc202419de, type: 3}
             - isGround: 0
               isRandomPosRot: 0
               isRandomRange: 0
@@ -80,10 +80,10 @@ MonoBehaviour:
         actionData:
         - name: Action 1
           <movements>k__BackingField:
-            CanFlip: 0
+          - CanFlip: 0
             CanMoveCtrl: 0
-            Direction: {x: 0.1, y: 0.1}
-            Velocity: 1
+            Direction: {x: 0, y: 0}
+            Velocity: 0
     - rid: 3615621236231503872
       type: {class: WeaponSpriteData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
