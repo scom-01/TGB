@@ -107,8 +107,8 @@ MonoBehaviour:
         actionData:
         - name: Action 1
           <KnockbackAngle>k__BackingField:
-          - {x: 2, y: 2}
-          - {x: 1, y: 1}
+          - {x: 2, y: 1}
+          - {x: 1, y: 0.5}
     - rid: 1770984582361907203
       type: {class: MovementData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -116,7 +116,11 @@ MonoBehaviour:
         actionData:
         - name: Action 1
           <movements>k__BackingField:
-            CanFlip: 0
+          - CanFlip: 0
             CanMoveCtrl: 0
             Direction: {x: 1, y: 0}
             Velocity: 50
+          - CanFlip: 0
+            CanMoveCtrl: 0
+            Direction: {x: 1, y: 0}
+            Velocity: 5

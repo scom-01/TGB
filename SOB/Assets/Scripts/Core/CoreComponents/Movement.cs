@@ -54,7 +54,7 @@ namespace SOB.CoreSystem
         public void SetVelocity(float velocity, Vector2 angle, int direction)
         {
             angle.Normalize();
-            workspace.Set(angle.x * velocity * direction, Mathf.Clamp(angle.y * velocity, -3, 13));
+            workspace.Set(angle.x * velocity * direction,angle.y * velocity);
             SetFinalVelocity();
         }
         public void SetVelocityX(float velocity)

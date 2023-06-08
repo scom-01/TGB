@@ -9,11 +9,12 @@ namespace SOB.Weapons.Components
 {
     public class WeaponMovement : WeaponComponent<MovementData, ActionMovement>
     {
+        private int currentMovementIndex = -1;
         protected override void HandleEnter()
         {
             base.HandleEnter();
+            currentMovementIndex = 0;
         }
-
 
         #region 공격시 방향키 이동이 가능한 Movement
         //만약 방향키를 누르지 않으면 
@@ -36,7 +37,8 @@ namespace SOB.Weapons.Components
             {
                 CheckMovementAction(currentActionData);
             }
-            core.Unit.RB.gravityScale = 0f;            
+            core.Unit.RB.gravityScale = 0f;
+            currentMovementIndex++;
         }
         private void HandleFixedStopMovement()
         {
@@ -91,8 +93,11 @@ namespace SOB.Weapons.Components
             if (actionData == null)
                 return;
             var currMovement = actionData.movements;
-
-            CoreMovement.SetVelocity(currMovement.Velocity, currMovement.Direction, CoreMovement.FancingDirection);
+            if(currMovement.Length < currentMovementIndex)
+            {
+                return;
+            }
+            CoreMovement.SetVelocity(currMovement[currentMovementIndex].Velocity, currMovement[currentMovementIndex].Direction, CoreMovement.FancingDirection);
         }
 
         protected override void Start()

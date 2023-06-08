@@ -11,8 +11,7 @@ namespace SOB.Weapons.Components
         private Vector2 offset;
         private Collider2D[] detected;
 
-        public int currentHitIdx = 0;
-        public int currentHitBoxIndex;
+        public int currentHitBoxIndex = 0;
         protected override void HandleEnter()
         {
             base.HandleEnter();
