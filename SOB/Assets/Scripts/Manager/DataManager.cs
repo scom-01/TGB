@@ -54,7 +54,6 @@ public class DataManager : MonoBehaviour
     public WeaponDB All_WeaponDB;
     public ItemDB Lock_ItemDB;
     public ItemDB Unlock_ItemDB;
-    public WeaponDB Unlock_WeaponDB;
 
     public float PlayerHealth;
     //Goods

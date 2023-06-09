@@ -38,6 +38,7 @@ public class Enemy : Unit
                 var itemData = DataManager.Inst.Lock_ItemDB.ItemDBList[idx];
                 if (GameManager.Inst.StageManager.SPM.SpawnItem(GameManager.Inst.StageManager.IM.InventoryItem, transform.position, GameManager.Inst.StageManager.IM.transform, itemData))
                 {
+                    DataManager.Inst.Unlock_ItemDB.ItemDBList.Add(itemData);
                     DataManager.Inst.Lock_ItemDB.ItemDBList.RemoveAt(idx);
                 }
             }
