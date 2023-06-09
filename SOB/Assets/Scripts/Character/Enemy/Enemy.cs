@@ -27,6 +27,23 @@ public class Enemy : Unit
 
     }
 
+    public override void DieEffect()
+    {
+        if (enemyData.enemy_level == ENEMY_Level.Boss)
+        {
+            //spawnItem
+            if (DataManager.Inst != null)
+            {
+                var idx = Random.Range(0, DataManager.Inst.Lock_ItemDB.ItemDBList.Count);
+                var itemData = DataManager.Inst.Lock_ItemDB.ItemDBList[idx];
+                if (GameManager.Inst.StageManager.SPM.SpawnItem(GameManager.Inst.StageManager.IM.InventoryItem, transform.position, GameManager.Inst.StageManager.IM.transform, itemData))
+                {
+                    DataManager.Inst.Lock_ItemDB.ItemDBList.RemoveAt(idx);
+                }
+            }
+        }
+    }
+
     protected override void Update()
     {
         base.Update();

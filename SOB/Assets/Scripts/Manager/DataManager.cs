@@ -50,8 +50,11 @@ public class DataManager : MonoBehaviour
 
     #region GameData Value
     [Header("DB")]
-    public ItemDB ItemDB;
-    public WeaponDB WeaponDB;
+    public ItemDB All_ItemDB;
+    public WeaponDB All_WeaponDB;
+    public ItemDB Lock_ItemDB;
+    public ItemDB Unlock_ItemDB;
+    public WeaponDB Unlock_WeaponDB;
 
     public float PlayerHealth;
     //Goods
@@ -212,7 +215,7 @@ public class DataManager : MonoBehaviour
 
         for (int i = 0; i < inventory_Itemlist.Count; i++)
         {
-            inventory.AddInventoryItem(ItemDB.ItemDBList[inventory_Itemlist[i]]);
+            inventory.AddInventoryItem(All_ItemDB.ItemDBList[inventory_Itemlist[i]]);
         }
 
         if (JSON_DataParsing.Json_Read_weapon() == null)
@@ -227,7 +230,7 @@ public class DataManager : MonoBehaviour
         {
             if (inventory.Weapon != null)
             {
-                inventory.Weapon.SetCommandData(WeaponDB.WeaponDBList[inventory_Weaponlist[0]]);
+                inventory.Weapon.SetCommandData(All_WeaponDB.WeaponDBList[inventory_Weaponlist[0]]);
             }
             else
             {

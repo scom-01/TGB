@@ -61,10 +61,6 @@ public class Inventory : MonoBehaviour
 
     private Weapon m_weapon;
     private int ItemCount;
-    private void Awake()
-    {
-
-    }
     private void Start()
     {
         weaponData = Weapon.weaponData;
@@ -198,7 +194,7 @@ public class Inventory : MonoBehaviour
         _items.Add(item);
 
         ItemCount++;
-        SetStat(itemData.StatsDatas);
+        AddStat(itemData.StatsDatas);
         if (itemData.StatsDatas.MaxHealth != 0.0f)
         {
             Unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += itemData.StatsDatas.MaxHealth;
@@ -246,7 +242,7 @@ public class Inventory : MonoBehaviour
         _items.Add(item);
 
         ItemCount++;
-        SetStat(itemObject.StatsDatas);
+        AddStat(itemObject.StatsDatas);
         if (itemObject.StatsDatas.MaxHealth != 0.0f)
         {
             Unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += itemObject.StatsDatas.MaxHealth;
@@ -273,7 +269,7 @@ public class Inventory : MonoBehaviour
             if (_items[i].item == itemData)
             {
                 Debug.Log($"Remove Item {itemData.name}");
-                SetStat(itemData.StatsDatas * -1f);
+                AddStat(itemData.StatsDatas * -1f);
                 if (itemData.StatsDatas.MaxHealth != 0.0f)
                 {
                     Unit.Core.GetCoreComponent<UnitStats>().CurrentHealth -= itemData.StatsDatas.MaxHealth;
@@ -311,7 +307,7 @@ public class Inventory : MonoBehaviour
         if (_items.Contains(itemData))
         {
             Debug.Log($"Remove Item {itemData.item.name}");
-            SetStat(itemData.item.StatsDatas * -1f);
+            AddStat(itemData.item.StatsDatas * -1f);
             if (itemData.item.StatsDatas.MaxHealth != 0.0f)
             {
                 Unit.Core.GetCoreComponent<UnitStats>().CurrentHealth -= itemData.item.StatsDatas.MaxHealth;
@@ -348,8 +344,7 @@ public class Inventory : MonoBehaviour
     /// Unit의 CommonData Stats 변경
     /// </summary>
     /// <param name="statsData"></param>
-    /// <param name="plus">Plus = true, Minus = false</param>
-    private void SetStat(StatsData statsData)
+    private void AddStat(StatsData statsData)
     {
         Unit.Core.GetCoreComponent<UnitStats>().StatsData += statsData;
     }
