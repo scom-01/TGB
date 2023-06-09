@@ -224,6 +224,10 @@ public class GameManager : MonoBehaviour
         switch (ui)
         {            
             case UI_State.GamePlay:
+                if (StageManager != null)
+                {
+                    PlayTimeUI.Canvas.enabled = true;
+                }
                 EventSystem.current.SetSelectedGameObject(null);
                 if (StageManager != null)
                     MainUI.Canvas.enabled = true;
@@ -323,6 +327,7 @@ public class GameManager : MonoBehaviour
         DataManager.Inst?.PlayerInventoryDataLoad(StageManager.player.Inventory);
         DataManager.Inst?.PlayerCurrHealthLoad(StageManager.player.Core.GetCoreComponent<UnitStats>());
         DataManager.Inst?.PlayerBuffLoad(StageManager.player.GetComponent<BuffSystem>());
+        DataManager.Inst?.LoadPlayTime();
         DataManager.Inst?.GameGoldLoad();
         DataManager.Inst?.GameElementalsculptureLoad();
     }
@@ -336,6 +341,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        DataManager.Inst?.SavePlayTime(PlayTime);
         DataManager.Inst?.SaveScene(StageManager.CurrStageName);
         DataManager.Inst?.NextStage(StageManager.NextStageName);
         DataManager.Inst.PlayerInventoryDataSave(

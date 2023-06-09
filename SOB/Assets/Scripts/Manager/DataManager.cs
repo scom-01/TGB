@@ -398,6 +398,25 @@ public class DataManager : MonoBehaviour
         //string stage = PlayerPrefs.GetString(GlobalValue.StageName, "CutScene1");
         //Debug.LogWarning($"Load SceneName Success {stage}");
     }
+
+    public void SavePlayTime(float _playTime)
+    {
+        JSON_DataParsing.Json_Overwrite_PlayTime(_playTime);
+    }
+
+    public void LoadPlayTime()
+    {
+        if (JSON_DataParsing.Json_Read_SceneData() == null)
+        {
+            Debug.LogWarning("PlayTime Load Fail");
+            return;
+        }
+
+        if (GameManager.Inst == null)
+            return;
+
+        GameManager.Inst.PlayTime = JSON_DataParsing.Json_Read_SceneData().PlayTime;
+    }
     #endregion
 
     #region Data Controll Func

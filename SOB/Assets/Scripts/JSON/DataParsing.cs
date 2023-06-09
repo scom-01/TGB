@@ -103,19 +103,23 @@ public class DataParsing : MonoBehaviour
     {
         public string SceneName;
         public int PlayerHealth;
-        public JSON_SceneData(string sceneName = "", int playerHealth = -1)
+        public float PlayTime;
+        public JSON_SceneData(string sceneName = "", int playerHealth = -1, float playTime = 0)
         {
             SceneName = sceneName;
             PlayerHealth = playerHealth;
+            PlayTime = playTime;
         }
         public void Print()
         {
             Debug.Log($"SceneName = {SceneName}");
             Debug.Log($"PlayerHealth = {PlayerHealth}");
+            Debug.Log($"PlayTime = {PlayTime}");
         }
     }
     public string SceneName;
     public int PlayerHealth;
+    public float PlayTime;
     #endregion
 
 
@@ -485,66 +489,6 @@ public class DataParsing : MonoBehaviour
 
         return true;
     }
-    public bool Json_Overwrite_sceneName(string _scenename)
-    {
-        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
-        if (!Json_Parsing())
-        {
-            SceneName = _scenename;
-            JSON_SceneData json = new JSON_SceneData();
-            json.PlayerHealth = PlayerHealth;
-
-            if (!JSON_SceneDataSave(json))
-            {
-                Debug.Log("SceneData Save Fail");
-                return false;
-            }
-        }
-        //기존 저장된 JSON파일을 덧씌울 때
-        else
-        {
-            SceneName = _scenename;
-            JSON_SceneData json = new JSON_SceneData();
-            json.SceneName = SceneName;
-            json.PlayerHealth = PlayerHealth;
-            if (!JSON_SceneDataSave(json))
-            {
-                Debug.Log("SceneData Save Fail");
-                return false;
-            }
-        }
-        return true;
-    }
-    public bool Json_Overwrite_PlayerHealth(int _playerHealth)
-    {
-        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
-        if (!Json_Parsing())
-        {
-            PlayerHealth = _playerHealth;
-            JSON_SceneData json = new JSON_SceneData();
-            json.SceneName = SceneName;
-
-            if (!JSON_SceneDataSave(json))
-            {
-                Debug.Log("SceneData Save Fail");
-                return false;
-            }
-        }
-        //기존 저장된 JSON파일을 덧씌울 때
-        else
-        {
-            PlayerHealth = _playerHealth;
-            JSON_SceneData json = new JSON_SceneData();
-            json.SceneName = SceneName;
-            json.PlayerHealth = PlayerHealth;
-            if (!JSON_SceneDataSave(json))
-            {
-                Debug.Log("SceneData Save Fail");
-                return false;
-            }
-        }
-        return true;
-    }
 
     public bool Json_Overwrite_sculpture(int _elementalsculpture)
     {
@@ -577,7 +521,99 @@ public class DataParsing : MonoBehaviour
 
         return true;
     }
+    public bool Json_Overwrite_sceneName(string _scenename)
+    {
+        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
+        if (!Json_Parsing())
+        {
+            SceneName = _scenename;
+            JSON_SceneData json = new JSON_SceneData();
+            json.SceneName = SceneName;
 
+            if (!JSON_SceneDataSave(json))
+            {
+                Debug.Log("SceneData Save Fail");
+                return false;
+            }
+        }
+        //기존 저장된 JSON파일을 덧씌울 때
+        else
+        {
+            SceneName = _scenename;
+            JSON_SceneData json = new JSON_SceneData();
+            json.SceneName = SceneName;
+            json.PlayerHealth = PlayerHealth;
+            json.PlayTime = PlayTime;
+            if (!JSON_SceneDataSave(json))
+            {
+                Debug.Log("SceneData Save Fail");
+                return false;
+            }
+        }
+        return true;
+    }
+    public bool Json_Overwrite_PlayerHealth(int _playerHealth)
+    {
+        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
+        if (!Json_Parsing())
+        {
+            PlayerHealth = _playerHealth;
+            JSON_SceneData json = new JSON_SceneData();
+            json.PlayerHealth = PlayerHealth;
+
+            if (!JSON_SceneDataSave(json))
+            {
+                Debug.Log("SceneData Save Fail");
+                return false;
+            }
+        }
+        //기존 저장된 JSON파일을 덧씌울 때
+        else
+        {
+            PlayerHealth = _playerHealth;
+            JSON_SceneData json = new JSON_SceneData();
+            json.SceneName = SceneName;
+            json.PlayerHealth = PlayerHealth;
+            json.PlayTime = PlayTime;
+            if (!JSON_SceneDataSave(json))
+            {
+                Debug.Log("SceneData Save Fail");
+                return false;
+            }
+        }
+        return true;
+    }
+    public bool Json_Overwrite_PlayTime(float _playTime)
+    {
+        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
+        if (!Json_Parsing())
+        {
+            PlayTime = _playTime;
+            JSON_SceneData json = new JSON_SceneData();
+            json.PlayerHealth = PlayerHealth;
+
+            if (!JSON_SceneDataSave(json))
+            {
+                Debug.Log("SceneData Save Fail");
+                return false;
+            }
+        }
+        //기존 저장된 JSON파일을 덧씌울 때
+        else
+        {
+            PlayTime = _playTime;
+            JSON_SceneData json = new JSON_SceneData();
+            json.SceneName = SceneName;
+            json.PlayerHealth = PlayerHealth;
+            json.PlayTime = PlayTime;
+            if (!JSON_SceneDataSave(json))
+            {
+                Debug.Log("SceneData Save Fail");
+                return false;
+            }
+        }
+        return true;
+    }
     private bool JSON_InventorySave(JSON_Inventory inventory)
     {
         try
