@@ -73,8 +73,8 @@ public class DataParsing : MonoBehaviour
             }
         }
     }
-    public List<int> ItemListIdx;
-    public List<int> WeaponListIdx;
+    private List<int> ItemListIdx;
+    private List<int> WeaponListIdx;
     #endregion
 
     #region JSON_Goods
@@ -94,8 +94,8 @@ public class DataParsing : MonoBehaviour
             Debug.Log($"ElementalSculpture = {elementalSculpture}");
         }
     }
-    public int GoldAmount;
-    public int ElementalSculptureAmount;
+    private int GoldAmount;
+    private int ElementalSculptureAmount;
     #endregion
 
     #region JSON_SceneData
@@ -117,9 +117,9 @@ public class DataParsing : MonoBehaviour
             Debug.Log($"PlayTime = {PlayTime}");
         }
     }
-    public string SceneName;
-    public int PlayerHealth;
-    public float PlayTime;
+    private string SceneName;
+    private int PlayerHealth;
+    private float PlayTime;
     #endregion
 
 

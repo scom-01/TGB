@@ -55,10 +55,13 @@ public class DataManager : MonoBehaviour
     public ItemDB Lock_ItemDB;
     public ItemDB Unlock_ItemDB;
 
-    public float PlayerHealth;
+    [HideInInspector] public List<StatsItemSO> UnlockItemList;
+    [HideInInspector] public List<int> UnlockItemListidx;
+
+    [HideInInspector] public float PlayerHealth;
     //Goods
-    public int GoldCount;
-    public int ElementalsculptureCount;
+    [HideInInspector] public int GoldCount;
+    [HideInInspector] public int ElementalsculptureCount;
 
     public List<Buff> Playerbuffs = new List<Buff>();
 
@@ -70,8 +73,8 @@ public class DataManager : MonoBehaviour
     public AudioMixerGroup SFX;
     [HideInInspector][Range(0.0f, 1.0f)] public float BGM_Volume;
     [HideInInspector][Range(0.0f, 1.0f)] public float SFX_Volume;
-    public Localization localizaion;
-    public int localizationIdx;
+
+    [HideInInspector] public int localizationIdx;
     public LocalizationSettings localizationSettings;
     #endregion
 
@@ -284,6 +287,22 @@ public class DataManager : MonoBehaviour
         }
 
         Debug.LogWarning("Success Inventory Data Save");
+    }
+
+    public void PlayerUnlockItem()
+    {
+        for (int i = 0; i< UnlockItemList.Count; i++)
+        {
+            DataManager.Inst.Unlock_ItemDB.ItemDBList.Add(UnlockItemList[i]);
+            for (int j = 0; j < Lock_ItemDB.ItemDBList.Count; j++)
+            {
+                if (Lock_ItemDB.ItemDBList[j] == UnlockItemList[i])
+                {
+                    DataManager.Inst.Lock_ItemDB.ItemDBList.RemoveAt(j);
+                    j = 0;
+                }
+            }
+        }
     }
 
     public void PlayerCurrHealthLoad(UnitStats stats)

@@ -81,6 +81,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public float PlayTime;
 
+    public event Action SaveAction;
+
     private void Awake()
     {
         if (_Inst)
@@ -98,7 +100,7 @@ public class GameManager : MonoBehaviour
         }
 
         _Inst = this;
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(this.gameObject);        
         GraphicsSettings.useScriptableRenderPipelineBatching = true;
         if (MainUI == null)
             MainUI = this.GetComponentInChildren<MainUIManager>();
@@ -123,6 +125,8 @@ public class GameManager : MonoBehaviour
 
         if (PlayTimeUI == null)
             PlayTimeUI = this.GetComponentInChildren<PlayTimeManagerUI>();
+
+        SetSaveData();
     }
 
     private void Update()
@@ -333,6 +337,12 @@ public class GameManager : MonoBehaviour
     }
     public void SaveData()
     {
+        SaveAction?.Invoke();
+        DataManager.Inst?.UnlockItemList.Clear();
+    }
+
+    private void Data_Save()
+    {
         if (DataManager.Inst == null)
             return;
 
@@ -354,6 +364,13 @@ public class GameManager : MonoBehaviour
             );
         DataManager.Inst?.GameGoldSave(DataManager.Inst.GoldCount);
         DataManager.Inst?.GameElementalsculptureSave(DataManager.Inst.ElementalsculptureCount);
+
+    }
+
+    public void SetSaveData()
+    {
+        SaveAction += Data_Save;
+        SaveAction += DataManager.Inst.PlayerUnlockItem;
     }
 
     public void ClearData()
