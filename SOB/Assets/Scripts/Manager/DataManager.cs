@@ -54,6 +54,7 @@ public class DataManager : MonoBehaviour
     public WeaponDB All_WeaponDB;
     public ItemDB Lock_ItemDB;
     public ItemDB Unlock_ItemDB;
+    public ItemDB Default_Unlock_ItemDB;
 
     [HideInInspector] public List<StatsItemSO> UnlockItemList;
     [HideInInspector] public List<int> UnlockItemListidx;
@@ -303,6 +304,16 @@ public class DataManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void ClearUnlockItem()
+    {
+        //해금아이템 초기화
+        if (Unlock_ItemDB != null)
+            Unlock_ItemDB = DataManager.Inst.Default_Unlock_ItemDB;
+
+        if (Lock_ItemDB != null)
+            Lock_ItemDB.ItemDBList.Clear();
     }
 
     public void PlayerCurrHealthLoad(UnitStats stats)

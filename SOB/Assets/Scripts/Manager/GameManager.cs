@@ -377,7 +377,7 @@ public class GameManager : MonoBehaviour
     {
         if (DataManager.Inst == null)
             return;
-
+                
         DataManager.Inst.PlayerInventoryDataSave(null, null);
         DataManager.Inst?.GameGoldSave(0);
         DataManager.Inst?.GameElementalsculptureSave(0);
