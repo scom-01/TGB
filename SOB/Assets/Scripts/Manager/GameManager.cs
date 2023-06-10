@@ -194,6 +194,8 @@ public class GameManager : MonoBehaviour
         ChangeUI(UI_State.GamePlay);
         isPause = false;
     }
+
+    //UI Button On Click
     public void Continue()
     {
         Time.timeScale = 1f;
@@ -203,6 +205,14 @@ public class GameManager : MonoBehaviour
             MainUI.Canvas.enabled = true;
             SubUI.InventorySubUI.Canvas.enabled = false;
         }
+
+        var _TitleManager = FindObjectOfType(typeof(TitleManager)) as TitleManager;
+        if (_TitleManager != null)
+        {
+            if(_TitleManager.buttons.Count > 0)
+                EventSystem.current.SetSelectedGameObject(_TitleManager.buttons[0].gameObject);
+        }
+
         //SettingUI들 Canvas.enabled = false
         if (CfgUI.ConfigPanelUI.cfgBtns.Length > 0)
         {

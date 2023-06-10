@@ -196,11 +196,19 @@ public class DataManager : MonoBehaviour
     {
         if (!JSON_DataParsing.FileCheck(JSON_DataParsing.UnitInventoryData_FilePath))
         {
+            Debug.LogWarning($"{JSON_DataParsing.UnitInventoryData_FilePath} File is not found");
             return false;
         }
 
         if (!JSON_DataParsing.FileCheck(JSON_DataParsing.UnitGoodsData_FilePath))
         {
+            Debug.LogWarning($"{JSON_DataParsing.UnitGoodsData_FilePath} File is not found");
+            return false;
+        }
+
+        if (!JSON_DataParsing.FileCheck(JSON_DataParsing.SceneData_FilePath))
+        {
+            Debug.LogWarning($"{JSON_DataParsing.SceneData_FilePath} File is not found");
             return false;
         }
 
