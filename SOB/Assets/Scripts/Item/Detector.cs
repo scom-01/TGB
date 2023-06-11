@@ -10,7 +10,6 @@ using UnityEngine.EventSystems;
 public class Detector : MonoBehaviour
 {
     private Unit unit;
-    private BoxCollider2D BC2D;
 
     [field: SerializeField]
     [field: Tooltip("설정한 LayerMask만 탐지가능")]
@@ -22,16 +21,6 @@ public class Detector : MonoBehaviour
     private void Awake()
     {
         unit = GetComponentInParent<Unit>();
-        BC2D = GetComponent<BoxCollider2D>();
-    }
-
-    private void Start()
-    {
-        if (unit != null)
-        {
-            BC2D.size = unit.BC2D.size;
-            BC2D.offset = unit.BC2D.offset;
-        }
     }
 
     private void FixedUpdate()

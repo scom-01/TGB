@@ -54,7 +54,7 @@ public class PlayerBlockState : PlayerAbilityState
 
     private bool CheckHit()
     {
-        return Physics2D.OverlapBox(player.gameObject.transform.position + new Vector3(player.BC2D.size.x, 0, 0) * Movement.FancingDirection, player.BC2D.size, 0f, player.playerData.WhatIsEnemyUnit);
+        return Physics2D.OverlapBox(player.gameObject.transform.position + new Vector3(player.CC2D.size.x, 0, 0) * Movement.FancingDirection, player.CC2D.size, 0f, player.playerData.WhatIsEnemyUnit);
     }
 
     public bool CheckIfCanBlock()

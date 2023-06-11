@@ -65,7 +65,7 @@ public class PlayerWeaponState : PlayerAbilityState
             player.StartCoroutine(player.DisableCollision());
             return;
         }
-        else if (JumpInput && player.JumpState.CanJump() && !player.BC2D.isTrigger)
+        else if (JumpInput && player.JumpState.CanJump() && !player.CC2D.isTrigger)
         {
             Movement.SetVelocityZero();
             weapon.EventHandler.AnimationFinishedTrigger();

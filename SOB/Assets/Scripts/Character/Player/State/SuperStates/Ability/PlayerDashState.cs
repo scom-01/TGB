@@ -42,7 +42,7 @@ public class PlayerDashState : PlayerAbilityState
         else
         {
             //콜라이더 크기 변경
-            player.SetColliderHeight(player.playerData.dashColliderHeight, false, true);
+            player.SetColliderHeight(player.playerData.dashColliderHeight, false);
         }
 
         DamageReceiver.isHit = true;
@@ -67,12 +67,12 @@ public class PlayerDashState : PlayerAbilityState
         if (IsGrounded)
         {
             //콜라이더 크기 변경
-            player.SetColliderHeight(player.playerData.standBC2DSize.y, true, false);
+            player.SetColliderHeight(player.playerData.standCC2DSize.y);
         }
         else
         {
             //콜라이더 크기 변경
-            player.SetColliderHeight(player.playerData.standBC2DSize.y, false, false);
+            player.SetColliderHeight(player.playerData.standCC2DSize.y, false);
         }
     }
 

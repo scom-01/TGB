@@ -97,38 +97,49 @@ public class Player : Unit
 
     #region Set Func
 
-    public void SetColliderHeight(float height, bool ground = true, bool isDashState = true)
+    public void SetColliderHeight(float height, bool pivot = true)
     {
-        if (BC2D == null)
+        if (CC2D == null)
         {
-            Debug.Log("BoxCollider is null");
+            Debug.Log("CapsuleCollider is null");
             return;
         }
 
-        BC2D.offset = UnitData.standBC2DOffset;
-        CC2D.offset = UnitData.standCC2DOffset;
-
-        if (isDashState)
+        if (pivot)
         {
-            workspace.Set(BC2D.size.x, height);
-            if (ground)
-            {
-                Vector2 center = new Vector2(BC2D.offset.x, BC2D.offset.y + CC2D.offset.y + (CC2D.radius / 2));                
-                BC2D.offset = center;
-                CC2D.offset = center;
-            }
-            else
-            {
-                BC2D.offset = Vector2.zero;
-                CC2D.offset = Vector2.zero;
-            }
-            BC2D.size = workspace;
+            Vector2 center = CC2D.offset;
+            workspace.Set(CC2D.size.x, height);
+
+            center.y += (height - CC2D.size.y) / 2;
+            CC2D.size = workspace;
+            CC2D.offset = center;
         }
         else
         {
-            workspace.Set(BC2D.size.x, height);
-            BC2D.size = workspace;
+            workspace.Set(CC2D.size.x, height);
+            CC2D.size = workspace;
         }
+        //if (isDashState)
+        //{
+        //    workspace.Set(BC2D.size.x, height);
+        //    if (ground)
+        //    {
+        //        Vector2 center = new Vector2(BC2D.offset.x, BC2D.offset.y + CC2D.offset.y + (CC2D.radius / 2));                
+        //        BC2D.offset = center;
+        //        CC2D.offset = center;
+        //    }
+        //    else
+        //    {
+        //        BC2D.offset = Vector2.zero;
+        //        CC2D.offset = Vector2.zero;
+        //    }
+        //    BC2D.size = workspace;
+        //}
+        //else
+        //{
+        //    workspace.Set(BC2D.size.x, height);
+        //    BC2D.size = workspace;
+        //}
     }
 
     #endregion

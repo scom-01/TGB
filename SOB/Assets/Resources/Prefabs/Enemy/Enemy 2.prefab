@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 3640253521839122297}
   - component: {fileID: 3640253521839122298}
   - component: {fileID: 3640253521839122299}
-  - component: {fileID: 3640253521839122300}
+  - component: {fileID: 865954638301336462}
   - component: {fileID: 3640253521839122247}
   - component: {fileID: 6735750043806285471}
   - component: {fileID: 3639027602819861585}
@@ -454,8 +454,8 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &3640253521839122300
-BoxCollider2D:
+--- !u!70 &865954638301336462
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -467,19 +467,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.45}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 9.375, y: 9.375}
-    newSize: {x: 9.375, y: 9.375}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
+  m_Offset: {x: 0, y: -0.485}
   m_Size: {x: 1.5, y: 2.25}
-  m_EdgeRadius: 0
+  m_Direction: 0
 --- !u!114 &3640253521839122247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -514,7 +504,7 @@ MonoBehaviour:
   RespawnPoint: {fileID: 0}
   UnitData: {fileID: 11400000, guid: 18e5526c4f9924a4e9be2f0de80b92a9, type: 2}
   IsAlive: 1
-  isCCimmunity: 0
+  isImmunity: 0
   enemyData: {fileID: 0}
 --- !u!114 &3639027602819861585
 MonoBehaviour:
@@ -711,7 +701,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.485}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -722,7 +712,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.5, y: 2.25}
   m_EdgeRadius: 0
 --- !u!114 &3640253523003701944
 MonoBehaviour:
@@ -846,6 +836,7 @@ MonoBehaviour:
     ElementalDefensivePer: 0
     ElementalAggressivePer: 0
   invincibleTime: 0
+  TouchinvincibleTime: 0
   currentHealth: 0
 --- !u!1 &3640253523265248516
 GameObject:
@@ -946,6 +937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d97953454d73a429821a37579dc88c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fancingDirection: 1
   CanFlip: 0
   CanMovement: 0
 --- !u!1 &3640253523459399150
@@ -1086,7 +1078,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 650988021
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 69a5e6fd2ed44ee47bcb3371f3bed94f, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}

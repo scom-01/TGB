@@ -12,7 +12,7 @@ public class UnitBoxColliderSizeSet : MonoBehaviour
         Unit = GetComponentInParent<Unit>();
         BC2D = GetComponent<BoxCollider2D>();
         BC2D.isTrigger = true;
-        BC2D.offset = Unit.BC2D.offset + new Vector2(0, -(Unit.CC2D.radius / 2));
-        BC2D.size = Unit.BC2D.size + new Vector2(0, Unit.CC2D.radius);
+        BC2D.offset = Unit.CC2D.offset;
+        BC2D.size = Unit.CC2D.size;
     }
 }

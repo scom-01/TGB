@@ -25,46 +25,21 @@ public class Unit : MonoBehaviour
     public UnitFSM FSM { get; private set; }
     public Animator Anim { get; private set; }
     public Rigidbody2D RB { get; private set; }
-    public BoxCollider2D BC2D
-    {
-        get
-        {
-            if (bc2d == null)
-            {
-                bc2d = this.GetComponent<BoxCollider2D>();
-                if (bc2d != null)
-                {
-                    return bc2d;
-                }
-                bc2d = this.GameObject().AddComponent<BoxCollider2D>();
-                bc2d.sharedMaterial = UnitData.UnitBC2DMaterial ?? UnitData.UnitBC2DMaterial;
-                bc2d.offset = UnitData.standBC2DOffset;
-                bc2d.size = UnitData.standBC2DSize;
-            }
-            return bc2d;
-        }
-        private set
-        {
-            bc2d = value;
-        }
-    }
-
-    private BoxCollider2D bc2d;
-    public CircleCollider2D CC2D
+    public CapsuleCollider2D CC2D
     {
         get
         {
             if (cc2d == null)
             {
-                cc2d = this.GetComponent<CircleCollider2D>();
+                cc2d = this.GetComponent<CapsuleCollider2D>();
                 if (cc2d != null)
                 {
                     return cc2d;
                 }
-                cc2d = this.GameObject().AddComponent<CircleCollider2D>();                
+                cc2d = this.GameObject().AddComponent<CapsuleCollider2D>();
                 cc2d.sharedMaterial = UnitData.UnitCC2DMaterial ?? UnitData.UnitCC2DMaterial;
                 cc2d.offset = UnitData.standCC2DOffset;
-                cc2d.radius = UnitData.standCC2DRadius;
+                cc2d.size = UnitData.standCC2DSize;
             }
             return cc2d;
         }
@@ -73,7 +48,8 @@ public class Unit : MonoBehaviour
             cc2d = value;
         }
     }
-    private CircleCollider2D cc2d;
+
+    private CapsuleCollider2D cc2d;
 
     public SpriteRenderer SR { get; private set; }
 
@@ -153,10 +129,8 @@ public class Unit : MonoBehaviour
 
         RB.gravityScale = UnitData.UnitGravity;
 
-        CC2D = GetComponent<CircleCollider2D>();
-        {
-
-        }
+        CC2D = GetComponent<CapsuleCollider2D>();
+        if (CC2D == null) CC2D = this.GameObject().AddComponent<CapsuleCollider2D>();
 
         SR = GetComponent<SpriteRenderer>();
         if (SR == null) SR = this.GameObject().AddComponent<SpriteRenderer>();
@@ -264,13 +238,11 @@ public class Unit : MonoBehaviour
     }
     public IEnumerator DisableCollision()
     {
-        BC2D.isTrigger = true;
         if (CC2D != null)
         {
             CC2D.isTrigger = true;
         }
         yield return new WaitForSeconds(0.2f);
-        BC2D.isTrigger = false;
         if (CC2D != null)
         {
             CC2D.isTrigger = false;
