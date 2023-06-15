@@ -7,13 +7,17 @@ namespace SOB.CoreSystem
     public class EffectManager : CoreComponent
     {
         [TagField]
-        [field: SerializeField] private string effectContainerTagName;
+        [field: SerializeField] private string effectContainerTagName = "EffectContainer";
         private Transform effectContainerTransform;
         private EffectContainer effectContainer;
 
         protected override void Awake()
         {
             base.Awake();
+            if (effectContainerTagName == "")
+            {
+                effectContainerTagName = "EffectContainer";
+            }
             if (GameObject.FindGameObjectWithTag(effectContainerTagName).transform != null)
             {
                 effectContainer = GameObject.FindGameObjectWithTag(effectContainerTagName).GetComponent<EffectContainer>();                
