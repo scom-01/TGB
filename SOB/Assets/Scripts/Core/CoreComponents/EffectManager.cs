@@ -1,7 +1,6 @@
 using Cinemachine;
 using System.Data;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 namespace SOB.CoreSystem
 {

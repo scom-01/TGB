@@ -1,10 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using SOB.CoreSystem;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
-using UnityEngine.Serialization;
-using UnityEditor.Localization.Plugins.XLIFF.V20;
 
 namespace SOB.CoreSystem
 {

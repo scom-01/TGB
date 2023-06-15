@@ -3,11 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.ComTypes;
 using System.Text;
-using Unity.VisualScripting;
-using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 
 
@@ -73,8 +69,8 @@ public class DataParsing : MonoBehaviour
             }
         }
     }
-    private List<int> ItemListIdx;
-    private List<int> WeaponListIdx;
+    private List<int> ItemListIdx = new List<int>();
+    private List<int> WeaponListIdx = new List<int>();
     #endregion
 
     #region JSON_Goods

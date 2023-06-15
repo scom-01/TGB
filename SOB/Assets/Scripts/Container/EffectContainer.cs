@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
-using UnityEditor.Animations;
+using UnityEngine.Animations;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 
 public class EffectContainer : MonoBehaviour

@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using SOB.Item;
 using SOB.CoreSystem;
-using UnityEditor;
-using static UnityEditor.Progress;
 using UnityEngine.EventSystems;
 
 public class Detector : MonoBehaviour

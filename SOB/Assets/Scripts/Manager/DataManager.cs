@@ -3,12 +3,9 @@ using SOB.Weapons;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
-using UnityEditor.Localization.Editor;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
-using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
 
@@ -422,7 +419,7 @@ public class DataManager : MonoBehaviour
         {
             List<string> SceneList = new List<string>();
 
-            for (int i = 0; i<SceneManager.sceneCountInBuildSettings; i++)
+            for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
             {
                 SceneList.Add(System.IO.Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(i)));
             }

@@ -1,7 +1,6 @@
 using System;
 using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
+using UnityEngine.Localization;
 using UnityEngine;
 using UnityEngine.EventSystems;
 

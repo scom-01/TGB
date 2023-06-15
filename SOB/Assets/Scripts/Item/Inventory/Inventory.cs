@@ -7,7 +7,6 @@ using Unity.VisualScripting;
 using SOB.CoreSystem;
 using System;
 using TMPro;
-using static UnityEditor.Progress;
 using UnityEngine.Localization.SmartFormat.Utilities;
 
 [Serializable]
