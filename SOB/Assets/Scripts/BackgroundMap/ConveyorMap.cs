@@ -29,7 +29,7 @@ public class ConveyorMap : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (Layers == null)
             return;
