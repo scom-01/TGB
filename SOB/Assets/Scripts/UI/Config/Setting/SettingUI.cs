@@ -34,7 +34,7 @@ namespace SOB.Manager
             }
             else
             {
-                Debug.LogWarning("UserKeySettint Save Fail");
+                Debug.LogWarning("UserKeySetting Save Fail");
             }
         }
 

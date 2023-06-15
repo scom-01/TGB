@@ -84,7 +84,7 @@ namespace SOB.CoreSystem
         {
             get
             {
-                    return Physics2D.OverlapBox(transform.position + new Vector3((CC2D.offset.x + 0.1f) * Movement.FancingDirection, CC2D.offset.y), new Vector2(CC2D.bounds.size.x, CC2D.bounds.size.y * 0.95f), 0f, WhatIsGround); ;               
+                return Physics2D.OverlapBox(transform.position + new Vector3((CC2D.offset.x + 0.1f) * Movement.FancingDirection, CC2D.offset.y), new Vector2(CC2D.bounds.size.x, CC2D.bounds.size.y * 0.95f), 0f, WhatIsGround); ;               
             }
         }
 

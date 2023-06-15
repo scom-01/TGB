@@ -1929,20 +1929,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   JumpInput: 0
-  JumpInputStop: 0
   DashInput: 0
-  DashInputStop: 0
   Skill1Input: 0
-  Skill1InputStop: 0
   Skill2Input: 0
-  Skill2InputStop: 0
   PrimaryInput: 0
-  PrimaryStop: 0
-  BlockInput: 0
-  BlockInputStop: 0
+  ESCInput: 0
   InteractionInput: 0
+  PrimaryInputStop: 0
+  JumpInputStop: 0
+  DashInputStop: 0
+  Skill1InputStop: 0
+  Skill2InputStop: 0
+  InteractionInputStop: 1
   ActionInputs: 
   inputHoldTime: 0.2
+  jumpInputStartTime: 0
+  dashInputStartTime: 0
+  skill1InputStartTime: 0
+  skill2InputStartTime: 0
+  escInputStartTime: 0
+  interactionInputStartTime: 0
 --- !u!114 &109329984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1981,7 +1987,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_ActionId: 340bcd39-51ba-4642-8dc8-d16fd87d4144
     m_ActionName: GamePlay/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
@@ -1997,7 +2003,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_ActionId: 77de3ba5-221f-4ef0-9272-612ca69c3ed2
     m_ActionName: GamePlay/Jump[/Keyboard/space]
   - m_PersistentCalls:
@@ -2013,7 +2019,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_ActionId: 6990ccc3-08b3-4a66-b619-60a27835fe6a
     m_ActionName: GamePlay/Dash[/Keyboard/leftShift]
   - m_PersistentCalls:
@@ -2029,7 +2035,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_ActionId: 63c5d98c-0c1f-4677-805c-b6b3d797ab7e
     m_ActionName: GamePlay/Skill1[/Keyboard/z]
   - m_PersistentCalls:
@@ -2045,7 +2051,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_ActionId: 0424d634-4392-4de5-8503-6a949fd7575f
     m_ActionName: GamePlay/Skill2[/Keyboard/x]
   - m_PersistentCalls:
@@ -2077,7 +2083,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_ActionId: 62f09e07-e18f-45bf-9d3a-9e0cb0df973d
     m_ActionName: GamePlay/New action
   - m_PersistentCalls:
@@ -2093,7 +2099,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_ActionId: b6792d25-2dfd-4bde-896d-9ac950f27bf8
     m_ActionName: UI/Action[/Keyboard/f]
   - m_PersistentCalls:
@@ -2113,7 +2119,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_ActionId: c9536ce7-8a8e-4d61-91e3-9d2d49ac2761
     m_ActionName: GamePlay/Tap[/Keyboard/tab]
   - m_PersistentCalls:
@@ -2129,7 +2135,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_ActionId: 5ef6d7c4-9f8e-4d95-a822-89ab03cfecbe
     m_ActionName: GamePlay/ESC[/Keyboard/escape]
   - m_PersistentCalls:
@@ -2145,7 +2151,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_ActionId: 44e1b40c-d23c-4b89-ba4c-8ac8d9676769
     m_ActionName: UI/Tap[/Keyboard/tab]
   - m_PersistentCalls:
@@ -2161,7 +2167,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_ActionId: a57f4db8-9671-4fee-be89-bd0560bd42fd
     m_ActionName: UI/ESC[/Keyboard/escape]
   - m_PersistentCalls:
@@ -2177,7 +2183,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_ActionId: 2f43fc99-450b-49c0-a447-aa51acaa84b8
     m_ActionName: GamePlay/Interaction[/Keyboard/f]
   - m_PersistentCalls:
@@ -2193,9 +2199,25 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_ActionId: 8a329b78-667b-4e1a-9978-9f6e4e961714
     m_ActionName: New action map/New action
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 109329983}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnInteractionInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+    m_ActionId: 8c182f52-4e1b-44ea-a69f-d8a4f950b3c8
+    m_ActionName: Cfg/Skip[/Keyboard/leftShift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Cfg
@@ -2219,8 +2241,8 @@ MonoBehaviour:
   ReforgingUI: {fileID: 1722998508}
   ResultUI: {fileID: 2056979607}
   DamageUI: {fileID: 1122091716}
-  CutSceneUI: {fileID: 0}
-  PlayTimeUI: {fileID: 0}
+  CutSceneUI: {fileID: 685364673}
+  PlayTimeUI: {fileID: 341979578}
   PlayTime: 0
 --- !u!4 &109329986
 Transform:
@@ -14771,7 +14793,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 866249035}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.7644152
   m_NumberOfSteps: 3
   m_OnValueChanged:
     m_PersistentCalls:
@@ -26013,7 +26035,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: 1261502.4}
+  m_AnchoredPosition: {x: 7, y: 1874593.5}
   m_SizeDelta: {x: 21.1497, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1368125264
@@ -26140,7 +26162,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1712788832}
   m_Direction: 2
   m_Value: 1
-  m_Size: 1
+  m_Size: 0
   m_NumberOfSteps: 3
   m_OnValueChanged:
     m_PersistentCalls:
@@ -28333,6 +28355,7 @@ GameObject:
   - component: {fileID: 1524959498}
   - component: {fileID: 1524959500}
   - component: {fileID: 1524959499}
+  - component: {fileID: 1524959501}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -28457,6 +28480,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1524959497}
   m_CullTransparentMesh: 1
+--- !u!114 &1524959501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524959497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:9d5524b774fcd414cb16bcd906e1c9c2
+    m_TableEntryReference:
+      m_KeyId: 37200153960448
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1524959499}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1528159707
 GameObject:
   m_ObjectHideFlags: 0
@@ -35540,6 +35603,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 1
+      - m_Target: {fileID: 734441106}
+        m_TargetAssemblyTypeName: SOB.CfgSetting.QualityLevelSetting, Assembly-CSharp
+        m_MethodName: ChangeText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!114 &1939917745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39614,7 +39689,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: -299836.72}
+  m_AnchoredPosition: {x: 7, y: -454168.75}
   m_SizeDelta: {x: 21.1497, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2125587133
@@ -41189,7 +41264,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 43
+  m_fontSize: 45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -44706,7 +44781,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
+  m_fontSize: 45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -45735,7 +45810,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26.2
+  m_fontSize: 45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -47175,6 +47250,7 @@ MonoBehaviour:
   m_Action: {fileID: 2836663159072329735, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
   m_Actions:
   - {fileID: 6978892987364155691, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
+  - {fileID: 2499290777318898020, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
   CurrentKeyBtnNameTxt: {fileID: 3450347899838261371}
   CurrentKeyBtnNameTxt_3D: {fileID: 0}
   keyName: Interaction
@@ -47315,7 +47391,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36.65
+  m_fontSize: 45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

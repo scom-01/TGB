@@ -24,7 +24,6 @@ public class Player : Unit
     public PlayerJumpState JumpState { get; private set; }
     public PlayerWallJumpState WallJumpState { get; private set; }
     public PlayerDashState DashState { get; private set; }
-    public PlayerDashState AirDashState { get; private set; }
     public PlayerWeaponState BlockState { get; private set; }
 
     public PlayerWeaponState PrimaryAttackState { get; private set; }
@@ -62,7 +61,6 @@ public class Player : Unit
         WallSlideState = new PlayerWallSlideState(this, "wallSlide");
         WallJumpState = new PlayerWallJumpState(this, "inAir");
         DashState = new PlayerDashState(this, "dash");
-        AirDashState = new PlayerDashState(this, "airdash");
         PrimaryAttackState = new PlayerWeaponState(this, "action", ((int)CombatInputs.primary == (int)CombatInputs.primary)); //, Inventory.weapon);
         SecondaryAttackState = new PlayerWeaponState(this, "action", ((int)CombatInputs.primary == (int)CombatInputs.secondary));//, Inventory.weapons[(int)CombatInputs.secondary]);        
         Inventory.Weapon.SetCore(Core);

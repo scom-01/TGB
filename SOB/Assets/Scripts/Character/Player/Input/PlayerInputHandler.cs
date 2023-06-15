@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerInputHandler : MonoBehaviour
 {
@@ -20,47 +21,76 @@ public class PlayerInputHandler : MonoBehaviour
     public int NormInputY { get; private set; }
     [HideInInspector]
     public bool JumpInput
-                    , JumpInputStop
                     , DashInput
-                    , DashInputStop
                     , Skill1Input
-                    , Skill1InputStop
                     , Skill2Input
-                    , Skill2InputStop
                     , PrimaryInput
-                    , PrimaryStop
-                    , BlockInput
-                    , BlockInputStop
+                    , ESCInput
                     , InteractionInput = false;
-
+    [HideInInspector]
+    public bool PrimaryInputStop
+                    , JumpInputStop
+                    , DashInputStop
+                    , Skill1InputStop
+                    , Skill2InputStop
+                    , InteractionInputStop = true;
     [HideInInspector]
     public bool[] ActionInputs;
 
     [SerializeField]
     private float inputHoldTime = 0.2f;
 
-    private float jumpInputStartTime;
-    private float dashInputStartTime;
-    private float skill1InputStartTime;
-    private float skill2InputStartTime;
-    private float blockInputStartTime;
-    private float interactionInputStartTime;
+    [HideInInspector]
+    public float jumpInputStartTime,
+                    dashInputStartTime,
+                    skill1InputStartTime,
+                    skill2InputStartTime,
+                    escInputStartTime,
+                    interactionInputStartTime = -1;
     private float[] ActionInputsStartTime;
     private float[] ActionInputsStopTime;
 
     private void Awake()
     {
+        Init();
+
+        //Debug.Log("This InputHandler ActionMap Name : " + playerInput.currentActionMap.name);
+    }
+
+    private void Init()
+    {
         if (playerInputActions == null)
             playerInputActions = new PlayerInputActions();
         int count = Enum.GetValues(typeof(CombatInputs)).Length;
+
+        JumpInput = false;
+        DashInput = false;
+        Skill1Input = false;
+        Skill2Input = false;
+        PrimaryInput = false;
+        ESCInput = false;
+        InteractionInput = false;
+
+        PrimaryInputStop = true;
+        JumpInputStop = true;
+        DashInputStop = true;
+        Skill1InputStop = true;
+        Skill2InputStop = true;
+        InteractionInputStop = true;
+
         ActionInputs = new bool[count];
         ActionInputsStartTime = new float[count];
         ActionInputsStopTime = new float[count];
 
+        jumpInputStartTime = -1;
+        dashInputStartTime = -1;
+        skill1InputStartTime = -1;
+        skill2InputStartTime = -1;
+        escInputStartTime = -1;
+        interactionInputStartTime = -1;
+
         if (cam == null)
             cam = Camera.main;
-
-        //Debug.Log("This InputHandler ActionMap Name : " + playerInput.currentActionMap.name);
     }
 
     private void OnEnable()
@@ -86,7 +116,6 @@ public class PlayerInputHandler : MonoBehaviour
     {
         bool jumpInput = JumpInput;
         bool dashInput = DashInput;
-        bool blockInput = BlockInput;
         bool skill1Input = Skill1Input;
         bool skill2Input = Skill2Input;
         bool interacInput = InteractionInput;
@@ -94,7 +123,6 @@ public class PlayerInputHandler : MonoBehaviour
 
         CheckHoldTime(ref jumpInput, ref jumpInputStartTime);
         CheckHoldTime(ref dashInput, ref dashInputStartTime);
-        CheckHoldTime(ref blockInput, ref blockInputStartTime);
         CheckHoldTime(ref skill1Input, ref skill1InputStartTime);
         CheckHoldTime(ref skill2Input, ref skill2InputStartTime);
         //CheckHoldTime(ref attackInputs, ref ActionInputsStartTime);
@@ -102,7 +130,6 @@ public class PlayerInputHandler : MonoBehaviour
 
         JumpInput = jumpInput;
         DashInput = dashInput;
-        BlockInput = blockInput;
         Skill1Input = skill1Input;
         Skill2Input = skill2Input;
         //ActionInputs = attackInputs;
@@ -219,26 +246,14 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.started)
         {
             InteractionInput = true;
+            InteractionInputStop = false;
             interactionInputStartTime = Time.time;
         }
 
         if (context.canceled)
         {
             InteractionInput = false;
-        }
-    }
-
-    public void OnBlockInput(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            BlockInput = true;
-            BlockInputStop = false;
-            blockInputStartTime = Time.time;
-        }
-        else if (context.canceled)
-        {
-            BlockInputStop = true;
+            InteractionInputStop = true;
         }
     }
     #endregion
@@ -274,6 +289,8 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.started)
         {
+            ESCInput = true;
+            escInputStartTime = Time.time;
             Debug.Log("OnESCInput Start");
             if (playerInput.actions.actionMaps.ToArray().Length > 0)
             {
@@ -305,6 +322,7 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.canceled)
         {
             Debug.Log("OnTapInput Cancled");
+            ESCInput = false;
         }
     }
     #endregion
@@ -322,13 +340,13 @@ public class PlayerInputHandler : MonoBehaviour
     {
         //현재와 동일한 ActionMap으로 변경하려하면 ActionMap변경을 원치않으므로 Pause기능만 하도록
         if (playerInput.currentActionMap == playerInput.actions.FindActionMap(inputEnum.ToString()))
-        {            
-            if(inputEnum == InputEnum.GamePlay)
+        {
+            if (inputEnum == InputEnum.GamePlay)
             {
                 return;
             }
 
-            if(Pause)
+            if (Pause)
             {
                 GameManager.Inst.CheckPause(inputEnum);
             }
@@ -337,7 +355,7 @@ public class PlayerInputHandler : MonoBehaviour
         {
             playerInput.SwitchCurrentActionMap(inputEnum.ToString());
 
-            if(Pause)
+            if (Pause)
             {
                 GameManager.Inst.CheckPause(inputEnum);
             }

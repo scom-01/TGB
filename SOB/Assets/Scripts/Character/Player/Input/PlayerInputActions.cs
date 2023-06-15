@@ -375,6 +375,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Skip"",
+                    ""type"": ""Button"",
+                    ""id"": ""8c182f52-4e1b-44ea-a69f-d8a4f950b3c8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -386,6 +395,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""ESC"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a87dbb21-0fb0-4431-9d50-bbf9e792d450"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Skip"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -432,6 +452,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         // Cfg
         m_Cfg = asset.FindActionMap("Cfg", throwIfNotFound: true);
         m_Cfg_ESC = m_Cfg.FindAction("ESC", throwIfNotFound: true);
+        m_Cfg_Skip = m_Cfg.FindAction("Skip", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -682,11 +703,13 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Cfg;
     private List<ICfgActions> m_CfgActionsCallbackInterfaces = new List<ICfgActions>();
     private readonly InputAction m_Cfg_ESC;
+    private readonly InputAction m_Cfg_Skip;
     public struct CfgActions
     {
         private @PlayerInputActions m_Wrapper;
         public CfgActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @ESC => m_Wrapper.m_Cfg_ESC;
+        public InputAction @Skip => m_Wrapper.m_Cfg_Skip;
         public InputActionMap Get() { return m_Wrapper.m_Cfg; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -699,6 +722,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @ESC.started += instance.OnESC;
             @ESC.performed += instance.OnESC;
             @ESC.canceled += instance.OnESC;
+            @Skip.started += instance.OnSkip;
+            @Skip.performed += instance.OnSkip;
+            @Skip.canceled += instance.OnSkip;
         }
 
         private void UnregisterCallbacks(ICfgActions instance)
@@ -706,6 +732,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @ESC.started -= instance.OnESC;
             @ESC.performed -= instance.OnESC;
             @ESC.canceled -= instance.OnESC;
+            @Skip.started -= instance.OnSkip;
+            @Skip.performed -= instance.OnSkip;
+            @Skip.canceled -= instance.OnSkip;
         }
 
         public void RemoveCallbacks(ICfgActions instance)
@@ -755,5 +784,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     public interface ICfgActions
     {
         void OnESC(InputAction.CallbackContext context);
+        void OnSkip(InputAction.CallbackContext context);
     }
 }

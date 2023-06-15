@@ -97,7 +97,7 @@ public class DataManager : MonoBehaviour
     }
     private void OnDisable()
     {
-        //UserKeySettingSave();
+        UserKeySettingSave();
     }
 
     public void Init()
@@ -107,10 +107,16 @@ public class DataManager : MonoBehaviour
     #region Setting Func
     public void UserKeySettingLoad()
     {
+        if (GameManager.Inst == null)
+        {
+            Debug.LogWarning("UserKeySetting Load Fails");
+            return;
+        }
+
         string rebinds = PlayerPrefs.GetString(GlobalValue.RebindsKey, string.Empty);
         if (string.IsNullOrEmpty(rebinds))
         {
-            Debug.LogWarning("Load Fails");
+            Debug.LogWarning("UserKeySetting Load Fails");
             return;
         }
         GameManager.Inst?.inputHandler.playerInput.actions.LoadBindingOverridesFromJson(rebinds);
@@ -118,6 +124,12 @@ public class DataManager : MonoBehaviour
     }
     public void UserKeySettingSave()
     {
+        if (GameManager.Inst == null)
+        {
+            Debug.LogWarning("UserKeySetting Save Fails");
+            return;
+        }
+
         string rebinds = GameManager.Inst?.inputHandler.playerInput.actions.SaveBindingOverridesAsJson();
         PlayerPrefs.SetString(GlobalValue.RebindsKey, rebinds);
         Debug.LogWarning("Save UserKeySetting Success");

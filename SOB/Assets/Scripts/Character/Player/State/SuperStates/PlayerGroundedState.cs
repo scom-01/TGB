@@ -8,7 +8,6 @@ public class PlayerGroundedState : PlayerState
     protected int yInput;           //y축 이동 입력값
     private bool JumpInput;         //점프 입력값
     private bool dashInput;         //Dash 입력값
-    private bool blockInput;        //Block 입력값
     private bool skill1Input;       //Skill1 입력값
     private bool skill2Input;       //Skill2 입력값
     //Checks
@@ -49,7 +48,6 @@ public class PlayerGroundedState : PlayerState
         yInput = player.InputHandler.NormInputY;
         JumpInput = player.InputHandler.JumpInput;
         dashInput = player.InputHandler.DashInput;
-        blockInput = player.InputHandler.BlockInput;
         
         if (player.DashState.CheckIfResetDash())
         {
@@ -99,10 +97,6 @@ public class PlayerGroundedState : PlayerState
         else if (dashInput && player.DashState.CheckIfCanDash())
         {
             player.FSM.ChangeState(player.DashState);
-        }
-        else if(blockInput)
-        {
-            player.FSM.ChangeState(player.BlockState);
         }
     }
 
