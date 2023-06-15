@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -12,16 +13,14 @@ using UnityEngine.UIElements;
 
 public class TitleManager : MonoBehaviour
 {
-    [SerializeField] private AudioClip TitleBGM;
-    [SerializeField] private Transform BGM;
-
-    public string StageName;
+    /// <summary>
+    /// button 0 = start, 1 = load, 2 = option, 3 = exit
+    /// </summary>
     public List<UnityEngine.UI.Button> buttons;
     /// <summary>
     /// 버튼 중복 클릭 입력 방지
     /// </summary>
     private bool isDone = false;
-    public ProgressBar Loading_progressbar;
 
     private void OnEnable()
     {
@@ -34,14 +33,20 @@ public class TitleManager : MonoBehaviour
 
     private void Init()
     {
-        var audio = BGM.AddComponent<AudioSource>();
-        audio.clip = TitleBGM;
-        DataManager.Inst?.PlayerCfgBGMLoad();
-        audio.outputAudioMixerGroup = DataManager.Inst.BGM;
-        audio.loop = true;
-        audio.Play();
+        if (GameManager.Inst == null)
+            return;
+
         GameManager.Inst.MainUI.Canvas.enabled = false;
         GameManager.Inst.ResultUI.Canvas.enabled = false;
+
+        if (DataManager.Inst.CheckJSONFile())
+        {            
+            buttons[1].gameObject.SetActive(true);
+        }
+        else
+        {
+            buttons[1].gameObject.SetActive(false);
+        }
 
         EventSystem.current.SetSelectedGameObject(buttons[0].gameObject);
     }
@@ -58,22 +63,18 @@ public class TitleManager : MonoBehaviour
 
         if (DataManager.Inst == null)
             return;
+        
+        GameManager.Inst.ClearData();
+        List<string> SceneList = new List<string>();
 
-        if (!DataManager.Inst.CheckJSONFile())
+        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
         {
-            Debug.LogWarning("Save file not found");
-
-        }
-        else
-        {
-
+            SceneList.Add(System.IO.Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(i)));
         }
 
-        //강제로 CutScene1
-        if (StageName != null && StageName != "")
-            DataManager.Inst?.NextStage(StageName);
-
-
+        var SceneName = SceneList[3];
+        SceneList = null;
+        DataManager.Inst?.NextStage(SceneName.ToString());
         GameManager.Inst.ClearScene();
         isDone = true;
     }
@@ -109,12 +110,16 @@ public class TitleManager : MonoBehaviour
         if (DataManager.Inst == null)
             return;
 
-        DataManager.Inst.LoadScene();
-        ////강제로 CutScene1
-        //if (StageName != null && StageName != "")
-        //    DataManager.Inst?.NextStage(StageName);
-        GameManager.Inst.ClearScene();
-        isDone = true;
+        if (DataManager.Inst.CheckJSONFile())
+        {            
+            DataManager.Inst.LoadScene();
+            GameManager.Inst.ClearScene();
+            isDone = true;
+        }
+        else
+        {
+            Debug.LogWarning("Save file not found");
+        }
     }    
 
     public void OnOptionBtnClicked()
