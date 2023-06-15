@@ -121,7 +121,7 @@ public class PlayerInAirState : PlayerState
         else if (dashInput && player.DashState.CheckIfCanDash())
         {
             player.Anim.SetBool("JumpFlip", false);
-            player.FSM.ChangeState(player.AirDashState);
+            player.FSM.ChangeState(player.DashState);
         }
         else
         {

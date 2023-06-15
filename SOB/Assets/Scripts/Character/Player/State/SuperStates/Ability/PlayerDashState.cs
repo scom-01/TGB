@@ -30,6 +30,15 @@ public class PlayerDashState : PlayerAbilityState
 
     public override void Enter()
     {
+        IsGrounded = CollisionSenses.CheckIfGrounded;
+        if(IsGrounded)
+        {
+            animBoolName = "dash";
+        }
+        else
+        {
+            animBoolName = "airdash";
+        }
         base.Enter();
         Movement.CheckIfShouldFlip(player.InputHandler.NormInputX);
         IsGrounded = CollisionSenses.CheckIfGrounded;
@@ -115,15 +124,8 @@ public class PlayerDashState : PlayerAbilityState
                     lastDashTime = Time.time;
                     if(player.DashState.CheckIfCanDash())
                     {
-                        Movement.CheckIfShouldFlip(player.InputHandler.NormInputX);
-                        if(IsGrounded)
-                        {
-                            player.FSM.ChangeState(player.DashState);
-                        }
-                        else
-                        {
-                            player.FSM.ChangeState(player.AirDashState);
-                        }
+                        Movement.CheckIfShouldFlip(player.InputHandler.NormInputX);                        
+                        player.FSM.ChangeState(player.DashState);                        
                     }
                 }
 
