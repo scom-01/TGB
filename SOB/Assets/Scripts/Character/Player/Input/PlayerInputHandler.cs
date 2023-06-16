@@ -321,7 +321,7 @@ public class PlayerInputHandler : MonoBehaviour
         }
         if (context.canceled)
         {
-            Debug.Log("OnTapInput Cancled");
+            Debug.Log("OnESCInput Cancled");
             ESCInput = false;
         }
     }

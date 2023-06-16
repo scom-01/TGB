@@ -95,7 +95,8 @@ public class DataManager : MonoBehaviour
         _Inst = this;
         DontDestroyOnLoad(this.gameObject);
     }
-    private void OnDisable()
+
+    private void OnApplicationQuit()
     {
         UserKeySettingSave();
     }

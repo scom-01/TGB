@@ -16,6 +16,10 @@ namespace SOB.Manager
                 {
                     canvas = GetComponent<Canvas>();
                 }
+                foreach(var key in keySettings)
+                {
+                    key.UpdateDisplayText();
+                }
                 return canvas;
             }
         }
@@ -24,18 +28,6 @@ namespace SOB.Manager
         void Start()
         {
             keySettings = GetComponentsInChildren<KeySetting>();
-        }
-
-        private void OnDisable()
-        {
-            if(DataManager.Inst != null)
-            {
-                DataManager.Inst.UserKeySettingSave();
-            }
-            else
-            {
-                Debug.LogWarning("UserKeySetting Save Fail");
-            }
         }
 
         public void ResetKeyRebind()
