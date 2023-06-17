@@ -16,7 +16,14 @@ namespace SOB.CoreSystem
 
         public float invincibleTime;
         public float TouchinvincibleTime;
-        public float CurrentHealth { get => currentHealth; set => currentHealth = value <= 0 ? 0 : value; }
+        public float CurrentHealth 
+        { 
+            get => currentHealth; 
+            set
+            {
+                currentHealth = value <= 0 ? 0 : (value >= StatsData.MaxHealth ? StatsData.MaxHealth : value);
+            }
+        }
         [SerializeField] private float currentHealth;
 
         /// <summary>
