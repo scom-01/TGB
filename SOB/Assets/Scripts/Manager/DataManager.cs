@@ -247,7 +247,7 @@ public class DataManager : MonoBehaviour
 
         var inventory_Weaponlist = JSON_DataParsing.Json_Read_weapon();
 
-        if(inventory_Weaponlist.Count > 0)
+        if (inventory_Weaponlist.Count > 0)
         {
             if (inventory.Weapon != null)
             {
@@ -260,8 +260,8 @@ public class DataManager : MonoBehaviour
         }
         else
         {
-            
-        }        
+
+        }
     }
 
     public void PlayerInventoryDataSave(Weapon weapon, List<ItemSet> itemList)
@@ -310,7 +310,7 @@ public class DataManager : MonoBehaviour
 
     public void PlayerUnlockItem()
     {
-        for (int i = 0; i< UnlockItemList.Count; i++)
+        for (int i = 0; i < UnlockItemList.Count; i++)
         {
             DataManager.Inst.Unlock_ItemDB.ItemDBList.Add(UnlockItemList[i]);
             for (int j = 0; j < Lock_ItemDB.ItemDBList.Count; j++)
@@ -341,16 +341,16 @@ public class DataManager : MonoBehaviour
             Debug.LogWarning("CurrHealth Load Fail");
             return;
         }
-        if(JSON_DataParsing.Json_Read_SceneData().PlayerHealth == -1)
+        if (JSON_DataParsing.Json_Read_SceneData().PlayerHealth == -1)
         {
             return;
-        }    
+        }
         stats.CurrentHealth = JSON_DataParsing.Json_Read_SceneData().PlayerHealth;
         Debug.LogWarning("Success CurrHealth Save");
     }
     public void PlayerCurrHealthSave(int _playerHealth)
     {
-        if(!JSON_DataParsing.Json_Overwrite_PlayerHealth(_playerHealth))
+        if (!JSON_DataParsing.Json_Overwrite_PlayerHealth(_playerHealth))
         {
             Debug.LogWarning("CurrHealth Save Fail");
         }
@@ -392,7 +392,7 @@ public class DataManager : MonoBehaviour
     }
     public void GameElementalsculptureLoad()
     {
-        if(JSON_DataParsing.Json_Read_Goods() ==null)
+        if (JSON_DataParsing.Json_Read_Goods() == null)
         {
             ElementalsculptureCount = 0;
             return;
@@ -499,4 +499,41 @@ public class DataManager : MonoBehaviour
     #endregion
 
 
+    #region ItemDB Spawn
+    public void UnLockItemSpawn()
+    {
+        //spawnItem        
+        if (Lock_ItemDB.ItemDBList.Count == 0)
+        {
+            if (Lock_ItemDB.ItemDBList.Count == 0)
+            {
+                var idx = Random.Range(0, All_ItemDB.ItemDBList.Count);
+                var itemData = All_ItemDB.ItemDBList[idx];
+                if (GameManager.Inst.StageManager.SPM.SpawnItem(GameManager.Inst.StageManager.IM.InventoryItem, transform.position, GameManager.Inst.StageManager.IM.transform, itemData))
+                {
+                    Debug.Log($"SpawnItem {itemData.name}");
+                }
+            }
+            else
+            {
+                var idx = Random.Range(0, Unlock_ItemDB.ItemDBList.Count);
+                var itemData = Unlock_ItemDB.ItemDBList[idx];
+                if (GameManager.Inst.StageManager.SPM.SpawnItem(GameManager.Inst.StageManager.IM.InventoryItem, transform.position, GameManager.Inst.StageManager.IM.transform, itemData))
+                {
+                    Debug.Log($"SpawnItem {itemData.name}");
+                }
+            }
+        }
+        else
+        {
+            var idx = Random.Range(0, Lock_ItemDB.ItemDBList.Count);
+            var itemData = Lock_ItemDB.ItemDBList[idx];
+            if (GameManager.Inst.StageManager.SPM.SpawnItem(GameManager.Inst.StageManager.IM.InventoryItem, transform.position, GameManager.Inst.StageManager.IM.transform, itemData))
+            {
+                Debug.Log($"Unlock {itemData.name}");
+                UnlockItemList.Add(itemData);
+            }
+        }
+    }
+    #endregion
 }
