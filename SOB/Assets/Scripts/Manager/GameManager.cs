@@ -189,6 +189,12 @@ public class GameManager : MonoBehaviour
                 
         Time.timeScale = 1f;
         ChangeUI(UI_State.GamePlay);
+        var _TitleManager = FindObjectOfType(typeof(TitleManager)) as TitleManager;
+        if (_TitleManager != null)
+        {
+            if (_TitleManager.buttons.Count > 0)
+                EventSystem.current.SetSelectedGameObject(_TitleManager.buttons[0].gameObject);
+        }
         isPause = false;
     }
 
@@ -197,11 +203,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
 
-        if (StageManager)
-        {
-            MainUI.Canvas.enabled = true;
-            SubUI.InventorySubUI.Canvas.enabled = false;
-        }
+        ChangeUI(UI_State.GamePlay);
 
         var _TitleManager = FindObjectOfType(typeof(TitleManager)) as TitleManager;
         if (_TitleManager != null)
@@ -209,19 +211,9 @@ public class GameManager : MonoBehaviour
             if(_TitleManager.buttons.Count > 0)
                 EventSystem.current.SetSelectedGameObject(_TitleManager.buttons[0].gameObject);
         }
-
-        //SettingUI들 Canvas.enabled = false
-        if (CfgUI.ConfigPanelUI.cfgBtns.Length > 0)
-        {
-            for (int i = 0; i < CfgUI.ConfigPanelUI.cfgBtns.Length; i++)
-            {
-                if (CfgUI.ConfigPanelUI.cfgBtns[i].ActiveUI != null)
-                    CfgUI.ConfigPanelUI.cfgBtns[i].ActiveUI.GetComponent<SettingUI>().Canvas.enabled = false;
-            }
-        }
         if (StageManager != null)
             inputHandler.playerInput.currentActionMap = inputHandler.playerInput.actions.FindActionMap(InputEnum.GamePlay.ToString());
-        CfgUI.Canvas.enabled = false;
+        
         isPause = false;
     }
 
