@@ -74,37 +74,40 @@ namespace SOB.Weapons.Components
                 //Hit시 효과
                 if (coll.TryGetComponent(out IDamageable damageable))
                 {
-                    core.Unit.Inventory.ItemEffectExecute(core.Unit, coll.GetComponentInParent<Unit>());
-                    //EffectPrefab
-                    if (currHitBox[currentHitBoxIndex].EffectPrefab != null)
+                    for (int j = 0; j < currHitBox[currentHitBoxIndex].RepeatAction; j++) 
                     {
-                        for (int i = 0; i < currHitBox[currentHitBoxIndex].EffectPrefab.Length; i++)
+                        core.Unit.Inventory.ItemEffectExecute(core.Unit, coll.GetComponentInParent<Unit>());
+                        //EffectPrefab
+                        if (currHitBox[currentHitBoxIndex].EffectPrefab != null)
                         {
-                            damageable.HitAction(currHitBox[currentHitBoxIndex].EffectPrefab[i].Object, currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomRange, CoreMovement.FancingDirection);
+                            for (int i = 0; i < currHitBox[currentHitBoxIndex].EffectPrefab.Length; i++)
+                            {
+                                damageable.HitAction(currHitBox[currentHitBoxIndex].EffectPrefab[i].Object, currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomRange, CoreMovement.FancingDirection);
+                            }
                         }
-                    }
 
-                    //AudioClip
-                    if (currHitBox[currentHitBoxIndex].audioClip != null)
-                    {
-                        for (int i = 0; i < currHitBox[currentHitBoxIndex].audioClip.Length; i++)
+                        //AudioClip
+                        if (currHitBox[currentHitBoxIndex].audioClip != null)
                         {
-                            CoreSoundEffect.AudioSpawn(currHitBox[currentHitBoxIndex].audioClip[i]);
+                            for (int i = 0; i < currHitBox[currentHitBoxIndex].audioClip.Length; i++)
+                            {
+                                CoreSoundEffect.AudioSpawn(currHitBox[currentHitBoxIndex].audioClip[i]);
+                            }
                         }
-                    }
 
-                    //ShakeCam
-                    if (currHitBox[currentHitBoxIndex].camDatas != null)
-                    {
-                        for (int i = 0; i < currHitBox[currentHitBoxIndex].camDatas.Length; i++)
+                        //ShakeCam
+                        if (currHitBox[currentHitBoxIndex].camDatas != null)
                         {
-                            Camera.main.GetComponent<CameraShake>().Shake(
-                                currHitBox[currentHitBoxIndex].camDatas[i].RepeatRate,
-                                currHitBox[currentHitBoxIndex].camDatas[i].Range,
-                                currHitBox[currentHitBoxIndex].camDatas[i].Duration
-                                );
+                            for (int i = 0; i < currHitBox[currentHitBoxIndex].camDatas.Length; i++)
+                            {
+                                Camera.main.GetComponent<CameraShake>().Shake(
+                                    currHitBox[currentHitBoxIndex].camDatas[i].RepeatRate,
+                                    currHitBox[currentHitBoxIndex].camDatas[i].Range,
+                                    currHitBox[currentHitBoxIndex].camDatas[i].Duration
+                                    );
+                            }
                         }
-                    }
+                    }                    
                 }
             }
             #endregion
