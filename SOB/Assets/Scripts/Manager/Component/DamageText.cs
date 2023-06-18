@@ -5,8 +5,19 @@ using UnityEngine;
 
 public class DamageText : MonoBehaviour
 {
-    public TextMeshProUGUI HitTextMeshPro { get => hitTextMeshPro; set => hitTextMeshPro = value; }
-    
+    public TextMeshProUGUI HitTextMeshPro
+    {
+        get
+        {
+            if (hitTextMeshPro == null)
+            {
+                hitTextMeshPro = this.GetComponent<TextMeshProUGUI>();
+            }
+            return hitTextMeshPro;
+        }
+        set => hitTextMeshPro = value;
+    }
+
     private TextMeshProUGUI hitTextMeshPro;
 
     public float DamageAmount
@@ -18,7 +29,7 @@ public class DamageText : MonoBehaviour
         set
         {
             damageAmount = value;
-            if(HitTextMeshPro != null)
+            if (HitTextMeshPro != null)
             {
                 HitTextMeshPro.text = damageAmount.ToString("F0");
             }
@@ -28,12 +39,12 @@ public class DamageText : MonoBehaviour
             }
         }
     }
-    public float FontSize 
-    { 
+    public float FontSize
+    {
         get
         {
             return fontSize;
-        } 
+        }
         set
         {
             fontSize = value;
@@ -47,8 +58,8 @@ public class DamageText : MonoBehaviour
             }
         }
     }
-    public Color Color 
-    { 
+    public Color Color
+    {
         get
         {
             return color;

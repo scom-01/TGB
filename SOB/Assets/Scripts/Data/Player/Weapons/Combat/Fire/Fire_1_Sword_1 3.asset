@@ -58,6 +58,7 @@ MonoBehaviour:
               y: -0.77
               width: 2.93
               height: 1.23
+            RepeatAction: 0
             EffectPrefab:
             - isGround: 0
               isRandomPosRot: 1
@@ -106,8 +107,9 @@ MonoBehaviour:
         name: DamageData
         actionData:
         - name: 
-          <AdditionalDamage>k__BackingField:
-          - 4
+          <HitDamage>k__BackingField:
+          - AdditionalDamage: 1
+            RepeatAmount: 3
     - rid: 8358215245741948929
       type: {class: KnockbackData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:

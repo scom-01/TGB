@@ -76,10 +76,10 @@ MonoBehaviour:
         actionData:
         - name: Action 1
           <movements>k__BackingField:
-            CanFlip: 0
+          - CanFlip: 0
             CanMoveCtrl: 0
-            Direction: {x: 0.1, y: 0.1}
-            Velocity: 1
+            Direction: {x: 0, y: 0}
+            Velocity: 0
     - rid: 3615621236231503872
       type: {class: WeaponSpriteData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -98,12 +98,14 @@ MonoBehaviour:
         name: DamageData
         actionData:
         - name: Action 1
-          <AdditionalDamage>k__BackingField:
-          - 10
+          <HitDamage>k__BackingField:
+          - AdditionalDamage: 1
+            RepeatAmount: 5
     - rid: 8358215245741948929
       type: {class: KnockbackData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: KnockbackData
         actionData:
         - name: Action 1
-          <KnockbackAngle>k__BackingField: []
+          <KnockbackAngle>k__BackingField:
+          - {x: 0, y: 0}

@@ -8,7 +8,6 @@ public class ItemAttackEventSO : ItemEffectSO
 {
     public BuffItemSO buffItem;
 
-    private float startTime;
     public override int ExecuteEffect(StatsItemSO parentItem, Unit unit, int attackCount)
     {
         attackCount++;
