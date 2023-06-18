@@ -32,7 +32,10 @@ namespace SOB.Weapons.Components
             if (actionDamage == null)
                 return;
 
-            var currDamage = actionDamage.AdditionalDamage;
+            var currDamage = actionDamage.HitDamage;
+            if (currDamage == null)
+                return;
+
             if (currDamage.Length <= 0)
                 return;
 
@@ -54,7 +57,8 @@ namespace SOB.Weapons.Components
                         (
                             CoreUnitStats.StatsData,
                             coll.GetComponentInParent<Unit>().UnitData.statsStats,
-                            CoreUnitStats.StatsData.DefaultPower + currDamage[hitBox.currentHitBoxIndex]
+                            CoreUnitStats.StatsData.DefaultPower + currDamage[hitBox.currentHitBoxIndex].AdditionalDamage,
+                            currDamage[hitBox.currentHitBoxIndex].RepeatAmount
                         );
                         continue;
                     }
@@ -66,19 +70,21 @@ namespace SOB.Weapons.Components
                         (
                             CoreUnitStats.StatsData,
                             coll.GetComponentInParent<Unit>().UnitData.statsStats,
-                            (CoreUnitStats.StatsData.DefaultPower + currDamage[hitBox.currentHitBoxIndex]) * (1.0f + GlobalValue.Enemy_Size_WeakPer)
+                            (CoreUnitStats.StatsData.DefaultPower + currDamage[hitBox.currentHitBoxIndex].AdditionalDamage) * (1.0f + GlobalValue.Enemy_Size_WeakPer),
+                            currDamage[hitBox.currentHitBoxIndex].RepeatAmount
                         );
                             Debug.Log("Enemy Type Small, Normal Dam = " +
                                 CoreUnitStats.StatsData.DefaultPower + currDamage[hitBox.currentHitBoxIndex]
                                 + " Enemy_Size_WeakPer Additional Dam = " +
-                                (CoreUnitStats.StatsData.DefaultPower + currDamage[hitBox.currentHitBoxIndex]) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
+                                (CoreUnitStats.StatsData.DefaultPower + currDamage[hitBox.currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
                             break;
                         case ENEMY_Size.Medium:
                             damageable.Damage
                         (
                             CoreUnitStats.StatsData,
                             coll.GetComponentInParent<Unit>().UnitData.statsStats,
-                            (CoreUnitStats.StatsData.DefaultPower + currDamage[hitBox.currentHitBoxIndex])
+                            (CoreUnitStats.StatsData.DefaultPower + currDamage[hitBox.currentHitBoxIndex].AdditionalDamage),
+                            currDamage[hitBox.currentHitBoxIndex].RepeatAmount
                         );
                             break;
                         case ENEMY_Size.Big:
@@ -86,13 +92,15 @@ namespace SOB.Weapons.Components
                         (
                             CoreUnitStats.StatsData,
                             coll.GetComponentInParent<Unit>().UnitData.statsStats,
-                            (CoreUnitStats.StatsData.DefaultPower + currDamage[hitBox.currentHitBoxIndex]) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
+                            (CoreUnitStats.StatsData.DefaultPower + currDamage[hitBox.currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer),
+                            currDamage[hitBox.currentHitBoxIndex].RepeatAmount
                         );
 
                             Debug.Log("Enemy Type Big, Normal Dam = " +
                                 CoreUnitStats.StatsData.DefaultPower + currDamage[hitBox.currentHitBoxIndex]
                                 + " Enemy_Size_WeakPer Additional Dam = " +
-                                (CoreUnitStats.StatsData.DefaultPower + currDamage[hitBox.currentHitBoxIndex]) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
+                                (CoreUnitStats.StatsData.DefaultPower + currDamage[hitBox.currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
+                                );
                             break;
                     }
                     #endregion

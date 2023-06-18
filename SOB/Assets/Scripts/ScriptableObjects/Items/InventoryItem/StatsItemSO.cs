@@ -42,6 +42,14 @@ public class StatsItemSO : ItemDataSO
     {
         return attackCount = itemEffect.ExecuteEffect(this,unit, attackCount);
     }
+    /// <summary>
+    /// 적중 시 효과
+    /// </summary>
+    /// <param name="unit"></param>
+    /// <param name="Enemy">적중당한 적</param>
+    /// <param name="itemEffect"></param>
+    /// <param name="attackCount">적중 횟수</param>
+    /// <returns></returns>
     public virtual int ExeUse(Unit unit, Unit Enemy, ItemEffectSO itemEffect, int attackCount = 0)
     {
         return attackCount = itemEffect.ExecuteEffect(this, unit, Enemy, attackCount);
@@ -54,6 +62,13 @@ public class StatsItemSO : ItemDataSO
         }
         return startTime;
     }
+    /// <summary>
+    /// 특정 시간마다 효과 부여
+    /// </summary>
+    /// <param name="unit"></param>
+    /// <param name="itemEffect"></param>
+    /// <param name="startTime"></param>
+    /// <returns></returns>
     public virtual float ExeUpdate(Unit unit, ItemEffectSO itemEffect, float startTime = 0)
     {
         return startTime = itemEffect.ContinouseEffectExcute(this, unit, startTime);
