@@ -6,20 +6,14 @@ using UnityEngine;
 public class GoodsItem : MonoBehaviour
 {
     [Tooltip("Goods Type")]
-    public GOODS_TPYE Goods;
-    public int Amount;
-    public int DropCount;
-    public GameObject GoodsPrefab;
-    public Sprite GoodsSprite;
-    public AudioClip EquipSoundClip;
-    public float CircleSize;
-    public float DestroyTime;
-
-
-    private void OnDisable()
-    {
-        DropGoods();
-    }
+    [SerializeField]    private GOODS_TPYE Goods;
+    [SerializeField]    private int Amount;
+    [SerializeField]    private int DropCount;
+    [SerializeField]    private GameObject GoodsPrefab;
+    [SerializeField]    private Sprite GoodsSprite;
+    [SerializeField]    private AudioClip EquipSoundClip;
+    [SerializeField]    private float CircleSize;
+    [SerializeField]    private float DestroyTime;
 
     public void DropGoods()
     {

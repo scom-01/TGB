@@ -500,7 +500,11 @@ public class DataManager : MonoBehaviour
 
 
     #region ItemDB Spawn
-    public void UnLockItemSpawn()
+    /// <summary>
+    /// UnLockItemSpawn
+    /// </summary>
+    /// <param name="pos">Spawn Pos</param>
+    public void UnLockItemSpawn(Vector3 pos)
     {
         //spawnItem        
         if (Lock_ItemDB.ItemDBList.Count == 0)
@@ -509,7 +513,7 @@ public class DataManager : MonoBehaviour
             {
                 var idx = Random.Range(0, All_ItemDB.ItemDBList.Count);
                 var itemData = All_ItemDB.ItemDBList[idx];
-                if (GameManager.Inst.StageManager.SPM.SpawnItem(GameManager.Inst.StageManager.IM.InventoryItem, transform.position, GameManager.Inst.StageManager.IM.transform, itemData))
+                if (GameManager.Inst.StageManager.SPM.SpawnItem(GameManager.Inst.StageManager.IM.InventoryItem, pos, GameManager.Inst.StageManager.IM.transform, itemData))
                 {
                     Debug.Log($"SpawnItem {itemData.name}");
                 }
@@ -518,7 +522,7 @@ public class DataManager : MonoBehaviour
             {
                 var idx = Random.Range(0, Unlock_ItemDB.ItemDBList.Count);
                 var itemData = Unlock_ItemDB.ItemDBList[idx];
-                if (GameManager.Inst.StageManager.SPM.SpawnItem(GameManager.Inst.StageManager.IM.InventoryItem, transform.position, GameManager.Inst.StageManager.IM.transform, itemData))
+                if (GameManager.Inst.StageManager.SPM.SpawnItem(GameManager.Inst.StageManager.IM.InventoryItem, pos, GameManager.Inst.StageManager.IM.transform, itemData))
                 {
                     Debug.Log($"SpawnItem {itemData.name}");
                 }
@@ -528,7 +532,7 @@ public class DataManager : MonoBehaviour
         {
             var idx = Random.Range(0, Lock_ItemDB.ItemDBList.Count);
             var itemData = Lock_ItemDB.ItemDBList[idx];
-            if (GameManager.Inst.StageManager.SPM.SpawnItem(GameManager.Inst.StageManager.IM.InventoryItem, transform.position, GameManager.Inst.StageManager.IM.transform, itemData))
+            if (GameManager.Inst.StageManager.SPM.SpawnItem(GameManager.Inst.StageManager.IM.InventoryItem, pos, GameManager.Inst.StageManager.IM.transform, itemData))
             {
                 Debug.Log($"Unlock {itemData.name}");
                 UnlockItemList.Add(itemData);

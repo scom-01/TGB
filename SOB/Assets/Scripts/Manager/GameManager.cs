@@ -268,6 +268,10 @@ public class GameManager : MonoBehaviour
                 //CutSceneUI.Director_SetAsset(CutSceneUI.FadeIn);
                 break;
             case UI_State.Result:
+                if (StageManager != null)
+                {
+                    ResultUI.resultPanel.UpdateResultPanel(StageManager.player.Core.GetCoreComponent<UnitStats>().StatsData);
+                }
                 ResultUI.Canvas.enabled = true;
                 
                 break;
