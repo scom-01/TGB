@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SOB.Manager
 {
@@ -30,5 +31,10 @@ namespace SOB.Manager
             }
         }
         private Canvas canvas;
+
+        public Button GoTitleBtn
+        {
+            get => GetComponentInChildren<Button>();
+        }
     }
 }

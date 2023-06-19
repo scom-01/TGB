@@ -160,7 +160,7 @@ public class GameManager : MonoBehaviour
             Continue(inputEnum);
     }
 
-    private void Pause()
+    public void Pause()
     {
         Time.timeScale = 0f;
         isPause = true;
@@ -168,7 +168,6 @@ public class GameManager : MonoBehaviour
     private void Pause(InputEnum inputEnum)
     {
         Time.timeScale = 0f;
-        MainUI.Canvas.enabled = false;
         switch (inputEnum)
         {
             //InventoryOpen
@@ -273,6 +272,7 @@ public class GameManager : MonoBehaviour
                     ResultUI.resultPanel.UpdateResultPanel(StageManager.player.Core.GetCoreComponent<UnitStats>().StatsData);
                 }
                 ResultUI.Canvas.enabled = true;
+                EventSystem.current.SetSelectedGameObject(ResultUI.GoTitleBtn.gameObject);                
                 
                 break;
             case UI_State.Loading:
@@ -295,6 +295,7 @@ public class GameManager : MonoBehaviour
         SubUI.InventorySubUI.Canvas.enabled = false;
         SubUI.InventorySubUI.NullCheckInput();
         SubUI.DetailSubUI.Canvas.enabled = false;
+        ResultUI.Canvas.enabled = false;
         ReforgingUI.EnabledChildrensCanvas(false);
         ReforgingUI.Canvas.enabled = false;
         CutSceneUI.Canvas.enabled = false;
@@ -400,6 +401,8 @@ public class GameManager : MonoBehaviour
     }
     public void GoTitleScene()
     {
+        Time.timeScale = 1f;
+        isPause = false;
         var FadeOut = Resources.Load<GameObject>(GlobalValue.FadeOutCutScene);
         if (FadeOut != null)
         {

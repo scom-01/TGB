@@ -17,9 +17,9 @@ public struct StatsData
     public float DefaultPower;
     [Tooltip("추가 공격 속도 %")]
     public float AttackSpeedPer;
-    [Tooltip("물리 방어력 % (max = 100)")]    
+    [Tooltip("물리 방어력 % (max = 100)")]
     public float PhysicsDefensivePer;
-    [Tooltip("마법 방어력 % (max = 100)")]    
+    [Tooltip("마법 방어력 % (max = 100)")]
     public float MagicDefensivePer;
     [Tooltip("추가 물리공격력 %")]
     public float PhysicsAggressivePer;
@@ -39,7 +39,7 @@ public struct StatsData
 
     public static StatsData operator +(StatsData s1, StatsData s2)
     {
-        StatsData temp =new StatsData();
+        StatsData temp = new StatsData();
         temp.MaxHealth = s1.MaxHealth + s2.MaxHealth;
         temp.MovementVelocity = s1.MovementVelocity + s2.MovementVelocity;
         temp.JumpVelocity = s1.JumpVelocity + s2.JumpVelocity;
@@ -56,7 +56,7 @@ public struct StatsData
 
     public static StatsData operator *(StatsData s1, float f1)
     {
-        StatsData temp =new StatsData();
+        StatsData temp = new StatsData();
         temp.MaxHealth = s1.MaxHealth * f1;
         temp.MovementVelocity = s1.MovementVelocity * f1;
         temp.JumpVelocity = s1.JumpVelocity * f1;

@@ -36,8 +36,7 @@ public class TitleManager : MonoBehaviour
         if (GameManager.Inst == null)
             return;
 
-        GameManager.Inst.MainUI.Canvas.enabled = false;
-        GameManager.Inst.ResultUI.Canvas.enabled = false;
+        GameManager.Inst.ChangeUI(UI_State.Loading);
 
         if (DataManager.Inst.CheckJSONFile())
         {            
