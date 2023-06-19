@@ -41,7 +41,6 @@ public class StageManager : MonoBehaviour
         {
             GameManager.Inst.StageManager = this;
         }
-        GameManager.Inst.MainUI.Canvas.enabled = true;
 
         Application.targetFrameRate = 60;
         playerGO = Instantiate(PlayerPrefab, respawnPoint);
@@ -78,6 +77,8 @@ public class StageManager : MonoBehaviour
         respawnPoint = GameObject.Find("SpawnPoint").GetComponent<Transform>();
         GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, false);
         GameManager.Inst.ChangeUI(Start_UIState);
+        //Loading시 ESC를 눌러서 Pause가 됐을 때 생기는 오류 방지
+        GameManager.Inst.Continue();
         GameManager.Inst.LoadData();
         GameManager.Inst.SaveData();
 
