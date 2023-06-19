@@ -33,7 +33,16 @@ public class Enemy : Unit
         {
             if (DataManager.Inst != null)
             {
-                DataManager.Inst.UnLockItemSpawn();
+                DataManager.Inst.UnLockItemSpawn(transform.position);
+            }
+        }
+
+        var goods = this.GetComponentsInChildren<GoodsItem>();
+        if (goods != null)
+        {
+            foreach(var good in goods)
+            {
+                good.DropGoods();
             }
         }
     }
