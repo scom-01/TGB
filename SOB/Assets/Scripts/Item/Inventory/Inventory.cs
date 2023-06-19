@@ -269,9 +269,10 @@ public class Inventory : MonoBehaviour
             {
                 Debug.Log($"Remove Item {itemData.name}");
                 AddStat(itemData.StatsDatas * -1f);
+                //아이템에 추가 체력 증가 옵션이 있을 경우 현재 체력에서 아이템 추가 체력의 일정 비율 감소
                 if (itemData.StatsDatas.MaxHealth != 0.0f)
                 {
-                    Unit.Core.GetCoreComponent<UnitStats>().CurrentHealth -= itemData.StatsDatas.MaxHealth;
+                    Unit.Core.GetCoreComponent<UnitStats>().CurrentHealth -= itemData.StatsDatas.MaxHealth * 0.33f;
                 }
 
                 _items.RemoveAt(i);
