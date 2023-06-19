@@ -153,6 +153,7 @@ public class Player : Unit
     public override void DieEffect()
     {
         base.DieEffect();
+        GameManager.Inst.Pause();
         GameManager.Inst.ChangeUI(UI_State.Result);
         GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.Cfg, false);
     }
