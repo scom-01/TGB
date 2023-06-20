@@ -64,6 +64,7 @@ namespace SOB.Weapons
             actionCounterResetTimer = new Timer(actionCounterResetCooldown);
 
             this.gameObject.tag = this.GetComponentInParent<Unit>().gameObject.tag;
+            this.gameObject.layer = this.GetComponentInParent<Unit>().gameObject.layer;
         }
 
         private void Update()
