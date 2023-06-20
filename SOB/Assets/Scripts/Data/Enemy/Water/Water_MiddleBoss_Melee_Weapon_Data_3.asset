@@ -67,9 +67,14 @@ MonoBehaviour:
               serializedVersion: 2
               x: -1.44
               y: 0
-              width: 7.56
-              height: 1.99
-            EffectPrefab: []
+              width: 2.25
+              height: 1.5
+            RepeatAction: 1
+            EffectPrefab:
+            - isGround: 0
+              isRandomPosRot: 0
+              isRandomRange: 0
+              Object: {fileID: 1380205584940949931, guid: 07623d638bfe48c4bbf7a6dc202419de, type: 3}
             audioClip: []
             camDatas:
             - Duration: 0.2
@@ -80,8 +85,9 @@ MonoBehaviour:
               serializedVersion: 2
               x: -0.87
               y: 0
-              width: 3.15
-              height: 1.8
+              width: 2.46
+              height: 1.4
+            RepeatAction: 0
             EffectPrefab: []
             audioClip: []
             camDatas:
@@ -97,9 +103,9 @@ MonoBehaviour:
         name: DamageData
         actionData:
         - name: Action 1
-          <AdditionalDamage>k__BackingField:
-          - 5
-          - 1
+          <HitDamage>k__BackingField:
+          - AdditionalDamage: 1
+            RepeatAmount: 5
     - rid: 1770984582361907202
       type: {class: KnockbackData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:

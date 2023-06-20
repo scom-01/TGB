@@ -67,8 +67,9 @@ MonoBehaviour:
               serializedVersion: 2
               x: -0.79
               y: 0
-              width: 2.5
+              width: 2.3
               height: 6.22
+            RepeatAction: 0
             EffectPrefab: []
             audioClip: []
             camDatas:
@@ -82,6 +83,7 @@ MonoBehaviour:
               y: -4.69
               width: 2.67
               height: 8.06
+            RepeatAction: 0
             EffectPrefab: []
             audioClip: []
             camDatas:
@@ -97,9 +99,7 @@ MonoBehaviour:
         name: DamageData
         actionData:
         - name: Action 1
-          <AdditionalDamage>k__BackingField:
-          - 3
-          - 5
+          <HitDamage>k__BackingField: []
     - rid: 1770984582361907202
       type: {class: KnockbackData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
