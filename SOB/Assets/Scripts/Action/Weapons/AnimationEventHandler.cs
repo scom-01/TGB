@@ -14,6 +14,8 @@ public class AnimationEventHandler : MonoBehaviour
     public event Action OnStartFlip;
     public event Action OnStopFlip;
     public event Action OnAttackAction;
+    public event Action OnActionRectOn;
+    public event Action OnActionRectOff;
     public event Action OnEffectSpawn;
     public event Action OnSoundClip;
     public event Action OnShakeCam;
@@ -30,6 +32,8 @@ public class AnimationEventHandler : MonoBehaviour
     public void StartFlipTrigger() => OnStartFlip?.Invoke();
     public void StopFlipTrigger() => OnStopFlip?.Invoke();
     public void AttackActionTrigger() => OnAttackAction?.Invoke();
+    public void StartActionRectTrigger() => OnActionRectOn?.Invoke();
+    public void StopActionRectTrigger() => OnActionRectOff?.Invoke();
     public void SpawnEffectTrigger() => OnEffectSpawn?.Invoke();
     public void SpawnSoundClipTrigger() => OnSoundClip?.Invoke();
     public void ShakeCamTrigger() => OnShakeCam?.Invoke();

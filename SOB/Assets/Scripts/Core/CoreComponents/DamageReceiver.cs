@@ -52,7 +52,6 @@ namespace SOB.CoreSystem
             stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
             RandomEffectInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
         }
-
         /// <summary>
         /// 히트 무적 무시
         /// </summary>
@@ -69,17 +68,20 @@ namespace SOB.CoreSystem
 
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
             var damage = stats.Comp.DecreaseHealth(AttackterCommonData, VictimCommonData, amount);
-            isHit = true;
             stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
             RandomEffectInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
         }
 
         public void Damage(StatsData AttackterCommonData, StatsData VictimCommonData, float amount, int repeat)
         {
+            if (isHit)
+                return;
+
             for (int i = 0; i < repeat; i++)
             {
                 TrueDamage(AttackterCommonData, VictimCommonData, amount);
             }
+            isHit = true;
         }
 
         public void Damage(StatsData AttackterCommonData, float amount)
@@ -122,7 +124,7 @@ namespace SOB.CoreSystem
 
             RandomEffectInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
         }
-        public void HitAction(GameObject EffectPrefab, float Range, int FancingDirection)
+        public void HitEffect(GameObject EffectPrefab, float Range, int FancingDirection)
         {
             if (EffectPrefab == null)
             {
