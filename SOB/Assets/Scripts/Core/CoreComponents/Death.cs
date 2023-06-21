@@ -30,7 +30,7 @@ namespace SOB.CoreSystem
         {
             if (isDead)
                 return;
-
+            core.Unit.IsAlive = false;
             isDead = true;
             foreach (var effect in deathChunk)
             {

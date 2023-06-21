@@ -4,6 +4,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.Playables;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
@@ -131,6 +132,44 @@ public class GameManager : MonoBehaviour
         if(StageManager != null)
         {
             PlayTime += Time.deltaTime;
+        }
+
+        if (inputHandler.ESCInput)
+        {
+            if (StageManager != null)
+            {
+                if(!StageManager.player.IsAlive)
+                {
+                    return;
+                }
+            }
+
+            if (inputHandler.playerInput.actions.actionMaps.ToArray().Length > 0)
+            {
+                if (inputHandler.playerInput.currentActionMap == inputHandler.playerInput.actions.FindActionMap(InputEnum.UI.ToString()))
+                {
+                    inputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, true);
+                }
+                else if (inputHandler.playerInput.currentActionMap == inputHandler.playerInput.actions.FindActionMap(InputEnum.GamePlay.ToString()))
+                {
+                    inputHandler.ChangeCurrentActionMap(InputEnum.Cfg, true);
+                }
+                else if (inputHandler.playerInput.currentActionMap == inputHandler.playerInput.actions.FindActionMap(InputEnum.Cfg.ToString()))
+                {
+                    if (GameManager.Inst.StageManager == null)
+                    {
+                        inputHandler.ChangeCurrentActionMap(InputEnum.Cfg, true);
+                    }
+                    else
+                    {
+                        foreach (var btn in GameManager.Inst.CfgUI.ConfigPanelUI.cfgBtns)
+                        {
+                            btn.OnClickActiveUI(false);
+                        }
+                        inputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, true);
+                    }
+                }
+            }
         }
     }
     private void Start()
