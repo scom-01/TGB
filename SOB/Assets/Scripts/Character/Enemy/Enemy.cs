@@ -1,3 +1,4 @@
+using SOB.CoreSystem;
 using UnityEngine;
 
 public class Enemy : Unit
@@ -29,11 +30,24 @@ public class Enemy : Unit
 
     public override void DieEffect()
     {
-        if (enemyData.enemy_level == ENEMY_Level.Boss)
+        var item = Inventory._items;
+        int count = item.Count;
+
+        if(count > 0)
         {
-            if (DataManager.Inst != null)
+            for (int i = 0; i < count; i++)
             {
-                DataManager.Inst.UnLockItemSpawn(transform.position);
+                Inventory.RemoveInventoryItem(item[i]);
+            }
+        }
+        else
+        {
+            if (enemyData.enemy_level == ENEMY_Level.Boss)
+            {
+                if (DataManager.Inst != null)
+                {
+                    DataManager.Inst.UnLockItemSpawn(transform.position);
+                }
             }
         }
 

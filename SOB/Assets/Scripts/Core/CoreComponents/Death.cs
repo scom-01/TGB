@@ -37,12 +37,7 @@ namespace SOB.CoreSystem
                 var particleObject = EffectManager.StartEffectsWithRandomPos(effect, 0.5f);
                 particleObject.GetComponent<Animator>().speed = Random.Range(0.3f, 1f);
             }
-            var item = core.Unit.Inventory._items;
-            int count = item.Count;
-            for(int i = 0; i < count; i++)
-            {
-                core.Unit.Inventory.RemoveInventoryItem(item[i]);
-            }
+            
             core.Unit.DieEffect();
         }
 
