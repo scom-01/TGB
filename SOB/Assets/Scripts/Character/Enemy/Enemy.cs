@@ -59,6 +59,9 @@ public class Enemy : Unit
                 good.DropGoods();
             }
         }
+
+        if (GameManager.Inst != null)
+            GameManager.Inst.StageManager.SPM.UIEnemyCount--;
     }
 
     protected override void Update()

@@ -66,8 +66,6 @@ public class Boss_Static_Stage_1 : Enemy
     public override void DieEffect()
     {
         base.DieEffect();
-        if (GameManager.Inst != null)
-            GameManager.Inst.StageManager.SPM.UIEnemyCount--;
         FSM.ChangeState(DeathState);
     }
 

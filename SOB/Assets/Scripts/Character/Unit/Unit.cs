@@ -214,7 +214,7 @@ public class Unit : MonoBehaviour
 
     private void CheckLife(Unit unit)
     {
-        unit.IsAlive = unit.gameObject.activeSelf;
+        //unit.IsAlive = unit.gameObject.activeSelf;
     }
 
 
