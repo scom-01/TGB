@@ -10,7 +10,7 @@ public class Trap : MonoBehaviour
     public UnitData UnitData;
     public Vector2 knockbackAngle;
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerStay2D(Collider2D collision)
     {
         var knockback = collision.GetComponent<KnockBackReceiver>();
         if (knockback != null)
