@@ -1,13 +1,16 @@
 using SOB.CoreSystem;
 using SOB.Weapons;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class DataManager : MonoBehaviour
 {
@@ -223,6 +226,58 @@ public class DataManager : MonoBehaviour
         }
 
         return true;
+    }
+
+    public void DeleteJSONFile()
+    {        
+        if (File.Exists(Application.dataPath + JSON_DataParsing.UnitInventoryData_FilePath))
+        {
+            try
+            {
+                File.Delete(Application.dataPath + JSON_DataParsing.UnitInventoryData_FilePath);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("The deletion failed: {0}", e.Message);
+            }
+        }
+        else
+        {
+            Console.WriteLine("Specified file doesn't exist");
+        }
+             
+        if (File.Exists(Application.dataPath + JSON_DataParsing.UnitGoodsData_FilePath))
+        {
+            try
+            {
+                File.Delete(Application.dataPath + JSON_DataParsing.UnitGoodsData_FilePath);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("The deletion failed: {0}", e.Message);
+            }
+        }
+        else
+        {
+            Console.WriteLine("Specified file doesn't exist");
+        }
+             
+        if (File.Exists(Application.dataPath + JSON_DataParsing.SceneData_FilePath))
+        {
+            try
+            {
+                File.Delete(Application.dataPath + JSON_DataParsing.SceneData_FilePath);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("The deletion failed: {0}", e.Message);
+            }
+        }
+        else
+        {
+            Console.WriteLine("Specified file doesn't exist");
+        }
+        
     }
     public void PlayerInventoryDataLoad(Inventory inventory)
     {
