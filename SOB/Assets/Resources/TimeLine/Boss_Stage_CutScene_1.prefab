@@ -84,6 +84,7 @@ MonoBehaviour:
     m_Signals:
     - {fileID: 11400000, guid: 26ff85d3af80c4941b0acf09031be278, type: 2}
     - {fileID: 11400000, guid: b234099b788db4a468b3b2ae3c1fcf91, type: 2}
+    - {fileID: 11400000, guid: 61725f6a2b5b88a4cbb3c2d170db0210, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -104,6 +105,20 @@ MonoBehaviour:
         - m_Target: {fileID: 5849094040607488083}
           m_TargetAssemblyTypeName: ChangeUIState, Assembly-CSharp
           m_MethodName: ChangeUI_GamePlay
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5849094040607488083}
+          m_TargetAssemblyTypeName: ChangeUIState, Assembly-CSharp
+          m_MethodName: ChangeUI_CutScene
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
