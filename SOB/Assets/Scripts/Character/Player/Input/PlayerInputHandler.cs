@@ -293,7 +293,44 @@ public class PlayerInputHandler : MonoBehaviour
             escInputStartTime = Time.time;
             Debug.Log("OnESCInput Start");
 
-            
+            if (GameManager.Inst?.StageManager != null)
+            {
+                if (!GameManager.Inst.StageManager.player.IsAlive)
+                {
+                    return;
+                }
+            }
+
+            if (playerInput.actions.actionMaps.ToArray().Length > 0)
+            {
+                //로딩중엔 return
+                if (GameManager.Inst.Curr_UIState == UI_State.Loading)
+                    return;
+
+                if (playerInput.currentActionMap == playerInput.actions.FindActionMap(InputEnum.UI.ToString()))
+                {
+                    ChangeCurrentActionMap(InputEnum.GamePlay, true);
+                }
+                else if (playerInput.currentActionMap == playerInput.actions.FindActionMap(InputEnum.GamePlay.ToString()))
+                {
+                    ChangeCurrentActionMap(InputEnum.Cfg, true);
+                }
+                else if (playerInput.currentActionMap == playerInput.actions.FindActionMap(InputEnum.Cfg.ToString()))
+                {
+                    if (GameManager.Inst.StageManager == null)
+                    {
+                        ChangeCurrentActionMap(InputEnum.Cfg, true);
+                    }
+                    else
+                    {
+                        foreach (var btn in GameManager.Inst.CfgUI.ConfigPanelUI.cfgBtns)
+                        {
+                            btn.OnClickActiveUI(false);
+                        }
+                        ChangeCurrentActionMap(InputEnum.GamePlay, true);
+                    }
+                }
+            }
         }
         if (context.canceled)
         {

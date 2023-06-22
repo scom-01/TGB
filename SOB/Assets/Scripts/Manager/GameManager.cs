@@ -76,6 +76,9 @@ public class GameManager : MonoBehaviour
     public CutSceneManagerUI CutSceneUI;
     public PlayTimeManagerUI PlayTimeUI;
 
+    [HideInInspector]    public UI_State Old_UIState;
+    [HideInInspector]    public UI_State Curr_UIState;
+
     [HideInInspector]
     public float PlayTime;
 
@@ -136,40 +139,8 @@ public class GameManager : MonoBehaviour
 
         if (inputHandler.ESCInput)
         {
-            if (StageManager != null)
-            {
-                if(!StageManager.player.IsAlive)
-                {
-                    return;
-                }
-            }
-
-            if (inputHandler.playerInput.actions.actionMaps.ToArray().Length > 0)
-            {
-                if (inputHandler.playerInput.currentActionMap == inputHandler.playerInput.actions.FindActionMap(InputEnum.UI.ToString()))
-                {
-                    inputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, true);
-                }
-                else if (inputHandler.playerInput.currentActionMap == inputHandler.playerInput.actions.FindActionMap(InputEnum.GamePlay.ToString()))
-                {
-                    inputHandler.ChangeCurrentActionMap(InputEnum.Cfg, true);
-                }
-                else if (inputHandler.playerInput.currentActionMap == inputHandler.playerInput.actions.FindActionMap(InputEnum.Cfg.ToString()))
-                {
-                    if (GameManager.Inst.StageManager == null)
-                    {
-                        inputHandler.ChangeCurrentActionMap(InputEnum.Cfg, true);
-                    }
-                    else
-                    {
-                        foreach (var btn in GameManager.Inst.CfgUI.ConfigPanelUI.cfgBtns)
-                        {
-                            btn.OnClickActiveUI(false);
-                        }
-                        inputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, true);
-                    }
-                }
-            }
+            //사망 시엔 ResultUI의 Title누르는 것 외엔 작동하지않도록
+           
         }
     }
     private void Start()
@@ -259,10 +230,16 @@ public class GameManager : MonoBehaviour
 
     public void ChangeUI(UI_State ui)
     {
-        Debug.Log($"Switch UI {ui}");
+        var _ui = ui;
+        if (Curr_UIState == UI_State.Cfg && Curr_UIState != Old_UIState)
+        {
+            _ui = Old_UIState;
+        }
+        Old_UIState = Curr_UIState;
+        Debug.Log($"Switch UI {_ui}");
         UI_Init();
 
-        switch (ui)
+        switch (_ui)
         {            
             case UI_State.GamePlay:
                 if (StageManager != null)
@@ -274,6 +251,8 @@ public class GameManager : MonoBehaviour
                     MainUI.Canvas.enabled = true;
                 else
                     MainUI.Canvas.enabled = false;
+
+                Curr_UIState = UI_State.GamePlay;
                 break;
             case UI_State.Inventory:
                 PlayTimeUI.Canvas.enabled = true;
@@ -287,11 +266,13 @@ public class GameManager : MonoBehaviour
                 {
                     EventSystem.current.SetSelectedGameObject(SubUI.InventorySubUI.InventoryItems.CurrentSelectItem.gameObject);
                 }
+                Curr_UIState = UI_State.Inventory;
                 break;
             case UI_State.Reforging:
                 ReforgingUI.EnabledChildrensCanvas(true);
                 ReforgingUI.Canvas.enabled = true;
                 EventSystem.current.SetSelectedGameObject(ReforgingUI.equipWeapon.gameObject);
+                Curr_UIState = UI_State.Reforging;
                 break;
             case UI_State.Cfg:
                 if(StageManager != null)
@@ -300,10 +281,12 @@ public class GameManager : MonoBehaviour
                 }
                 CfgUI.Canvas.enabled = true;
                 EventSystem.current.SetSelectedGameObject(CfgUI.ConfigPanelUI.cfgBtns[0].gameObject);
+                Curr_UIState = UI_State.Cfg;
                 break;
             case UI_State.CutScene:
                 CutSceneUI.Canvas.enabled = true;
                 //CutSceneUI.Director_SetAsset(CutSceneUI.FadeIn);
+                Curr_UIState = UI_State.CutScene;
                 break;
             case UI_State.Result:
                 if (StageManager != null)
@@ -311,10 +294,11 @@ public class GameManager : MonoBehaviour
                     ResultUI.resultPanel.UpdateResultPanel(StageManager.player.Core.GetCoreComponent<UnitStats>().StatsData);
                 }
                 ResultUI.Canvas.enabled = true;
-                EventSystem.current.SetSelectedGameObject(ResultUI.GoTitleBtn.gameObject);                
-                
+                EventSystem.current.SetSelectedGameObject(ResultUI.GoTitleBtn.gameObject);
+                Curr_UIState = UI_State.Result;
                 break;
             case UI_State.Loading:
+                Curr_UIState = UI_State.Loading;
                 break;
         }
     }
