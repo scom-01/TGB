@@ -36,7 +36,7 @@ public class TitleManager : MonoBehaviour
         if (GameManager.Inst == null)
             return;
 
-        GameManager.Inst.ChangeUI(UI_State.Loading);
+        GameManager.Inst.ChangeUI(UI_State.CutScene);
 
         if (DataManager.Inst.CheckJSONFile())
         {            
