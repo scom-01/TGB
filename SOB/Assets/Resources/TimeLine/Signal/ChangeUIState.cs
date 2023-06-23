@@ -1,6 +1,9 @@
 using UnityEngine;
 
 
+/// <summary>
+/// GameManager의 ChangeUI를 Signal Receiver에서 사용하기 위함
+/// </summary>
 public class ChangeUIState : MonoBehaviour
 {
     public void ChangeUI_State(UI_State ui)
