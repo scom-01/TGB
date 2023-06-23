@@ -4,9 +4,104 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
-
+[Serializable]
+public struct ElementalGoods
+{
+    public int FireGoods;
+    public int WaterGoods;
+    public int EarthGoods;
+    public int WindGoods;
+    public ElementalGoods(int fire = 0, int water = 0, int earth = 0, int wind = 0)
+    {
+        FireGoods = fire;
+        WaterGoods = water;
+        EarthGoods = earth;
+        WindGoods = wind;
+    }
+    public static ElementalGoods operator +(ElementalGoods s1, ElementalGoods s2)
+    {
+        ElementalGoods temp = new ElementalGoods();
+        temp.FireGoods = s1.FireGoods + s2.FireGoods;
+        temp.WaterGoods = s1.WaterGoods + s2.WaterGoods;
+        temp.EarthGoods = s1.EarthGoods + s2.EarthGoods;
+        temp.WindGoods = s1.WindGoods + s2.WindGoods;
+        return temp;
+    }
+    public static ElementalGoods operator *(ElementalGoods s1, int s2)
+    {
+        ElementalGoods temp = new ElementalGoods();
+        temp.FireGoods = s1.FireGoods * s2;
+        temp.WaterGoods = s1.WaterGoods * s2;
+        temp.EarthGoods = s1.EarthGoods * s2;
+        temp.WindGoods = s1.WindGoods * s2;
+        return temp;
+    }
+    public static ElementalGoods operator *(int s1, ElementalGoods s2)
+    {
+        ElementalGoods temp = new ElementalGoods();
+        temp.FireGoods = s2.FireGoods * s1;
+        temp.WaterGoods = s2.WaterGoods * s1;
+        temp.EarthGoods = s2.EarthGoods * s1;
+        temp.WindGoods = s2.WindGoods * s1;
+        return temp;
+    }
+    public static bool operator ==(ElementalGoods s1, ElementalGoods s2)
+    {
+        if (s1.FireGoods != s2.FireGoods)
+        {
+            return false;
+        }
+        if (s1.WaterGoods != s2.WaterGoods)
+        {
+            return false;
+        }
+        if (s1.EarthGoods != s2.EarthGoods)
+        {
+            return false;
+        }
+        if (s1.WindGoods != s2.WindGoods)
+        {
+            return false;
+        }
+        return true;
+    }
+    public static bool operator !=(ElementalGoods s1, ElementalGoods s2)
+    {
+        if (s1.FireGoods == s2.FireGoods)
+        {
+            return false;
+        }
+        if (s1.WaterGoods == s2.WaterGoods)
+        {
+            return false;
+        }
+        if (s1.EarthGoods == s2.EarthGoods)
+        {
+            return false;
+        }
+        if (s1.WindGoods == s2.WindGoods)
+        {
+            return false;
+        }
+        return true;
+    }
+    public override bool Equals(object obj)
+    {
+        if (ReferenceEquals(null, obj)) return false;
+        return obj is ElementalGoods && Equals((ElementalGoods)obj);
+    }
+    public bool Equals(ElementalGoods s1)
+    {
+        return FireGoods == s1.FireGoods && WaterGoods == s1.WaterGoods && EarthGoods == s1.EarthGoods && WindGoods == s1.WindGoods;
+    }
+    public override int GetHashCode()
+    {
+        return base.GetHashCode();
+    }
+}
 public class DataParsing : MonoBehaviour
 {
     public string UnitInventoryData_FilePath
@@ -78,20 +173,25 @@ public class DataParsing : MonoBehaviour
     {
         public int gold;
         public int elementalSculpture;
-        public JSON_Goods(int _gold = 0, int _elementalSculpture = 0)
+        public ElementalGoods elementalGoods;
+        public JSON_Goods(int _gold = 0, int _elementalSculpture = 0, ElementalGoods elemental = new ElementalGoods())
         {
             gold = _gold;
             elementalSculpture = _elementalSculpture;
+            elementalGoods = elemental;
         }
 
         public void Print()
         {
             Debug.Log($"Gold = {gold}");
             Debug.Log($"ElementalSculpture = {elementalSculpture}");
+            Debug.Log($"ElementalGoods = {elementalGoods}");
         }
     }
     private int GoldAmount;
     private int ElementalSculptureAmount;
+    private ElementalGoods ElementalGoodsAmount;
+
     #endregion
 
     #region JSON_SceneData
@@ -100,11 +200,13 @@ public class DataParsing : MonoBehaviour
         public string SceneName;
         public int PlayerHealth;
         public float PlayTime;
-        public JSON_SceneData(string sceneName = "", int playerHealth = -1, float playTime = 0)
+        public Enemy_Count enemy_Count;
+        public JSON_SceneData(string sceneName = "", int playerHealth = -1, float playTime = 0, Enemy_Count _enemy_Count = new Enemy_Count())
         {
             SceneName = sceneName;
             PlayerHealth = playerHealth;
             PlayTime = playTime;
+            enemy_Count = _enemy_Count;
         }
         public void Print()
         {
@@ -116,8 +218,26 @@ public class DataParsing : MonoBehaviour
     private string SceneName;
     private int PlayerHealth;
     private float PlayTime;
+    public struct Enemy_Count
+    {
+        public int Small_Enemy_Count;
+        public int Normal_Enemy_Count;
+        public int Big_Enemy_Count;
+        public Enemy_Count(int se = 0, int ne = 0, int be = 0)
+        {
+            Small_Enemy_Count = se;
+            Normal_Enemy_Count = ne;
+            Big_Enemy_Count = be;
+        }
+    }
     #endregion
 
+    #region JSON_DefaultData
+    public class JSON_DefaultData
+    {
+        public List<int> SkipCutSceneList = new List<int>();
+    }
+    #endregion
 
     private bool Json_InventoryParsing()
     {
@@ -223,7 +343,7 @@ public class DataParsing : MonoBehaviour
         }
         try
         {
-            if(File.Exists(Application.dataPath + UnitInventoryData_FilePath))
+            if (File.Exists(Application.dataPath + UnitInventoryData_FilePath))
             {
                 FileStream stream = new FileStream(Application.dataPath + UnitInventoryData_FilePath, FileMode.Open, FileAccess.ReadWrite);
                 byte[] data = new byte[stream.Length];
@@ -247,10 +367,10 @@ public class DataParsing : MonoBehaviour
                 stream.Write(data, 0, data.Length);
                 stream.Close();
                 return json;
-            }           
+            }
         }
         catch (Exception e)
-        {                        
+        {
             Debug.LogWarning(e.Message);
             return null;
         }
@@ -350,7 +470,7 @@ public class DataParsing : MonoBehaviour
         return items;
     }
     public List<int> Json_Read_weapon()
-    {        
+    {
         if (Json_Read_Inventory() == null)
         {
             Debug.Log($"Json_Read_Inventory Exception");
@@ -476,6 +596,7 @@ public class DataParsing : MonoBehaviour
             JSON_Goods json = new JSON_Goods();
             json.gold = GoldAmount;
             json.elementalSculpture = ElementalSculptureAmount;
+            json.elementalGoods = ElementalGoodsAmount;
             if (!JSON_GoodsSave(json))
             {
                 Debug.Log("Goods Item Save Fail");
@@ -493,7 +614,7 @@ public class DataParsing : MonoBehaviour
         {
             ElementalSculptureAmount = _elementalsculpture;
             JSON_Goods json = new JSON_Goods();
-            json.gold = ElementalSculptureAmount;
+            json.elementalSculpture = ElementalSculptureAmount;
 
             if (!JSON_GoodsSave(json))
             {
@@ -508,6 +629,39 @@ public class DataParsing : MonoBehaviour
             JSON_Goods json = new JSON_Goods();
             json.gold = GoldAmount;
             json.elementalSculpture = ElementalSculptureAmount;
+            json.elementalGoods = ElementalGoodsAmount;
+            if (!JSON_GoodsSave(json))
+            {
+                Debug.Log("Goods Item Save Fail");
+                return false;
+            }
+        }
+
+        return true;
+    }
+    public bool Json_Overwrite_ElementalGoods(ElementalGoods _elementalgoods)
+    {
+        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
+        if (!Json_Parsing())
+        {
+            ElementalGoodsAmount = _elementalgoods;
+            JSON_Goods json = new JSON_Goods();
+            json.elementalGoods = ElementalGoodsAmount;
+
+            if (!JSON_GoodsSave(json))
+            {
+                Debug.Log("Goods Item Save Fail");
+                return false;
+            }
+        }
+        //기존 저장된 JSON파일을 덧씌울 때
+        else
+        {
+            ElementalGoodsAmount = _elementalgoods;
+            JSON_Goods json = new JSON_Goods();
+            json.gold = GoldAmount;
+            json.elementalSculpture = ElementalSculptureAmount;
+            json.elementalGoods = ElementalGoodsAmount;
             if (!JSON_GoodsSave(json))
             {
                 Debug.Log("Goods Item Save Fail");
@@ -627,7 +781,7 @@ public class DataParsing : MonoBehaviour
         }
         catch (Exception e)
         {
-            Debug.LogWarning("File not found");
+            Debug.LogWarning($"{Application.dataPath + UnitInventoryData_FilePath} File not found");
             Debug.LogWarning(e.Message);
             return false;
         }
@@ -650,7 +804,7 @@ public class DataParsing : MonoBehaviour
         }
         catch (Exception e)
         {
-            Debug.LogWarning("File not found");
+            Debug.LogWarning($"{Application.dataPath + UnitGoodsData_FilePath} File not found");
             Debug.LogWarning(e.Message);
             return false;
         }
@@ -673,7 +827,7 @@ public class DataParsing : MonoBehaviour
         }
         catch (Exception e)
         {
-            Debug.LogWarning("File not found");
+            Debug.LogWarning($"{Application.dataPath + SceneData_FilePath} File not found");
             Debug.LogWarning(e.Message);
             return false;
         }
@@ -682,7 +836,7 @@ public class DataParsing : MonoBehaviour
 
     public bool FileCheck(string filePath)
     {
-        if(File.Exists(Application.dataPath + filePath))
+        if (File.Exists(Application.dataPath + filePath))
         {
             return true;
         }
@@ -692,5 +846,5 @@ public class DataParsing : MonoBehaviour
         }
     }
 
-    
+
 }

@@ -10,6 +10,7 @@ using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
+using static DataParsing;
 using Random = UnityEngine.Random;
 
 public class DataManager : MonoBehaviour
@@ -63,6 +64,7 @@ public class DataManager : MonoBehaviour
     //Goods
     [HideInInspector] public int GoldCount;
     [HideInInspector] public int ElementalsculptureCount;
+    [HideInInspector] public ElementalGoods ElementalGoodsCount;
 
     public List<Buff> Playerbuffs = new List<Buff>();
 
@@ -291,6 +293,10 @@ public class DataManager : MonoBehaviour
 
         for (int i = 0; i < inventory_Itemlist.Count; i++)
         {
+            if (All_ItemDB.ItemDBList[inventory_Itemlist[i]] == null)
+            {
+                continue;
+            }
             inventory.AddInventoryItem(All_ItemDB.ItemDBList[inventory_Itemlist[i]]);
         }
 
@@ -467,6 +473,30 @@ public class DataManager : MonoBehaviour
 
         return true;
     }
+    public void GameElementalGoodsLoad()
+    {
+        if (JSON_DataParsing.Json_Read_Goods() == null)
+        {
+            ElementalGoodsCount = new ElementalGoods();
+            return;
+        }
+        ElementalGoodsCount = JSON_DataParsing.Json_Read_Goods().elementalGoods;
+    }
+    public bool GameElementalGoodsSave(ElementalGoods Elementalgoods)
+    {
+        if (Elementalgoods == new ElementalGoods())
+        {
+            return false;
+        }
+
+        if (!JSON_DataParsing.Json_Overwrite_ElementalGoods(Elementalgoods))
+        {
+            Debug.Log($"{Elementalgoods} is save fail");
+            return false;
+        }
+
+        return true;
+    }
 
     public void SaveScene(string _stage)
     {
@@ -549,6 +579,16 @@ public class DataManager : MonoBehaviour
     public void DecreseElementalsculpture(int sculpture)
     {
         ElementalsculptureCount -= sculpture;
+        //GameElementalsculptureSave(ElementalsculptureCount);
+    }
+    public void IncreaseElementalGoods(ElementalGoods elementalgoods)
+    {
+        ElementalGoodsCount += elementalgoods;
+        //GameElementalsculptureSave(ElementalsculptureCount);
+    }
+    public void DecreseElementalGoods(ElementalGoods elementalgoods)
+    {
+        ElementalGoodsCount += -1 * elementalgoods;
         //GameElementalsculptureSave(ElementalsculptureCount);
     }
     #endregion

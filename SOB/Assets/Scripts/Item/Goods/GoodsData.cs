@@ -3,6 +3,7 @@ using SOB.CoreSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static DataParsing;
 
 public class GoodsData : MonoBehaviour
 {
@@ -68,24 +69,66 @@ public class GoodsData : MonoBehaviour
             Debug.LogWarning("DataManager is Null");
             return;
         }
-        if (Goods == GOODS_TPYE.Gold)
+
+        ElementalGoods elementalGoods = new ElementalGoods();
+
+        switch (Goods)
         {
-            DataManager.Inst.IncreaseGold(Amount);            
-            if(GameManager.Inst.StageManager != null)
-            {
-                if (EquipSoundClip != null)
-                    GameManager.Inst.StageManager.player.Core.GetCoreComponent<SoundEffect>().AudioSpawn(EquipSoundClip);
-            }
+            case GOODS_TPYE.Gold:
+                DataManager.Inst.IncreaseGold(Amount);
+                if (GameManager.Inst.StageManager != null)
+                {
+                    if (EquipSoundClip != null)
+                        GameManager.Inst.StageManager.player.Core.GetCoreComponent<SoundEffect>().AudioSpawn(EquipSoundClip);
+                }
+                break;
+            case GOODS_TPYE.FireGoods:
+                elementalGoods.FireGoods = Amount;
+                DataManager.Inst.IncreaseElementalGoods(elementalGoods);
+                if (GameManager.Inst.StageManager != null)
+                {
+                    if (EquipSoundClip != null)
+                        GameManager.Inst.StageManager.player.Core.GetCoreComponent<SoundEffect>().AudioSpawn(EquipSoundClip);
+                }
+                break;
+            case GOODS_TPYE.WaterGoods:
+                elementalGoods.WaterGoods = Amount;
+                DataManager.Inst.IncreaseElementalGoods(elementalGoods);
+                if (GameManager.Inst.StageManager != null)
+                {
+                    if (EquipSoundClip != null)
+                        GameManager.Inst.StageManager.player.Core.GetCoreComponent<SoundEffect>().AudioSpawn(EquipSoundClip);
+                }
+                break;
+            case GOODS_TPYE.EarthGoods:
+                elementalGoods.EarthGoods = Amount;
+                DataManager.Inst.IncreaseElementalGoods(elementalGoods);
+                if (GameManager.Inst.StageManager != null)
+                {
+                    if (EquipSoundClip != null)
+                        GameManager.Inst.StageManager.player.Core.GetCoreComponent<SoundEffect>().AudioSpawn(EquipSoundClip);
+                }
+                break;
+            case GOODS_TPYE.WindGoods:
+                elementalGoods.WindGoods = Amount;
+                DataManager.Inst.IncreaseElementalGoods(elementalGoods);
+                if (GameManager.Inst.StageManager != null)
+                {
+                    if (EquipSoundClip != null)
+                        GameManager.Inst.StageManager.player.Core.GetCoreComponent<SoundEffect>().AudioSpawn(EquipSoundClip);
+                }
+                break;
+            case GOODS_TPYE.ElementalSculpture:
+                DataManager.Inst.IncreaseElementalsculpture(Amount);
+                if (GameManager.Inst.StageManager != null)
+                {
+                    if (EquipSoundClip != null)
+                        GameManager.Inst.StageManager.player.Core.GetCoreComponent<SoundEffect>().AudioSpawn(EquipSoundClip);
+                }
+                break;
+
         }
-        else if(Goods == GOODS_TPYE.ElementalSculpture)
-        {
-            DataManager.Inst.IncreaseElementalsculpture(Amount);
-            if (GameManager.Inst.StageManager != null)
-            {
-                if (EquipSoundClip != null)
-                    GameManager.Inst.StageManager.player.Core.GetCoreComponent<SoundEffect>().AudioSpawn(EquipSoundClip);
-            }
-        }
+
         Destroy(this.gameObject);
     }
 

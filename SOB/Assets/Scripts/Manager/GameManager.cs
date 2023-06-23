@@ -153,6 +153,7 @@ public class GameManager : MonoBehaviour
         DataManager.Inst.PlayerCfgLanguageLoad();
         DataManager.Inst.GameGoldLoad();
         DataManager.Inst.GameElementalsculptureLoad();
+        DataManager.Inst.GameElementalGoodsLoad();
     }
 
     public void CheckPause(InputEnum inputEnum, bool pause)
@@ -361,6 +362,7 @@ public class GameManager : MonoBehaviour
         DataManager.Inst?.LoadPlayTime();
         DataManager.Inst?.GameGoldLoad();
         DataManager.Inst?.GameElementalsculptureLoad();
+        DataManager.Inst?.GameElementalGoodsLoad();
     }
     public void SaveData()
     {
@@ -391,6 +393,7 @@ public class GameManager : MonoBehaviour
             );
         DataManager.Inst?.GameGoldSave(DataManager.Inst.GoldCount);
         DataManager.Inst?.GameElementalsculptureSave(DataManager.Inst.ElementalsculptureCount);
+        DataManager.Inst?.GameElementalGoodsSave(DataManager.Inst.ElementalGoodsCount);
 
     }
 
