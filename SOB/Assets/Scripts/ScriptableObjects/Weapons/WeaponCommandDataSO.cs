@@ -26,6 +26,9 @@ public class WeaponCommandDataSO : ScriptableObject
     [field: SerializeField] public AnimatorOverrideController DefaultAnimator;
     [Tooltip("충돌방지 위한 기본 WeaponDataSO")]
     [field: SerializeField] public WeaponDataSO DefaultWeaponDataSO;
+
+    [Tooltip("현재 이 무기로 재련하기 위해 필요한 재화")]
+    [field: SerializeField] public ElementalGoods elementalgoods;
     [Tooltip("업그레이드 시 변경할 CommandDataSO  순서는 Elemental 순서 (1.Water > 2.Earth > 3.Wind > 4.Fire > Water)")]
     [field: SerializeField] public List<WeaponCommandDataSO> UpgradeWeaponCommandDataSO = new List<WeaponCommandDataSO>();
 

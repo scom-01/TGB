@@ -59,6 +59,10 @@ public enum GOODS_TPYE
 {
     Gold = 0,
     ElementalSculpture = 1,
+    FireGoods,
+    WaterGoods,
+    EarthGoods,
+    WindGoods,
 }
 
 #endregion

@@ -1,13 +1,6 @@
-using SOB.Weapons;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Localization.Components;
-using UnityEngine.Localization.Events;
-using static UnityEngine.Rendering.DebugUI;
 
 public class ReforgingMaterial : MonoBehaviour
 {
@@ -39,6 +32,14 @@ public class ReforgingMaterial : MonoBehaviour
     [SerializeField] private TextMeshProUGUI CurrentSculptureAmountText;
     [Tooltip("재련 필요 원소 조각")]
     [SerializeField] private TextMeshProUGUI ReforgingCostSculptureAmountText;
+    [Tooltip("재련 필요 불의 원소 조각")]
+    [SerializeField] private TextMeshProUGUI ReforgingCostFireAmountText;
+    [Tooltip("재련 필요 물의 원소 조각")]
+    [SerializeField] private TextMeshProUGUI ReforgingCostWaterAmountText;
+    [Tooltip("재련 필요 대지의 원소 조각")]
+    [SerializeField] private TextMeshProUGUI ReforgingCostEarthAmountText;
+    [Tooltip("재련 필요 바람의 원소 조각")]
+    [SerializeField] private TextMeshProUGUI ReforgingCostWindAmountText;
 
     [SerializeField] private Color enoughColor;
     [SerializeField] private Color ShortageColor;
@@ -47,6 +48,11 @@ public class ReforgingMaterial : MonoBehaviour
     private int reforgingCostGoldAmount;
     private int currentSculptureAmount;
     private int reforgingCostSculptureAmount;
+    private ElementalGoods currentElementalGoodsAmount;
+    private ElementalGoods reforgingCostElementalGoodsAmount;
+
+    [SerializeField] private Transform GoodsTransform;
+    [SerializeField] private GameObject GoodsMaterial;
 
     private void OnEnable()
     {
@@ -65,11 +71,13 @@ public class ReforgingMaterial : MonoBehaviour
         {
             currentGoldAmount = DataManager.Inst.GoldCount;
             currentSculptureAmount = DataManager.Inst.ElementalsculptureCount;
+            currentElementalGoodsAmount = DataManager.Inst.ElementalGoodsCount;
         }
         else
         {
             currentGoldAmount = 0;
             currentSculptureAmount = 0;
+            currentElementalGoodsAmount = new ElementalGoods();
         }
 
         if (CurrentGoldAmountText != null)
@@ -150,6 +158,7 @@ public class ReforgingMaterial : MonoBehaviour
 
             reforgingCostGoldAmount = ReforgingWeaponDataSO.WeaponClassLevel * 500;
             reforgingCostSculptureAmount = ReforgingWeaponDataSO.WeaponClassLevel * 1000;
+            reforgingCostElementalGoodsAmount = ReforgingWeaponDataSO.elementalgoods;
 
             if (ReforgingCostGoldAmountText != null)
             {
