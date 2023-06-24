@@ -40,11 +40,12 @@ public class GlobalValue : MonoBehaviour
     #endregion
 
     #region UI Icon Path
-    public const string Icon_Gold_Path = "ScriptPath/UI/GoldIcon";
-    public const string Icon_FireGoods_Path = "ScriptPath/UI/FireGoods";
-    public const string Icon_WaterGoods_Path = "ScriptPath/UI/WaterGoods";
-    public const string Icon_EarthGoods_Path = "ScriptPath/UI/EarthGoods";
-    public const string Icon_WindGoods_Path = "ScriptPath/UI/WindGoods";
+    public const string Icon_UI_Path = "ScriptPath/UI/Goods";
+    public const string Icon_Gold_Path = "GoldIcon";
+    public const string Icon_FireGoods_Path = "FireGoods";
+    public const string Icon_WaterGoods_Path = "WaterGoods";
+    public const string Icon_EarthGoods_Path = "EarthGoods";
+    public const string Icon_WindGoods_Path = "WindGoods";
     #endregion
     /// <summary>
     /// Elemetal 속성 공격에 따른 추가 데미지 퍼센트

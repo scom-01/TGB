@@ -48,6 +48,30 @@ public struct ElementalGoods
         temp.WindGoods = s2.WindGoods * s1;
         return temp;
     }
+
+    public int Count()
+    {
+        int count = 0;
+
+        if (FireGoods > 0)
+        {
+            count++;
+        }
+        if (WaterGoods > 0)
+        {
+            count++;
+        }
+        if (EarthGoods > 0)
+        {
+            count++;
+        }
+        if (WindGoods > 0)
+        {
+            count++;
+        }
+        return count;
+    }
+
     public static bool operator ==(ElementalGoods s1, ElementalGoods s2)
     {
         if (s1.FireGoods != s2.FireGoods)
