@@ -26,25 +26,25 @@ public class ReforgingMaterial : MonoBehaviour
 
     [Tooltip("선택된 무기 이름")]
     [SerializeField] private TextMeshProUGUI WeaponName;
-    [Tooltip("현재 골드")]
-    [SerializeField] private TextMeshProUGUI CurrentGoldAmountText;
-    [Tooltip("현재 원소 조각")]
-    [SerializeField] private TextMeshProUGUI ReforgingCostGoldAmountText;
-    [Tooltip("재련 필요 골드 ")]
-    [SerializeField] private TextMeshProUGUI CurrentSculptureAmountText;
-    [Tooltip("재련 필요 원소 조각")]
-    [SerializeField] private TextMeshProUGUI ReforgingCostSculptureAmountText;
-    [Tooltip("재련 필요 불의 원소 조각")]
-    [SerializeField] private TextMeshProUGUI ReforgingCostFireAmountText;
-    [Tooltip("재련 필요 물의 원소 조각")]
-    [SerializeField] private TextMeshProUGUI ReforgingCostWaterAmountText;
-    [Tooltip("재련 필요 대지의 원소 조각")]
-    [SerializeField] private TextMeshProUGUI ReforgingCostEarthAmountText;
-    [Tooltip("재련 필요 바람의 원소 조각")]
-    [SerializeField] private TextMeshProUGUI ReforgingCostWindAmountText;
+    //[Tooltip("현재 골드")]
+    //[SerializeField] private TextMeshProUGUI CurrentGoldAmountText;
+    //[Tooltip("현재 원소 조각")]
+    //[SerializeField] private TextMeshProUGUI ReforgingCostGoldAmountText;
+    //[Tooltip("재련 필요 골드 ")]
+    //[SerializeField] private TextMeshProUGUI CurrentSculptureAmountText;
+    //[Tooltip("재련 필요 원소 조각")]
+    //[SerializeField] private TextMeshProUGUI ReforgingCostSculptureAmountText;
+    //[Tooltip("재련 필요 불의 원소 조각")]
+    //[SerializeField] private TextMeshProUGUI ReforgingCostFireAmountText;
+    //[Tooltip("재련 필요 물의 원소 조각")]
+    //[SerializeField] private TextMeshProUGUI ReforgingCostWaterAmountText;
+    //[Tooltip("재련 필요 대지의 원소 조각")]
+    //[SerializeField] private TextMeshProUGUI ReforgingCostEarthAmountText;
+    //[Tooltip("재련 필요 바람의 원소 조각")]
+    //[SerializeField] private TextMeshProUGUI ReforgingCostWindAmountText;
 
-    [SerializeField] private Color enoughColor;
-    [SerializeField] private Color ShortageColor;
+    //[SerializeField] private Color enoughColor;
+    //[SerializeField] private Color ShortageColor;
 
     private int currentGoldAmount;
     private int reforgingCostGoldAmount;
@@ -121,14 +121,14 @@ public class ReforgingMaterial : MonoBehaviour
             if (WeaponName != null)
                 WeaponName.text = "";
 
-            if (ReforgingCostGoldAmountText != null)
-            {
-                ReforgingCostGoldAmountText.text = "";
-            }
-            if (ReforgingCostSculptureAmountText != null)
-            {
-                ReforgingCostSculptureAmountText.text = "";
-            }
+            //if (ReforgingCostGoldAmountText != null)
+            //{
+            //    ReforgingCostGoldAmountText.text = "";
+            //}
+            //if (ReforgingCostSculptureAmountText != null)
+            //{
+            //    ReforgingCostSculptureAmountText.text = "";
+            //}
         }
         else
         {
@@ -154,14 +154,14 @@ public class ReforgingMaterial : MonoBehaviour
                 reforgingCostGoldAmount = -1;
                 reforgingCostSculptureAmount = -1;
 
-                if (ReforgingCostGoldAmountText != null)
-                {
-                    ReforgingCostGoldAmountText.text = "";
-                }
-                if (ReforgingCostSculptureAmountText != null)
-                {
-                    ReforgingCostSculptureAmountText.text = "";
-                }
+                //if (ReforgingCostGoldAmountText != null)
+                //{
+                //    ReforgingCostGoldAmountText.text = "";
+                //}
+                //if (ReforgingCostSculptureAmountText != null)
+                //{
+                //    ReforgingCostSculptureAmountText.text = "";
+                //}
 
                 return;
             }
