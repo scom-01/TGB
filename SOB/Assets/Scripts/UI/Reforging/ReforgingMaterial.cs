@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Localization.Components;
 
@@ -52,6 +54,7 @@ public class ReforgingMaterial : MonoBehaviour
     private ElementalGoods reforgingCostElementalGoodsAmount;
 
     [SerializeField] private Transform GoodsTransform;
+    [SerializeField] private List<GameObject> GoodsList;
     [SerializeField] private GameObject GoodsMaterial;
 
     private void OnEnable()
@@ -64,7 +67,7 @@ public class ReforgingMaterial : MonoBehaviour
 
         SetRendering();
     }
-    
+
     private void GetCurrentGoods()
     {
         if (DataManager.Inst != null)
@@ -80,12 +83,11 @@ public class ReforgingMaterial : MonoBehaviour
             currentElementalGoodsAmount = new ElementalGoods();
         }
 
-        if (CurrentGoldAmountText != null)
-            CurrentGoldAmountText.text = string.Format("{0:#,###}", currentGoldAmount);
-
-        if (CurrentSculptureAmountText != null)
-            CurrentSculptureAmountText.text = string.Format("{0:#,###}", currentSculptureAmount);
-
+        for (int i = 0; i < GoodsTransform.childCount; i++)
+        {
+            Destroy(GoodsTransform.GetChild(i).gameObject);
+        }
+        GoodsList.Clear();
     }
     private bool CheckReforging()
     {
@@ -95,19 +97,27 @@ public class ReforgingMaterial : MonoBehaviour
             return false;
         }
 
-        if (currentGoldAmount > reforgingCostGoldAmount && currentSculptureAmount > reforgingCostSculptureAmount)
-        {            
-            return true;
+        if(GoodsList.Count == 0)
+        {
+
+            return false;
         }
 
-        return false;
+        for (int i = 0; i < GoodsList.Count; i++)
+        {
+            if (!GoodsList[i].GetComponent<GoodsMaterial>().CanReforging)
+            {
+                return false;
+            }
+        }
+        return true;
     }
     public void SetRendering()
     {
         GetCurrentGoods();
 
         if (ReforgingWeaponDataSO == null)
-        {            
+        {
             if (WeaponName != null)
                 WeaponName.text = "";
 
@@ -126,7 +136,7 @@ public class ReforgingMaterial : MonoBehaviour
             {
                 WeaponName.text = ReforgingWeaponDataSO.WeaponName;
                 var local = WeaponName.GetComponent<LocalizeStringEvent>();
-                if (local) 
+                if (local)
                 {
                     if (ReforgingWeaponDataSO.WeaponNameLocal != null)
                     {
@@ -158,17 +168,41 @@ public class ReforgingMaterial : MonoBehaviour
 
             reforgingCostGoldAmount = ReforgingWeaponDataSO.WeaponClassLevel * 500;
             reforgingCostSculptureAmount = ReforgingWeaponDataSO.WeaponClassLevel * 1000;
-            reforgingCostElementalGoodsAmount = ReforgingWeaponDataSO.elementalgoods;
 
-            if (ReforgingCostGoldAmountText != null)
+            if (reforgingCostGoldAmount > 0)
             {
-                ReforgingCostGoldAmountText.color = currentGoldAmount < reforgingCostGoldAmount ? ShortageColor : enoughColor;
-                ReforgingCostGoldAmountText.text = string.Format("{0:#,###}", reforgingCostGoldAmount);
+                var goods = Instantiate(GoodsMaterial, GoodsTransform);
+                GoodsList.Add(goods);
+                goods.gameObject.GetComponent<GoodsMaterial>().Type = GOODS_TPYE.FireGoods;
+                goods.gameObject.GetComponent<GoodsMaterial>().UpdateGoodsMaterial(currentGoldAmount, reforgingCostGoldAmount);
             }
-            if (ReforgingCostSculptureAmountText != null)
+            if (ReforgingWeaponDataSO.elementalgoods.FireGoods > 0)
             {
-                ReforgingCostSculptureAmountText.color = currentSculptureAmount < reforgingCostSculptureAmount ? ShortageColor : enoughColor;
-                ReforgingCostSculptureAmountText.text = string.Format("{0:#,###}", reforgingCostSculptureAmount);
+                var goods = Instantiate(GoodsMaterial, GoodsTransform);
+                GoodsList.Add(goods);
+                goods.gameObject.GetComponent<GoodsMaterial>().Type = GOODS_TPYE.FireGoods;
+                goods.gameObject.GetComponent<GoodsMaterial>().UpdateGoodsMaterial(currentElementalGoodsAmount.FireGoods, ReforgingWeaponDataSO.elementalgoods.FireGoods);
+            }
+            if (ReforgingWeaponDataSO.elementalgoods.WaterGoods > 0)
+            {
+                var goods = Instantiate(GoodsMaterial, GoodsTransform);
+                GoodsList.Add(goods);
+                goods.gameObject.GetComponent<GoodsMaterial>().Type = GOODS_TPYE.WaterGoods;
+                goods.gameObject.GetComponent<GoodsMaterial>().UpdateGoodsMaterial(currentElementalGoodsAmount.WaterGoods, ReforgingWeaponDataSO.elementalgoods.WaterGoods);
+            }
+            if (ReforgingWeaponDataSO.elementalgoods.EarthGoods > 0)
+            {
+                var goods = Instantiate(GoodsMaterial, GoodsTransform);
+                GoodsList.Add(goods);
+                goods.gameObject.GetComponent<GoodsMaterial>().Type = GOODS_TPYE.EarthGoods;
+                goods.gameObject.GetComponent<GoodsMaterial>().UpdateGoodsMaterial(currentElementalGoodsAmount.EarthGoods, ReforgingWeaponDataSO.elementalgoods.EarthGoods);
+            }
+            if (ReforgingWeaponDataSO.elementalgoods.WindGoods > 0)
+            {
+                var goods = Instantiate(GoodsMaterial, GoodsTransform);
+                GoodsList.Add(goods);
+                goods.gameObject.GetComponent<GoodsMaterial>().Type = GOODS_TPYE.WindGoods;
+                goods.gameObject.GetComponent<GoodsMaterial>().UpdateGoodsMaterial(currentElementalGoodsAmount.WindGoods, ReforgingWeaponDataSO.elementalgoods.WindGoods);
             }
         }
     }
@@ -180,14 +214,6 @@ public class ReforgingMaterial : MonoBehaviour
         reforgingCostGoldAmount = -1;
         reforgingCostSculptureAmount = -1;
 
-        if (ReforgingCostGoldAmountText != null)
-        {
-            ReforgingCostGoldAmountText.text = "";
-        }
-        if (ReforgingCostSculptureAmountText != null)
-        {
-            ReforgingCostSculptureAmountText.text = "";
-        }
     }
     public void SetReforgingMaterial(WeaponCommandDataSO data)
     {
@@ -199,7 +225,7 @@ public class ReforgingMaterial : MonoBehaviour
     {
         if (equip == null)
             return;
-        
+
         if (ReforgingWeaponDataSO == null)
             return;
 
@@ -210,8 +236,8 @@ public class ReforgingMaterial : MonoBehaviour
                 Debug.Log("StageManager is Null");
                 return;
             }
-                        
-            if(DataManager.Inst!=null)
+
+            if (DataManager.Inst != null)
             {
                 DataManager.Inst.DecreseGold(reforgingCostGoldAmount);
                 DataManager.Inst.DecreseElementalsculpture(reforgingCostSculptureAmount);
