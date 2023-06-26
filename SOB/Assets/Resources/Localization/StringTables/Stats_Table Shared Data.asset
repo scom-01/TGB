@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Stats_Table Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Stats_Table
+  m_TableCollectionNameGuidString: 0d4742437ec6ec541bf0850b60cb729a
+  m_Entries:
+  - m_Id: 7138074624
+    m_Key: PhysicsAgg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4137457967104
+    m_Key: MagicAgg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4500810522624
+    m_Key: PhysicsDef
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6038371065856
+    m_Key: MagicDef
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6198023053312
+    m_Key: AttackSpeed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8760054931456
+    m_Key: ElementalDef
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9029727707136
+    m_Key: ElementalAgg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12724330717184
+    m_Key: MaxHealth
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 3976935078198771718
+  references:
+    version: 2
+    RefIds:
+    - rid: 3976935078198771718
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1687150652386
