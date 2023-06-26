@@ -87,6 +87,18 @@ public enum E_Power
     Water = 4,
 }
 
+public enum Stats_TYPE
+{
+    PhysicsAgg,
+    MagicAgg,
+    PhysicsDef,
+    MagicDef,
+    ElementalAgg,
+    ElementalDef,
+    AttackSpeed,
+    MaxHealth,
+}
+
 #endregion
 
 #region Enemy
