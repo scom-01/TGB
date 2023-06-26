@@ -561,35 +561,53 @@ public class DataManager : MonoBehaviour
         SceneName = stage;
     }
 
-    public void IncreaseGold(int gold)
+    public void IncreaseGoods(GOODS_TPYE type, int goodsAmount)
     {
-        GoldCount += gold;
-        //GameGoldSave(GoldCount);
+        switch(type)
+        {
+            case GOODS_TPYE.Gold:
+                GoldCount += goodsAmount;
+                break;
+            case GOODS_TPYE.ElementalSculpture:
+                ElementalsculptureCount += goodsAmount;
+                break;
+            case GOODS_TPYE.FireGoods:
+                ElementalGoodsCount.FireGoods += goodsAmount;
+                break;
+            case GOODS_TPYE.WaterGoods:
+                ElementalGoodsCount.WaterGoods += goodsAmount;
+                break;
+            case GOODS_TPYE.EarthGoods:
+                ElementalGoodsCount.EarthGoods += goodsAmount;
+                break;
+            case GOODS_TPYE.WindGoods:
+                ElementalGoodsCount.WindGoods += goodsAmount;
+                break;                
+        }
     }
-    public void DecreseGold(int gold)
+    public void DecreseGoods(GOODS_TPYE type, int goodsAmount)
     {
-        GoldCount -= gold;
-        //GameGoldSave(GoldCount);
-    }
-    public void IncreaseElementalsculpture(int sculpture)
-    {
-        ElementalsculptureCount += sculpture;
-        //GameElementalsculptureSave(ElementalsculptureCount);
-    }
-    public void DecreseElementalsculpture(int sculpture)
-    {
-        ElementalsculptureCount -= sculpture;
-        //GameElementalsculptureSave(ElementalsculptureCount);
-    }
-    public void IncreaseElementalGoods(ElementalGoods elementalgoods)
-    {
-        ElementalGoodsCount += elementalgoods;
-        //GameElementalsculptureSave(ElementalsculptureCount);
-    }
-    public void DecreseElementalGoods(ElementalGoods elementalgoods)
-    {
-        ElementalGoodsCount += -1 * elementalgoods;
-        //GameElementalsculptureSave(ElementalsculptureCount);
+        switch (type)
+        {
+            case GOODS_TPYE.Gold:
+                GoldCount -= goodsAmount;
+                break;
+            case GOODS_TPYE.ElementalSculpture:
+                ElementalsculptureCount -= goodsAmount;
+                break;
+            case GOODS_TPYE.FireGoods:
+                ElementalGoodsCount.FireGoods -= goodsAmount;
+                break;
+            case GOODS_TPYE.WaterGoods:
+                ElementalGoodsCount.WaterGoods -= goodsAmount;
+                break;
+            case GOODS_TPYE.EarthGoods:
+                ElementalGoodsCount.EarthGoods -= goodsAmount;
+                break;
+            case GOODS_TPYE.WindGoods:
+                ElementalGoodsCount.WindGoods -= goodsAmount;
+                break;
+        }
     }
     #endregion
 
