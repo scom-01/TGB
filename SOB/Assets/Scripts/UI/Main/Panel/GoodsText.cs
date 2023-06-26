@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 
 public class GoodsText : MonoBehaviour
@@ -143,6 +144,7 @@ public class GoodsText : MonoBehaviour
             return img;
         }
     }
+
     private int TypeGoodsCount
     {
         get
@@ -174,6 +176,7 @@ public class GoodsText : MonoBehaviour
     }
 
     [SerializeField] private Image IconImg;
+    [SerializeField] private LocalizeStringEvent CurrGoodsTxtLocalStringEvent;
     [SerializeField] private TextMeshProUGUI CurrGoodsCountTxt;
     [SerializeField] private bool Showcolon;
     [SerializeField] private bool isLeftcolon;
@@ -185,6 +188,11 @@ public class GoodsText : MonoBehaviour
         if (IconImg != null && TypeIcon != null)
         {
             IconImg.sprite = TypeIcon;
+        }
+
+        if(CurrGoodsTxtLocalStringEvent != null)
+        {
+            CurrGoodsTxtLocalStringEvent.StringReference.SetReference("Goods_Table", Type.ToString());
         }
 
         if(oldGoodsCount != TypeGoodsCount)

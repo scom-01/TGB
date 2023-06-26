@@ -31,30 +31,30 @@ public class ResultPanelUI : MonoBehaviour
 
     public void UpdateResultPanel(StatsData stats)
     {
-        if (PhysicsAgg_Txt != null)
-            PhysicsAgg_Txt.text = string.Format($"{100f + stats.PhysicsAggressivePer} %");
-        if (MagicAgg_Txt != null)
-            MagicAgg_Txt.text = string.Format($"{100f + stats.MagicAggressivePer} %");
-        if (PhysicsDef_Txt != null)
-            PhysicsDef_Txt.text = string.Format($"{stats.PhysicsDefensivePer} %");
-        if (MagicDef_Txt != null)
-            MagicDef_Txt.text = string.Format($"{stats.MagicDefensivePer} %");
-        if (ElementalAgg_Txt != null)
-            ElementalAgg_Txt.text = string.Format($"{100f + stats.ElementalAggressivePer} %");
-        if (ElementalDef_Txt != null)
-            ElementalDef_Txt.text = string.Format($"{stats.ElementalDefensivePer} %");
-        if (AttackSpeed_Txt != null)
-            AttackSpeed_Txt.text = string.Format($"{100f + stats.AttackSpeedPer} %");
-        if (MaxHealth_Txt != null)
-            MaxHealth_Txt.text = string.Format($"{stats.MaxHealth}");
+        //if (PhysicsAgg_Txt != null)
+        //    PhysicsAgg_Txt.text = string.Format($"{100f + stats.PhysicsAggressivePer} %");
+        //if (MagicAgg_Txt != null)
+        //    MagicAgg_Txt.text = string.Format($"{100f + stats.MagicAggressivePer} %");
+        //if (PhysicsDef_Txt != null)
+        //    PhysicsDef_Txt.text = string.Format($"{stats.PhysicsDefensivePer} %");
+        //if (MagicDef_Txt != null)
+        //    MagicDef_Txt.text = string.Format($"{stats.MagicDefensivePer} %");
+        //if (ElementalAgg_Txt != null)
+        //    ElementalAgg_Txt.text = string.Format($"{100f + stats.ElementalAggressivePer} %");
+        //if (ElementalDef_Txt != null)
+        //    ElementalDef_Txt.text = string.Format($"{stats.ElementalDefensivePer} %");
+        //if (AttackSpeed_Txt != null)
+        //    AttackSpeed_Txt.text = string.Format($"{100f + stats.AttackSpeedPer} %");
+        //if (MaxHealth_Txt != null)
+        //    MaxHealth_Txt.text = string.Format($"{stats.MaxHealth}");
 
-        if (DataManager.Inst != null)
-        {
-            if (Goods_Gold_Txt != null)
-                Goods_Gold_Txt.text = string.Format($"{DataManager.Inst.GoldCount}");
-            if (Goods_ES_Txt != null)
-                Goods_ES_Txt.text = string.Format($"{DataManager.Inst.ElementalsculptureCount}");
-        }
+        //if (DataManager.Inst != null)
+        //{
+        //    if (Goods_Gold_Txt != null)
+        //        Goods_Gold_Txt.text = string.Format($"{DataManager.Inst.GoldCount}");
+        //    if (Goods_ES_Txt != null)
+        //        Goods_ES_Txt.text = string.Format($"{DataManager.Inst.ElementalsculptureCount}");
+        //}
     }
 }
 

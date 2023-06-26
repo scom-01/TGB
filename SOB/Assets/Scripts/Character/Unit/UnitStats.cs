@@ -65,6 +65,11 @@ namespace SOB.CoreSystem
         /// 원소 공격력 (수치만큼 %로 증가)
         /// </summary>
         public float ElementalAggressivePer { get => statsData.ElementalAggressivePer; set => statsData.ElementalAggressivePer = value; }
+        /// <summary>
+        /// 원소 공격력 (수치만큼 %로 증가)
+        /// </summary>
+        public float AttackSpeedPer { get => statsData.AttackSpeedPer; set => statsData.AttackSpeedPer = value; }
+        public float MaxHealth { get => statsData.MaxHealth; set => statsData.MaxHealth = value; }
 
         /// <summary>
         /// 공격 속성 
@@ -81,7 +86,7 @@ namespace SOB.CoreSystem
             {
                 StatsData = core.Unit.UnitData.statsStats;
                 invincibleTime = core.Unit.UnitData.invincibleTime;
-                CurrentHealth = StatsData.MaxHealth;
+                CurrentHealth = MaxHealth;
             }
         }
 

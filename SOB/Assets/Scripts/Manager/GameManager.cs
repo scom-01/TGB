@@ -290,10 +290,6 @@ public class GameManager : MonoBehaviour
                 Curr_UIState = UI_State.CutScene;
                 break;
             case UI_State.Result:
-                if (StageManager != null)
-                {
-                    ResultUI.resultPanel.UpdateResultPanel(StageManager.player.Core.GetCoreComponent<UnitStats>().StatsData);
-                }
                 ResultUI.Canvas.enabled = true;
                 EventSystem.current.SetSelectedGameObject(ResultUI.GoTitleBtn.gameObject);
                 Curr_UIState = UI_State.Result;
