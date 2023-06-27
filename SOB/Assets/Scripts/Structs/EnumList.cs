@@ -118,9 +118,9 @@ public enum ENEMY_Size
 
 public enum ENEMY_Level
 {
-    Normal = 0,
-    Elete = 1,
-    Boss = 2,
+    NormalEnemy = 0,
+    EleteEnemy = 1,
+    BossEnemy = 2,
 }
 
 #endregion

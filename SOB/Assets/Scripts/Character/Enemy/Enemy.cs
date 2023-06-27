@@ -42,7 +42,7 @@ public class Enemy : Unit
         }
         else
         {
-            if (enemyData.enemy_level == ENEMY_Level.Boss)
+            if (enemyData.enemy_level == ENEMY_Level.BossEnemy)
             {
                 if (DataManager.Inst != null)
                 {
@@ -61,7 +61,22 @@ public class Enemy : Unit
         }
 
         if (GameManager.Inst != null)
+        {
             GameManager.Inst.StageManager.SPM.UIEnemyCount--;
+
+            switch(enemyData.enemy_level)
+            {
+                case ENEMY_Level.NormalEnemy:
+                    GameManager.Inst.EnemyCount.Normal_Enemy_Count++;
+                    break;
+                case ENEMY_Level.EleteEnemy:
+                    GameManager.Inst.EnemyCount.Elete_Enemy_Count++;
+                    break;
+                case ENEMY_Level.BossEnemy:
+                    GameManager.Inst.EnemyCount.Boss_Enemy_Count++;
+                    break;
+            }            
+        }
     }
 
     protected override void Update()

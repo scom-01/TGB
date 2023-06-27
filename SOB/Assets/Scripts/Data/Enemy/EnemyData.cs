@@ -9,7 +9,7 @@ public class EnemyData : UnitData
     [Header("Type")]
     public ENEMY_Form enemy_form = ENEMY_Form.Grounded;
     public ENEMY_Size enemy_size = ENEMY_Size.Small;
-    public ENEMY_Level enemy_level = ENEMY_Level.Normal;
+    public ENEMY_Level enemy_level = ENEMY_Level.NormalEnemy;
 
     /// <summary>
     /// 유닛 공격 가능 거리
