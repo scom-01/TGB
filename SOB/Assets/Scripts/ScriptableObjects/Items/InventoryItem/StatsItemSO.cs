@@ -13,7 +13,8 @@ public class StatsItemSO : ItemDataSO
 {
     [Tooltip("아이템이 갖는 스탯")]
     public StatsData StatsDatas;
-
+    [Tooltip("최대체력이 아닌 현재 체력 증가값")]
+    public int Health;
     public EffectData effectData;
 
     [field: SerializeField] public List<ItemEffectSO> ItemEffects = new List<ItemEffectSO>();

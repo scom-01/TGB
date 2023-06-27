@@ -194,10 +194,10 @@ public class Inventory : MonoBehaviour
 
         ItemCount++;
         AddStat(itemData.StatsDatas);
-        if (itemData.StatsDatas.MaxHealth != 0.0f)
-        {
-            Unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += itemData.StatsDatas.MaxHealth;
-        }
+        //if (itemData.StatsDatas.MaxHealth != 0.0f)
+        //{
+        //    Unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += itemData.StatsDatas.MaxHealth;
+        //}
         Debug.Log($"Change UnitStats {unit.Core.GetCoreComponent<UnitStats>().StatsData}");
         //}
         return true;
@@ -242,10 +242,10 @@ public class Inventory : MonoBehaviour
 
         ItemCount++;
         AddStat(itemObject.StatsDatas);
-        if (itemObject.StatsDatas.MaxHealth != 0.0f)
-        {
-            Unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += itemObject.StatsDatas.MaxHealth;
-        }
+        //if (itemObject.StatsDatas.MaxHealth != 0.0f)
+        //{
+        //    Unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += itemObject.StatsDatas.MaxHealth;
+        //}
         Debug.Log($"Change UnitStats {Unit.Core.GetCoreComponent<UnitStats>().StatsData}");
         //}
         return true;
@@ -269,11 +269,11 @@ public class Inventory : MonoBehaviour
             {
                 Debug.Log($"Remove Item {itemData.name}");
                 AddStat(itemData.StatsDatas * -1f);
-                //아이템에 추가 체력 증가 옵션이 있을 경우 현재 체력에서 아이템 추가 체력의 일정 비율 감소
-                if (itemData.StatsDatas.MaxHealth != 0.0f)
-                {
-                    Unit.Core.GetCoreComponent<UnitStats>().CurrentHealth -= itemData.StatsDatas.MaxHealth * 0.33f;
-                }
+                ////아이템에 추가 체력 증가 옵션이 있을 경우 현재 체력에서 아이템 추가 체력의 일정 비율 감소
+                //if (itemData.StatsDatas.MaxHealth != 0.0f)
+                //{
+                //    Unit.Core.GetCoreComponent<UnitStats>().CurrentHealth -= itemData.StatsDatas.MaxHealth * 0.33f;
+                //}
 
                 _items.RemoveAt(i);
 
@@ -308,10 +308,10 @@ public class Inventory : MonoBehaviour
         {
             Debug.Log($"Remove Item {itemData.item.name}");
             AddStat(itemData.item.StatsDatas * -1f);
-            if (itemData.item.StatsDatas.MaxHealth != 0.0f)
-            {
-                Unit.Core.GetCoreComponent<UnitStats>().CurrentHealth -= itemData.item.StatsDatas.MaxHealth;
-            }
+            //if (itemData.item.StatsDatas.MaxHealth != 0.0f)
+            //{
+            //    Unit.Core.GetCoreComponent<UnitStats>().CurrentHealth -= itemData.item.StatsDatas.MaxHealth;
+            //}
 
             _items.Remove(itemData);
 

@@ -18,6 +18,7 @@ public class ItemBuffEventSO : ItemEffectSO
                 var items = buffItem;
                 buff.buffItem = items.BuffData;
                 buff.statsData = items.StatsDatas;
+                buff.Health = items.Health;
                 buff.effectData = items.effectData;
                 buff.itemEffects = items.ItemEffects;
                 if (unit.Core.GetCoreComponent<SoundEffect>())
