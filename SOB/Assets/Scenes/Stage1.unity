@@ -360,7 +360,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5626e3253cdde8e4aada6be4e4c100fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnCtrls: []
 --- !u!1001 &222845194
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -647,7 +646,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -290664195
-  m_SortingLayer: 7
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -10085,7 +10084,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1711795009
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -11828,7 +11827,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -460893653
-  m_SortingLayer: 9
+  m_SortingLayer: 10
   m_SortingOrder: 1
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1206994895
@@ -11902,7 +11901,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 650988021
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 69a5e6fd2ed44ee47bcb3371f3bed94f, type: 3}
   m_Color: {r: 0, g: 1, b: 0.89932394, a: 1}
@@ -13055,7 +13054,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -460893653
-  m_SortingLayer: 9
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4e70cd05a0e304940aeeaa167e472f22, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -13065,7 +13064,7 @@ SpriteRenderer:
   m_Size: {x: 0.16, y: 0.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1310946924
@@ -13330,7 +13329,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8042d2fc6943ce54eaa5cb7a4e92496e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitStatData_FilePath: D:\Unity\SOB\SOB\Assets\Resources\Json\UnitStatData.json
+  UnitData_DirectoryPath: /Resources/json/
+  UnitInventoryData_FileName: 
+  UnitGoodsData_FileName: 
+  SceneData_FileName: 
 --- !u!4 &1498734594
 Transform:
   m_ObjectHideFlags: 0
@@ -13372,6 +13374,7 @@ MonoBehaviour:
   SPM: {fileID: 193596151}
   CurrStageName: Stage1
   NextStageName: BossStage1
+  Start_UIState: 0
   respawnPoint: {fileID: 2048269062}
   EndPoint: {fileID: 795737771}
   PlayerPrefab: {fileID: 840319699589423306, guid: 842ba7b90e3d58f4baa7c0b00def52ec, type: 3}
@@ -14131,7 +14134,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -460893653
-  m_SortingLayer: 9
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4e70cd05a0e304940aeeaa167e472f22, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -14141,7 +14144,7 @@ SpriteRenderer:
   m_Size: {x: 0.16, y: 0.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &1637383324
@@ -14302,7 +14305,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -460893653
-  m_SortingLayer: 9
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: 591303193, guid: ed85fe63243ba1e4da6f1b45713b83fa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -14548,7 +14551,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -460893653
-  m_SortingLayer: 9
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4e70cd05a0e304940aeeaa167e472f22, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -14558,7 +14561,7 @@ SpriteRenderer:
   m_Size: {x: 0.16, y: 0.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1697225095
@@ -14958,9 +14961,9 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 0.4375, y: 0.5625}
-    newSize: {x: 0.16, y: 0.2}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.75, y: 0.875}
+    newSize: {x: 0.75, y: 0.875}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -15022,14 +15025,14 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -460893653
-  m_SortingLayer: 9
+  m_SortingLayer: 10
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4e70cd05a0e304940aeeaa167e472f22, type: 3}
+  m_Sprite: {fileID: -226388360, guid: f7bf72b4be9086e4c9eef46270d4a8f3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.2}
+  m_Size: {x: 0.75, y: 0.875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -15172,7 +15175,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -460893653
-  m_SortingLayer: 9
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4e70cd05a0e304940aeeaa167e472f22, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -15182,7 +15185,7 @@ SpriteRenderer:
   m_Size: {x: 0.16, y: 0.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1938419458
@@ -16437,6 +16440,22 @@ PrefabInstance:
     - target: {fileID: 8962217813712015483, guid: f56f1ee023624ac4caea1dd74560fdae, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962217813712015487, guid: f56f1ee023624ac4caea1dd74560fdae, type: 3}
+      propertyPath: m_Size.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962217813712015487, guid: f56f1ee023624ac4caea1dd74560fdae, type: 3}
+      propertyPath: m_Size.y
+      value: 0.875
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962217813712015487, guid: f56f1ee023624ac4caea1dd74560fdae, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -226388360, guid: f7bf72b4be9086e4c9eef46270d4a8f3, type: 3}
+    - target: {fileID: 8962217813712015487, guid: f56f1ee023624ac4caea1dd74560fdae, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f56f1ee023624ac4caea1dd74560fdae, type: 3}

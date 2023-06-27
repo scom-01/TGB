@@ -10,8 +10,30 @@ namespace SOB.Manager
 {
     public class SpawnManager : MonoBehaviour
     {
+        private StageManager StageManager
+        {
+            get
+            {
+                if(stageManager == null)
+                {
+                    stageManager = this.GetComponentInParent<StageManager>();
+                }
+                return stageManager;
+            }
+        }
         private StageManager stageManager;
-        public SpawnCtrl[] SpawnCtrls;
+        private SpawnCtrl[] SpawnCtrls
+        {
+            get
+            {
+                if (spwanCtrls.Length == 0)
+                {
+                    spwanCtrls = this.GetComponentsInChildren<SpawnCtrl>();
+                }
+                return spwanCtrls;
+            }
+        }
+        private SpawnCtrl[] spwanCtrls = { };
         public int UIEnemyCount
         {
             get
@@ -52,11 +74,6 @@ namespace SOB.Manager
         }
         private int currentSpawnIndex = 0;
 
-        private void Awake()
-        {
-            SpawnCtrls = this.GetComponentsInChildren<SpawnCtrl>();
-            stageManager = this.GetComponentInParent<StageManager>();
-        }
         private void Start()
         {
             CurrentSpawnIndex = 0;
@@ -65,14 +82,9 @@ namespace SOB.Manager
         {
             if (SpawnCtrls == null)
                 return;
-            if(stageManager == null)
-            {
-                stageManager = this.GetComponentInParent<StageManager>();
-            }
 
-            if (stageManager.isStageClear)
+            if (StageManager.isStageClear)
             {
-
                 return;
             }
 
@@ -85,18 +97,8 @@ namespace SOB.Manager
             }
 
             Debug.Log("Stage Clear!!!");
-            stageManager.isStageClear = true;
-            stageManager.OpenGate(stageManager.isStageClear);
-        }
-
-        private void OnEnable()
-        {
-            SpawnCtrls = this.GetComponentsInChildren<SpawnCtrl>();
-        }
-
-        private void OnDisable()
-        {
-
+            StageManager.isStageClear = true;
+            StageManager.OpenGate(StageManager.isStageClear);
         }
 
         public bool SpawnItem(GameObject SpawnPrefab, Vector3 pos, Transform transform, StatsItemSO itemData)

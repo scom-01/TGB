@@ -81,6 +81,8 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector]
     public float PlayTime;
+    [HideInInspector]
+    public Enemy_Count EnemyCount = new Enemy_Count();
 
     public event Action SaveAction;
 
@@ -356,6 +358,7 @@ public class GameManager : MonoBehaviour
         DataManager.Inst?.PlayerCurrHealthLoad(StageManager.player.Core.GetCoreComponent<UnitStats>());
         DataManager.Inst?.PlayerBuffLoad(StageManager.player.GetComponent<BuffSystem>());
         DataManager.Inst?.LoadPlayTime();
+        DataManager.Inst?.LoadEnemyCount();
         DataManager.Inst?.GameGoldLoad();
         DataManager.Inst?.GameElementalsculptureLoad();
         DataManager.Inst?.GameElementalGoodsLoad();
@@ -377,6 +380,7 @@ public class GameManager : MonoBehaviour
         }
 
         DataManager.Inst?.SavePlayTime(PlayTime);
+        DataManager.Inst?.SaveEnemyCount(EnemyCount);
         DataManager.Inst?.SaveScene(StageManager.CurrStageName);
         DataManager.Inst?.NextStage(StageManager.NextStageName);
         DataManager.Inst.PlayerInventoryDataSave(

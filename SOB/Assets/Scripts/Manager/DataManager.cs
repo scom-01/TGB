@@ -10,7 +10,6 @@ using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
-using static DataParsing;
 using Random = UnityEngine.Random;
 
 public class DataManager : MonoBehaviour
@@ -532,6 +531,24 @@ public class DataManager : MonoBehaviour
 
         //string stage = PlayerPrefs.GetString(GlobalValue.StageName, "CutScene1");
         //Debug.LogWarning($"Load SceneName Success {stage}");
+    }
+
+    public void LoadEnemyCount()
+    {
+        if (JSON_DataParsing.Json_Read_SceneData() == null)
+        {
+            Debug.LogWarning("EnemyCount Load Fail");
+            return;
+        }
+
+        if (GameManager.Inst == null)
+            return;
+
+        GameManager.Inst.EnemyCount = JSON_DataParsing.Json_Read_SceneData().EnemyCount;
+    }
+    public void SaveEnemyCount(Enemy_Count enemy_Count)
+    {
+        JSON_DataParsing.Json_Overwrite_EnemyCount(enemy_Count);
     }
 
     public void SavePlayTime(float _playTime)
