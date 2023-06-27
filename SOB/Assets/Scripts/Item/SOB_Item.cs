@@ -100,6 +100,7 @@ namespace SOB.Item
                 var items = Item as BuffItemSO;
                 buff.buffItem = items.BuffData;
                 buff.statsData = items.StatsDatas;
+                buff.Health = items.Health;
                 buff.effectData = items.effectData;
                 buff.itemEffects = items.ItemEffects;
                 unit.Core.GetCoreComponent<SoundEffect>().AudioSpawn(Item.effectData.AcquiredSoundEffect);                
