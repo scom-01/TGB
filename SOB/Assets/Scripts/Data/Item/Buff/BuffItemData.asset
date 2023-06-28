@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7774ae76107dc54e8991bca2af96082, type: 3}
   m_Name: BuffItemData
   m_EditorClassIdentifier: 
-  ItemName: HealthUpBuff
-  ItemDescription: HealthUpBuff
-  ItemSprite: {fileID: 21300000, guid: 15cc575b0d9a36846838578bfb080819, type: 3}
+  ItemIdx: 0
+  itemData:
+    ItemName: 
+    ItemDescription: 
+    ItemSprite: {fileID: -226388360, guid: f7bf72b4be9086e4c9eef46270d4a8f3, type: 3}
   StatsDatas:
-    MaxHealth: 30
+    MaxHealth: 0
     MovementVelocity: 0
     JumpVelocity: 0
     DefaultPower: 0
@@ -29,10 +31,13 @@ MonoBehaviour:
     MyElemental: 0
     ElementalDefensivePer: 0
     ElementalAggressivePer: 0
-  <AcquiredEffectPrefab>k__BackingField: {fileID: 5279545542555632717, guid: 54c319e2f98e0b04384f32b5f2f6b28b, type: 3}
-  <AcquiredSoundEffect>k__BackingField: {fileID: 8300000, guid: 5f81bdff582c2fc4488e1129bc037245, type: 3}
-  <isEquipment>k__BackingField: 0
-  <DetailSubUI>k__BackingField: 0
+  Health: 30
+  effectData:
+    <AcquiredEffectPrefab>k__BackingField: {fileID: 0}
+    <AcquiredSoundEffect>k__BackingField: {fileID: 0}
+    <isEquipment>k__BackingField: 0
+    <DetailSubUI>k__BackingField: 0
+  ItemEffects: []
   BuffData:
     DurationTime: 5
     BuffType: 0

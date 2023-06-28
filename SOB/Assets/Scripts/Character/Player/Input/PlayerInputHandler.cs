@@ -275,7 +275,6 @@ public class PlayerInputHandler : MonoBehaviour
                 }
                 else if (playerInput.currentActionMap == playerInput.actions.FindActionMap(InputEnum.GamePlay.ToString()))
                 {
-                    GameManager.Inst.SubUI.InventorySubUI.PutInventoryItem();
                     ChangeCurrentActionMap(InputEnum.UI, true);
                 }
             }

@@ -180,13 +180,6 @@ public class Inventory : MonoBehaviour
             return false;
         }
 
-        //
-        //if (_items.Contains(itemData))
-        //{
-
-        //}
-        //else
-        //{
         Debug.Log($"Add {itemData.name}, Success add {itemData.name}");
         if (unit.GetType() == typeof(Player))
             GameManager.Inst.SubUI.InventorySubUI.InventoryItems.AddItem(itemData);

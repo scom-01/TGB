@@ -14,7 +14,7 @@ public class Detector : MonoBehaviour
     public LayerMask DetectorMask { get; private set; }
 
     private List<GameObject> DetectedList = new List<GameObject>();
-    [SerializeField]private GameObject currentGO;
+    [SerializeField] private GameObject currentGO;
     //private float currentDistance = 0.0f;
     private void Awake()
     {
@@ -73,13 +73,13 @@ public class Detector : MonoBehaviour
                 {
                     currentGO = go;
                     Debug.Log($"제일 가까운 오브젝트 {currentGO.transform.parent.name}");
-                    if(currentGO.tag == "Item")
+                    if (currentGO.tag == "Item")
                     {
                         currentGO.GetComponentInParent<SOB_Item>().unit = unit;
                         currentGO.GetComponentInParent<SOB_Item>().Detected(this.gameObject.transform.position.x < currentGO.transform.position.x);
                     }
-                    else if(go.tag == "Interaction")
-                    {                        
+                    else if (go.tag == "Interaction")
+                    {
                         currentGO.GetComponent<InteractiveObject>().SetActiveBtnObj(true);
                         if (player.InputHandler.InteractionInput)
                         {
@@ -88,7 +88,7 @@ public class Detector : MonoBehaviour
                             currentGO.GetComponent<InteractiveObject>()?.Interactive();
                         }
                     }
-                    
+
                     continue;
                 }
 
@@ -98,11 +98,11 @@ public class Detector : MonoBehaviour
                 if (Vector2.Distance(currentGO.transform.position, this.gameObject.transform.position) > Vector2.Distance(go.transform.position, this.gameObject.transform.position))
                 {
                     //이전 아이템 UnDetected
-                    if (currentGO.tag =="Item")
+                    if (currentGO.tag == "Item")
                     {
                         currentGO.GetComponentInParent<SOB_Item>().UnDetected();
                     }
-                    else if(currentGO.tag == "Interaction")
+                    else if (currentGO.tag == "Interaction")
                     {
                         currentGO.GetComponent<InteractiveObject>().SetActiveBtnObj(false);
                         currentGO.GetComponent<InteractiveObject>().UnInteractive();
@@ -116,7 +116,7 @@ public class Detector : MonoBehaviour
                         currentGO.GetComponentInParent<SOB_Item>().Detected(this.gameObject.transform.position.x < currentGO.transform.position.x);
                     }
                     else if (go.tag == "Interaction")
-                    {                        
+                    {
                         currentGO.GetComponent<InteractiveObject>().SetActiveBtnObj(true);
                         if (player.InputHandler.InteractionInput)
                         {
@@ -152,7 +152,7 @@ public class Detector : MonoBehaviour
         if (collision.tag == "Item")
         {
             var item = collision.GetComponentInParent<SOB_Item>();
-            
+
             if (item == null)
                 return;
 
@@ -167,7 +167,7 @@ public class Detector : MonoBehaviour
             }
         }
         //아이템이 아닌 상호작용 가능한 오브젝트
-        else if(collision.tag == "Interaction")
+        else if (collision.tag == "Interaction")
         {
             if (!DetectedList.Contains(collision.gameObject))
             {
@@ -175,7 +175,7 @@ public class Detector : MonoBehaviour
             }
             StartCoroutine(CheckCurrentGO());
         }
-            }
+    }
     //Detected
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -231,7 +231,7 @@ public class Detector : MonoBehaviour
                 }
             }
         }
-        else if(collision.tag == "Interaction")
+        else if (collision.tag == "Interaction")
         {
             if (currentGO == null)
                 return;

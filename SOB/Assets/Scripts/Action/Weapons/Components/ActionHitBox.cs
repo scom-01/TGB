@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Localization.SmartFormat.Utilities;
 using UnityEngine.UIElements;
 using static UnityEngine.Rendering.DebugUI;
 
@@ -15,6 +16,7 @@ namespace SOB.Weapons.Components
 
         private Vector2 offset;
         private Collider2D[] detected;
+        private RaycastHit2D[] RayCastdetected;
         private BoxCollider2D Box2D
         {
             get
@@ -37,6 +39,8 @@ namespace SOB.Weapons.Components
         private bool isTriggerOn;
         private List<Collider2D> actionHitObjects = new List<Collider2D>();
         private HitAction[] hitActions = null;
+
+        private Vector2 PosOffset;
 
         public int currentHitBoxIndex = 0;
         protected override void HandleEnter()
@@ -221,6 +225,8 @@ namespace SOB.Weapons.Components
 
         private void HandleActionRectOn()
         {
+            PosOffset = core.Unit.transform.position;
+            Debug.Log($"PosOffset = {PosOffset}");
             if (currentActionData != null)
             {
                 CheckActionRect(currentActionData);
@@ -229,6 +235,158 @@ namespace SOB.Weapons.Components
 
         private void HandleActionRectOff()
         {
+            Vector2 oldPos = core.Unit.transform.position;
+            Debug.Log($"CurrPos = {oldPos}");
+            var temp = (PosOffset - oldPos);
+            Debug.Log($"Temp = {temp}");
+            offset.Set(
+                    transform.position.x  + (hitActions[currentHitBoxIndex].ActionRect.center.x * CoreMovement.FancingDirection),
+                    transform.position.y  + (hitActions[currentHitBoxIndex].ActionRect.center.y)
+                    );
+
+            RayCastdetected = Physics2D.BoxCastAll(offset, hitActions[currentHitBoxIndex].ActionRect.size, 0f, temp, temp.magnitude, data.DetectableLayers);
+
+            #region HitAction Effect Spawn
+            for (int k = 0; k < RayCastdetected.Length; k++)
+            {
+                var coll = RayCastdetected[k].collider;
+                
+                if (coll.gameObject.tag == this.gameObject.tag)
+                    continue;
+
+                if (coll.gameObject.tag == "Trap")
+                    continue;
+
+                //객체 사망 시 무시
+                if (coll.gameObject.GetComponentInParent<Unit>().Core.GetCoreComponent<Death>().isDead)
+                {
+                    continue;
+                }
+
+                if (coll.gameObject.GetComponentInParent<Enemy>() != null)
+                {
+                    coll.gameObject.GetComponentInParent<Enemy>().SetTarget(core.Unit);
+                }
+
+                //Hit시 효과
+                if (coll.TryGetComponent(out IDamageable damageable))
+                {
+                    for (int j = 0; j < hitActions[currentHitBoxIndex].RepeatAction; j++)
+                    {
+                        core.Unit.Inventory.ItemEffectExecute(core.Unit, coll.GetComponentInParent<Unit>());
+
+                        //EffectPrefab
+                        #region EffectPrefab
+                        if (hitActions[currentHitBoxIndex].EffectPrefab != null)
+                        {
+                            for (int i = 0; i < hitActions[currentHitBoxIndex].EffectPrefab.Length; i++)
+                            {
+                                damageable.HitEffect(hitActions[currentHitBoxIndex].EffectPrefab[i].Object, hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomRange, CoreMovement.FancingDirection);
+                            }
+                        }
+                        #endregion
+
+                        //AudioClip
+                        #region AudioClip
+                        if (hitActions[currentHitBoxIndex].audioClip != null)
+                        {
+                            for (int i = 0; i < hitActions[currentHitBoxIndex].audioClip.Length; i++)
+                            {
+                                CoreSoundEffect.AudioSpawn(hitActions[currentHitBoxIndex].audioClip[i]);
+                            }
+                        }
+                        #endregion
+
+                    }//ShakeCam
+                    #region ShakeCam
+                    if (hitActions[currentHitBoxIndex].camDatas != null)
+                    {
+                        for (int i = 0; i < hitActions[currentHitBoxIndex].camDatas.Length; i++)
+                        {
+                            Camera.main.GetComponent<CameraShake>().Shake(
+                                hitActions[currentHitBoxIndex].camDatas[i].RepeatRate,
+                                hitActions[currentHitBoxIndex].camDatas[i].Range,
+                                hitActions[currentHitBoxIndex].camDatas[i].Duration
+                                );
+                        }
+                    }
+                    #endregion
+                }
+
+                //Damage
+                if (coll.TryGetComponent(out IDamageable _damageable))
+                {
+                    for (int j = 0; j < hitActions[currentHitBoxIndex].RepeatAction; j++)
+                    {
+                        #region Damage
+                        //플레이어는 EnemyType이 없기때문에 생략
+                        if (coll.gameObject.tag == "Player")
+                        {
+                            _damageable.Damage
+                            (
+                                CoreUnitStats.StatsData,
+                                coll.GetComponentInParent<Unit>().UnitData.statsStats,
+                                CoreUnitStats.StatsData.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage,
+                                hitActions[currentHitBoxIndex].RepeatAction
+                            );
+                            continue;
+                        }
+
+                        switch (coll.GetComponentInParent<Enemy>().enemyData.enemy_size)
+                        {
+                            case ENEMY_Size.Small:
+                                _damageable.Damage
+                            (
+                                CoreUnitStats.StatsData,
+                                coll.GetComponentInParent<Unit>().UnitData.statsStats,
+                                (CoreUnitStats.StatsData.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage) * (1.0f + GlobalValue.Enemy_Size_WeakPer),
+                                hitActions[currentHitBoxIndex].RepeatAction
+                            );
+                                Debug.Log("Enemy Type Small, Normal Dam = " +
+                                    CoreUnitStats.StatsData.DefaultPower + hitActions[currentHitBoxIndex]
+                                    + " Enemy_Size_WeakPer Additional Dam = " +
+                                    (CoreUnitStats.StatsData.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
+                                break;
+                            case ENEMY_Size.Medium:
+                                _damageable.Damage
+                            (
+                                CoreUnitStats.StatsData,
+                                coll.GetComponentInParent<Unit>().UnitData.statsStats,
+                                (CoreUnitStats.StatsData.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage),
+                                hitActions[currentHitBoxIndex].RepeatAction
+                                );
+                                break;
+                            case ENEMY_Size.Big:
+                                _damageable.Damage
+                            (
+                                CoreUnitStats.StatsData,
+                                coll.GetComponentInParent<Unit>().UnitData.statsStats,
+                                (CoreUnitStats.StatsData.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer),
+                                hitActions[currentHitBoxIndex].RepeatAction
+                            );
+
+                                Debug.Log("Enemy Type Big, Normal Dam = " +
+                                    CoreUnitStats.StatsData.DefaultPower + hitActions[currentHitBoxIndex]
+                                    + " Enemy_Size_WeakPer Additional Dam = " +
+                                    (CoreUnitStats.StatsData.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
+                                    );
+                                break;
+                        }
+                    }
+                    #endregion
+                }
+
+                //KnockBack
+                #region KnockBack
+                if (coll.TryGetComponent(out IKnockBackable knockbackables))
+                {
+                    knockbackables.KnockBack(hitActions[currentHitBoxIndex].KnockbackAngle, hitActions[currentHitBoxIndex].KnockbackAngle.magnitude, CoreMovement.FancingDirection);
+                }
+                #endregion
+
+            }
+            #endregion
+
             foreach (var obj in actionHitObjects)
             {
                 Debug.Log($"공격 받았던 오브젝트 {obj.name}");
@@ -276,155 +434,6 @@ namespace SOB.Weapons.Components
             eventHandler.OnActionRectOff -= HandleActionRectOff;
         }
 
-        private void OnTriggerStay2D(Collider2D coll)
-        {
-            if (!isTriggerOn)
-                return;
-
-            Debug.Log($"{coll.name} Trigger Enter");
-            //data.DetectableLayers가 아니면 return
-            if ((data.DetectableLayers.value & (1 << coll.gameObject.layer)) <= 0)
-                return;
-
-            if (coll.gameObject.tag == this.gameObject.tag)
-                return;
-
-            if (coll.gameObject.tag == "Trap")
-                return;
-
-            if (hitActions == null)
-                return;
-
-            //중복 무시
-            if (actionHitObjects.Contains(coll))
-            {
-                Debug.Log($"{coll.name}은 이미 공격받았습니다.");
-                return;
-            }
-            //객체 사망 시 무시
-            if (coll.gameObject.GetComponentInParent<Unit>().Core.GetCoreComponent<Death>().isDead)
-            {
-                return;
-            }
-
-            if (coll.gameObject.GetComponentInParent<Enemy>() != null)
-            {
-                coll.gameObject.GetComponentInParent<Enemy>().SetTarget(core.Unit);
-            }
-
-            //중복히트를 제거하기 위한 처리
-            actionHitObjects.Add(coll);
-
-            //Hit시 효과
-            if (coll.TryGetComponent(out IDamageable damageable))
-            {
-                for (int j = 0; j < hitActions[currentHitBoxIndex].RepeatAction; j++)
-                {
-                    core.Unit.Inventory.ItemEffectExecute(core.Unit, coll.GetComponentInParent<Unit>());
-                    //EffectPrefab
-                    if (hitActions[currentHitBoxIndex].EffectPrefab != null)
-                    {
-                        for (int i = 0; i < hitActions[currentHitBoxIndex].EffectPrefab.Length; i++)
-                        {
-                            damageable.HitEffect(hitActions[currentHitBoxIndex].EffectPrefab[i].Object, hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomRange, CoreMovement.FancingDirection);
-                        }
-                    }
-
-                    //AudioClip
-                    if (hitActions[currentHitBoxIndex].audioClip != null)
-                    {
-                        for (int i = 0; i < hitActions[currentHitBoxIndex].audioClip.Length; i++)
-                        {
-                            CoreSoundEffect.AudioSpawn(hitActions[currentHitBoxIndex].audioClip[i]);
-                        }
-                    }
-                }
-                //ShakeCam
-                if (hitActions[currentHitBoxIndex].camDatas != null)
-                {
-                    for (int i = 0; i < hitActions[currentHitBoxIndex].camDatas.Length; i++)
-                    {
-                        Camera.main.GetComponent<CameraShake>().Shake(
-                            hitActions[currentHitBoxIndex].camDatas[i].RepeatRate,
-                            hitActions[currentHitBoxIndex].camDatas[i].Range,
-                            hitActions[currentHitBoxIndex].camDatas[i].Duration
-                            );
-                    }
-                }
-            }
-
-            //Damage
-            if (coll.TryGetComponent(out IDamageable _damageable))
-            {
-                for (int j = 0; j < hitActions[currentHitBoxIndex].RepeatAction; j++)
-                {
-                    #region Damage
-                    //플레이어는 EnemyType이 없기때문에 생략
-                    if (coll.gameObject.tag == "Player")
-                    {
-                        _damageable.Damage
-                        (
-                            CoreUnitStats.StatsData,
-                            coll.GetComponentInParent<Unit>().UnitData.statsStats,
-                            CoreUnitStats.StatsData.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage,
-                            hitActions[currentHitBoxIndex].RepeatAction
-                        );
-                        continue;
-                    }
-
-                    switch (coll.GetComponentInParent<Enemy>().enemyData.enemy_size)
-                    {
-                        case ENEMY_Size.Small:
-                            _damageable.Damage
-                        (
-                            CoreUnitStats.StatsData,
-                            coll.GetComponentInParent<Unit>().UnitData.statsStats,
-                            (CoreUnitStats.StatsData.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage) * (1.0f + GlobalValue.Enemy_Size_WeakPer),
-                            hitActions[currentHitBoxIndex].RepeatAction
-                        );
-                            Debug.Log("Enemy Type Small, Normal Dam = " +
-                                CoreUnitStats.StatsData.DefaultPower + hitActions[currentHitBoxIndex]
-                                + " Enemy_Size_WeakPer Additional Dam = " +
-                                (CoreUnitStats.StatsData.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
-                            break;
-                        case ENEMY_Size.Medium:
-                            _damageable.Damage
-                        (
-                            CoreUnitStats.StatsData,
-                            coll.GetComponentInParent<Unit>().UnitData.statsStats,
-                            (CoreUnitStats.StatsData.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage),
-                            hitActions[currentHitBoxIndex].RepeatAction
-                            );
-                            break;
-                        case ENEMY_Size.Big:
-                            _damageable.Damage
-                        (
-                            CoreUnitStats.StatsData,
-                            coll.GetComponentInParent<Unit>().UnitData.statsStats,
-                            (CoreUnitStats.StatsData.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer),
-                            hitActions[currentHitBoxIndex].RepeatAction
-                        );
-
-                            Debug.Log("Enemy Type Big, Normal Dam = " +
-                                CoreUnitStats.StatsData.DefaultPower + hitActions[currentHitBoxIndex]
-                                + " Enemy_Size_WeakPer Additional Dam = " +
-                                (CoreUnitStats.StatsData.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
-                                );
-                            break;
-                    }
-                }
-                #endregion
-            }
-
-            //KnockBack
-            #region KnockBack
-            if (coll.TryGetComponent(out IKnockBackable knockbackables))
-            {
-                knockbackables.KnockBack(hitActions[currentHitBoxIndex].KnockbackAngle, hitActions[currentHitBoxIndex].KnockbackAngle.magnitude, CoreMovement.FancingDirection);
-            }
-            #endregion
-        }
-
         private void OnDrawGizmos()
         {
             if (data == null)
@@ -440,7 +449,7 @@ namespace SOB.Weapons.Components
                     if (!action.Debug)
                         continue;
                     Gizmos.color = Color.white;
-                    Gizmos.DrawWireCube(transform.position + new Vector3(action.ActionRect.center.x * CoreMovement.FancingDirection, action.ActionRect.center.y, 0), action.ActionRect.size);
+                    Gizmos.DrawWireCube(transform.position + new Vector3(action.ActionRect.center.x * CoreMovement.FancingDirection, action.ActionRect.center.y, 0), action.ActionRect.size);                    
                 }
             }
         }
