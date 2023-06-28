@@ -97,6 +97,8 @@ public enum Stats_TYPE
     ElementalDef,
     AttackSpeed,
     MaxHealth,
+    MoveSpeed,
+    JumpVelocity,
 }
 
 #endregion

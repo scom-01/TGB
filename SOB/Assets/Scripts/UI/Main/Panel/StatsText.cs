@@ -46,6 +46,12 @@ public class StatsText : MonoBehaviour
                 case Stats_TYPE.MaxHealth:
                     stats = GameManager.Inst.StageManager.player.Core.GetCoreComponent<UnitStats>().MaxHealth;
                     break;
+                case Stats_TYPE.MoveSpeed:
+                    stats = 100f + GameManager.Inst.StageManager.player.Core.GetCoreComponent<UnitStats>().MoveSpeed;
+                    break;
+                case Stats_TYPE.JumpVelocity:
+                    stats = 100f + GameManager.Inst.StageManager.player.Core.GetCoreComponent<UnitStats>().JumpVelocity;
+                    break;
             }
             return stats;
         }

@@ -70,6 +70,8 @@ namespace SOB.CoreSystem
         /// </summary>
         public float AttackSpeedPer { get => statsData.AttackSpeedPer; set => statsData.AttackSpeedPer = value; }
         public float MaxHealth { get => statsData.MaxHealth; set => statsData.MaxHealth = value; }
+        public float MoveSpeed { get => statsData.MovementVelocity; set => statsData.MovementVelocity = value; }
+        public float JumpVelocity { get => statsData.JumpVelocity; set => statsData.JumpVelocity = value; }
 
         /// <summary>
         /// 공격 속성 
