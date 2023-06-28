@@ -156,19 +156,8 @@ public class Inventory : MonoBehaviour
     public bool AddInventoryItem(GameObject itemObject)
     {
         StatsItemSO itemData = itemObject.GetComponent<SOB_Item>().Item;
-        if (_items.Count >= 8)
-        {
-            CheckItem = itemObject;
-            Debug.LogWarning("Inventory is full");
 
-            if (Unit.GetType() == typeof(Player))
-                GameManager.Inst.SubUI.InventorySubUI.ChangeInventoryItem();
-            if (Unit.GetType() == typeof(Player))
-                GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.UI, true);
-            //아이템 교체하는 코드
-            return false;
-        }
-
+        //중복금지
         for (int i = 0; i < _items.Count; i++)
         {
             if (_items[i].item == itemData)
@@ -178,7 +167,20 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        ////중복금지
+        if (_items.Count >= 8)
+        {
+            CheckItem = itemObject;
+            Debug.LogWarning("Inventory is full");
+
+            if (Unit.GetType() == typeof(Player))
+                GameManager.Inst.SubUI.InventorySubUI.SetInventoryState(InventoryUI_State.Change);
+            if (Unit.GetType() == typeof(Player))
+                GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.UI, true);
+            //아이템 교체하는 코드
+            return false;
+        }
+
+        //
         //if (_items.Contains(itemData))
         //{
 
@@ -210,7 +212,7 @@ public class Inventory : MonoBehaviour
             Debug.LogWarning("Inventory is full");
 
             if (Unit.GetType() == typeof(Player))
-                GameManager.Inst.SubUI.InventorySubUI.ChangeInventoryItem();
+                GameManager.Inst.SubUI.InventorySubUI.SetInventoryState(InventoryUI_State.Change);
             if (Unit.GetType() == typeof(Player))
                 GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.UI, true);
             //아이템 교체하는 코드
