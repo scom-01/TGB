@@ -3,9 +3,15 @@ using Unity.VisualScripting;
 using UnityEngine.Localization;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+public enum InventoryUI_State
+{
+    Put,
+    Change,
+}
 
 namespace SOB.Manager
-{
+{   
     public class InventoryUI : MonoBehaviour
     {
         private Player Player
@@ -45,7 +51,6 @@ namespace SOB.Manager
             }
         }
 
-        public event Action OnInteractionInput;
 
         public InventoryItems InventoryItems
         {
@@ -87,6 +92,10 @@ namespace SOB.Manager
         private InventoryItems inventoryItems;
         private InventoryStats inventoryStats;
         private InventoryDescript inventoryDescript;
+
+
+        public event Action OnInteractionInput;
+        private InventoryUI_State State = InventoryUI_State.Put;
         public Canvas Canvas
         {
             get
@@ -112,9 +121,13 @@ namespace SOB.Manager
                 Debug.LogWarning("InventoryUI inputHandler is null");
                 return;
             }
-
+            if(inputHandler.playerInput.currentActionMap != inputHandler.playerInput.actions.FindActionMap(InputEnum.UI.ToString()))
+            {
+                return;
+            }
             if (inputHandler.InteractionInput)
             {
+                ChangeInventoryState(State);
                 OnInteractionInput?.Invoke();
             }
         }
@@ -125,7 +138,7 @@ namespace SOB.Manager
             {
                 for (int i = 0; i < PlayerInventory._items.Count; i++)
                 {
-                    InventoryItems.items[i].StatsItemData = PlayerInventory._items[i].item;
+                    InventoryItems.Items[i].StatsItemData = PlayerInventory._items[i].item;
                 }
             }                
         }
@@ -141,6 +154,24 @@ namespace SOB.Manager
             return true;
         }
 
+        public void ChangeInventoryState(InventoryUI_State state)
+        {
+            NullCheckInput();
+            switch (state)
+            {
+                case InventoryUI_State.Put:
+                    PutInventoryItem();
+                    break;
+                case InventoryUI_State.Change:
+                    ChangeInventoryItem();
+                    break;
+            }
+        }
+
+        public void SetInventoryState(InventoryUI_State state)
+        {
+            State = state;
+        }
         /// <summary>
         /// InteractionInput 시 인벤토리아이템을 떨어뜨리는 상태로 전환
         /// </summary>

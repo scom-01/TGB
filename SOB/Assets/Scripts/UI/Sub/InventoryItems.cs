@@ -4,7 +4,18 @@ using UnityEngine;
 
 public class InventoryItems : MonoBehaviour
 {
-    public List<InventoryItem> items = new List<InventoryItem>();
+    public List<InventoryItem> Items
+    {
+        get
+        {
+            if(items.Count == 0)
+            {
+                items = this.GetComponentsInChildren<InventoryItem>().ToList();
+            }
+            return items;
+        }
+    }
+    private List<InventoryItem> items = new List<InventoryItem>();
 
     public GameObject InventoryItemPrefab;
     public int MaxIndex;
@@ -35,7 +46,7 @@ public class InventoryItems : MonoBehaviour
         set
         {
             currentSelectItemIndex = Mathf.Clamp(value, 0, items.Count - 1);
-            CurrentSelectItem = items[currentSelectItemIndex];
+            CurrentSelectItem = Items[currentSelectItemIndex];
             GameManager.Inst.SubUI.InventorySubUI.InventoryDescript.SetDescript();
         }
     }
@@ -55,7 +66,7 @@ public class InventoryItems : MonoBehaviour
             for (int i = 0; i < MaxIndex; i++)
             {
                 var item = Instantiate(InventoryItemPrefab, this.transform).GetComponent<InventoryItem>();
-                items.Add(item);
+                Items.Add(item);
                 item.Index = i;
             }
         }
@@ -64,7 +75,7 @@ public class InventoryItems : MonoBehaviour
             for (int i = this.GetComponentsInChildren<InventoryItem>().Length; i < MaxIndex; i++)
             {
                 var item = Instantiate(InventoryItemPrefab, this.transform).GetComponent<InventoryItem>();
-                items.Add(item);
+                Items.Add(item);
                 item.Index = i;
             }
         }
@@ -72,11 +83,11 @@ public class InventoryItems : MonoBehaviour
 
     public void AddItem(StatsItemSO StatsItem)
     {        
-        for (int i = 0; i < items.Count; i++)
+        for (int i = 0; i < Items.Count; i++)
         {
-            if (items[i].StatsItemData != null)
+            if (Items[i].StatsItemData != null)
             {
-                if (items[i].StatsItemData == StatsItem)
+                if (Items[i].StatsItemData == StatsItem)
                 {
                     break;
                 }
@@ -84,25 +95,25 @@ public class InventoryItems : MonoBehaviour
             }
             else
             {   
-                Debug.LogWarning($"{items[i].name}.StatsItemData is Null");
-                items[i].StatsItemData = StatsItem;
+                Debug.LogWarning($"{Items[i].name}.StatsItemData is Null");
+                Items[i].StatsItemData = StatsItem;
                 CurrentSelectItemIndex = i;
-                items[i].Index = CurrentSelectItemIndex;
+                Items[i].Index = CurrentSelectItemIndex;
                 break;
             }
         }
     }
     public void RemoveItem(StatsItemSO StatsItem)
     {
-        foreach(var item in items)
+        foreach(var item in Items)
         {
             if(item.StatsItemData == StatsItem)
             {
-                for(int i = item.Index; i < items.Count-1; i++)
+                for(int i = item.Index; i < Items.Count-1; i++)
                 {
-                    items[i].StatsItemData = items[i + 1].StatsItemData;
+                    Items[i].StatsItemData = Items[i + 1].StatsItemData;
                 }
-                items.Last().StatsItemData = null;
+                Items.Last().StatsItemData = null;
                 return;
             }
         }

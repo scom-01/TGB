@@ -249,6 +249,7 @@ public class GameManager : MonoBehaviour
                 {
                     PlayTimeUI.Canvas.enabled = true;
                 }
+                SubUI.InventorySubUI.SetInventoryState(InventoryUI_State.Put);
                 EventSystem.current.SetSelectedGameObject(null);
                 if (StageManager != null)
                     MainUI.Canvas.enabled = true;
@@ -259,11 +260,10 @@ public class GameManager : MonoBehaviour
                 break;
             case UI_State.Inventory:
                 PlayTimeUI.Canvas.enabled = true;
-                SubUI.InventorySubUI.PutInventoryItem();
                 SubUI.InventorySubUI.Canvas.enabled = true;
                 if (SubUI.InventorySubUI.InventoryItems.CurrentSelectItem == null)
                 {
-                    EventSystem.current.SetSelectedGameObject(SubUI.InventorySubUI.InventoryItems.items[0].gameObject);
+                    EventSystem.current.SetSelectedGameObject(SubUI.InventorySubUI.InventoryItems.Items[0].gameObject);
                 }
                 else
                 {
@@ -272,6 +272,7 @@ public class GameManager : MonoBehaviour
                 Curr_UIState = UI_State.Inventory;
                 break;
             case UI_State.Reforging:
+                SubUI.InventorySubUI.SetInventoryState(InventoryUI_State.Put);
                 ReforgingUI.EnabledChildrensCanvas(true);
                 ReforgingUI.Canvas.enabled = true;
                 EventSystem.current.SetSelectedGameObject(ReforgingUI.equipWeapon.gameObject);
@@ -287,6 +288,7 @@ public class GameManager : MonoBehaviour
                 Curr_UIState = UI_State.Cfg;
                 break;
             case UI_State.CutScene:
+                SubUI.InventorySubUI.SetInventoryState(InventoryUI_State.Put);
                 CutSceneUI.Canvas.enabled = true;
                 //CutSceneUI.Director_SetAsset(CutSceneUI.FadeIn);
                 Curr_UIState = UI_State.CutScene;
@@ -297,6 +299,7 @@ public class GameManager : MonoBehaviour
                 Curr_UIState = UI_State.Result;
                 break;
             case UI_State.Loading:
+                SubUI.InventorySubUI.SetInventoryState(InventoryUI_State.Put);
                 Curr_UIState = UI_State.Loading;
                 break;
         }
@@ -315,7 +318,6 @@ public class GameManager : MonoBehaviour
         }
         CfgUI.Canvas.enabled = false;
         SubUI.InventorySubUI.Canvas.enabled = false;
-        SubUI.InventorySubUI.NullCheckInput();
         SubUI.DetailSubUI.Canvas.enabled = false;
         ResultUI.Canvas.enabled = false;
         ReforgingUI.EnabledChildrensCanvas(false);
