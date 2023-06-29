@@ -33,6 +33,7 @@ namespace SOB.Weapons.Components
         private void HandleFixedStartMovement()
         {
             Debug.Log("HandleFixedStart");
+            CoreMovement.CanMovement = currentActionData.movements[currentMovementIndex].CanMoveCtrl;
             if (currentActionData != null)
             {
                 CheckMovementAction(currentActionData);
@@ -43,6 +44,7 @@ namespace SOB.Weapons.Components
         private void HandleFixedStopMovement()
         {
             Debug.Log("HandleFixedStop");
+            CoreMovement.CanMovement = false;
             CoreMovement.SetVelocityX(0f);
             core.Unit.RB.gravityScale = core.Unit.UnitData.UnitGravity;
         }
