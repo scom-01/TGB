@@ -29,11 +29,11 @@ public class BuffSystem : MonoBehaviour
             {
                 unit.Core.GetCoreComponent<UnitStats>().StatsData += buffs[i].statsData * -1f * buffs[i].CurrBuffCount;
 
-                //현재 체력이 버프의 체력증가 값보다 클 때 증가시켜줬던 체력을 빼앗는 코드
-                if (unit.Core.GetCoreComponent<UnitStats>().CurrentHealth > buffs[i].Health)
-                {
-                    unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += buffs[i].Health * -1f * buffs[i].CurrBuffCount;
-                }
+                ////현재 체력이 버프의 체력증가 값보다 클 때 증가시켜줬던 체력을 빼앗는 코드
+                //if (unit.Core.GetCoreComponent<UnitStats>().CurrentHealth > buffs[i].Health)
+                //{
+                //    unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += buffs[i].Health * -1f * buffs[i].CurrBuffCount;
+                //}
                 buffs.RemoveAt(i);
                 buffItems.RemoveAt(i);
                 if (buffs.Count <= 0)
