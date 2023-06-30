@@ -2,6 +2,7 @@ using SOB.CoreSystem;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.Localization.Components;
 using UnityEngine.UI;
@@ -9,6 +10,7 @@ using UnityEngine.UI;
 public class StatsText : MonoBehaviour
 {
     [SerializeField] private Stats_TYPE Type;
+    [SerializeField] private Image Img;
 
     [SerializeField] private TextMeshProUGUI StatsPowerTxt;
     [SerializeField] private LocalizeStringEvent StatsTxtLocalizeStringEvent;
@@ -65,7 +67,7 @@ public class StatsText : MonoBehaviour
         }
 
         if (StatsPowerTxt != null)
-        {
+        {            
             StatsPowerTxt.text = TypeStats.ToString() + " %";
         }
     }

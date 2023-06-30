@@ -99,6 +99,7 @@ public enum Stats_TYPE
     MaxHealth,
     MoveSpeed,
     JumpVelocity,
+    Health,
 }
 
 #endregion
