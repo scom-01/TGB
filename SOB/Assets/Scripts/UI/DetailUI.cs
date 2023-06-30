@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 
 public class DetailUI : MonoBehaviour
@@ -9,8 +10,10 @@ public class DetailUI : MonoBehaviour
     [Header("---Main---")]
     [SerializeField]
     private GameObject mainUI;
+    [SerializeField] private LocalizeStringEvent MainStringEvent;
+
     [Tooltip("하위 컴포넌트 중 'MainText' Text String")]
-    public string MainItemName 
+    public string ItemName 
     { 
         get 
         {
@@ -19,8 +22,14 @@ public class DetailUI : MonoBehaviour
         set
         {
             mainItemName = value;
-            if(mainUI != null)
-                mainUI.GetComponent<TextMeshProUGUI>().text = mainItemName;
+            if (MainStringEvent != null)
+            {
+                MainStringEvent.StringReference.SetReference("Item_Table", mainItemName);
+                if (MainStringEvent.StringReference.IsEmpty)
+                {
+                    MainStringEvent.gameObject.GetComponent<TextMeshProUGUI>().text = "";
+                }
+            }
         }
     }
     private string mainItemName;
@@ -43,66 +52,39 @@ public class DetailUI : MonoBehaviour
     [Header("---Sub---")]    
     [SerializeField]
     private GameObject subUI;
+    [SerializeField] private LocalizeStringEvent SubStringEvent;
     [Tooltip("하위 컴포넌트 중 'SubText' Text String")]
-    public string SubItemName
+    public string ItemDescript
     {
         get
         {
-            return subItemName;
+            return itemDescript;
         }
         set
         {
-            subItemName = value;
-            if (subUI != null)
-                subUI.GetComponent<TextMeshProUGUI>().text = subItemName;
+            itemDescript = value;
+            if (SubStringEvent != null)
+            {
+                SubStringEvent.StringReference.SetReference("Item_Table", ItemName + "_Descript");
+                if (SubStringEvent.StringReference.IsEmpty)
+                {
+                    SubStringEvent.gameObject.GetComponent<TextMeshProUGUI>().text = "";
+                }
+            }
         }
     }
-    private string subItemName;
+    private string itemDescript;
 
     ContentSizeFitter csf;
     private void Awake()
     {
         csf = GetComponent<ContentSizeFitter>();
-        Init();
-
         //this.gameObject.SetActive(false);
     }
 
     private void OnEnable()
     {
-        Init();
         //처음 SetActive시 ContentSizeFitter가 먹히지않던 해결 코드
         LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)csf.transform);
-    }
-
-    private void OnDisable()
-    {
-        
-    }
-
-    private void Init()
-    {
-        if (mainUI != null)
-        {
-            Debug.Log(mainUI.name);
-            mainUI.GetComponent<TextMeshProUGUI>().text = mainItemName;
-        }
-
-        if (subUI != null)
-        {
-            Debug.Log(subUI.name);
-            subUI.GetComponent<TextMeshProUGUI>().text = subItemName;
-        }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 }

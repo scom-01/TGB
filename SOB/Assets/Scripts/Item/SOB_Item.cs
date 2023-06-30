@@ -70,8 +70,8 @@ namespace SOB.Item
 
             GameManager.Inst.SubUI.isRight(isright);
             GameManager.Inst.SubUI.DetailSubUI.Icon.sprite = Item.itemData.ItemSprite;
-            GameManager.Inst.SubUI.DetailSubUI.MainItemName = Item.itemData.ItemName;
-            GameManager.Inst.SubUI.DetailSubUI.SubItemName = Item.itemData.ItemDescription;
+            GameManager.Inst.SubUI.DetailSubUI.ItemName = Item.itemData.ItemName;
+            GameManager.Inst.SubUI.DetailSubUI.ItemDescript = Item.itemData.ItemDescription;
 
             if (GameManager.Inst.SubUI.DetailSubUI.Canvas.enabled)
             {

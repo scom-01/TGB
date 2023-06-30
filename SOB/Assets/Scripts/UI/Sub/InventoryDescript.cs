@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Localization.Components;
 
 public class InventoryDescript : MonoBehaviour
 {
-    public TextMeshProUGUI ItemName;
-    public TextMeshProUGUI ItemDescript;
+    [SerializeField] private LocalizeStringEvent ItemNameStringEvent;
+    [SerializeField] private LocalizeStringEvent ItemDescriptStringEvent;
     public GameObject DropButton;
+    public GameObject DropKeyButton;
 
     public void OnEnable()
     {
@@ -20,20 +22,50 @@ public class InventoryDescript : MonoBehaviour
         var item = GameManager.Inst.SubUI.InventorySubUI.InventoryItems.CurrentSelectItem;
         if (item != null && item.StatsItemData != null)
         {
-            if (ItemName != null) 
-                ItemName.text = item.StatsItemData.itemData.ItemName;
-            if (ItemDescript != null)
-                ItemDescript.text = item.StatsItemData.itemData.ItemDescription;
+            if (ItemNameStringEvent != null)
+            {
+                ItemNameStringEvent.StringReference.SetReference("Item_Table", item.StatsItemData.itemData.ItemName);
+                if (ItemNameStringEvent.StringReference.IsEmpty)
+                {
+                    ItemNameStringEvent.gameObject.GetComponent<TextMeshProUGUI>().text = "";
+                }
+            }
+            
+            if (ItemDescriptStringEvent != null)
+            {
+                ItemDescriptStringEvent.StringReference.SetReference("Item_Table", item.StatsItemData.itemData.ItemDescription);
+                if (ItemDescriptStringEvent.StringReference.IsEmpty)
+                {
+                    ItemDescriptStringEvent.gameObject.GetComponent<TextMeshProUGUI>().text = "";
+                }
+            }
+            
             if (DropButton != null)
                 DropButton.SetActive(true);
+            if (DropKeyButton != null)
+                DropKeyButton.SetActive(true);
             return;
         }
-        if (ItemName != null)
-            ItemName.text = "";
-        if (ItemDescript != null)
-            ItemDescript.text = "";
+        if (ItemNameStringEvent != null)
+        {
+            ItemNameStringEvent.StringReference.SetReference("Item_Table", "Empty");
+            if (ItemNameStringEvent.StringReference.IsEmpty)
+            {
+                ItemNameStringEvent.gameObject.GetComponent<TextMeshProUGUI>().text = "";
+            }
+        }
+        if (ItemDescriptStringEvent != null)
+        {
+            ItemDescriptStringEvent.StringReference.SetReference("Item_Table", "Empty");
+            if (ItemDescriptStringEvent.StringReference.IsEmpty)
+            {
+                ItemDescriptStringEvent.gameObject.GetComponent<TextMeshProUGUI>().text = "";
+            }
+        }
         if (DropButton != null)
             DropButton.SetActive(false);
+        if (DropKeyButton != null)
+            DropKeyButton.SetActive(false);
     }
 
     public void Drop()

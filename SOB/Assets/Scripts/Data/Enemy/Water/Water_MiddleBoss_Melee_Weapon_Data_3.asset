@@ -70,6 +70,8 @@ MonoBehaviour:
               width: 2.25
               height: 1.5
             RepeatAction: 1
+            AdditionalDamage: 1
+            KnockbackAngle: {x: 0, y: 0}
             EffectPrefab:
             - isGround: 0
               isRandomPosRot: 0
@@ -87,7 +89,9 @@ MonoBehaviour:
               y: 0
               width: 2.46
               height: 1.4
-            RepeatAction: 0
+            RepeatAction: 1
+            AdditionalDamage: 1
+            KnockbackAngle: {x: 0, y: 0}
             EffectPrefab: []
             audioClip: []
             camDatas:

@@ -12,9 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836f02ead74e6a24db24927dd939c743, type: 3}
   m_Name: StatsItem 1
   m_EditorClassIdentifier: 
+  ItemIdx: 0
   itemData:
     ItemName: Stat1
-    ItemDescription: Stat1
+    <ItemNameLocal>k__BackingField:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    ItemDescription: Stat1_Descript
+    <ItemDescriptionLocal>k__BackingField:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     ItemSprite: {fileID: 124761585, guid: a0e4db65e203e1540af7f570753abfaa, type: 3}
   StatsDatas:
     MaxHealth: 999
@@ -30,9 +49,13 @@ MonoBehaviour:
     MyElemental: 0
     ElementalDefensivePer: 999
     ElementalAggressivePer: 999
+  Health: 0
   effectData:
     <AcquiredEffectPrefab>k__BackingField: {fileID: 5279545542555632717, guid: 54c319e2f98e0b04384f32b5f2f6b28b, type: 3}
     <AcquiredSoundEffect>k__BackingField: {fileID: 0}
     <isEquipment>k__BackingField: 1
     <DetailSubUI>k__BackingField: 0
   ItemEffects: []
+  references:
+    version: 2
+    RefIds: []
