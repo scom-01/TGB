@@ -147,6 +147,9 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        if (DataManager.Inst == null)
+            return;
+
         //해당 함수들은 GameManager에서 참조할 변수들이 있어 GameManager에서 선언
         DataManager.Inst.UserKeySettingLoad();
         DataManager.Inst.PlayerCfgBGMLoad();
@@ -156,6 +159,9 @@ public class GameManager : MonoBehaviour
         DataManager.Inst.GameGoldLoad();
         DataManager.Inst.GameElementalsculptureLoad();
         DataManager.Inst.GameElementalGoodsLoad();
+
+        //DeafultData는 GameManager Start()시에 호출되어야한다.(ex.SkipCutSceneList)
+        DataManager.Inst?.LoadSkipCutSceneList();
     }
 
     public void CheckPause(InputEnum inputEnum, bool pause)
@@ -360,6 +366,7 @@ public class GameManager : MonoBehaviour
         DataManager.Inst?.PlayerCurrHealthLoad(StageManager.player.Core.GetCoreComponent<UnitStats>());
         DataManager.Inst?.PlayerBuffLoad(StageManager.player.GetComponent<BuffSystem>());
         DataManager.Inst?.LoadPlayTime();
+        DataManager.Inst?.LoadSkipCutSceneList();
         DataManager.Inst?.LoadEnemyCount();
         DataManager.Inst?.GameGoldLoad();
         DataManager.Inst?.GameElementalsculptureLoad();
@@ -382,6 +389,7 @@ public class GameManager : MonoBehaviour
         }
 
         DataManager.Inst?.SavePlayTime(PlayTime);
+        DataManager.Inst?.SaveSkipCutSceneList(DataManager.Inst.SkipCutSceneList);
         DataManager.Inst?.SaveEnemyCount(EnemyCount);
         DataManager.Inst?.SaveScene(StageManager.CurrStageName);
         DataManager.Inst?.NextStage(StageManager.NextStageName);
@@ -405,7 +413,7 @@ public class GameManager : MonoBehaviour
         SaveAction += DataManager.Inst.PlayerUnlockItem;
     }
 
-    public void ClearData()
+    public void ResetData()
     {
         if (DataManager.Inst == null)
             return;
@@ -449,7 +457,7 @@ public class GameManager : MonoBehaviour
     public void MoveTitle()
     {
         ChangeUI(UI_State.Loading);
-        ClearData();
+        ResetData();
         AsyncOperation operation = SceneManager.LoadSceneAsync("LoadingScene");
     }
 }
