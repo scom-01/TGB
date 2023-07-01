@@ -44,6 +44,18 @@ public class CutSceneManager : MonoBehaviour
         }
     }
     private Image fillImg = null;
+
+    private void Start()
+    {
+        if (PlayableDirector != null)
+        {
+            PlayableDirector.stopped += OnTriggerSceneEnd;
+            if(this.GetComponent<SkipCutSceneIndex>() != null)
+            {
+                this.GetComponent<SkipCutSceneIndex>().CheckSkipCutScene();
+            }
+        }
+    }
     private void Update()
     {
         //DashInputStop으로 현재 
@@ -56,6 +68,10 @@ public class CutSceneManager : MonoBehaviour
             }
             if (Time.time >= inputHandler.interactionInputStartTime + SkipDurationTime)
             {
+                if (this.GetComponent<SkipCutSceneIndex>() != null) 
+                {
+                    this.GetComponent<SkipCutSceneIndex>().AddSkipCutScene();
+                }
                 OnTriggerSceneEnd();
                 isDone = true;
             }
@@ -76,8 +92,13 @@ public class CutSceneManager : MonoBehaviour
         playableDirector.Play();
     }
 
-
     public void OnTriggerSceneEnd()
+    {
+        DataManager.Inst.NextStage(NextSceneName);
+        GameManager.Inst.ClearScene();
+    }
+
+    public void OnTriggerSceneEnd(PlayableDirector playableDirector)
     {
         DataManager.Inst.NextStage(NextSceneName);
         GameManager.Inst.ClearScene();

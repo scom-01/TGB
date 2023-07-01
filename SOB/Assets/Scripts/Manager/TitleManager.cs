@@ -63,7 +63,7 @@ public class TitleManager : MonoBehaviour
         if (DataManager.Inst == null)
             return;
         
-        GameManager.Inst.ClearData();
+        GameManager.Inst.ResetData();
         List<string> SceneList = new List<string>();
 
         for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)

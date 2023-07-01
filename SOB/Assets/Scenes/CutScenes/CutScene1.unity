@@ -4510,7 +4510,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3
+  orthographic size: 6.62
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -11330,6 +11330,7 @@ GameObject:
   - component: {fileID: 1599425172}
   - component: {fileID: 1599425171}
   - component: {fileID: 1599425173}
+  - component: {fileID: 1599425174}
   m_Layer: 0
   m_Name: CutSceneManager
   m_TagString: Untagged
@@ -11383,6 +11384,8 @@ MonoBehaviour:
   m_Events:
     m_Signals:
     - {fileID: 11400000, guid: 26ff85d3af80c4941b0acf09031be278, type: 2}
+    - {fileID: 11400000, guid: 96bb2e38c1bfca14a9aa20903435d6e5, type: 2}
+    - {fileID: 11400000, guid: 59e647acc7dc6aa42ba5c46f6a14fbce, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -11398,6 +11401,48 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 1
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1599425174}
+          m_TargetAssemblyTypeName: SkipCutSceneIndex, Assembly-CSharp
+          m_MethodName: AddSkipCutScene
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1599425174}
+          m_TargetAssemblyTypeName: SkipCutSceneIndex, Assembly-CSharp
+          m_MethodName: CheckSkipCutScene
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+--- !u!114 &1599425174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599425170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aacbe83fcff47ec48a78ea1dbf20ed82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idx: 1
+  Director: {fileID: 2137372946}
 --- !u!1 &1601459032
 GameObject:
   m_ObjectHideFlags: 0

@@ -5853,6 +5853,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 210883984}
+  - component: {fileID: 210883985}
   m_Layer: 5
   m_Name: Move Speed
   m_TagString: Untagged
@@ -5882,6 +5883,22 @@ RectTransform:
   m_AnchoredPosition: {x: 50, y: -175}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &210883985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210883983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b30392dbea1af4c86ff4374b473c88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 8
+  Img: {fileID: 0}
+  StatsPowerTxt: {fileID: 376570384}
+  StatsTxtLocalizeStringEvent: {fileID: 0}
 --- !u!1 &224812542
 GameObject:
   m_ObjectHideFlags: 0
@@ -6646,6 +6663,97 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 254402925}
   m_CullTransparentMesh: 1
+--- !u!1 &299186110
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 299186111}
+  - component: {fileID: 299186113}
+  - component: {fileID: 299186112}
+  - component: {fileID: 299186114}
+  m_Layer: 5
+  m_Name: BloodOverlay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &299186111
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299186110}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 504744787}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &299186112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299186110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 0941322fef53b3b4aa08496ccf558068, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &299186113
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299186110}
+  m_CullTransparentMesh: 1
+--- !u!114 &299186114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299186110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a51b458843228f34ca5455d88bcccae7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sprite: {fileID: 21300000, guid: 0941322fef53b3b4aa08496ccf558068, type: 3}
+  value: 0
 --- !u!1 &299664729
 GameObject:
   m_ObjectHideFlags: 0
@@ -8058,6 +8166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 7
+  Img: {fileID: 0}
   StatsPowerTxt: {fileID: 1215638201}
   StatsTxtLocalizeStringEvent: {fileID: 359133139}
 --- !u!1 &369191098
@@ -9355,9 +9464,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f423579091df8d44caa1a960b1858c5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemName: {fileID: 832999977}
-  ItemDescript: {fileID: 2099093651}
+  ItemNameStringEvent: {fileID: 832999980}
+  ItemDescriptStringEvent: {fileID: 2099093654}
   DropButton: {fileID: 1136774534}
+  DropKeyButton: {fileID: 1217446677}
 --- !u!114 &403570174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9470,7 +9580,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40.55
+  m_fontSize: 27.45
   m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11010,7 +11120,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 488552653}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -11024,7 +11134,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: -383146769, guid: f7bf72b4be9086e4c9eef46270d4a8f3, type: 3}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -11176,6 +11286,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 299186111}
   - {fileID: 1711461516}
   m_Father: {fileID: 1781856027}
   m_RootOrder: 0
@@ -12159,6 +12270,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 553696827}
+  - component: {fileID: 553696828}
   m_Layer: 5
   m_Name: Elemental Power
   m_TagString: Untagged
@@ -12188,6 +12300,22 @@ RectTransform:
   m_AnchoredPosition: {x: 50, y: -225}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &553696828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553696826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b30392dbea1af4c86ff4374b473c88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 4
+  Img: {fileID: 0}
+  StatsPowerTxt: {fileID: 1876866277}
+  StatsTxtLocalizeStringEvent: {fileID: 0}
 --- !u!1 &558410781
 GameObject:
   m_ObjectHideFlags: 0
@@ -12413,6 +12541,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 572564250}
+  - component: {fileID: 572564251}
   m_Layer: 5
   m_Name: Jump Power
   m_TagString: Untagged
@@ -12442,6 +12571,22 @@ RectTransform:
   m_AnchoredPosition: {x: 50, y: -75}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &572564251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572564249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b30392dbea1af4c86ff4374b473c88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 9
+  Img: {fileID: 0}
+  StatsPowerTxt: {fileID: 1474958633}
+  StatsTxtLocalizeStringEvent: {fileID: 0}
 --- !u!1 &572735691
 GameObject:
   m_ObjectHideFlags: 0
@@ -13004,6 +13149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 4
+  Img: {fileID: 0}
   StatsPowerTxt: {fileID: 51642543}
   StatsTxtLocalizeStringEvent: {fileID: 579179595}
 --- !u!1 &586285831
@@ -14090,6 +14236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 6
+  Img: {fileID: 0}
   StatsPowerTxt: {fileID: 70409811}
   StatsTxtLocalizeStringEvent: {fileID: 678299055}
 --- !u!1 &683957065
@@ -16864,7 +17011,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
+  m_fontSize: 25.2
   m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -17701,6 +17848,7 @@ GameObject:
   - component: {fileID: 832999979}
   - component: {fileID: 832999978}
   - component: {fileID: 832999977}
+  - component: {fileID: 832999980}
   m_Layer: 0
   m_Name: Item_Name
   m_TagString: Untagged
@@ -17825,6 +17973,46 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 146.9, y: 40.22}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &832999980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832999976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 832999977}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &855212943
 GameObject:
   m_ObjectHideFlags: 0
@@ -19935,7 +20123,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17.75
+  m_fontSize: 20
   m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -20071,12 +20259,16 @@ MonoBehaviour:
     EarthGoods: 0
     WindGoods: 0
   Playerbuffs: []
+  SkipCutScene: 
   BGM: {fileID: -3819941863319329255, guid: 627eeb06f17324d4691ad4d62526af6c, type: 2}
   SFX: {fileID: 5162785712843760549, guid: 627eeb06f17324d4691ad4d62526af6c, type: 2}
   BGM_Volume: 0
   SFX_Volume: 0
   localizationIdx: 0
   localizationSettings: {fileID: 11400000, guid: c59adb791d4b5ac4b8821cc1e8db344a, type: 2}
+  references:
+    version: 2
+    RefIds: []
 --- !u!4 &938190823
 Transform:
   m_ObjectHideFlags: 0
@@ -20108,6 +20300,7 @@ MonoBehaviour:
   UnitInventoryData_FileName: UnitInventoryData
   UnitGoodsData_FileName: UnitGoodsData
   SceneData_FileName: SceneData
+  DefaultData_FileName: DefaultData
 --- !u!1 &945814747
 GameObject:
   m_ObjectHideFlags: 0
@@ -20372,6 +20565,7 @@ GameObject:
   - component: {fileID: 973116757}
   - component: {fileID: 973116759}
   - component: {fileID: 973116758}
+  - component: {fileID: 973116760}
   m_Layer: 5
   m_Name: FrontImg
   m_TagString: Untagged
@@ -20438,6 +20632,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973116756}
   m_CullTransparentMesh: 1
+--- !u!114 &973116760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973116756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c5173f66d272754987e2ea457467358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSpriteRender: 0
+  healthbarTrasform: {fileID: 299186111}
+  ZeroPosX: 0
 --- !u!1 &978224790
 GameObject:
   m_ObjectHideFlags: 0
@@ -21514,6 +21723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 3
+  Img: {fileID: 0}
   StatsPowerTxt: {fileID: 1709659364}
   StatsTxtLocalizeStringEvent: {fileID: 1008451802}
 --- !u!1 &1008830975
@@ -27242,6 +27452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 1
+  Img: {fileID: 0}
   StatsPowerTxt: {fileID: 768196739}
   StatsTxtLocalizeStringEvent: {fileID: 1328982178}
 --- !u!1 &1329510410
@@ -27255,6 +27466,7 @@ GameObject:
   - component: {fileID: 1329510411}
   - component: {fileID: 1329510413}
   - component: {fileID: 1329510412}
+  - component: {fileID: 1329510414}
   m_Layer: 0
   m_Name: SubText
   m_TagString: Untagged
@@ -27394,6 +27606,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1329510410}
   m_CullTransparentMesh: 1
+--- !u!114 &1329510414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329510410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1329510412}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1333647644
 GameObject:
   m_ObjectHideFlags: 0
@@ -27931,6 +28183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 0
+  Img: {fileID: 0}
   StatsPowerTxt: {fileID: 187773933}
   StatsTxtLocalizeStringEvent: {fileID: 1341130070}
 --- !u!1 &1352552656
@@ -28511,7 +28764,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: 617828.44}
+  m_AnchoredPosition: {x: 7, y: 390298.25}
   m_SizeDelta: {x: 21.1497, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1368125264
@@ -30514,18 +30767,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5d195c2f7f4b6e498c7a4afd2456fc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentHealthText: {fileID: 511981031}
-  CurrentHealthFillImg: {fileID: 973116758}
-  MovementVelocityStat: {fileID: 376570384}
-  JumpVelocityStat: {fileID: 1474958633}
-  DefaultPowerStat: {fileID: 1495630658}
-  AttackSpeedPerStat: {fileID: 1547633652}
-  PhysicsDefensivePerStat: {fileID: 65650487}
-  MagicDefensivePerStat: {fileID: 0}
-  PhysicsAggressivePerStat: {fileID: 0}
-  MagicAggressivePerStat: {fileID: 0}
-  ElementalDefensivePerStat: {fileID: 0}
-  ElementalAggressivePerStat: {fileID: 1876866277}
 --- !u!1 &1495630656
 GameObject:
   m_ObjectHideFlags: 0
@@ -31631,6 +31872,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1534813824}
+  - component: {fileID: 1534813825}
   m_Layer: 5
   m_Name: Attack Speed
   m_TagString: Untagged
@@ -31660,6 +31902,22 @@ RectTransform:
   m_AnchoredPosition: {x: 50, y: -25}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1534813825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534813823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b30392dbea1af4c86ff4374b473c88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 6
+  Img: {fileID: 0}
+  StatsPowerTxt: {fileID: 1547633652}
+  StatsTxtLocalizeStringEvent: {fileID: 0}
 --- !u!1 &1536430194
 GameObject:
   m_ObjectHideFlags: 0
@@ -31671,6 +31929,7 @@ GameObject:
   - component: {fileID: 1536430195}
   - component: {fileID: 1536430197}
   - component: {fileID: 1536430196}
+  - component: {fileID: 1536430198}
   m_Layer: 0
   m_Name: MainText
   m_TagString: Untagged
@@ -31795,6 +32054,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1536430194}
   m_CullTransparentMesh: 1
+--- !u!114 &1536430198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536430194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1536430196}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1542979351
 GameObject:
   m_ObjectHideFlags: 0
@@ -31929,8 +32228,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainUI: {fileID: 1536430194}
+  MainStringEvent: {fileID: 1536430198}
   Icon: {fileID: 1006545870}
   subUI: {fileID: 1329510410}
+  SubStringEvent: {fileID: 1329510414}
 --- !u!114 &1544045046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31951,8 +32252,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2000341922, guid: f7bf72b4be9086e4c9eef46270d4a8f3, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: -1181787501, guid: f7bf72b4be9086e4c9eef46270d4a8f3, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -33062,6 +33363,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1606518809}
+  - component: {fileID: 1606518810}
   m_Layer: 5
   m_Name: Attack Power
   m_TagString: Untagged
@@ -33091,6 +33393,22 @@ RectTransform:
   m_AnchoredPosition: {x: 50, y: -125}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1606518810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606518808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b30392dbea1af4c86ff4374b473c88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 0
+  Img: {fileID: 0}
+  StatsPowerTxt: {fileID: 1495630658}
+  StatsTxtLocalizeStringEvent: {fileID: 0}
 --- !u!1 &1616107912
 GameObject:
   m_ObjectHideFlags: 0
@@ -33679,6 +33997,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 8
+  Img: {fileID: 0}
   StatsPowerTxt: {fileID: 1424726816}
   StatsTxtLocalizeStringEvent: {fileID: 1643641638}
 --- !u!114 &1643641638
@@ -34858,6 +35177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 5
+  Img: {fileID: 0}
   StatsPowerTxt: {fileID: 1099625494}
   StatsTxtLocalizeStringEvent: {fileID: 1703793709}
 --- !u!1 &1709659362
@@ -35030,7 +35350,7 @@ RectTransform:
   - {fileID: 151544733}
   - {fileID: 1232090864}
   m_Father: {fileID: 504744787}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -35618,18 +35938,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5d195c2f7f4b6e498c7a4afd2456fc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentHealthText: {fileID: 0}
-  CurrentHealthFillImg: {fileID: 0}
-  MovementVelocityStat: {fileID: 1336129151}
-  JumpVelocityStat: {fileID: 978464726}
-  DefaultPowerStat: {fileID: 193439554}
-  AttackSpeedPerStat: {fileID: 1320162394}
-  PhysicsDefensivePerStat: {fileID: 632589183}
-  MagicDefensivePerStat: {fileID: 2086010690}
-  PhysicsAggressivePerStat: {fileID: 2002705665}
-  MagicAggressivePerStat: {fileID: 1858417409}
-  ElementalDefensivePerStat: {fileID: 36446477}
-  ElementalAggressivePerStat: {fileID: 1461940511}
 --- !u!1 &1762308715
 GameObject:
   m_ObjectHideFlags: 0
@@ -38603,6 +38911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 2
+  Img: {fileID: 0}
   StatsPowerTxt: {fileID: 709743060}
   StatsTxtLocalizeStringEvent: {fileID: 1918294641}
 --- !u!1 &1939652159
@@ -38996,6 +39305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 9
+  Img: {fileID: 0}
   StatsPowerTxt: {fileID: 1066050756}
   StatsTxtLocalizeStringEvent: {fileID: 1945367960}
 --- !u!114 &1945367960
@@ -42789,6 +43099,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2090576031}
+  - component: {fileID: 2090576032}
   m_Layer: 5
   m_Name: Defensive Power
   m_TagString: Untagged
@@ -42818,6 +43129,22 @@ RectTransform:
   m_AnchoredPosition: {x: 50, y: -275}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2090576032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2090576030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b30392dbea1af4c86ff4374b473c88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 2
+  Img: {fileID: 0}
+  StatsPowerTxt: {fileID: 65650487}
+  StatsTxtLocalizeStringEvent: {fileID: 0}
 --- !u!1 &2092185094
 GameObject:
   m_ObjectHideFlags: 0
@@ -43112,6 +43439,7 @@ GameObject:
   - component: {fileID: 2099093653}
   - component: {fileID: 2099093652}
   - component: {fileID: 2099093651}
+  - component: {fileID: 2099093654}
   m_Layer: 0
   m_Name: Item_Descript
   m_TagString: Untagged
@@ -43237,6 +43565,46 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 330, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2099093654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099093650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2099093651}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &2119633679
 GameObject:
   m_ObjectHideFlags: 0
@@ -43668,7 +44036,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: -149093.5}
+  m_AnchoredPosition: {x: 7, y: -95791.055}
   m_SizeDelta: {x: 21.1497, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2125587133

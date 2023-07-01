@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -68,6 +69,7 @@ public class DataManager : MonoBehaviour
     public List<Buff> Playerbuffs = new List<Buff>();
 
     public string SceneName { get; private set; }
+    public List<int> SkipCutSceneList = new List<int>();
     #endregion
 
     #region Setting
@@ -278,6 +280,23 @@ public class DataManager : MonoBehaviour
         {
             Console.WriteLine("Specified file doesn't exist");
         }
+            
+
+        //if (File.Exists(Application.dataPath + JSON_DataParsing.DefaultData_FilePath))
+        //{
+        //    try
+        //    {
+        //        File.Delete(Application.dataPath + JSON_DataParsing.DefaultData_FilePath);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine("The deletion failed: {0}", e.Message);
+        //    }
+        //}
+        //else
+        //{
+        //    Console.WriteLine("Specified file doesn't exist");
+        //}
         
     }
     public void PlayerInventoryDataLoad(Inventory inventory)
@@ -568,6 +587,25 @@ public class DataManager : MonoBehaviour
             return;
 
         GameManager.Inst.PlayTime = JSON_DataParsing.Json_Read_SceneData().PlayTime;
+    }
+
+    public void SaveSkipCutSceneList(List<int> idx)
+    {
+        if (idx == null)
+        {
+            return;
+        }
+
+        if(idx.Count == 0)
+        {
+            return;
+        }
+        JSON_DataParsing.Json_Overwrite_SkipCutScene(idx);
+    }
+
+    public void LoadSkipCutSceneList()
+    {
+        SkipCutSceneList = JSON_DataParsing.Json_Read_DefaultData().SkipCutSceneList.ToList();
     }
     #endregion
 
