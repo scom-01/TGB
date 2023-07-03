@@ -117,27 +117,6 @@ public class Player : Unit
             workspace.Set(CC2D.size.x, height);
             CC2D.size = workspace;
         }
-        //if (isDashState)
-        //{
-        //    workspace.Set(BC2D.size.x, height);
-        //    if (ground)
-        //    {
-        //        Vector2 center = new Vector2(BC2D.offset.x, BC2D.offset.y + CC2D.offset.y + (CC2D.radius / 2));                
-        //        BC2D.offset = center;
-        //        CC2D.offset = center;
-        //    }
-        //    else
-        //    {
-        //        BC2D.offset = Vector2.zero;
-        //        CC2D.offset = Vector2.zero;
-        //    }
-        //    BC2D.size = workspace;
-        //}
-        //else
-        //{
-        //    workspace.Set(BC2D.size.x, height);
-        //    BC2D.size = workspace;
-        //}
     }
 
     #endregion
@@ -157,11 +136,11 @@ public class Player : Unit
         GameManager.Inst.ChangeUI(UI_State.Result);
         GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.Cfg, false);
     }
-    #endregion
 
-    private void OnDrawGizmos()
+    public override void HitEffect()
     {
-        Gizmos.color = Color.red;
-        //Gizmos.DrawCube(transform.position + new Vector3(BC2D.size.x, 0, 0) * Movement.FancingDirection, BC2D.size);
+        base.HitEffect();
+
     }
+    #endregion
 }
