@@ -26,25 +26,6 @@ public class ReforgingMaterial : MonoBehaviour
 
     [Tooltip("선택된 무기 이름")]
     [SerializeField] private TextMeshProUGUI WeaponName;
-    //[Tooltip("현재 골드")]
-    //[SerializeField] private TextMeshProUGUI CurrentGoldAmountText;
-    //[Tooltip("현재 원소 조각")]
-    //[SerializeField] private TextMeshProUGUI ReforgingCostGoldAmountText;
-    //[Tooltip("재련 필요 골드 ")]
-    //[SerializeField] private TextMeshProUGUI CurrentSculptureAmountText;
-    //[Tooltip("재련 필요 원소 조각")]
-    //[SerializeField] private TextMeshProUGUI ReforgingCostSculptureAmountText;
-    //[Tooltip("재련 필요 불의 원소 조각")]
-    //[SerializeField] private TextMeshProUGUI ReforgingCostFireAmountText;
-    //[Tooltip("재련 필요 물의 원소 조각")]
-    //[SerializeField] private TextMeshProUGUI ReforgingCostWaterAmountText;
-    //[Tooltip("재련 필요 대지의 원소 조각")]
-    //[SerializeField] private TextMeshProUGUI ReforgingCostEarthAmountText;
-    //[Tooltip("재련 필요 바람의 원소 조각")]
-    //[SerializeField] private TextMeshProUGUI ReforgingCostWindAmountText;
-
-    //[SerializeField] private Color enoughColor;
-    //[SerializeField] private Color ShortageColor;
 
     private int currentGoldAmount;
     private int reforgingCostGoldAmount;
@@ -56,6 +37,32 @@ public class ReforgingMaterial : MonoBehaviour
     [SerializeField] private Transform GoodsTransform;
     [SerializeField] private List<GameObject> GoodsList;
     [SerializeField] private GameObject GoodsMaterial;
+
+    public AudioSource audio;
+    private AudioClip ReforgingSuccessClip
+    {
+        get
+        {
+            if(reforgingSuccessClip==null)
+            {
+                reforgingSuccessClip = Resources.Load<AudioClip>(GlobalValue.Sounds_UI_Path + GlobalValue.Reforging_Success);
+            }
+            return reforgingSuccessClip;
+        }
+    }
+    private AudioClip reforgingSuccessClip;
+    private AudioClip ReforgingFailureClip
+    {
+        get
+        {
+            if (reforgingFailureClip == null)
+            {
+                reforgingFailureClip = Resources.Load<AudioClip>(GlobalValue.Sounds_UI_Path + GlobalValue.Reforging_Failure);
+            }
+            return reforgingFailureClip;
+        }
+    }
+    private AudioClip reforgingFailureClip;
 
     private void OnEnable()
     {
@@ -198,6 +205,10 @@ public class ReforgingMaterial : MonoBehaviour
         SetRendering();
     }
 
+    /// <summary>
+    /// ReforgingBtn EventTrigger
+    /// </summary>
+    /// <param name="equip"></param>
     public void Reforging(EquipWeapon equip)
     {
         if (equip == null)
@@ -226,12 +237,28 @@ public class ReforgingMaterial : MonoBehaviour
             }
 
             equip.SetWeaponCommandData(ReforgingWeaponDataSO);
+
+            if (audio != null && ReforgingSuccessClip != null)
+            {
+                audio.clip = ReforgingSuccessClip;
+                audio.loop = false;
+                audio.playOnAwake = false;
+                audio.Play();
+            }
+
             GameManager.Inst.StageManager.player.Inventory.Weapon.SetCommandData(ReforgingWeaponDataSO);
             GameManager.Inst.StageManager.player.Inventory.weaponData = GameManager.Inst.StageManager.player.Inventory.Weapon.weaponData;
         }
         else
         {
             Debug.Log("There is not enough goods");
+            if (audio != null && ReforgingFailureClip != null)
+            {
+                audio.clip = ReforgingFailureClip;
+                audio.loop = false;
+                audio.playOnAwake = false;
+                audio.Play();
+            }
         }
     }
 }
