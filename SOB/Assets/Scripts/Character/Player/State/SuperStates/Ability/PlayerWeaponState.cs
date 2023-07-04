@@ -32,7 +32,6 @@ public class PlayerWeaponState : PlayerAbilityState
         player.InputHandler.UseInput(ref player.InputHandler.ActionInputs[idx]);
         //setVelocity = false;
 
-        weapon.InAir = !CollisionSenses.CheckIfGrounded;
         if (isPrimary)
         {
             weapon.Command = CommandEnum.Primary;
@@ -56,6 +55,7 @@ public class PlayerWeaponState : PlayerAbilityState
     {
         base.PhysicsUpdate();
 
+        weapon.InAir = !CollisionSenses.CheckIfGrounded;
         xInput = player.InputHandler.NormInputX;
         yInput = player.InputHandler.NormInputY;
         JumpInput = player.InputHandler.JumpInput;

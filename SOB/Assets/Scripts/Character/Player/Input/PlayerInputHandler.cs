@@ -339,10 +339,6 @@ public class PlayerInputHandler : MonoBehaviour
     }
     #endregion
 
-    private void OnGUI()
-    {
-    }
-
     /// <summary>
     /// Pause가 true이면 현재 isPause상태를 변경하고자 함
     /// </summary>

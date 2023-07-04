@@ -12,6 +12,7 @@ namespace SOB.Weapons.Components
         public void SetAttackName(int i) => name = $"Action {i}";
     }
 }
+[Serializable]
 public enum CommandEnum
 {
     Primary,

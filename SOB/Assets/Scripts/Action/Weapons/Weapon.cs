@@ -8,7 +8,7 @@ namespace SOB.Weapons
 {
     public class Weapon : MonoBehaviour
     {
-        [HideInInspector] public List<CommandEnum> CommandList = new List<CommandEnum>();
+        [field:SerializeField] public List<CommandEnum> CommandList = new List<CommandEnum>();
         public WeaponGenerator weaponGenerator 
         { 
             get
@@ -76,6 +76,14 @@ namespace SOB.Weapons
             actionCounterResetTimer.Tick();
         }
 
+        private void FixedUpdate()
+        {
+            if (WeaponCore == null)
+                return;
+
+            SetBoolName("inAir", InAir);
+        }
+
         private void OnEnable()
         {
             //TODO: event Action 사용 시 Finish처리가 animation 끝부분에 있기에 Cancle처리가 안됨
@@ -100,8 +108,7 @@ namespace SOB.Weapons
             if (oc != null)
             {
                 baseAnimator.runtimeAnimatorController = oc;
-            }
-            SetBoolName("inAir", InAir);            
+            }            
             SetBoolName("action", true);
             SetIntName("actionCounter", CurrentActionCounter);
             OnEnter?.Invoke();
@@ -189,6 +196,15 @@ namespace SOB.Weapons
             this.state = state;
             this.WeaponCore = core;
         }
+        public void OnGUI()
+        {
+            if(CommandList.Count > 0)
+            {
+                for(int i =0;i < CommandList.Count;i++)
+                {
+                    GUI.Label(new Rect(5, 5 * (i + 1), Screen.width, 20), CommandList[i].ToString());
+                }
+            }
+        }
     }
-
 }
