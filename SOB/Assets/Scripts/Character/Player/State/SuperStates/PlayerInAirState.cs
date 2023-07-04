@@ -76,6 +76,7 @@ public class PlayerInAirState : PlayerState
         xInput = player.InputHandler.NormInputX;
         JumpInput = player.InputHandler.JumpInput;
         JumpInputStop = player.InputHandler.JumpInputStop;
+        
         CheckJumpMultiplier();
 
         dashInput = player.InputHandler.DashInput;
@@ -98,9 +99,11 @@ public class PlayerInAirState : PlayerState
                 player.FSM.ChangeState(player.SecondaryAttackState);
             }
         }
-        else if (isGrounded && Movement.CurrentVelocity.y < 0.01f)
+
+        if (isGrounded && Movement.CurrentVelocity.y < 0.01f)
         {
             player.FSM.ChangeState(player.LandState);
+            return;
         }
         else if (JumpInput && (isTouchingWall || isTouchingWallBack || wallJumpCoyoteTime))
         {
@@ -108,29 +111,31 @@ public class PlayerInAirState : PlayerState
             isTouchingWall = CollisionSenses.CheckIfTouchingWall;
             player.WallJumpState.DetermineWallJumpDirection(isTouchingWall);
             player.FSM.ChangeState(player.WallJumpState);
+            return;
         }
         else if (JumpInput && player.JumpState.CanJump()&& !player.CC2D.isTrigger)
         {
             coyoteTime = false;
             player.FSM.ChangeState(player.JumpState);
+            return;
         }
         else if (isTouchingWall && xInput == Movement.FancingDirection && Movement.CurrentVelocity.y <= 0f)
         {
             player.FSM.ChangeState(player.WallSlideState);
+            return;
         }
         else if (dashInput && player.DashState.CheckIfCanDash())
         {
             player.Anim.SetBool("JumpFlip", false);
             player.FSM.ChangeState(player.DashState);
+            return;
         }
-        else
-        {
-            Movement.CheckIfShouldFlip(xInput);
-            Movement.SetVelocityX(UnitStats.StatsData.MovementVelocity * xInput);
 
-            player.Anim.SetFloat("yVelocity", Mathf.Clamp(Movement.CurrentVelocity.y, -3, 13));
-            player.Anim.SetFloat("xVelocity", Mathf.Abs(Movement.CurrentVelocity.x));
-        }
+        Movement.CheckIfShouldFlip(xInput);
+        Movement.SetVelocityX(UnitStats.StatsData.MovementVelocity * xInput);
+
+        player.Anim.SetFloat("yVelocity", Mathf.Clamp(Movement.CurrentVelocity.y, -3, 13));
+        player.Anim.SetFloat("xVelocity", Mathf.Abs(Movement.CurrentVelocity.x));
     }
 
     private void CheckJumpMultiplier()
