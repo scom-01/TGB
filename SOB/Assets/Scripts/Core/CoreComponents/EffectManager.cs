@@ -1,6 +1,7 @@
 using Cinemachine;
 using System.Data;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 namespace SOB.CoreSystem
 {
@@ -42,7 +43,7 @@ namespace SOB.CoreSystem
             }
             else
             {
-                return effectContainer.AddEffectList(effectPrefab, pos, rot, effectContainerTransform);
+                return effectContainer.CheckEffect(effectPrefab).GetObejct(pos, rot);
             }
         }
         public GameObject StartEffects(GameObject effectPrefab, Vector2 pos)
@@ -63,10 +64,10 @@ namespace SOB.CoreSystem
             else
             {
                 if (core.GetCoreComponent<Movement>().FancingDirection > 0)
-                {
-                    return effectContainer.AddEffectList(effectPrefab, pos, Quaternion.identity, effectContainerTransform);
+                {                    
+                    return effectContainer.CheckEffect(effectPrefab).GetObejct(pos, Quaternion.Euler(effectPrefab.transform.eulerAngles));
                 }
-                return effectContainer.AddEffectList(effectPrefab, pos, Quaternion.Euler(effectPrefab.transform.eulerAngles.x, 180.0f, effectPrefab.transform.eulerAngles.z), effectContainerTransform);
+                return effectContainer.CheckEffect(effectPrefab).GetObejct(pos, Quaternion.Euler(effectPrefab.transform.eulerAngles.x, 180.0f, effectPrefab.transform.eulerAngles.z));
             }
         }
         public GameObject StartEffects(GameObject effectPrefab, Vector2 pos, Vector3 euler)
@@ -80,7 +81,7 @@ namespace SOB.CoreSystem
             {
                 if (core.GetCoreComponent<Movement>().FancingDirection > 0)
                 {
-                    return Instantiate(effectPrefab, pos, Quaternion.identity, effectContainerTransform);
+                    return Instantiate(effectPrefab, pos, Quaternion.Euler(euler), effectContainerTransform);
                 }
                 return Instantiate(effectPrefab, pos, Quaternion.Euler(euler.x, euler.y, euler.z), effectContainerTransform);
             }
@@ -88,9 +89,9 @@ namespace SOB.CoreSystem
             {
                 if (core.GetCoreComponent<Movement>().FancingDirection > 0)
                 {
-                    return effectContainer.AddEffectList(effectPrefab, pos, Quaternion.identity, effectContainerTransform);
+                    return effectContainer.CheckEffect(effectPrefab).GetObejct(pos, Quaternion.Euler(euler));
                 }
-                return effectContainer.AddEffectList(effectPrefab, pos, Quaternion.Euler(euler.x, euler.y, euler.z), effectContainerTransform);
+                return effectContainer.CheckEffect(effectPrefab).GetObejct(pos, Quaternion.Euler(euler.x, euler.y, euler.z));
             }
         }
 
@@ -113,9 +114,9 @@ namespace SOB.CoreSystem
             {
                 if (core.GetCoreComponent<Movement>().FancingDirection > 0)
                 {
-                    return effectContainer.AddEffectList(effectPrefab, transform.position, Quaternion.Euler(effectPrefab.transform.eulerAngles), effectContainerTransform);
+                    return effectContainer.CheckEffect(effectPrefab).GetObejct(transform.position, Quaternion.Euler(effectPrefab.transform.eulerAngles));
                 }
-                return effectContainer.AddEffectList(effectPrefab, transform.position, Quaternion.Euler(effectPrefab.transform.eulerAngles.x, 180.0f, effectPrefab.transform.eulerAngles.z), effectContainerTransform);
+                return effectContainer.CheckEffect(effectPrefab).GetObejct(transform.position, Quaternion.Euler(effectPrefab.transform.eulerAngles.x, 180.0f, effectPrefab.transform.eulerAngles.z));
             }
         }
 
