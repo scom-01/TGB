@@ -75,7 +75,7 @@ public class PlayerWeaponState : PlayerAbilityState
 
         //공중에서 공격 후 착지상태
         //TODO:Input의 boolean값을 가져와서 판별하는 방법으로 변경해야 할 듯 하다 ex)AttackInputs
-        if (!player.InputHandler.ActionInputs[(int)CombatInputs.primary] && weapon.InAir && CollisionSenses.CheckIfGrounded)
+        if (/*!player.InputHandler.ActionInputs[(int)CombatInputs.primary] &&*/ weapon.InAir && CollisionSenses.CheckIfGrounded)
         {
             weapon.EventHandler.AnimationFinishedTrigger();
             player.FSM.ChangeState(player.LandState);
@@ -112,7 +112,8 @@ public class PlayerWeaponState : PlayerAbilityState
         weapon.InitializeWeapon(this, player.Core);
     }
 
-    public bool CheckCommand(ref List<CommandEnum> q)
+    public bool CheckCommand
+        (ref List<CommandEnum> q)
     {
         CommandEnum command = CommandEnum.Secondary;
         if (isPrimary)

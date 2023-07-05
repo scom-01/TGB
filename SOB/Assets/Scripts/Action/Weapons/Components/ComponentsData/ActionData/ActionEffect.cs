@@ -27,6 +27,14 @@ namespace SOB.Weapons.Components
         /// </summary>
         public float isRandomRange;
         /// <summary>
+        /// Effect Offset과 Size
+        /// </summary>
+        public Rect EffectRect;
+        /// <summary>
+        /// isFollow Unit
+        /// </summary>
+        public bool isFollowing;
+        /// <summary>
         /// Spawn Object
         /// </summary>
         public GameObject Object;        

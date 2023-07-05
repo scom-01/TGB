@@ -47,6 +47,12 @@ public class GlobalValue : MonoBehaviour
     public const string Icon_EarthGoods_Path = "EarthGoods";
     public const string Icon_WindGoods_Path = "WindGoods";
     #endregion
+
+    #region UI Sound Path
+    public const string Sounds_UI_Path = "ScriptPath/UI/Sounds/";
+    public const string Reforging_Success = "Reforging_Success";
+    public const string Reforging_Failure = "Reforging_Failure";
+    #endregion
     /// <summary>
     /// Elemetal 속성 공격에 따른 추가 데미지 퍼센트
     /// ex) 0.3f일때 Weak Elemental에 대한 추가 데미지는 30%이다.
