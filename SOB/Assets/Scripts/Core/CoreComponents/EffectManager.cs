@@ -21,7 +21,7 @@ namespace SOB.CoreSystem
             }
             if (GameObject.FindGameObjectWithTag(effectContainerTagName).transform != null)
             {
-                effectContainer = GameObject.FindGameObjectWithTag(effectContainerTagName).GetComponent<EffectContainer>();                
+                effectContainer = GameObject.FindGameObjectWithTag(effectContainerTagName).GetComponent<EffectContainer>();
                 effectContainerTransform = GameObject.FindGameObjectWithTag(effectContainerTagName).transform;
                 if (effectContainer == null)
                 {
@@ -30,7 +30,7 @@ namespace SOB.CoreSystem
             }
         }
 
-        public GameObject StartEffects(GameObject effectPrefab, Vector2 pos, Quaternion rot)
+        public GameObject StartEffects(GameObject effectPrefab, Vector2 pos, Quaternion rot, bool _isFollow = false)
         {
             if (effectPrefab.GetComponent<EffectController>() == null)
             {
@@ -39,38 +39,14 @@ namespace SOB.CoreSystem
 
             if (effectPrefab.GetComponent<EffectController>().isDestroy)
             {
-                return Instantiate(effectPrefab, pos, rot, effectContainerTransform);
+                return Instantiate(effectPrefab, pos, rot, _isFollow ? this.transform : effectContainerTransform);
             }
             else
             {
-                return effectContainer.CheckEffect(effectPrefab).GetObejct(pos, rot);
+                return effectContainer.CheckEffect(effectPrefab, _isFollow ? this.transform : effectContainerTransform).GetObejct(pos, rot);
             }
         }
-        public GameObject StartEffects(GameObject effectPrefab, Vector2 pos)
-        {
-            if(effectPrefab.GetComponent<EffectController>() == null)
-            {
-                effectPrefab.AddComponent<EffectController>();
-            }
-
-            if(effectPrefab.GetComponent<EffectController>().isDestroy)
-            {
-                if (core.GetCoreComponent<Movement>().FancingDirection > 0)
-                {
-                    return Instantiate(effectPrefab, pos, Quaternion.identity, effectContainerTransform);
-                }
-                return Instantiate(effectPrefab, pos, Quaternion.Euler(effectPrefab.transform.eulerAngles.x, 180.0f, effectPrefab.transform.eulerAngles.z), effectContainerTransform);
-            }
-            else
-            {
-                if (core.GetCoreComponent<Movement>().FancingDirection > 0)
-                {                    
-                    return effectContainer.CheckEffect(effectPrefab).GetObejct(pos, Quaternion.Euler(effectPrefab.transform.eulerAngles));
-                }
-                return effectContainer.CheckEffect(effectPrefab).GetObejct(pos, Quaternion.Euler(effectPrefab.transform.eulerAngles.x, 180.0f, effectPrefab.transform.eulerAngles.z));
-            }
-        }
-        public GameObject StartEffects(GameObject effectPrefab, Vector2 pos, Vector3 euler)
+        public GameObject StartEffects(GameObject effectPrefab, Vector2 pos, bool _isFollow = false)
         {
             if (effectPrefab.GetComponent<EffectController>() == null)
             {
@@ -81,17 +57,41 @@ namespace SOB.CoreSystem
             {
                 if (core.GetCoreComponent<Movement>().FancingDirection > 0)
                 {
-                    return Instantiate(effectPrefab, pos, Quaternion.Euler(euler), effectContainerTransform);
+                    return Instantiate(effectPrefab, pos, Quaternion.Euler(effectPrefab.transform.eulerAngles), _isFollow ? this.transform : effectContainerTransform);
                 }
-                return Instantiate(effectPrefab, pos, Quaternion.Euler(euler.x, euler.y, euler.z), effectContainerTransform);
+                return Instantiate(effectPrefab, pos, Quaternion.Euler(effectPrefab.transform.eulerAngles.x, effectPrefab.transform.eulerAngles.y + 180.0f, effectPrefab.transform.eulerAngles.z), _isFollow ? this.transform : effectContainerTransform);
             }
             else
             {
                 if (core.GetCoreComponent<Movement>().FancingDirection > 0)
                 {
-                    return effectContainer.CheckEffect(effectPrefab).GetObejct(pos, Quaternion.Euler(euler));
+                    return effectContainer.CheckEffect(effectPrefab, _isFollow ? this.transform : effectContainerTransform).GetObejct(pos, Quaternion.Euler(effectPrefab.transform.eulerAngles));
                 }
-                return effectContainer.CheckEffect(effectPrefab).GetObejct(pos, Quaternion.Euler(euler.x, euler.y, euler.z));
+                return effectContainer.CheckEffect(effectPrefab, _isFollow ? this.transform : effectContainerTransform).GetObejct(pos, Quaternion.Euler(effectPrefab.transform.eulerAngles.x, effectPrefab.transform.eulerAngles.y + 180.0f, effectPrefab.transform.eulerAngles.z));
+            }
+        }
+        public GameObject StartEffects(GameObject effectPrefab, Vector2 pos, Vector3 euler, bool _isFollow = false)
+        {
+            if (effectPrefab.GetComponent<EffectController>() == null)
+            {
+                effectPrefab.AddComponent<EffectController>();
+            }
+
+            if (effectPrefab.GetComponent<EffectController>().isDestroy)
+            {
+                if (core.GetCoreComponent<Movement>().FancingDirection > 0)
+                {
+                    return Instantiate(effectPrefab, pos, Quaternion.Euler(euler), _isFollow ? this.transform : effectContainerTransform);
+                }
+                return Instantiate(effectPrefab, pos, Quaternion.Euler(euler.x, euler.y + 180f, euler.z), effectContainerTransform);
+            }
+            else
+            {
+                if (core.GetCoreComponent<Movement>().FancingDirection > 0)
+                {
+                    return effectContainer.CheckEffect(effectPrefab, _isFollow ? this.transform : effectContainerTransform).GetObejct(pos, Quaternion.Euler(euler));
+                }
+                return effectContainer.CheckEffect(effectPrefab, _isFollow ? this.transform : effectContainerTransform).GetObejct(pos, Quaternion.Euler(euler.x, euler.y + 180f, euler.z));
             }
         }
 
@@ -108,7 +108,7 @@ namespace SOB.CoreSystem
                 {
                     return Instantiate(effectPrefab, transform.position, Quaternion.Euler(effectPrefab.transform.eulerAngles), effectContainerTransform);
                 }
-                return Instantiate(effectPrefab, transform.position, Quaternion.Euler(effectPrefab.transform.eulerAngles.x, 180.0f, effectPrefab.transform.eulerAngles.z), effectContainerTransform);
+                return Instantiate(effectPrefab, transform.position, Quaternion.Euler(effectPrefab.transform.eulerAngles.x, effectPrefab.transform.eulerAngles.y + 180.0f, effectPrefab.transform.eulerAngles.z), effectContainerTransform);
             }
             else
             {
@@ -116,7 +116,7 @@ namespace SOB.CoreSystem
                 {
                     return effectContainer.CheckEffect(effectPrefab).GetObejct(transform.position, Quaternion.Euler(effectPrefab.transform.eulerAngles));
                 }
-                return effectContainer.CheckEffect(effectPrefab).GetObejct(transform.position, Quaternion.Euler(effectPrefab.transform.eulerAngles.x, 180.0f, effectPrefab.transform.eulerAngles.z));
+                return effectContainer.CheckEffect(effectPrefab).GetObejct(transform.position, Quaternion.Euler(effectPrefab.transform.eulerAngles.x, effectPrefab.transform.eulerAngles.y + 180.0f, effectPrefab.transform.eulerAngles.z));
             }
         }
 
@@ -133,36 +133,36 @@ namespace SOB.CoreSystem
                 return StartEffects(effectPrefab, new Vector2(
                                                     transform.position.x + Random.Range(-Range, Range),
                                                     transform.position.y + Random.Range(-Range, Range)),
-                                                    Quaternion.identity);
+                                                    Quaternion.Euler(effectPrefab.transform.eulerAngles));
             }
 
             return StartEffects(effectPrefab, new Vector2(
                                                     transform.position.x + Random.Range(-Range, Range),
                                                     transform.position.y + Random.Range(-Range, Range)),
-                                                    Quaternion.Euler(0f, 180.0f, 0f));
+                                                    Quaternion.Euler(effectPrefab.transform.eulerAngles.x, effectPrefab.transform.eulerAngles.y + 180.0f, effectPrefab.transform.eulerAngles.z));
         }
-        public GameObject StartEffectsWithRandomPos(GameObject effectPrefab, float Range, int FancingDirection)
+        public GameObject StartEffectsWithRandomPos(GameObject effectPrefab, float Range, int FancingDirection, bool _isFollow = false)
         {
             if (FancingDirection > 0)
             {
                 return StartEffects(effectPrefab, new Vector2(
                                                     transform.position.x + Random.Range(-Range, Range),
                                                     transform.position.y + Random.Range(-Range, Range)),
-                                                    Quaternion.identity);
+                                                    Quaternion.Euler(effectPrefab.transform.eulerAngles), _isFollow);
             }
 
             return StartEffects(effectPrefab, new Vector2(
                                                     transform.position.x + Random.Range(-Range, Range),
                                                     transform.position.y + Random.Range(-Range, Range)),
-                                                    Quaternion.Euler(0f, 180.0f, 0f));
+                                                    Quaternion.Euler(effectPrefab.transform.eulerAngles.x, effectPrefab.transform.eulerAngles.y + 180.0f, effectPrefab.transform.eulerAngles.z), _isFollow);
         }
-       
-        public GameObject StartEffectsWithRandomPosRot(GameObject effectPrefab, float Range)
+
+        public GameObject StartEffectsWithRandomPosRot(GameObject effectPrefab, float Range, bool _isFollow = false)
         {
             var randomRotation = Quaternion.Euler(0f, 0f, Random.Range(0, 360f));
             return StartEffects(effectPrefab, new Vector2(
                                                     transform.position.x + Random.Range(-Range, Range),
-                                                    transform.position.y + Random.Range(-Range, Range)), randomRotation);
+                                                    transform.position.y + Random.Range(-Range, Range)), randomRotation, _isFollow);
         }
     }
 }

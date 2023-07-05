@@ -42,9 +42,20 @@ namespace SOB.Weapons.Components
                 return;
             }
 
+            var offset = new Vector3(currParticles[currentEffectSpawnIndex].EffectRect.x * CoreMovement.FancingDirection, currParticles[currentEffectSpawnIndex].EffectRect.y);
+            var size = new Vector2(currParticles[currentEffectSpawnIndex].EffectRect.width, currParticles[currentEffectSpawnIndex].EffectRect.height);
             if (currParticles[currentEffectSpawnIndex].isGround)
             {
-                CoreEffectManager.StartEffects(currParticles[currentEffectSpawnIndex].Object, CoreCollisionSenses.GroundCheck.position);
+                if(currParticles[currentEffectSpawnIndex].isRandomPosRot)
+                {
+                    CoreEffectManager.StartEffects(currParticles[currentEffectSpawnIndex].Object,
+                        CoreCollisionSenses.GroundCheck.position, currParticles[currentEffectSpawnIndex].isFollowing);
+                }
+                else
+                {
+                    CoreEffectManager.StartEffects(currParticles[currentEffectSpawnIndex].Object,
+                        CoreCollisionSenses.GroundCheck.position + offset, currParticles[currentEffectSpawnIndex].isFollowing);
+                }
             }
             else
             {
@@ -52,11 +63,11 @@ namespace SOB.Weapons.Components
                 {
                     CoreEffectManager.StartEffectsWithRandomPosRot(
                             currParticles[currentEffectSpawnIndex].Object, 
-                            currParticles[currentEffectSpawnIndex].isRandomRange);
+                            currParticles[currentEffectSpawnIndex].isRandomRange, currParticles[currentEffectSpawnIndex].isFollowing);
                 }
                 else
                 {
-                    CoreEffectManager.StartEffects(currParticles[currentEffectSpawnIndex].Object);
+                    CoreEffectManager.StartEffects(currParticles[currentEffectSpawnIndex].Object, this.transform.position + offset, currParticles[currentEffectSpawnIndex].isFollowing);
                 }
             }
         }
