@@ -7,11 +7,13 @@ public class EffectController : MonoBehaviour
 {
     public bool isDestroy = false;
     private ParticleSystem particle;
+    private EffectPooling parent;
 
     public void Start()
     {
         particle = this.GetComponent<ParticleSystem>();
-        if(particle != null)
+        parent = this.GetComponentInParent<EffectPooling>();
+        if (particle != null)
         {
             var main = particle.main;
             if (isDestroy)
@@ -24,6 +26,21 @@ public class EffectController : MonoBehaviour
             }
         }
     }
+
+    private void OnDisable()
+    {
+        if (particle != null)
+        {
+            if (parent != null)
+            {
+                parent.ReturnObject(this.gameObject);
+            }
+            else
+            {
+                this.gameObject.SetActive(false);
+            }
+        }
+    }
     public void FinishAnim()
     {
         if(isDestroy)
@@ -32,7 +49,14 @@ public class EffectController : MonoBehaviour
         }
         else
         {
-            this.gameObject.SetActive(false);
+            if(parent != null)
+            {
+                parent.ReturnObject(this.gameObject);
+            }
+            else
+            {
+                this.gameObject.SetActive(false);
+            }
         }        
     }
 }
