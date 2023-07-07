@@ -623,9 +623,6 @@ public class DataManager : MonoBehaviour
             case GOODS_TPYE.Gold:
                 GoldCount += goodsAmount;
                 break;
-            case GOODS_TPYE.ElementalSculpture:
-                ElementalsculptureCount += goodsAmount;
-                break;
             case GOODS_TPYE.FireGoods:
                 ElementalGoodsCount.FireGoods += goodsAmount;
                 break;
@@ -646,9 +643,6 @@ public class DataManager : MonoBehaviour
         {
             case GOODS_TPYE.Gold:
                 GoldCount -= goodsAmount;
-                break;
-            case GOODS_TPYE.ElementalSculpture:
-                ElementalsculptureCount -= goodsAmount;
                 break;
             case GOODS_TPYE.FireGoods:
                 ElementalGoodsCount.FireGoods -= goodsAmount;

@@ -46,6 +46,12 @@ public class GlobalValue : MonoBehaviour
     public const string Icon_WaterGoods_Path = "WaterGoods";
     public const string Icon_EarthGoods_Path = "EarthGoods";
     public const string Icon_WindGoods_Path = "WindGoods";
+    public const string Symbol_UI_Path = "ScriptPath/UI/Sprites";
+    public const string Symbol_Gold_Path = "Symbol_Gold";
+    public const string Symbol_Fire_Path = "Symbol_Fire";
+    public const string Symbol_Water_Path = "Symbol_Water";
+    public const string Symbol_Earth_Path = "Symbol_Earth";
+    public const string Symbol_Wind_Path = "Symbol_Wind";
     #endregion
 
     #region UI Sound Path
