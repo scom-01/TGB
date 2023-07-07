@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class GoodsText : MonoBehaviour
 {
     [SerializeField] private GOODS_TPYE Type;
+    private GOODS_TPYE OldType = GOODS_TPYE.None;
 
     private Sprite[] SpriteAtlas
     {
@@ -15,7 +16,7 @@ public class GoodsText : MonoBehaviour
         {
             if (spriteAtlas.Length == 0)
             {
-                spriteAtlas = Resources.LoadAll<Sprite>(GlobalValue.Icon_UI_Path);
+                spriteAtlas = Resources.LoadAll<Sprite>(GlobalValue.Symbol_UI_Path + "/Symbol_Sheet");
             }
             return spriteAtlas;
         }
@@ -30,12 +31,13 @@ public class GoodsText : MonoBehaviour
             {
                 foreach (var sprite in SpriteAtlas)
                 {
-                    if (sprite.name == GlobalValue.Icon_Gold_Path)
+                    if (sprite.name == GlobalValue.Symbol_Gold_Path)
                     {
                         goldIcon = sprite;
-                        break;
+                        return goldIcon;
                     }
                 }
+                goldIcon = Resources.Load<Sprite>(GlobalValue.Symbol_UI_Path + "/" + GlobalValue.Symbol_Gold_Path);
             }
             return goldIcon;
         }
@@ -49,12 +51,13 @@ public class GoodsText : MonoBehaviour
             {
                 foreach (var sprite in SpriteAtlas)
                 {
-                    if (sprite.name == GlobalValue.Icon_FireGoods_Path)
+                    if (sprite.name == GlobalValue.Symbol_Fire_Path)
                     {
                         fireIcon = sprite;
-                        break;
+                        return fireIcon;
                     }
                 }
+                fireIcon = Resources.Load<Sprite>(GlobalValue.Symbol_UI_Path + "/" + GlobalValue.Symbol_Fire_Path);
             }
             return fireIcon;
         }
@@ -68,12 +71,13 @@ public class GoodsText : MonoBehaviour
             {
                 foreach (var sprite in SpriteAtlas)
                 {
-                    if (sprite.name == GlobalValue.Icon_WaterGoods_Path)
+                    if (sprite.name == GlobalValue.Symbol_Water_Path)
                     {
                         waterIcon = sprite;
-                        break;
+                        return waterIcon;
                     }
                 }
+                waterIcon = Resources.Load<Sprite>(GlobalValue.Symbol_UI_Path + "/" + GlobalValue.Symbol_Water_Path);
             }
             return waterIcon;
         }
@@ -87,12 +91,13 @@ public class GoodsText : MonoBehaviour
             {
                 foreach (var sprite in SpriteAtlas)
                 {
-                    if (sprite.name == GlobalValue.Icon_EarthGoods_Path)
+                    if (sprite.name == GlobalValue.Symbol_Earth_Path)
                     {
                         earthIcon = sprite;
-                        break;
+                        return earthIcon;
                     }
                 }
+                earthIcon = Resources.Load<Sprite>(GlobalValue.Symbol_UI_Path + "/" + GlobalValue.Symbol_Earth_Path);
             }
             return earthIcon;
         }
@@ -106,12 +111,13 @@ public class GoodsText : MonoBehaviour
             {
                 foreach (var sprite in SpriteAtlas)
                 {
-                    if (sprite.name == GlobalValue.Icon_WindGoods_Path)
+                    if (sprite.name == GlobalValue.Symbol_Wind_Path)
                     {
                         windIcon = sprite;
-                        break;
+                        return windIcon;
                     }
                 }
+                windIcon = Resources.Load<Sprite>(GlobalValue.Symbol_UI_Path + "/" + GlobalValue.Symbol_Wind_Path);
             }
             return windIcon;
         }
@@ -187,7 +193,11 @@ public class GoodsText : MonoBehaviour
     {
         if (IconImg != null && TypeIcon != null)
         {
-            IconImg.sprite = TypeIcon;
+            if(OldType != Type)
+            {
+                IconImg.sprite = TypeIcon;
+                OldType = Type;
+            }
         }
 
         if(CurrGoodsTxtLocalStringEvent != null)
@@ -199,7 +209,7 @@ public class GoodsText : MonoBehaviour
         {
             if (CurrGoodsCountTxt != null)
             {
-                CurrGoodsCountTxt.text = isLeftcolon ? ((Showcolon ? " : " : "") + TypeGoodsCount.ToString()) : (TypeGoodsCount.ToString() + (Showcolon ? " : " : ""));
+                CurrGoodsCountTxt.text = isLeftcolon ? ((Showcolon ? " : " : "") + string.Format("{0:#,###}", TypeGoodsCount)) : (string.Format("{0:#,###}", TypeGoodsCount) + (Showcolon ? " : " : ""));
             }
             oldGoodsCount = TypeGoodsCount;
         }

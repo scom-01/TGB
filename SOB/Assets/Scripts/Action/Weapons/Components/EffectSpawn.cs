@@ -41,7 +41,7 @@ namespace SOB.Weapons.Components
                 Debug.Log($"{Weapon.name} Particle Prefabs length mismatch");
                 return;
             }
-
+               
             var offset = new Vector3(currParticles[currentEffectSpawnIndex].EffectRect.x * CoreMovement.FancingDirection, currParticles[currentEffectSpawnIndex].EffectRect.y);
             var size = new Vector2(currParticles[currentEffectSpawnIndex].EffectRect.width, currParticles[currentEffectSpawnIndex].EffectRect.height);
             if (currParticles[currentEffectSpawnIndex].isGround)

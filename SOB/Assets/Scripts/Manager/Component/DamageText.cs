@@ -31,7 +31,7 @@ public class DamageText : MonoBehaviour
             damageAmount = value;
             if (HitTextMeshPro != null)
             {
-                HitTextMeshPro.text = damageAmount.ToString("F0");
+                HitTextMeshPro.text = string.Format("{0:#,###}", damageAmount);
             }
             else
             {

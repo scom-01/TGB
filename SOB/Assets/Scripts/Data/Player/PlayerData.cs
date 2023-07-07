@@ -6,8 +6,8 @@ using UnityEngine;
 public class PlayerData : UnitData
 {
     [Header("Jump State")]
-    [Tooltip("점프 Velocity")]
-    public float jumpVelocity = 15f;
+    //[Tooltip("점프 Velocity")]
+    //public float jumpVelocity = 15f;
     [Tooltip("점프 가능 횟수")]
     public int amountOfJumps = 1;
 
