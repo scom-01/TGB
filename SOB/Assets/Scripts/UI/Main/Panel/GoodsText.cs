@@ -16,7 +16,7 @@ public class GoodsText : MonoBehaviour
         {
             if (spriteAtlas.Length == 0)
             {
-                spriteAtlas = Resources.LoadAll<Sprite>(GlobalValue.Symbol_UI_Path + "/Symbol_Sheet");
+                spriteAtlas = Resources.LoadAll<Sprite>(GlobalValue.Sprites_UI_Path + "/Symbol_Sheet");
             }
             return spriteAtlas;
         }
@@ -37,7 +37,7 @@ public class GoodsText : MonoBehaviour
                         return goldIcon;
                     }
                 }
-                goldIcon = Resources.Load<Sprite>(GlobalValue.Symbol_UI_Path + "/" + GlobalValue.Symbol_Gold_Path);
+                goldIcon = Resources.Load<Sprite>(GlobalValue.Sprites_UI_Path + "/" + GlobalValue.Symbol_Gold_Path);
             }
             return goldIcon;
         }
@@ -57,7 +57,7 @@ public class GoodsText : MonoBehaviour
                         return fireIcon;
                     }
                 }
-                fireIcon = Resources.Load<Sprite>(GlobalValue.Symbol_UI_Path + "/" + GlobalValue.Symbol_Fire_Path);
+                fireIcon = Resources.Load<Sprite>(GlobalValue.Sprites_UI_Path + "/" + GlobalValue.Symbol_Fire_Path);
             }
             return fireIcon;
         }
@@ -77,7 +77,7 @@ public class GoodsText : MonoBehaviour
                         return waterIcon;
                     }
                 }
-                waterIcon = Resources.Load<Sprite>(GlobalValue.Symbol_UI_Path + "/" + GlobalValue.Symbol_Water_Path);
+                waterIcon = Resources.Load<Sprite>(GlobalValue.Sprites_UI_Path + "/" + GlobalValue.Symbol_Water_Path);
             }
             return waterIcon;
         }
@@ -97,7 +97,7 @@ public class GoodsText : MonoBehaviour
                         return earthIcon;
                     }
                 }
-                earthIcon = Resources.Load<Sprite>(GlobalValue.Symbol_UI_Path + "/" + GlobalValue.Symbol_Earth_Path);
+                earthIcon = Resources.Load<Sprite>(GlobalValue.Sprites_UI_Path + "/" + GlobalValue.Symbol_Earth_Path);
             }
             return earthIcon;
         }
@@ -117,7 +117,7 @@ public class GoodsText : MonoBehaviour
                         return windIcon;
                     }
                 }
-                windIcon = Resources.Load<Sprite>(GlobalValue.Symbol_UI_Path + "/" + GlobalValue.Symbol_Wind_Path);
+                windIcon = Resources.Load<Sprite>(GlobalValue.Sprites_UI_Path + "/" + GlobalValue.Symbol_Wind_Path);
             }
             return windIcon;
         }

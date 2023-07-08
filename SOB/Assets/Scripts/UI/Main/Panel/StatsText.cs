@@ -77,5 +77,10 @@ public class StatsText : MonoBehaviour
         {            
             StatsPowerTxt.text = TypeStats.ToString() + " %";
         }
+
+        if (Img != null && TypeSprite != null)
+        {
+            Img.sprite = TypeSprite;
+        }
     }
 }
