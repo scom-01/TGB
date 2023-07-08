@@ -11,6 +11,13 @@ public class StatsText : MonoBehaviour
 {
     [SerializeField] private Stats_TYPE Type;
     [SerializeField] private Image Img;
+    private Sprite TypeSprite
+    {
+        get
+        {
+            return Resources.Load<Sprite>(GlobalValue.Sprites_UI_Path + "/" + Type.ToString());
+        }
+    }
 
     [SerializeField] private TextMeshProUGUI StatsPowerTxt;
     [SerializeField] private LocalizeStringEvent StatsTxtLocalizeStringEvent;
