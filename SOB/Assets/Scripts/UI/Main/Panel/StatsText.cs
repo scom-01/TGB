@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.Localization.Components;
+using UnityEngine.U2D;
 using UnityEngine.UI;
 
 public class StatsText : MonoBehaviour
@@ -15,9 +16,28 @@ public class StatsText : MonoBehaviour
     {
         get
         {
+            for (int i = 0; i< SpriteAtlas.Length; i++)
+            {
+                if (SpriteAtlas[i].name == Type.ToString())
+                {
+                    return SpriteAtlas[i];
+                }
+            }
             return Resources.Load<Sprite>(GlobalValue.Sprites_UI_Path + "/" + Type.ToString());
         }
     }
+    private Sprite[] SpriteAtlas
+    {
+        get
+        {            
+            if (spriteAtlas.Length == 0)
+            {
+                spriteAtlas = Resources.LoadAll<Sprite>(GlobalValue.Sprites_UI_Path +"/"+ GlobalValue.StatsSprites_UI_Path);
+            }
+            return spriteAtlas;
+        }
+    }
+    private Sprite[] spriteAtlas = { };
 
     [SerializeField] private TextMeshProUGUI StatsPowerTxt;
     [SerializeField] private LocalizeStringEvent StatsTxtLocalizeStringEvent;
@@ -81,6 +101,16 @@ public class StatsText : MonoBehaviour
         if (Img != null && TypeSprite != null)
         {
             Img.sprite = TypeSprite;
+        }
+    }
+    [ContextMenu("Set Img")]
+    private void SetImg()
+    {
+        Img = this.GetComponent<Image>();
+
+        if(Img == null)
+        {
+            Img = this.GetComponentInChildren<Image>();
         }
     }
 }
