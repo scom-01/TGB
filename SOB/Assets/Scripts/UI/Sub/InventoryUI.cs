@@ -64,18 +64,7 @@ namespace SOB.Manager
             }
             set => inventoryItems = value;
         }
-        public InventoryStats InventoryStats
-        {
-            get
-            {
-                if (inventoryStats == null)
-                {
-                    inventoryStats = this.GetComponentInChildren<InventoryStats>();
-                }
-                return inventoryStats;
-            }
-            set => inventoryStats = value;
-        }
+       
         public InventoryDescript InventoryDescript
         {
             get
@@ -90,7 +79,6 @@ namespace SOB.Manager
         }
 
         private InventoryItems inventoryItems;
-        private InventoryStats inventoryStats;
         private InventoryDescript inventoryDescript;
 
 

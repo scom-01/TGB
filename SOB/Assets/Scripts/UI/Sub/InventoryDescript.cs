@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Localization.Components;
+using UnityEngine.Localization.Settings;
 
 public class InventoryDescript : MonoBehaviour
 {
@@ -24,20 +25,12 @@ public class InventoryDescript : MonoBehaviour
         {
             if (ItemNameStringEvent != null)
             {
-                ItemNameStringEvent.StringReference.SetReference("Item_Table", item.StatsItemData.itemData.ItemName);
-                if (ItemNameStringEvent.StringReference.IsEmpty)
-                {
-                    ItemNameStringEvent.gameObject.GetComponent<TextMeshProUGUI>().text = "";
-                }
+                ItemNameStringEvent.StringReference.SetReference("Item_Table", item.StatsItemData.itemData.ItemName);                
             }
             
             if (ItemDescriptStringEvent != null)
             {
                 ItemDescriptStringEvent.StringReference.SetReference("Item_Table", item.StatsItemData.itemData.ItemDescription);
-                if (ItemDescriptStringEvent.StringReference.IsEmpty)
-                {
-                    ItemDescriptStringEvent.gameObject.GetComponent<TextMeshProUGUI>().text = "";
-                }
             }
             
             if (DropButton != null)
@@ -49,18 +42,10 @@ public class InventoryDescript : MonoBehaviour
         if (ItemNameStringEvent != null)
         {
             ItemNameStringEvent.StringReference.SetReference("Item_Table", "Empty");
-            if (ItemNameStringEvent.StringReference.IsEmpty)
-            {
-                ItemNameStringEvent.gameObject.GetComponent<TextMeshProUGUI>().text = "";
-            }
         }
         if (ItemDescriptStringEvent != null)
         {
             ItemDescriptStringEvent.StringReference.SetReference("Item_Table", "Empty");
-            if (ItemDescriptStringEvent.StringReference.IsEmpty)
-            {
-                ItemDescriptStringEvent.gameObject.GetComponent<TextMeshProUGUI>().text = "";
-            }
         }
         if (DropButton != null)
             DropButton.SetActive(false);
