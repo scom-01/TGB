@@ -25,10 +25,6 @@ public class DetailUI : MonoBehaviour
             if (MainStringEvent != null)
             {
                 MainStringEvent.StringReference.SetReference("Item_Table", mainItemName);
-                if (MainStringEvent.StringReference.IsEmpty)
-                {
-                    MainStringEvent.gameObject.GetComponent<TextMeshProUGUI>().text = "";
-                }
             }
         }
     }
@@ -66,25 +62,21 @@ public class DetailUI : MonoBehaviour
             if (SubStringEvent != null)
             {
                 SubStringEvent.StringReference.SetReference("Item_Table", ItemName + "_Descript");
-                if (SubStringEvent.StringReference.IsEmpty)
-                {
-                    SubStringEvent.gameObject.GetComponent<TextMeshProUGUI>().text = "";
-                }
             }
         }
     }
     private string itemDescript;
 
-    ContentSizeFitter csf;
-    private void Awake()
-    {
-        csf = GetComponent<ContentSizeFitter>();
-        //this.gameObject.SetActive(false);
-    }
+    //ContentSizeFitter csf;
+    //private void Awake()
+    //{
+    //    csf = GetComponent<ContentSizeFitter>();
+    //    //this.gameObject.SetActive(false);
+    //}
 
-    private void OnEnable()
-    {
-        //처음 SetActive시 ContentSizeFitter가 먹히지않던 해결 코드
-        LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)csf.transform);
-    }
+    //private void OnEnable()
+    //{
+    //    //처음 SetActive시 ContentSizeFitter가 먹히지않던 해결 코드
+    //    LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)csf.transform);
+    //}
 }

@@ -98,6 +98,9 @@ public class DataManager : MonoBehaviour
             return;
         }
 
+        //Localization LocalizeStringEvent의 Key값이 존재하지 않을 때 PrintWarning (즉, 빈 string 리턴)
+        LocalizationSettings.StringDatabase.MissingTranslationState = MissingTranslationBehavior.PrintWarning;
+
         _Inst = this;
         DontDestroyOnLoad(this.gameObject);
     }
