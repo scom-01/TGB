@@ -209,7 +209,7 @@ public class GoodsText : MonoBehaviour
         {
             if (CurrGoodsCountTxt != null)
             {
-                CurrGoodsCountTxt.text = isLeftcolon ? ((Showcolon ? " : " : "") + string.Format("{0:#,###}", TypeGoodsCount)) : (string.Format("{0:#,###}", TypeGoodsCount) + (Showcolon ? " : " : ""));
+                CurrGoodsCountTxt.text = isLeftcolon ? ((Showcolon ? " : " : "") + string.Format("{0:#,##0}", TypeGoodsCount)) : (string.Format("{0:#,##0}", TypeGoodsCount) + (Showcolon ? " : " : ""));
             }
             oldGoodsCount = TypeGoodsCount;
         }
