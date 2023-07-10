@@ -1,4 +1,5 @@
 using Cinemachine;
+using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
@@ -11,6 +12,8 @@ namespace SOB.CoreSystem
         [field: SerializeField] private string effectContainerTagName = "EffectContainer";
         private Transform effectContainerTransform;
         private EffectContainer effectContainer;
+
+        public List<EffectPooling> EffectPoolList = new List<EffectPooling>();
 
         protected override void Awake()
         {

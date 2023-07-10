@@ -4,6 +4,7 @@ using Unity.Mathematics;
 using UnityEngine.Animations;
 using UnityEngine;
 using Unity.VisualScripting;
+using SOB.CoreSystem;
 
 public class EffectContainer : MonoBehaviour
 {
@@ -55,21 +56,46 @@ public class EffectContainer : MonoBehaviour
     /// <returns></returns>
     public EffectPooling CheckEffect(GameObject _effect, Transform transform = null)
     {
-        if (EffectPoolList.Count == 0)
+        if (transform == this.transform)
         {
-            var effect = AddEffect(_effect, 5, transform);
-            return effect.GetComponent<EffectPooling>();
-        }
-
-        for (int i = 0; i < EffectPoolList.Count; i++)
-        {
-            if (EffectPoolList[i].Effect == _effect)
+            if (EffectPoolList.Count == 0)
             {
-                return EffectPoolList[i];
+                var effect = AddEffect(_effect, 5, transform);
+                return effect.GetComponent<EffectPooling>();
             }
+
+            for (int i = 0; i < EffectPoolList.Count; i++)
+            {
+                if (EffectPoolList[i].Effect == _effect)
+                {
+                    return EffectPoolList[i];
+                }
+            }
+
+            var newEffect = AddEffect(_effect, 5, transform).GetComponent<EffectPooling>();
+            return newEffect;
         }
-        var newEffect = AddEffect(_effect, 5, transform).GetComponent<EffectPooling>();
-        return newEffect;
+        else
+        {
+            var _EffectPoolList = transform.GetComponent<EffectManager>().EffectPoolList;
+
+            if (_EffectPoolList.Count == 0)
+            {
+                var effect = AddEffect(_effect, _EffectPoolList, 5, transform);
+                return effect.GetComponent<EffectPooling>();
+            }
+
+            for (int i = 0; i < _EffectPoolList.Count; i++)
+            {
+                if (_EffectPoolList[i].Effect == _effect)
+                {
+                    return _EffectPoolList[i];
+                }
+            }
+
+            var newEffect = AddEffect(_effect, _EffectPoolList, 5, transform).GetComponent<EffectPooling>();
+            return newEffect;
+        }        
     }
 
     /// <summary>
@@ -82,6 +108,13 @@ public class EffectContainer : MonoBehaviour
         var effectPool = Instantiate(EffectPoolingBase, transform ? transform : this.transform);
         effectPool.GetComponent<EffectPooling>().Init(_effect, amount);
         EffectPoolList.Add(effectPool.GetComponent<EffectPooling>());
+        return effectPool;
+    }
+    private GameObject AddEffect(GameObject _effect, List<EffectPooling> effectPoolList, int amount = 5, Transform transform = null)
+    {
+        var effectPool = Instantiate(EffectPoolingBase, transform ? transform : this.transform);
+        effectPool.GetComponent<EffectPooling>().Init(_effect, amount);
+        effectPoolList.Add(effectPool.GetComponent<EffectPooling>());
         return effectPool;
     }
 }
