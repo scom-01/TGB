@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class PlayerInputHandler : MonoBehaviour
 {
@@ -297,6 +298,22 @@ public class PlayerInputHandler : MonoBehaviour
                 if (!GameManager.Inst.StageManager.player.IsAlive)
                 {
                     return;
+                }
+            }
+            else
+            {
+                var _TitleManager = FindObjectOfType(typeof(TitleManager)) as TitleManager;
+                if (_TitleManager != null)
+                {
+                    if(_TitleManager.UnlockItem_Canvas.GetComponent<Canvas>()?.enabled == true)
+                    {                        
+                        if (_TitleManager.buttons.Count > 0)
+                        {
+                            EventSystem.current.SetSelectedGameObject(_TitleManager.buttons[0].gameObject);
+                        }
+                        _TitleManager.UnlockItem_Canvas.GetComponent<Canvas>().enabled = false;
+                        return;
+                    }
                 }
             }
 

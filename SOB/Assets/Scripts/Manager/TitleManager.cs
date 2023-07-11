@@ -22,6 +22,8 @@ public class TitleManager : MonoBehaviour
     /// </summary>
     private bool isDone = false;
 
+    public GameObject UnlockItem_Canvas;
+
     private void OnEnable()
     {
         if (DataManager.Inst != null)
@@ -110,7 +112,7 @@ public class TitleManager : MonoBehaviour
             return;
 
         if (DataManager.Inst.CheckJSONFile())
-        {            
+        {
             DataManager.Inst.LoadScene();
             GameManager.Inst.ClearScene();
             isDone = true;
@@ -119,7 +121,21 @@ public class TitleManager : MonoBehaviour
         {
             Debug.LogWarning("Save file not found");
         }
-    }    
+    }
+
+    public void OnUnlockItemClicked()
+    {
+        if (UnlockItem_Canvas != null)
+        {
+            UnlockItem_Canvas.GetComponent<Canvas>().enabled = true;
+            UnlockItem_Canvas.GetComponentInChildren<UnlockItemList>()?.SetInit();
+
+            if(UnlockItem_Canvas.GetComponentInChildren<UnlockItemList>()?.UnlockItems.Count > 0)
+            {
+                EventSystem.current.SetSelectedGameObject(UnlockItem_Canvas.GetComponentInChildren<UnlockItemList>()?.UnlockItems[0].gameObject);
+            }
+        }
+    }
 
     public void OnOptionBtnClicked()
     {
