@@ -46,7 +46,7 @@ public class GlobalValue : MonoBehaviour
     public const string Icon_WaterGoods_Path = "WaterGoods";
     public const string Icon_EarthGoods_Path = "EarthGoods";
     public const string Icon_WindGoods_Path = "WindGoods";
-    
+
     public const string Sprites_UI_Path = "ScriptPath/UI/Sprites";
     public const string Symbol_Gold_Path = "Symbol_Gold";
     public const string Symbol_Fire_Path = "Symbol_Fire";
@@ -54,13 +54,19 @@ public class GlobalValue : MonoBehaviour
     public const string Symbol_Earth_Path = "Symbol_Earth";
     public const string Symbol_Wind_Path = "Symbol_Wind";
 
-    public const string StatsSprites_UI_Path = "StatsSprites";
+    public const string StatsSprites_UI_Path = "Stats_Sheet";
     #endregion
 
     #region UI Sound Path
     public const string Sounds_UI_Path = "ScriptPath/UI/Sounds/";
     public const string Reforging_Success = "Reforging_Success";
     public const string Reforging_Failure = "Reforging_Failure";
+    #endregion
+
+    #region DB_Path
+    public static ItemDB All_ItemDB = Resources.Load<ItemDB>("DB/All_ItemDB");
+    public static ItemDB Lock_ItemDB = Resources.Load<ItemDB>("DB/Lock_ItemDB");
+    public static WeaponDB All_WeaponDB = Resources.Load<WeaponDB>("DB/All_WeaponDB");    
     #endregion
     /// <summary>
     /// Elemetal 속성 공격에 따른 추가 데미지 퍼센트
@@ -76,19 +82,6 @@ public class GlobalValue : MonoBehaviour
     /// </summary>
     public static float Enemy_Size_WeakPer = 0.1f;
     /*~Param*/
-
-    private void Awake()
-    {
-        if (Inst == null)
-        {
-            Inst = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
-    }
 
     public static GlobalValue Instance
     {
@@ -114,7 +107,7 @@ public class GlobalValue : MonoBehaviour
     public float GetCharacterDelta() { return GV_CharacterDeltatime; }
     public void SetCharacterDelta(float deltatime)
     {
-        if(GV_CharacterDeltatime != deltatime)
+        if (GV_CharacterDeltatime != deltatime)
         {
             GV_CharacterDeltatime = deltatime;
         }
