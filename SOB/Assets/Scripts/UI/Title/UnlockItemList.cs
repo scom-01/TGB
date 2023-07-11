@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UnlocakItemList : MonoBehaviour
+public class UnlockItemList : MonoBehaviour
 {
     public GameObject UnlockItemPrefab;
-    private List<GameObject> UnlockItems = new List<GameObject>();
+    [HideInInspector] public List<GameObject> UnlockItems = new List<GameObject>();
     [ContextMenu("Set Init")]
     public void SetInit()
     {
@@ -42,6 +42,7 @@ public class UnlocakItemList : MonoBehaviour
             UnlockItems.Add(item);
         }
 
+        //각 Item Nav 설정
         for (int i = 0; i < GlobalValue.All_ItemDB.ItemDBList.Count; i++)
         {
             Navigation nav = UnlockItems[i].GetComponent<Button>().navigation;
