@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.Localization.Settings;
 using UnityEngine.Playables;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
@@ -101,6 +102,8 @@ public class GameManager : MonoBehaviour
             }
             return;
         }
+
+        LocalizationSettings.StringDatabase.MissingTranslationState = MissingTranslationBehavior.PrintWarning;
 
         _Inst = this;
         DontDestroyOnLoad(this.gameObject);        
