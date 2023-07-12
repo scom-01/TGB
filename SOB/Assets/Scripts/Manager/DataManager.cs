@@ -392,9 +392,11 @@ public class DataManager : MonoBehaviour
 
     public void PlayerUnlockItem()
     {
+        var idxs = new List<int>();
         for (int i = 0; i < UnlockItemList.Count; i++)
         {
             DataManager.Inst.Unlock_ItemDB.ItemDBList.Add(UnlockItemList[i]);
+            idxs.Add(UnlockItemList[i].ItemIdx);            
             for (int j = 0; j < Lock_ItemDB.ItemDBList.Count; j++)
             {
                 if (Lock_ItemDB.ItemDBList[j] == UnlockItemList[i])
@@ -404,6 +406,7 @@ public class DataManager : MonoBehaviour
                 }
             }
         }
+        SaveUnlockItemList(idxs);
     }
 
     private void ClearUnlockItem()
@@ -607,6 +610,24 @@ public class DataManager : MonoBehaviour
     }
 
     public void LoadSkipCutSceneList()
+    {
+        SkipCutSceneList = JSON_DataParsing.Json_Read_DefaultData().SkipCutSceneList.ToList();
+    }
+    public void SaveUnlockItemList(List<int> idx)
+    {
+        if (idx == null)
+        {
+            return;
+        }
+
+        if(idx.Count == 0)
+        {
+            return;
+        }
+        JSON_DataParsing.Json_Addwrite_UnlockItem(idx);
+    }
+
+    public void LoadUnlockItemList()
     {
         SkipCutSceneList = JSON_DataParsing.Json_Read_DefaultData().SkipCutSceneList.ToList();
     }

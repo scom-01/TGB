@@ -272,7 +272,12 @@ public class DataParsing : MonoBehaviour
     public class JSON_DefaultData
     {
         public int[] SkipCutSceneList = new int[0];
-        public int[] UnlockItemIdxs = { };
+        public int[] UnlockItemIdxs = GlobalValue.DefaultUnlockItem;
+        public JSON_DefaultData()
+        {
+            SkipCutSceneList = new int[0];
+            UnlockItemIdxs = GlobalValue.DefaultUnlockItem;
+        }
         public void Print()
         {
             if (SkipCutSceneList.Length > 0)

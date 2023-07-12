@@ -40,6 +40,7 @@ public class TitleManager : MonoBehaviour
 
         GameManager.Inst.ChangeUI(UI_State.CutScene);
 
+        //이어하기
         if (DataManager.Inst.CheckJSONFile())
         {            
             buttons[1].gameObject.SetActive(true);
@@ -47,6 +48,14 @@ public class TitleManager : MonoBehaviour
         else
         {
             buttons[1].gameObject.SetActive(false);
+        }
+
+        //CheckUnlockItem
+        //if(DataManager.Inst.(DataManager.Inst.JSON_DataParsing.Json_Read_DefaultData().UnlockItemIdxs))
+
+        if (GameManager.Inst.EffectTextUI.UnlockitemNames.Count > 0)
+        {
+            GameManager.Inst.EffectTextUI.EffectTextOn();
         }
 
         EventSystem.current.SetSelectedGameObject(buttons[0].gameObject);
