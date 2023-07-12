@@ -265,24 +265,41 @@ public class DataParsing : MonoBehaviour
     private int PlayerHealth;
     private float PlayTime;
     private Enemy_Count EnemyCount;
-    
+
     #endregion
 
     #region JSON_DefaultData
     public class JSON_DefaultData
     {
         public int[] SkipCutSceneList = new int[0];
-
+        public int[] UnlockItemIdxs = { };
         public void Print()
         {
-            foreach (int item in SkipCutSceneList)
+            if (SkipCutSceneList.Length > 0)
             {
-                Debug.Log($"SkipCutSceneList = {item}");
+                var str = "";
+                foreach (int item in SkipCutSceneList)
+                {
+                    str += item.ToString() + " ";
+                }
+                Debug.Log($"SkipCutSceneList = {str}");
+
+            }
+
+            if (UnlockItemIdxs.Length > 0)
+            {
+                var str = "";
+                foreach (int idx in UnlockItemIdxs)
+                {
+                    str += idx.ToString() + " ";
+                }
+                Debug.Log($"UnlockItemIdxs = {str}");
             }
         }
     }
 
     private List<int> SkipCutSceneList;
+    private List<int> UnlockItemList;
     #endregion
 
     private bool Json_InventoryParsing()
@@ -364,6 +381,45 @@ public class DataParsing : MonoBehaviour
         }
         return true;
     }
+    private bool Json_DefaultDataParsing()
+    {
+        if (!Directory.Exists(Application.dataPath + UnitData_DirectoryPath))
+        {
+            Directory.CreateDirectory(Application.dataPath + UnitData_DirectoryPath);
+        }
+        try
+        {
+            if (File.Exists(Application.dataPath + DefaultData_FilePath))
+            {
+                FileStream stream = new FileStream(Application.dataPath + DefaultData_FilePath, FileMode.Open, FileAccess.ReadWrite);
+                byte[] data = new byte[stream.Length];
+                stream.Read(data, 0, data.Length);
+                stream.Close();
+                string jsonData = Encoding.UTF8.GetString(data);
+                JSON_DefaultData jtest2 = JsonConvert.DeserializeObject<JSON_DefaultData>(jsonData);
+                jtest2.Print();
+                SkipCutSceneList = jtest2.SkipCutSceneList.ToList();
+                UnlockItemList = jtest2.UnlockItemIdxs.ToList();
+            }
+            else
+            {
+                FileStream stream = new FileStream(Application.dataPath + DefaultData_FilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                JSON_DefaultData jTest1 = new JSON_DefaultData();
+                SkipCutSceneList = jTest1.SkipCutSceneList.ToList();
+                UnlockItemList = jTest1.UnlockItemIdxs.ToList();
+                string jsonData = JsonConvert.SerializeObject(jTest1);
+                byte[] data = Encoding.UTF8.GetBytes(jsonData);
+                stream.Write(data, 0, data.Length);
+                stream.Close();
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e.Message);
+            return false;
+        }
+        return true;
+    }
 
     private bool Json_Parsing()
     {
@@ -376,6 +432,12 @@ public class DataParsing : MonoBehaviour
         if (!Json_GoodsParsing())
         {
             Debug.Log("Goods Parsing Fail");
+            return false;
+        }
+
+        if (!Json_DefaultDataParsing())
+        {
+            Debug.Log("Default Parsing Fail");
             return false;
         }
         return true;
@@ -508,7 +570,7 @@ public class DataParsing : MonoBehaviour
             return null;
         }
     }
-    
+
     public JSON_DefaultData Json_Read_DefaultData()
     {
         if (!Directory.Exists(Application.dataPath + UnitData_DirectoryPath))
@@ -897,6 +959,7 @@ public class DataParsing : MonoBehaviour
             SkipCutSceneList = ints;
             JSON_DefaultData json = new JSON_DefaultData();
             json.SkipCutSceneList = SkipCutSceneList.ToArray();
+            json.UnlockItemIdxs = UnlockItemList.ToArray();
             if (!JSON_DefaultDataSave(json))
             {
                 Debug.Log("DefaultData Save Fail");
@@ -911,7 +974,7 @@ public class DataParsing : MonoBehaviour
             SkipCutSceneList = _cutScene;
             JSON_DefaultData json = new JSON_DefaultData();
             json.SkipCutSceneList = SkipCutSceneList.ToArray();
-
+            json.UnlockItemIdxs = UnlockItemList.ToArray();
             if (!JSON_DefaultDataSave(json))
             {
                 Debug.Log("DefaultData Save Fail");
@@ -924,6 +987,53 @@ public class DataParsing : MonoBehaviour
             SkipCutSceneList = _cutScene;
             JSON_DefaultData json = new JSON_DefaultData();
             json.SkipCutSceneList = SkipCutSceneList.ToArray();
+            json.UnlockItemIdxs = UnlockItemList.ToArray();
+            if (!JSON_DefaultDataSave(json))
+            {
+                Debug.Log("DefaultData Save Fail");
+                return false;
+            }
+        }
+
+        return true;
+    }
+    public bool Json_Overwrite_UnlockItem(List<int> _UnlockItemIdx)
+    {
+        if (_UnlockItemIdx == null)
+        {
+            List<int> ints = new List<int>();
+            UnlockItemList = ints;
+            JSON_DefaultData json = new JSON_DefaultData();
+            json.SkipCutSceneList = UnlockItemList.ToArray();
+            if (!JSON_DefaultDataSave(json))
+            {
+                Debug.Log("DefaultData Save Fail");
+                return false;
+            }
+            return false;
+        }
+
+        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
+        if (!Json_Parsing())
+        {
+            UnlockItemList = _UnlockItemIdx;
+            JSON_DefaultData json = new JSON_DefaultData();
+            json.SkipCutSceneList = SkipCutSceneList.ToArray();
+            json.UnlockItemIdxs = UnlockItemList.ToArray();
+
+            if (!JSON_DefaultDataSave(json))
+            {
+                Debug.Log("DefaultData Save Fail");
+                return false;
+            }
+        }
+        //기존 저장된 JSON파일을 덧씌울 때
+        else
+        {
+            UnlockItemList = _UnlockItemIdx;
+            JSON_DefaultData json = new JSON_DefaultData();
+            json.SkipCutSceneList = SkipCutSceneList.ToArray();
+            json.UnlockItemIdxs = UnlockItemList.ToArray();
             if (!JSON_DefaultDataSave(json))
             {
                 Debug.Log("DefaultData Save Fail");
@@ -952,13 +1062,13 @@ public class DataParsing : MonoBehaviour
         //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
         if (!Json_Parsing())
         {
-            foreach(var item in _cutScene)
+            foreach (var item in _cutScene)
             {
                 SkipCutSceneList.Add(item);
             }
             JSON_DefaultData json = new JSON_DefaultData();
             json.SkipCutSceneList = SkipCutSceneList.ToArray();
-
+            json.UnlockItemIdxs = UnlockItemList.ToArray();
             if (!JSON_DefaultDataSave(json))
             {
                 Debug.Log("DefaultData Save Fail");
@@ -971,6 +1081,62 @@ public class DataParsing : MonoBehaviour
             SkipCutSceneList = _cutScene;
             JSON_DefaultData json = new JSON_DefaultData();
             json.SkipCutSceneList = SkipCutSceneList.ToArray();
+            json.UnlockItemIdxs = UnlockItemList.ToArray();
+            if (!JSON_DefaultDataSave(json))
+            {
+                Debug.Log("DefaultData Save Fail");
+                return false;
+            }
+        }
+
+        return true;
+    }
+    public bool Json_Addwrite_UnlockItem(List<int> _UnlockItemIdx)
+    {
+        if (_UnlockItemIdx == null)
+        {
+            List<int> ints = new List<int>();
+            UnlockItemList = ints;
+            JSON_DefaultData json = new JSON_DefaultData();
+            json.UnlockItemIdxs = UnlockItemList.ToArray();
+            if (!JSON_DefaultDataSave(json))
+            {
+                Debug.Log("DefaultData Save Fail");
+                return false;
+            }
+            return false;
+        }
+
+        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
+        if (!Json_Parsing())
+        {
+            foreach (var item in _UnlockItemIdx)
+            {
+                UnlockItemList.Add(item);
+            }
+            JSON_DefaultData json = new JSON_DefaultData();
+            json.SkipCutSceneList = SkipCutSceneList.ToArray();
+            json.UnlockItemIdxs = UnlockItemList.ToArray();
+
+            if (!JSON_DefaultDataSave(json))
+            {
+                Debug.Log("DefaultData Save Fail");
+                return false;
+            }
+        }
+        //기존 저장된 JSON파일을 덧씌울 때
+        else
+        {
+            for (int i = 0; i < _UnlockItemIdx.Count; i++)
+            {
+                if (!UnlockItemList.Contains(_UnlockItemIdx[i]))
+                {
+                    UnlockItemList.Add(_UnlockItemIdx[i]);
+                }
+            }
+            JSON_DefaultData json = new JSON_DefaultData();
+            json.SkipCutSceneList = SkipCutSceneList.ToArray();
+            json.UnlockItemIdxs = UnlockItemList.ToArray();
             if (!JSON_DefaultDataSave(json))
             {
                 Debug.Log("DefaultData Save Fail");
@@ -1049,7 +1215,7 @@ public class DataParsing : MonoBehaviour
         }
         return true;
     }
-    
+
     private bool JSON_DefaultDataSave(JSON_DefaultData Data)
     {
         try
