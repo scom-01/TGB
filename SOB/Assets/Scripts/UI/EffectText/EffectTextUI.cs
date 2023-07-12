@@ -49,6 +49,8 @@ public class EffectTextUI : MonoBehaviour
     public string ItemName;
     public LocalizeStringEvent EffectTextStringEvent;
 
+    public List<string> UnlockitemNames;
+
     [ContextMenu("Set EffectText")]
     public void TestSet()
     {
@@ -57,10 +59,15 @@ public class EffectTextUI : MonoBehaviour
         EffectTextStringEvent.RefreshString();
     }
 
+    [ContextMenu("Add EffectText")]
+    public void AddItem()
+    {
+        UnlockitemNames.Add(ItemName);
+    }
+
     public void EffectTextOn()
     {
-        Canvas.enabled = true;
-        SetEffectText(ItemName);
+        StartCoroutine(EffectCoroutine());
     }
 
     public void SetEffectText(string StringTableKey)
@@ -94,5 +101,20 @@ public class EffectTextUI : MonoBehaviour
     {
         Anim.SetBool("Action", false);
         Canvas.enabled = false;
+    }
+
+    IEnumerator EffectCoroutine()
+    {
+        for (int i = 0; i < UnlockitemNames.Count; i++) 
+        {
+            Canvas.enabled = true;
+            SetEffectText(UnlockitemNames[i]);
+            while(Anim.GetBool("Action"))
+            {
+                yield return null;
+            }            
+        }
+        UnlockitemNames.Clear();
+        yield return null;
     }
 }
