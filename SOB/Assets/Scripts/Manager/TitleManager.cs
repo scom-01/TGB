@@ -135,6 +135,8 @@ public class TitleManager : MonoBehaviour
                 EventSystem.current.SetSelectedGameObject(UnlockItem_Canvas.GetComponentInChildren<UnlockItemList>()?.UnlockItems[0].gameObject);
             }
         }
+
+        GameManager.Inst.EffectTextUI.EffectTextOn();
     }
 
     public void OnOptionBtnClicked()

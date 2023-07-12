@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
     public ResultUIManager ResultUI;
     public DamageUIManager DamageUI;
     public CutSceneManagerUI CutSceneUI;
+    public EffectTextUI EffectTextUI;
     public PlayTimeManagerUI PlayTimeUI;
 
     [HideInInspector]    public UI_State Old_UIState;
@@ -128,6 +129,9 @@ public class GameManager : MonoBehaviour
 
         if (CutSceneUI == null)
             CutSceneUI = this.GetComponentInChildren<CutSceneManagerUI>();
+        
+        if (EffectTextUI == null)
+            EffectTextUI = this.GetComponentInChildren<EffectTextUI>();
 
         if (PlayTimeUI == null)
             PlayTimeUI = this.GetComponentInChildren<PlayTimeManagerUI>();
@@ -332,6 +336,7 @@ public class GameManager : MonoBehaviour
         ReforgingUI.EnabledChildrensCanvas(false);
         ReforgingUI.Canvas.enabled = false;
         CutSceneUI.Canvas.enabled = false;
+        EffectTextUI.Canvas.enabled = false;
         PlayTimeUI.Canvas.enabled = false;
         //CutSceneUI.Director_SetAsset(CutSceneUI.FadeOut);
     }
