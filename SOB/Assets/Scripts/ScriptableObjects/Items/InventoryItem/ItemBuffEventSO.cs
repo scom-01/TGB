@@ -26,7 +26,7 @@ public class ItemBuffEventSO : ItemEffectSO
                 if (unit.GetComponent<BuffSystem>())
                     unit.GetComponent<BuffSystem>().AddBuff(buff);
             }
-            startTime = Time.time;
+            startTime = GameManager.Inst.PlayTime;
         }
         return startTime;
     }

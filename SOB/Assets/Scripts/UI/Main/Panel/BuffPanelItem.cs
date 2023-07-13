@@ -32,9 +32,11 @@ public class BuffPanelItem : MonoBehaviour
     {
         if (buff == null)
             return;
+        if (GameManager.Inst == null)
+            return;
 
         BuffDurationTime = buff.buffItem.DurationTime;
-        BuffCurrentTime = ((Time.time - buff.startTime) / BuffDurationTime);
+        BuffCurrentTime = ((GameManager.Inst.PlayTime - buff.startTime) / BuffDurationTime);
         FilledImg.fillAmount = BuffCurrentTime;
         if(buff.CurrBuffCount <= 1)
         {

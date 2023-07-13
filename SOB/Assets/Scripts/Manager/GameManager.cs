@@ -372,7 +372,8 @@ public class GameManager : MonoBehaviour
 
         DataManager.Inst?.PlayerInventoryDataLoad(StageManager.player.Inventory);
         DataManager.Inst?.PlayerCurrHealthLoad(StageManager.player.Core.GetCoreComponent<UnitStats>());
-        DataManager.Inst?.PlayerBuffLoad(StageManager.player.GetComponent<BuffSystem>());
+        //DataManager.Inst?.PlayerBuffLoad();
+        DataManager.Inst?.LoadBuffs(StageManager.player.GetComponent<BuffSystem>());
         DataManager.Inst?.LoadPlayTime();
         DataManager.Inst?.LoadSkipCutSceneList();
         DataManager.Inst?.LoadEnemyCount();
@@ -404,11 +405,12 @@ public class GameManager : MonoBehaviour
         DataManager.Inst.PlayerInventoryDataSave(
             GameManager.Inst.StageManager.player.Inventory.Weapon,
             GameManager.Inst.StageManager.player.Inventory._items);
+        DataManager.Inst?.SaveBuffs(GameManager.Inst.StageManager.player.GetComponent<BuffSystem>().buffs);
         DataManager.Inst?.PlayerCurrHealthSave(
             (int)GameManager.Inst.StageManager.player.Core.GetCoreComponent<UnitStats>().CurrentHealth);
-        DataManager.Inst?.PlayerBuffSave(
-            GameManager.Inst.StageManager.player.GetComponent<BuffSystem>().buffs
-            );
+        //DataManager.Inst?.PlayerBuffSave(
+        //    GameManager.Inst.StageManager.player.GetComponent<BuffSystem>().buffs
+        //    );
         DataManager.Inst?.GameGoldSave(DataManager.Inst.GoldCount);
         DataManager.Inst?.GameElementalsculptureSave(DataManager.Inst.ElementalsculptureCount);
         DataManager.Inst?.GameElementalGoodsSave(DataManager.Inst.ElementalGoodsCount);

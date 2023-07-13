@@ -248,6 +248,7 @@ public class DataParsing : MonoBehaviour
         public int PlayerHealth;
         public float PlayTime;
         public Enemy_Count EnemyCount;
+        public List<Buff> Buffs;
         public JSON_SceneData(string sceneName = "", int playerHealth = -1, float playTime = 0, Enemy_Count _enemy_Count = new Enemy_Count())
         {
             SceneName = sceneName;
@@ -271,6 +272,7 @@ public class DataParsing : MonoBehaviour
     [HideInInspector] public int PlayerHealth;
     [HideInInspector] public float PlayTime;
     [HideInInspector] public Enemy_Count EnemyCount;
+    [HideInInspector] public List<Buff> Buffs;
 
     #endregion
 
@@ -559,6 +561,7 @@ public class DataParsing : MonoBehaviour
                 SceneDataIdx = json.SceneDataIdx;
                 PlayTime = json.PlayTime;
                 EnemyCount = json.EnemyCount;
+                Buffs = json.Buffs;
                 return json;
             }
             else
@@ -570,6 +573,7 @@ public class DataParsing : MonoBehaviour
                 SceneDataIdx = json.SceneDataIdx;
                 PlayTime = json.PlayTime;
                 EnemyCount = json.EnemyCount;
+                Buffs = json.Buffs;
                 string jsonData = JsonConvert.SerializeObject(json);
                 byte[] data = Encoding.UTF8.GetBytes(jsonData);
                 stream.Write(data, 0, data.Length);
@@ -838,7 +842,7 @@ public class DataParsing : MonoBehaviour
         return true;
     }
 
-    public bool Json_Overwrite_sceneName(string _scenename)
+    public bool Json_Overwrite_SceneName(string _scenename)
     {
         //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
         if (!Json_Parsing())
@@ -862,6 +866,7 @@ public class DataParsing : MonoBehaviour
             json.PlayerHealth = PlayerHealth;
             json.PlayTime = PlayTime;
             json.EnemyCount = EnemyCount;
+            json.Buffs = Buffs;
             if (!JSON_SceneDataSave(json))
             {
                 Debug.Log("SceneData Save Fail");
@@ -895,6 +900,7 @@ public class DataParsing : MonoBehaviour
             json.SceneDataIdx = SceneDataIdx;
             json.PlayTime = PlayTime;
             json.EnemyCount = EnemyCount;
+            json.Buffs = Buffs;
             if (!JSON_SceneDataSave(json))
             {
                 Debug.Log("SceneData Save Fail");
@@ -928,6 +934,7 @@ public class DataParsing : MonoBehaviour
             json.SceneDataIdx = SceneDataIdx;
             json.PlayTime = PlayTime;
             json.EnemyCount = EnemyCount;
+            json.Buffs = Buffs;
             if (!JSON_SceneDataSave(json))
             {
                 Debug.Log("SceneData Save Fail");
@@ -960,6 +967,7 @@ public class DataParsing : MonoBehaviour
             json.PlayerHealth = PlayerHealth;
             json.PlayTime = PlayTime;
             json.EnemyCount = EnemyCount;
+            json.Buffs = Buffs;
             if (!JSON_SceneDataSave(json))
             {
                 Debug.Log("SceneData Save Fail");
@@ -992,6 +1000,41 @@ public class DataParsing : MonoBehaviour
             json.PlayerHealth = PlayerHealth;
             json.PlayTime = PlayTime;
             json.EnemyCount = EnemyCount;
+            json.Buffs = Buffs;
+
+            if (!JSON_SceneDataSave(json))
+            {
+                Debug.Log("SceneData Save Fail");
+                return false;
+            }
+        }
+        return true;
+    }
+    public bool Json_Overwrite_Buff(List<Buff> _BuffList)
+    {
+        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
+        if (!Json_Parsing())
+        {
+            Buffs = _BuffList;
+            JSON_SceneData json = new JSON_SceneData();
+            json.Buffs = Buffs;
+
+            if (!JSON_SceneDataSave(json))
+            {
+                Debug.Log("SceneData Save Fail");
+                return false;
+            }
+        }
+        //기존 저장된 JSON파일을 덧씌울 때
+        else
+        {
+            Buffs = _BuffList;
+            JSON_SceneData json = new JSON_SceneData();
+            json.SceneName = SceneName;
+            json.PlayerHealth = PlayerHealth;
+            json.PlayTime = PlayTime;
+            json.EnemyCount = EnemyCount;
+            json.Buffs = Buffs;
             if (!JSON_SceneDataSave(json))
             {
                 Debug.Log("SceneData Save Fail");

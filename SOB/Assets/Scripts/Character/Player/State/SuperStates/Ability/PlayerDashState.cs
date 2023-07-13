@@ -130,7 +130,7 @@ public class PlayerDashState : PlayerAbilityState
                 }
 
                 Movement.SetVelocityZero();
-                if(Time.time>=startTime + player.playerData.dashDuration + player.playerData.dashFlightDuration)
+                if(Time.time >= startTime + player.playerData.dashDuration + player.playerData.dashFlightDuration)
                 {
                     isAbilityDone = true;
                     lastDashTime = Time.time;

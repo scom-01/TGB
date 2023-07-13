@@ -526,7 +526,7 @@ public class DataManager : MonoBehaviour
 
     public void SaveScene(string _stage)
     {
-        JSON_DataParsing.Json_Overwrite_sceneName(_stage);
+        JSON_DataParsing.Json_Overwrite_SceneName(_stage);
 
         //PlayerPrefs.SetString(GlobalValue.StageName, _stage);
         //Debug.LogWarning("Save SceneData Success");
@@ -586,6 +586,16 @@ public class DataManager : MonoBehaviour
     public void SaveSceneDataIdx(int _sceneDataIdx)
     {
         JSON_DataParsing.Json_Overwrite_SceneDataIdx(_sceneDataIdx);
+    }
+    public void SaveBuffs(List<Buff> _buffs)
+    {
+        JSON_DataParsing.Json_Overwrite_Buff(_buffs);
+    }
+
+    public void LoadBuffs(BuffSystem buffSystem)
+    {
+        buffSystem.buffs = JSON_DataParsing.Json_Read_SceneData().Buffs;
+        buffSystem.SetBuff();        
     }
 
     public int LoadSceneDataIdx()

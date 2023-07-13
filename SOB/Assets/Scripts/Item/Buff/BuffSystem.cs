@@ -55,7 +55,7 @@ public class BuffSystem : MonoBehaviour
 
     public void AddBuff(Buff buff)
     {
-        buff.startTime = Time.time;   
+        buff.startTime = GameManager.Inst.PlayTime;   
         
         if(buffItems.Contains(buff.buffItem))
         {
@@ -66,7 +66,7 @@ public class BuffSystem : MonoBehaviour
                     //지속효과 초기화
                     if (buffItems[i].isBuffInit)
                     {
-                        buffs[i].startTime = Time.time;
+                        buffs[i].startTime = GameManager.Inst.PlayTime;
                     }
 
                     //중복 X
@@ -105,6 +105,21 @@ public class BuffSystem : MonoBehaviour
         //PlayBuff(buff);
     }
 
+    public void SetBuff()
+    {
+        for (int i = 0; i < buffs.Count; i++)
+        {
+            if (!buffItems.Contains(buffs[i].buffItem))
+            {
+                buffItems?.Add(buffs[i].buffItem);
+
+                if (unit.GetType() == typeof(Player))
+                {
+                    GameManager.Inst?.MainUI?.MainPanel?.BuffPanelSystem.BuffPanelAdd(buffs[i]);
+                }
+            }
+        }      
+    }
 
     ////무쓸모 예정
     //public void RemoveBuff(Buff buff)

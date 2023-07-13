@@ -28,4 +28,7 @@ public struct ItemData
 
     [field: Tooltip("아이템 Sprite아이콘")]
     public Sprite ItemSprite;
+
+    [field: Tooltip("아이템 등급")]
+    public ITEM_Level ItemLevel;
 }
