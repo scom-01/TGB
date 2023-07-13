@@ -56,6 +56,7 @@ public class DataManager : MonoBehaviour
     public ItemDB Lock_ItemDB;
     public ItemDB Unlock_ItemDB;
     public ItemDB Default_Unlock_ItemDB;
+    public BuffDB All_BuffDB;
 
     [HideInInspector] public List<StatsItemSO> UnlockItemList;
     [HideInInspector] public List<int> UnlockItemListidx;
@@ -306,13 +307,7 @@ public class DataManager : MonoBehaviour
     }
     public void PlayerInventoryDataLoad(Inventory inventory)
     {
-        if (JSON_DataParsing.Json_Read_item() == null)
-        {
-            Debug.Log("Json_Read_item is Fail");
-            return;
-        }
-
-        var inventory_Itemlist = JSON_DataParsing.Json_Read_item();
+        var inventory_Itemlist = JSON_DataParsing.ItemListIdx;
 
         for (int i = 0; i < inventory_Itemlist.Count; i++)
         {
@@ -323,13 +318,7 @@ public class DataManager : MonoBehaviour
             inventory.AddInventoryItem(All_ItemDB.ItemDBList[inventory_Itemlist[i]]);
         }
 
-        if (JSON_DataParsing.Json_Read_weapon() == null)
-        {
-            Debug.Log("Json_Read_weapon is Fail");
-            return;
-        }
-
-        var inventory_Weaponlist = JSON_DataParsing.Json_Read_weapon();
+        var inventory_Weaponlist = JSON_DataParsing.WeaponListIdx;
 
         if (inventory_Weaponlist.Count > 0)
         {
@@ -341,10 +330,6 @@ public class DataManager : MonoBehaviour
             {
                 Debug.LogWarning("Inventory.weapon is Null");
             }
-        }
-        else
-        {
-
         }
     }
 
@@ -423,16 +408,11 @@ public class DataManager : MonoBehaviour
 
     public void PlayerCurrHealthLoad(UnitStats stats)
     {
-        if (JSON_DataParsing.Json_Read_SceneData() == null)
-        {
-            Debug.LogWarning("CurrHealth Load Fail");
-            return;
-        }
-        if (JSON_DataParsing.Json_Read_SceneData().PlayerHealth == -1)
+        if (JSON_DataParsing.PlayerHealth == -1)
         {
             return;
         }
-        stats.CurrentHealth = JSON_DataParsing.Json_Read_SceneData().PlayerHealth;
+        stats.CurrentHealth = JSON_DataParsing.PlayerHealth;
         Debug.LogWarning("Success CurrHealth Save");
     }
     public void PlayerCurrHealthSave(int _playerHealth)
@@ -457,12 +437,7 @@ public class DataManager : MonoBehaviour
 
     public void GameGoldLoad()
     {
-        if (JSON_DataParsing.Json_Read_Goods() == null)
-        {
-            GoldCount = 0;
-            return;
-        }
-        GoldCount = JSON_DataParsing.Json_Read_Goods().gold;
+        GoldCount = JSON_DataParsing.GoldAmount;
     }
     public bool GameGoldSave(int gold)
     {
@@ -479,12 +454,7 @@ public class DataManager : MonoBehaviour
     }
     public void GameElementalsculptureLoad()
     {
-        if (JSON_DataParsing.Json_Read_Goods() == null)
-        {
-            ElementalsculptureCount = 0;
-            return;
-        }
-        ElementalsculptureCount = JSON_DataParsing.Json_Read_Goods().elementalSculpture;
+        ElementalsculptureCount = JSON_DataParsing.ElementalSculptureAmount;
     }
     public bool GameElementalsculptureSave(int Elementalsculpture)
     {
@@ -501,12 +471,7 @@ public class DataManager : MonoBehaviour
     }
     public void GameElementalGoodsLoad()
     {
-        if (JSON_DataParsing.Json_Read_Goods() == null)
-        {
-            ElementalGoodsCount = new ElementalGoods();
-            return;
-        }
-        ElementalGoodsCount = JSON_DataParsing.Json_Read_Goods().elementalGoods;
+        ElementalGoodsCount = JSON_DataParsing.ElementalGoodsAmount;
     }
     public bool GameElementalGoodsSave(ElementalGoods Elementalgoods)
     {
@@ -562,16 +527,10 @@ public class DataManager : MonoBehaviour
 
     public void LoadEnemyCount()
     {
-        if (JSON_DataParsing.Json_Read_SceneData() == null)
-        {
-            Debug.LogWarning("EnemyCount Load Fail");
-            return;
-        }
-
         if (GameManager.Inst == null)
             return;
 
-        GameManager.Inst.EnemyCount = JSON_DataParsing.Json_Read_SceneData().EnemyCount;
+        GameManager.Inst.EnemyCount = JSON_DataParsing.EnemyCount;
     }
     public void SaveEnemyCount(Enemy_Count enemy_Count)
     {
@@ -589,13 +548,42 @@ public class DataManager : MonoBehaviour
     }
     public void SaveBuffs(List<Buff> _buffs)
     {
-        JSON_DataParsing.Json_Overwrite_Buff(_buffs);
+        var _buffDatas = new List<BuffData>();
+        for(int i = 0; i < _buffs.Count;i++)
+        {
+            var buff = new BuffData();
+            buff.ButtItemIdx = _buffs[i].buffItemSO.ItemIdx;
+            buff.startTime = _buffs[i].startTime;
+            buff.CurrBuffCount = _buffs[i].CurrBuffCount;
+            _buffDatas.Add(buff);
+        }
+        JSON_DataParsing.Json_Overwrite_Buff(_buffDatas);
+
     }
 
     public void LoadBuffs(BuffSystem buffSystem)
     {
-        buffSystem.buffs = JSON_DataParsing.Json_Read_SceneData().Buffs;
-        buffSystem.SetBuff();        
+        var buffDatas = JSON_DataParsing.BuffDatas;
+
+        if (buffDatas == null)
+            return;
+
+        var buff = new List<Buff>();
+
+        for (int i = 0; i < buffDatas.Count; i++) 
+        {
+            var item = new Buff();
+            item.buffItemSO = All_BuffDB.BuffDBList[buffDatas[i].ButtItemIdx];
+            item.CurrBuffCount = buffDatas[i].CurrBuffCount;
+            item.startTime = buffDatas[i].startTime;            
+            buff.Add(item);
+        }
+
+        buffSystem.buffs = buff;
+        if (buffSystem.buffs != null)
+        {
+            buffSystem.SetBuff();        
+        }
     }
 
     public int LoadSceneDataIdx()
@@ -605,16 +593,10 @@ public class DataManager : MonoBehaviour
 
     public void LoadPlayTime()
     {
-        if (JSON_DataParsing.Json_Read_SceneData() == null)
-        {
-            Debug.LogWarning("PlayTime Load Fail");
-            return;
-        }
-
         if (GameManager.Inst == null)
             return;
 
-        GameManager.Inst.PlayTime = JSON_DataParsing.Json_Read_SceneData().PlayTime;
+        GameManager.Inst.PlayTime = JSON_DataParsing.PlayTime;
     }
 
     public void SaveSkipCutSceneList(List<int> idx)
@@ -633,7 +615,7 @@ public class DataManager : MonoBehaviour
 
     public void LoadSkipCutSceneList()
     {
-        SkipCutSceneList = JSON_DataParsing.Json_Read_DefaultData().SkipCutSceneList.ToList();
+        SkipCutSceneList = JSON_DataParsing.SkipCutSceneList;
     }
     public void SaveUnlockItemList(List<int> idx)
     {
