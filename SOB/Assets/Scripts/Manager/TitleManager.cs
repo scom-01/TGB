@@ -84,6 +84,11 @@ public class TitleManager : MonoBehaviour
 
         var SceneName = SceneList[3];
         SceneList = null;
+
+        //새 게임 생성 시 게임 Idx 설정
+        DataManager.Inst.JSON_DataParsing.SceneDataIdx = UnityEngine.Random.Range(0, 10);
+        DataManager.Inst.SaveSceneDataIdx(DataManager.Inst.JSON_DataParsing.SceneDataIdx);
+
         DataManager.Inst?.NextStage(SceneName.ToString());
         GameManager.Inst.ClearScene();
         isDone = true;
@@ -130,6 +135,8 @@ public class TitleManager : MonoBehaviour
         {
             Debug.LogWarning("Save file not found");
         }
+
+        DataManager.Inst.JSON_DataParsing.SceneDataIdx = DataManager.Inst.LoadSceneDataIdx();
     }
 
     public void OnUnlockItemClicked()

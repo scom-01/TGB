@@ -583,6 +583,16 @@ public class DataManager : MonoBehaviour
         JSON_DataParsing.Json_Overwrite_PlayTime(_playTime);
     }
 
+    public void SaveSceneDataIdx(int _sceneDataIdx)
+    {
+        JSON_DataParsing.Json_Overwrite_SceneDataIdx(_sceneDataIdx);
+    }
+
+    public int LoadSceneDataIdx()
+    {
+        return JSON_DataParsing.Json_Read_SceneData().SceneDataIdx;
+    }
+
     public void LoadPlayTime()
     {
         if (JSON_DataParsing.Json_Read_SceneData() == null)
