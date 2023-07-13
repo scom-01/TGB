@@ -16,11 +16,12 @@ public class ItemBuffEventSO : ItemEffectSO
             {
                 Buff buff = new Buff();
                 var items = buffItem;
-                buff.buffItem = items.BuffData;
-                buff.statsData = items.StatsDatas;
-                buff.Health = items.Health;
-                buff.effectData = items.effectData;
-                buff.itemEffects = items.ItemEffects;
+                buff.buffItemSO = items;
+                //buff.buffItem = items.BuffData;
+                //buff.statsData = items.StatsDatas;
+                //buff.Health = items.Health;
+                //buff.effectData = items.effectData;
+                //buff.itemEffects = items.ItemEffects;
                 if (unit.Core.GetCoreComponent<SoundEffect>())
                     unit.Core.GetCoreComponent<SoundEffect>().AudioSpawn(buffItem.effectData.AcquiredSoundEffect);
                 if (unit.GetComponent<BuffSystem>())

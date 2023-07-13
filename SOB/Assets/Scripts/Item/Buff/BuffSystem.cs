@@ -1,3 +1,4 @@
+using Cinemachine.Editor;
 using SOB.CoreSystem;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +8,6 @@ using UnityEngine;
 public class BuffSystem : MonoBehaviour
 {
     public List<Buff> buffs = new List<Buff>();
-    public List<BuffItem_Data> buffItems = new List<BuffItem_Data>();
     private Unit unit;
 
     private void Awake()
@@ -17,17 +17,23 @@ public class BuffSystem : MonoBehaviour
 
     private void Update()
     {
+        if(buffs == null)
+        {
+            buffs = new List<Buff>();
+            return;
+        }
         if (buffs.Count <= 0)
         {
             return;
         }
 
         for (int i = 0; i < buffs.Count;)
-        {
-            
-            if (Time.time >= buffs[i].startTime + buffs[i].buffItem.DurationTime)
+        {            
+            if (GameManager.Inst?.PlayTime >= buffs[i].startTime + buffs[i].buffItemSO.BuffData.DurationTime)
             {
-                unit.Core.GetCoreComponent<UnitStats>().StatsData += buffs[i].statsData * -1f * buffs[i].CurrBuffCount;
+                Debug.Log($"Time = {Time.time}");
+                Debug.Log($"GlobalTime ={GameManager.Inst?.PlayTime}");
+                unit.Core.GetCoreComponent<UnitStats>().StatsData += buffs[i].buffItemSO.StatsDatas* -1f * buffs[i].CurrBuffCount;
 
                 ////현재 체력이 버프의 체력증가 값보다 클 때 증가시켜줬던 체력을 빼앗는 코드
                 //if (unit.Core.GetCoreComponent<UnitStats>().CurrentHealth > buffs[i].Health)
@@ -35,7 +41,6 @@ public class BuffSystem : MonoBehaviour
                 //    unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += buffs[i].Health * -1f * buffs[i].CurrBuffCount;
                 //}
                 buffs.RemoveAt(i);
-                buffItems.RemoveAt(i);
                 if (buffs.Count <= 0)
                 {
                     break;
@@ -57,50 +62,43 @@ public class BuffSystem : MonoBehaviour
     {
         buff.startTime = GameManager.Inst.PlayTime;   
         
-        if(buffItems.Contains(buff.buffItem))
+        for(int i = 0; i < buffs.Count;i++)
         {
-            for (int i = 0; i < buffItems.Count; i++)
+            if (buffs[i].buffItemSO == buff.buffItemSO)
             {
-                //if (buffItems[i] == buff.buffItem)
-                //{
-                    //지속효과 초기화
-                    if (buffItems[i].isBuffInit)
-                    {
-                        buffs[i].startTime = GameManager.Inst.PlayTime;
-                    }
+                //버프 초기화
+                if (buffs[i].buffItemSO.BuffData.isBuffInit)
+                {
+                    buffs[i].startTime = GameManager.Inst.PlayTime;
+                }
 
-                    //중복 X
-                    if (!buffItems[i].isOverlap)
-                    {
-                        return;
-                    }
+                //중복 X
+                if (!buffs[i].buffItemSO.BuffData.isOverlap)
+                {
+                    return;
+                }
 
-                    //중복 최대치 
-                    if (buffs[i].CurrBuffCount >= buffItems[i].BuffCountMax)
-                    {
-                        return;
-                    }
+                //중복 최대치 
+                if (buffs[i].CurrBuffCount >= buffs[i].buffItemSO.BuffData.BuffCountMax)
+                {
+                    return;
+                }
 
-                    buffs[i].CurrBuffCount++;
-                //}
+                buffs[i].CurrBuffCount++;
+                return;
             }
         }
-        else
+        
+        buffs?.Add(buff);
+        buff.CurrBuffCount++;
+        if (unit.GetType() == typeof(Player))
         {
-            buffs?.Add(buff);
-            buff.CurrBuffCount++;
-            buffItems?.Add(buff.buffItem);
-
-            if(unit.GetType() == typeof(Player))
-            {
-                GameManager.Inst?.MainUI?.MainPanel?.BuffPanelSystem.BuffPanelAdd(buff);
-            }
+            GameManager.Inst?.MainUI?.MainPanel?.BuffPanelSystem.BuffPanelAdd(buff);
         }
-
-        unit.Core.GetCoreComponent<UnitStats>().StatsData += buff.statsData;
-        if (buff.Health != 0.0f)
+        unit.Core.GetCoreComponent<UnitStats>().StatsData += buff.buffItemSO.StatsDatas;
+        if (buff.buffItemSO.Health != 0.0f)
         {
-            unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += buff.Health;
+            unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += buff.buffItemSO.Health;
         }
         //PlayBuff(buff);
     }
@@ -109,14 +107,9 @@ public class BuffSystem : MonoBehaviour
     {
         for (int i = 0; i < buffs.Count; i++)
         {
-            if (!buffItems.Contains(buffs[i].buffItem))
+            if (unit.GetType() == typeof(Player))
             {
-                buffItems?.Add(buffs[i].buffItem);
-
-                if (unit.GetType() == typeof(Player))
-                {
-                    GameManager.Inst?.MainUI?.MainPanel?.BuffPanelSystem.BuffPanelAdd(buffs[i]);
-                }
+                GameManager.Inst?.MainUI?.MainPanel?.BuffPanelSystem.BuffPanelAdd(buffs[i]);
             }
         }      
     }

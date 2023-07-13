@@ -168,7 +168,10 @@ public class GameManager : MonoBehaviour
         DataManager.Inst.GameElementalGoodsLoad();
 
         //DeafultData는 GameManager Start()시에 호출되어야한다.(ex.SkipCutSceneList)
-        DataManager.Inst?.LoadSkipCutSceneList();
+        if (DataManager.Inst.JSON_DataParsing.Json_Parsing())
+        {
+            DataManager.Inst?.LoadSkipCutSceneList();
+        }
     }
 
     public void CheckPause(InputEnum inputEnum, bool pause)
@@ -370,16 +373,18 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        DataManager.Inst?.PlayerInventoryDataLoad(StageManager.player.Inventory);
-        DataManager.Inst?.PlayerCurrHealthLoad(StageManager.player.Core.GetCoreComponent<UnitStats>());
-        //DataManager.Inst?.PlayerBuffLoad();
-        DataManager.Inst?.LoadBuffs(StageManager.player.GetComponent<BuffSystem>());
-        DataManager.Inst?.LoadPlayTime();
-        DataManager.Inst?.LoadSkipCutSceneList();
-        DataManager.Inst?.LoadEnemyCount();
-        DataManager.Inst?.GameGoldLoad();
-        DataManager.Inst?.GameElementalsculptureLoad();
-        DataManager.Inst?.GameElementalGoodsLoad();
+        if (DataManager.Inst.JSON_DataParsing.Json_Parsing())
+        {
+            DataManager.Inst?.PlayerInventoryDataLoad(StageManager.player.Inventory);
+            DataManager.Inst?.PlayerCurrHealthLoad(StageManager.player.Core.GetCoreComponent<UnitStats>());
+            DataManager.Inst?.LoadBuffs(StageManager.player.GetComponent<BuffSystem>());
+            DataManager.Inst?.LoadPlayTime();
+            DataManager.Inst?.LoadSkipCutSceneList();
+            DataManager.Inst?.LoadEnemyCount();
+            DataManager.Inst?.GameGoldLoad();
+            DataManager.Inst?.GameElementalsculptureLoad();
+            DataManager.Inst?.GameElementalGoodsLoad();
+        }        
     }
     public void SaveData()
     {
@@ -396,7 +401,7 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-
+                
         DataManager.Inst?.SavePlayTime(PlayTime);
         DataManager.Inst?.SaveSkipCutSceneList(DataManager.Inst.SkipCutSceneList);
         DataManager.Inst?.SaveEnemyCount(EnemyCount);

@@ -126,6 +126,15 @@ public struct ElementalGoods
     }
 }
 
+
+[Serializable]
+public struct BuffData
+{
+    public int ButtItemIdx;
+
+    public int CurrBuffCount;
+    public float startTime;
+}
 [Serializable]
 public struct Enemy_Count
 {
@@ -210,8 +219,8 @@ public class DataParsing : MonoBehaviour
             }
         }
     }
-    private List<int> ItemListIdx = new List<int>();
-    private List<int> WeaponListIdx = new List<int>();
+    [HideInInspector] public List<int> ItemListIdx = new List<int>();
+    [HideInInspector] public List<int> WeaponListIdx = new List<int>();
     #endregion
 
     #region JSON_Goods
@@ -234,9 +243,9 @@ public class DataParsing : MonoBehaviour
             Debug.Log($"ElementalGoods = {elementalGoods}");
         }
     }
-    private int GoldAmount;
-    private int ElementalSculptureAmount;
-    private ElementalGoods ElementalGoodsAmount;
+    [HideInInspector] public int GoldAmount;
+    [HideInInspector] public int ElementalSculptureAmount;
+    [HideInInspector] public ElementalGoods ElementalGoodsAmount;
 
     #endregion
 
@@ -248,7 +257,7 @@ public class DataParsing : MonoBehaviour
         public int PlayerHealth;
         public float PlayTime;
         public Enemy_Count EnemyCount;
-        public List<Buff> Buffs;
+        public List<BuffData> BuffDatas = new List<BuffData>();
         public JSON_SceneData(string sceneName = "", int playerHealth = -1, float playTime = 0, Enemy_Count _enemy_Count = new Enemy_Count())
         {
             SceneName = sceneName;
@@ -267,12 +276,12 @@ public class DataParsing : MonoBehaviour
             Debug.Log($"EnemyCount.Boss_Enemy_Count = {EnemyCount.Boss_Enemy_Count}");
         }
     }
-    [HideInInspector] public string SceneName;
+    [HideInInspector] public string SceneName = "";
     [HideInInspector] public int SceneDataIdx;
-    [HideInInspector] public int PlayerHealth;
+    [HideInInspector] public int PlayerHealth = -1;
     [HideInInspector] public float PlayTime;
     [HideInInspector] public Enemy_Count EnemyCount;
-    [HideInInspector] public List<Buff> Buffs;
+    [HideInInspector] public List<BuffData> BuffDatas;
 
     #endregion
 
@@ -342,9 +351,8 @@ public class DataParsing : MonoBehaviour
                 ItemListIdx = jTest1.items.ToList();
                 WeaponListIdx = jTest1.weapons.ToList();
                 string jsonData = JsonConvert.SerializeObject(jTest1);
-                StreamWriter sw = new StreamWriter(stream, Encoding.UTF8);
-                sw.WriteLine(jsonData);
-                sw.Close();
+                byte[] data = Encoding.UTF8.GetBytes(jsonData);
+                stream.Write(data, 0, data.Length);
                 stream.Close();
             }
         }
@@ -382,6 +390,51 @@ public class DataParsing : MonoBehaviour
                 GoldAmount = jTest1.gold;
                 ElementalSculptureAmount = jTest1.elementalSculpture;
                 string jsonData = JsonConvert.SerializeObject(jTest1);
+                byte[] data = Encoding.UTF8.GetBytes(jsonData);
+                stream.Write(data, 0, data.Length);
+                stream.Close();
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e.Message);
+            return false;
+        }
+        return true;
+    }
+    private bool Json_SceneDataParsing()
+    {
+        if (!Directory.Exists(Application.dataPath + UnitData_DirectoryPath))
+        {
+            Directory.CreateDirectory(Application.dataPath + UnitData_DirectoryPath);
+        }
+        try
+        {
+            if (File.Exists(Application.dataPath + SceneData_FilePath))
+            {
+                FileStream stream = new FileStream(Application.dataPath + SceneData_FilePath, FileMode.Open, FileAccess.ReadWrite);
+                byte[] data = new byte[stream.Length];
+                stream.Read(data, 0, data.Length);
+                stream.Close();
+                string jsonData = Encoding.UTF8.GetString(data);
+                JSON_SceneData json = JsonConvert.DeserializeObject<JSON_SceneData>(jsonData);
+                json.Print();
+                SceneName = json.SceneName;
+                PlayerHealth = json.PlayerHealth;
+                PlayTime = json.PlayTime;
+                EnemyCount = json.EnemyCount;
+                BuffDatas = json.BuffDatas;                
+            }
+            else
+            {
+                FileStream stream = new FileStream(Application.dataPath + SceneData_FilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                JSON_SceneData json = new JSON_SceneData();
+                SceneName = json.SceneName;
+                PlayerHealth = json.PlayerHealth;
+                PlayTime = json.PlayTime;
+                EnemyCount = json.EnemyCount;
+                BuffDatas = json.BuffDatas;
+                string jsonData = JsonConvert.SerializeObject(json);
                 byte[] data = Encoding.UTF8.GetBytes(jsonData);
                 stream.Write(data, 0, data.Length);
                 stream.Close();
@@ -434,7 +487,7 @@ public class DataParsing : MonoBehaviour
         return true;
     }
 
-    private bool Json_Parsing()
+    public bool Json_Parsing()
     {
         if (!Json_InventoryParsing())
         {
@@ -448,11 +501,18 @@ public class DataParsing : MonoBehaviour
             return false;
         }
 
+        if (!Json_SceneDataParsing())
+        {
+            Debug.Log("SceneData Parsing Fail");
+            return false;
+        }
+
         if (!Json_DefaultDataParsing())
         {
             Debug.Log("Default Parsing Fail");
             return false;
         }
+
         return true;
     }
 
@@ -561,7 +621,7 @@ public class DataParsing : MonoBehaviour
                 SceneDataIdx = json.SceneDataIdx;
                 PlayTime = json.PlayTime;
                 EnemyCount = json.EnemyCount;
-                Buffs = json.Buffs;
+                BuffDatas = json.BuffDatas;
                 return json;
             }
             else
@@ -573,7 +633,7 @@ public class DataParsing : MonoBehaviour
                 SceneDataIdx = json.SceneDataIdx;
                 PlayTime = json.PlayTime;
                 EnemyCount = json.EnemyCount;
-                Buffs = json.Buffs;
+                BuffDatas = json.BuffDatas;
                 string jsonData = JsonConvert.SerializeObject(json);
                 byte[] data = Encoding.UTF8.GetBytes(jsonData);
                 stream.Write(data, 0, data.Length);
@@ -866,7 +926,7 @@ public class DataParsing : MonoBehaviour
             json.PlayerHealth = PlayerHealth;
             json.PlayTime = PlayTime;
             json.EnemyCount = EnemyCount;
-            json.Buffs = Buffs;
+            json.BuffDatas = BuffDatas;
             if (!JSON_SceneDataSave(json))
             {
                 Debug.Log("SceneData Save Fail");
@@ -900,7 +960,7 @@ public class DataParsing : MonoBehaviour
             json.SceneDataIdx = SceneDataIdx;
             json.PlayTime = PlayTime;
             json.EnemyCount = EnemyCount;
-            json.Buffs = Buffs;
+            json.BuffDatas = BuffDatas;
             if (!JSON_SceneDataSave(json))
             {
                 Debug.Log("SceneData Save Fail");
@@ -934,7 +994,7 @@ public class DataParsing : MonoBehaviour
             json.SceneDataIdx = SceneDataIdx;
             json.PlayTime = PlayTime;
             json.EnemyCount = EnemyCount;
-            json.Buffs = Buffs;
+            json.BuffDatas = BuffDatas;
             if (!JSON_SceneDataSave(json))
             {
                 Debug.Log("SceneData Save Fail");
@@ -967,7 +1027,7 @@ public class DataParsing : MonoBehaviour
             json.PlayerHealth = PlayerHealth;
             json.PlayTime = PlayTime;
             json.EnemyCount = EnemyCount;
-            json.Buffs = Buffs;
+            json.BuffDatas = BuffDatas;
             if (!JSON_SceneDataSave(json))
             {
                 Debug.Log("SceneData Save Fail");
@@ -1000,7 +1060,7 @@ public class DataParsing : MonoBehaviour
             json.PlayerHealth = PlayerHealth;
             json.PlayTime = PlayTime;
             json.EnemyCount = EnemyCount;
-            json.Buffs = Buffs;
+            json.BuffDatas = BuffDatas;
 
             if (!JSON_SceneDataSave(json))
             {
@@ -1010,14 +1070,14 @@ public class DataParsing : MonoBehaviour
         }
         return true;
     }
-    public bool Json_Overwrite_Buff(List<Buff> _BuffList)
+    public bool Json_Overwrite_Buff(List<BuffData> _BuffList)
     {
         //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
         if (!Json_Parsing())
         {
-            Buffs = _BuffList;
+            BuffDatas = _BuffList;
             JSON_SceneData json = new JSON_SceneData();
-            json.Buffs = Buffs;
+            json.BuffDatas = BuffDatas;
 
             if (!JSON_SceneDataSave(json))
             {
@@ -1028,13 +1088,13 @@ public class DataParsing : MonoBehaviour
         //기존 저장된 JSON파일을 덧씌울 때
         else
         {
-            Buffs = _BuffList;
+            BuffDatas = _BuffList;
             JSON_SceneData json = new JSON_SceneData();
             json.SceneName = SceneName;
             json.PlayerHealth = PlayerHealth;
             json.PlayTime = PlayTime;
             json.EnemyCount = EnemyCount;
-            json.Buffs = Buffs;
+            json.BuffDatas = BuffDatas;
             if (!JSON_SceneDataSave(json))
             {
                 Debug.Log("SceneData Save Fail");
