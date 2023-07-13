@@ -244,6 +244,7 @@ public class DataParsing : MonoBehaviour
     public class JSON_SceneData
     {
         public string SceneName;
+        public int SceneDataIdx;
         public int PlayerHealth;
         public float PlayTime;
         public Enemy_Count EnemyCount;
@@ -257,14 +258,19 @@ public class DataParsing : MonoBehaviour
         public void Print()
         {
             Debug.Log($"SceneName = {SceneName}");
+            Debug.Log($"SceneDataIdx = {SceneDataIdx}");
             Debug.Log($"PlayerHealth = {PlayerHealth}");
             Debug.Log($"PlayTime = {PlayTime}");
+            Debug.Log($"EnemyCount.Normal_Enemy_Count = {EnemyCount.Normal_Enemy_Count}");
+            Debug.Log($"EnemyCount.Elete_Enemy_Count = {EnemyCount.Elete_Enemy_Count}");
+            Debug.Log($"EnemyCount.Boss_Enemy_Count = {EnemyCount.Boss_Enemy_Count}");
         }
     }
-    private string SceneName;
-    private int PlayerHealth;
-    private float PlayTime;
-    private Enemy_Count EnemyCount;
+    [HideInInspector] public string SceneName;
+    [HideInInspector] public int SceneDataIdx;
+    [HideInInspector] public int PlayerHealth;
+    [HideInInspector] public float PlayTime;
+    [HideInInspector] public Enemy_Count EnemyCount;
 
     #endregion
 
@@ -303,8 +309,8 @@ public class DataParsing : MonoBehaviour
         }
     }
 
-    private List<int> SkipCutSceneList;
-    private List<int> UnlockItemList;
+    [HideInInspector] public List<int> SkipCutSceneList;
+    [HideInInspector] public List<int> UnlockItemList;
     #endregion
 
     private bool Json_InventoryParsing()
@@ -550,6 +556,7 @@ public class DataParsing : MonoBehaviour
                 json.Print();
                 SceneName = json.SceneName;
                 PlayerHealth = json.PlayerHealth;
+                SceneDataIdx = json.SceneDataIdx;
                 PlayTime = json.PlayTime;
                 EnemyCount = json.EnemyCount;
                 return json;
@@ -560,6 +567,7 @@ public class DataParsing : MonoBehaviour
                 JSON_SceneData json = new JSON_SceneData();
                 SceneName = json.SceneName;
                 PlayerHealth = json.PlayerHealth;
+                SceneDataIdx = json.SceneDataIdx;
                 PlayTime = json.PlayTime;
                 EnemyCount = json.EnemyCount;
                 string jsonData = JsonConvert.SerializeObject(json);
@@ -600,6 +608,7 @@ public class DataParsing : MonoBehaviour
                 FileStream stream = new FileStream(Application.dataPath + DefaultData_FilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
                 JSON_DefaultData json = new JSON_DefaultData();
                 SkipCutSceneList = json.SkipCutSceneList.ToList();
+                UnlockItemList = json.UnlockItemIdxs.ToList();
                 string jsonData = JsonConvert.SerializeObject(json);
                 byte[] data = Encoding.UTF8.GetBytes(jsonData);
                 stream.Write(data, 0, data.Length);
@@ -828,6 +837,7 @@ public class DataParsing : MonoBehaviour
 
         return true;
     }
+
     public bool Json_Overwrite_sceneName(string _scenename)
     {
         //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
@@ -882,6 +892,40 @@ public class DataParsing : MonoBehaviour
             JSON_SceneData json = new JSON_SceneData();
             json.SceneName = SceneName;
             json.PlayerHealth = PlayerHealth;
+            json.SceneDataIdx = SceneDataIdx;
+            json.PlayTime = PlayTime;
+            json.EnemyCount = EnemyCount;
+            if (!JSON_SceneDataSave(json))
+            {
+                Debug.Log("SceneData Save Fail");
+                return false;
+            }
+        }
+        return true;
+    }
+    public bool Json_Overwrite_SceneDataIdx(int _sceneDataIdx)
+    {
+        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
+        if (!Json_Parsing())
+        {
+            SceneDataIdx = _sceneDataIdx;
+            JSON_SceneData json = new JSON_SceneData();
+            json.PlayerHealth = PlayerHealth;
+
+            if (!JSON_SceneDataSave(json))
+            {
+                Debug.Log("SceneData Save Fail");
+                return false;
+            }
+        }
+        //기존 저장된 JSON파일을 덧씌울 때
+        else
+        {
+            SceneDataIdx = _sceneDataIdx;
+            JSON_SceneData json = new JSON_SceneData();
+            json.SceneName = SceneName;
+            json.PlayerHealth = PlayerHealth;
+            json.SceneDataIdx = SceneDataIdx;
             json.PlayTime = PlayTime;
             json.EnemyCount = EnemyCount;
             if (!JSON_SceneDataSave(json))
@@ -956,6 +1000,7 @@ public class DataParsing : MonoBehaviour
         }
         return true;
     }
+
     public bool Json_Overwrite_SkipCutScene(List<int> _cutScene)
     {
         if (_cutScene == null)
@@ -1151,6 +1196,8 @@ public class DataParsing : MonoBehaviour
 
         return true;
     }
+
+
     private bool JSON_InventorySave(JSON_Inventory inventory)
     {
         try
