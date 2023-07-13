@@ -283,24 +283,26 @@ public class DataManager : MonoBehaviour
         {
             Console.WriteLine("Specified file doesn't exist");
         }
-            
-
-        //if (File.Exists(Application.dataPath + JSON_DataParsing.DefaultData_FilePath))
-        //{
-        //    try
-        //    {
-        //        File.Delete(Application.dataPath + JSON_DataParsing.DefaultData_FilePath);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine("The deletion failed: {0}", e.Message);
-        //    }
-        //}
-        //else
-        //{
-        //    Console.WriteLine("Specified file doesn't exist");
-        //}
         
+    }
+
+    public void DeleteDefaultFile()
+    {
+        if (File.Exists(Application.dataPath + JSON_DataParsing.DefaultData_FilePath))
+        {
+            try
+            {
+                File.Delete(Application.dataPath + JSON_DataParsing.DefaultData_FilePath);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("The deletion failed: {0}", e.Message);
+            }
+        }
+        else
+        {
+            Console.WriteLine("Specified file doesn't exist");
+        }
     }
     public void PlayerInventoryDataLoad(Inventory inventory)
     {
