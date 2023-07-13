@@ -1,3 +1,4 @@
+using AssetKits.ParticleImage.Editor;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,8 +7,10 @@ using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Composites;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 
@@ -17,6 +20,7 @@ public class TitleManager : MonoBehaviour
     /// button 0 = start, 1 = load, 2 = option, 3 = exit
     /// </summary>
     public List<UnityEngine.UI.Button> buttons;
+    private List<UnityEngine.UI.Button> btns;
     /// <summary>
     /// 버튼 중복 클릭 입력 방지
     /// </summary>
@@ -40,16 +44,27 @@ public class TitleManager : MonoBehaviour
 
         GameManager.Inst.ChangeUI(UI_State.CutScene);
 
+        
         //이어하기
         if (DataManager.Inst.CheckJSONFile())
-        {            
+        {
             buttons[1].gameObject.SetActive(true);
         }
         else
         {
             buttons[1].gameObject.SetActive(false);
-        }
+            btns = buttons;
+            btns.RemoveAt(1);
+            for (int i = 0; i < btns.Count; i++)
+            {
+                Navigation nav = btns[i].navigation;
 
+                nav.selectOnDown = btns[i + 1 < btns.Count ? i + 1 : 0];
+                nav.selectOnUp = btns[i - 1 < 0 ? btns.Count - 1 : i - 1];
+                btns[i].navigation = nav;
+            }
+        }
+        
         //CheckUnlockItem
         //if(DataManager.Inst.(DataManager.Inst.JSON_DataParsing.Json_Read_DefaultData().UnlockItemIdxs))
 
