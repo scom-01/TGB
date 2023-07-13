@@ -77,7 +77,7 @@ public class HealthBar : MonoBehaviour
             Img = this.GetComponent<Image>();
             Txt = this.GetComponentInChildren<TextMeshProUGUI>();
             Img.fillAmount = Stats.CurrentHealth / Stats.StatsData.MaxHealth;
-            Txt.text = string.Format($"{Stats.CurrentHealth} / {Stats.StatsData.MaxHealth}");
+            Txt.text = string.Format($"{(int)Stats.CurrentHealth} / {Stats.StatsData.MaxHealth}");
             if (Img.fillAmount < 0.3f)
             {
                 healthbarTrasform.GetComponent<OverlayImg>().SetValue(1 - (Img.fillAmount / 0.3f));
