@@ -17,8 +17,8 @@ namespace SOB.Manager
         IEnumerator LoadAsyncSceneCoroutine()
         {
             var time = 0.0f;
-            Debug.Log($"Scene Load {DataManager.Inst.SceneName}");
-            AsyncOperation operation = SceneManager.LoadSceneAsync(DataManager.Inst.SceneName);
+            Debug.Log($"Scene Load {DataManager.Inst.SceneIdx}");
+            AsyncOperation operation = SceneManager.LoadSceneAsync(DataManager.Inst.SceneIdx);            
             operation.allowSceneActivation = false;
 
             while (!operation.isDone)

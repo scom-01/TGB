@@ -1,6 +1,7 @@
 using SOB.CoreSystem;
 using SOB.Manager;
 using System;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -86,8 +87,24 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public Enemy_Count EnemyCount = new Enemy_Count();
 
+    [HideInInspector]
+    public List<string> SceneNameList
+    {
+        get
+        {
+            if(m_sceneNameList.Count > 0)
+            {
+                for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+                {
+                    m_sceneNameList.Add(System.IO.Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(i)));
+                }
+            }
+            return m_sceneNameList;
+        }
+    }
+    private List<string> m_sceneNameList = new List<string>();
     public event Action SaveAction;
-
+    
     private void Awake()
     {
         if (_Inst)
@@ -405,8 +422,8 @@ public class GameManager : MonoBehaviour
         DataManager.Inst?.SavePlayTime(PlayTime);
         DataManager.Inst?.SaveSkipCutSceneList(DataManager.Inst.SkipCutSceneList);
         DataManager.Inst?.SaveEnemyCount(EnemyCount);
-        DataManager.Inst?.SaveScene(StageManager.CurrStageName);
-        DataManager.Inst?.NextStage(StageManager.NextStageName);
+        DataManager.Inst?.SaveScene(StageManager.CurrStageNumber);
+        DataManager.Inst?.NextStage(StageManager.NextStageNumber);
         DataManager.Inst.PlayerInventoryDataSave(
             GameManager.Inst.StageManager.player.Inventory.Weapon,
             GameManager.Inst.StageManager.player.Inventory._items);
@@ -438,7 +455,7 @@ public class GameManager : MonoBehaviour
         //DataManager.Inst?.GameGoldSave(0);
         //DataManager.Inst?.GameElementalsculptureSave(0);
 
-        DataManager.Inst?.NextStage("Title");
+        DataManager.Inst?.NextStage(2);
     }
 
     public void ClearScene()

@@ -1850,6 +1850,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EffectList: []
   EffectControllerList: []
+  EffectPoolList: []
 --- !u!1 &618682963
 GameObject:
   m_ObjectHideFlags: 0
@@ -66360,7 +66361,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5626e3253cdde8e4aada6be4e4c100fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnCtrls: []
 --- !u!4 &1292705703
 Transform:
   m_ObjectHideFlags: 0
@@ -71846,10 +71846,28 @@ MonoBehaviour:
   UnitData_DirectoryPath: /Resources/json/
   UnitInventoryData_FileName: 
   UnitGoodsData_FileName: 
+  SceneData_FileName: 
+  DefaultData_FileName: 
   ItemListIdx: 
   WeaponListIdx: 
   GoldAmount: 0
   ElementalSculptureAmount: 0
+  ElementalGoodsAmount:
+    FireGoods: 0
+    WaterGoods: 0
+    EarthGoods: 0
+    WindGoods: 0
+  SceneNumber: 2
+  SceneDataIdx: 0
+  PlayerHealth: -1
+  PlayTime: 0
+  EnemyCount:
+    Normal_Enemy_Count: 0
+    Elete_Enemy_Count: 0
+    Boss_Enemy_Count: 0
+  BuffDatas: []
+  SkipCutSceneList: 
+  UnlockItemList: 
 --- !u!114 &1679714829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71864,8 +71882,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IM: {fileID: 1161023654}
   SPM: {fileID: 1292705702}
-  CurrStageName: Stage_1_SnowMountain
-  NextStageName: Stage_1_Cave
+  CurrStageNumber: 5
+  NextStageNumber: 6
   Start_UIState: 0
   respawnPoint: {fileID: 1814375134}
   EndPoint: {fileID: 299998475}

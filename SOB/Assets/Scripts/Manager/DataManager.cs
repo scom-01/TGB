@@ -67,9 +67,10 @@ public class DataManager : MonoBehaviour
     [HideInInspector] public int ElementalsculptureCount;
     [HideInInspector] public ElementalGoods ElementalGoodsCount;
 
-    public List<Buff> Playerbuffs = new List<Buff>();
+    //public List<Buff> Playerbuffs = new List<Buff>();
 
     public string SceneName { get; private set; }
+    public int SceneIdx { get; private set; }
     public List<int> SkipCutSceneList = new List<int>();
     #endregion
 
@@ -489,12 +490,20 @@ public class DataManager : MonoBehaviour
         return true;
     }
 
-    public void SaveScene(string _stage)
+    public void SaveScene(int _stageNumber)
     {
-        JSON_DataParsing.Json_Overwrite_SceneName(_stage);
-
-        //PlayerPrefs.SetString(GlobalValue.StageName, _stage);
-        //Debug.LogWarning("Save SceneData Success");
+        if (_stageNumber == 0)
+        {
+            for (int i= 0; i < GameManager.Inst.SceneNameList.Count; i++)
+            {
+                if (GameManager.Inst.SceneNameList[i] == GameManager.Inst.StageManager.CurrStageName)
+                {
+                    JSON_DataParsing.Json_Overwrite_SceneName(i);
+                    return;
+                }                
+            }
+        }
+        JSON_DataParsing.Json_Overwrite_SceneName(_stageNumber);
     }
 
     public void LoadScene()
@@ -504,21 +513,22 @@ public class DataManager : MonoBehaviour
             Debug.LogWarning("SceneName Load Fail");
             return;
         }
-        if (JSON_DataParsing.Json_Read_SceneData().SceneName == "")
-        {
-            List<string> SceneList = new List<string>();
+        
+        //if (JSON_DataParsing.Json_Read_SceneData().SceneNumber == 2)
+        //{
+        //    List<string> SceneList = new List<string>();
 
-            for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
-            {
-                SceneList.Add(System.IO.Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(i)));
-            }
+        //    for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+        //    {
+        //        SceneList.Add(System.IO.Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(i)));
+        //    }
 
-            SceneName = SceneList[3];
-            SceneList = null;
-            Debug.LogWarning("Default SceneName Save");
-            return;
-        }
-        SceneName = JSON_DataParsing.Json_Read_SceneData().SceneName;
+        //    SceneName = SceneList[3];
+        //    SceneList = null;
+        //    Debug.LogWarning("Default SceneName Save");
+        //    return;
+        //}
+        SceneIdx = JSON_DataParsing.Json_Read_SceneData().SceneNumber;
         Debug.LogWarning("Success SceneName Save");
 
         //string stage = PlayerPrefs.GetString(GlobalValue.StageName, "CutScene1");
@@ -631,9 +641,9 @@ public class DataManager : MonoBehaviour
         JSON_DataParsing.Json_Addwrite_UnlockItem(idx);
     }
 
-    public void LoadUnlockItemList()
+    public List<int> LoadUnlockItemList()
     {
-        SkipCutSceneList = JSON_DataParsing.Json_Read_DefaultData().SkipCutSceneList.ToList();
+        return JSON_DataParsing.UnlockItemList;
     }
     #endregion
 
@@ -642,6 +652,14 @@ public class DataManager : MonoBehaviour
     public void NextStage(string stage)
     {
         SceneName = stage;
+    }
+    /// <summary>
+    /// Title = 2
+    /// </summary>
+    /// <param name="stageIndex"></param>
+    public void NextStage(int stageIndex)
+    {
+        SceneIdx = stageIndex;
     }
 
     public void IncreaseGoods(GOODS_TPYE type, int goodsAmount)

@@ -9,7 +9,7 @@ public class GameStartManager : MonoBehaviour
     private bool isDone = false;
     private void Awake()
     {
-        DataManager.Inst?.NextStage("Title");
+        DataManager.Inst?.NextStage(2);
     }
 
     private void Update()

@@ -8,8 +8,8 @@ using UnityEngine.UI;
 
 public class CutSceneManager : MonoBehaviour
 {
-    [SerializeField] private PlayableDirector PlayableDirector;
-    [SerializeField] private string NextSceneName;
+    [SerializeField] private PlayableDirector PlayableDirector;    
+    [SerializeField] private int NextSceneNumber;
 
     private PlayerInputHandler inputHandler
     {
@@ -94,13 +94,13 @@ public class CutSceneManager : MonoBehaviour
 
     public void OnTriggerSceneEnd()
     {
-        DataManager.Inst.NextStage(NextSceneName);
+        DataManager.Inst.NextStage(NextSceneNumber);
         GameManager.Inst.ClearScene();
     }
 
     public void OnTriggerSceneEnd(PlayableDirector playableDirector)
     {
-        DataManager.Inst.NextStage(NextSceneName);
+        DataManager.Inst.NextStage(NextSceneNumber);
         GameManager.Inst.ClearScene();
     }
 }

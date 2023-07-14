@@ -2456,6 +2456,7 @@ MonoBehaviour:
   ResultUI: {fileID: 2056979607}
   DamageUI: {fileID: 1122091716}
   CutSceneUI: {fileID: 685364673}
+  EffectTextUI: {fileID: 0}
   PlayTimeUI: {fileID: 341979578}
   Old_UIState: 0
   Curr_UIState: 0
@@ -8436,7 +8437,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40.55
+  m_fontSize: 27.45
   m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -15667,7 +15668,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
+  m_fontSize: 25.2
   m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -18680,7 +18681,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17
+  m_fontSize: 20
   m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -18805,6 +18806,7 @@ MonoBehaviour:
   Lock_ItemDB: {fileID: 11400000, guid: 908f3fa2a7c343941871eaeed0bf4f17, type: 2}
   Unlock_ItemDB: {fileID: 11400000, guid: 809dca7abb60b834c9cf8be324766f2d, type: 2}
   Default_Unlock_ItemDB: {fileID: 11400000, guid: 2a22c5a26b0672e4db5bb83d6c60199b, type: 2}
+  All_BuffDB: {fileID: 11400000, guid: 0980afdbbbec3594aaf1f83a0fade70e, type: 2}
   UnlockItemList: []
   UnlockItemListidx: 
   PlayerHealth: 0
@@ -18823,9 +18825,6 @@ MonoBehaviour:
   SFX_Volume: 0
   localizationIdx: 0
   localizationSettings: {fileID: 11400000, guid: c59adb791d4b5ac4b8821cc1e8db344a, type: 2}
-  references:
-    version: 2
-    RefIds: []
 --- !u!4 &938190823
 Transform:
   m_ObjectHideFlags: 0
@@ -18858,6 +18857,17 @@ MonoBehaviour:
   UnitGoodsData_FileName: UnitGoodsData
   SceneData_FileName: SceneData
   DefaultData_FileName: DefaultData
+  SceneName: 
+  SceneDataIdx: 0
+  PlayerHealth: 0
+  PlayTime: 0
+  EnemyCount:
+    Normal_Enemy_Count: 0
+    Elete_Enemy_Count: 0
+    Boss_Enemy_Count: 0
+  Buffs: []
+  SkipCutSceneList: 
+  UnlockItemList: 
 --- !u!1 &939601462
 GameObject:
   m_ObjectHideFlags: 0
@@ -27141,7 +27151,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: 351585.12}
+  m_AnchoredPosition: {x: 7, y: 54214.797}
   m_SizeDelta: {x: 21.1497, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1368125264
@@ -28559,6 +28569,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Stat1
   EffectTextStringEvent: {fileID: 1678403519}
+  UnlockitemNames: []
 --- !u!114 &1435508459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28606,7 +28617,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1435508456}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -33555,7 +33566,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 43.7
+  m_fontSize: 50
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -42408,7 +42419,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: -83070.71}
+  m_AnchoredPosition: {x: 7, y: -19614.918}
   m_SizeDelta: {x: 21.1497, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2125587133

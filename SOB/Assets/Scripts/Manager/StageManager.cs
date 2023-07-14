@@ -12,8 +12,15 @@ public class StageManager : MonoBehaviour
     [Header("----Manager----")]
     public ItemManager IM;
     public SpawnManager SPM;
-    public string CurrStageName;
-    public string NextStageName;
+    public string CurrStageName
+    {
+        get
+        {
+            return SceneManager.GetActiveScene().name;
+        }
+    }
+    public int CurrStageNumber;
+    public int NextStageNumber;
     public UI_State Start_UIState;
 
     [Header("----Player----")]

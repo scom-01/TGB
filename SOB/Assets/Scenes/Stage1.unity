@@ -13333,6 +13333,27 @@ MonoBehaviour:
   UnitInventoryData_FileName: 
   UnitGoodsData_FileName: 
   SceneData_FileName: 
+  DefaultData_FileName: 
+  ItemListIdx: 
+  WeaponListIdx: 
+  GoldAmount: 0
+  ElementalSculptureAmount: 0
+  ElementalGoodsAmount:
+    FireGoods: 0
+    WaterGoods: 0
+    EarthGoods: 0
+    WindGoods: 0
+  SceneNumber: 2
+  SceneDataIdx: 0
+  PlayerHealth: -1
+  PlayTime: 0
+  EnemyCount:
+    Normal_Enemy_Count: 0
+    Elete_Enemy_Count: 0
+    Boss_Enemy_Count: 0
+  BuffDatas: []
+  SkipCutSceneList: 
+  UnlockItemList: 
 --- !u!4 &1498734594
 Transform:
   m_ObjectHideFlags: 0
@@ -13372,8 +13393,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IM: {fileID: 2129369524}
   SPM: {fileID: 193596151}
-  CurrStageName: Stage1
-  NextStageName: BossStage1
+  CurrStageNumber: 7
+  NextStageNumber: 8
   Start_UIState: 0
   respawnPoint: {fileID: 2048269062}
   EndPoint: {fileID: 795737771}
@@ -15234,6 +15255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EffectList: []
   EffectControllerList: []
+  EffectPoolList: []
 --- !u!1 &1949248083
 GameObject:
   m_ObjectHideFlags: 0
