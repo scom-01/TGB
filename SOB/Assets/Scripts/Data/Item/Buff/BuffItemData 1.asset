@@ -15,8 +15,27 @@ MonoBehaviour:
   ItemIdx: 1
   itemData:
     ItemName: 
+    <ItemNameLocal>k__BackingField:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     ItemDescription: 
+    <ItemDescriptionLocal>k__BackingField:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     ItemSprite: {fileID: 1389482560, guid: f7bf72b4be9086e4c9eef46270d4a8f3, type: 3}
+    ItemLevel: 0
   StatsDatas:
     MaxHealth: 0
     MovementVelocity: 0
@@ -39,8 +58,11 @@ MonoBehaviour:
     <DetailSubUI>k__BackingField: 0
   ItemEffects: []
   BuffData:
-    DurationTime: 1
+    DurationTime: 10
     BuffType: 0
     isOverlap: 0
     BuffCountMax: 5
     isBuffInit: 0
+  references:
+    version: 2
+    RefIds: []

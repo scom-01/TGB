@@ -48,11 +48,18 @@ public enum EVENT_BUFF_STATS
     ElementalAggressivePer,
 }
 
-
 public enum ITEM_TPYE
 {
     Detected = 0,
     Collision = 1,
+}
+
+public enum ITEM_Level
+{
+    Common,
+    Elete,
+    Special,
+    Legend,
 }
 
 public enum GOODS_TPYE

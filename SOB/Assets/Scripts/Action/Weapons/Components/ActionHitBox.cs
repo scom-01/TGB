@@ -17,24 +17,6 @@ namespace SOB.Weapons.Components
         private Vector2 offset;
         private Collider2D[] detected;
         private RaycastHit2D[] RayCastdetected;
-        private BoxCollider2D Box2D
-        {
-            get
-            {
-                if (box2D == null)
-                {
-                    box2D = this.GetComponent<BoxCollider2D>();
-                    if (box2D == null)
-                    {
-                        box2D = this.AddComponent<BoxCollider2D>();
-                    }
-                    box2D.isTrigger = true;
-                }
-                return box2D;
-            }
-        }
-
-        private BoxCollider2D box2D;
 
         private bool isTriggerOn;
         private List<Collider2D> actionHitObjects = new List<Collider2D>();
@@ -53,6 +35,7 @@ namespace SOB.Weapons.Components
         {
             if (currentActionData != null)
             {
+
                 CheckAttackAction(currentActionData);
             }
 
@@ -412,8 +395,6 @@ namespace SOB.Weapons.Components
                     (currHitBox[currentHitBoxIndex].ActionRect.center.x),
                     (currHitBox[currentHitBoxIndex].ActionRect.center.y)
                     );
-            Box2D.offset = offset;
-            Box2D.size = currHitBox[currentHitBoxIndex].ActionRect.size;
 
             isTriggerOn = true;
         }
