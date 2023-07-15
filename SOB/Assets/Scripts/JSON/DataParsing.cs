@@ -1177,6 +1177,55 @@ public class DataParsing : MonoBehaviour
 
         return true;
     }
+    public bool Json_Overwrite_SkipBossCutScene(List<int> _cutScene)
+    {
+        if (_cutScene == null)
+        {
+            List<int> ints = new List<int>();
+            SkipBossCutScene = ints;
+            JSON_DefaultData json = new JSON_DefaultData();
+            json.SkipCutSceneList = SkipCutSceneList.ToArray();
+            json.SkipBossCutScene = SkipBossCutScene.ToArray();
+            json.UnlockItemIdxs = UnlockItemList.ToArray();
+            if (!JSON_DefaultDataSave(json))
+            {
+                Debug.Log("DefaultData Save Fail");
+                return false;
+            }
+            return false;
+        }
+
+        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
+        if (!Json_Parsing())
+        {
+            SkipBossCutScene = _cutScene;
+            JSON_DefaultData json = new JSON_DefaultData();
+            json.SkipCutSceneList = SkipCutSceneList.ToArray();
+            json.SkipBossCutScene = SkipBossCutScene.ToArray();
+            json.UnlockItemIdxs = UnlockItemList.ToArray();
+            if (!JSON_DefaultDataSave(json))
+            {
+                Debug.Log("DefaultData Save Fail");
+                return false;
+            }
+        }
+        //기존 저장된 JSON파일을 덧씌울 때
+        else
+        {
+            SkipBossCutScene = _cutScene;
+            JSON_DefaultData json = new JSON_DefaultData();
+            json.SkipCutSceneList = SkipCutSceneList.ToArray();
+            json.SkipBossCutScene = SkipBossCutScene.ToArray();
+            json.UnlockItemIdxs = UnlockItemList.ToArray();
+            if (!JSON_DefaultDataSave(json))
+            {
+                Debug.Log("DefaultData Save Fail");
+                return false;
+            }
+        }
+
+        return true;
+    }
     public bool Json_Overwrite_UnlockItem(List<int> _UnlockItemIdx)
     {
         if (_UnlockItemIdx == null)
