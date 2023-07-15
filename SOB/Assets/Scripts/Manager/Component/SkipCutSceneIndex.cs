@@ -17,6 +17,15 @@ public class SkipCutSceneIndex : MonoBehaviour
             return;
         }
 
+        if (this.GetComponent<CutSceneManager>() != null)
+        {
+            idx = this.GetComponent<CutSceneManager>().CurrStageNumber;
+            if(idx == 0)
+            {
+                Debug.LogWarning("Scene Not found");
+            }
+        }
+
         if (!DataManager.Inst.SkipCutSceneList.Contains(idx))
         {
             DataManager.Inst.SkipCutSceneList.Add(idx);

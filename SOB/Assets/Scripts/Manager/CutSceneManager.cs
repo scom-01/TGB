@@ -9,7 +9,29 @@ using UnityEngine.UI;
 public class CutSceneManager : MonoBehaviour
 {
     [SerializeField] private PlayableDirector PlayableDirector;    
-    [SerializeField] private int NextSceneNumber;
+    public string CurrStageName
+    {
+        get
+        {
+            return SceneManager.GetActiveScene().name;
+        }
+    }
+    public int CurrStageNumber
+    {
+        get
+        {
+            for (int i = 0; i < GameManager.Inst.SceneNameList.Count; i++)
+            {
+                if (GameManager.Inst.SceneNameList[i] == GameManager.Inst.StageManager.CurrStageName)
+                {
+                    DataManager.Inst.JSON_DataParsing.Json_Overwrite_SceneName(i);
+                    return i;
+                }
+            }
+            return 0;
+        }
+    }
+    public int NextStageNumber;
 
     private PlayerInputHandler inputHandler
     {
@@ -94,13 +116,13 @@ public class CutSceneManager : MonoBehaviour
 
     public void OnTriggerSceneEnd()
     {
-        DataManager.Inst.NextStage(NextSceneNumber);
+        DataManager.Inst.NextStage(NextStageNumber);
         GameManager.Inst.ClearScene();
     }
 
     public void OnTriggerSceneEnd(PlayableDirector playableDirector)
     {
-        DataManager.Inst.NextStage(NextSceneNumber);
+        DataManager.Inst.NextStage(NextStageNumber);
         GameManager.Inst.ClearScene();
     }
 }

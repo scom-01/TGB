@@ -44,6 +44,7 @@ public class StageManager : MonoBehaviour
 
     private void Awake()
     {
+        Debug.LogWarning($"Stage Awake {CurrStageName}");
         if (GameManager.Inst)
         {
             GameManager.Inst.StageManager = this;

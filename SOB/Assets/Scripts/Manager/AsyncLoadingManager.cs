@@ -34,6 +34,7 @@ namespace SOB.Manager
                 {
                     operation.allowSceneActivation = true;
                 }
+                Debug.LogWarning($"Scene Loading..");
                 yield return null;
             }
         }

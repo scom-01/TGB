@@ -126,7 +126,6 @@ public struct ElementalGoods
     }
 }
 
-
 [Serializable]
 public struct BuffData
 {
@@ -296,10 +295,12 @@ public class DataParsing : MonoBehaviour
     public class JSON_DefaultData
     {
         public int[] SkipCutSceneList = new int[0];
+        public int[] SkipBossCutScene = new int[0];
         public int[] UnlockItemIdxs = GlobalValue.DefaultUnlockItem;
         public JSON_DefaultData()
         {
             SkipCutSceneList = new int[0];
+            SkipBossCutScene = new int[0];
             UnlockItemIdxs = GlobalValue.DefaultUnlockItem;
         }
         public void Print()
@@ -312,6 +313,17 @@ public class DataParsing : MonoBehaviour
                     str += item.ToString() + " ";
                 }
                 Debug.Log($"SkipCutSceneList = {str}");
+
+            }
+
+            if (SkipBossCutScene.Length > 0)
+            {
+                var str = "";
+                foreach (int item in SkipBossCutScene)
+                {
+                    str += item.ToString() + " ";
+                }
+                Debug.Log($"SkipBossCutScene = {str}");
 
             }
 
@@ -328,6 +340,7 @@ public class DataParsing : MonoBehaviour
     }
 
     [HideInInspector] public List<int> SkipCutSceneList;
+    [HideInInspector] public List<int> SkipBossCutScene;
     [HideInInspector] public List<int> UnlockItemList;
     #endregion
 
@@ -472,12 +485,15 @@ public class DataParsing : MonoBehaviour
                 JSON_DefaultData jtest2 = JsonConvert.DeserializeObject<JSON_DefaultData>(jsonData);
                 jtest2.Print();
                 SkipCutSceneList = jtest2.SkipCutSceneList.ToList();
+                SkipBossCutScene = jtest2.SkipBossCutScene.ToList();
                 UnlockItemList = jtest2.UnlockItemIdxs.ToList();
             }
             else
             {
                 FileStream stream = new FileStream(Application.dataPath + DefaultData_FilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
                 JSON_DefaultData jTest1 = new JSON_DefaultData();
+                SkipCutSceneList = jTest1.SkipCutSceneList.ToList();
+                SkipBossCutScene = jTest1.SkipBossCutScene.ToList();
                 SkipCutSceneList = jTest1.SkipCutSceneList.ToList();
                 UnlockItemList = jTest1.UnlockItemIdxs.ToList();
                 string jsonData = JsonConvert.SerializeObject(jTest1);
@@ -679,6 +695,7 @@ public class DataParsing : MonoBehaviour
                 FileStream stream = new FileStream(Application.dataPath + DefaultData_FilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
                 JSON_DefaultData json = new JSON_DefaultData();
                 SkipCutSceneList = json.SkipCutSceneList.ToList();
+                SkipBossCutScene = json.SkipBossCutScene.ToList();
                 UnlockItemList = json.UnlockItemIdxs.ToList();
                 string jsonData = JsonConvert.SerializeObject(json);
                 byte[] data = Encoding.UTF8.GetBytes(jsonData);
@@ -1119,6 +1136,7 @@ public class DataParsing : MonoBehaviour
             SkipCutSceneList = ints;
             JSON_DefaultData json = new JSON_DefaultData();
             json.SkipCutSceneList = SkipCutSceneList.ToArray();
+            json.SkipBossCutScene = SkipBossCutScene.ToArray();
             json.UnlockItemIdxs = UnlockItemList.ToArray();
             if (!JSON_DefaultDataSave(json))
             {
@@ -1134,6 +1152,7 @@ public class DataParsing : MonoBehaviour
             SkipCutSceneList = _cutScene;
             JSON_DefaultData json = new JSON_DefaultData();
             json.SkipCutSceneList = SkipCutSceneList.ToArray();
+            json.SkipBossCutScene = SkipBossCutScene.ToArray();
             json.UnlockItemIdxs = UnlockItemList.ToArray();
             if (!JSON_DefaultDataSave(json))
             {
@@ -1147,6 +1166,7 @@ public class DataParsing : MonoBehaviour
             SkipCutSceneList = _cutScene;
             JSON_DefaultData json = new JSON_DefaultData();
             json.SkipCutSceneList = SkipCutSceneList.ToArray();
+            json.SkipBossCutScene = SkipBossCutScene.ToArray();
             json.UnlockItemIdxs = UnlockItemList.ToArray();
             if (!JSON_DefaultDataSave(json))
             {
@@ -1164,7 +1184,9 @@ public class DataParsing : MonoBehaviour
             List<int> ints = new List<int>();
             UnlockItemList = ints;
             JSON_DefaultData json = new JSON_DefaultData();
-            json.SkipCutSceneList = UnlockItemList.ToArray();
+            json.SkipCutSceneList = SkipCutSceneList.ToArray();
+            json.SkipBossCutScene = SkipBossCutScene.ToArray();
+            json.UnlockItemIdxs = UnlockItemList.ToArray();
             if (!JSON_DefaultDataSave(json))
             {
                 Debug.Log("DefaultData Save Fail");
@@ -1179,6 +1201,7 @@ public class DataParsing : MonoBehaviour
             UnlockItemList = _UnlockItemIdx;
             JSON_DefaultData json = new JSON_DefaultData();
             json.SkipCutSceneList = SkipCutSceneList.ToArray();
+            json.SkipBossCutScene = SkipBossCutScene.ToArray();
             json.UnlockItemIdxs = UnlockItemList.ToArray();
 
             if (!JSON_DefaultDataSave(json))
@@ -1193,6 +1216,7 @@ public class DataParsing : MonoBehaviour
             UnlockItemList = _UnlockItemIdx;
             JSON_DefaultData json = new JSON_DefaultData();
             json.SkipCutSceneList = SkipCutSceneList.ToArray();
+            json.SkipBossCutScene = SkipBossCutScene.ToArray();
             json.UnlockItemIdxs = UnlockItemList.ToArray();
             if (!JSON_DefaultDataSave(json))
             {
@@ -1211,6 +1235,8 @@ public class DataParsing : MonoBehaviour
             SkipCutSceneList = ints;
             JSON_DefaultData json = new JSON_DefaultData();
             json.SkipCutSceneList = SkipCutSceneList.ToArray();
+            json.SkipBossCutScene = SkipBossCutScene.ToArray();
+            json.UnlockItemIdxs = UnlockItemList.ToArray();
             if (!JSON_DefaultDataSave(json))
             {
                 Debug.Log("DefaultData Save Fail");
@@ -1228,6 +1254,7 @@ public class DataParsing : MonoBehaviour
             }
             JSON_DefaultData json = new JSON_DefaultData();
             json.SkipCutSceneList = SkipCutSceneList.ToArray();
+            json.SkipBossCutScene = SkipBossCutScene.ToArray();
             json.UnlockItemIdxs = UnlockItemList.ToArray();
             if (!JSON_DefaultDataSave(json))
             {
@@ -1241,6 +1268,7 @@ public class DataParsing : MonoBehaviour
             SkipCutSceneList = _cutScene;
             JSON_DefaultData json = new JSON_DefaultData();
             json.SkipCutSceneList = SkipCutSceneList.ToArray();
+            json.SkipBossCutScene = SkipBossCutScene.ToArray();
             json.UnlockItemIdxs = UnlockItemList.ToArray();
             if (!JSON_DefaultDataSave(json))
             {
@@ -1258,6 +1286,8 @@ public class DataParsing : MonoBehaviour
             List<int> ints = new List<int>();
             UnlockItemList = ints;
             JSON_DefaultData json = new JSON_DefaultData();
+            json.SkipCutSceneList = SkipCutSceneList.ToArray();
+            json.SkipBossCutScene = SkipBossCutScene.ToArray();
             json.UnlockItemIdxs = UnlockItemList.ToArray();
             if (!JSON_DefaultDataSave(json))
             {
@@ -1276,6 +1306,7 @@ public class DataParsing : MonoBehaviour
             }
             JSON_DefaultData json = new JSON_DefaultData();
             json.SkipCutSceneList = SkipCutSceneList.ToArray();
+            json.SkipBossCutScene = SkipBossCutScene.ToArray();
             json.UnlockItemIdxs = UnlockItemList.ToArray();
 
             if (!JSON_DefaultDataSave(json))
@@ -1296,6 +1327,7 @@ public class DataParsing : MonoBehaviour
             }
             JSON_DefaultData json = new JSON_DefaultData();
             json.SkipCutSceneList = SkipCutSceneList.ToArray();
+            json.SkipBossCutScene = SkipBossCutScene.ToArray();
             json.UnlockItemIdxs = UnlockItemList.ToArray();
             if (!JSON_DefaultDataSave(json))
             {
