@@ -25,6 +25,7 @@ public class StageManager : MonoBehaviour
     public int CurrStageNumber;
     public int NextStageNumber;
     public UI_State Start_UIState;
+    public Camera Cam;
 
     [Header("----Player----")]
     [SerializeField]
@@ -35,14 +36,12 @@ public class StageManager : MonoBehaviour
     public GameObject PlayerPrefab;
     private GameObject playerGO;
     public Player player;
-    [SerializeField]
-    public float respawnTime;
-
+    
     [SerializeField] private GameObject SceneNameFade;
 
-    public bool isStageClear = false;
     public PlayableDirector CutSceneDirector;
-
+    
+    [HideInInspector] public bool isStageClear = false;
     [HideInInspector] public CinemachineVirtualCamera CVC;
 
     private void Awake()
