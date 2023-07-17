@@ -14,7 +14,7 @@ public class HealthBar : MonoBehaviour
         {
             if (unit == null)
             {
-                if (isSpriteRender)
+                if (m_isUnit)
                 {
                     unit = this.GetComponentInParent<Unit>();                    
                 }
@@ -46,13 +46,11 @@ public class HealthBar : MonoBehaviour
         }
     }
     private UnitStats stats;
-
-    [SerializeField] private bool isSpriteRender = true;
-    [SerializeField] private RectTransform healthbarTrasform;
-    [SerializeField] private float ZeroPosX;
-
+    [SerializeField] private Slider m_Slider;
+    [SerializeField] private bool m_isUnit = true;
+    [SerializeField] private bool m_IsFollow = true;
     private Image Img;
-    private TextMeshProUGUI Txt;
+    [SerializeField] private TextMeshProUGUI Txt;
 
     // Update is called once per frame
     void Update()
@@ -68,24 +66,26 @@ public class HealthBar : MonoBehaviour
             return;
         }
 
-        if (isSpriteRender)
+        if (m_Slider != null)
         {
-            healthbarTrasform.anchoredPosition = new Vector2(ZeroPosX * (1 - (Stats.CurrentHealth / Stats.StatsData.MaxHealth)), 0);
+            m_Slider.value = Stats.CurrentHealth / Stats.StatsData.MaxHealth;
+
+            if(m_IsFollow)
+            {
+                if (GameManager.Inst.StageManager.Cam != null)
+                {
+                    m_Slider.transform.position = GameManager.Inst.StageManager.Cam.WorldToScreenPoint(unit.Core.GetCoreComponent<CollisionSenses>().GroundCheck.position + new Vector3(0.0f, -1.0f, 0.0f));
+                }
+                else
+                {
+                    m_Slider.transform.position = Camera.main.WorldToScreenPoint(unit.Core.GetCoreComponent<CollisionSenses>().GroundCheck.position + new Vector3(0.0f, -1.0f, 0.0f));
+                }
+            }            
         }
-        else
+        if (Txt != null) 
         {
-            Img = this.GetComponent<Image>();
+            Txt.text = string.Format($"{(int)Stats.CurrentHealth} / {Stats.StatsData.MaxHealth}");        
             Txt = this.GetComponentInChildren<TextMeshProUGUI>();
-            Img.fillAmount = Stats.CurrentHealth / Stats.StatsData.MaxHealth;
-            Txt.text = string.Format($"{(int)Stats.CurrentHealth} / {Stats.StatsData.MaxHealth}");
-            if (Img.fillAmount < 0.3f)
-            {
-                healthbarTrasform.GetComponent<OverlayImg>().SetValue(1 - (Img.fillAmount / 0.3f));
-            }
-            else
-            {
-                healthbarTrasform.GetComponent<OverlayImg>().SetValue(0);
-            }
         }
     }
 }
