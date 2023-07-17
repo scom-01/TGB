@@ -111,7 +111,7 @@ public class StageManager : MonoBehaviour
 
         if (respawnPoint == null)
             respawnPoint = GameObject.Find("SpawnPoint").GetComponent<Transform>();
-        GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, false);
+        GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, false);
         GameManager.Inst.ChangeUI(Start_UIState);
         //Loading시 ESC를 눌러서 Pause가 됐을 때 생기는 오류 방지
         GameManager.Inst.Continue();
@@ -127,7 +127,7 @@ public class StageManager : MonoBehaviour
     {
         if (!isClear)
             return;
-
+        DataManager.Inst?.NextStage(NextStageNumber);
         //End 애니메이션
         EndPoint.GetComponentInChildren<Animator>()?.SetBool("Action", true);
         EndPoint.GetComponent<BoxCollider2D>().enabled = true;
@@ -136,11 +136,11 @@ public class StageManager : MonoBehaviour
 
     public void CutSceneStart()
     {
-        GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.Cfg, false);
+        GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.Cfg, false);
     }
 
     public void CutSceneEnd()
     {
-        GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, false);
+        GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, false);
     }
 }

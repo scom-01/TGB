@@ -17,7 +17,7 @@ public class ReforgingAnvil : InteractiveObject
         if (GameManager.Inst.ReforgingUI.equipWeapon == null)
             return;
 
-        GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.UI, true);
+        GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.UI, true);
         GameManager.Inst.ChangeUI(UI_State.Reforging);
         GameManager.Inst.ReforgingUI.equipWeapon.SetWeaponCommandData(GameManager.Inst.StageManager.player.Inventory.weaponData.weaponCommandDataSO);
         GameManager.Inst.StageManager.player.Inventory.weaponData = GameManager.Inst.StageManager.player.Inventory.weaponData;        

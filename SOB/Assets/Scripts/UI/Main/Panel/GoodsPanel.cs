@@ -26,9 +26,9 @@ public class GoodsPanel : MonoBehaviour
     {
         if (DataManager.Inst != null)
         {
-            currentGold = DataManager.Inst.GoldCount;
-            currentSculpture = DataManager.Inst.ElementalsculptureCount;
-            currentElementalGoods = DataManager.Inst.ElementalGoodsCount;
+            currentGold = DataManager.Inst.GameGoldLoad();
+            currentSculpture = DataManager.Inst.GameElementalsculptureLoad();
+            currentElementalGoods = DataManager.Inst.GameElementalGoodsLoad();
         }
     }
 
@@ -37,9 +37,9 @@ public class GoodsPanel : MonoBehaviour
     {
         if (DataManager.Inst != null)
         {
-            currentGold = DataManager.Inst.GoldCount;
-            currentSculpture = DataManager.Inst.ElementalsculptureCount;
-            currentElementalGoods = DataManager.Inst.ElementalGoodsCount;
+            currentGold = DataManager.Inst.GameGoldLoad();
+            currentSculpture = DataManager.Inst.GameElementalsculptureLoad();
+            currentElementalGoods = DataManager.Inst.GameElementalGoodsLoad();
         }
 
         if(oldGold != currentGold)

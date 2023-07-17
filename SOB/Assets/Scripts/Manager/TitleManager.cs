@@ -165,7 +165,7 @@ public class TitleManager : MonoBehaviour
     {
         if (GameManager.Inst != null)
         {
-            GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.Cfg, true);
+            GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.Cfg, true);
             GameManager.Inst.CfgUI.Canvas.enabled = true;
         }
     }

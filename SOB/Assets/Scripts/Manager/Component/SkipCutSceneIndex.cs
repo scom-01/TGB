@@ -24,13 +24,23 @@ public class SkipCutSceneIndex : MonoBehaviour
             {
                 Debug.LogWarning("Scene Not found");
             }
+
+            if (!DataManager.Inst.JSON_DataParsing.SkipCutSceneList.Contains(idx))
+            {
+                DataManager.Inst.JSON_DataParsing.SkipCutSceneList.Add(idx);
+                DataManager.Inst.SaveSkipCutSceneList(DataManager.Inst.JSON_DataParsing.SkipCutSceneList);
+            }
+        }
+        else
+        {
+            if (!DataManager.Inst.JSON_DataParsing.SkipBossCutScene.Contains(idx))
+            {
+                DataManager.Inst.JSON_DataParsing.SkipBossCutScene.Add(idx);
+                DataManager.Inst.SaveSkipBossCutSceneList(DataManager.Inst.JSON_DataParsing.SkipBossCutScene);
+            }
         }
 
-        if (!DataManager.Inst.SkipCutSceneList.Contains(idx))
-        {
-            DataManager.Inst.SkipCutSceneList.Add(idx);
-            DataManager.Inst.SaveSkipCutSceneList(DataManager.Inst.SkipCutSceneList);
-        }
+        
     }
     public void AddSkipCutScene(int _idx)
     {
@@ -39,9 +49,9 @@ public class SkipCutSceneIndex : MonoBehaviour
             return;
         }
 
-        if (!DataManager.Inst.SkipCutSceneList.Contains(_idx))
+        if (!DataManager.Inst.JSON_DataParsing.SkipCutSceneList.Contains(_idx))
         {
-            DataManager.Inst.SkipCutSceneList.Add(_idx);
+            DataManager.Inst.JSON_DataParsing.SkipCutSceneList.Add(_idx);
         }
     }
 
@@ -52,7 +62,7 @@ public class SkipCutSceneIndex : MonoBehaviour
             return;
         }
 
-        if(DataManager.Inst.SkipCutSceneList.Contains(idx))
+        if(DataManager.Inst.JSON_DataParsing.SkipCutSceneList.Contains(idx))
         {
             if (Director != null)
             {
@@ -73,7 +83,7 @@ public class SkipCutSceneIndex : MonoBehaviour
             return;
         }
 
-        if(!DataManager.Inst.SkipCutSceneList.Contains(_idx))
+        if(!DataManager.Inst.JSON_DataParsing.SkipCutSceneList.Contains(_idx))
         {
             return;
         }

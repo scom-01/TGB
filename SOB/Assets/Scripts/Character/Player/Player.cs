@@ -134,7 +134,7 @@ public class Player : Unit
         base.DieEffect();
         GameManager.Inst.Pause();
         GameManager.Inst.ChangeUI(UI_State.Result);
-        GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.Cfg, false);
+        GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.Cfg, false);
     }
 
     public override void HitEffect()

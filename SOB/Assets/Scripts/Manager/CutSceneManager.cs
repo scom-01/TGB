@@ -24,7 +24,7 @@ public class CutSceneManager : MonoBehaviour
             {
                 if (GameManager.Inst.SceneNameList[i] == GameManager.Inst.StageManager.CurrStageName)
                 {
-                    DataManager.Inst.JSON_DataParsing.Json_Overwrite_SceneName(i);
+                    DataManager.Inst.JSON_DataParsing.SceneNumber = i;
                     return i;
                 }
             }
@@ -41,7 +41,7 @@ public class CutSceneManager : MonoBehaviour
             {
                 return null;
             }
-            return GameManager.Inst.inputHandler;
+            return GameManager.Inst.InputHandler;
         }
     }
     [Range(1f, 5f)]

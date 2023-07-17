@@ -161,19 +161,19 @@ public class GoodsText : MonoBehaviour
                 switch (Type)
                 {
                     case GOODS_TPYE.Gold:
-                        count = DataManager.Inst.GoldCount;
+                        count = DataManager.Inst.JSON_DataParsing.GoldAmount;
                         return count;
                     case GOODS_TPYE.FireGoods:
-                        count = DataManager.Inst.ElementalGoodsCount.FireGoods;
+                        count = DataManager.Inst.JSON_DataParsing.ElementalGoodsAmount.FireGoods;
                         return count;
                     case GOODS_TPYE.WaterGoods:
-                        count = DataManager.Inst.ElementalGoodsCount.WaterGoods;
+                        count = DataManager.Inst.JSON_DataParsing.ElementalGoodsAmount.WaterGoods;
                         return count;
                     case GOODS_TPYE.EarthGoods:
-                        count = DataManager.Inst.ElementalGoodsCount.EarthGoods;
+                        count = DataManager.Inst.JSON_DataParsing.ElementalGoodsAmount.EarthGoods;
                         return count;
                     case GOODS_TPYE.WindGoods:
-                        count = DataManager.Inst.ElementalGoodsCount.WindGoods;
+                        count = DataManager.Inst.JSON_DataParsing.ElementalGoodsAmount.WindGoods;
                         return count;
                 }
             }

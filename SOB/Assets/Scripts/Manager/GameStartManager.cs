@@ -9,7 +9,7 @@ public class GameStartManager : MonoBehaviour
     private bool isDone = false;
     private void Awake()
     {
-        DataManager.Inst?.NextStage(2);
+        //DataManager.Inst?.NextStage(2);
     }
 
     private void Update()
@@ -19,7 +19,7 @@ public class GameStartManager : MonoBehaviour
 
         if(LocalizationSettings.InitializationOperation.IsDone)
         {
-            AsyncOperation operation = SceneManager.LoadSceneAsync("LoadingScene");
+            AsyncOperation operation = SceneManager.LoadSceneAsync(2);
             isDone = true;
         }
     }

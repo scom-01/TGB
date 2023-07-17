@@ -21,7 +21,7 @@ public class KeySetting : MonoBehaviour
     {
         get
         {
-            return GameManager.Inst.inputHandler;
+            return GameManager.Inst.InputHandler;
         }
     }
 

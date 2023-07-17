@@ -175,7 +175,7 @@ public class Inventory : MonoBehaviour
             if (Unit.GetType() == typeof(Player))
                 GameManager.Inst.SubUI.InventorySubUI.SetInventoryState(InventoryUI_State.Change);
             if (Unit.GetType() == typeof(Player))
-                GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.UI, true);
+                GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.UI, true);
             //아이템 교체하는 코드
             return false;
         }
@@ -207,7 +207,7 @@ public class Inventory : MonoBehaviour
             if (Unit.GetType() == typeof(Player))
                 GameManager.Inst.SubUI.InventorySubUI.SetInventoryState(InventoryUI_State.Change);
             if (Unit.GetType() == typeof(Player))
-                GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.UI, true);
+                GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.UI, true);
             //아이템 교체하는 코드
             return false;
         }

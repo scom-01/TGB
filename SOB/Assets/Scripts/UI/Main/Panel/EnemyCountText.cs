@@ -24,13 +24,13 @@ public class EnemyCountText : MonoBehaviour
             switch (Type)
             {
                 case ENEMY_Level.NormalEnemy:
-                    enemyCount = GameManager.Inst.EnemyCount.Normal_Enemy_Count;
+                    enemyCount = DataManager.Inst.JSON_DataParsing.EnemyCount.Normal_Enemy_Count;
                     break;
                 case ENEMY_Level.EleteEnemy:
-                    enemyCount = GameManager.Inst.EnemyCount.Elete_Enemy_Count;
+                    enemyCount = DataManager.Inst.JSON_DataParsing.EnemyCount.Elete_Enemy_Count;
                     break;
                 case ENEMY_Level.BossEnemy:
-                    enemyCount = GameManager.Inst.EnemyCount.Boss_Enemy_Count;
+                    enemyCount = DataManager.Inst.JSON_DataParsing.EnemyCount.Boss_Enemy_Count;
                     break;
             }
             return enemyCount;

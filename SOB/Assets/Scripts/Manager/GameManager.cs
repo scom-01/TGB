@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     private static GameManager _Inst = null;
 
     private bool isPause = false;
-    public PlayerInputHandler inputHandler
+    public PlayerInputHandler InputHandler
     {
         get
         {
@@ -84,10 +84,10 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector]
     public float PlayTime;
-    [HideInInspector]
-    public Enemy_Count EnemyCount = new Enemy_Count();
 
-    [HideInInspector]
+    /// <summary>
+    /// Scene 이름으로 Scene Number를 알아내기 위한 Scene List
+    /// </summary>
     public List<string> SceneNameList
     {
         get
@@ -158,12 +158,12 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(StageManager != null)
+        if (StageManager != null && InputHandler.playerInput.currentActionMap == InputHandler.playerInput.actions.FindActionMap("GamePlay"))
         {
             PlayTime += Time.deltaTime;
         }
 
-        if (inputHandler.ESCInput)
+        if (InputHandler.ESCInput)
         {
             //사망 시엔 ResultUI의 Title누르는 것 외엔 작동하지않도록
            
@@ -180,9 +180,6 @@ public class GameManager : MonoBehaviour
         DataManager.Inst.PlayerCfgSFXLoad();
         DataManager.Inst.PlayerCfgQualityLoad();
         DataManager.Inst.PlayerCfgLanguageLoad();
-        DataManager.Inst.GameGoldLoad();
-        DataManager.Inst.GameElementalsculptureLoad();
-        DataManager.Inst.GameElementalGoodsLoad();
 
         //DeafultData는 GameManager Start()시에 호출되어야한다.(ex.SkipCutSceneList)
         if (DataManager.Inst.JSON_DataParsing.Json_Parsing())
@@ -257,7 +254,7 @@ public class GameManager : MonoBehaviour
                 EventSystem.current.SetSelectedGameObject(_TitleManager.buttons[0].gameObject);
         }
         if (StageManager != null)
-            inputHandler.playerInput.currentActionMap = inputHandler.playerInput.actions.FindActionMap(InputEnum.GamePlay.ToString());
+            InputHandler.playerInput.currentActionMap = InputHandler.playerInput.actions.FindActionMap(InputEnum.GamePlay.ToString());
         
         isPause = false;
     }
@@ -392,15 +389,10 @@ public class GameManager : MonoBehaviour
 
         if (DataManager.Inst.JSON_DataParsing.Json_Parsing())
         {
+            DataManager.Inst?.LoadPlayTime();
             DataManager.Inst?.PlayerInventoryDataLoad(StageManager.player.Inventory);
             DataManager.Inst?.PlayerCurrHealthLoad(StageManager.player.Core.GetCoreComponent<UnitStats>());
             DataManager.Inst?.LoadBuffs(StageManager.player.GetComponent<BuffSystem>());
-            DataManager.Inst?.LoadPlayTime();
-            DataManager.Inst?.LoadSkipCutSceneList();
-            DataManager.Inst?.LoadEnemyCount();
-            DataManager.Inst?.GameGoldLoad();
-            DataManager.Inst?.GameElementalsculptureLoad();
-            DataManager.Inst?.GameElementalGoodsLoad();
         }        
     }
     public void SaveData()
@@ -417,26 +409,19 @@ public class GameManager : MonoBehaviour
         if (StageManager == null)
         {
             return;
-        }
-                
-        DataManager.Inst?.SavePlayTime(PlayTime);
-        DataManager.Inst?.SaveSkipCutSceneList(DataManager.Inst.SkipCutSceneList);
-        DataManager.Inst?.SaveEnemyCount(EnemyCount);
+        }                
         DataManager.Inst?.SaveScene(StageManager.CurrStageNumber);
-        DataManager.Inst?.NextStage(StageManager.NextStageNumber);
         DataManager.Inst.PlayerInventoryDataSave(
             GameManager.Inst.StageManager.player.Inventory.Weapon,
             GameManager.Inst.StageManager.player.Inventory._items);
         DataManager.Inst?.SaveBuffs(GameManager.Inst.StageManager.player.GetComponent<BuffSystem>().buffs);
         DataManager.Inst?.PlayerCurrHealthSave(
             (int)GameManager.Inst.StageManager.player.Core.GetCoreComponent<UnitStats>().CurrentHealth);
-        //DataManager.Inst?.PlayerBuffSave(
-        //    GameManager.Inst.StageManager.player.GetComponent<BuffSystem>().buffs
-        //    );
-        DataManager.Inst?.GameGoldSave(DataManager.Inst.GoldCount);
-        DataManager.Inst?.GameElementalsculptureSave(DataManager.Inst.ElementalsculptureCount);
-        DataManager.Inst?.GameElementalGoodsSave(DataManager.Inst.ElementalGoodsCount);
 
+        DataManager.Inst?.JSON_DataParsing.JSON_InventorySave();
+        DataManager.Inst?.JSON_DataParsing.JSON_GoodsSave();
+        DataManager.Inst?.JSON_DataParsing.JSON_SceneDataSave();
+        DataManager.Inst?.JSON_DataParsing.JSON_DefaultDataSave();
     }
 
     public void SetSaveData()
@@ -451,9 +436,6 @@ public class GameManager : MonoBehaviour
             return;
 
         DataManager.Inst.DeleteJSONFile();
-        //DataManager.Inst.PlayerInventoryDataSave(null, null);
-        //DataManager.Inst?.GameGoldSave(0);
-        //DataManager.Inst?.GameElementalsculptureSave(0);
 
         DataManager.Inst?.NextStage(2);
     }
@@ -484,6 +466,10 @@ public class GameManager : MonoBehaviour
     {
         ChangeUI(UI_State.Loading);
         SaveData();
+        if(StageManager!=null)
+        {
+            DataManager.Inst.NextStage(StageManager.NextStageNumber);
+        }
         AsyncOperation operation = SceneManager.LoadSceneAsync("LoadingScene");
     }
     public void MoveTitle()

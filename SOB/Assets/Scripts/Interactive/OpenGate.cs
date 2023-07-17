@@ -16,7 +16,7 @@ public class OpenGate : InteractiveObject
             return;
 
         Debug.LogWarning("OpenGate");
-        GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.Cfg, false);
+        GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.Cfg, false);
         GameManager.Inst?.ClearScene();
         isDone = true;
     }

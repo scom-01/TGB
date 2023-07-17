@@ -264,9 +264,10 @@ public class DataParsing : MonoBehaviour
         public float PlayTime;
         public Enemy_Count EnemyCount;
         public List<BuffData> BuffDatas = new List<BuffData>();
-        public JSON_SceneData(int sceneNumber = 2, int playerHealth = -1, float playTime = 0, Enemy_Count _enemy_Count = new Enemy_Count())
+        public JSON_SceneData(int sceneNumber = 2, int _sceneDataIdx = 0, int playerHealth = -1, float playTime = 0, Enemy_Count _enemy_Count = new Enemy_Count())
         {
             SceneNumber = sceneNumber;
+            SceneDataIdx = _sceneDataIdx;
             PlayerHealth = playerHealth;
             PlayTime = playTime;
             EnemyCount = _enemy_Count;
@@ -402,6 +403,7 @@ public class DataParsing : MonoBehaviour
                 jtest2.Print();
                 GoldAmount = jtest2.gold;
                 ElementalSculptureAmount = jtest2.elementalSculpture;
+                ElementalGoodsAmount = jtest2.elementalGoods;
             }
             else
             {
@@ -409,6 +411,7 @@ public class DataParsing : MonoBehaviour
                 JSON_Goods jTest1 = new JSON_Goods();
                 GoldAmount = jTest1.gold;
                 ElementalSculptureAmount = jTest1.elementalSculpture;
+                ElementalGoodsAmount = jTest1.elementalGoods;
                 string jsonData = JsonConvert.SerializeObject(jTest1);
                 byte[] data = Encoding.UTF8.GetBytes(jsonData);
                 stream.Write(data, 0, data.Length);
@@ -440,6 +443,7 @@ public class DataParsing : MonoBehaviour
                 JSON_SceneData json = JsonConvert.DeserializeObject<JSON_SceneData>(jsonData);
                 json.Print();
                 SceneNumber = json.SceneNumber;
+                SceneDataIdx = json.SceneDataIdx;
                 PlayerHealth = json.PlayerHealth;
                 PlayTime = json.PlayTime;
                 EnemyCount = json.EnemyCount;
@@ -450,6 +454,7 @@ public class DataParsing : MonoBehaviour
                 FileStream stream = new FileStream(Application.dataPath + SceneData_FilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
                 JSON_SceneData json = new JSON_SceneData();
                 SceneNumber = json.SceneNumber;
+                SceneDataIdx = json.SceneDataIdx;
                 PlayerHealth = json.PlayerHealth;
                 PlayTime = json.PlayTime;
                 EnemyCount = json.EnemyCount;
@@ -494,7 +499,6 @@ public class DataParsing : MonoBehaviour
                 JSON_DefaultData jTest1 = new JSON_DefaultData();
                 SkipCutSceneList = jTest1.SkipCutSceneList.ToList();
                 SkipBossCutScene = jTest1.SkipBossCutScene.ToList();
-                SkipCutSceneList = jTest1.SkipCutSceneList.ToList();
                 UnlockItemList = jTest1.UnlockItemIdxs.ToList();
                 string jsonData = JsonConvert.SerializeObject(jTest1);
                 byte[] data = Encoding.UTF8.GetBytes(jsonData);
@@ -517,24 +521,43 @@ public class DataParsing : MonoBehaviour
             Debug.Log("Inventory Parsing Fail");
             return false;
         }
+        else
+        {
+            Debug.Log("Inventory Parsing Success");
+        }
 
         if (!Json_GoodsParsing())
         {
             Debug.Log("Goods Parsing Fail");
             return false;
         }
+        else
+        {
+            Debug.Log("Goods Parsing Success");
+        }
+
 
         if (!Json_SceneDataParsing())
         {
             Debug.Log("SceneData Parsing Fail");
             return false;
         }
+        else
+        {
+            Debug.Log("SceneData Parsing Success");
+        }
+
 
         if (!Json_DefaultDataParsing())
         {
             Debug.Log("Default Parsing Fail");
             return false;
         }
+        else
+        {
+            Debug.Log("Default Parsing Success");
+        }
+
 
         return true;
     }
@@ -711,686 +734,12 @@ public class DataParsing : MonoBehaviour
         }
     }
 
-    public List<int> Json_Read_item()
+    public bool JSON_InventorySave()
     {
-        if (Json_Read_Inventory() == null)
-        {
-            Debug.Log($"Json_Read_Inventory Exception");
-            return null;
-        }
+        JSON_Inventory inventory = new JSON_Inventory();
+        inventory.items = ItemListIdx.ToArray();
+        inventory.weapons = WeaponListIdx.ToArray();
 
-        List<int> items = new List<int>();
-        items = Json_Read_Inventory().items.ToList();
-        return items;
-    }
-    public List<int> Json_Read_weapon()
-    {
-        if (Json_Read_Inventory() == null)
-        {
-            Debug.Log($"Json_Read_Inventory Exception");
-            return null;
-        }
-        List<int> weapons = new List<int>();
-        weapons = Json_Read_Inventory().weapons.ToList();
-        return weapons;
-    }
-
-    public bool Json_Overwrite_item(List<int> _itemlist)
-    {
-        if (_itemlist == null)
-        {
-            List<int> ints = new List<int>();
-            ItemListIdx = ints;
-            JSON_Inventory json = new JSON_Inventory();
-            json.items = ItemListIdx.ToArray();
-            json.weapons = WeaponListIdx.ToArray();
-            if (!JSON_InventorySave(json))
-            {
-                Debug.Log("Inventory Item Save Fail");
-                return false;
-            }
-            return false;
-        }
-
-        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
-        if (!Json_Parsing())
-        {
-            ItemListIdx = _itemlist;
-            JSON_Inventory json = new JSON_Inventory();
-            json.items = _itemlist.ToArray();
-
-            if (!JSON_InventorySave(json))
-            {
-                Debug.Log("Inventory Item Save Fail");
-                return false;
-            }
-        }
-        //기존 저장된 JSON파일을 덧씌울 때
-        else
-        {
-            ItemListIdx = _itemlist;
-            JSON_Inventory json = new JSON_Inventory();
-            json.items = ItemListIdx.ToArray();
-            json.weapons = WeaponListIdx.ToArray();
-            if (!JSON_InventorySave(json))
-            {
-                Debug.Log("Inventory Item Save Fail");
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public bool Json_Overwrite_weapon(List<int> _weaponlist)
-    {
-        if (_weaponlist == null)
-        {
-            List<int> ints = new List<int>();
-            WeaponListIdx = ints;
-            JSON_Inventory json = new JSON_Inventory();
-            json.items = ItemListIdx.ToArray();
-            json.weapons = WeaponListIdx.ToArray();
-            if (!JSON_InventorySave(json))
-            {
-                Debug.Log("Inventory Item Save Fail");
-                return false;
-            }
-            return false;
-        }
-
-        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
-        if (!Json_Parsing())
-        {
-            WeaponListIdx = _weaponlist;
-            JSON_Inventory json = new JSON_Inventory();
-            json.weapons = WeaponListIdx.ToArray();
-
-            if (!JSON_InventorySave(json))
-            {
-                Debug.Log("Inventory Item Save Fail");
-                return false;
-            }
-        }
-        //기존 저장된 JSON파일을 덧씌울 때
-        else
-        {
-            WeaponListIdx = _weaponlist;
-            JSON_Inventory json = new JSON_Inventory();
-            json.items = ItemListIdx.ToArray();
-            json.weapons = WeaponListIdx.ToArray();
-            if (!JSON_InventorySave(json))
-            {
-                Debug.Log("Inventory Item Save Fail");
-                return false;
-            }
-        }
-
-        return true;
-    }
-    public bool Json_Overwrite_gold(int _gold)
-    {
-        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
-        if (!Json_Parsing())
-        {
-            GoldAmount = _gold;
-            JSON_Goods json = new JSON_Goods();
-            json.gold = GoldAmount;
-
-            if (!JSON_GoodsSave(json))
-            {
-                Debug.Log("Goods Item Save Fail");
-                return false;
-            }
-        }
-        //기존 저장된 JSON파일을 덧씌울 때
-        else
-        {
-            GoldAmount = _gold;
-            JSON_Goods json = new JSON_Goods();
-            json.gold = GoldAmount;
-            json.elementalSculpture = ElementalSculptureAmount;
-            json.elementalGoods = ElementalGoodsAmount;
-            if (!JSON_GoodsSave(json))
-            {
-                Debug.Log("Goods Item Save Fail");
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public bool Json_Overwrite_sculpture(int _elementalsculpture)
-    {
-        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
-        if (!Json_Parsing())
-        {
-            ElementalSculptureAmount = _elementalsculpture;
-            JSON_Goods json = new JSON_Goods();
-            json.elementalSculpture = ElementalSculptureAmount;
-
-            if (!JSON_GoodsSave(json))
-            {
-                Debug.Log("Goods Item Save Fail");
-                return false;
-            }
-        }
-        //기존 저장된 JSON파일을 덧씌울 때
-        else
-        {
-            ElementalSculptureAmount = _elementalsculpture;
-            JSON_Goods json = new JSON_Goods();
-            json.gold = GoldAmount;
-            json.elementalSculpture = ElementalSculptureAmount;
-            json.elementalGoods = ElementalGoodsAmount;
-            if (!JSON_GoodsSave(json))
-            {
-                Debug.Log("Goods Item Save Fail");
-                return false;
-            }
-        }
-
-        return true;
-    }
-    public bool Json_Overwrite_ElementalGoods(ElementalGoods _elementalgoods)
-    {
-        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
-        if (!Json_Parsing())
-        {
-            ElementalGoodsAmount = _elementalgoods;
-            JSON_Goods json = new JSON_Goods();
-            json.elementalGoods = ElementalGoodsAmount;
-
-            if (!JSON_GoodsSave(json))
-            {
-                Debug.Log("Goods Item Save Fail");
-                return false;
-            }
-        }
-        //기존 저장된 JSON파일을 덧씌울 때
-        else
-        {
-            ElementalGoodsAmount = _elementalgoods;
-            JSON_Goods json = new JSON_Goods();
-            json.gold = GoldAmount;
-            json.elementalSculpture = ElementalSculptureAmount;
-            json.elementalGoods = ElementalGoodsAmount;
-            if (!JSON_GoodsSave(json))
-            {
-                Debug.Log("Goods Item Save Fail");
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public bool Json_Overwrite_SceneName(int _sceneNumber)
-    {
-        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
-        if (!Json_Parsing())
-        {
-            SceneNumber = _sceneNumber;
-            JSON_SceneData json = new JSON_SceneData();
-            json.SceneNumber = SceneNumber;
-
-            if (!JSON_SceneDataSave(json))
-            {
-                Debug.Log("SceneData Save Fail");
-                return false;
-            }
-        }
-        //기존 저장된 JSON파일을 덧씌울 때
-        else
-        {
-            SceneNumber = _sceneNumber;
-            JSON_SceneData json = new JSON_SceneData();
-            json.SceneNumber = SceneNumber;
-            json.PlayerHealth = PlayerHealth;
-            json.PlayTime = PlayTime;
-            json.EnemyCount = EnemyCount;
-            json.BuffDatas = BuffDatas;
-            if (!JSON_SceneDataSave(json))
-            {
-                Debug.Log("SceneData Save Fail");
-                return false;
-            }
-        }
-        return true;
-    }
-    public bool Json_Overwrite_PlayerHealth(int _playerHealth)
-    {
-        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
-        if (!Json_Parsing())
-        {
-            PlayerHealth = _playerHealth;
-            JSON_SceneData json = new JSON_SceneData();
-            json.PlayerHealth = PlayerHealth;
-
-            if (!JSON_SceneDataSave(json))
-            {
-                Debug.Log("SceneData Save Fail");
-                return false;
-            }
-        }
-        //기존 저장된 JSON파일을 덧씌울 때
-        else
-        {
-            PlayerHealth = _playerHealth;
-            JSON_SceneData json = new JSON_SceneData();
-            json.SceneNumber = SceneNumber;
-            json.PlayerHealth = PlayerHealth;
-            json.SceneDataIdx = SceneDataIdx;
-            json.PlayTime = PlayTime;
-            json.EnemyCount = EnemyCount;
-            json.BuffDatas = BuffDatas;
-            if (!JSON_SceneDataSave(json))
-            {
-                Debug.Log("SceneData Save Fail");
-                return false;
-            }
-        }
-        return true;
-    }
-    public bool Json_Overwrite_SceneDataIdx(int _sceneDataIdx)
-    {
-        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
-        if (!Json_Parsing())
-        {
-            SceneDataIdx = _sceneDataIdx;
-            JSON_SceneData json = new JSON_SceneData();
-            json.PlayerHealth = PlayerHealth;
-
-            if (!JSON_SceneDataSave(json))
-            {
-                Debug.Log("SceneData Save Fail");
-                return false;
-            }
-        }
-        //기존 저장된 JSON파일을 덧씌울 때
-        else
-        {
-            SceneDataIdx = _sceneDataIdx;
-            JSON_SceneData json = new JSON_SceneData();
-            json.SceneNumber = SceneNumber;
-            json.PlayerHealth = PlayerHealth;
-            json.SceneDataIdx = SceneDataIdx;
-            json.PlayTime = PlayTime;
-            json.EnemyCount = EnemyCount;
-            json.BuffDatas = BuffDatas;
-            if (!JSON_SceneDataSave(json))
-            {
-                Debug.Log("SceneData Save Fail");
-                return false;
-            }
-        }
-        return true;
-    }
-    public bool Json_Overwrite_PlayTime(float _playTime)
-    {
-        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
-        if (!Json_Parsing())
-        {
-            PlayTime = _playTime;
-            JSON_SceneData json = new JSON_SceneData();
-            json.PlayerHealth = PlayerHealth;
-
-            if (!JSON_SceneDataSave(json))
-            {
-                Debug.Log("SceneData Save Fail");
-                return false;
-            }
-        }
-        //기존 저장된 JSON파일을 덧씌울 때
-        else
-        {
-            PlayTime = _playTime;
-            JSON_SceneData json = new JSON_SceneData();
-            json.SceneNumber = SceneNumber;
-            json.PlayerHealth = PlayerHealth;
-            json.PlayTime = PlayTime;
-            json.EnemyCount = EnemyCount;
-            json.BuffDatas = BuffDatas;
-            if (!JSON_SceneDataSave(json))
-            {
-                Debug.Log("SceneData Save Fail");
-                return false;
-            }
-        }
-        return true;
-    }
-    public bool Json_Overwrite_EnemyCount(Enemy_Count _enemyCount)
-    {
-        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
-        if (!Json_Parsing())
-        {
-            EnemyCount = _enemyCount;
-            JSON_SceneData json = new JSON_SceneData();
-            json.EnemyCount = EnemyCount;
-
-            if (!JSON_SceneDataSave(json))
-            {
-                Debug.Log("SceneData Save Fail");
-                return false;
-            }
-        }
-        //기존 저장된 JSON파일을 덧씌울 때
-        else
-        {
-            EnemyCount = _enemyCount;
-            JSON_SceneData json = new JSON_SceneData();
-            json.SceneNumber = SceneNumber;
-            json.PlayerHealth = PlayerHealth;
-            json.PlayTime = PlayTime;
-            json.EnemyCount = EnemyCount;
-            json.BuffDatas = BuffDatas;
-
-            if (!JSON_SceneDataSave(json))
-            {
-                Debug.Log("SceneData Save Fail");
-                return false;
-            }
-        }
-        return true;
-    }
-    public bool Json_Overwrite_Buff(List<BuffData> _BuffList)
-    {
-        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
-        if (!Json_Parsing())
-        {
-            BuffDatas = _BuffList;
-            JSON_SceneData json = new JSON_SceneData();
-            json.BuffDatas = BuffDatas;
-
-            if (!JSON_SceneDataSave(json))
-            {
-                Debug.Log("SceneData Save Fail");
-                return false;
-            }
-        }
-        //기존 저장된 JSON파일을 덧씌울 때
-        else
-        {
-            BuffDatas = _BuffList;
-            JSON_SceneData json = new JSON_SceneData();
-            json.SceneNumber = SceneNumber;
-            json.PlayerHealth = PlayerHealth;
-            json.PlayTime = PlayTime;
-            json.EnemyCount = EnemyCount;
-            json.BuffDatas = BuffDatas;
-            if (!JSON_SceneDataSave(json))
-            {
-                Debug.Log("SceneData Save Fail");
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public bool Json_Overwrite_SkipCutScene(List<int> _cutScene)
-    {
-        if (_cutScene == null)
-        {
-            List<int> ints = new List<int>();
-            SkipCutSceneList = ints;
-            JSON_DefaultData json = new JSON_DefaultData();
-            json.SkipCutSceneList = SkipCutSceneList.ToArray();
-            json.SkipBossCutScene = SkipBossCutScene.ToArray();
-            json.UnlockItemIdxs = UnlockItemList.ToArray();
-            if (!JSON_DefaultDataSave(json))
-            {
-                Debug.Log("DefaultData Save Fail");
-                return false;
-            }
-            return false;
-        }
-
-        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
-        if (!Json_Parsing())
-        {
-            SkipCutSceneList = _cutScene;
-            JSON_DefaultData json = new JSON_DefaultData();
-            json.SkipCutSceneList = SkipCutSceneList.ToArray();
-            json.SkipBossCutScene = SkipBossCutScene.ToArray();
-            json.UnlockItemIdxs = UnlockItemList.ToArray();
-            if (!JSON_DefaultDataSave(json))
-            {
-                Debug.Log("DefaultData Save Fail");
-                return false;
-            }
-        }
-        //기존 저장된 JSON파일을 덧씌울 때
-        else
-        {
-            SkipCutSceneList = _cutScene;
-            JSON_DefaultData json = new JSON_DefaultData();
-            json.SkipCutSceneList = SkipCutSceneList.ToArray();
-            json.SkipBossCutScene = SkipBossCutScene.ToArray();
-            json.UnlockItemIdxs = UnlockItemList.ToArray();
-            if (!JSON_DefaultDataSave(json))
-            {
-                Debug.Log("DefaultData Save Fail");
-                return false;
-            }
-        }
-
-        return true;
-    }
-    public bool Json_Overwrite_SkipBossCutScene(List<int> _cutScene)
-    {
-        if (_cutScene == null)
-        {
-            List<int> ints = new List<int>();
-            SkipBossCutScene = ints;
-            JSON_DefaultData json = new JSON_DefaultData();
-            json.SkipCutSceneList = SkipCutSceneList.ToArray();
-            json.SkipBossCutScene = SkipBossCutScene.ToArray();
-            json.UnlockItemIdxs = UnlockItemList.ToArray();
-            if (!JSON_DefaultDataSave(json))
-            {
-                Debug.Log("DefaultData Save Fail");
-                return false;
-            }
-            return false;
-        }
-
-        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
-        if (!Json_Parsing())
-        {
-            SkipBossCutScene = _cutScene;
-            JSON_DefaultData json = new JSON_DefaultData();
-            json.SkipCutSceneList = SkipCutSceneList.ToArray();
-            json.SkipBossCutScene = SkipBossCutScene.ToArray();
-            json.UnlockItemIdxs = UnlockItemList.ToArray();
-            if (!JSON_DefaultDataSave(json))
-            {
-                Debug.Log("DefaultData Save Fail");
-                return false;
-            }
-        }
-        //기존 저장된 JSON파일을 덧씌울 때
-        else
-        {
-            SkipBossCutScene = _cutScene;
-            JSON_DefaultData json = new JSON_DefaultData();
-            json.SkipCutSceneList = SkipCutSceneList.ToArray();
-            json.SkipBossCutScene = SkipBossCutScene.ToArray();
-            json.UnlockItemIdxs = UnlockItemList.ToArray();
-            if (!JSON_DefaultDataSave(json))
-            {
-                Debug.Log("DefaultData Save Fail");
-                return false;
-            }
-        }
-
-        return true;
-    }
-    public bool Json_Overwrite_UnlockItem(List<int> _UnlockItemIdx)
-    {
-        if (_UnlockItemIdx == null)
-        {
-            List<int> ints = new List<int>();
-            UnlockItemList = ints;
-            JSON_DefaultData json = new JSON_DefaultData();
-            json.SkipCutSceneList = SkipCutSceneList.ToArray();
-            json.SkipBossCutScene = SkipBossCutScene.ToArray();
-            json.UnlockItemIdxs = UnlockItemList.ToArray();
-            if (!JSON_DefaultDataSave(json))
-            {
-                Debug.Log("DefaultData Save Fail");
-                return false;
-            }
-            return false;
-        }
-
-        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
-        if (!Json_Parsing())
-        {
-            UnlockItemList = _UnlockItemIdx;
-            JSON_DefaultData json = new JSON_DefaultData();
-            json.SkipCutSceneList = SkipCutSceneList.ToArray();
-            json.SkipBossCutScene = SkipBossCutScene.ToArray();
-            json.UnlockItemIdxs = UnlockItemList.ToArray();
-
-            if (!JSON_DefaultDataSave(json))
-            {
-                Debug.Log("DefaultData Save Fail");
-                return false;
-            }
-        }
-        //기존 저장된 JSON파일을 덧씌울 때
-        else
-        {
-            UnlockItemList = _UnlockItemIdx;
-            JSON_DefaultData json = new JSON_DefaultData();
-            json.SkipCutSceneList = SkipCutSceneList.ToArray();
-            json.SkipBossCutScene = SkipBossCutScene.ToArray();
-            json.UnlockItemIdxs = UnlockItemList.ToArray();
-            if (!JSON_DefaultDataSave(json))
-            {
-                Debug.Log("DefaultData Save Fail");
-                return false;
-            }
-        }
-
-        return true;
-    }
-    public bool Json_Addwrite_SkipCutScene(List<int> _cutScene)
-    {
-        if (_cutScene == null)
-        {
-            List<int> ints = new List<int>();
-            SkipCutSceneList = ints;
-            JSON_DefaultData json = new JSON_DefaultData();
-            json.SkipCutSceneList = SkipCutSceneList.ToArray();
-            json.SkipBossCutScene = SkipBossCutScene.ToArray();
-            json.UnlockItemIdxs = UnlockItemList.ToArray();
-            if (!JSON_DefaultDataSave(json))
-            {
-                Debug.Log("DefaultData Save Fail");
-                return false;
-            }
-            return false;
-        }
-
-        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
-        if (!Json_Parsing())
-        {
-            foreach (var item in _cutScene)
-            {
-                SkipCutSceneList.Add(item);
-            }
-            JSON_DefaultData json = new JSON_DefaultData();
-            json.SkipCutSceneList = SkipCutSceneList.ToArray();
-            json.SkipBossCutScene = SkipBossCutScene.ToArray();
-            json.UnlockItemIdxs = UnlockItemList.ToArray();
-            if (!JSON_DefaultDataSave(json))
-            {
-                Debug.Log("DefaultData Save Fail");
-                return false;
-            }
-        }
-        //기존 저장된 JSON파일을 덧씌울 때
-        else
-        {
-            SkipCutSceneList = _cutScene;
-            JSON_DefaultData json = new JSON_DefaultData();
-            json.SkipCutSceneList = SkipCutSceneList.ToArray();
-            json.SkipBossCutScene = SkipBossCutScene.ToArray();
-            json.UnlockItemIdxs = UnlockItemList.ToArray();
-            if (!JSON_DefaultDataSave(json))
-            {
-                Debug.Log("DefaultData Save Fail");
-                return false;
-            }
-        }
-
-        return true;
-    }
-    public bool Json_Addwrite_UnlockItem(List<int> _UnlockItemIdx)
-    {
-        if (_UnlockItemIdx == null)
-        {
-            List<int> ints = new List<int>();
-            UnlockItemList = ints;
-            JSON_DefaultData json = new JSON_DefaultData();
-            json.SkipCutSceneList = SkipCutSceneList.ToArray();
-            json.SkipBossCutScene = SkipBossCutScene.ToArray();
-            json.UnlockItemIdxs = UnlockItemList.ToArray();
-            if (!JSON_DefaultDataSave(json))
-            {
-                Debug.Log("DefaultData Save Fail");
-                return false;
-            }
-            return false;
-        }
-
-        //기존 저장된 JSON을 찾지못하고 새로 만들었을 때
-        if (!Json_Parsing())
-        {
-            foreach (var item in _UnlockItemIdx)
-            {
-                UnlockItemList.Add(item);
-            }
-            JSON_DefaultData json = new JSON_DefaultData();
-            json.SkipCutSceneList = SkipCutSceneList.ToArray();
-            json.SkipBossCutScene = SkipBossCutScene.ToArray();
-            json.UnlockItemIdxs = UnlockItemList.ToArray();
-
-            if (!JSON_DefaultDataSave(json))
-            {
-                Debug.Log("DefaultData Save Fail");
-                return false;
-            }
-        }
-        //기존 저장된 JSON파일을 덧씌울 때
-        else
-        {
-            for (int i = 0; i < _UnlockItemIdx.Count; i++)
-            {
-                if (!UnlockItemList.Contains(_UnlockItemIdx[i]))
-                {
-                    UnlockItemList.Add(_UnlockItemIdx[i]);
-                }
-            }
-            JSON_DefaultData json = new JSON_DefaultData();
-            json.SkipCutSceneList = SkipCutSceneList.ToArray();
-            json.SkipBossCutScene = SkipBossCutScene.ToArray();
-            json.UnlockItemIdxs = UnlockItemList.ToArray();
-            if (!JSON_DefaultDataSave(json))
-            {
-                Debug.Log("DefaultData Save Fail");
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-
-    private bool JSON_InventorySave(JSON_Inventory inventory)
-    {
         try
         {
             inventory.Print();
@@ -1412,8 +761,10 @@ public class DataParsing : MonoBehaviour
         }
         return true;
     }
-    private bool JSON_GoodsSave(JSON_Goods goods)
+    public bool JSON_GoodsSave()
     {
+        JSON_Goods goods = new JSON_Goods(GoldAmount, ElementalSculptureAmount, ElementalGoodsAmount);
+
         try
         {
             goods.Print();
@@ -1435,8 +786,11 @@ public class DataParsing : MonoBehaviour
         }
         return true;
     }
-    private bool JSON_SceneDataSave(JSON_SceneData sceneData)
+    public bool JSON_SceneDataSave()
     {
+        PlayTime = GameManager.Inst.PlayTime;
+        JSON_SceneData sceneData = new JSON_SceneData(SceneNumber, SceneDataIdx, PlayerHealth, PlayTime, EnemyCount);
+        sceneData.BuffDatas = BuffDatas;
         try
         {
             sceneData.Print();
@@ -1459,8 +813,12 @@ public class DataParsing : MonoBehaviour
         return true;
     }
 
-    private bool JSON_DefaultDataSave(JSON_DefaultData Data)
+    public bool JSON_DefaultDataSave()
     {
+        JSON_DefaultData Data = new JSON_DefaultData();
+        Data.SkipCutSceneList = SkipCutSceneList.ToArray();
+        Data.SkipBossCutScene = SkipBossCutScene.ToArray();
+        Data.UnlockItemIdxs = UnlockItemList.ToArray();
         try
         {
             Data.Print();

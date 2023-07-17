@@ -32,7 +32,7 @@ namespace SOB.Manager
 
         public void ResetKeyRebind()
         {
-            GameManager.Inst?.inputHandler.playerInput.actions.RemoveAllBindingOverrides();
+            GameManager.Inst?.InputHandler.playerInput.actions.RemoveAllBindingOverrides();
             foreach(var keySetting in keySettings)
             {
                 keySetting.UpdateDisplayText();

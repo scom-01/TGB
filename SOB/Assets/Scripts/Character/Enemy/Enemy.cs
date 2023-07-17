@@ -67,13 +67,13 @@ public class Enemy : Unit
             switch(enemyData.enemy_level)
             {
                 case ENEMY_Level.NormalEnemy:
-                    GameManager.Inst.EnemyCount.Normal_Enemy_Count++;
+                    DataManager.Inst.JSON_DataParsing.EnemyCount.Normal_Enemy_Count++;
                     break;
                 case ENEMY_Level.EleteEnemy:
-                    GameManager.Inst.EnemyCount.Elete_Enemy_Count++;
+                    DataManager.Inst.JSON_DataParsing.EnemyCount.Elete_Enemy_Count++;
                     break;
                 case ENEMY_Level.BossEnemy:
-                    GameManager.Inst.EnemyCount.Boss_Enemy_Count++;
+                    DataManager.Inst.JSON_DataParsing.EnemyCount.Boss_Enemy_Count++;
                     break;
             }            
         }

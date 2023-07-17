@@ -51,9 +51,9 @@ public class ResultPanelUI : MonoBehaviour
         //if (DataManager.Inst != null)
         //{
         //    if (Goods_Gold_Txt != null)
-        //        Goods_Gold_Txt.text = string.Format($"{DataManager.Inst.GoldCount}");
+        //        Goods_Gold_Txt.text = string.Format($"{DataManager.Inst.GameGoldLoad()}");
         //    if (Goods_ES_Txt != null)
-        //        Goods_ES_Txt.text = string.Format($"{DataManager.Inst.ElementalsculptureCount}");
+        //        Goods_ES_Txt.text = string.Format($"{DataManager.Inst.GameElementalsculptureLoad()}");
         //}
     }
 }

@@ -47,7 +47,7 @@ namespace SOB.Manager
                 {
                     return null;
                 }
-                return GameManager.Inst.inputHandler;
+                return GameManager.Inst.InputHandler;
             }
         }
 
@@ -211,7 +211,7 @@ namespace SOB.Manager
             Destroy(PlayerInventory.CheckItem.GameObject());
             PlayerInventory.CheckItem = null;
             inputHandler.UseInput(ref inputHandler.InteractionInput);
-            GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, true);
+            GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, true);
         }
     }
 }

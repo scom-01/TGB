@@ -79,9 +79,9 @@ public class ReforgingMaterial : MonoBehaviour
     {
         if (DataManager.Inst != null)
         {
-            currentGoldAmount = DataManager.Inst.GoldCount;
-            currentSculptureAmount = DataManager.Inst.ElementalsculptureCount;
-            currentElementalGoodsAmount = DataManager.Inst.ElementalGoodsCount;
+            currentGoldAmount = DataManager.Inst.GameGoldLoad();
+            currentSculptureAmount = DataManager.Inst.GameElementalsculptureLoad();
+            currentElementalGoodsAmount = DataManager.Inst.GameElementalGoodsLoad();
         }
         else
         {

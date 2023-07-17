@@ -10,7 +10,7 @@ public class ItemBuffEventSO : ItemEffectSO
     public BuffItemSO buffItem;
     public override float ContinouseEffectExcute(StatsItemSO parentItem, Unit unit, float startTime)
     {
-        if (Time.time >= startTime + itemEffectData.durationTime) 
+        if (GameManager.Inst.PlayTime >= startTime + itemEffectData.durationTime) 
         {
             if (buffItem != null)
             {
