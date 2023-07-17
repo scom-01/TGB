@@ -17,7 +17,7 @@ namespace SOB.Item
 
         [SerializeField] private float DetectedRadius;
 
-        private List<SpriteRenderer> SR_List;
+        private SpriteRenderer SR;
         private CircleCollider2D CC2D;
         private Transform effectContainer;
         private void Awake()
@@ -26,17 +26,8 @@ namespace SOB.Item
         }
         private void OnEnable()
         {
-            SR_List = this.GetComponentsInChildren<SpriteRenderer>().ToList();
+            SR = this.GetComponent<SpriteRenderer>();
 
-            if(SR_List.Count == 1)
-            {
-                var minimap = Instantiate(new GameObject(), this.transform);
-                minimap.AddComponent<SpriteRenderer>().sprite = GlobalValue.Box;
-                minimap.GetComponent<SpriteRenderer>().color = new Color(255, 255, 0);
-                minimap.GetComponent<SpriteRenderer>().sortingLayerName ="Map";
-                minimap.layer = 6;
-                SR_List.Add(minimap.GetComponent<SpriteRenderer>());
-            }
             if(Init())
             {
                 Debug.Log("Item Init");
@@ -52,7 +43,7 @@ namespace SOB.Item
         {
             if (Item == null)
                 return false;
-            SR_List[0].sprite = Item.itemData.ItemSprite;
+            SR.sprite = Item.itemData.ItemSprite;
             CC2D = GetComponentInChildren<CircleCollider2D>();
             if (CC2D != null)
             {
