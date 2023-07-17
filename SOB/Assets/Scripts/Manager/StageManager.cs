@@ -12,6 +12,9 @@ public class StageManager : MonoBehaviour
     [Header("----Manager----")]
     public ItemManager IM;
     public SpawnManager SPM;
+
+    public List<Transform> MasterManagerList;
+
     public string CurrStageName
     {
         get
@@ -80,9 +83,34 @@ public class StageManager : MonoBehaviour
 
     private void Init()
     {
-        IM = GameObject.Find("ItemManager").GetComponent<ItemManager>();
-        SPM = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
-        respawnPoint = GameObject.Find("SpawnPoint").GetComponent<Transform>();
+        if (DataManager.Inst != null)
+        {
+            if (MasterManagerList.Count > 0)
+            {
+                if (MasterManagerList.Count < DataManager.Inst.JSON_DataParsing.SceneDataIdx)
+                {
+                    IM = MasterManagerList[0].GetComponentInChildren<ItemManager>();
+                    SPM = MasterManagerList[0].GetComponentInChildren<SpawnManager>();
+                }
+                else
+                {
+                    MasterManagerList[DataManager.Inst.JSON_DataParsing.SceneDataIdx - 1].gameObject.SetActive(true);
+                    IM = MasterManagerList[DataManager.Inst.JSON_DataParsing.SceneDataIdx - 1].GetComponentInChildren<ItemManager>();
+                    SPM = MasterManagerList[DataManager.Inst.JSON_DataParsing.SceneDataIdx - 1].GetComponentInChildren<SpawnManager>();
+                }
+            }
+            else
+            {
+                if (IM == null)
+                    IM = GameObject.Find("ItemManager").GetComponent<ItemManager>();
+
+                if (SPM == null)
+                    SPM = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+            }
+        }
+
+        if (respawnPoint == null)
+            respawnPoint = GameObject.Find("SpawnPoint").GetComponent<Transform>();
         GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, false);
         GameManager.Inst.ChangeUI(Start_UIState);
         //Loading시 ESC를 눌러서 Pause가 됐을 때 생기는 오류 방지
