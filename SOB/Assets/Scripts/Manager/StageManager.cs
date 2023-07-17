@@ -87,8 +87,9 @@ public class StageManager : MonoBehaviour
         {
             if (MasterManagerList.Count > 0)
             {
-                if (MasterManagerList.Count < DataManager.Inst.JSON_DataParsing.SceneDataIdx)
+                if (MasterManagerList.Count < DataManager.Inst.JSON_DataParsing.SceneDataIdx || DataManager.Inst.JSON_DataParsing.SceneDataIdx <= 1) 
                 {
+                    MasterManagerList[0].gameObject.SetActive(true);
                     IM = MasterManagerList[0].GetComponentInChildren<ItemManager>();
                     SPM = MasterManagerList[0].GetComponentInChildren<SpawnManager>();
                 }
