@@ -55,6 +55,7 @@ public class GlobalValue : MonoBehaviour
     public const string Symbol_Wind_Path = "Symbol_Wind";
 
     public const string StatsSprites_UI_Path = "Stats_Sheet";
+    public static Sprite Box = Resources.Load<Sprite>("Sprites/Box");
     #endregion
 
     #region UI Sound Path
