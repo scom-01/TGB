@@ -134,6 +134,7 @@ namespace SOB
             //Impact
             var impact = Instantiate(ProjectileData.ImpactPrefab);
             impact.transform.position = this.transform.position;
+            
             foreach (var _renderer in impact.GetComponentsInChildren<ParticleSystemRenderer>()) 
             {
                 _renderer.sortingLayerName = "Effect";

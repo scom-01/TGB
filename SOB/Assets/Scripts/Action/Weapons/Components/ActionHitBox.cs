@@ -35,7 +35,6 @@ namespace SOB.Weapons.Components
         {
             if (currentActionData != null)
             {
-
                 CheckAttackAction(currentActionData);
             }
 
@@ -223,8 +222,8 @@ namespace SOB.Weapons.Components
             var temp = (PosOffset - oldPos);
             Debug.Log($"Temp = {temp}");
             offset.Set(
-                    transform.position.x  + (hitActions[currentHitBoxIndex].ActionRect.center.x * CoreMovement.FancingDirection),
-                    transform.position.y  + (hitActions[currentHitBoxIndex].ActionRect.center.y)
+                    transform.position.x + (hitActions[currentHitBoxIndex].ActionRect.center.x * CoreMovement.FancingDirection),
+                    transform.position.y + (hitActions[currentHitBoxIndex].ActionRect.center.y)
                     );
 
             RayCastdetected = Physics2D.BoxCastAll(offset, hitActions[currentHitBoxIndex].ActionRect.size, 0f, temp, temp.magnitude, data.DetectableLayers);
@@ -233,7 +232,7 @@ namespace SOB.Weapons.Components
             for (int k = 0; k < RayCastdetected.Length; k++)
             {
                 var coll = RayCastdetected[k].collider;
-                
+
                 if (coll.gameObject.tag == this.gameObject.tag)
                     continue;
 
@@ -396,6 +395,7 @@ namespace SOB.Weapons.Components
                     (currHitBox[currentHitBoxIndex].ActionRect.center.y)
                     );
 
+
             isTriggerOn = true;
         }
 
@@ -430,7 +430,7 @@ namespace SOB.Weapons.Components
                     if (!action.Debug)
                         continue;
                     Gizmos.color = Color.white;
-                    Gizmos.DrawWireCube(transform.position + new Vector3(action.ActionRect.center.x * CoreMovement.FancingDirection, action.ActionRect.center.y, 0), action.ActionRect.size);                    
+                    Gizmos.DrawWireCube(transform.position + new Vector3(action.ActionRect.center.x * CoreMovement.FancingDirection, action.ActionRect.center.y, 0), action.ActionRect.size);
                 }
             }
         }
