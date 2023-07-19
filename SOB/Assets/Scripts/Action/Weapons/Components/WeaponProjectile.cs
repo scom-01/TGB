@@ -1,5 +1,7 @@
+using SOB.CoreSystem;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 
 namespace SOB.Weapons.Components
@@ -23,8 +25,14 @@ namespace SOB.Weapons.Components
         }
         private void CheckAttackAction(WeaponProjectileActionData actionData)
         {
-
+            Projectile obj = Instantiate(GlobalValue.Base_Projectile).GetComponent<Projectile>();
+            var projectile_Data = actionData.ProjectileActionData[currentProjectileIndex];
+            projectile_Data.Pos += core.Unit.transform.position;
+            obj.FancingDirection = CoreMovement.fancingDirection;
+            obj.SetUp(core.Unit, projectile_Data);
+            obj.Shoot();
         }
+
         protected override void Start()
         {
             base.Start();

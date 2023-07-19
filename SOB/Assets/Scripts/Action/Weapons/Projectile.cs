@@ -1,14 +1,18 @@
+using SOB.CoreSystem;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.U2D.IK;
 
 namespace SOB
 {
     public class Projectile : MonoBehaviour
     {
         public Unit unit;
-        public ProejectileData ProjectileData;
+        public ProjectileData ProjectileData;
+        [HideInInspector] public int FancingDirection = 1;
         private float m_startTime;
         public Rigidbody2D RB2D
         {
@@ -17,6 +21,8 @@ namespace SOB
                 if (rb2d == null)
                 {
                     rb2d = this.GetComponent<Rigidbody2D>();
+                    if (rb2d == null)
+                        rb2d = this.AddComponent<Rigidbody2D>();
                     rb2d.gravityScale = ProjectileData.GravityScale;
                 }
                 return rb2d;
@@ -31,6 +37,8 @@ namespace SOB
                 if (cc2d == null)
                 {
                     cc2d = this.GetComponent<CircleCollider2D>();
+                    if (cc2d == null)
+                        cc2d = this.AddComponent<CircleCollider2D>();
                     cc2d.isTrigger = true;
                 }
                 return cc2d;
@@ -38,34 +46,30 @@ namespace SOB
         }
 
         private CircleCollider2D cc2d;
-        public Projectile(Unit _unit ,Vector3 pos = new Vector3(), Vector3 rot = new Vector3(), float radius = 0, bool _isSingleShoot = true, float gravity = 0, GameObject _projectilePrefab = null, GameObject _impactPrefab = null)
+        public Projectile(Unit _unit, ProjectileData m_ProjectileData)
         {
             unit = _unit;
-            if(unit != null)
-            {
-                this.tag = unit.tag;
-            }
-            this.gameObject.layer = LayerMask.NameToLayer("Projectile");
-            ProjectileData.Pos = pos;
-            ProjectileData.Rot = rot;
-            ProjectileData.Radius = radius;
-            ProjectileData.isSingleShoot = _isSingleShoot;
-            ProjectileData.GravityScale = gravity;
-            ProjectileData.ProjectilePrefab = _projectilePrefab;
-            ProjectileData.ImpactPrefab = _impactPrefab;
+
+            ProjectileData = m_ProjectileData;
             SetUp();
         }
 
-        
+
         [ContextMenu("SetUp")]
-        private void SetUp()
+        public void SetUp()
         {
             //Transform, Collider2D
+            if (unit != null)
+                this.tag = unit.tag;
             this.transform.position = ProjectileData.Pos;
+            this.gameObject.layer = LayerMask.NameToLayer("Projectile");
             this.transform.rotation = Quaternion.Euler(ProjectileData.Rot);
+
+
             CC2D.radius = ProjectileData.Radius;
+            CC2D.enabled = false;
             RB2D.gravityScale = ProjectileData.GravityScale;
-            
+
             //set ProjectilPrefab
             var _prefab = Instantiate(ProjectileData.ProjectilePrefab, this.transform);
             var main = _prefab.GetComponent<ParticleSystem>().main;
@@ -74,7 +78,18 @@ namespace SOB
             {
                 _renderer.sortingLayerName = "Effect";
             }
+        }
 
+        public void SetUp(Unit _unit, ProjectileData m_ProjectileData)
+        {
+            unit = _unit;
+
+            ProjectileData = m_ProjectileData;
+            SetUp();
+        }
+
+        public void Shoot()
+        {
             //set startTime
             if (GameManager.Inst != null)
             {
@@ -84,39 +99,18 @@ namespace SOB
             {
                 m_startTime = Time.time;
             }
-        }
 
-        private void SetUp(Vector3 pos,Vector3 rot, float radius, float gravity, GameObject _particlePrefab)
-        {
-            ProjectileData.Pos = pos;
-            this.transform.position = ProjectileData.Pos;
-            ProjectileData.Rot = rot;
-            this.transform.rotation = Quaternion.Euler(ProjectileData.Rot);
-            ProjectileData.Radius = radius;
-            CC2D.radius = ProjectileData.Radius;
-            ProjectileData.GravityScale = gravity;
-            RB2D.gravityScale = ProjectileData.GravityScale;
-            ProjectileData.ProjectilePrefab = _particlePrefab;
-            var prefab = Instantiate(ProjectileData.ProjectilePrefab, this.transform);
-            if (prefab.GetComponent<ParticleSystem>() != null) 
-            {
-                ParticleSystem.MainModule main = prefab.GetComponent<ParticleSystem>().main;
-                main.loop = true;                
-            }
-        }
-        
-        public void Shoot()
-        {
             RB2D.isKinematic = false;
-            RB2D.velocity = ProjectileData.Rot.normalized * ProjectileData.Speed;
+            CC2D.enabled = true;
 
+            RB2D.velocity = new Vector2(ProjectileData.Rot.x * FancingDirection, ProjectileData.Rot.y).normalized * ProjectileData.Speed;
         }
         // Update is called once per frame
         void Update()
         {
             if (GameManager.Inst == null)
                 return;
-            if(GameManager.Inst.PlayTime >= m_startTime + ProjectileData.DurationTime)
+            if (GameManager.Inst.PlayTime >= m_startTime + ProjectileData.DurationTime)
             {
                 Hit();
             }
@@ -124,7 +118,7 @@ namespace SOB
 
         public void Hit(bool _isSingleShoot = true)
         {
-            if(_isSingleShoot)
+            if (_isSingleShoot)
             {
                 this.gameObject.SetActive(false);
                 RB2D.velocity = Vector2.zero;
@@ -134,8 +128,8 @@ namespace SOB
             //Impact
             var impact = Instantiate(ProjectileData.ImpactPrefab);
             impact.transform.position = this.transform.position;
-            
-            foreach (var _renderer in impact.GetComponentsInChildren<ParticleSystemRenderer>()) 
+
+            foreach (var _renderer in impact.GetComponentsInChildren<ParticleSystemRenderer>())
             {
                 _renderer.sortingLayerName = "Effect";
             }
@@ -150,18 +144,13 @@ namespace SOB
                 return;
             }
 
-            if(collision.tag == this.tag)
+            if (collision.tag == this.tag)
             {
                 return;
             }
 
             if (collision.gameObject.tag == "Trap")
                 return;
-
-            if (collision.gameObject.layer != 1 << unit.UnitData.WhatIsEnemyUnit)
-            {
-                return;
-            }
 
             //Damagable.cs를 가지고있는 collision이랑 부딪쳤을 때
             if (collision.TryGetComponent(out IDamageable damageable))

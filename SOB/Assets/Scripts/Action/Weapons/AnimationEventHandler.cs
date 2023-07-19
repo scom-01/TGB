@@ -37,20 +37,33 @@ public class AnimationEventHandler : MonoBehaviour
     public event Action OnStopInvincible;
 
     public void AnimationFinishedTrigger() => OnFinish?.Invoke();
+
+    //Movement
     public void FixedStartMovementTrigger() => OnFixedStartMovement?.Invoke();
     public void FixedStopMovementTrigger() => OnFixedStopMovement?.Invoke();
-    public void TeleportToTargetTrigger() => OnTeleportToTarget?.Invoke();
     public void StartMovementTrigger() => OnStartMovement?.Invoke();
     public void StopMovementTrigger() => OnStopMovement?.Invoke();
     public void StartFlipTrigger() => OnStartFlip?.Invoke();
     public void StopFlipTrigger() => OnStopFlip?.Invoke();
+
+    public void TeleportToTargetTrigger() => OnTeleportToTarget?.Invoke();
+
+    //Action
     public void AttackActionTrigger() => OnAttackAction?.Invoke();
     public void StartActionRectTrigger() => OnActionRectOn?.Invoke();
     public void StopActionRectTrigger() => OnActionRectOff?.Invoke();
     public void ShootProjectileTrigger() => OnShootProjectile?.Invoke();
+
+    //Effect
     public void SpawnEffectTrigger() => OnEffectSpawn?.Invoke();
+
+    //Sound
     public void SpawnSoundClipTrigger() => OnSoundClip?.Invoke();
+
+    //Cam
     public void ShakeCamTrigger() => OnShakeCam?.Invoke();
+
+    //State
     public void StartInvincibleTrigger() => OnStartInvincible?.Invoke();
     public void StopInvincibleTrigger() => OnStopInvincible?.Invoke();
 }

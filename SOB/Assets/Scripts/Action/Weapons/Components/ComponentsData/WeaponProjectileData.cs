@@ -7,7 +7,6 @@ namespace SOB.Weapons.Components
 {
     public class WeaponProjectileData : ComponentData<WeaponProjectileActionData>
     {
-        [field: SerializeField] public LayerMask DetectableLayers { get; private set; }
 
         public WeaponProjectileData()
         {
