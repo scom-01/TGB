@@ -87,6 +87,11 @@ namespace SOB
             ProjectileData = m_ProjectileData;
             SetUp();
         }
+        public void SetUp(ProjectileData m_ProjectileData)
+        {
+            ProjectileData = m_ProjectileData;
+            SetUp();
+        }
 
         public void Shoot()
         {
