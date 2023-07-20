@@ -16,6 +16,8 @@ public class EffectContainer : MonoBehaviour
     
     public List<GameObject> ProjectileList = new List<GameObject>();
 
+    public List<ProjectilePooling> ProjectilePoolingList = new List<ProjectilePooling>();
+
     private GameObject EffectPoolingBase
     {
         get
@@ -51,13 +53,32 @@ public class EffectContainer : MonoBehaviour
             return effect;
         }
     }
-
-    public GameObject AddProjectileList(ProjectileData _projectileData)
+    public ProjectilePooling CheckProjectile(ProjectileData _projectileData)
     {
-        var projectile = Instantiate(GlobalValue.Base_Projectile, _projectileData.Pos, Quaternion.Euler(_projectileData.Rot));
-        projectile.GetComponent<Projectile>().ProjectileData = _projectileData;
-        ProjectileList.Add(projectile);
-        return projectile;
+        if (ProjectilePoolingList.Count == 0)
+        {
+            var projectilePooling = AddProjectile(_projectileData, 5);
+            return projectilePooling.GetComponent<ProjectilePooling>();
+        }
+
+        for (int i = 0; i < ProjectilePoolingList.Count; i++)
+        {
+            if (ProjectilePoolingList[i].m_ProjectileData.ProjectilePrefab == _projectileData.ProjectilePrefab)
+            {
+                return ProjectilePoolingList[i];
+            }
+        }
+
+        var newProjectile = AddProjectile(_projectileData, 5).GetComponent<ProjectilePooling>();
+        return newProjectile;
+    }
+
+    public GameObject AddProjectile(ProjectileData _projectileData, int amount = 5)
+    {
+        var projectilePool = Instantiate(GlobalValue.Base_ProjectilePooling, this.transform);
+        projectilePool.GetComponent<ProjectilePooling>().Init(_projectileData, amount);
+        ProjectilePoolingList.Add(projectilePool.GetComponent<ProjectilePooling>());
+        return projectilePool;
     }
 
     /// <summary>
@@ -117,14 +138,14 @@ public class EffectContainer : MonoBehaviour
     /// <returns></returns>
     private GameObject AddEffect(GameObject _effect, int amount = 5, Transform transform = null)
     {
-        var effectPool = Instantiate(GlobalValue.Base_Effect, transform ? transform : this.transform);
+        var effectPool = Instantiate(GlobalValue.Base_EffectPooling, transform ? transform : this.transform);
         effectPool.GetComponent<EffectPooling>().Init(_effect, amount);
         EffectPoolList.Add(effectPool.GetComponent<EffectPooling>());
         return effectPool;
     }
     private GameObject AddEffect(GameObject _effect, List<EffectPooling> effectPoolList, int amount = 5, Transform transform = null)
     {
-        var effectPool = Instantiate(GlobalValue.Base_Effect, transform ? transform : this.transform);
+        var effectPool = Instantiate(GlobalValue.Base_EffectPooling, transform ? transform : this.transform);
         effectPool.GetComponent<EffectPooling>().Init(_effect, amount);
         effectPoolList.Add(effectPool.GetComponent<EffectPooling>());
         return effectPool;

@@ -12,6 +12,8 @@ namespace SOB
     {
         public Unit unit;
         public ProjectileData ProjectileData;
+        private ProjectilePooling parent;
+
         [HideInInspector] public int FancingDirection = 1;
         private float m_startTime;
         public Rigidbody2D RB2D
@@ -60,8 +62,10 @@ namespace SOB
         {
             //Transform, Collider2D
             if (unit != null)
+            {
                 this.tag = unit.tag;
-            this.transform.position = ProjectileData.Pos;
+                this.transform.position = unit.transform.position + ProjectileData.Pos;
+            }
             this.gameObject.layer = LayerMask.NameToLayer("Projectile");
             this.transform.rotation = Quaternion.Euler(ProjectileData.Rot);
 
@@ -78,6 +82,7 @@ namespace SOB
             {
                 _renderer.sortingLayerName = "Effect";
             }
+            this.gameObject.SetActive(false);
         }
 
         public void SetUp(Unit _unit, ProjectileData m_ProjectileData)
@@ -108,7 +113,14 @@ namespace SOB
             RB2D.isKinematic = false;
             CC2D.enabled = true;
 
-            RB2D.velocity = new Vector2(ProjectileData.Rot.x * FancingDirection, ProjectileData.Rot.y).normalized * ProjectileData.Speed;
+            if (unit != null) 
+            {
+                RB2D.velocity = new Vector2(ProjectileData.Rot.x * unit.Core.GetCoreComponent<Movement>().fancingDirection, ProjectileData.Rot.y).normalized * ProjectileData.Speed;
+            }
+            else
+            {
+                RB2D.velocity = new Vector2(ProjectileData.Rot.x, ProjectileData.Rot.y).normalized * ProjectileData.Speed;
+            }
         }
         // Update is called once per frame
         void Update()
@@ -118,6 +130,18 @@ namespace SOB
             if (GameManager.Inst.PlayTime >= m_startTime + ProjectileData.DurationTime)
             {
                 Hit();
+            }
+        }
+
+        private void OnEnable()
+        {
+            parent = this.GetComponentInParent<ProjectilePooling>();
+        }
+        private void OnDisable()
+        {
+            if (parent != null) 
+            {
+                parent.ReturnObject(this.gameObject);
             }
         }
 

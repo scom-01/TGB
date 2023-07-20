@@ -19,7 +19,8 @@ public class GlobalValue : MonoBehaviour
     public const string NextStageName = "NextStage";
     public const string RebindsKey = "rebinds";
     public static GameObject Base_Projectile = Resources.Load<GameObject>("Prefabs/Weapons/Projectiles/Base_Projectile");
-    public static GameObject Base_Effect = Resources.Load<GameObject>("Prefabs/Effects/Base_EffectPooling");
+    public static GameObject Base_EffectPooling = Resources.Load<GameObject>("Prefabs/Effects/Base_EffectPooling");
+    public static GameObject Base_ProjectilePooling = Resources.Load<GameObject>("Prefabs/Effects/Base_ProjectilePooling");
     /// <summary>
     /// AudioMixer의 SFX Parameter값과 일치해야함
     /// </summary>

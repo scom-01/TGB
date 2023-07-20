@@ -1,4 +1,5 @@
 using Cinemachine;
+using SOB.Weapons.Components;
 using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
@@ -166,6 +167,11 @@ namespace SOB.CoreSystem
             return StartEffects(effectPrefab, new Vector2(
                                                     transform.position.x + Random.Range(-Range, Range),
                                                     transform.position.y + Random.Range(-Range, Range)), randomRotation, _isFollow);
+        }
+
+        public GameObject StartProjectileCheck(Unit _unit, ProjectileData projectile)
+        {
+            return effectContainer.CheckProjectile(projectile).GetObejct(_unit, projectile);
         }
     }
 }
