@@ -48,7 +48,7 @@ public class EffectPooling : MonoBehaviour
 
     public void ReturnObject(GameObject obj)
     {
-        obj.gameObject.SetActive(false);        
+        obj.gameObject.SetActive(false);
         effectQueue.Enqueue(obj);
     }
 }
