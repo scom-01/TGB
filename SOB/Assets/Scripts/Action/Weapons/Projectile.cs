@@ -10,6 +10,7 @@ namespace SOB
 {
     public class Projectile : MonoBehaviour
     {
+        //공격하는 주체
         public Unit unit;
         public ProjectileData ProjectileData;
         private ProjectilePooling parent;
@@ -90,9 +91,22 @@ namespace SOB
             unit = _unit;
 
             ProjectileData = m_ProjectileData;
-            SetUp();
+
+            //Transform, Collider2D
+            if (unit != null)
+            {
+                this.tag = unit.tag;
+                this.transform.position = unit.transform.position + ProjectileData.Pos;
+            }
+            this.gameObject.layer = LayerMask.NameToLayer("Projectile");
+            this.transform.rotation = Quaternion.Euler(ProjectileData.Rot);
+
+
+            CC2D.radius = ProjectileData.Radius;
+            CC2D.enabled = false;
+            RB2D.gravityScale = ProjectileData.GravityScale;
         }
-        public void SetUp(ProjectileData m_ProjectileData)
+        public void Init(ProjectileData m_ProjectileData)
         {
             ProjectileData = m_ProjectileData;
             SetUp();
@@ -110,10 +124,15 @@ namespace SOB
                 m_startTime = Time.time;
             }
 
+            if (ProjectileData.ProjectileShootClip != null)
+            {
+                unit.Core.GetCoreComponent<SoundEffect>().AudioSpawn(ProjectileData.ProjectileShootClip);
+            }
+
             RB2D.isKinematic = false;
             CC2D.enabled = true;
 
-            if (unit != null) 
+            if (unit != null)
             {
                 RB2D.velocity = new Vector2(ProjectileData.Rot.x * unit.Core.GetCoreComponent<Movement>().fancingDirection, ProjectileData.Rot.y).normalized * ProjectileData.Speed;
             }
@@ -139,21 +158,11 @@ namespace SOB
         }
         private void OnDisable()
         {
-            if (parent != null) 
-            {
-                parent.ReturnObject(this.gameObject);
-            }
+            
         }
 
         public void Hit(bool _isSingleShoot = true)
         {
-            if (_isSingleShoot)
-            {
-                this.gameObject.SetActive(false);
-                RB2D.velocity = Vector2.zero;
-                RB2D.isKinematic = true;
-            }
-
             //Impact
             var impact = Instantiate(ProjectileData.ImpactPrefab);
             impact.transform.position = this.transform.position;
@@ -164,30 +173,163 @@ namespace SOB
             }
             var main = impact.GetComponent<ParticleSystem>().main;
             main.stopAction = ParticleSystemStopAction.Destroy;
+
+            if (_isSingleShoot)
+            {
+                this.gameObject.SetActive(false);
+                RB2D.velocity = Vector2.zero;
+                RB2D.isKinematic = true;
+                if (parent != null)
+                {
+                    parent.ReturnObject(this.gameObject);
+                }
+            }
         }
 
-        private void OnTriggerStay2D(Collider2D collision)
+        private void OnTriggerStay2D(Collider2D coll)
         {
+            //공격한 주체가 없을 때 무시
             if (unit == null)
             {
                 return;
             }
 
-            if (collision.tag == this.tag)
+            //같은 Tag는 무시
+            if (coll.tag == this.tag)
             {
                 return;
             }
 
-            if (collision.gameObject.tag == "Trap")
+            //트랩에는 데미지X
+            if (coll.gameObject.tag == "Trap")
                 return;
 
-            //Damagable.cs를 가지고있는 collision이랑 부딪쳤을 때
-            if (collision.TryGetComponent(out IDamageable damageable))
+            //피격 대상이 Ground면 이펙트
+            if (coll.gameObject.layer == LayerMask.NameToLayer("Ground"))
             {
-                Debug.Log($"Projectile Touch {collision.name}");
-
                 Hit(ProjectileData.isSingleShoot);
+                return;
             }
+
+            //Damagable이 아니면 무시
+            if (coll.gameObject.layer != LayerMask.NameToLayer("Damagable"))
+            {
+                return;
+            }
+
+            //피격 대상 사망 시 무시
+            if (coll.gameObject.GetComponentInParent<Unit>().Core.GetCoreComponent<Death>().isDead)
+            {
+                return;
+            }
+
+            //피격대상이 Enemy일 때 Enemy의 공격대상 설정
+            if (coll.gameObject.GetComponentInParent<Enemy>() != null)
+            {
+                coll.gameObject.GetComponentInParent<Enemy>().SetTarget(unit);
+            }
+
+            //피격 대상에게 Damage
+            //Damagable.cs를 가지고있는 collision이랑 부딪쳤을 때
+            if (coll.TryGetComponent(out IDamageable damageable))
+            {
+                //히트 시 효과
+                unit.Inventory.ItemEffectExecute(unit, coll.GetComponentInParent<Unit>());
+
+                Debug.Log($"Projectile Touch {coll.name}");
+                //Impact EffectPrefab
+                #region EffectPrefab
+                if (ProjectileData.ImpactPrefab != null)
+                {
+                    Hit(ProjectileData.isSingleShoot);
+                }
+                #endregion
+
+                //Impact AudioClip
+                #region AudioClip
+                if (ProjectileData.ImpactClip != null)
+                {
+                    unit.Core.GetCoreComponent<SoundEffect>().AudioSpawn(ProjectileData.ImpactClip);
+                }
+                #endregion
+
+
+                //ShakeCam
+                #region ShakeCam
+                if (ProjectileData.isShakeCam)
+                {
+                    Camera.main.GetComponent<CameraShake>()?.Shake(
+                        ProjectileData.camDatas.RepeatRate,
+                        ProjectileData.camDatas.Range,
+                        ProjectileData.camDatas.Duration
+                        );
+                }
+                #endregion
+
+                #region Damage
+                //플레이어가 피격 당할 때는 EnemyType이 없기때문에 생략
+                if (coll.gameObject.tag == "Player")
+                {
+                    damageable.Damage
+                    (
+                        unit.Core.GetCoreComponent<UnitStats>().StatsData + ProjectileData.Stats,
+                        coll.GetComponentInParent<Unit>().UnitData.statsStats,
+                        unit.Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower
+                    );
+                }
+                else
+                {
+                    //Damage
+                    switch (coll.GetComponentInParent<Enemy>().enemyData.enemy_size)
+                    {
+                        case ENEMY_Size.Small:
+                            damageable.Damage
+                        (
+                            unit.Core.GetCoreComponent<UnitStats>().StatsData + ProjectileData.Stats,
+                            coll.GetComponentInParent<Unit>().UnitData.statsStats,
+                            (unit.Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + ProjectileData.Stats.DefaultPower) * (1.0f + GlobalValue.Enemy_Size_WeakPer)
+                        );
+                            Debug.Log("Projectile Enemy Type Small, Normal Dam = " +
+                                unit.Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + ProjectileData.Stats.DefaultPower
+                                + " Enemy_Size_WeakPer Additional Dam = " +
+                                (unit.Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + ProjectileData.Stats.DefaultPower) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
+                            break;
+                        case ENEMY_Size.Medium:
+                            damageable.Damage
+                        (
+                            unit.Core.GetCoreComponent<UnitStats>().StatsData + ProjectileData.Stats,
+                            coll.GetComponentInParent<Unit>().UnitData.statsStats,
+                            (unit.Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + ProjectileData.Stats.DefaultPower));
+                            Debug.Log("Projectile Enemy Type Medium, Normal Dam = " +
+                                unit.Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + ProjectileData.Stats.DefaultPower);
+                            break;
+                        case ENEMY_Size.Big:
+                            damageable.Damage
+                        (
+                            unit.Core.GetCoreComponent<UnitStats>().StatsData + ProjectileData.Stats,
+                            coll.GetComponentInParent<Unit>().UnitData.statsStats,
+                            (unit.Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + ProjectileData.Stats.DefaultPower) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
+                        );
+
+                            Debug.Log("Projectile Enemy Type Big, Normal Dam = " +
+                                unit.Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + ProjectileData.Stats.DefaultPower
+                                + " Enemy_Size_WeakPer Additional Dam = " +
+                                (unit.Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + ProjectileData.Stats.DefaultPower) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
+                                );
+                            break;
+                    }
+                }
+                #endregion
+            }
+
+            //피격 대상에게 KnockBack
+            //KnockBack
+            #region KnockBack
+            if (coll.TryGetComponent(out IKnockBackable knockbackables))
+            {
+                knockbackables.KnockBack(ProjectileData.KnockbackAngle, ProjectileData.KnockbackAngle.magnitude, unit ? unit.Core.GetCoreComponent<Movement>().FancingDirection : 1);
+            }
+            #endregion
         }
     }
 }
