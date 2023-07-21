@@ -54,17 +54,19 @@ namespace SOB.Weapons.Components
         {
             base.Awake();
             hitBox = GetComponent<ActionHitBox>();
+            hitBox.OnDetectedCollider2D -= DetectedSoundClip;
             hitBox.OnDetectedCollider2D += DetectedSoundClip;
         }
 
         protected override void Start()
         {
             base.Start();
+            eventHandler.OnSoundClip -= HandleSoundClip;
             eventHandler.OnSoundClip += HandleSoundClip;
         }
-        protected override void OnDestory()
+        protected override void OnDestroy()
         {
-            base.OnDestory();
+            base.OnDestroy();
             hitBox.OnDetectedCollider2D -= DetectedSoundClip;
             eventHandler.OnSoundClip -= HandleSoundClip;
         }

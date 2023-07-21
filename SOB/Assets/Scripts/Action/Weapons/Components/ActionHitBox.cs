@@ -402,14 +402,19 @@ namespace SOB.Weapons.Components
         protected override void Start()
         {
             base.Start();
+            eventHandler.OnAttackAction -= HandleAttackAction;
             eventHandler.OnAttackAction += HandleAttackAction;
+
+            eventHandler.OnActionRectOn -= HandleActionRectOn;
             eventHandler.OnActionRectOn += HandleActionRectOn;
+
+            eventHandler.OnActionRectOff -= HandleActionRectOff;
             eventHandler.OnActionRectOff += HandleActionRectOff;
         }
 
-        protected override void OnDestory()
+        protected override void OnDestroy()
         {
-            base.OnDestory();
+            base.OnDestroy();
             eventHandler.OnAttackAction -= HandleAttackAction;
             eventHandler.OnActionRectOn -= HandleActionRectOn;
             eventHandler.OnActionRectOff -= HandleActionRectOff;

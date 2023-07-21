@@ -17,6 +17,8 @@ namespace SOB.Weapons.Components
 
         private void HandleShootProjectile()
         {
+            Debug.LogWarning($"{core.Unit.name}");
+
             if (currentActionData != null)
             {
                 CheckAttackAction(currentActionData);
@@ -31,13 +33,14 @@ namespace SOB.Weapons.Components
 
         protected override void Start()
         {
-            base.Start();
+            base.Start();            
+            eventHandler.OnShootProjectile -= HandleShootProjectile;
             eventHandler.OnShootProjectile += HandleShootProjectile;
         }
 
-        protected override void OnDestory()
+        protected override void OnDestroy()
         {
-            base.OnDestory();
+            base.OnDestroy();
             eventHandler.OnShootProjectile -= HandleShootProjectile;
         }
     }

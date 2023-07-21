@@ -106,14 +106,31 @@ namespace SOB.Weapons.Components
         {
             base.Start();
 
+            eventHandler.OnFixedStartMovement -= HandleFixedStartMovement;
             eventHandler.OnFixedStartMovement += HandleFixedStartMovement;
+            
+            eventHandler.OnFixedStopMovement -= HandleFixedStopMovement;
             eventHandler.OnFixedStopMovement += HandleFixedStopMovement;
+            
+            eventHandler.OnTeleportToTarget -= HandleTeleport;
             eventHandler.OnTeleportToTarget += HandleTeleport;
+            
+            eventHandler.OnStartMovement -= HandleStartMovement;
             eventHandler.OnStartMovement += HandleStartMovement;
+
+            eventHandler.OnStopMovement -= HandleStopMovement;
             eventHandler.OnStopMovement += HandleStopMovement;
+
+            eventHandler.OnStartInvincible -= HandleStartInvincible;
             eventHandler.OnStartInvincible += HandleStartInvincible;
+
+            eventHandler.OnStartFlip -= HandleStartFlip;
             eventHandler.OnStartFlip += HandleStartFlip;
+
+            eventHandler.OnStopFlip -= HandleStopFlip;
             eventHandler.OnStopFlip += HandleStopFlip;
+
+            eventHandler.OnStopInvincible -= HandleStopInvincible;
             eventHandler.OnStopInvincible += HandleStopInvincible;
 
             //애니메이션 종료 시 원래 상태로 돌리기 위함
@@ -121,9 +138,9 @@ namespace SOB.Weapons.Components
             eventHandler.OnFinish += HandleFixedStopMovement;
         }
 
-        protected override void OnDestory()
+        protected override void OnDestroy()
         {
-            base.OnDestory();
+            base.OnDestroy();
 
             eventHandler.OnFixedStartMovement -= HandleFixedStartMovement;
             eventHandler.OnFixedStopMovement -= HandleFixedStopMovement;

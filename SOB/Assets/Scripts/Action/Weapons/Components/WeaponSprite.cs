@@ -90,9 +90,9 @@ public class WeaponSprite : WeaponComponent<WeaponSpriteData, ActionSprites>
         baseSpriteRenderer.RegisterSpriteChangeCallback(HandleBaseSpriteChange);
     }
 
-    protected override void OnDestory()
+    protected override void OnDestroy()
     {
-        base.OnDestory();
+        base.OnDestroy();
 
         baseSpriteRenderer.UnregisterSpriteChangeCallback(HandleBaseSpriteChange);
     }

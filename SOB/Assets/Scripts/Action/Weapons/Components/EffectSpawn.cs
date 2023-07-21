@@ -75,12 +75,13 @@ namespace SOB.Weapons.Components
         {
             base.Start();
 
+            eventHandler.OnEffectSpawn -= HandleEffectSpawn;
             eventHandler.OnEffectSpawn += HandleEffectSpawn;
         }
 
-        protected override void OnDestory()
+        protected override void OnDestroy()
         {
-            base.OnDestory();
+            base.OnDestroy();
             eventHandler.OnEffectSpawn -= HandleEffectSpawn;
         }
 

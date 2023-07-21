@@ -88,13 +88,11 @@ namespace SOB.Weapons.Components
             isAttackActive = false;
         }
 
-        protected virtual void OnDestory()
+        protected virtual void OnDestroy()
         {
             Weapon.OnEnter -= HandleEnter;
             Weapon.OnExit -= HandleExit;
         }
-
-
     }
     public abstract class WeaponComponent<T1, T2> : WeaponComponent where T1 : ComponentData<T2> where T2 : ActionData
     {

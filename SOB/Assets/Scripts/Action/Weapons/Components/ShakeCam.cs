@@ -54,12 +54,13 @@ namespace SOB.Weapons.Components
         {
             base.Start();
 
+            eventHandler.OnShakeCam -= HandleShakeCam;
             eventHandler.OnShakeCam += HandleShakeCam;
         }
 
-        protected override void OnDestory()
+        protected override void OnDestroy()
         {
-            base.OnDestory();
+            base.OnDestroy();
             eventHandler.OnShakeCam -= HandleShakeCam;
         }
     }
