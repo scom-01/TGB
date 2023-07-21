@@ -51,10 +51,24 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private bool m_IsFollow = true;
     private Image Img;
     [SerializeField] private TextMeshProUGUI Txt;
-
+    private Canvas m_Canvas
+    {
+        get
+        {
+            if (_canvas == null)
+            {
+                _canvas = this.GetComponentInParent<Canvas>();
+            }
+            return _canvas;
+        }
+    }
+    private Canvas _canvas;
     // Update is called once per frame
     void Update()
     {
+        if (!m_Canvas.enabled)
+            return;
+
         if (GameManager.Inst?.StageManager == null)
         {
             return;

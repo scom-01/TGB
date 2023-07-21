@@ -99,6 +99,9 @@ namespace SOB.Manager
 
         private void Update()
         {
+            if (!Canvas.enabled)
+                return;
+
             InputCheck();
         }
 

@@ -85,20 +85,43 @@ public class StatsText : MonoBehaviour
             return stats;
         }
     }
+
+    private float OldStats = -1f;
+
+    private Canvas m_Canvas
+    {
+        get
+        {
+            if(_canvas == null)
+            {
+                _canvas = this.GetComponentInParent<Canvas>();
+            }
+            return _canvas;
+        }
+    }
+    private Canvas _canvas;
     // Update is called once per frame
     void Update()
     {
+        if(!m_Canvas.enabled)
+        {
+            return;
+        }
+
         if (StatsTxtLocalizeStringEvent != null)
         {
             StatsTxtLocalizeStringEvent.StringReference.SetReference("Stats_Table", Type.ToString());
         }
 
         if (StatsPowerTxt != null)
-        {            
-            StatsPowerTxt.text = TypeStats.ToString() + " %";
+        {
+            if (OldStats == TypeStats)
+            {                
+                StatsPowerTxt.text = TypeStats.ToString() + " %";
+            }
         }
 
-        if (Img != null && TypeSprite != null)
+        if (Img != null && TypeSprite != null && Img.sprite != TypeSprite)
         {
             Img.sprite = TypeSprite;
         }

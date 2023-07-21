@@ -188,9 +188,27 @@ public class GoodsText : MonoBehaviour
     [SerializeField] private bool isLeftcolon;
     private int oldGoodsCount = -1;
 
+
+    private Canvas m_Canvas
+    {
+        get
+        {
+            if (_canvas == null)
+            {
+                _canvas = this.GetComponentInParent<Canvas>();
+            }
+            return _canvas;
+        }
+    }
+    private Canvas _canvas;
     // Update is called once per frame
     void Update()
     {
+        if (!m_Canvas.enabled)
+        {
+            return;
+        }
+
         if (IconImg != null && TypeIcon != null)
         {
             if(OldType != Type)

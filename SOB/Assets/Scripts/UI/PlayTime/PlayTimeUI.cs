@@ -12,12 +12,28 @@ public class PlayTimeUI : MonoBehaviour
     private int min;
     private int sec;
 
+    private Canvas m_Canvas
+    {
+        get
+        {
+            if (_canvas == null)
+            {
+                _canvas = this.GetComponentInParent<Canvas>();
+            }
+            return _canvas;
+        }
+    }
+    private Canvas _canvas;
+
     private void Awake()
     {
         TimeTextUI = this.GetComponent<TextMeshProUGUI>();
     }
     private void Update()
     {
+        if (!m_Canvas.enabled)
+            return;
+
         if (TimeTextUI == null)
         {
             TimeTextUI = this.GetComponent<TextMeshProUGUI>();
