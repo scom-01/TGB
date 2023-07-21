@@ -161,7 +161,7 @@ namespace SOB
             
         }
 
-        public void Hit(bool _isSingleShoot = true)
+        private void Hit(bool _isSingleShoot = true)
         {
             //Impact
             var impact = Instantiate(ProjectileData.ImpactPrefab);
@@ -173,6 +173,14 @@ namespace SOB
             }
             var main = impact.GetComponent<ParticleSystem>().main;
             main.stopAction = ParticleSystemStopAction.Destroy;
+
+            //Impact AudioClip
+            #region AudioClip
+            if (unit != null && ProjectileData.ImpactClip != null)
+            {
+                unit.Core.GetCoreComponent<SoundEffect>().AudioSpawn(ProjectileData.ImpactClip);
+            }
+            #endregion
 
             if (_isSingleShoot)
             {
@@ -186,7 +194,7 @@ namespace SOB
             }
         }
 
-        private void OnTriggerStay2D(Collider2D coll)
+        private void OnTriggerEnter2D(Collider2D coll)
         {
             //공격한 주체가 없을 때 무시
             if (unit == null)
@@ -244,15 +252,6 @@ namespace SOB
                     Hit(ProjectileData.isSingleShoot);
                 }
                 #endregion
-
-                //Impact AudioClip
-                #region AudioClip
-                if (ProjectileData.ImpactClip != null)
-                {
-                    unit.Core.GetCoreComponent<SoundEffect>().AudioSpawn(ProjectileData.ImpactClip);
-                }
-                #endregion
-
 
                 //ShakeCam
                 #region ShakeCam
