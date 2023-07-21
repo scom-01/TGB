@@ -24,6 +24,7 @@ MonoBehaviour:
   - rid: 1770984693643870209
   - rid: 2811500880619372554
   - rid: 942642603132715037
+  - rid: 9027618747326398500
   references:
     version: 2
     RefIds:
@@ -123,3 +124,41 @@ MonoBehaviour:
         - name: Action 1
           <KnockbackAngle>k__BackingField:
           - {x: 0, y: 0}
+    - rid: 9027618747326398500
+      type: {class: WeaponProjectileData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: WeaponProjectileData
+        actionData:
+        - name: Action 1
+          ProjectileActionData:
+          - Stats:
+              MaxHealth: 0
+              MovementVelocity: 0
+              JumpVelocity: 0
+              DefaultPower: 0
+              AttackSpeedPer: 0
+              PhysicsDefensivePer: 0
+              MagicDefensivePer: 0
+              PhysicsAggressivePer: 0
+              MagicAggressivePer: 0
+              DamageAttiribute: 0
+              MyElemental: 0
+              ElementalDefensivePer: 0
+              ElementalAggressivePer: 0
+            Pos: {x: 0, y: 0, z: 0}
+            Rot: {x: 1, y: 0, z: 0}
+            Radius: 2
+            GravityScale: 0
+            Speed: 20
+            isSingleShoot: 1
+            DurationTime: 2
+            ProjectilePrefab: {fileID: 6363408910417065239, guid: a897f2220dde73a41bde2ca1c261301e, type: 3}
+            ImpactPrefab: {fileID: 6363408910417065239, guid: a897f2220dde73a41bde2ca1c261301e, type: 3}
+            KnockbackAngle: {x: 1, y: 0}
+            ProjectileShootClip: {fileID: 8300000, guid: 674258a055e994b72bbb15a28eb79838, type: 3}
+            ImpactClip: {fileID: 8300000, guid: 8a44b12d3e3f24b1a89dc7f0b66756f4, type: 3}
+            isShakeCam: 0
+            camDatas:
+              Duration: 0.1
+              Range: 0.01
+              RepeatRate: 0.001

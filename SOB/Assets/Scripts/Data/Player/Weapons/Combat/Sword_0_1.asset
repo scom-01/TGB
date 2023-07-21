@@ -171,7 +171,8 @@ MonoBehaviour:
             KnockbackAngle: {x: 10, y: 0}
             ProjectileShootClip: {fileID: 8300000, guid: 674258a055e994b72bbb15a28eb79838, type: 3}
             ImpactClip: {fileID: 8300000, guid: 8a44b12d3e3f24b1a89dc7f0b66756f4, type: 3}
+            isShakeCam: 0
             camDatas:
-              Duration: 0
-              Range: 0
-              RepeatRate: 0
+              Duration: 0.1
+              Range: 0.01
+              RepeatRate: 0.001

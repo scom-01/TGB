@@ -18,18 +18,6 @@ public class EffectContainer : MonoBehaviour
 
     public List<ProjectilePooling> ProjectilePoolingList = new List<ProjectilePooling>();
 
-    private GameObject EffectPoolingBase
-    {
-        get
-        {
-            if (effectPoolingBase == null)
-            {
-                effectPoolingBase = Resources.Load<GameObject>("Prefabs/Effects/Base_EffectPooling");
-            }
-            return effectPoolingBase;
-        }
-    }
-    private GameObject effectPoolingBase;
     public List<EffectPooling> EffectPoolList = new List<EffectPooling>();
     public GameObject AddEffectList(GameObject effectPrefab, Vector3 vector, Quaternion position, Transform transform)
     {

@@ -44,4 +44,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c321ccf02c6d474cadcf85debfb04a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectilePrefab: {fileID: 0}
+  unit: {fileID: 0}
+  m_ProjectileData:
+    Stats:
+      MaxHealth: 0
+      MovementVelocity: 0
+      JumpVelocity: 0
+      DefaultPower: 0
+      AttackSpeedPer: 0
+      PhysicsDefensivePer: 0
+      MagicDefensivePer: 0
+      PhysicsAggressivePer: 0
+      MagicAggressivePer: 0
+      DamageAttiribute: 0
+      MyElemental: 0
+      ElementalDefensivePer: 0
+      ElementalAggressivePer: 0
+    Pos: {x: 0, y: 0, z: 0}
+    Rot: {x: 0, y: 0, z: 0}
+    Radius: 0
+    GravityScale: 0
+    Speed: 0
+    isSingleShoot: 0
+    DurationTime: 0
+    ProjectilePrefab: {fileID: 0}
+    ImpactPrefab: {fileID: 0}
+    KnockbackAngle: {x: 0, y: 0}
+    ProjectileShootClip: {fileID: 0}
+    ImpactClip: {fileID: 0}
+    isShakeCam: 0
+    camDatas:
+      Duration: 0
+      Range: 0
+      RepeatRate: 0
+  MaxPoolAmount: 5

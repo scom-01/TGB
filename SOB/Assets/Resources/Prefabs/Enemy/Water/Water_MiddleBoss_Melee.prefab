@@ -2037,7 +2037,6 @@ GameObject:
   - component: {fileID: 3640253521839122247}
   - component: {fileID: 3639027602819861585}
   - component: {fileID: 1382525594973546584}
-  - component: {fileID: 8917400519045469387}
   m_Layer: 18
   m_Name: Water_MiddleBoss_Melee
   m_TagString: BigEnemy
@@ -2224,22 +2223,6 @@ MonoBehaviour:
   IsAlive: 1
   isImmunity: 1
   enemyData: {fileID: 0}
---- !u!114 &8917400519045469387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3640253521839122302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c5173f66d272754987e2ea457467358, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Slider: {fileID: 436731836707935235}
-  m_isUnit: 1
-  m_IsFollow: 0
-  Txt: {fileID: 0}
 --- !u!1 &3640253522240484911
 GameObject:
   m_ObjectHideFlags: 0
@@ -3338,6 +3321,7 @@ GameObject:
   - component: {fileID: 3031144336334078129}
   - component: {fileID: 5219939230734823982}
   - component: {fileID: 4711340543070371606}
+  - component: {fileID: 4919515967357026106}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3428,6 +3412,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4919515967357026106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8929912243676606868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c5173f66d272754987e2ea457467358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Slider: {fileID: 436731836707935235}
+  m_isUnit: 1
+  m_IsFollow: 0
+  Txt: {fileID: 0}
 --- !u!1 &8934162646917045617
 GameObject:
   m_ObjectHideFlags: 0

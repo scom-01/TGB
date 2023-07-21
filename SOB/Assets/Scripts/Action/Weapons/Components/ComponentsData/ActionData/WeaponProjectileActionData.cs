@@ -61,6 +61,8 @@ public struct ProjectileData
     /// 임팩트 클립
     /// </summary>
     public AudioClip ImpactClip;
+
+    public bool isShakeCam;
     /// <summary>
     /// 투사체 발사 시 ShakeCam
     /// </summary>
