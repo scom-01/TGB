@@ -28,6 +28,12 @@ public class ItemAttackEventSO : ItemEffectSO
         {
             if(itemEffectData.VFX != null)
                 unit.Core.GetCoreComponent<EffectManager>().StartEffects(itemEffectData.VFX, enemy.Core.GetCoreComponent<CollisionSenses>().GroundCheck.position);
+
+            //공격자스탯(기본 스탯 + 아이템들의 스탯) + 아이템의 속성
+            enemy.Core.GetCoreComponent<DamageReceiver>().Damage(unit.Core.GetCoreComponent<UnitStats>().StatsData,
+                    enemy.Core.GetCoreComponent<UnitStats>().StatsData,
+                    parentItem.StatsDatas.Elemental,
+                    parentItem.StatsDatas.DefaultPower);
             attackCount = 0;
         }
         return attackCount;
