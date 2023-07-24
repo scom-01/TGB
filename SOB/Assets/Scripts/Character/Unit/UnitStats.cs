@@ -54,7 +54,7 @@ namespace SOB.CoreSystem
         /// <summary>
         /// 원소 속성 (공격과 방어 모두에 적용)
         /// </summary>
-        public E_Power MyElemental { get => statsData.MyElemental; set => statsData.MyElemental = value; }
+        public E_Power MyElemental { get => statsData.Elemental; set => statsData.Elemental = value; }
 
         /// <summary>
         /// 원소 저항력 (수치만큼 %로 감소)
@@ -125,6 +125,24 @@ namespace SOB.CoreSystem
             }
             return amount;
         }
+
+        //공격자의 보유 Elemental과 다른 Elemental속성을 공격할 때
+        public float DecreaseHealth(StatsData AttackerData, StatsData VictimData, E_Power _elemental, float amount)
+        {
+            core.Unit.HitEffect();
+            
+            amount = CalculateDamage(AttackerData, VictimData, _elemental, amount);
+            CurrentHealth -= amount;
+
+            Debug.Log($"{core.transform.parent.name} Health = {currentHealth}");
+            if (CurrentHealth == 0.0f)
+            {
+                OnHealthZero?.Invoke();
+            }
+            return amount;
+        }
+
+
         public float DecreaseHealth(StatsData AttackerData, float amount)
         {
             core.Unit.HitEffect();
@@ -210,17 +228,20 @@ namespace SOB.CoreSystem
             #region 원소속성 계산
             Debug.Log($"Before Calculator ElementalPower = {amount}");
 
-            amount *= (1.0f + AttackerData.ElementalAggressivePer);
-            //Water(4) > Earth(3) > Wind(2) > Fire(1) > Water
-            if ((int)AttackerData.MyElemental == (int)VictimData.MyElemental)
+            //Percent
+            amount *= (1.0f + AttackerData.ElementalAggressivePer / 100f);
+
+            //(Water(4) > Earth(3) > Wind(2) > Fire(1) > Water) > Normal
+            //Normal 속성은 항상 원소속성보다 약하다
+            if ((int)AttackerData.Elemental == (int)VictimData.Elemental)
             {
-                Debug.Log($"ElementalPower is Normal! Not Increase and Not Decrease");
+                Debug.Log($"ElementalPower is the  same {VictimData.Elemental}! Not Increase and Not Decrease");
             }
             else
             {
-                if ((int)AttackerData.MyElemental > (int)VictimData.MyElemental)
+                if ((int)AttackerData.Elemental > (int)VictimData.Elemental)
                 {
-                    if ((int)AttackerData.MyElemental == 4 && (int)VictimData.MyElemental == 1)
+                    if ((int)AttackerData.Elemental == 4 && (int)VictimData.Elemental == 1)
                     {
                         amount *= (1.0f - GlobalValue.E_WeakPer * (1.0f - VictimData.ElementalDefensivePer / 100));
                     }
@@ -229,9 +250,9 @@ namespace SOB.CoreSystem
                         amount *= (1.0f + GlobalValue.E_WeakPer * (1.0f - VictimData.ElementalDefensivePer / 100));
                     }
                 }
-                else if ((int)AttackerData.MyElemental < (int)VictimData.MyElemental)
+                else if ((int)AttackerData.Elemental < (int)VictimData.Elemental)
                 {
-                    if ((int)AttackerData.MyElemental == 1 && (int)VictimData.MyElemental == 4)
+                    if ((int)AttackerData.Elemental == 1 && (int)VictimData.Elemental == 4)
                     {
                         amount *= (1.0f - GlobalValue.E_WeakPer * (1.0f - VictimData.ElementalDefensivePer / 100));
                     }
@@ -240,10 +261,75 @@ namespace SOB.CoreSystem
                         amount *= (1.0f + GlobalValue.E_WeakPer * (1.0f - VictimData.ElementalDefensivePer / 100));
                     }
                 }
-                //elemental == MyElemental 같거나 Normal일때
-                else
+            }
+            Debug.Log($"After Calculator ElementalPower = {amount}");
+            #endregion
+
+            #region 속성 계산
+            Debug.Log($"Before Calculator DamageAttribute = {amount}");
+            switch (VictimData.DamageAttiribute)
+            {
+                case DAMAGE_ATT.Physics:
+                    amount *= (1.0f + AttackerData.PhysicsAggressivePer / 100);
+                    amount *= (1.0f - VictimData.PhysicsDefensivePer / 100);
+                    if (amount <= 0.0f)
+                        return 0;
+                    break;
+                case DAMAGE_ATT.Magic:
+                    amount *= (1.0f + AttackerData.MagicAggressivePer / 100);
+                    amount *= (1.0f - VictimData.MagicDefensivePer / 100);
+                    if (amount <= 0.0f)
+                        return 0;
+                    break;
+                case DAMAGE_ATT.Fixed:
+                    //고정 데미지는 Physics와 Magic AggressivePer 합의 곱
+                    amount *= (1.0f + AttackerData.PhysicsAggressivePer / 100 + AttackerData.MagicAggressivePer / 100);
+                    //고정 데미지 일 시 감소 없음
+                    break;
+            }
+            Debug.Log($"Atfer Calculator DamageAttribute = {amount}");
+            #endregion
+
+            return amount;
+        }
+        
+        public float CalculateDamage(StatsData AttackerData, StatsData VictimData, E_Power _elemental, float amount)
+        {
+            #region 원소속성 계산
+            Debug.Log($"Before Calculator ElementalPower = {amount}");
+
+            //Percent
+            amount *= (1.0f + AttackerData.ElementalAggressivePer / 100f);
+
+            //(Water(4) > Earth(3) > Wind(2) > Fire(1) > Water) > Normal
+            //Normal 속성은 항상 원소속성보다 약하다
+            if ((int)_elemental == (int)VictimData.Elemental)
+            {
+                Debug.Log($"ElementalPower is the  same {VictimData.Elemental}! Not Increase and Not Decrease");
+            }
+            else
+            {
+                if ((int)_elemental > (int)VictimData.Elemental)
                 {
-                    Debug.Log($"{core.transform.parent.name}의 MyElemental 과 받는 ElememtalPower가 같음! Elemental 증가 및 감소 없음");
+                    if ((int)_elemental == 4 && (int)VictimData.Elemental == 1)
+                    {
+                        amount *= (1.0f - GlobalValue.E_WeakPer * (1.0f - VictimData.ElementalDefensivePer / 100));
+                    }
+                    else
+                    {
+                        amount *= (1.0f + GlobalValue.E_WeakPer * (1.0f - VictimData.ElementalDefensivePer / 100));
+                    }
+                }
+                else if ((int)_elemental < (int)VictimData.Elemental)
+                {
+                    if ((int)_elemental == 1 && (int)VictimData.Elemental == 4)
+                    {
+                        amount *= (1.0f - GlobalValue.E_WeakPer * (1.0f - VictimData.ElementalDefensivePer / 100));
+                    }
+                    else
+                    {
+                        amount *= (1.0f + GlobalValue.E_WeakPer * (1.0f - VictimData.ElementalDefensivePer / 100));
+                    }
                 }
             }
             Debug.Log($"After Calculator ElementalPower = {amount}");
@@ -284,15 +370,15 @@ namespace SOB.CoreSystem
 
             amount *= (1.0f + AttackerData.ElementalAggressivePer);
             //Water(4) > Earth(3) > Wind(2) > Fire(1) > Water
-            if ((int)AttackerData.MyElemental == (int)MyElemental)
+            if ((int)AttackerData.Elemental == (int)MyElemental)
             {
                 Debug.Log($"ElementalPower is Normal! Not Increase and Not Decrease");
             }
             else
             {
-                if ((int)AttackerData.MyElemental > (int)MyElemental)
+                if ((int)AttackerData.Elemental > (int)MyElemental)
                 {
-                    if ((int)AttackerData.MyElemental == 4 && (int)MyElemental == 1)
+                    if ((int)AttackerData.Elemental == 4 && (int)MyElemental == 1)
                     {
                         amount *= (1.0f - GlobalValue.E_WeakPer * (1.0f - ElementalDefensivePer / 100));
                     }
@@ -301,9 +387,9 @@ namespace SOB.CoreSystem
                         amount *= (1.0f + GlobalValue.E_WeakPer * (1.0f - ElementalDefensivePer / 100));
                     }
                 }
-                else if ((int)AttackerData.MyElemental < (int)MyElemental)
+                else if ((int)AttackerData.Elemental < (int)MyElemental)
                 {
-                    if ((int)AttackerData.MyElemental == 1 && (int)MyElemental == 4)
+                    if ((int)AttackerData.Elemental == 1 && (int)MyElemental == 4)
                     {
                         amount *= (1.0f - GlobalValue.E_WeakPer * (1.0f - ElementalDefensivePer / 100));
                     }

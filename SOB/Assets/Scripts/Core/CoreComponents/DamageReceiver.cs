@@ -52,6 +52,26 @@ namespace SOB.CoreSystem
             stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
             RandomEffectInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
         }
+        public void Damage(StatsData AttackterCommonData, StatsData VictimCommonData, E_Power _elemental, float amount)
+        {
+            if (death.Comp.isDead)
+            {
+                Debug.Log(core.Unit.name + "is Dead");
+                return;
+            }
+
+            if (isHit)
+            {
+                Debug.Log(core.Unit.name + " isHit = true");
+                return;
+            }
+            Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
+
+            var damage = stats.Comp.DecreaseHealth(AttackterCommonData, VictimCommonData, _elemental, AttackterCommonData.DefaultPower + amount);
+            isHit = true;
+            stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
+            RandomEffectInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
+        }
         /// <summary>
         /// 히트 무적 무시
         /// </summary>
