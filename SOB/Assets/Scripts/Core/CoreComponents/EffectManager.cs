@@ -3,7 +3,6 @@ using SOB.Weapons.Components;
 using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 namespace SOB.CoreSystem
 {
