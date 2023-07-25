@@ -6,8 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "newItemEffectData", menuName = "Data/Item Data/ItemAttackEvent Data")]
 public class ItemAttackEventSO : ItemEffectSO
 {
-    public BuffItemSO buffItem;
-
+    public int additionalDamage;
     public override int ExecuteEffect(StatsItemSO parentItem, Unit unit, int attackCount)
     {
         attackCount++;
@@ -33,7 +32,7 @@ public class ItemAttackEventSO : ItemEffectSO
             enemy.Core.GetCoreComponent<DamageReceiver>().Damage(unit.Core.GetCoreComponent<UnitStats>().StatsData,
                     enemy.Core.GetCoreComponent<UnitStats>().StatsData,
                     parentItem.StatsDatas.Elemental,
-                    parentItem.StatsDatas.DefaultPower);
+                    parentItem.StatsDatas.DefaultPower + additionalDamage);
             attackCount = 0;
         }
         return attackCount;

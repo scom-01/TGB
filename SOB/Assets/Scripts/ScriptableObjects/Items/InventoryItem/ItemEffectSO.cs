@@ -24,9 +24,15 @@ public abstract class ItemEffectSO : ScriptableObject, IExecuteEffect, IExecuteC
 [Serializable]
 public struct ItemEffectData
 {
+    /// <summary>
+    /// 필요 호출 회수
+    /// </summary>
     [Range(1, 99)]
     public int MaxCount;
-    public float durationTime;
+    /// <summary>
+    /// 재사용 대기시간
+    /// </summary>
+    public float CooldownTime;
     [HideInInspector] public bool isExecute;
     /// <summary>
     /// Effect VFX
