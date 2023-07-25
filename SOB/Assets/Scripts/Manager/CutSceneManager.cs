@@ -94,7 +94,11 @@ public class CutSceneManager : MonoBehaviour
                 {
                     this.GetComponent<SkipCutSceneIndex>().AddSkipCutScene();
                 }
-                OnTriggerSceneEnd();
+
+                if(PlayableDirector!=null)
+                {
+                    PlayableDirector.Stop();
+                }
                 isDone = true;
             }
         }
