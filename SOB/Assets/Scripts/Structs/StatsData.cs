@@ -31,7 +31,7 @@ public struct StatsData
     //-------------------------Elemental Options
     [Header("Elemental Options")]
     [Tooltip("원소 속성")]
-    public E_Power MyElemental;
+    public E_Power Elemental;
     [Tooltip("원소 저항력 (max = 100)%")]
     public float ElementalDefensivePer;
     [Tooltip("원소 공격력 %")]
