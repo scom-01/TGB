@@ -30,7 +30,7 @@ public class InventoryDescript : MonoBehaviour
             
             if (ItemDescriptStringEvent != null)
             {
-                ItemDescriptStringEvent.StringReference.SetReference("Item_Table", item.StatsItemData.itemData.ItemDescription);
+                ItemDescriptStringEvent.StringReference.SetReference("Item_Table", item.StatsItemData.itemData.ItemName + "_Descript");
             }
             
             if (DropButton != null)

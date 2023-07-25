@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization.Components;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class DetailUI : MonoBehaviour
@@ -13,22 +14,7 @@ public class DetailUI : MonoBehaviour
     [SerializeField] private LocalizeStringEvent MainStringEvent;
 
     [Tooltip("하위 컴포넌트 중 'MainText' Text String")]
-    public string ItemName 
-    { 
-        get 
-        {
-            return mainItemName; 
-        }
-        set
-        {
-            mainItemName = value;
-            if (MainStringEvent != null)
-            {
-                MainStringEvent.StringReference.SetReference("Item_Table", mainItemName);
-            }
-        }
-    }
-    private string mainItemName;
+    public string ItemName { get; private set; }
 
     public Canvas Canvas
     {
@@ -43,40 +29,34 @@ public class DetailUI : MonoBehaviour
     }
     private Canvas canvas;
 
-    public Image Icon;
+    [SerializeField] private Image Icon;
 
     [Header("---Sub---")]    
     [SerializeField]
     private GameObject subUI;
     [SerializeField] private LocalizeStringEvent SubStringEvent;
     [Tooltip("하위 컴포넌트 중 'SubText' Text String")]
-    public string ItemDescript
+
+    public void SetInit(string _ItemName,Sprite _sprite)
     {
-        get
+        if (_ItemName != "") 
         {
-            return itemDescript;
-        }
-        set
-        {
-            itemDescript = value;
+            ItemName = _ItemName;
+
+            if (MainStringEvent != null)
+            {
+                MainStringEvent.StringReference.SetReference("Item_Table", ItemName);
+            }
+
             if (SubStringEvent != null)
             {
                 SubStringEvent.StringReference.SetReference("Item_Table", ItemName + "_Descript");
             }
         }
+
+        if(Icon!=null)
+        {
+            Icon.sprite = _sprite;
+        }
     }
-    private string itemDescript;
-
-    //ContentSizeFitter csf;
-    //private void Awake()
-    //{
-    //    csf = GetComponent<ContentSizeFitter>();
-    //    //this.gameObject.SetActive(false);
-    //}
-
-    //private void OnEnable()
-    //{
-    //    //처음 SetActive시 ContentSizeFitter가 먹히지않던 해결 코드
-    //    LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)csf.transform);
-    //}
 }

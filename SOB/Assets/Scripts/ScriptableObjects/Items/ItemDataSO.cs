@@ -21,9 +21,6 @@ public struct ItemData
     [field: Tooltip("아이템 이름")]
     public string ItemName;
     [field: SerializeField] public LocalizedString ItemNameLocal { get; private set; }
-    [Tooltip("아이템 설명")]
-    [field: TextArea]
-    public string ItemDescription;
     [field: SerializeField] public LocalizedString ItemDescriptionLocal { get; private set; }
 
     [field: Tooltip("아이템 Sprite아이콘")]
