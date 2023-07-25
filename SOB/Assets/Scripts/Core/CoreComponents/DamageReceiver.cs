@@ -104,7 +104,12 @@ namespace SOB.CoreSystem
             isHit = true;
         }
 
-        public void FixedDamage(int amount)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <param name="isTrueHit"></param>
+        public void FixedDamage(int amount, bool isTrueHit = false)
         {
             if (death.Comp.isDead)
             {
@@ -112,16 +117,26 @@ namespace SOB.CoreSystem
                 return;
             }
 
-            if (isHit)
+            if(isTrueHit)
             {
-                Debug.Log(core.Unit.name + " isHit = true");
-                return;
+                Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
+                var damage = stats.Comp.DecreaseHealth(amount);
+                stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
+                RandomEffectInstantiate(1.0f, damage, 50, DAMAGE_ATT.Fixed);
             }
-            Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
-            var damage = stats.Comp.DecreaseHealth(amount);
-            isHit = true;
-            stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
-            RandomEffectInstantiate(1.0f, damage, 50, DAMAGE_ATT.Fixed);
+            else
+            {
+                if (isHit)
+                {
+                    Debug.Log(core.Unit.name + " isHit = true");
+                    return;
+                }
+                Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
+                var damage = stats.Comp.DecreaseHealth(amount);
+                isHit = true;
+                stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
+                RandomEffectInstantiate(1.0f, damage, 50, DAMAGE_ATT.Fixed);
+            }
         }
         public void TrapDamage(StatsData AttackterCommonData, float amount)
         {
@@ -213,7 +228,7 @@ namespace SOB.CoreSystem
                     damageText.GetComponentInChildren<DamageText>().SetText(damage, fontSize, Color.yellow);
                     break;
                 case DAMAGE_ATT.Fixed:
-                    damageText.GetComponentInChildren<DamageText>().SetText(damage, fontSize, Color.black);
+                    damageText.GetComponentInChildren<DamageText>().SetText(damage, fontSize, Color.white);
                     break;
             }
 
