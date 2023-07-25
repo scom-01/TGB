@@ -47,7 +47,7 @@ namespace SOB.CoreSystem
             }
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
 
-            var damage = stats.Comp.DecreaseHealth(AttackterCommonData, VictimCommonData, amount);
+            var damage = stats.Comp.DecreaseHealth(AttackterCommonData, VictimCommonData, AttackterCommonData.Elemental, AttackterCommonData.DamageAttiribute, amount);
             isHit = true;
             stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
             RandomEffectInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
@@ -87,7 +87,7 @@ namespace SOB.CoreSystem
             }
 
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
-            var damage = stats.Comp.DecreaseHealth(AttackterCommonData, VictimCommonData, amount);
+            var damage = stats.Comp.DecreaseHealth(AttackterCommonData, VictimCommonData, AttackterCommonData.Elemental, amount);
             stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
             RandomEffectInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
         }
@@ -104,7 +104,7 @@ namespace SOB.CoreSystem
             isHit = true;
         }
 
-        public void Damage(StatsData AttackterCommonData, float amount)
+        public void FixedDamage(int amount)
         {
             if (death.Comp.isDead)
             {
@@ -118,13 +118,11 @@ namespace SOB.CoreSystem
                 return;
             }
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
-
-            var damage = stats.Comp.DecreaseHealth(AttackterCommonData, amount);
+            var damage = stats.Comp.DecreaseHealth(amount);
             isHit = true;
             stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
-            RandomEffectInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
+            RandomEffectInstantiate(1.0f, damage, 50, DAMAGE_ATT.Fixed);
         }
-
         public void TrapDamage(StatsData AttackterCommonData, float amount)
         {
             if (death.Comp.isDead)
@@ -139,7 +137,7 @@ namespace SOB.CoreSystem
 
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
             isTouch = true;
-            var damage = stats.Comp.DecreaseHealth(AttackterCommonData, amount);
+            var damage = stats.Comp.DecreaseHealth(AttackterCommonData.Elemental, AttackterCommonData.DamageAttiribute, amount);
             stats.Comp.TouchinvincibleTime = core.Unit.UnitData.touchDamageinvincibleTime;
 
             RandomEffectInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
