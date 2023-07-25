@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class ProjectilePooling : MonoBehaviour
 {
-    public Unit unit;
+    public GameObject Effect;
     public ProjectileData m_ProjectileData;
     public int MaxPoolAmount;
     private Queue<GameObject> m_projectileQueue = new Queue<GameObject>();
@@ -25,6 +25,7 @@ public class ProjectilePooling : MonoBehaviour
     public void Init(ProjectileData _projectilePrefab, int count)
     {
         m_ProjectileData = _projectilePrefab;
+        Effect = _projectilePrefab.ProjectilePrefab;
         MaxPoolAmount = count;
 
         for (int i = 0; i < MaxPoolAmount; i++)

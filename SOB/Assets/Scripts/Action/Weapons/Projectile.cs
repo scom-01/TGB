@@ -243,7 +243,7 @@ namespace SOB
             {
                 //히트 시 효과
                 unit.Inventory.ItemEffectExecute(unit, coll.GetComponentInParent<Unit>());
-
+                
                 Debug.Log($"Projectile Touch {coll.name}");
                 //Impact EffectPrefab
                 #region EffectPrefab

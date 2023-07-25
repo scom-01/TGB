@@ -15,13 +15,17 @@ public class EffectController : MonoBehaviour
         parent = this.GetComponentInParent<EffectPooling>();
         if (particle != null)
         {
+            foreach(var childparticles in particle.GetComponentsInChildren<ParticleSystemRenderer>())
+            {
+                childparticles.sortingLayerName = "Effect";
+            }
             var main = particle.main;
             if (isDestroy)
             {
                 main.stopAction = ParticleSystemStopAction.Destroy;
             }
             else
-            {
+            {                
                 main.stopAction = ParticleSystemStopAction.Disable;
             }
         }

@@ -51,7 +51,7 @@ public class EffectContainer : MonoBehaviour
 
         for (int i = 0; i < ProjectilePoolingList.Count; i++)
         {
-            if (ProjectilePoolingList[i].m_ProjectileData.ProjectilePrefab == _projectileData.ProjectilePrefab)
+            if (ProjectilePoolingList[i].Effect == _projectileData.ProjectilePrefab)
             {
                 return ProjectilePoolingList[i];
             }
