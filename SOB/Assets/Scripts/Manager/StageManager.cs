@@ -59,13 +59,10 @@ public class StageManager : MonoBehaviour
         var FadeIn = Resources.Load<GameObject>(GlobalValue.FadeInCutScene);
         if (FadeIn != null)
         {
-            var Fadeobject = Instantiate(FadeIn);
-            Fadeobject.GetComponent<PlayableDirector>().Play();
-            Destroy(Fadeobject, (float)Fadeobject.GetComponent<PlayableDirector>().duration);
+            Instantiate(FadeIn);
         }
-        //if (CutSceneDirector != null)
-        //    CutSceneDirector.Play();
     }
+
     // Start is called before the first frame update
     public virtual void Start()
     {

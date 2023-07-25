@@ -445,37 +445,36 @@ public class GameManager : MonoBehaviour
         var FadeOut = Resources.Load<GameObject>(GlobalValue.FadeOutCutScene);
         if (FadeOut != null)
         {
-            var Fadeobject = Instantiate(FadeOut);
-            Fadeobject.GetComponent<PlayableDirector>().Play();
+            Instantiate(FadeOut);
         }
-        Invoke("MoveScene", 1.5f);
     }
     public void GoTitleScene()
     {
         Time.timeScale = 1f;
         isPause = false;
-        var FadeOut = Resources.Load<GameObject>(GlobalValue.FadeOutCutScene);
+        var FadeOut = Resources.Load<GameObject>(GlobalValue.TitleFadeOutCutScene);
         if (FadeOut != null)
         {
-            var Fadeobject = Instantiate(FadeOut);
-            Fadeobject.GetComponent<PlayableDirector>().Play();
+            Instantiate(FadeOut);
         }
-        Invoke("MoveTitle", 1.5f);
     }
-    private void MoveScene()
-    {
-        ChangeUI(UI_State.Loading);
-        SaveData();
-        if(StageManager!=null)
-        {
-            DataManager.Inst.NextStage(StageManager.NextStageNumber);
-        }
-        AsyncOperation operation = SceneManager.LoadSceneAsync("LoadingScene");
-    }
-    public void MoveTitle()
-    {
-        ChangeUI(UI_State.Loading);
-        ResetData();
-        AsyncOperation operation = SceneManager.LoadSceneAsync("LoadingScene");
-    }
+    //private void MoveScene()
+    //{
+    //    ChangeUI(UI_State.Loading);
+    //    SaveData();
+
+
+
+    //    if (StageManager != null) 
+    //    {
+    //        DataManager.Inst.NextStage(StageManager.NextStageNumber);
+    //    }
+    //    AsyncOperation operation = SceneManager.LoadSceneAsync("LoadingScene");
+    //}
+    //public void MoveTitle()
+    //{
+    //    ChangeUI(UI_State.Loading);
+    //    ResetData();
+    //    AsyncOperation operation = SceneManager.LoadSceneAsync("LoadingScene");
+    //}
 }
