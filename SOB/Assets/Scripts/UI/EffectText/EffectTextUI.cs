@@ -46,15 +46,15 @@ public class EffectTextUI : MonoBehaviour
         }
     }
     private Animator anim;
-    public string ItemName;
+    public LocalizedString ItemNameLocal;
     public LocalizeStringEvent EffectTextStringEvent;
 
-    public List<string> UnlockitemNames;
+    public List<LocalizedString> UnlockitemNames;
 
     [ContextMenu("Set EffectText")]
     public void TestSet()
     {
-        EffectTextStringEvent.StringReference.Add("itemName", new LocalizedString("Item_Table", ItemName));
+        EffectTextStringEvent.StringReference.Add("itemName", new LocalizedString("Item_Table", ItemNameLocal.TableEntryReference));
         //Local Variable만 변경되면 Refresh되지않기에 Refresh로 업데이트
         EffectTextStringEvent.RefreshString();
     }
@@ -62,7 +62,7 @@ public class EffectTextUI : MonoBehaviour
     [ContextMenu("Add EffectText")]
     public void AddItem()
     {
-        UnlockitemNames.Add(ItemName);
+        UnlockitemNames.Add(ItemNameLocal);
     }
 
     public void EffectTextOn()
@@ -70,11 +70,11 @@ public class EffectTextUI : MonoBehaviour
         StartCoroutine(EffectCoroutine());
     }
 
-    public void SetEffectText(string StringTableKey)
+    public void SetEffectText(LocalizedString StringTableKey)
     {
-        if (EffectTextStringEvent != null && StringTableKey != "")
+        if (EffectTextStringEvent != null && StringTableKey != null)
         {
-            EffectTextStringEvent.StringReference.Add("itemName", new LocalizedString("Item_Table", StringTableKey));
+            EffectTextStringEvent.StringReference.Add("itemName", new LocalizedString("Item_Table", StringTableKey.TableEntryReference));
             
             //Local Variable만 변경되면 Refresh되지않기에 Refresh로 업데이트
             EffectTextStringEvent.RefreshString();

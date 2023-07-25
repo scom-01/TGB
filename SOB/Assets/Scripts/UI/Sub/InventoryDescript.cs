@@ -25,12 +25,12 @@ public class InventoryDescript : MonoBehaviour
         {
             if (ItemNameStringEvent != null)
             {
-                ItemNameStringEvent.StringReference.SetReference("Item_Table", item.StatsItemData.itemData.ItemName);                
+                ItemNameStringEvent.StringReference.SetReference("Item_Table", item.StatsItemData.itemData.ItemNameLocal.TableEntryReference);                
             }
             
             if (ItemDescriptStringEvent != null)
             {
-                ItemDescriptStringEvent.StringReference.SetReference("Item_Table", item.StatsItemData.itemData.ItemName + "_Descript");
+                ItemDescriptStringEvent.StringReference.SetReference("Item_Table", item.StatsItemData.itemData.ItemDescriptionLocal.TableEntryReference);
             }
             
             if (DropButton != null)

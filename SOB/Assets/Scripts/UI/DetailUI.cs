@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.Localization.Components;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
@@ -12,10 +13,6 @@ public class DetailUI : MonoBehaviour
     [SerializeField]
     private GameObject mainUI;
     [SerializeField] private LocalizeStringEvent MainStringEvent;
-
-    [Tooltip("하위 컴포넌트 중 'MainText' Text String")]
-    public string ItemName { get; private set; }
-
     public Canvas Canvas
     {
         get
@@ -37,24 +34,19 @@ public class DetailUI : MonoBehaviour
     [SerializeField] private LocalizeStringEvent SubStringEvent;
     [Tooltip("하위 컴포넌트 중 'SubText' Text String")]
 
-    public void SetInit(string _ItemName,Sprite _sprite)
+    public void SetInit(LocalizedString _ItemNameLocal, LocalizedString _ItemDescriptLocal, Sprite _sprite)
     {
-        if (_ItemName != "") 
+        if (_ItemNameLocal != null) 
         {
-            ItemName = _ItemName;
-
-            if (MainStringEvent != null)
-            {
-                MainStringEvent.StringReference.SetReference("Item_Table", ItemName);
-            }
-
-            if (SubStringEvent != null)
-            {
-                SubStringEvent.StringReference.SetReference("Item_Table", ItemName + "_Descript");
-            }
+            MainStringEvent.StringReference.SetReference("Item_Table", _ItemNameLocal.TableEntryReference);
         }
 
-        if(Icon!=null)
+        if (SubStringEvent != null)
+        {
+            SubStringEvent.StringReference.SetReference("Item_Table", _ItemDescriptLocal.TableEntryReference);
+        }
+
+        if (Icon!=null)
         {
             Icon.sprite = _sprite;
         }
