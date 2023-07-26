@@ -241,7 +241,7 @@ namespace SOB
             if (coll.TryGetComponent(out IDamageable damageable))
             {
                 //히트 시 효과
-                unit.Inventory.ItemEffectExecute(unit, coll.GetComponentInParent<Unit>());
+                unit.Inventory.ItemOnHitExecute(unit, coll.GetComponentInParent<Unit>());
                 
                 Debug.Log($"Projectile Touch {coll.name}");
                 //Impact EffectPrefab

@@ -39,9 +39,14 @@ public class StatsItemSO : ItemDataSO
         }
     }
 
-    public virtual int ExeUse(Unit unit, ItemEffectSO itemEffect ,int attackCount = 0)
+    public virtual int ExeAction(Unit unit, ItemEffectSO _itemEffect, int attackCount = 0)
     {
-        return attackCount = itemEffect.ExecuteEffect(this,unit, attackCount);
+        return attackCount = _itemEffect.ExecuteAction(this, unit, attackCount);
+    }
+
+    public virtual int ExeOnHit(Unit unit, ItemEffectSO itemEffect ,int attackCount = 0)
+    {
+        return attackCount = itemEffect.ExecuteOnHit(this,unit, attackCount);
     }
     /// <summary>
     /// 적중 시 효과
@@ -51,9 +56,9 @@ public class StatsItemSO : ItemDataSO
     /// <param name="itemEffect"></param>
     /// <param name="attackCount">적중 횟수</param>
     /// <returns></returns>
-    public virtual int ExeUse(Unit unit, Unit Enemy, ItemEffectSO itemEffect, int attackCount = 0)
+    public virtual int ExeOnHit(Unit unit, Unit Enemy, ItemEffectSO itemEffect, int attackCount = 0)
     {
-        return attackCount = itemEffect.ExecuteEffect(this, unit, Enemy, attackCount);
+        return attackCount = itemEffect.ExecuteOnHit(this, unit, Enemy, attackCount);
     }
     public virtual float ExeUpdate(Unit unit, float startTime = 0)
     {

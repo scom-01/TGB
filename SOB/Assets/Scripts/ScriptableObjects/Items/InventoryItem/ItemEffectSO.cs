@@ -6,14 +6,21 @@ using UnityEngine;
 public abstract class ItemEffectSO : ScriptableObject, IExecuteEffect, IExecuteContinuousEffect
 {
     public ItemEffectData itemEffectData;
-    public virtual int ExecuteEffect(StatsItemSO parentItem, Unit unit, int attackCount)
+
+    public virtual int ExecuteAction(StatsItemSO parentItem, Unit unit, int attackCount)
     {
         return attackCount;
     }
-    public virtual int ExecuteEffect(StatsItemSO parentItem, Unit unit, Unit Enemy,int attackCount)
+
+    public virtual int ExecuteOnHit(StatsItemSO parentItem, Unit unit, int attackCount)
     {
         return attackCount;
     }
+    public virtual int ExecuteOnHit(StatsItemSO parentItem, Unit unit, Unit Enemy,int attackCount)
+    {
+        return attackCount;
+    }
+
     public virtual float ContinouseEffectExcute(StatsItemSO parentItem, Unit unit, float startTime)
     {
         return  startTime;

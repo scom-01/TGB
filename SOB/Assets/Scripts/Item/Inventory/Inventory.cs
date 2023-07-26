@@ -83,40 +83,40 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
-        var oldWeapon = Weapon;
-        if (Weapon != oldWeapon)
-        {
-            ChangeWeaponAttribute();
-        }
-
-        if (_items.Count != ItemCount)
-        {
-            ChangeItemAttribute();
-        }
-
         ItemExeUpdate(Unit);
     }
 
-    public bool ItemEffectExecute(Unit unit)
+    /// <summary>
+    /// 적중 시 효과
+    /// </summary>
+    /// <param name="unit">공격자</param>
+    /// <returns></returns>
+    public bool ItemOnHitExecute(Unit unit)
     {
         for (int i = 0; i < _items.Count; i++)
         {
             for (int j = 0; j < _items[i].item.ItemEffects.Count; j++)
             {
-                var temp = _items[i].item.ExeUse(unit, _items[i].item.ItemEffects[j], _items[i].attackCount);
+                var temp = _items[i].item.ExeOnHit(unit, _items[i].item.ItemEffects[j], _items[i].attackCount);
                 ItemSet tempItem = new ItemSet(_items[i].item, _items[i].startTime, temp);
                 _items[i] = tempItem;
             }
         }
         return true;
     }
-    public bool ItemEffectExecute(Unit unit, Unit Enemy)
+    /// <summary>
+    /// 적중 시 효과
+    /// </summary>
+    /// <param name="unit">공격 주체</param>
+    /// <param name="Enemy">적중 당한 적</param>
+    /// <returns></returns>
+    public bool ItemOnHitExecute(Unit unit, Unit Enemy)
     {
         for (int i = 0; i < _items.Count; i++)
         {
             for (int j = 0; j < _items[i].item.ItemEffects.Count; j++)
             {
-                var temp = _items[i].item.ExeUse(unit, Enemy, _items[i].item.ItemEffects[j], _items[i].attackCount);
+                var temp = _items[i].item.ExeOnHit(unit, Enemy, _items[i].item.ItemEffects[j], _items[i].attackCount);
                 ItemSet tempItem = new ItemSet(_items[i].item, _items[i].startTime, temp);
                 _items[i] = tempItem;
             }
@@ -124,6 +124,24 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
+    /// <summary>
+    /// 액션 시 효과
+    /// </summary>
+    /// <param name="unit"></param>
+    /// <returns></returns>
+    public bool ItemActionExecute(Unit unit)
+    {
+        for (int i = 0; i < _items.Count; i++)
+        {
+            for (int j = 0; j < _items[i].item.ItemEffects.Count; j++)
+            {
+                var temp = _items[i].item.ExeAction(unit, _items[i].item.ItemEffects[j], _items[i].attackCount);
+                ItemSet tempItem = new ItemSet(_items[i].item, _items[i].startTime, temp);
+                _items[i] = tempItem;
+            }
+        }
+        return true;
+    }
     public bool ItemExeUpdate(Unit unit)
     {
         for (int i = 0; i < _items.Count; i++)
@@ -137,7 +155,6 @@ public class Inventory : MonoBehaviour
         }
         return true;
     }
-
 
     public bool SetWeapon(WeaponData weaponObject)
     {
@@ -322,17 +339,6 @@ public class Inventory : MonoBehaviour
             Debug.Log($"Not Contians {itemData.item.name}, fail remove");
         }
         return true;
-    }
-
-
-    private void ChangeWeaponAttribute()
-    {
-
-    }
-
-    private void ChangeItemAttribute()
-    {
-
     }
 
     /// <summary>

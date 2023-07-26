@@ -30,7 +30,15 @@ namespace SOB.Weapons.Components
             base.HandleEnter();
             currentHitBoxIndex = 0;
         }
+        
+        private void HandleAction()
+        {
+            if (currentActionData == null)
+                return;
 
+            //Action 시 효과
+            core.Unit.Inventory.ItemActionExecute(core.Unit);
+        }
         private void HandleAttackAction()
         {
             if (currentActionData != null)
@@ -57,7 +65,7 @@ namespace SOB.Weapons.Components
                     );
 
             detected = Physics2D.OverlapBoxAll(offset, currHitBox[currentHitBoxIndex].ActionRect.size, 0f, data.DetectableLayers);
-
+                        
             if (detected.Length == 0)
             {
                 Debug.Log("detected.Length == 0");
@@ -90,7 +98,7 @@ namespace SOB.Weapons.Components
                 {
                     for (int j = 0; j < currHitBox[currentHitBoxIndex].RepeatAction; j++)
                     {
-                        core.Unit.Inventory.ItemEffectExecute(core.Unit, coll.GetComponentInParent<Unit>());
+                        core.Unit.Inventory.ItemOnHitExecute(core.Unit, coll.GetComponentInParent<Unit>());
 
                         //EffectPrefab
                         #region EffectPrefab
@@ -255,7 +263,7 @@ namespace SOB.Weapons.Components
                 {
                     for (int j = 0; j < hitActions[currentHitBoxIndex].RepeatAction; j++)
                     {
-                        core.Unit.Inventory.ItemEffectExecute(core.Unit, coll.GetComponentInParent<Unit>());
+                        core.Unit.Inventory.ItemOnHitExecute(core.Unit, coll.GetComponentInParent<Unit>());
 
                         //EffectPrefab
                         #region EffectPrefab
@@ -404,9 +412,13 @@ namespace SOB.Weapons.Components
             base.Start();
             eventHandler.OnAttackAction -= HandleAttackAction;
             eventHandler.OnAttackAction += HandleAttackAction;
+            eventHandler.OnAttackAction -= HandleAction;
+            eventHandler.OnAttackAction += HandleAction;
 
             eventHandler.OnActionRectOn -= HandleActionRectOn;
             eventHandler.OnActionRectOn += HandleActionRectOn;
+            eventHandler.OnActionRectOn -= HandleAction;
+            eventHandler.OnActionRectOn += HandleAction;
 
             eventHandler.OnActionRectOff -= HandleActionRectOff;
             eventHandler.OnActionRectOff += HandleActionRectOff;
@@ -416,7 +428,9 @@ namespace SOB.Weapons.Components
         {
             base.OnDestroy();
             eventHandler.OnAttackAction -= HandleAttackAction;
+            eventHandler.OnAttackAction -= HandleAction;
             eventHandler.OnActionRectOn -= HandleActionRectOn;
+            eventHandler.OnActionRectOn -= HandleAction;
             eventHandler.OnActionRectOff -= HandleActionRectOff;
         }
 

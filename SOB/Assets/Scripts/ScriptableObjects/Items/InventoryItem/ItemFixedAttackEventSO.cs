@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "newItemEffectData", menuName = "Data/Item Data/ItemAttackEvent Data")]
-public class ItemAttackEventSO : ItemEffectSO
+[CreateAssetMenu(fileName = "newFixedDamageEventData", menuName = "Data/Item Data/ItemFixedAttackEventSO Data")]
+public class ItemFixedAttackEventSO : ItemEffectSO
 {
-    public int additionalDamage;
+    public int FixedDamage;
     public override int ExecuteOnHit(StatsItemSO parentItem, Unit unit, int attackCount)
     {
         attackCount++;
@@ -28,11 +28,8 @@ public class ItemAttackEventSO : ItemEffectSO
             if(itemEffectData.VFX != null)
                 unit.Core.GetCoreComponent<EffectManager>().StartEffects(itemEffectData.VFX, enemy.Core.GetCoreComponent<CollisionSenses>().GroundCheck.position);
 
-            //공격자스탯(기본 스탯 + 아이템들의 스탯) + 아이템의 속성
-            enemy.Core.GetCoreComponent<DamageReceiver>().Damage(unit.Core.GetCoreComponent<UnitStats>().StatsData,
-                    enemy.Core.GetCoreComponent<UnitStats>().StatsData,
-                    parentItem.StatsDatas.Elemental,
-                    parentItem.StatsDatas.DefaultPower + additionalDamage);
+            //고정데미지
+            enemy.Core.GetCoreComponent<DamageReceiver>().FixedDamage(FixedDamage, true);
             attackCount = 0;
         }
         return attackCount;
