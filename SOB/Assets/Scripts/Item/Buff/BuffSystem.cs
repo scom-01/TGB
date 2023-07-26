@@ -28,18 +28,22 @@ public class BuffSystem : MonoBehaviour
 
         for (int i = 0; i < buffs.Count;)
         {            
-            if (GameManager.Inst?.PlayTime >= buffs[i].startTime + buffs[i].buffItemSO.BuffData.DurationTime)
+            if (GameManager.Inst?.PlayTime > buffs[i].startTime + buffs[i].buffItemSO.BuffData.DurationTime)
             {
                 Debug.Log($"Time = {Time.time}");
                 Debug.Log($"GlobalTime ={GameManager.Inst?.PlayTime}");
                 unit.Core.GetCoreComponent<UnitStats>().StatsData += buffs[i].buffItemSO.StatsData* -1f * buffs[i].CurrBuffCount;
+                
+                buffs[i].CurrBuffCount--;
+                if (buffs[i].CurrBuffCount < 1)
+                {
+                    buffs.RemoveAt(i);
+                }
+                else
+                {
+                    buffs[i].startTime += buffs[i].buffItemSO.BuffData.DurationTime;
+                }
 
-                ////현재 체력이 버프의 체력증가 값보다 클 때 증가시켜줬던 체력을 빼앗는 코드
-                //if (unit.Core.GetCoreComponent<UnitStats>().CurrentHealth > buffs[i].Health)
-                //{
-                //    unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += buffs[i].Health * -1f * buffs[i].CurrBuffCount;
-                //}
-                buffs.RemoveAt(i);
                 if (buffs.Count <= 0)
                 {
                     break;
@@ -57,7 +61,7 @@ public class BuffSystem : MonoBehaviour
         }
     }
 
-    public void AddBuff(Buff buff)
+    public bool AddBuff(Buff buff)
     {
         buff.startTime = GameManager.Inst.PlayTime;   
         
@@ -74,17 +78,17 @@ public class BuffSystem : MonoBehaviour
                 //중복 X
                 if (!buffs[i].buffItemSO.BuffData.isOverlap)
                 {
-                    return;
+                    return false;
                 }
 
                 //중복 최대치 
                 if (buffs[i].CurrBuffCount >= buffs[i].buffItemSO.BuffData.BuffCountMax)
                 {
-                    return;
+                    return false;
                 }
 
                 buffs[i].CurrBuffCount++;
-                return;
+                return true;
             }
         }
         
@@ -99,7 +103,7 @@ public class BuffSystem : MonoBehaviour
         {
             unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += buff.buffItemSO.Health;
         }
-        //PlayBuff(buff);
+        return true;
     }
 
     public void SetBuff()
