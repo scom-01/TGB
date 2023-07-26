@@ -91,6 +91,19 @@ namespace SOB.CoreSystem
             stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
             RandomEffectInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
         }
+        public void TrueDamage(StatsData AttackterCommonData, StatsData VictimCommonData,E_Power _Elemental, DAMAGE_ATT attribute, float amount)
+        {
+            if (death.Comp.isDead)
+            {
+                Debug.Log(core.Unit.name + "is Dead");
+                return;
+            }
+
+            Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
+            var damage = stats.Comp.DecreaseHealth(AttackterCommonData, VictimCommonData, _Elemental, attribute, amount);
+            stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
+            RandomEffectInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
+        }
 
         public void Damage(StatsData AttackterCommonData, StatsData VictimCommonData, float amount, int repeat)
         {

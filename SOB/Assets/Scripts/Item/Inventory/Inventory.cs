@@ -97,6 +97,8 @@ public class Inventory : MonoBehaviour
         {
             for (int j = 0; j < _items[i].item.ItemEffects.Count; j++)
             {
+                if (_items[i].item.ItemEffects[j] == null)
+                    continue;
                 var temp = _items[i].item.ExeOnHit(unit, _items[i].item.ItemEffects[j], _items[i].attackCount);
                 ItemSet tempItem = new ItemSet(_items[i].item, _items[i].startTime, temp);
                 _items[i] = tempItem;
@@ -116,6 +118,8 @@ public class Inventory : MonoBehaviour
         {
             for (int j = 0; j < _items[i].item.ItemEffects.Count; j++)
             {
+                if (_items[i].item.ItemEffects[j] == null)
+                    continue;
                 var temp = _items[i].item.ExeOnHit(unit, Enemy, _items[i].item.ItemEffects[j], _items[i].attackCount);
                 ItemSet tempItem = new ItemSet(_items[i].item, _items[i].startTime, temp);
                 _items[i] = tempItem;
@@ -135,6 +139,8 @@ public class Inventory : MonoBehaviour
         {
             for (int j = 0; j < _items[i].item.ItemEffects.Count; j++)
             {
+                if (_items[i].item.ItemEffects[j] == null)
+                    continue;
                 var temp = _items[i].item.ExeAction(unit, _items[i].item.ItemEffects[j], _items[i].attackCount);
                 ItemSet tempItem = new ItemSet(_items[i].item, _items[i].startTime, temp);
                 _items[i] = tempItem;
@@ -148,6 +154,8 @@ public class Inventory : MonoBehaviour
         {
             for (int j = 0; j < _items[i].item.ItemEffects.Count; j++)
             {
+                if (_items[i].item.ItemEffects[j] == null)
+                    continue;
                 var temp = _items[i].item.ExeUpdate(unit, _items[i].item.ItemEffects[j], _items[i].startTime);
                 ItemSet tempItem = new ItemSet(_items[i].item, temp, _items[i].attackCount);
                 _items[i] = tempItem;
@@ -205,7 +213,7 @@ public class Inventory : MonoBehaviour
         _items.Add(item);
 
         ItemCount++;
-        AddStat(itemData.StatsDatas);
+        AddStat(itemData.StatsData);
         //if (itemData.StatsDatas.MaxHealth != 0.0f)
         //{
         //    Unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += itemData.StatsDatas.MaxHealth;
@@ -253,7 +261,7 @@ public class Inventory : MonoBehaviour
         _items.Add(item);
 
         ItemCount++;
-        AddStat(itemObject.StatsDatas);
+        AddStat(itemObject.StatsData);
         //if (itemObject.StatsDatas.MaxHealth != 0.0f)
         //{
         //    Unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += itemObject.StatsDatas.MaxHealth;
@@ -280,7 +288,7 @@ public class Inventory : MonoBehaviour
             if (_items[i].item == itemData)
             {
                 Debug.Log($"Remove Item {itemData.name}");
-                AddStat(itemData.StatsDatas * -1f);
+                AddStat(itemData.StatsData * -1f);
                 ////아이템에 추가 체력 증가 옵션이 있을 경우 현재 체력에서 아이템 추가 체력의 일정 비율 감소
                 //if (itemData.StatsDatas.MaxHealth != 0.0f)
                 //{
@@ -319,7 +327,7 @@ public class Inventory : MonoBehaviour
         if (_items.Contains(itemData))
         {
             Debug.Log($"Remove Item {itemData.item.name}");
-            AddStat(itemData.item.StatsDatas * -1f);
+            AddStat(itemData.item.StatsData * -1f);
             //if (itemData.item.StatsDatas.MaxHealth != 0.0f)
             //{
             //    Unit.Core.GetCoreComponent<UnitStats>().CurrentHealth -= itemData.item.StatsDatas.MaxHealth;

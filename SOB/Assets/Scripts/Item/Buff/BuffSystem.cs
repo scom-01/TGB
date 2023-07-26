@@ -32,7 +32,7 @@ public class BuffSystem : MonoBehaviour
             {
                 Debug.Log($"Time = {Time.time}");
                 Debug.Log($"GlobalTime ={GameManager.Inst?.PlayTime}");
-                unit.Core.GetCoreComponent<UnitStats>().StatsData += buffs[i].buffItemSO.StatsDatas* -1f * buffs[i].CurrBuffCount;
+                unit.Core.GetCoreComponent<UnitStats>().StatsData += buffs[i].buffItemSO.StatsData* -1f * buffs[i].CurrBuffCount;
 
                 ////현재 체력이 버프의 체력증가 값보다 클 때 증가시켜줬던 체력을 빼앗는 코드
                 //if (unit.Core.GetCoreComponent<UnitStats>().CurrentHealth > buffs[i].Health)
@@ -94,7 +94,7 @@ public class BuffSystem : MonoBehaviour
         {
             GameManager.Inst?.MainUI?.MainPanel?.BuffPanelSystem.BuffPanelAdd(buff);
         }
-        unit.Core.GetCoreComponent<UnitStats>().StatsData += buff.buffItemSO.StatsDatas;
+        unit.Core.GetCoreComponent<UnitStats>().StatsData += buff.buffItemSO.StatsData;
         if (buff.buffItemSO.Health != 0.0f)
         {
             unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += buff.buffItemSO.Health;

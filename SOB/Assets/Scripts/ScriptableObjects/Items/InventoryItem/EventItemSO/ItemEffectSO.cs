@@ -5,24 +5,37 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "newItemEffectData", menuName = "Data/Item Data/ItemEffect Data")]
 public abstract class ItemEffectSO : ScriptableObject, IExecuteEffect, IExecuteContinuousEffect
 {
+    public ITEM_TPYE Item_Type;
     public ItemEffectData itemEffectData;
 
-    public virtual int ExecuteAction(StatsItemSO parentItem, Unit unit, int attackCount)
+    public virtual int ExecuteOnAction(StatsItemSO parentItem, Unit unit, int attackCount)
     {
+        if (Item_Type != ITEM_TPYE.OnAction || Item_Type == ITEM_TPYE.None)
+            return 0;
+
         return attackCount;
     }
 
     public virtual int ExecuteOnHit(StatsItemSO parentItem, Unit unit, int attackCount)
     {
+        if (Item_Type != ITEM_TPYE.OnHit || Item_Type == ITEM_TPYE.None)
+            return 0;
+
         return attackCount;
     }
     public virtual int ExecuteOnHit(StatsItemSO parentItem, Unit unit, Unit Enemy,int attackCount)
     {
+        if (Item_Type != ITEM_TPYE.OnHit || Item_Type == ITEM_TPYE.None)
+            return 0;
+
         return attackCount;
     }
 
     public virtual float ContinouseEffectExcute(StatsItemSO parentItem, Unit unit, float startTime)
     {
+        if (Item_Type != ITEM_TPYE.OnUpdate || Item_Type == ITEM_TPYE.None)
+            return 0;
+
         return  startTime;
     }
 

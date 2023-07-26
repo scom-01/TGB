@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ProjectileAttackEventData
   m_EditorClassIdentifier: 
   itemEffectData:
-    MaxCount: 0
+    MaxCount: 1
     CooldownTime: 0
     isExecute: 0
     VFX: {fileID: 0}
@@ -33,14 +33,14 @@ MonoBehaviour:
       ElementalDefensivePer: 0
       ElementalAggressivePer: 0
     Pos: {x: 0, y: 0, z: 0}
-    Rot: {x: 0, y: 0, z: 0}
-    Radius: 0
+    Rot: {x: 1, y: 0, z: 0}
+    Radius: 0.5
     GravityScale: 0
-    Speed: 0
-    isSingleShoot: 0
-    DurationTime: 0
-    ProjectilePrefab: {fileID: 0}
-    ImpactPrefab: {fileID: 0}
+    Speed: 20
+    isSingleShoot: 1
+    DurationTime: 2
+    ProjectilePrefab: {fileID: 3421607386750196409, guid: d31027c76f5d4b64e8c6660ce2f4a1cc, type: 3}
+    ImpactPrefab: {fileID: 8535027140315678471, guid: a9c779f704b18d846b24b2faae31bf1a, type: 3}
     KnockbackAngle: {x: 0, y: 0}
     ProjectileShootClip: {fileID: 0}
     ImpactClip: {fileID: 0}

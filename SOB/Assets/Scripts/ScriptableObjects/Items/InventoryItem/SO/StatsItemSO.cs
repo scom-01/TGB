@@ -12,7 +12,7 @@ using UnityEngine.UI;
 public class StatsItemSO : ItemDataSO
 {
     [Tooltip("아이템이 갖는 스탯")]
-    public StatsData StatsDatas;
+    public StatsData StatsData;
     [Tooltip("최대체력이 아닌 현재 체력 증가값")]
     public int Health;
     public EffectData effectData;
@@ -41,7 +41,7 @@ public class StatsItemSO : ItemDataSO
 
     public virtual int ExeAction(Unit unit, ItemEffectSO _itemEffect, int attackCount = 0)
     {
-        return attackCount = _itemEffect.ExecuteAction(this, unit, attackCount);
+        return attackCount = _itemEffect.ExecuteOnAction(this, unit, attackCount);
     }
 
     public virtual int ExeOnHit(Unit unit, ItemEffectSO itemEffect ,int attackCount = 0)

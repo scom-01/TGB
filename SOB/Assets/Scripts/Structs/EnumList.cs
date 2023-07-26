@@ -48,10 +48,15 @@ public enum EVENT_BUFF_STATS
     ElementalAggressivePer,
 }
 
+/// <summary>
+/// 아이템의 보유 효과가 적용될 상태 
+/// </summary>
 public enum ITEM_TPYE
 {
-    Detected = 0,
-    Collision = 1,
+    None = 0,
+    OnAction = 1,
+    OnHit = 2,
+    OnUpdate = 3,
 }
 
 public enum ITEM_Level
