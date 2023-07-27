@@ -8,18 +8,33 @@ using SOB.CoreSystem;
 using System;
 using TMPro;
 using UnityEngine.Localization.SmartFormat.Utilities;
+using static UnityEditor.Progress;
 
 [Serializable]
-public struct ItemSet
+public class ItemSet
 {
     public StatsItemSO item;
-    public float startTime;
-    public int attackCount;
-    public ItemSet(StatsItemSO itemSO, float startTime = 0, int attackCount = 0)
+    public List<float> startTime = new List<float>();
+    public List<int> OnActionCount = new List<int>();
+    public List<int> OnHitCount = new List<int>();
+    public ItemSet(StatsItemSO itemSO, float _startTime = 0 , int _actionCount = 0, int _hitCount = 0)
     {
         this.item = itemSO;
-        this.startTime = startTime;
-        this.attackCount = attackCount;
+        
+        if (this.startTime.Count < 1)
+        {
+            startTime.Add(_startTime);
+        }
+
+        if (this.OnActionCount.Count < 1)
+        {
+            OnActionCount.Add(_actionCount);
+        }
+
+        if (this.OnHitCount.Count < 1)
+        {
+            OnHitCount.Add(_hitCount);
+        }
     }
 }
 public class Inventory : MonoBehaviour
@@ -99,9 +114,13 @@ public class Inventory : MonoBehaviour
             {
                 if (_items[i].item.ItemEffects[j] == null)
                     continue;
-                var temp = _items[i].item.ExeOnHit(unit, _items[i].item.ItemEffects[j], _items[i].attackCount);
-                ItemSet tempItem = new ItemSet(_items[i].item, _items[i].startTime, temp);
-                _items[i] = tempItem;
+
+                if (_items[i].OnHitCount.Count < j + 1)
+                {
+                    _items[i].OnHitCount.Add(0);
+
+                }
+                _items[i].OnHitCount[j]= _items[i].item.ExeOnHit(unit, _items[i].item.ItemEffects[j], _items[i].OnHitCount[j]);
             }
         }
         return true;
@@ -120,9 +139,13 @@ public class Inventory : MonoBehaviour
             {
                 if (_items[i].item.ItemEffects[j] == null)
                     continue;
-                var temp = _items[i].item.ExeOnHit(unit, Enemy, _items[i].item.ItemEffects[j], _items[i].attackCount);
-                ItemSet tempItem = new ItemSet(_items[i].item, _items[i].startTime, temp);
-                _items[i] = tempItem;
+
+                if (_items[i].OnHitCount.Count < j + 1)
+                {
+                    _items[i].OnHitCount.Add(0);
+
+                }
+                _items[i].OnHitCount[j] = _items[i].item.ExeOnHit(unit, Enemy, _items[i].item.ItemEffects[j], _items[i].OnHitCount[j]);
             }
         }
         return true;
@@ -141,9 +164,13 @@ public class Inventory : MonoBehaviour
             {
                 if (_items[i].item.ItemEffects[j] == null)
                     continue;
-                var temp = _items[i].item.ExeAction(unit, _items[i].item.ItemEffects[j], _items[i].attackCount);
-                ItemSet tempItem = new ItemSet(_items[i].item, _items[i].startTime, temp);
-                _items[i] = tempItem;
+
+                if (_items[i].OnActionCount.Count < j + 1)
+                {
+                    _items[i].OnActionCount.Add(0);
+
+                }
+                _items[i].OnActionCount[j] = _items[i].item.ExeAction(unit, _items[i].item.ItemEffects[j], _items[i].OnActionCount[j]);
             }
         }
         return true;
@@ -156,9 +183,12 @@ public class Inventory : MonoBehaviour
             {
                 if (_items[i].item.ItemEffects[j] == null)
                     continue;
-                var temp = _items[i].item.ExeUpdate(unit, _items[i].item.ItemEffects[j], _items[i].startTime);
-                ItemSet tempItem = new ItemSet(_items[i].item, temp, _items[i].attackCount);
-                _items[i] = tempItem;
+                if(_items[i].startTime.Count < j + 1)
+                {
+                    _items[i].startTime.Add(0);
+                    
+                }
+                _items[i].startTime[j] = _items[i].item.ExeUpdate(unit, _items[i].item.ItemEffects[j], _items[i].startTime[j]);
             }
         }
         return true;
