@@ -35,7 +35,7 @@ public class InventoryItems : MonoBehaviour
             currentSelectItem.isSelect = true;
         }
     }
-    private InventoryItem currentSelectItem;
+    [SerializeField]private InventoryItem currentSelectItem;
 
     /// <summary>
     /// 현재 선택된 아이템 인덱스

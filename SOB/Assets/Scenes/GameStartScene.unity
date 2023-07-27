@@ -18767,10 +18767,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: -1282369218, guid: ed85fe63243ba1e4da6f1b45713b83fa, type: 3}
     m_PressedSprite: {fileID: 0}
     m_SelectedSprite: {fileID: -1282369218, guid: ed85fe63243ba1e4da6f1b45713b83fa, type: 3}
-    m_DisabledSprite: {fileID: -1549099853, guid: ed85fe63243ba1e4da6f1b45713b83fa, type: 3}
+    m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -19658,10 +19658,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: -1282369218, guid: ed85fe63243ba1e4da6f1b45713b83fa, type: 3}
     m_PressedSprite: {fileID: 0}
     m_SelectedSprite: {fileID: -1282369218, guid: ed85fe63243ba1e4da6f1b45713b83fa, type: 3}
-    m_DisabledSprite: {fileID: -1549099853, guid: ed85fe63243ba1e4da6f1b45713b83fa, type: 3}
+    m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -23453,6 +23453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InventoryItemPrefab: {fileID: 6723216883595263997, guid: 81b02d1fbb379ce41a4a10f75c934531, type: 3}
   MaxIndex: 8
+  currentSelectItem: {fileID: 0}
 --- !u!212 &1141012351
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -27426,7 +27427,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: 143673.88}
+  m_AnchoredPosition: {x: 7, y: 313760.4}
   m_SizeDelta: {x: 21.1497, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1368125264
@@ -28842,9 +28843,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4db5ea8a50f0093478f01e327710f433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemName: Stat1
+  ItemNameLocal:
+    m_TableReference:
+      m_TableCollectionName: GUID:0e85b71e0680fc942b5295e72ff4ba37
+    m_TableEntryReference:
+      m_KeyId: 24967173599813632
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   EffectTextStringEvent: {fileID: 1678403519}
   UnlockitemNames: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &1435508459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29151,10 +29163,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: -1282369218, guid: ed85fe63243ba1e4da6f1b45713b83fa, type: 3}
     m_PressedSprite: {fileID: 0}
     m_SelectedSprite: {fileID: -1282369218, guid: ed85fe63243ba1e4da6f1b45713b83fa, type: 3}
-    m_DisabledSprite: {fileID: -1549099853, guid: ed85fe63243ba1e4da6f1b45713b83fa, type: 3}
+    m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -30573,10 +30585,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: -1282369218, guid: ed85fe63243ba1e4da6f1b45713b83fa, type: 3}
     m_PressedSprite: {fileID: 0}
     m_SelectedSprite: {fileID: -1282369218, guid: ed85fe63243ba1e4da6f1b45713b83fa, type: 3}
-    m_DisabledSprite: {fileID: -1549099853, guid: ed85fe63243ba1e4da6f1b45713b83fa, type: 3}
+    m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -30691,8 +30703,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: 0}
-  m_SizeDelta: {x: 400, y: 80}
+  m_AnchoredPosition: {x: -250, y: 0}
+  m_SizeDelta: {x: 500, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1536430196
 MonoBehaviour:
@@ -31148,10 +31160,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: -1282369218, guid: ed85fe63243ba1e4da6f1b45713b83fa, type: 3}
     m_PressedSprite: {fileID: 0}
     m_SelectedSprite: {fileID: -1282369218, guid: ed85fe63243ba1e4da6f1b45713b83fa, type: 3}
-    m_DisabledSprite: {fileID: -1549099853, guid: ed85fe63243ba1e4da6f1b45713b83fa, type: 3}
+    m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -33782,7 +33794,7 @@ MonoBehaviour:
     m_LocalVariables:
     - name: itemName
       variable:
-        rid: 9027618561240072215
+        rid: 9027618855034552332
   m_FormatArguments: []
   m_UpdateString:
     m_PersistentCalls:
@@ -33802,14 +33814,14 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 9027618561240072215
+    - rid: 9027618855034552332
       type: {class: LocalizedString, ns: UnityEngine.Localization, asm: Unity.Localization}
       data:
         m_TableReference:
           m_TableCollectionName: Item_Table
         m_TableEntryReference:
-          m_KeyId: 0
-          m_Key: Stat1
+          m_KeyId: 24967173599813632
+          m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
@@ -35168,7 +35180,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 120, y: 0}
+  m_AnchoredPosition: {x: 75, y: 0}
   m_SizeDelta: {x: 125, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1762341526
@@ -39412,10 +39424,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: -1282369218, guid: ed85fe63243ba1e4da6f1b45713b83fa, type: 3}
     m_PressedSprite: {fileID: 0}
     m_SelectedSprite: {fileID: -1282369218, guid: ed85fe63243ba1e4da6f1b45713b83fa, type: 3}
-    m_DisabledSprite: {fileID: -1549099853, guid: ed85fe63243ba1e4da6f1b45713b83fa, type: 3}
+    m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -39832,10 +39844,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: -1282369218, guid: ed85fe63243ba1e4da6f1b45713b83fa, type: 3}
     m_PressedSprite: {fileID: 0}
     m_SelectedSprite: {fileID: -1282369218, guid: ed85fe63243ba1e4da6f1b45713b83fa, type: 3}
-    m_DisabledSprite: {fileID: -1549099853, guid: ed85fe63243ba1e4da6f1b45713b83fa, type: 3}
+    m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -42713,7 +42725,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: -39190.17}
+  m_AnchoredPosition: {x: 7, y: -80460.04}
   m_SizeDelta: {x: 21.1497, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2125587133
@@ -43213,10 +43225,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: -1282369218, guid: ed85fe63243ba1e4da6f1b45713b83fa, type: 3}
     m_PressedSprite: {fileID: 0}
     m_SelectedSprite: {fileID: -1282369218, guid: ed85fe63243ba1e4da6f1b45713b83fa, type: 3}
-    m_DisabledSprite: {fileID: -1549099853, guid: ed85fe63243ba1e4da6f1b45713b83fa, type: 3}
+    m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -43257,9 +43269,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6723216883321217392}
-          m_TargetAssemblyTypeName: InventoryItem, Assembly-CSharp
-          m_MethodName: CurrentItem
+        - m_Target: {fileID: 2136229585}
+          m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+          m_MethodName: Select
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -43268,7 +43280,7 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 2
+          m_CallState: 1
 --- !u!114 &3234534794442476484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43286,9 +43298,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6723216883165276692}
-          m_TargetAssemblyTypeName: InventoryItem, Assembly-CSharp
-          m_MethodName: CurrentItem
+        - m_Target: {fileID: 979572210}
+          m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+          m_MethodName: Select
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -43297,7 +43309,7 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 2
+          m_CallState: 1
 --- !u!114 &3234534794731050579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43315,9 +43327,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6723216883435108227}
-          m_TargetAssemblyTypeName: InventoryItem, Assembly-CSharp
-          m_MethodName: CurrentItem
+        - m_Target: {fileID: 926501521}
+          m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+          m_MethodName: Select
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -43326,7 +43338,7 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 2
+          m_CallState: 1
 --- !u!114 &3234534794746780840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43344,9 +43356,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6723216883452935544}
-          m_TargetAssemblyTypeName: InventoryItem, Assembly-CSharp
-          m_MethodName: CurrentItem
+        - m_Target: {fileID: 1533621305}
+          m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+          m_MethodName: Select
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -43355,7 +43367,7 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 2
+          m_CallState: 1
 --- !u!114 &3234534795308790213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43373,9 +43385,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6723216882152656917}
-          m_TargetAssemblyTypeName: InventoryItem, Assembly-CSharp
-          m_MethodName: CurrentItem
+        - m_Target: {fileID: 1980035058}
+          m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+          m_MethodName: Select
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -43384,7 +43396,7 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 2
+          m_CallState: 1
 --- !u!114 &3234534795363086763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43402,9 +43414,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6723216882206953595}
-          m_TargetAssemblyTypeName: InventoryItem, Assembly-CSharp
-          m_MethodName: CurrentItem
+        - m_Target: {fileID: 1967157123}
+          m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+          m_MethodName: Select
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -43413,7 +43425,7 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 2
+          m_CallState: 1
 --- !u!114 &3234534795865181825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43431,9 +43443,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6723216882707754833}
-          m_TargetAssemblyTypeName: InventoryItem, Assembly-CSharp
-          m_MethodName: CurrentItem
+        - m_Target: {fileID: 1462685869}
+          m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+          m_MethodName: Select
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -43442,7 +43454,7 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 2
+          m_CallState: 1
 --- !u!114 &3234534796017247708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43460,9 +43472,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6723216882589271052}
-          m_TargetAssemblyTypeName: InventoryItem, Assembly-CSharp
-          m_MethodName: CurrentItem
+        - m_Target: {fileID: 1547582458}
+          m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+          m_MethodName: Select
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -43471,7 +43483,7 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 2
+          m_CallState: 1
 --- !u!114 &3450347898345866712
 MonoBehaviour:
   m_ObjectHideFlags: 0
