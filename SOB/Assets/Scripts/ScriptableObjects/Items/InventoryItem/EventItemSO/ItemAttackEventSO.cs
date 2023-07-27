@@ -18,6 +18,10 @@ public class ItemAttackEventSO : ItemEffectSO
         //스스로에게 피해
         if(isSelf_harm)
         {
+            if (itemEffectData.VFX != null)
+                unit.Core.GetCoreComponent<EffectManager>().StartEffects(itemEffectData.VFX, unit.Core.GetCoreComponent<CollisionSenses>().GroundCheck.position);
+
+
             if (isFixed)
             {
                 //고정데미지
@@ -38,6 +42,10 @@ public class ItemAttackEventSO : ItemEffectSO
         {
             if (enemy == null)
                 return;
+
+            if (itemEffectData.VFX != null)
+                unit.Core.GetCoreComponent<EffectManager>().StartEffects(itemEffectData.VFX, unit.Core.GetCoreComponent<CollisionSenses>().GroundCheck.position);
+
 
             if (isFixed)
             {
@@ -60,16 +68,13 @@ public class ItemAttackEventSO : ItemEffectSO
     public override int ExecuteOnAction(StatsItemSO parentItem, Unit unit, int attackCount)
     {
         if (Item_Type != ITEM_TPYE.OnAction || Item_Type == ITEM_TPYE.None)
-            return 0;
+            return attackCount;
 
         attackCount++;
         Debug.Log("ExcuteEffect Attack!");
 
         if (attackCount >= itemEffectData.MaxCount)
-        {
-            if (itemEffectData.VFX != null)
-                unit.Core.GetCoreComponent<EffectManager>().StartEffects(itemEffectData.VFX, unit.Core.GetCoreComponent<CollisionSenses>().GroundCheck.position);
-
+        {            
             AttackAction(parentItem, unit);
             attackCount = 0;
         }
@@ -79,15 +84,12 @@ public class ItemAttackEventSO : ItemEffectSO
     public override int ExecuteOnHit(StatsItemSO parentItem, Unit unit, int attackCount)
     {
         if (Item_Type != ITEM_TPYE.OnHit || Item_Type == ITEM_TPYE.None)
-            return 0;
+            return attackCount;
 
         attackCount++;
         Debug.Log("ExcuteEffect Attack!");
         if (attackCount >= itemEffectData.MaxCount)
         {
-            if (itemEffectData.VFX != null)
-                unit.Core.GetCoreComponent<EffectManager>().StartEffects(itemEffectData.VFX, unit.Core.GetCoreComponent<CollisionSenses>().GroundCheck.position);
-
             AttackAction(parentItem,unit);
             attackCount = 0;
         }
@@ -96,15 +98,12 @@ public class ItemAttackEventSO : ItemEffectSO
     public override int ExecuteOnHit(StatsItemSO parentItem, Unit unit, Unit enemy, int attackCount)
     {
         if (Item_Type != ITEM_TPYE.OnHit || Item_Type == ITEM_TPYE.None)
-            return 0;
+            return attackCount;
 
         attackCount++;
         Debug.Log("ExcuteEffect Attack!");
         if (attackCount >= itemEffectData.MaxCount)
         {
-            if (itemEffectData.VFX != null)
-                unit.Core.GetCoreComponent<EffectManager>().StartEffects(itemEffectData.VFX, enemy.Core.GetCoreComponent<CollisionSenses>().GroundCheck.position);
-
             AttackAction(parentItem,unit,enemy);
             attackCount = 0;
         }
@@ -114,7 +113,7 @@ public class ItemAttackEventSO : ItemEffectSO
     public override float ContinouseEffectExcute(StatsItemSO parentItem, Unit unit, float startTime)
     {
         if (Item_Type != ITEM_TPYE.OnUpdate || Item_Type == ITEM_TPYE.None)
-            return 0;
+            return startTime;
 
         if (GameManager.Inst.PlayTime >= startTime + itemEffectData.CooldownTime)
         {

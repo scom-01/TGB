@@ -12,9 +12,6 @@ public class ItemBuffEventSO : ItemEffectSO
 
     private void BuffEvent(Unit unit)
     {
-        if (itemEffectData.VFX != null)
-            unit.Core.GetCoreComponent<EffectManager>().StartEffects(itemEffectData.VFX, unit.Core.GetCoreComponent<CollisionSenses>().GroundCheck.position);
-
         if (buffItem != null)
         {
             Buff buff = new Buff();
@@ -22,14 +19,23 @@ public class ItemBuffEventSO : ItemEffectSO
             buff.buffItemSO = items;
             if (unit.Core.GetCoreComponent<SoundEffect>())
                 unit.Core.GetCoreComponent<SoundEffect>().AudioSpawn(buffItem.effectData.AcquiredSoundEffect);
-            if (unit.GetComponent<BuffSystem>())
-                unit.GetComponent<BuffSystem>().AddBuff(buff);
+            if (unit.GetComponent<BuffSystem>() == null)
+            {
+                return;
+            }
+
+            if(unit.GetComponent<BuffSystem>().AddBuff(buff))
+            {
+                if (itemEffectData.VFX != null)
+                    unit.Core.GetCoreComponent<EffectManager>().StartEffects(itemEffectData.VFX, unit.Core.GetCoreComponent<CollisionSenses>().GroundCheck.position);
+
+            }
         }
     }
     public override int ExecuteOnAction(StatsItemSO parentItem, Unit unit, int attackCount)
     {
         if (Item_Type != ITEM_TPYE.OnAction || Item_Type == ITEM_TPYE.None)
-            return 0;
+            return attackCount;
 
         attackCount++;
         Debug.Log("ExcuteEffect Attack!");
@@ -45,7 +51,7 @@ public class ItemBuffEventSO : ItemEffectSO
     public override int ExecuteOnHit(StatsItemSO parentItem, Unit unit, int attackCount)
     {
         if (Item_Type != ITEM_TPYE.OnHit || Item_Type == ITEM_TPYE.None)
-            return 0;
+            return attackCount;
 
         attackCount++;
         Debug.Log("ExcuteEffect Attack!");
@@ -59,7 +65,7 @@ public class ItemBuffEventSO : ItemEffectSO
     public override int ExecuteOnHit(StatsItemSO parentItem, Unit unit, Unit enemy, int attackCount)
     {
         if (Item_Type != ITEM_TPYE.OnHit || Item_Type == ITEM_TPYE.None)
-            return 0;
+            return attackCount;
 
         attackCount++;
         Debug.Log("ExcuteEffect Attack!");
@@ -74,7 +80,7 @@ public class ItemBuffEventSO : ItemEffectSO
     public override float ContinouseEffectExcute(StatsItemSO parentItem, Unit unit, float startTime)
     {
         if (Item_Type != ITEM_TPYE.OnUpdate || Item_Type == ITEM_TPYE.None)
-            return 0;
+            return startTime;
 
         if (GameManager.Inst.PlayTime >= startTime + itemEffectData.CooldownTime) 
         {
