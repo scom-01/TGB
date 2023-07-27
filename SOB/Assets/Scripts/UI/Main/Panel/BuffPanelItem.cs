@@ -15,14 +15,9 @@ public class BuffPanelItem : MonoBehaviour
     [SerializeField] private Image FilledImg;
     [SerializeField] private TextMeshProUGUI CountText;
     /// <summary>
-    /// 버프 총 지속 시간
-    /// </summary>
-    [HideInInspector] public float BuffDurationTime;
-    /// <summary>
     /// 버프 지속 남은 시간
     /// </summary>
     private float BuffCurrentTime;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -34,28 +29,15 @@ public class BuffPanelItem : MonoBehaviour
             return;
         if (GameManager.Inst == null)
             return;
-
-        BuffDurationTime = buff.buffItemSO.BuffData.DurationTime;
-        BuffCurrentTime = ((GameManager.Inst.PlayTime - buff.startTime) / BuffDurationTime);
-        FilledImg.fillAmount = BuffCurrentTime;
-        if(buff.CurrBuffCount <= 1)
+                
+        if(buff.CurrBuffCount >= 1)
         {
-            CountText.text = "";
+            CountText.text = buff.CurrBuffCount == 1 ? "" : buff.CurrBuffCount.ToString();
+            BuffCurrentTime = ((GameManager.Inst.PlayTime - buff.startTime) / buff.buffItemSO.BuffData.DurationTime);
+            FilledImg.fillAmount = BuffCurrentTime;
         }
         else
         {
-            CountText.text = buff.CurrBuffCount.ToString();
-        }
-
-        if (BuffCurrentTime >= 1f)
-        {
-            //if(GameManager.Inst != null && GameManager.Inst.StageManager != null)
-            //{   
-            //    if (GameManager.Inst.StageManager.player.GetComponent<BuffSystem>().buffItems.Contains(buff.buffItemSO.BuffData))
-            //    {
-            //        GameManager.Inst.StageManager.player.GetComponent<BuffSystem>().buffItems.Remove(buff.buffItemSO.BuffData);
-            //    }           
-            //}
             Destroy(this.gameObject);
         }
     }
