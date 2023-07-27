@@ -13,7 +13,7 @@ public class SceneNameFade : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        LocalizeStringEvent.StringReference = localizedStr;
+        if(LocalizeStringEvent != null)
+            LocalizeStringEvent.StringReference = localizedStr;
     }
-
 }

@@ -11,7 +11,6 @@ public class ConveyorMap : MonoBehaviour
     public bool isLeft = true;
     private void Awake()
     {
-        //Application.targetFrameRate = 60;
         Layers = GetComponentsInChildren<SpriteRenderer>();
         
         for(int i =0; i <Layers.Length;i++)

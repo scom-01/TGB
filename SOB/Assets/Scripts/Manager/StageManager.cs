@@ -51,8 +51,6 @@ public class StageManager : MonoBehaviour
         {
             GameManager.Inst.StageManager = this;
         }
-
-        Application.targetFrameRate = 60;
         playerGO = Instantiate(PlayerPrefab, respawnPoint);
         player = playerGO.GetComponent<Player>();
 

@@ -275,6 +275,7 @@ public class GameManager : MonoBehaviour
         switch (_ui)
         {            
             case UI_State.GamePlay:
+                Application.targetFrameRate = 144;
                 if (StageManager != null)
                 {
                     PlayTimeUI.Canvas.enabled = true;
@@ -289,6 +290,7 @@ public class GameManager : MonoBehaviour
                 Curr_UIState = UI_State.GamePlay;
                 break;
             case UI_State.Inventory:
+                Application.targetFrameRate = 30;
                 PlayTimeUI.Canvas.enabled = true;
                 SubUI.InventorySubUI.Canvas.enabled = true;
                 if (SubUI.InventorySubUI.InventoryItems.CurrentSelectItem == null)
@@ -309,7 +311,8 @@ public class GameManager : MonoBehaviour
                 Curr_UIState = UI_State.Reforging;
                 break;
             case UI_State.Cfg:
-                if(StageManager != null)
+                Application.targetFrameRate = 30;
+                if (StageManager != null)
                 {
                     PlayTimeUI.Canvas.enabled = true;
                 }
@@ -318,17 +321,20 @@ public class GameManager : MonoBehaviour
                 Curr_UIState = UI_State.Cfg;
                 break;
             case UI_State.CutScene:
+                Application.targetFrameRate = 30;
                 SubUI.InventorySubUI.SetInventoryState(InventoryUI_State.Put);
                 CutSceneUI.Canvas.enabled = true;
                 //CutSceneUI.Director_SetAsset(CutSceneUI.FadeIn);
                 Curr_UIState = UI_State.CutScene;
                 break;
             case UI_State.Result:
+                Application.targetFrameRate = 30;
                 ResultUI.Canvas.enabled = true;
                 EventSystem.current.SetSelectedGameObject(ResultUI.GoTitleBtn.gameObject);
                 Curr_UIState = UI_State.Result;
                 break;
             case UI_State.Loading:
+                Application.targetFrameRate = 30;
                 SubUI.InventorySubUI.SetInventoryState(InventoryUI_State.Put);
                 Curr_UIState = UI_State.Loading;
                 break;
