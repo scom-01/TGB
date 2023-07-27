@@ -133,6 +133,7 @@ namespace SOB
 
             if (unit != null)
             {
+                FancingDirection = unit.Core.GetCoreComponent<Movement>().FancingDirection;
                 RB2D.velocity = new Vector2(ProjectileData.Rot.x * unit.Core.GetCoreComponent<Movement>().fancingDirection, ProjectileData.Rot.y).normalized * ProjectileData.Speed;
             }
             else
@@ -325,7 +326,7 @@ namespace SOB
             #region KnockBack
             if (coll.TryGetComponent(out IKnockBackable knockbackables))
             {
-                knockbackables.KnockBack(ProjectileData.KnockbackAngle, ProjectileData.KnockbackAngle.magnitude, unit ? unit.Core.GetCoreComponent<Movement>().FancingDirection : 1);
+                knockbackables.KnockBack(ProjectileData.KnockbackAngle, ProjectileData.KnockbackAngle.magnitude, FancingDirection);
             }
             #endregion
         }
