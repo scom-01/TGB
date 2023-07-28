@@ -125,7 +125,7 @@ namespace SOB
 
             if (ProjectileData.ProjectileShootClip != null)
             {
-                unit.Core.GetCoreComponent<SoundEffect>().AudioSpawn(ProjectileData.ProjectileShootClip);
+                unit.Core.CoreSoundEffect.AudioSpawn(ProjectileData.ProjectileShootClip);
             }
 
             RB2D.isKinematic = false;
@@ -133,8 +133,8 @@ namespace SOB
 
             if (unit != null)
             {
-                FancingDirection = unit.Core.GetCoreComponent<Movement>().FancingDirection;
-                RB2D.velocity = new Vector2(ProjectileData.Rot.x * unit.Core.GetCoreComponent<Movement>().fancingDirection, ProjectileData.Rot.y).normalized * ProjectileData.Speed;
+                FancingDirection = unit.Core.CoreMovement.FancingDirection;
+                RB2D.velocity = new Vector2(ProjectileData.Rot.x * unit.Core.CoreMovement.fancingDirection, ProjectileData.Rot.y).normalized * ProjectileData.Speed;
             }
             else
             {
@@ -178,7 +178,7 @@ namespace SOB
             #region AudioClip
             if (unit != null && ProjectileData.ImpactClip != null)
             {
-                unit.Core.GetCoreComponent<SoundEffect>().AudioSpawn(ProjectileData.ImpactClip);
+                unit.Core.CoreSoundEffect.AudioSpawn(ProjectileData.ImpactClip);
             }
             #endregion
 
@@ -226,7 +226,7 @@ namespace SOB
             }
 
             //피격 대상 사망 시 무시
-            if (coll.gameObject.GetComponentInParent<Unit>().Core.GetCoreComponent<Death>().isDead)
+            if (coll.gameObject.GetComponentInParent<Unit>().Core.CoreDeath.isDead)
             {
                 return;
             }
@@ -241,8 +241,11 @@ namespace SOB
             //Damagable.cs를 가지고있는 collision이랑 부딪쳤을 때
             if (coll.TryGetComponent(out IDamageable damageable))
             {
-                //히트 시 효과
-                unit.Inventory.ItemOnHitExecute(unit, coll.GetComponentInParent<Unit>());
+                if(ProjectileData.isOnHit)
+                {
+                    //히트 시 효과
+                    unit.Inventory.ItemOnHitExecute(unit, coll.GetComponentInParent<Unit>());
+                }
                 
                 Debug.Log($"Projectile Touch {coll.name}");
                 //Impact EffectPrefab
@@ -271,9 +274,9 @@ namespace SOB
                 {
                     damageable.Damage
                     (
-                        unit.Core.GetCoreComponent<UnitStats>().StatsData + ProjectileData.Stats,
+                        unit.Core.CoreUnitStats.StatsData + ProjectileData.Stats,
                         coll.GetComponentInParent<Unit>().UnitData.statsStats,
-                        unit.Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower
+                        unit.Core.CoreUnitStats.StatsData.DefaultPower
                     );
                 }
                 else
@@ -284,36 +287,36 @@ namespace SOB
                         case ENEMY_Size.Small:
                             damageable.Damage
                         (
-                            unit.Core.GetCoreComponent<UnitStats>().StatsData + ProjectileData.Stats,
+                            unit.Core.CoreUnitStats.StatsData + ProjectileData.Stats,
                             coll.GetComponentInParent<Unit>().UnitData.statsStats,
-                            (unit.Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + ProjectileData.Stats.DefaultPower) * (1.0f + GlobalValue.Enemy_Size_WeakPer)
+                            (unit.Core.CoreUnitStats.StatsData.DefaultPower + ProjectileData.Stats.DefaultPower) * (1.0f + GlobalValue.Enemy_Size_WeakPer)
                         );
                             Debug.Log("Projectile Enemy Type Small, Normal Dam = " +
-                                unit.Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + ProjectileData.Stats.DefaultPower
+                                unit.Core.CoreUnitStats.StatsData.DefaultPower + ProjectileData.Stats.DefaultPower
                                 + " Enemy_Size_WeakPer Additional Dam = " +
-                                (unit.Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + ProjectileData.Stats.DefaultPower) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
+                                (unit.Core.CoreUnitStats.StatsData.DefaultPower + ProjectileData.Stats.DefaultPower) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
                             break;
                         case ENEMY_Size.Medium:
                             damageable.Damage
                         (
-                            unit.Core.GetCoreComponent<UnitStats>().StatsData + ProjectileData.Stats,
+                            unit.Core.CoreUnitStats.StatsData + ProjectileData.Stats,
                             coll.GetComponentInParent<Unit>().UnitData.statsStats,
-                            (unit.Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + ProjectileData.Stats.DefaultPower));
+                            (unit.Core.CoreUnitStats.StatsData.DefaultPower + ProjectileData.Stats.DefaultPower));
                             Debug.Log("Projectile Enemy Type Medium, Normal Dam = " +
-                                unit.Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + ProjectileData.Stats.DefaultPower);
+                                unit.Core.CoreUnitStats.StatsData.DefaultPower + ProjectileData.Stats.DefaultPower);
                             break;
                         case ENEMY_Size.Big:
                             damageable.Damage
                         (
-                            unit.Core.GetCoreComponent<UnitStats>().StatsData + ProjectileData.Stats,
+                            unit.Core.CoreUnitStats.StatsData + ProjectileData.Stats,
                             coll.GetComponentInParent<Unit>().UnitData.statsStats,
-                            (unit.Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + ProjectileData.Stats.DefaultPower) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
+                            (unit.Core.CoreUnitStats.StatsData.DefaultPower + ProjectileData.Stats.DefaultPower) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
                         );
 
                             Debug.Log("Projectile Enemy Type Big, Normal Dam = " +
-                                unit.Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + ProjectileData.Stats.DefaultPower
+                                unit.Core.CoreUnitStats.StatsData.DefaultPower + ProjectileData.Stats.DefaultPower
                                 + " Enemy_Size_WeakPer Additional Dam = " +
-                                (unit.Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + ProjectileData.Stats.DefaultPower) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
+                                (unit.Core.CoreUnitStats.StatsData.DefaultPower + ProjectileData.Stats.DefaultPower) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
                                 );
                             break;
                     }
