@@ -104,7 +104,7 @@ namespace SOB.Item
                 //buff.Health = items.Health;
                 //buff.effectData = items.effectData;
                 //buff.itemEffects = items.ItemEffects;
-                unit.Core.GetCoreComponent<SoundEffect>().AudioSpawn(Item.effectData.AcquiredSoundEffect);                
+                unit.Core.CoreSoundEffect.AudioSpawn(Item.effectData.AcquiredSoundEffect);                
                 unit.gameObject.GetComponent<BuffSystem>().AddBuff(buff);
             }
 

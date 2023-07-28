@@ -58,7 +58,7 @@ namespace SOB.CoreSystem
 
             if (effectPrefab.GetComponent<EffectController>().isDestroy)
             {
-                if (core.GetCoreComponent<Movement>().FancingDirection > 0)
+                if (core.CoreMovement.FancingDirection > 0)
                 {
                     return Instantiate(effectPrefab, pos, Quaternion.Euler(effectPrefab.transform.eulerAngles), _isFollow ? this.transform : effectContainerTransform);
                 }
@@ -66,7 +66,7 @@ namespace SOB.CoreSystem
             }
             else
             {
-                if (core.GetCoreComponent<Movement>().FancingDirection > 0)
+                if (core.CoreMovement.FancingDirection > 0)
                 {
                     return effectContainer.CheckEffect(effectPrefab, _isFollow ? this.transform : effectContainerTransform).GetObejct(pos, Quaternion.Euler(effectPrefab.transform.eulerAngles));
                 }
@@ -82,7 +82,7 @@ namespace SOB.CoreSystem
 
             if (effectPrefab.GetComponent<EffectController>().isDestroy)
             {
-                if (core.GetCoreComponent<Movement>().FancingDirection > 0)
+                if (core.CoreMovement.FancingDirection > 0)
                 {
                     return Instantiate(effectPrefab, pos, Quaternion.Euler(euler), _isFollow ? this.transform : effectContainerTransform);
                 }
@@ -90,7 +90,7 @@ namespace SOB.CoreSystem
             }
             else
             {
-                if (core.GetCoreComponent<Movement>().FancingDirection > 0)
+                if (core.CoreMovement.FancingDirection > 0)
                 {
                     return effectContainer.CheckEffect(effectPrefab, _isFollow ? this.transform : effectContainerTransform).GetObejct(pos, Quaternion.Euler(euler));
                 }
@@ -107,7 +107,7 @@ namespace SOB.CoreSystem
 
             if (effectPrefab.GetComponent<EffectController>().isDestroy)
             {
-                if (core.GetCoreComponent<Movement>().FancingDirection > 0)
+                if (core.CoreMovement.FancingDirection > 0)
                 {
                     return Instantiate(effectPrefab, transform.position, Quaternion.Euler(effectPrefab.transform.eulerAngles), effectContainerTransform);
                 }
@@ -115,7 +115,7 @@ namespace SOB.CoreSystem
             }
             else
             {
-                if (core.GetCoreComponent<Movement>().FancingDirection > 0)
+                if (core.CoreMovement.FancingDirection > 0)
                 {
                     return effectContainer.CheckEffect(effectPrefab).GetObejct(transform.position, Quaternion.Euler(effectPrefab.transform.eulerAngles));
                 }
@@ -131,7 +131,7 @@ namespace SOB.CoreSystem
 
         public GameObject StartEffectsWithRandomPos(GameObject effectPrefab, float Range)
         {
-            if (core.GetCoreComponent<Movement>().FancingDirection > 0)
+            if (core.CoreMovement.FancingDirection > 0)
             {
                 return StartEffects(effectPrefab, new Vector2(
                                                     transform.position.x + Random.Range(-Range, Range),

@@ -74,7 +74,7 @@ public class GoodsData : MonoBehaviour
         if (GameManager.Inst.StageManager != null)
         {
             if (EquipSoundClip != null)
-                GameManager.Inst.StageManager.player.Core.GetCoreComponent<SoundEffect>().AudioSpawn(EquipSoundClip);
+                GameManager.Inst.StageManager.player.Core.CoreSoundEffect.AudioSpawn(EquipSoundClip);
         }
 
         Destroy(this.gameObject);

@@ -20,6 +20,12 @@ namespace SOB.CoreSystem
         }
 
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="angle">각도</param>
+        /// <param name="strength">세기</param>
+        /// <param name="direction">방향</param>
         public void KnockBack(Vector2 angle, float strength, int direction)
         {
             

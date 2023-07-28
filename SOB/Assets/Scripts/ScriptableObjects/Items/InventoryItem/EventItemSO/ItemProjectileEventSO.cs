@@ -13,9 +13,9 @@ public class ItemProjectileEventSO : ItemEffectSO
     private void ProjectileShoot(Unit unit)
     {
         if (itemEffectData.VFX != null)
-            unit.Core.GetCoreComponent<EffectManager>().StartEffects(itemEffectData.VFX, unit.Core.GetCoreComponent<CollisionSenses>().GroundCheck.position);
+            unit.Core.CoreEffectManager.StartEffects(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCheck.position);
 
-        unit.Core.GetCoreComponent<EffectManager>().StartProjectileCheck(unit, ProjectileData);
+        unit.Core.CoreEffectManager.StartProjectileCheck(unit, ProjectileData);
     }
 
     public override int ExecuteOnAction(StatsItemSO parentItem, Unit unit, int attackCount)

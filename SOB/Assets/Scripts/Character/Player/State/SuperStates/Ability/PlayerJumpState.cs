@@ -35,7 +35,7 @@ public class PlayerJumpState : PlayerAbilityState
         Movement.SetVelocityY(UnitStats.StatsData.JumpVelocity);
         if (amountOfJumpLeft < player.playerData.amountOfJumps)
         {
-            player.Core.GetCoreComponent<EffectManager>().StartEffects(Jump_Effect, CollisionSenses.GroundCheck.position);
+            player.Core.CoreEffectManager.StartEffects(Jump_Effect, CollisionSenses.GroundCheck.position);
             player.Anim.SetBool("JumpFlip", true);
         }
         if (player.PrimaryAttackState.weapon != null)

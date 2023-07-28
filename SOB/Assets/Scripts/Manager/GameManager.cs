@@ -182,7 +182,7 @@ public class GameManager : MonoBehaviour
         DataManager.Inst.PlayerCfgLanguageLoad();
 
         //DeafultData는 GameManager Start()시에 호출되어야한다.(ex.SkipCutSceneList)
-        if (DataManager.Inst.JSON_DataParsing.Json_Parsing())
+        if (DataManager.Inst.JSON_DataParsing.Json_DefaultDataParsing())
         {
             DataManager.Inst?.LoadSkipCutSceneList();
         }
@@ -397,7 +397,7 @@ public class GameManager : MonoBehaviour
         {
             DataManager.Inst?.LoadPlayTime();
             DataManager.Inst?.PlayerInventoryDataLoad(StageManager.player.Inventory);
-            DataManager.Inst?.PlayerCurrHealthLoad(StageManager.player.Core.GetCoreComponent<UnitStats>());
+            DataManager.Inst?.PlayerCurrHealthLoad(StageManager.player.Core.CoreUnitStats);
             DataManager.Inst?.LoadBuffs(StageManager.player.GetComponent<BuffSystem>());
         }        
     }
@@ -422,7 +422,7 @@ public class GameManager : MonoBehaviour
             GameManager.Inst.StageManager.player.Inventory._items);
         DataManager.Inst?.SaveBuffs(GameManager.Inst.StageManager.player.GetComponent<BuffSystem>().buffs);
         DataManager.Inst?.PlayerCurrHealthSave(
-            (int)GameManager.Inst.StageManager.player.Core.GetCoreComponent<UnitStats>().CurrentHealth);
+            (int)GameManager.Inst.StageManager.player.Core.CoreUnitStats.CurrentHealth);
 
         DataManager.Inst?.JSON_DataParsing.JSON_InventorySave();
         DataManager.Inst?.JSON_DataParsing.JSON_GoodsSave();

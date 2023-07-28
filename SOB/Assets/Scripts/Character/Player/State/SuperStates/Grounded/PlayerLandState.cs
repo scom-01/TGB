@@ -25,7 +25,7 @@ public class PlayerLandState : PlayerGroundedState
     {
         base.Enter();
         SoundEffect.AudioSpawn(Land_SFX);
-        player.Core.GetCoreComponent<EffectManager>().StartEffects(Land_Effect, CollisionSenses.GroundCheck.position);
+        player.Core.CoreEffectManager.StartEffects(Land_Effect, CollisionSenses.GroundCheck.position);
     }
 
     public override void LogicUpdate()

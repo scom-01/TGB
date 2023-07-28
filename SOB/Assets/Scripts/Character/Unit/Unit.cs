@@ -155,26 +155,26 @@ public class Unit : MonoBehaviour
         else
             Debug.Log("Core is null");
 
-        if (Core.GetCoreComponent<UnitStats>().invincibleTime > 0.0f)
+        if (Core.CoreUnitStats.invincibleTime > 0.0f)
         {
-            Core.GetCoreComponent<UnitStats>().invincibleTime -= Time.deltaTime;
+            Core.CoreUnitStats.invincibleTime -= Time.deltaTime;
 
-            if (Core.GetCoreComponent<UnitStats>().invincibleTime <= 0.0f)
+            if (Core.CoreUnitStats.invincibleTime <= 0.0f)
             {
-                Core.GetCoreComponent<DamageReceiver>().isHit = false;
+                Core.CoreDamageReceiver.isHit = false;
                 Debug.Log(name + " isHit false");
-                Core.GetCoreComponent<UnitStats>().invincibleTime = 0f;
+                Core.CoreUnitStats.invincibleTime = 0f;
             }
         }
 
-        if (Core.GetCoreComponent<UnitStats>().TouchinvincibleTime > 0.0f)
+        if (Core.CoreUnitStats.TouchinvincibleTime > 0.0f)
         {
-            Core.GetCoreComponent<UnitStats>().TouchinvincibleTime -= Time.deltaTime;
+            Core.CoreUnitStats.TouchinvincibleTime -= Time.deltaTime;
 
-            if (Core.GetCoreComponent<UnitStats>().TouchinvincibleTime <= 0.0f)
+            if (Core.CoreUnitStats.TouchinvincibleTime <= 0.0f)
             {
-                Core.GetCoreComponent<DamageReceiver>().isTouch = false;
-                Core.GetCoreComponent<UnitStats>().TouchinvincibleTime = 0f;
+                Core.CoreDamageReceiver.isTouch = false;
+                Core.CoreUnitStats.TouchinvincibleTime = 0f;
             }
         }
 
@@ -194,20 +194,20 @@ public class Unit : MonoBehaviour
         if (collision.tag != "DeadArea")
             return;
 
-        Core?.GetCoreComponent<Movement>().SetVelocityZero();
+        Core?.CoreMovement.SetVelocityZero();
 
         //지정된 리스폰 위치로 이동
         if (GameManager.Inst?.StageManager?.respawnPoint != null)
             this.gameObject.transform.position = RespawnPoint.position;
 
-        var amount = Core.GetCoreComponent<UnitStats>().DecreaseHealth(E_Power.Normal, DAMAGE_ATT.Fixed, 10);
-        if (Core.GetCoreComponent<DamageReceiver>().DefaultEffectPrefab == null)
+        var amount = Core.CoreUnitStats.DecreaseHealth(E_Power.Normal, DAMAGE_ATT.Fixed, 10);
+        if (Core.CoreDamageReceiver.DefaultEffectPrefab == null)
         {
-            Core.GetCoreComponent<DamageReceiver>().RandomEffectInstantiate(0.5f, amount, 50, DAMAGE_ATT.Fixed);
+            Core.CoreDamageReceiver.RandomEffectInstantiate(0.5f, amount, 50, DAMAGE_ATT.Fixed);
         }
         else
         {
-            Core.GetCoreComponent<DamageReceiver>().RandomEffectInstantiate(Core.GetCoreComponent<DamageReceiver>().DefaultEffectPrefab, 0.5f, amount, 50, DAMAGE_ATT.Fixed);
+            Core.CoreDamageReceiver.RandomEffectInstantiate(Core.CoreDamageReceiver.DefaultEffectPrefab, 0.5f, amount, 50, DAMAGE_ATT.Fixed);
         }
 
     }

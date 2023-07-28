@@ -32,7 +32,7 @@ public class BuffSystem : MonoBehaviour
             {
                 Debug.Log($"Time = {Time.time}");
                 Debug.Log($"GlobalTime ={GameManager.Inst?.PlayTime}");
-                unit.Core.GetCoreComponent<UnitStats>().StatsData += buffs[i].buffItemSO.StatsData* -1f * buffs[i].CurrBuffCount;
+                unit.Core.CoreUnitStats.StatsData += buffs[i].buffItemSO.StatsData* -1f * buffs[i].CurrBuffCount;
                 
                 buffs[i].CurrBuffCount--;
                 if (buffs[i].CurrBuffCount < 1)
@@ -98,10 +98,10 @@ public class BuffSystem : MonoBehaviour
         {
             GameManager.Inst?.MainUI?.MainPanel?.BuffPanelSystem.BuffPanelAdd(buff);
         }
-        unit.Core.GetCoreComponent<UnitStats>().StatsData += buff.buffItemSO.StatsData;
+        unit.Core.CoreUnitStats.StatsData += buff.buffItemSO.StatsData;
         if (buff.buffItemSO.Health != 0.0f)
         {
-            unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += buff.buffItemSO.Health;
+            unit.Core.CoreUnitStats.CurrentHealth += buff.buffItemSO.Health;
         }
         return true;
     }
@@ -149,10 +149,10 @@ public class BuffSystem : MonoBehaviour
     //{
     //    if (unit != null)
     //    {
-    //        unit.Core.GetCoreComponent<UnitStats>().StatsData += statsData;
+    //        unit.Core.CoreUnitStats.StatsData += statsData;
     //        if (statsData.MaxHealth != 0.0f)
     //        {
-    //            unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += statsData.MaxHealth;
+    //            unit.Core.CoreUnitStats.CurrentHealth += statsData.MaxHealth;
     //        }
     //        if (duration == 999.0f)
     //        {
@@ -160,10 +160,10 @@ public class BuffSystem : MonoBehaviour
     //            yield break;
     //        }
     //        yield return new WaitForSeconds(duration);
-    //        unit.Core.GetCoreComponent<UnitStats>().StatsData += statsData * -1f;
+    //        unit.Core.CoreUnitStats.StatsData += statsData * -1f;
     //        if (statsData.MaxHealth != 0.0f)
     //        {
-    //            unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += statsData.MaxHealth * -1f;
+    //            unit.Core.CoreUnitStats.CurrentHealth += statsData.MaxHealth * -1f;
     //        }
     //        RemoveBuff(buff);
     //        yield break;

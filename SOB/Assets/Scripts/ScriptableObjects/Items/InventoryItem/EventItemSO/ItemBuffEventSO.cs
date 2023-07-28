@@ -17,8 +17,8 @@ public class ItemBuffEventSO : ItemEffectSO
             Buff buff = new Buff();
             var items = buffItem;
             buff.buffItemSO = items;
-            if (unit.Core.GetCoreComponent<SoundEffect>())
-                unit.Core.GetCoreComponent<SoundEffect>().AudioSpawn(buffItem.effectData.AcquiredSoundEffect);
+            if (unit.Core.CoreSoundEffect)
+                unit.Core.CoreSoundEffect.AudioSpawn(buffItem.effectData.AcquiredSoundEffect);
             if (unit.GetComponent<BuffSystem>() == null)
             {
                 return;
@@ -27,7 +27,7 @@ public class ItemBuffEventSO : ItemEffectSO
             if(unit.GetComponent<BuffSystem>().AddBuff(buff))
             {
                 if (itemEffectData.VFX != null)
-                    unit.Core.GetCoreComponent<EffectManager>().StartEffects(itemEffectData.VFX, unit.Core.GetCoreComponent<CollisionSenses>().GroundCheck.position);
+                    unit.Core.CoreEffectManager.StartEffects(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCheck.position);
 
             }
         }

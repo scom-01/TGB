@@ -82,7 +82,7 @@ namespace SOB.Weapons.Components
                     continue;
 
                 //객체 사망 시 무시
-                if (coll.gameObject.GetComponentInParent<Unit>().Core.GetCoreComponent<Death>().isDead)
+                if (coll.gameObject.GetComponentInParent<Unit>().Core.CoreDeath.isDead)
                 {
                     continue;
                 }
@@ -248,7 +248,7 @@ namespace SOB.Weapons.Components
                     continue;
 
                 //객체 사망 시 무시
-                if (coll.gameObject.GetComponentInParent<Unit>().Core.GetCoreComponent<Death>().isDead)
+                if (coll.gameObject.GetComponentInParent<Unit>().Core.CoreDeath.isDead)
                 {
                     continue;
                 }
