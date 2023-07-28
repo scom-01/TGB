@@ -472,7 +472,7 @@ public class DataParsing : MonoBehaviour
         }
         return true;
     }
-    private bool Json_DefaultDataParsing()
+    public bool Json_DefaultDataParsing()
     {
         if (!Directory.Exists(Application.dataPath + UnitData_DirectoryPath))
         {

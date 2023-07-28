@@ -135,6 +135,7 @@ public class Player : Unit
         GameManager.Inst.Pause();
         GameManager.Inst.ChangeUI(UI_State.Result);
         GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.Cfg, false);
+        GameManager.Inst.ResetData();
     }
 
     public override void HitEffect()

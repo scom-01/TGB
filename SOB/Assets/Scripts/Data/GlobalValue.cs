@@ -36,6 +36,7 @@ public class GlobalValue : MonoBehaviour
 
     public const string FadeInCutScene = "TimeLine/FadeIn";
     public const string FadeOutCutScene = "TimeLine/FadeOut";
+    public const string TitleFadeOutCutScene = "TimeLine/TitleFadeOut";
 
     public const string GoldCount = "GoldCount";
     public const string ElementalCount = "ElementalCount";
