@@ -10,9 +10,114 @@ namespace SOB.CoreSystem
     {
         private readonly List<CoreComponent> CoreComponents = new List<CoreComponent>();
 
+        public CollisionSenses CoreCollisionSenses
+        {
+            get
+            {
+                if (collisionSenses == null)
+                {
+                    collisionSenses = GetCoreComponent<CollisionSenses>();
+                }
+                return collisionSenses;
+            }
+        }
+        private CollisionSenses collisionSenses;
+
+        public DamageReceiver CoreDamageReceiver
+        {
+            get
+            {
+                if (damageReceiver == null)
+                {
+                    damageReceiver = GetCoreComponent<DamageReceiver>();
+                }
+                return damageReceiver;
+            }
+        }
+        private DamageReceiver damageReceiver;
+
+        public Death CoreDeath
+        {
+            get
+            {
+                if (death == null)
+                {
+                    death = GetCoreComponent<Death>();
+                }
+                return death;
+            }
+        }
+        private Death death;
+
+        public EffectManager CoreEffectManager
+        {
+            get
+            {
+                if (effectManager == null)
+                {
+                    effectManager = GetCoreComponent<EffectManager>();
+                }
+                return effectManager;
+            }
+        }
+        private EffectManager effectManager;
+
+        public KnockBackReceiver CoreKnockBackReceiver
+        {
+            get
+            {
+                if (knockBackReceiver == null)
+                {
+                    knockBackReceiver = GetCoreComponent<KnockBackReceiver>();
+                }
+                return knockBackReceiver;
+            }
+        }
+        private KnockBackReceiver knockBackReceiver;
+
+        public Movement CoreMovement
+        {
+            get
+            {
+                if (movement == null)
+                {
+                    movement = GetCoreComponent<Movement>();
+                }
+                return movement;
+            }
+        }
+        private Movement movement;
+
+        public SoundEffect CoreSoundEffect
+        {
+            get
+            {
+                if (soundEffect == null)
+                {
+                    soundEffect = GetCoreComponent<SoundEffect>();
+                }
+                return soundEffect;
+            }
+        }
+        private SoundEffect soundEffect;
+
+        public UnitStats CoreUnitStats
+        {
+            get
+            {
+                if (unitStats == null)
+                {
+                    unitStats = GetCoreComponent<UnitStats>();
+                }
+                return unitStats;
+            }
+        }
+        private UnitStats unitStats;
+
+
         public void LogicUpdate()
         {
-            foreach(CoreComponent component in CoreComponents)
+            foreach (CoreComponent component in CoreComponents)
             {
                 component.LogicUpdate();
             }
@@ -20,12 +125,11 @@ namespace SOB.CoreSystem
 
         public void AddComponent(CoreComponent component)
         {
-            if(!CoreComponents.Contains(component))
+            if (!CoreComponents.Contains(component))
             {
                 CoreComponents.Add(component);
             }
         }
-
 
         public T GetCoreComponent<T>() where T : CoreComponent
         {
@@ -53,7 +157,7 @@ namespace SOB.CoreSystem
         {
             get
             {
-                if(unit==null)
+                if (unit == null)
                 {
                     unit = GetComponentInParent<Unit>();
                 }
