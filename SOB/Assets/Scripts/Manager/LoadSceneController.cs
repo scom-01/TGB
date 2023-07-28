@@ -25,8 +25,7 @@ public class LoadSceneController : MonoBehaviour
         if (GameManager.Inst == null)
             return;
 
-        GameManager.Inst.ChangeUI(UI_State.Loading);        
-        GameManager.Inst.ResetData();
+        GameManager.Inst.ChangeUI(UI_State.Loading);
 
         AsyncOperation operation = SceneManager.LoadSceneAsync("LoadingScene");
     }
