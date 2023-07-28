@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemIdx: 1
   itemData:
-    ItemName: 
     <ItemNameLocal>k__BackingField:
       m_TableReference:
         m_TableCollectionName: 
@@ -24,7 +23,6 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    ItemDescription: 
     <ItemDescriptionLocal>k__BackingField:
       m_TableReference:
         m_TableCollectionName: 
@@ -36,18 +34,18 @@ MonoBehaviour:
       m_LocalVariables: []
     ItemSprite: {fileID: 1389482560, guid: f7bf72b4be9086e4c9eef46270d4a8f3, type: 3}
     ItemLevel: 0
-  StatsDatas:
+  StatsData:
     MaxHealth: 0
     MovementVelocity: 0
     JumpVelocity: 0
-    DefaultPower: 5
+    DefaultPower: 0
     AttackSpeedPer: 0
     PhysicsDefensivePer: 0
     MagicDefensivePer: 0
     PhysicsAggressivePer: 0
     MagicAggressivePer: 0
     DamageAttiribute: 0
-    MyElemental: 0
+    Elemental: 0
     ElementalDefensivePer: 0
     ElementalAggressivePer: 0
   Health: 3
@@ -58,9 +56,9 @@ MonoBehaviour:
     <DetailSubUI>k__BackingField: 0
   ItemEffects: []
   BuffData:
-    DurationTime: 10
+    DurationTime: 5
     BuffType: 0
-    isOverlap: 0
+    isOverlap: 1
     BuffCountMax: 5
     isBuffInit: 0
   references:

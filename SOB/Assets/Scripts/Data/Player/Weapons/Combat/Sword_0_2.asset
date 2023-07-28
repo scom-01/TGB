@@ -75,7 +75,7 @@ MonoBehaviour:
               y: -0.72
               width: 3.47
               height: 1.01
-            RepeatAction: 5
+            RepeatAction: 1
             AdditionalDamage: 1
             KnockbackAngle: {x: 0, y: 0}
             EffectPrefab: []
@@ -141,19 +141,19 @@ MonoBehaviour:
               MagicDefensivePer: 0
               PhysicsAggressivePer: 0
               MagicAggressivePer: 0
-              DamageAttiribute: 0
-              MyElemental: 0
+              DamageAttiribute: 1
+              Elemental: 2
               ElementalDefensivePer: 0
               ElementalAggressivePer: 0
             Pos: {x: 0, y: 0, z: 0}
             Rot: {x: 1, y: 0, z: 0}
-            Radius: 2
+            Radius: 0.5
             GravityScale: 0
             Speed: 20
             isSingleShoot: 1
             DurationTime: 2
             ProjectilePrefab: {fileID: 6363408910417065239, guid: a897f2220dde73a41bde2ca1c261301e, type: 3}
-            ImpactPrefab: {fileID: 6363408910417065239, guid: a897f2220dde73a41bde2ca1c261301e, type: 3}
+            ImpactPrefab: {fileID: 8482821253585752479, guid: b2d1a7e3c779c334183600eee56341df, type: 3}
             KnockbackAngle: {x: 1, y: 0}
             ProjectileShootClip: {fileID: 8300000, guid: 674258a055e994b72bbb15a28eb79838, type: 3}
             ImpactClip: {fileID: 8300000, guid: 8a44b12d3e3f24b1a89dc7f0b66756f4, type: 3}

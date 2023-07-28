@@ -14,26 +14,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemIdx: 7
   itemData:
-    ItemName: Stat8
-    ItemDescription: Stat8
-    ItemSprite: {fileID: -456067859, guid: a0e4db65e203e1540af7f570753abfaa, type: 3}
-  StatsDatas:
-    MaxHealth: 8
+    <ItemNameLocal>k__BackingField:
+      m_TableReference:
+        m_TableCollectionName: GUID:0e85b71e0680fc942b5295e72ff4ba37
+      m_TableEntryReference:
+        m_KeyId: 25371681576345600
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    <ItemDescriptionLocal>k__BackingField:
+      m_TableReference:
+        m_TableCollectionName: GUID:0e85b71e0680fc942b5295e72ff4ba37
+      m_TableEntryReference:
+        m_KeyId: 25371693844684800
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    ItemSprite: {fileID: 21300000, guid: 4099f50198c088a4bb406a8a2bd4243b, type: 3}
+    ItemLevel: 2
+  StatsData:
+    MaxHealth: 0
     MovementVelocity: 0
     JumpVelocity: 0
-    DefaultPower: 8
-    AttackSpeedPer: 8
-    PhysicsDefensivePer: 8
-    MagicDefensivePer: 8
-    PhysicsAggressivePer: 8
-    MagicAggressivePer: 8
-    DamageAttiribute: 0
-    MyElemental: 0
-    ElementalDefensivePer: 8
-    ElementalAggressivePer: 8
+    DefaultPower: 10
+    AttackSpeedPer: 0
+    PhysicsDefensivePer: 0
+    MagicDefensivePer: 0
+    PhysicsAggressivePer: 0
+    MagicAggressivePer: 10
+    DamageAttiribute: 1
+    Elemental: 1
+    ElementalDefensivePer: 0
+    ElementalAggressivePer: 5
+  Health: 0
   effectData:
     <AcquiredEffectPrefab>k__BackingField: {fileID: 0}
     <AcquiredSoundEffect>k__BackingField: {fileID: 0}
     <isEquipment>k__BackingField: 1
     <DetailSubUI>k__BackingField: 0
   ItemEffects: []
+  references:
+    version: 2
+    RefIds: []

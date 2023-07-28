@@ -387,4 +387,4 @@ public class Inventory : MonoBehaviour
     {
         Unit.Core.GetCoreComponent<UnitStats>().StatsData += statsData;
     }
-}
+}   

@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -357,6 +357,7 @@ GameObject:
   - component: {fileID: 6977698015634361585}
   - component: {fileID: 3097181729844303255}
   - component: {fileID: 7076014501931169537}
+  - component: {fileID: 705147193507651867}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -446,6 +447,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &705147193507651867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654328480484542619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c5173f66d272754987e2ea457467358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Slider: {fileID: 8169858257504762649}
+  m_isUnit: 1
+  m_IsFollow: 1
+  Txt: {fileID: 0}
 --- !u!1 &2276618219728866538
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,7 +807,6 @@ GameObject:
   - component: {fileID: 6735750043806285471}
   - component: {fileID: 3639027602819861585}
   - component: {fileID: 8530842778410030304}
-  - component: {fileID: 535597386804773397}
   m_Layer: 18
   m_Name: MushroonEnemy 1
   m_TagString: SmallEnemy
@@ -991,23 +1007,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffs: []
---- !u!114 &535597386804773397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3640253521839122302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c5173f66d272754987e2ea457467358, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isSpriteRender: 0
-  healthbarTrasform: {fileID: 0}
-  ZeroPosX: 0
-  m_Slider: {fileID: 8169858257504762649}
-  m_IsFollow: 1
 --- !u!1 &3640253522240484911
 GameObject:
   m_ObjectHideFlags: 0
@@ -1307,7 +1306,7 @@ MonoBehaviour:
     PhysicsAggressivePer: 0
     MagicAggressivePer: 0
     DamageAttiribute: 0
-    MyElemental: 0
+    Elemental: 0
     ElementalDefensivePer: 0
     ElementalAggressivePer: 0
   invincibleTime: 0

@@ -32,18 +32,18 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    ItemSprite: {fileID: 446772152, guid: a0e4db65e203e1540af7f570753abfaa, type: 3}
+    ItemSprite: {fileID: 21300000, guid: f8ba74f5b7cb7874999a581f3aebc9c9, type: 3}
     ItemLevel: 0
-  StatsDatas:
+  StatsData:
     MaxHealth: 0
     MovementVelocity: 0
     JumpVelocity: 0
-    DefaultPower: 0
+    DefaultPower: 5
     AttackSpeedPer: 0
     PhysicsDefensivePer: 0
-    MagicDefensivePer: 20
+    MagicDefensivePer: 0
     PhysicsAggressivePer: 0
-    MagicAggressivePer: 0
+    MagicAggressivePer: 15
     DamageAttiribute: 1
     Elemental: 0
     ElementalDefensivePer: 0
@@ -55,7 +55,7 @@ MonoBehaviour:
     <isEquipment>k__BackingField: 1
     <DetailSubUI>k__BackingField: 0
   ItemEffects:
-  - {fileID: 11400000, guid: c2d10a5769cce524c861193193a42464, type: 2}
+  - {fileID: 11400000, guid: 01409fbc76d0cd34495b523ccf1b4df0, type: 2}
   references:
     version: 2
     RefIds: []

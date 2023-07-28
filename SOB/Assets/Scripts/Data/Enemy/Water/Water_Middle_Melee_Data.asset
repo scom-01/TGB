@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Water_Middle_Melee_Data
   m_EditorClassIdentifier: 
   statsStats:
-    MaxHealth: 100
+    MaxHealth: 50000
     MovementVelocity: 2
     JumpVelocity: 10
     DefaultPower: 5
@@ -23,15 +23,15 @@ MonoBehaviour:
     PhysicsAggressivePer: 0
     MagicAggressivePer: 0
     DamageAttiribute: 1
-    MyElemental: 4
-    ElementalDefensivePer: 0
-    ElementalAggressivePer: 0
+    Elemental: 0
+    ElementalDefensivePer: 35
+    ElementalAggressivePer: 20
   UnitName: Agitator
   UnitNameLocal:
     m_TableReference:
       m_TableCollectionName: GUID:624403414fdcaad4497611155e8721fa
     m_TableEntryReference:
-      m_KeyId: 7792386048
+      m_KeyId: 22104574218625024
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -62,7 +62,7 @@ MonoBehaviour:
   UnitAnimator: {fileID: 22100000, guid: 404fd0e81a18a5f4e9e1c8e974227e75, type: 2}
   enemy_form: 0
   enemy_size: 0
-  enemy_level: 2
+  enemy_level: 1
   UnitAttackDistance: 4.3
   minIdleTime: 0
   maxIdleTime: 0

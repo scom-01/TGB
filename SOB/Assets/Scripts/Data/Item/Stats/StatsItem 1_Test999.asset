@@ -10,31 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 836f02ead74e6a24db24927dd939c743, type: 3}
-  m_Name: StatsItem 1
+  m_Name: StatsItem 1_Test999
   m_EditorClassIdentifier: 
   ItemIdx: 0
   itemData:
-    ItemName: Stat1
+    ItemName: TestSword
     <ItemNameLocal>k__BackingField:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:0e85b71e0680fc942b5295e72ff4ba37
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 15894574718672896
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    ItemDescription: Stat1_Descript
     <ItemDescriptionLocal>k__BackingField:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:0e85b71e0680fc942b5295e72ff4ba37
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 15896312783724544
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
     ItemSprite: {fileID: 124761585, guid: a0e4db65e203e1540af7f570753abfaa, type: 3}
+    ItemLevel: 3
   StatsDatas:
     MaxHealth: 999
     MovementVelocity: 0
@@ -45,8 +45,8 @@ MonoBehaviour:
     MagicDefensivePer: 999
     PhysicsAggressivePer: 999
     MagicAggressivePer: 999
-    DamageAttiribute: 0
-    MyElemental: 0
+    DamageAttiribute: 2
+    Elemental: 0
     ElementalDefensivePer: 999
     ElementalAggressivePer: 999
   Health: 0

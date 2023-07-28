@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed8ea68a9bdcff84ab444f378220bdab, type: 3}
-  m_Name: ProjectileAttackEventData
+  m_Name: OnAction_1_ProjectileAttackEventData
   m_EditorClassIdentifier: 
+  Item_Type: 1
   itemEffectData:
-    MaxCount: 1
+    MaxCount: 3
     CooldownTime: 0
     isExecute: 0
-    VFX: {fileID: 0}
+    VFX: {fileID: 2002340249453518022, guid: 7a9ea55f99d70eb4c977f88fb8d34a93, type: 3}
   ProjectileData:
     Stats:
       MaxHealth: 0
@@ -46,6 +47,6 @@ MonoBehaviour:
     ImpactClip: {fileID: 0}
     isShakeCam: 0
     camDatas:
-      Duration: 0
-      Range: 0
-      RepeatRate: 0
+      Duration: 0.1
+      Range: 0.01
+      RepeatRate: 0.001
