@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[Serializable]
+[System.Serializable]
 public struct ProjectileData
 {
     /// <summary>
@@ -62,6 +62,10 @@ public struct ProjectileData
     /// </summary>
     public AudioClip ImpactClip;
 
+    /// <summary>
+    /// 온힛효과 발동여부
+    /// </summary>
+    public bool isOnHit;
     public bool isShakeCam;
     /// <summary>
     /// 투사체 발사 시 ShakeCam
