@@ -115,7 +115,7 @@ public class StatsText : MonoBehaviour
 
         if (StatsPowerTxt != null)
         {
-            if (OldStats == TypeStats)
+            if (OldStats != TypeStats)
             {                
                 StatsPowerTxt.text = TypeStats.ToString() + " %";
             }
