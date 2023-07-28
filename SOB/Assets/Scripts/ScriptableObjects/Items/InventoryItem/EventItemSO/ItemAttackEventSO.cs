@@ -13,28 +13,28 @@ public class ItemAttackEventSO : ItemEffectSO
     /// </summary>
     public bool isFixed;
     public bool isSelf_harm;
+    public bool isBloodsucking;
     private void AttackAction(StatsItemSO parentItem, Unit unit, Unit enemy = null)
     {
         //스스로에게 피해
         if(isSelf_harm)
         {
             if (itemEffectData.VFX != null)
-                unit.Core.GetCoreComponent<EffectManager>().StartEffects(itemEffectData.VFX, unit.Core.GetCoreComponent<CollisionSenses>().GroundCheck.position);
-
+                unit.Core.CoreEffectManager.StartEffects(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCheck.position);
 
             if (isFixed)
             {
                 //고정데미지
-                unit.Core.GetCoreComponent<DamageReceiver>().FixedDamage(AdditionalDamage, true);
+                unit.Core.CoreDamageReceiver.FixedDamage(AdditionalDamage, true);
             }
             else
             {
-                unit.Core.GetCoreComponent<DamageReceiver>().TrueDamage(
-                    unit.Core.GetCoreComponent<UnitStats>().StatsData,
-                    unit.Core.GetCoreComponent<UnitStats>().StatsData,
+                unit.Core.CoreDamageReceiver.TrueDamage(
+                    unit.Core.CoreUnitStats.StatsData,
+                    unit.Core.CoreUnitStats.StatsData,
                     parentItem.StatsData.Elemental,
                     parentItem.StatsData.DamageAttiribute,
-                    unit.Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + AdditionalDamage
+                    unit.Core.CoreUnitStats.StatsData.DefaultPower + AdditionalDamage
                     );
             }
         }
@@ -44,23 +44,27 @@ public class ItemAttackEventSO : ItemEffectSO
                 return;
 
             if (itemEffectData.VFX != null)
-                unit.Core.GetCoreComponent<EffectManager>().StartEffects(itemEffectData.VFX, unit.Core.GetCoreComponent<CollisionSenses>().GroundCheck.position);
+                unit.Core.CoreEffectManager.StartEffects(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCheck.position);
 
 
             if (isFixed)
             {
                 //고정데미지
-                enemy.Core.GetCoreComponent<DamageReceiver>().FixedDamage(AdditionalDamage, true);
+                enemy.Core.CoreDamageReceiver.FixedDamage(AdditionalDamage, true);
+                if(isBloodsucking)
+                    unit.Core.CoreUnitStats.IncreaseHealth(AdditionalDamage);
             }
             else
             {
-                enemy.Core.GetCoreComponent<DamageReceiver>().TrueDamage(
-                    unit.Core.GetCoreComponent<UnitStats>().StatsData,
-                    enemy.Core.GetCoreComponent<UnitStats>().StatsData,
+                enemy.Core.CoreDamageReceiver.TrueDamage(
+                    unit.Core.CoreUnitStats.StatsData,
+                    enemy.Core.CoreUnitStats.StatsData,
                     parentItem.StatsData.Elemental,
                     parentItem.StatsData.DamageAttiribute,
-                    unit.Core.GetCoreComponent<UnitStats>().StatsData.DefaultPower + AdditionalDamage
+                    unit.Core.CoreUnitStats.StatsData.DefaultPower + AdditionalDamage
                     );
+                if (isBloodsucking)
+                    unit.Core.CoreUnitStats.IncreaseHealth(unit.Core.CoreUnitStats.StatsData.DefaultPower + AdditionalDamage);
             }
         }
     }

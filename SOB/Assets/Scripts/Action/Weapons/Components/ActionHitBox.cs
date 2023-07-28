@@ -151,7 +151,7 @@ namespace SOB.Weapons.Components
                             (
                                 CoreUnitStats.StatsData,
                                 coll.GetComponentInParent<Unit>().UnitData.statsStats,
-                                CoreUnitStats.StatsData.DefaultPower + currHitBox[currentHitBoxIndex].AdditionalDamage,
+                                CoreUnitStats.DefaultPower + currHitBox[currentHitBoxIndex].AdditionalDamage,
                                 currHitBox[currentHitBoxIndex].RepeatAction
                             );
                             continue;
@@ -164,20 +164,20 @@ namespace SOB.Weapons.Components
                             (
                                 CoreUnitStats.StatsData,
                                 coll.GetComponentInParent<Unit>().UnitData.statsStats,
-                                (CoreUnitStats.StatsData.DefaultPower + currHitBox[currentHitBoxIndex].AdditionalDamage) * (1.0f + GlobalValue.Enemy_Size_WeakPer),
+                                (CoreUnitStats.DefaultPower + currHitBox[currentHitBoxIndex].AdditionalDamage) * (1.0f + GlobalValue.Enemy_Size_WeakPer),
                                 currHitBox[currentHitBoxIndex].RepeatAction
                             );
                                 Debug.Log("Enemy Type Small, Normal Dam = " +
-                                    CoreUnitStats.StatsData.DefaultPower + currHitBox[currentHitBoxIndex]
+                                    CoreUnitStats.DefaultPower + currHitBox[currentHitBoxIndex]
                                     + " Enemy_Size_WeakPer Additional Dam = " +
-                                    (CoreUnitStats.StatsData.DefaultPower + currHitBox[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
+                                    (CoreUnitStats.DefaultPower + currHitBox[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
                                 break;
                             case ENEMY_Size.Medium:
                                 _damageable.Damage
                             (
                                 CoreUnitStats.StatsData,
                                 coll.GetComponentInParent<Unit>().UnitData.statsStats,
-                                (CoreUnitStats.StatsData.DefaultPower + currHitBox[currentHitBoxIndex].AdditionalDamage),
+                                (CoreUnitStats.DefaultPower + currHitBox[currentHitBoxIndex].AdditionalDamage),
                                 currHitBox[currentHitBoxIndex].RepeatAction
                                 );
                                 break;
@@ -186,14 +186,14 @@ namespace SOB.Weapons.Components
                             (
                                 CoreUnitStats.StatsData,
                                 coll.GetComponentInParent<Unit>().UnitData.statsStats,
-                                (CoreUnitStats.StatsData.DefaultPower + currHitBox[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer),
+                                (CoreUnitStats.DefaultPower + currHitBox[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer),
                                 currHitBox[currentHitBoxIndex].RepeatAction
                             );
 
                                 Debug.Log("Enemy Type Big, Normal Dam = " +
-                                    CoreUnitStats.StatsData.DefaultPower + currHitBox[currentHitBoxIndex]
+                                    CoreUnitStats.DefaultPower + currHitBox[currentHitBoxIndex]
                                     + " Enemy_Size_WeakPer Additional Dam = " +
-                                    (CoreUnitStats.StatsData.DefaultPower + currHitBox[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
+                                    (CoreUnitStats.DefaultPower + currHitBox[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
                                     );
                                 break;
                         }
@@ -316,7 +316,7 @@ namespace SOB.Weapons.Components
                             (
                                 CoreUnitStats.StatsData,
                                 coll.GetComponentInParent<Unit>().UnitData.statsStats,
-                                CoreUnitStats.StatsData.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage,
+                                CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage,
                                 hitActions[currentHitBoxIndex].RepeatAction
                             );
                             continue;
@@ -329,20 +329,20 @@ namespace SOB.Weapons.Components
                             (
                                 CoreUnitStats.StatsData,
                                 coll.GetComponentInParent<Unit>().UnitData.statsStats,
-                                (CoreUnitStats.StatsData.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage) * (1.0f + GlobalValue.Enemy_Size_WeakPer),
+                                (CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage) * (1.0f + GlobalValue.Enemy_Size_WeakPer),
                                 hitActions[currentHitBoxIndex].RepeatAction
                             );
                                 Debug.Log("Enemy Type Small, Normal Dam = " +
-                                    CoreUnitStats.StatsData.DefaultPower + hitActions[currentHitBoxIndex]
+                                    CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex]
                                     + " Enemy_Size_WeakPer Additional Dam = " +
-                                    (CoreUnitStats.StatsData.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
+                                    (CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
                                 break;
                             case ENEMY_Size.Medium:
                                 _damageable.Damage
                             (
                                 CoreUnitStats.StatsData,
                                 coll.GetComponentInParent<Unit>().UnitData.statsStats,
-                                (CoreUnitStats.StatsData.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage),
+                                (CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage),
                                 hitActions[currentHitBoxIndex].RepeatAction
                                 );
                                 break;
@@ -351,14 +351,14 @@ namespace SOB.Weapons.Components
                             (
                                 CoreUnitStats.StatsData,
                                 coll.GetComponentInParent<Unit>().UnitData.statsStats,
-                                (CoreUnitStats.StatsData.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer),
+                                (CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer),
                                 hitActions[currentHitBoxIndex].RepeatAction
                             );
 
                                 Debug.Log("Enemy Type Big, Normal Dam = " +
-                                    CoreUnitStats.StatsData.DefaultPower + hitActions[currentHitBoxIndex]
+                                    CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex]
                                     + " Enemy_Size_WeakPer Additional Dam = " +
-                                    (CoreUnitStats.StatsData.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
+                                    (CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
                                     );
                                 break;
                         }

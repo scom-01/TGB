@@ -276,7 +276,7 @@ namespace SOB
                     (
                         unit.Core.CoreUnitStats.StatsData + ProjectileData.Stats,
                         coll.GetComponentInParent<Unit>().UnitData.statsStats,
-                        unit.Core.CoreUnitStats.StatsData.DefaultPower
+                        unit.Core.CoreUnitStats.DefaultPower
                     );
                 }
                 else
@@ -289,34 +289,34 @@ namespace SOB
                         (
                             unit.Core.CoreUnitStats.StatsData + ProjectileData.Stats,
                             coll.GetComponentInParent<Unit>().UnitData.statsStats,
-                            (unit.Core.CoreUnitStats.StatsData.DefaultPower + ProjectileData.Stats.DefaultPower) * (1.0f + GlobalValue.Enemy_Size_WeakPer)
+                            (unit.Core.CoreUnitStats.DefaultPower + ProjectileData.Stats.DefaultPower) * (1.0f + GlobalValue.Enemy_Size_WeakPer)
                         );
                             Debug.Log("Projectile Enemy Type Small, Normal Dam = " +
-                                unit.Core.CoreUnitStats.StatsData.DefaultPower + ProjectileData.Stats.DefaultPower
+                                unit.Core.CoreUnitStats.DefaultPower + ProjectileData.Stats.DefaultPower
                                 + " Enemy_Size_WeakPer Additional Dam = " +
-                                (unit.Core.CoreUnitStats.StatsData.DefaultPower + ProjectileData.Stats.DefaultPower) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
+                                (unit.Core.CoreUnitStats.DefaultPower + ProjectileData.Stats.DefaultPower) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
                             break;
                         case ENEMY_Size.Medium:
                             damageable.Damage
                         (
                             unit.Core.CoreUnitStats.StatsData + ProjectileData.Stats,
                             coll.GetComponentInParent<Unit>().UnitData.statsStats,
-                            (unit.Core.CoreUnitStats.StatsData.DefaultPower + ProjectileData.Stats.DefaultPower));
+                            (unit.Core.CoreUnitStats.DefaultPower + ProjectileData.Stats.DefaultPower));
                             Debug.Log("Projectile Enemy Type Medium, Normal Dam = " +
-                                unit.Core.CoreUnitStats.StatsData.DefaultPower + ProjectileData.Stats.DefaultPower);
+                                unit.Core.CoreUnitStats.DefaultPower + ProjectileData.Stats.DefaultPower);
                             break;
                         case ENEMY_Size.Big:
                             damageable.Damage
                         (
                             unit.Core.CoreUnitStats.StatsData + ProjectileData.Stats,
                             coll.GetComponentInParent<Unit>().UnitData.statsStats,
-                            (unit.Core.CoreUnitStats.StatsData.DefaultPower + ProjectileData.Stats.DefaultPower) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
+                            (unit.Core.CoreUnitStats.DefaultPower + ProjectileData.Stats.DefaultPower) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
                         );
 
                             Debug.Log("Projectile Enemy Type Big, Normal Dam = " +
-                                unit.Core.CoreUnitStats.StatsData.DefaultPower + ProjectileData.Stats.DefaultPower
+                                unit.Core.CoreUnitStats.DefaultPower + ProjectileData.Stats.DefaultPower
                                 + " Enemy_Size_WeakPer Additional Dam = " +
-                                (unit.Core.CoreUnitStats.StatsData.DefaultPower + ProjectileData.Stats.DefaultPower) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
+                                (unit.Core.CoreUnitStats.DefaultPower + ProjectileData.Stats.DefaultPower) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
                                 );
                             break;
                     }
