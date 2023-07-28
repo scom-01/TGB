@@ -112,6 +112,11 @@ namespace SOB.CoreSystem
 
             for (int i = 0; i < repeat; i++)
             {
+                //크리티컬 계산
+                if (AttackterCommonData.CriticalPer >= Random.Range(0, 100.0f))
+                {
+                    amount *= 1f + (AttackterCommonData.AdditionalCriticalPer / 100.0f);
+                }
                 TrueDamage(AttackterCommonData, VictimCommonData, amount);
             }
             isHit = true;
