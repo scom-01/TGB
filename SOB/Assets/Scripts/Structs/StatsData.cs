@@ -25,6 +25,10 @@ public struct StatsData
     public float PhysicsAggressivePer;
     [Tooltip("추가 마법공격력 %")]
     public float MagicAggressivePer;
+    [Tooltip("크리티컬 확률 %")]
+    public float CriticalPer;
+    [Tooltip("추가 크리티컬 데미지%")]
+    public float AdditionalCriticalPer;
     [Tooltip("공격 속성")]
     public DAMAGE_ATT DamageAttiribute;
 
@@ -49,6 +53,8 @@ public struct StatsData
         temp.MagicDefensivePer = s1.MagicDefensivePer + s2.MagicDefensivePer;
         temp.PhysicsAggressivePer = s1.PhysicsAggressivePer + s2.PhysicsAggressivePer;
         temp.MagicAggressivePer = s1.MagicAggressivePer + s2.MagicAggressivePer;
+        temp.CriticalPer = s1.CriticalPer + s2.CriticalPer;
+        temp.AdditionalCriticalPer = s1.AdditionalCriticalPer + s2.AdditionalCriticalPer;
         temp.ElementalDefensivePer = s1.ElementalDefensivePer + s2.ElementalDefensivePer;
         temp.ElementalAggressivePer = s1.ElementalAggressivePer + s2.ElementalAggressivePer;
         return temp;
@@ -66,6 +72,8 @@ public struct StatsData
         temp.MagicDefensivePer = s1.MagicDefensivePer * f1;
         temp.PhysicsAggressivePer = s1.PhysicsAggressivePer * f1;
         temp.MagicAggressivePer = s1.MagicAggressivePer * f1;
+        temp.CriticalPer = s1.CriticalPer * f1;
+        temp.AdditionalCriticalPer = s1.AdditionalCriticalPer * f1;
         temp.ElementalDefensivePer = s1.ElementalDefensivePer * f1;
         temp.ElementalAggressivePer = s1.ElementalAggressivePer * f1;
         return temp;

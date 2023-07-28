@@ -52,34 +52,40 @@ public class StatsText : MonoBehaviour
             switch(Type)
             {
                 case Stats_TYPE.PhysicsAgg:
-                    stats = 100f + GameManager.Inst.StageManager.player.Core.GetCoreComponent<UnitStats>().PhysicsAggressivePer;
+                    stats = 100f + GameManager.Inst.StageManager.player.Core.CoreUnitStats.PhysicsAggressivePer;
                     break;
                 case Stats_TYPE.MagicAgg:
-                    stats = 100f + GameManager.Inst.StageManager.player.Core.GetCoreComponent<UnitStats>().MagicAggressivePer;
+                    stats = 100f + GameManager.Inst.StageManager.player.Core.CoreUnitStats.MagicAggressivePer;
                     break;
                 case Stats_TYPE.PhysicsDef:
-                    stats = GameManager.Inst.StageManager.player.Core.GetCoreComponent<UnitStats>().PhysicsDefensivePer;
+                    stats = GameManager.Inst.StageManager.player.Core.CoreUnitStats.PhysicsDefensivePer;
                     break;
                 case Stats_TYPE.MagicDef:
-                    stats = GameManager.Inst.StageManager.player.Core.GetCoreComponent<UnitStats>().MagicDefensivePer;
+                    stats = GameManager.Inst.StageManager.player.Core.CoreUnitStats.MagicDefensivePer;
                     break;
                 case Stats_TYPE.ElementalAgg:
-                    stats = 100f + GameManager.Inst.StageManager.player.Core.GetCoreComponent<UnitStats>().ElementalAggressivePer;
+                    stats = 100f + GameManager.Inst.StageManager.player.Core.CoreUnitStats.ElementalAggressivePer;
                     break;
                 case Stats_TYPE.ElementalDef:
-                    stats = GameManager.Inst.StageManager.player.Core.GetCoreComponent<UnitStats>().ElementalDefensivePer;
+                    stats = GameManager.Inst.StageManager.player.Core.CoreUnitStats.ElementalDefensivePer;
                     break;
                 case Stats_TYPE.AttackSpeed:
-                    stats = 100f + GameManager.Inst.StageManager.player.Core.GetCoreComponent<UnitStats>().AttackSpeedPer;
+                    stats = 100f + GameManager.Inst.StageManager.player.Core.CoreUnitStats.AttackSpeedPer;
+                    break;
+                case Stats_TYPE.CriticalPer:
+                    stats = GameManager.Inst.StageManager.player.Core.CoreUnitStats.CriticalPer;
+                    break;
+                case Stats_TYPE.AdditionalCritical:
+                    stats = 100f + GameManager.Inst.StageManager.player.Core.CoreUnitStats.AdditionalCriticalPer;
                     break;
                 case Stats_TYPE.MaxHealth:
-                    stats = GameManager.Inst.StageManager.player.Core.GetCoreComponent<UnitStats>().MaxHealth;
+                    stats = GameManager.Inst.StageManager.player.Core.CoreUnitStats.MaxHealth;
                     break;
                 case Stats_TYPE.MoveSpeed:
-                    stats = 100f + GameManager.Inst.StageManager.player.Core.GetCoreComponent<UnitStats>().MoveSpeed;
+                    stats = 100f + GameManager.Inst.StageManager.player.Core.CoreUnitStats.MoveSpeed;
                     break;
                 case Stats_TYPE.JumpVelocity:
-                    stats = 100f + GameManager.Inst.StageManager.player.Core.GetCoreComponent<UnitStats>().JumpVelocity;
+                    stats = 100f + GameManager.Inst.StageManager.player.Core.CoreUnitStats.JumpVelocity;
                     break;
             }
             return stats;

@@ -108,6 +108,8 @@ public enum Stats_TYPE
     ElementalAgg,
     ElementalDef,
     AttackSpeed,
+    CriticalPer,
+    AdditionalCritical,
     MaxHealth,
     MoveSpeed,
     JumpVelocity,
