@@ -34,7 +34,7 @@ public class ItemAttackEventSO : ItemEffectSO
                     unit.Core.CoreUnitStats.StatsData,
                     parentItem.StatsData.Elemental,
                     parentItem.StatsData.DamageAttiribute,
-                    unit.Core.CoreUnitStats.StatsData.DefaultPower + AdditionalDamage
+                    unit.Core.CoreUnitStats.DefaultPower + AdditionalDamage
                     );
             }
         }
@@ -61,10 +61,10 @@ public class ItemAttackEventSO : ItemEffectSO
                     enemy.Core.CoreUnitStats.StatsData,
                     parentItem.StatsData.Elemental,
                     parentItem.StatsData.DamageAttiribute,
-                    unit.Core.CoreUnitStats.StatsData.DefaultPower + AdditionalDamage
+                    unit.Core.CoreUnitStats.DefaultPower + AdditionalDamage
                     );
                 if (isBloodsucking)
-                    unit.Core.CoreUnitStats.IncreaseHealth(unit.Core.CoreUnitStats.StatsData.DefaultPower + AdditionalDamage);
+                    unit.Core.CoreUnitStats.IncreaseHealth(unit.Core.CoreUnitStats.DefaultPower + AdditionalDamage);
             }
         }
     }

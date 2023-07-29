@@ -92,7 +92,7 @@ public class PlayerWeaponState : PlayerAbilityState
         //setVelocity = weapon.weaponData.GetData<MovementData>().ActionData[weapon.CurrentActionCounter].CanMoveCtrl;
         if (Movement.CanMovement)
         {
-            Movement.SetVelocityX(UnitStats.StatsData.MovementVelocity * xInput);
+            Movement.SetVelocityX(UnitStats.MoveSpeed * xInput);
         }
 
 

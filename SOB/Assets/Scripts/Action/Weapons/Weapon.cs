@@ -72,7 +72,7 @@ namespace SOB.Weapons
             if (WeaponCore == null)
                 return;
             
-            BaseGameObject.GetComponent<Animator>().speed = 1f + (WeaponCore.GetCoreComponent<UnitStats>().StatsData.AttackSpeedPer * 1 / 100);
+            BaseGameObject.GetComponent<Animator>().speed = 1f + (WeaponCore.CoreUnitStats.AttackSpeedPer * 1 / 100);
             actionCounterResetTimer.Tick();
         }
 

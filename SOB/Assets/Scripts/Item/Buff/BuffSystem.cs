@@ -150,9 +150,9 @@ public class BuffSystem : MonoBehaviour
     //    if (unit != null)
     //    {
     //        unit.Core.CoreUnitStats.StatsData += statsData;
-    //        if (statsData.MaxHealth != 0.0f)
+    //        if (MaxHealth != 0.0f)
     //        {
-    //            unit.Core.CoreUnitStats.CurrentHealth += statsData.MaxHealth;
+    //            unit.Core.CoreUnitStats.CurrentHealth += MaxHealth;
     //        }
     //        if (duration == 999.0f)
     //        {
@@ -161,9 +161,9 @@ public class BuffSystem : MonoBehaviour
     //        }
     //        yield return new WaitForSeconds(duration);
     //        unit.Core.CoreUnitStats.StatsData += statsData * -1f;
-    //        if (statsData.MaxHealth != 0.0f)
+    //        if (MaxHealth != 0.0f)
     //        {
-    //            unit.Core.CoreUnitStats.CurrentHealth += statsData.MaxHealth * -1f;
+    //            unit.Core.CoreUnitStats.CurrentHealth += MaxHealth * -1f;
     //        }
     //        RemoveBuff(buff);
     //        yield break;

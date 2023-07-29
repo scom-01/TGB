@@ -82,7 +82,7 @@ public class HealthBar : MonoBehaviour
 
         if (m_Slider != null)
         {
-            m_Slider.value = Stats.CurrentHealth / Stats.StatsData.MaxHealth;
+            m_Slider.value = Stats.CurrentHealth / Stats.MaxHealth;
 
             if(m_IsFollow)
             {
@@ -98,7 +98,7 @@ public class HealthBar : MonoBehaviour
         }
         if (Txt != null) 
         {
-            Txt.text = string.Format($"{(int)Stats.CurrentHealth} / {Stats.StatsData.MaxHealth}");        
+            Txt.text = string.Format($"{(int)Stats.CurrentHealth} / {Stats.MaxHealth}");        
             Txt = this.GetComponentInChildren<TextMeshProUGUI>();
         }
     }

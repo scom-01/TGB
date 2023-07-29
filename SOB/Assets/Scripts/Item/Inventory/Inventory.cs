@@ -246,9 +246,9 @@ public class Inventory : MonoBehaviour
         AddStat(itemData.StatsData);
         //if (itemData.StatsDatas.MaxHealth != 0.0f)
         //{
-        //    Unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += itemData.StatsDatas.MaxHealth;
+        //    Unit.Core.CoreUnitStats.CurrentHealth += itemData.StatsDatas.MaxHealth;
         //}
-        Debug.Log($"Change UnitStats {unit.Core.GetCoreComponent<UnitStats>().StatsData}");
+        Debug.Log($"Change UnitStats {unit.Core.CoreUnitStats.StatsData}");
         //}
         return true;
     }
@@ -294,9 +294,9 @@ public class Inventory : MonoBehaviour
         AddStat(itemObject.StatsData);
         //if (itemObject.StatsDatas.MaxHealth != 0.0f)
         //{
-        //    Unit.Core.GetCoreComponent<UnitStats>().CurrentHealth += itemObject.StatsDatas.MaxHealth;
+        //    Unit.Core.CoreUnitStats.CurrentHealth += itemObject.StatsDatas.MaxHealth;
         //}
-        Debug.Log($"Change UnitStats {Unit.Core.GetCoreComponent<UnitStats>().StatsData}");
+        Debug.Log($"Change UnitStats {Unit.Core.CoreUnitStats.StatsData}");
         //}
         return true;
     }
@@ -322,7 +322,7 @@ public class Inventory : MonoBehaviour
                 ////아이템에 추가 체력 증가 옵션이 있을 경우 현재 체력에서 아이템 추가 체력의 일정 비율 감소
                 //if (itemData.StatsDatas.MaxHealth != 0.0f)
                 //{
-                //    Unit.Core.GetCoreComponent<UnitStats>().CurrentHealth -= itemData.StatsDatas.MaxHealth * 0.33f;
+                //    Unit.Core.CoreUnitStats.CurrentHealth -= itemData.StatsDatas.MaxHealth * 0.33f;
                 //}
 
                 _items.RemoveAt(i);
@@ -360,7 +360,7 @@ public class Inventory : MonoBehaviour
             AddStat(itemData.item.StatsData * -1f);
             //if (itemData.item.StatsDatas.MaxHealth != 0.0f)
             //{
-            //    Unit.Core.GetCoreComponent<UnitStats>().CurrentHealth -= itemData.item.StatsDatas.MaxHealth;
+            //    Unit.Core.CoreUnitStats.CurrentHealth -= itemData.item.StatsDatas.MaxHealth;
             //}
 
             _items.Remove(itemData);
@@ -385,6 +385,6 @@ public class Inventory : MonoBehaviour
     /// <param name="statsData"></param>
     private void AddStat(StatsData statsData)
     {
-        Unit.Core.GetCoreComponent<UnitStats>().StatsData += statsData;
+        Unit.Core.CoreUnitStats.StatsData += statsData;
     }
 }   

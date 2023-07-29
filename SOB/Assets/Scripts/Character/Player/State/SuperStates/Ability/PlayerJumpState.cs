@@ -32,7 +32,7 @@ public class PlayerJumpState : PlayerAbilityState
         Debug.Log("Jump");
         Debug.Log("Gravity = "+unit.RB.gravityScale);
         player.InputHandler.UseInput(ref player.InputHandler.JumpInput);
-        Movement.SetVelocityY(UnitStats.StatsData.JumpVelocity);
+        Movement.SetVelocityY(UnitStats.JumpVelocity);
         if (amountOfJumpLeft < player.playerData.amountOfJumps)
         {
             player.Core.CoreEffectManager.StartEffects(Jump_Effect, CollisionSenses.GroundCheck.position);

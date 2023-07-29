@@ -18,7 +18,7 @@ public class StatsPanel : MonoBehaviour
         Player = GameManager.Inst.StageManager?.player;
         if (Player)
         {
-            unitStats = Player.Core.GetCoreComponent<UnitStats>();
+            unitStats = Player.Core.CoreUnitStats;
         }
     }
     // Start is called before the first frame update
