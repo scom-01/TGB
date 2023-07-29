@@ -43,6 +43,11 @@ public class GlobalValue : MonoBehaviour
 
     #endregion
 
+    #region UI Prefab
+    public static GameObject DamageTextPrefab = Resources.Load<GameObject>("ScriptPath/UI/Prefabs/DamageText");
+    public static GameObject CriticalDamageTextPrefab = Resources.Load<GameObject>("ScriptPath/UI/Prefabs/CriticalDamageText");
+    #endregion
+
     #region UI Icon Path
     public const string Icon_UI_Path = "ScriptPath/UI/Goods";
     public const string Icon_Gold_Path = "GoldIcon";
