@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -57,15 +58,16 @@ public class UnlockItemData : MonoBehaviour
     {
         m_Index = _idx;
 
-        //Lock_DB안에 해당 Item이 있다면
-        if (GlobalValue.Lock_ItemDB.ItemDBList.Contains(GlobalValue.All_ItemDB.ItemDBList[m_Index]))
-        {
-            m_locked = true;
-        }
-        else
+        //UnlockItemList안에 해당 Item이 있다면
+        if (DataManager.Inst.JSON_DataParsing.UnlockItemList.Contains(GlobalValue.All_ItemDB.ItemDBList[m_Index].ItemIdx))
         {
             m_locked = false;
         }
+        else
+        {
+            m_locked = true;
+        }
+
         ItemLockImg.gameObject.SetActive(m_locked);
 
         if (ItemImg != null)

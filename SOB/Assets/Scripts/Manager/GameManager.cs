@@ -153,6 +153,7 @@ public class GameManager : MonoBehaviour
         if (PlayTimeUI == null)
             PlayTimeUI = this.GetComponentInChildren<PlayTimeManagerUI>();
 
+
         SetSaveData();
     }
 
@@ -184,6 +185,7 @@ public class GameManager : MonoBehaviour
         //DeafultData는 GameManager Start()시에 호출되어야한다.(ex.SkipCutSceneList)
         if (DataManager.Inst.JSON_DataParsing.Json_DefaultDataParsing())
         {
+            DataManager.Inst?.PlayerUnlockItem();
             DataManager.Inst?.LoadSkipCutSceneList();
         }
     }
@@ -394,7 +396,8 @@ public class GameManager : MonoBehaviour
         }
 
         if (DataManager.Inst.JSON_DataParsing.Json_Parsing())
-        {
+        {             
+            DataManager.Inst?.SetLockItemList();
             DataManager.Inst?.LoadPlayTime();
             DataManager.Inst?.PlayerInventoryDataLoad(StageManager.player.Inventory);
             DataManager.Inst?.PlayerCurrHealthLoad(StageManager.player.Core.CoreUnitStats);
@@ -464,23 +467,4 @@ public class GameManager : MonoBehaviour
             Instantiate(FadeOut);
         }
     }
-    //private void MoveScene()
-    //{
-    //    ChangeUI(UI_State.Loading);
-    //    SaveData();
-
-
-
-    //    if (StageManager != null) 
-    //    {
-    //        DataManager.Inst.NextStage(StageManager.NextStageNumber);
-    //    }
-    //    AsyncOperation operation = SceneManager.LoadSceneAsync("LoadingScene");
-    //}
-    //public void MoveTitle()
-    //{
-    //    ChangeUI(UI_State.Loading);
-    //    ResetData();
-    //    AsyncOperation operation = SceneManager.LoadSceneAsync("LoadingScene");
-    //}
 }

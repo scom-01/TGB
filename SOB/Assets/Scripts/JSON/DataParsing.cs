@@ -22,29 +22,35 @@ public struct ElementalGoods
     }
     public static ElementalGoods operator +(ElementalGoods s1, ElementalGoods s2)
     {
-        ElementalGoods temp = new ElementalGoods();
-        temp.FireGoods = s1.FireGoods + s2.FireGoods;
-        temp.WaterGoods = s1.WaterGoods + s2.WaterGoods;
-        temp.EarthGoods = s1.EarthGoods + s2.EarthGoods;
-        temp.WindGoods = s1.WindGoods + s2.WindGoods;
+        ElementalGoods temp = new ElementalGoods()
+        {
+            FireGoods = s1.FireGoods + s2.FireGoods,
+            WaterGoods = s1.WaterGoods + s2.WaterGoods,
+            EarthGoods = s1.EarthGoods + s2.EarthGoods,
+            WindGoods = s1.WindGoods + s2.WindGoods
+        };
         return temp;
     }
     public static ElementalGoods operator *(ElementalGoods s1, int s2)
     {
-        ElementalGoods temp = new ElementalGoods();
-        temp.FireGoods = s1.FireGoods * s2;
-        temp.WaterGoods = s1.WaterGoods * s2;
-        temp.EarthGoods = s1.EarthGoods * s2;
-        temp.WindGoods = s1.WindGoods * s2;
+        ElementalGoods temp = new ElementalGoods()
+        {
+            FireGoods = s1.FireGoods * s2,
+            WaterGoods = s1.WaterGoods * s2,
+            EarthGoods = s1.EarthGoods * s2,
+            WindGoods = s1.WindGoods * s2
+        };
         return temp;
     }
     public static ElementalGoods operator *(int s1, ElementalGoods s2)
     {
-        ElementalGoods temp = new ElementalGoods();
-        temp.FireGoods = s2.FireGoods * s1;
-        temp.WaterGoods = s2.WaterGoods * s1;
-        temp.EarthGoods = s2.EarthGoods * s1;
-        temp.WindGoods = s2.WindGoods * s1;
+        ElementalGoods temp = new ElementalGoods()
+        {
+            FireGoods = s2.FireGoods * s1,
+            WaterGoods = s2.WaterGoods * s1,
+            EarthGoods = s2.EarthGoods * s1,
+            WindGoods = s2.WindGoods * s1
+        };
         return temp;
     }
 
@@ -113,7 +119,7 @@ public struct ElementalGoods
     }
     public override bool Equals(object obj)
     {
-        if (ReferenceEquals(null, obj)) return false;
+        if (obj is null) /*ReferenceEquals(null, obj))*/ return false;
         return obj is ElementalGoods && Equals((ElementalGoods)obj);
     }
     public bool Equals(ElementalGoods s1)
@@ -298,11 +304,14 @@ public class DataParsing : MonoBehaviour
         public int[] SkipCutSceneList = new int[0];
         public int[] SkipBossCutScene = new int[0];
         public int[] UnlockItemIdxs = GlobalValue.DefaultUnlockItem;
+        public int[] WaitUnlockItemIdxs = new int[0];
+
         public JSON_DefaultData()
         {
             SkipCutSceneList = new int[0];
             SkipBossCutScene = new int[0];
             UnlockItemIdxs = GlobalValue.DefaultUnlockItem;
+            WaitUnlockItemIdxs = new int[0];
         }
         public void Print()
         {
@@ -337,12 +346,24 @@ public class DataParsing : MonoBehaviour
                 }
                 Debug.Log($"UnlockItemIdxs = {str}");
             }
+
+            if (WaitUnlockItemIdxs.Length > 0)
+            {
+                var str = "";
+                foreach (int idx in WaitUnlockItemIdxs)
+                {
+                    str += idx.ToString() + " ";
+                }
+                Debug.Log($"WaitUnlockItemIdxs = {str}");
+            }
         }
     }
 
     [HideInInspector] public List<int> SkipCutSceneList;
     [HideInInspector] public List<int> SkipBossCutScene;
     [HideInInspector] public List<int> UnlockItemList;
+    [HideInInspector] public List<int> WaitUnlockItemList;
+    [HideInInspector] public List<int> lockItemList;
     #endregion
 
     private bool Json_InventoryParsing()
@@ -447,7 +468,7 @@ public class DataParsing : MonoBehaviour
                 PlayerHealth = json.PlayerHealth;
                 PlayTime = json.PlayTime;
                 EnemyCount = json.EnemyCount;
-                BuffDatas = json.BuffDatas;                
+                BuffDatas = json.BuffDatas;
             }
             else
             {
@@ -492,6 +513,7 @@ public class DataParsing : MonoBehaviour
                 SkipCutSceneList = jtest2.SkipCutSceneList.ToList();
                 SkipBossCutScene = jtest2.SkipBossCutScene.ToList();
                 UnlockItemList = jtest2.UnlockItemIdxs.ToList();
+                WaitUnlockItemList = jtest2.WaitUnlockItemIdxs.ToList();
             }
             else
             {
@@ -500,6 +522,7 @@ public class DataParsing : MonoBehaviour
                 SkipCutSceneList = jTest1.SkipCutSceneList.ToList();
                 SkipBossCutScene = jTest1.SkipBossCutScene.ToList();
                 UnlockItemList = jTest1.UnlockItemIdxs.ToList();
+                WaitUnlockItemList = jTest1.WaitUnlockItemIdxs.ToList();
                 string jsonData = JsonConvert.SerializeObject(jTest1);
                 byte[] data = Encoding.UTF8.GetBytes(jsonData);
                 stream.Write(data, 0, data.Length);
@@ -720,6 +743,7 @@ public class DataParsing : MonoBehaviour
                 SkipCutSceneList = json.SkipCutSceneList.ToList();
                 SkipBossCutScene = json.SkipBossCutScene.ToList();
                 UnlockItemList = json.UnlockItemIdxs.ToList();
+                WaitUnlockItemList = json.WaitUnlockItemIdxs.ToList();
                 string jsonData = JsonConvert.SerializeObject(json);
                 byte[] data = Encoding.UTF8.GetBytes(jsonData);
                 stream.Write(data, 0, data.Length);
@@ -736,10 +760,11 @@ public class DataParsing : MonoBehaviour
 
     public bool JSON_InventorySave()
     {
-        JSON_Inventory inventory = new JSON_Inventory();
-        inventory.items = ItemListIdx.ToArray();
-        inventory.weapons = WeaponListIdx.ToArray();
-
+        JSON_Inventory inventory = new JSON_Inventory()
+        {
+            items = ItemListIdx.ToArray(),
+            weapons = WeaponListIdx.ToArray()
+        };
         try
         {
             inventory.Print();
@@ -789,8 +814,10 @@ public class DataParsing : MonoBehaviour
     public bool JSON_SceneDataSave()
     {
         PlayTime = GameManager.Inst.PlayTime;
-        JSON_SceneData sceneData = new JSON_SceneData(SceneNumber, SceneDataIdx, PlayerHealth, PlayTime, EnemyCount);
-        sceneData.BuffDatas = BuffDatas;
+        JSON_SceneData sceneData = new JSON_SceneData(SceneNumber, SceneDataIdx, PlayerHealth, PlayTime, EnemyCount)
+        {
+            BuffDatas = BuffDatas
+        };
         try
         {
             sceneData.Print();
@@ -815,10 +842,13 @@ public class DataParsing : MonoBehaviour
 
     public bool JSON_DefaultDataSave()
     {
-        JSON_DefaultData Data = new JSON_DefaultData();
-        Data.SkipCutSceneList = SkipCutSceneList.ToArray();
-        Data.SkipBossCutScene = SkipBossCutScene.ToArray();
-        Data.UnlockItemIdxs = UnlockItemList.ToArray();
+        JSON_DefaultData Data = new JSON_DefaultData()
+        {
+            SkipCutSceneList = SkipCutSceneList.ToArray(),
+            SkipBossCutScene = SkipBossCutScene.ToArray(),
+            UnlockItemIdxs = UnlockItemList.ToArray(),
+            WaitUnlockItemIdxs = WaitUnlockItemList.ToArray()
+        };
         try
         {
             Data.Print();

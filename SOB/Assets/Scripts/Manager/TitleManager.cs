@@ -69,7 +69,16 @@ public class TitleManager : MonoBehaviour
 
         if (GameManager.Inst.EffectTextUI.UnlockitemNames.Count > 0)
         {
-            GameManager.Inst.EffectTextUI.EffectTextOn();
+            GameManager.Inst.EffectTextUI.EffectTextOn();            
+        }
+
+        if (DataManager.Inst != null)
+        {
+            if (DataManager.Inst.JSON_DataParsing.WaitUnlockItemList.Count > 0)
+            {
+                DataManager.Inst.JSON_DataParsing.WaitUnlockItemList = new List<int>();
+                DataManager.Inst?.JSON_DataParsing.JSON_DefaultDataSave();
+            }
         }
 
         EventSystem.current.SetSelectedGameObject(buttons[0].gameObject);

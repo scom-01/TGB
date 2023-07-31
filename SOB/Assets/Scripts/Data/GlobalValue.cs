@@ -75,8 +75,6 @@ public class GlobalValue : MonoBehaviour
 
     #region DB_Path
     public static ItemDB All_ItemDB = Resources.Load<ItemDB>("DB/All_ItemDB");
-    public static ItemDB Lock_ItemDB = Resources.Load<ItemDB>("DB/Lock_ItemDB");
-    public static WeaponDB All_WeaponDB = Resources.Load<WeaponDB>("DB/All_WeaponDB");
 
     public static int[] DefaultUnlockItem = { 0, 1, 2, 3, 4, 5, 6, };
     #endregion
