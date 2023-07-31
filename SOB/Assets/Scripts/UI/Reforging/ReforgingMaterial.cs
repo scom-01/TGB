@@ -162,31 +162,31 @@ public class ReforgingMaterial : MonoBehaviour
             {
                 var goods = Instantiate(GoodsMaterial, GoodsTransform);
                 GoodsList.Add(goods);
-                goods.gameObject.GetComponent<GoodsMaterial>().UpdateGoodsMaterial(GOODS_TPYE.Gold, currentGoldAmount, reforgingCostGoldAmount);
+                goods.GetComponent<GoodsMaterial>().UpdateGoodsMaterial(GOODS_TPYE.Gold, currentGoldAmount, reforgingCostGoldAmount);
             }
             if (ReforgingWeaponDataSO.elementalgoods.FireGoods > 0)
             {
                 var goods = Instantiate(GoodsMaterial, GoodsTransform);
                 GoodsList.Add(goods);
-                goods.gameObject.GetComponent<GoodsMaterial>().UpdateGoodsMaterial(GOODS_TPYE.FireGoods, currentElementalGoodsAmount.FireGoods, reforgingCostElementalGoodsAmount.FireGoods);
+                goods.GetComponent<GoodsMaterial>().UpdateGoodsMaterial(GOODS_TPYE.FireGoods, currentElementalGoodsAmount.FireGoods, reforgingCostElementalGoodsAmount.FireGoods);
             }
             if (ReforgingWeaponDataSO.elementalgoods.WaterGoods > 0)
             {
                 var goods = Instantiate(GoodsMaterial, GoodsTransform);
                 GoodsList.Add(goods);
-                goods.gameObject.GetComponent<GoodsMaterial>().UpdateGoodsMaterial(GOODS_TPYE.WaterGoods, currentElementalGoodsAmount.WaterGoods, reforgingCostElementalGoodsAmount.WaterGoods);
+                goods.GetComponent<GoodsMaterial>().UpdateGoodsMaterial(GOODS_TPYE.WaterGoods, currentElementalGoodsAmount.WaterGoods, reforgingCostElementalGoodsAmount.WaterGoods);
             }
             if (ReforgingWeaponDataSO.elementalgoods.EarthGoods > 0)
             {
                 var goods = Instantiate(GoodsMaterial, GoodsTransform);
                 GoodsList.Add(goods);
-                goods.gameObject.GetComponent<GoodsMaterial>().UpdateGoodsMaterial(GOODS_TPYE.EarthGoods, currentElementalGoodsAmount.EarthGoods, reforgingCostElementalGoodsAmount.EarthGoods);
+                goods.GetComponent<GoodsMaterial>().UpdateGoodsMaterial(GOODS_TPYE.EarthGoods, currentElementalGoodsAmount.EarthGoods, reforgingCostElementalGoodsAmount.EarthGoods);
             }
             if (ReforgingWeaponDataSO.elementalgoods.WindGoods > 0)
             {
                 var goods = Instantiate(GoodsMaterial, GoodsTransform);
                 GoodsList.Add(goods);
-                goods.gameObject.GetComponent<GoodsMaterial>().UpdateGoodsMaterial(GOODS_TPYE.WindGoods, currentElementalGoodsAmount.WindGoods, reforgingCostElementalGoodsAmount.WindGoods);
+                goods.GetComponent<GoodsMaterial>().UpdateGoodsMaterial(GOODS_TPYE.WindGoods, currentElementalGoodsAmount.WindGoods, reforgingCostElementalGoodsAmount.WindGoods);
             }
         }
     }

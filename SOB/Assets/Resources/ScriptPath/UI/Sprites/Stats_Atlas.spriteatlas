@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Stats_Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 1024
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: c03b56d7869a8184294354bd9f999f29, type: 3}
+    - {fileID: 2800000, guid: a58118e121375e247ae78a7af674a931, type: 3}
+    - {fileID: 2800000, guid: d414f571a539ce045bd29255387bf33e, type: 3}
+    - {fileID: 2800000, guid: b1823d29ab524054caae88b947562329, type: 3}
+    - {fileID: 2800000, guid: 21948e07af9d9e44b97d56547ead25c6, type: 3}
+    - {fileID: 2800000, guid: 82d2003433b6edb4d86ea04e8ed9901f, type: 3}
+    - {fileID: 2800000, guid: 1d34abca008ce2b49b209e9d4a71919c, type: 3}
+    - {fileID: 2800000, guid: c5ea99e072dc4fd40a017ae4160aaeb3, type: 3}
+    - {fileID: 2800000, guid: 3a34fdbfd2859754989a6ceaa41499ec, type: 3}
+    - {fileID: 2800000, guid: e0a3f00c5a48fb641aa96243b0eb156e, type: 3}
+    - {fileID: 2800000, guid: c49299bfc6afbc0469f7a4b1522b2ecf, type: 3}
+    - {fileID: 2800000, guid: e93d269b5c8d7f94cbebf32e5e8d3e35, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: c5ea99e072dc4fd40a017ae4160aaeb3, type: 3}
+  - {fileID: 21300000, guid: d414f571a539ce045bd29255387bf33e, type: 3}
+  - {fileID: 21300000, guid: a58118e121375e247ae78a7af674a931, type: 3}
+  - {fileID: 21300000, guid: 82d2003433b6edb4d86ea04e8ed9901f, type: 3}
+  - {fileID: 21300000, guid: 21948e07af9d9e44b97d56547ead25c6, type: 3}
+  - {fileID: 21300000, guid: c03b56d7869a8184294354bd9f999f29, type: 3}
+  - {fileID: 21300000, guid: b1823d29ab524054caae88b947562329, type: 3}
+  - {fileID: 21300000, guid: 1d34abca008ce2b49b209e9d4a71919c, type: 3}
+  - {fileID: 21300000, guid: e93d269b5c8d7f94cbebf32e5e8d3e35, type: 3}
+  - {fileID: 21300000, guid: e0a3f00c5a48fb641aa96243b0eb156e, type: 3}
+  - {fileID: 21300000, guid: c49299bfc6afbc0469f7a4b1522b2ecf, type: 3}
+  - {fileID: 21300000, guid: 3a34fdbfd2859754989a6ceaa41499ec, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - MagicDef
+  - CriticalPer
+  - AttackSpeed
+  - JumpVelocity
+  - ElementalDef
+  - AdditionalCritical
+  - ElementalAgg
+  - MagicAgg
+  - PhysicsDef
+  - MoveSpeed
+  - PhysicsAgg
+  - MaxHealth
+  m_RenderDataMap: {}
+  m_Tag: Stats_Atlas
+  m_IsVariant: 0

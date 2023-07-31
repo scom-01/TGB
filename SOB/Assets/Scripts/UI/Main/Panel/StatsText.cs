@@ -30,15 +30,7 @@ public class StatsText : MonoBehaviour
     {
         get
         {
-            for (int i = 0; i< Sprites.Length; i++)
-            {
-                if (Sprites[i].name == Type.ToString())
-                {
-                    return Sprites[i];
-                }
-            }
-
-            if(Sprites.Length == 0)
+            if(SpriteAtlas.spriteCount > 0)
             {
                 return SpriteAtlas.GetSprite(Type.ToString());
             }
@@ -46,18 +38,6 @@ public class StatsText : MonoBehaviour
             return Resources.Load<Sprite>(GlobalValue.Sprites_UI_Path + "/" + Type.ToString());
         }
     }
-    private Sprite[] Sprites
-    {
-        get
-        {            
-            if (sprites.Length == 0)
-            {
-                sprites = Resources.LoadAll<Sprite>(GlobalValue.Sprites_UI_Path +"/"+ GlobalValue.StatsSprites_UI_Path);
-            }
-            return sprites;
-        }
-    }
-    private Sprite[] sprites = { };
 
     [SerializeField] private TextMeshProUGUI StatsPowerTxt;
     [SerializeField] private LocalizeStringEvent StatsTxtLocalizeStringEvent;
@@ -67,7 +47,7 @@ public class StatsText : MonoBehaviour
         get
         {
             float stats = 0f;
-            if (GameManager.Inst?.StageManager == null)
+            if (GameManager.Inst.StageManager == null)
                 return -1f;
             switch(Type)
             {
@@ -114,22 +94,22 @@ public class StatsText : MonoBehaviour
 
     private float OldStats = -1f;
 
-    private Canvas m_Canvas
+    private Canvas Canvas
     {
         get
         {
-            if(_canvas == null)
+            if(m_canvas == null)
             {
-                _canvas = this.GetComponentInParent<Canvas>();
+                m_canvas = this.GetComponentInParent<Canvas>();
             }
-            return _canvas;
+            return m_canvas;
         }
     }
-    private Canvas _canvas;
+    private Canvas m_canvas;
     // Update is called once per frame
     void Update()
     {
-        if(!m_Canvas.enabled)
+        if(!Canvas.enabled)
         {
             return;
         }
@@ -144,6 +124,7 @@ public class StatsText : MonoBehaviour
             if (OldStats != TypeStats)
             {                
                 StatsPowerTxt.text = TypeStats.ToString() + " %";
+                OldStats = TypeStats;
             }
         }
 
@@ -155,7 +136,10 @@ public class StatsText : MonoBehaviour
     [ContextMenu("Set Img")]
     private void SetImg()
     {
-        Img = this.GetComponent<Image>();
+        if (this.GetComponent<Image>() != null)
+        {
+            Img = this.GetComponent<Image>();
+        }
 
         if(Img == null)
         {

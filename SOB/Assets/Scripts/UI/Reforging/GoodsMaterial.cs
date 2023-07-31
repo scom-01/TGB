@@ -12,7 +12,7 @@ public class GoodsMaterial : MonoBehaviour
     {
         get
         {
-            if(m_SpriteAtlas ==null)
+            if (m_SpriteAtlas == null)
             {
                 m_SpriteAtlas = Resources.Load<SpriteAtlas>(GlobalValue.Sprites_UI_Path + "/Symbol_Atlas");
             }
@@ -20,37 +20,16 @@ public class GoodsMaterial : MonoBehaviour
         }
     }
     private SpriteAtlas m_SpriteAtlas;
-    private Sprite[] Sprites
-    {
-        get
-        {
-            if (sprites.Length == 0)
-            {
-                sprites = Resources.LoadAll<Sprite>(GlobalValue.Sprites_UI_Path + "/Symbol_Sheet");
-            }
-            return sprites;
-        }
-    }
-
-    private Sprite[] sprites = { };
     private Sprite GoldIcon
     {
         get
         {
             if (goldIcon == null)
             {
-                foreach (var sprite in Sprites)
-                {
-                    if (sprite.name == GlobalValue.Symbol_Gold_Path)
-                    {
-                        goldIcon = sprite;
-                        return goldIcon;
-                    }
-                }
-                goldIcon = Resources.Load<Sprite>(GlobalValue.Sprites_UI_Path + "/" + GlobalValue.Symbol_Gold_Path);
+                goldIcon = SpriteAtlas.GetSprite(GlobalValue.Symbol_Gold_Path);
                 if (goldIcon == null)
                 {
-                    goldIcon = SpriteAtlas.GetSprite(GlobalValue.Symbol_Gold_Path);
+                    goldIcon = Resources.Load<Sprite>(GlobalValue.Sprites_UI_Path + "/" + GlobalValue.Symbol_Gold_Path);
                 }
             }
             return goldIcon;
@@ -63,20 +42,13 @@ public class GoodsMaterial : MonoBehaviour
         {
             if (fireIcon == null)
             {
-                foreach (var sprite in Sprites)
-                {
-                    if (sprite.name == GlobalValue.Symbol_Fire_Path)
-                    {
-                        fireIcon = sprite;
-                        return fireIcon;
-                    }
-                }
-                fireIcon = Resources.Load<Sprite>(GlobalValue.Sprites_UI_Path + "/" + GlobalValue.Symbol_Fire_Path);
+                fireIcon = SpriteAtlas.GetSprite(GlobalValue.Symbol_Fire_Path);
                 if (fireIcon == null)
                 {
-                    fireIcon = SpriteAtlas.GetSprite(GlobalValue.Symbol_Fire_Path);
+                    fireIcon = Resources.Load<Sprite>(GlobalValue.Sprites_UI_Path + "/" + GlobalValue.Symbol_Fire_Path);
                 }
             }
+
             return fireIcon;
         }
     }
@@ -87,18 +59,10 @@ public class GoodsMaterial : MonoBehaviour
         {
             if (waterIcon == null)
             {
-                foreach (var sprite in Sprites)
-                {
-                    if (sprite.name == GlobalValue.Symbol_Water_Path)
-                    {
-                        waterIcon = sprite;
-                        return waterIcon;
-                    }
-                }
-                waterIcon = Resources.Load<Sprite>(GlobalValue.Sprites_UI_Path + "/" + GlobalValue.Symbol_Water_Path);
+                waterIcon = SpriteAtlas.GetSprite(GlobalValue.Symbol_Water_Path);
                 if (waterIcon == null)
                 {
-                    waterIcon = SpriteAtlas.GetSprite(GlobalValue.Symbol_Water_Path);
+                    waterIcon = Resources.Load<Sprite>(GlobalValue.Sprites_UI_Path + "/" + GlobalValue.Symbol_Water_Path);
                 }
             }
             return waterIcon;
@@ -111,18 +75,10 @@ public class GoodsMaterial : MonoBehaviour
         {
             if (earthIcon == null)
             {
-                foreach (var sprite in Sprites)
-                {
-                    if (sprite.name == GlobalValue.Symbol_Earth_Path)
-                    {
-                        earthIcon = sprite;
-                        return earthIcon;
-                    }
-                }
-                earthIcon = Resources.Load<Sprite>(GlobalValue.Sprites_UI_Path + "/" + GlobalValue.Symbol_Earth_Path);
+                earthIcon = SpriteAtlas.GetSprite(GlobalValue.Symbol_Earth_Path);
                 if (earthIcon == null)
                 {
-                    earthIcon = SpriteAtlas.GetSprite(GlobalValue.Symbol_Earth_Path);
+                    earthIcon = Resources.Load<Sprite>(GlobalValue.Sprites_UI_Path + "/" + GlobalValue.Symbol_Earth_Path);
                 }
             }
             return earthIcon;
@@ -135,18 +91,10 @@ public class GoodsMaterial : MonoBehaviour
         {
             if (windIcon == null)
             {
-                foreach (var sprite in Sprites)
+                windIcon = SpriteAtlas.GetSprite(GlobalValue.Symbol_Wind_Path);
+                if (windIcon == null)
                 {
-                    if (sprite.name == GlobalValue.Symbol_Wind_Path)
-                    {
-                        windIcon = sprite;
-                        return windIcon;
-                    }
-                }
-                windIcon = Resources.Load<Sprite>(GlobalValue.Sprites_UI_Path + "/" + GlobalValue.Symbol_Wind_Path);
-                if(windIcon ==null)
-                {
-                    windIcon = SpriteAtlas.GetSprite(GlobalValue.Symbol_Wind_Path);
+                    windIcon = Resources.Load<Sprite>(GlobalValue.Sprites_UI_Path + "/" + GlobalValue.Symbol_Wind_Path); ;
                 }
             }
             return windIcon;
@@ -207,7 +155,7 @@ public class GoodsMaterial : MonoBehaviour
                 reforgingImg.sprite = img;
             }
         }
-        
+
         if (CurrGoodsCountTxt != null)
         {
             CurrGoodsCountTxt.color = DefaultColor;
