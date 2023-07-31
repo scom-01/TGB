@@ -56,7 +56,7 @@ public class UnlockItemList : MonoBehaviour
                 nav.selectOnRight = UnlockItems[i + 1].GetComponent<Button>();
             }
 
-            if (i - 8 > 0)
+            if (i - 8 >= 0)
             {
                 nav.selectOnUp = UnlockItems[i - 8].GetComponent<Button>();
             }
