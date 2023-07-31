@@ -31,7 +31,7 @@ public class LoadSceneController : MonoBehaviour
             return;
 
         GameManager.Inst.ChangeUI(UI_State.Loading);
-
+        DataManager.Inst?.NextStage(2);
         AsyncOperation operation = SceneManager.LoadSceneAsync("LoadingScene");
     }
 
