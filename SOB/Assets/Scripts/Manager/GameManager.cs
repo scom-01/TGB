@@ -410,7 +410,7 @@ public class GameManager : MonoBehaviour
         DataManager.Inst?.UnlockItemList.Clear();
     }
 
-    private void Data_Save()
+    public void Data_Save()
     {
         if (DataManager.Inst == null)
             return;
@@ -422,7 +422,7 @@ public class GameManager : MonoBehaviour
         DataManager.Inst?.SaveScene(StageManager.CurrStageNumber);
         DataManager.Inst.PlayerInventoryDataSave(
             GameManager.Inst.StageManager.player.Inventory.Weapon,
-            GameManager.Inst.StageManager.player.Inventory._items);
+            GameManager.Inst.StageManager.player.Inventory.Items);
         DataManager.Inst?.SaveBuffs(GameManager.Inst.StageManager.player.GetComponent<BuffSystem>().buffs);
         DataManager.Inst?.PlayerCurrHealthSave(
             (int)GameManager.Inst.StageManager.player.Core.CoreUnitStats.CurrentHealth);
@@ -450,7 +450,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void ClearScene()
-    {
+    {        
         var FadeOut = Resources.Load<GameObject>(GlobalValue.FadeOutCutScene);
         if (FadeOut != null)
         {

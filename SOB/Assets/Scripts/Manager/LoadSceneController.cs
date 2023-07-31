@@ -9,7 +9,7 @@ public class LoadSceneController : MonoBehaviour
     {
         if (GameManager.Inst == null)
             return;
-
+                
         GameManager.Inst.ChangeUI(UI_State.Loading);
         GameManager.Inst.SaveData();
 

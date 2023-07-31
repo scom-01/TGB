@@ -36,11 +36,11 @@ public class StageManager : MonoBehaviour
     public GameObject PlayerPrefab;
     private GameObject playerGO;
     public Player player;
-    
+
     [SerializeField] private GameObject SceneNameFade;
 
     public PlayableDirector CutSceneDirector;
-    
+
     [HideInInspector] public bool isStageClear = false;
     [HideInInspector] public CinemachineVirtualCamera CVC;
 
@@ -79,29 +79,49 @@ public class StageManager : MonoBehaviour
     {
         if (DataManager.Inst != null)
         {
-            if (MasterManagerList.Count > 0)
+            if(MasterManagerList.Count > 0)
             {
-                if (MasterManagerList.Count < DataManager.Inst.JSON_DataParsing.SceneDataIdx || DataManager.Inst.JSON_DataParsing.SceneDataIdx <= 1) 
+                var idx = DataManager.Inst.JSON_DataParsing.SceneDataIdx % MasterManagerList.Count;
+
+                if (idx == MasterManagerList.Count)
                 {
-                    MasterManagerList[0].gameObject.SetActive(true);
-                    IM = MasterManagerList[0].GetComponentInChildren<ItemManager>();
-                    SPM = MasterManagerList[0].GetComponentInChildren<SpawnManager>();
+                    MasterManagerList[idx - 1].gameObject.SetActive(true);
+                    IM = MasterManagerList[idx - 1].GetComponentInChildren<ItemManager>();
+                    SPM = MasterManagerList[idx - 1].GetComponentInChildren<SpawnManager>();
                 }
                 else
                 {
-                    MasterManagerList[DataManager.Inst.JSON_DataParsing.SceneDataIdx - 1].gameObject.SetActive(true);
-                    IM = MasterManagerList[DataManager.Inst.JSON_DataParsing.SceneDataIdx - 1].GetComponentInChildren<ItemManager>();
-                    SPM = MasterManagerList[DataManager.Inst.JSON_DataParsing.SceneDataIdx - 1].GetComponentInChildren<SpawnManager>();
+                    MasterManagerList[idx].gameObject.SetActive(true);
+                    IM = MasterManagerList[idx].GetComponentInChildren<ItemManager>();
+                    SPM = MasterManagerList[idx].GetComponentInChildren<SpawnManager>();
                 }
             }
-            else
-            {
-                if (IM == null)
-                    IM = GameObject.Find("ItemManager").GetComponent<ItemManager>();
 
-                if (SPM == null)
-                    SPM = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
-            }
+            if (IM == null)
+                IM = GameObject.Find("ItemManager").GetComponent<ItemManager>();
+
+            if (SPM == null)
+                SPM = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+
+            //if (MasterManagerList.Count > 0)
+            //{
+            //    if (MasterManagerList.Count < DataManager.Inst.JSON_DataParsing.SceneDataIdx || DataManager.Inst.JSON_DataParsing.SceneDataIdx <= 1)
+            //    {
+            //        MasterManagerList[0].gameObject.SetActive(true);
+            //        IM = MasterManagerList[0].GetComponentInChildren<ItemManager>();
+            //        SPM = MasterManagerList[0].GetComponentInChildren<SpawnManager>();
+            //    }
+            //    else
+            //    {
+            //        MasterManagerList[DataManager.Inst.JSON_DataParsing.SceneDataIdx - 1].gameObject.SetActive(true);
+            //        IM = MasterManagerList[DataManager.Inst.JSON_DataParsing.SceneDataIdx - 1].GetComponentInChildren<ItemManager>();
+            //        SPM = MasterManagerList[DataManager.Inst.JSON_DataParsing.SceneDataIdx - 1].GetComponentInChildren<SpawnManager>();
+            //    }
+            //}
+            //else
+            //{
+                
+            //}
         }
 
         if (respawnPoint == null)
@@ -111,7 +131,7 @@ public class StageManager : MonoBehaviour
         //Loading시 ESC를 눌러서 Pause가 됐을 때 생기는 오류 방지
         GameManager.Inst.Continue();
         GameManager.Inst.LoadData();
-        GameManager.Inst.SaveData();
+        GameManager.Inst.Data_Save();
 
         //씬 이름 애니메이션 Instantiate
         if (SceneNameFade != null)

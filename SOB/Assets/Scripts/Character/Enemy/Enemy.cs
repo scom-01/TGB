@@ -30,7 +30,7 @@ public class Enemy : Unit
 
     public override void DieEffect()
     {
-        var item = Inventory._items;
+        var item = Inventory.Items;
         int count = item.Count;
 
         if(count > 0)

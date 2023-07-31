@@ -127,9 +127,9 @@ namespace SOB.Manager
         {
             if (PlayerInventory != null)
             {
-                for (int i = 0; i < PlayerInventory._items.Count; i++)
+                for (int i = 0; i < PlayerInventory.Items.Count; i++)
                 {
-                    InventoryItems.Items[i].StatsItemData = PlayerInventory._items[i].item;
+                    InventoryItems.Items[i].StatsItemData = PlayerInventory.Items[i].item;
                 }
             }                
         }

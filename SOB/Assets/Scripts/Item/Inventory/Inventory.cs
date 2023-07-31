@@ -69,7 +69,7 @@ public class Inventory : MonoBehaviour
     }
 
     //public List<StatsItemSO> items = new List<StatsItemSO>();
-    public List<ItemSet> _items = new List<ItemSet>();
+    public List<ItemSet> Items = new List<ItemSet>();
     public List<StatsItemSO> Inititems = new List<StatsItemSO>();
     public GameObject CheckItem;
 
@@ -78,10 +78,10 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         weaponData = Weapon.weaponData;
-        if (_items == null || _items?.Count == 0)
+        if (Items == null || Items?.Count == 0)
         {
             Debug.LogWarning($"{transform.name}'s Items is empty in The Inventory");
-            _items = new List<ItemSet>();
+            Items = new List<ItemSet>();
         }
 
         if (Inititems.Count != 0)
@@ -89,11 +89,11 @@ public class Inventory : MonoBehaviour
             foreach (var item in Inititems)
             {
                 ItemSet _item = new ItemSet(item, Time.time);
-                _items.Add(_item);
+                Items.Add(_item);
             }
         }
 
-        ItemCount = _items.Count;
+        ItemCount = Items.Count;
     }
 
     private void Update()
@@ -108,19 +108,19 @@ public class Inventory : MonoBehaviour
     /// <returns></returns>
     public bool ItemOnHitExecute(Unit unit)
     {
-        for (int i = 0; i < _items.Count; i++)
+        for (int i = 0; i < Items.Count; i++)
         {
-            for (int j = 0; j < _items[i].item.ItemEffects.Count; j++)
+            for (int j = 0; j < Items[i].item.ItemEffects.Count; j++)
             {
-                if (_items[i].item.ItemEffects[j] == null)
+                if (Items[i].item.ItemEffects[j] == null)
                     continue;
 
-                if (_items[i].OnHitCount.Count < j + 1)
+                if (Items[i].OnHitCount.Count < j + 1)
                 {
-                    _items[i].OnHitCount.Add(0);
+                    Items[i].OnHitCount.Add(0);
 
                 }
-                _items[i].OnHitCount[j]= _items[i].item.ExeOnHit(unit, _items[i].item.ItemEffects[j], _items[i].OnHitCount[j]);
+                Items[i].OnHitCount[j]= Items[i].item.ExeOnHit(unit, Items[i].item.ItemEffects[j], Items[i].OnHitCount[j]);
             }
         }
         return true;
@@ -133,19 +133,19 @@ public class Inventory : MonoBehaviour
     /// <returns></returns>
     public bool ItemOnHitExecute(Unit unit, Unit Enemy)
     {
-        for (int i = 0; i < _items.Count; i++)
+        for (int i = 0; i < Items.Count; i++)
         {
-            for (int j = 0; j < _items[i].item.ItemEffects.Count; j++)
+            for (int j = 0; j < Items[i].item.ItemEffects.Count; j++)
             {
-                if (_items[i].item.ItemEffects[j] == null)
+                if (Items[i].item.ItemEffects[j] == null)
                     continue;
 
-                if (_items[i].OnHitCount.Count < j + 1)
+                if (Items[i].OnHitCount.Count < j + 1)
                 {
-                    _items[i].OnHitCount.Add(0);
+                    Items[i].OnHitCount.Add(0);
 
                 }
-                _items[i].OnHitCount[j] = _items[i].item.ExeOnHit(unit, Enemy, _items[i].item.ItemEffects[j], _items[i].OnHitCount[j]);
+                Items[i].OnHitCount[j] = Items[i].item.ExeOnHit(unit, Enemy, Items[i].item.ItemEffects[j], Items[i].OnHitCount[j]);
             }
         }
         return true;
@@ -158,37 +158,37 @@ public class Inventory : MonoBehaviour
     /// <returns></returns>
     public bool ItemActionExecute(Unit unit)
     {
-        for (int i = 0; i < _items.Count; i++)
+        for (int i = 0; i < Items.Count; i++)
         {
-            for (int j = 0; j < _items[i].item.ItemEffects.Count; j++)
+            for (int j = 0; j < Items[i].item.ItemEffects.Count; j++)
             {
-                if (_items[i].item.ItemEffects[j] == null)
+                if (Items[i].item.ItemEffects[j] == null)
                     continue;
 
-                if (_items[i].OnActionCount.Count < j + 1)
+                if (Items[i].OnActionCount.Count < j + 1)
                 {
-                    _items[i].OnActionCount.Add(0);
+                    Items[i].OnActionCount.Add(0);
 
                 }
-                _items[i].OnActionCount[j] = _items[i].item.ExeAction(unit, _items[i].item.ItemEffects[j], _items[i].OnActionCount[j]);
+                Items[i].OnActionCount[j] = Items[i].item.ExeAction(unit, Items[i].item.ItemEffects[j], Items[i].OnActionCount[j]);
             }
         }
         return true;
     }
     public bool ItemExeUpdate(Unit unit)
     {
-        for (int i = 0; i < _items.Count; i++)
+        for (int i = 0; i < Items.Count; i++)
         {
-            for (int j = 0; j < _items[i].item.ItemEffects.Count; j++)
+            for (int j = 0; j < Items[i].item.ItemEffects.Count; j++)
             {
-                if (_items[i].item.ItemEffects[j] == null)
+                if (Items[i].item.ItemEffects[j] == null)
                     continue;
-                if(_items[i].startTime.Count < j + 1)
+                if(Items[i].startTime.Count < j + 1)
                 {
-                    _items[i].startTime.Add(0);
+                    Items[i].startTime.Add(0);
                     
                 }
-                _items[i].startTime[j] = _items[i].item.ExeUpdate(unit, _items[i].item.ItemEffects[j], _items[i].startTime[j]);
+                Items[i].startTime[j] = Items[i].item.ExeUpdate(unit, Items[i].item.ItemEffects[j], Items[i].startTime[j]);
             }
         }
         return true;
@@ -213,16 +213,16 @@ public class Inventory : MonoBehaviour
         StatsItemSO itemData = itemObject.GetComponent<SOB_Item>().Item;
 
         //중복금지
-        for (int i = 0; i < _items.Count; i++)
+        for (int i = 0; i < Items.Count; i++)
         {
-            if (_items[i].item == itemData)
+            if (Items[i].item == itemData)
             {
                 Debug.Log($"Contians {itemData.name}, fail add");
                 return false;
             }
         }
 
-        if (_items.Count >= 8)
+        if (Items.Count >= 8)
         {
             CheckItem = itemObject;
             Debug.LogWarning("Inventory is full");
@@ -240,7 +240,7 @@ public class Inventory : MonoBehaviour
             GameManager.Inst.SubUI.InventorySubUI.InventoryItems.AddItem(itemData);
 
         ItemSet item = new ItemSet(itemData, Time.time);
-        _items.Add(item);
+        Items.Add(item);
 
         ItemCount++;
         AddStat(itemData.StatsData);
@@ -254,7 +254,7 @@ public class Inventory : MonoBehaviour
     }
     public bool AddInventoryItem(StatsItemSO itemObject)
     {
-        if (_items.Count >= 8)
+        if (Items.Count >= 8)
         {
             CheckItem = itemObject.GameObject();
             Debug.LogWarning("Inventory is full");
@@ -267,9 +267,9 @@ public class Inventory : MonoBehaviour
             return false;
         }
 
-        for (int i = 0; i < _items.Count; i++)
+        for (int i = 0; i < Items.Count; i++)
         {
-            if (_items[i].item == itemObject)
+            if (Items[i].item == itemObject)
             {
                 Debug.Log($"Contians {itemObject.name}, fail add");
                 return false;
@@ -288,7 +288,7 @@ public class Inventory : MonoBehaviour
         if (Unit.GetType() == typeof(Player))
             GameManager.Inst.SubUI.InventorySubUI.InventoryItems.AddItem(itemObject);
         ItemSet item = new ItemSet(itemObject, Time.time);
-        _items.Add(item);
+        Items.Add(item);
 
         ItemCount++;
         AddStat(itemObject.StatsData);
@@ -313,9 +313,9 @@ public class Inventory : MonoBehaviour
             return false;
         }
 
-        for (int i = 0; i < _items.Count; i++)
+        for (int i = 0; i < Items.Count; i++)
         {
-            if (_items[i].item == itemData)
+            if (Items[i].item == itemData)
             {
                 Debug.Log($"Remove Item {itemData.name}");
                 AddStat(itemData.StatsData * -1f);
@@ -325,7 +325,7 @@ public class Inventory : MonoBehaviour
                 //    Unit.Core.CoreUnitStats.CurrentHealth -= itemData.StatsDatas.MaxHealth * 0.33f;
                 //}
 
-                _items.RemoveAt(i);
+                Items.RemoveAt(i);
 
                 if (unit.GetType() == typeof(Player))
                     GameManager.Inst.SubUI.InventorySubUI.InventoryItems.RemoveItem(itemData);
@@ -354,7 +354,7 @@ public class Inventory : MonoBehaviour
             return false;
         }
 
-        if (_items.Contains(itemData))
+        if (Items.Contains(itemData))
         {
             Debug.Log($"Remove Item {itemData.item.name}");
             AddStat(itemData.item.StatsData * -1f);
@@ -363,7 +363,7 @@ public class Inventory : MonoBehaviour
             //    Unit.Core.CoreUnitStats.CurrentHealth -= itemData.item.StatsDatas.MaxHealth;
             //}
 
-            _items.Remove(itemData);
+            Items.Remove(itemData);
 
             if (Unit.GetType() == typeof(Player))
                 GameManager.Inst.SubUI.InventorySubUI.InventoryItems.RemoveItem(itemData.item);

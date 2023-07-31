@@ -15,6 +15,11 @@ public class OpenGate : InteractiveObject
         if (isDone)
             return;
 
+        //씬 이동할 때마다 게임 Idx 설정
+        DataManager.Inst.JSON_DataParsing.SceneDataIdx = UnityEngine.Random.Range(0, GlobalValue.MaxSceneIdx);
+
+        GameManager.Inst.Data_Save();
+
         Debug.LogWarning("OpenGate");
         GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.Cfg, false);
         GameManager.Inst?.ClearScene();

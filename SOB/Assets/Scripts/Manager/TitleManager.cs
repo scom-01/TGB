@@ -99,10 +99,6 @@ public class TitleManager : MonoBehaviour
         
         GameManager.Inst.ResetData();
         
-        //새 게임 생성 시 게임 Idx 설정
-        DataManager.Inst.JSON_DataParsing.SceneDataIdx = UnityEngine.Random.Range(0, 10);
-        DataManager.Inst.SaveSceneDataIdx(DataManager.Inst.JSON_DataParsing.SceneDataIdx);
-
         DataManager.Inst?.NextStage(3);
         GameManager.Inst.ClearScene();
         isDone = true;

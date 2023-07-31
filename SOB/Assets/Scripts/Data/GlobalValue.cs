@@ -33,6 +33,7 @@ public class GlobalValue : MonoBehaviour
     public const string Language = "Language";
 
     public const string UI_Table = "Localization/StringTables/UI_Table";
+    #endregion
 
     public const string FadeInCutScene = "TimeLine/FadeIn";
     public const string FadeOutCutScene = "TimeLine/FadeOut";
@@ -41,7 +42,6 @@ public class GlobalValue : MonoBehaviour
     public const string GoldCount = "GoldCount";
     public const string ElementalCount = "ElementalCount";
 
-    #endregion
 
     #region UI Prefab
     public static GameObject DamageTextPrefab = Resources.Load<GameObject>("ScriptPath/UI/Prefabs/DamageText");
@@ -75,7 +75,7 @@ public class GlobalValue : MonoBehaviour
 
     #region DB_Path
     public static ItemDB All_ItemDB = Resources.Load<ItemDB>("DB/All_ItemDB");
-
+    public const int MaxSceneIdx = 50;
     public static int[] DefaultUnlockItem = { 0, 1, 2, 3, 4, 5, 6, };
     #endregion
     /// <summary>
