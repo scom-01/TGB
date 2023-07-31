@@ -12,32 +12,52 @@ public class StatsText : MonoBehaviour
 {
     [SerializeField] private Stats_TYPE Type;
     [SerializeField] private Image Img;
+
+    private SpriteAtlas SpriteAtlas
+    {
+        get
+        {
+            if (m_SpriteAtlas == null)
+            {
+                m_SpriteAtlas = Resources.Load<SpriteAtlas>(GlobalValue.Sprites_UI_Path + "/Stats_Atlas");
+            }
+            return m_SpriteAtlas;
+        }
+    }
+    private SpriteAtlas m_SpriteAtlas;
+
     private Sprite TypeSprite
     {
         get
         {
-            for (int i = 0; i< SpriteAtlas.Length; i++)
+            for (int i = 0; i< Sprites.Length; i++)
             {
-                if (SpriteAtlas[i].name == Type.ToString())
+                if (Sprites[i].name == Type.ToString())
                 {
-                    return SpriteAtlas[i];
+                    return Sprites[i];
                 }
             }
+
+            if(Sprites.Length == 0)
+            {
+                return SpriteAtlas.GetSprite(Type.ToString());
+            }
+
             return Resources.Load<Sprite>(GlobalValue.Sprites_UI_Path + "/" + Type.ToString());
         }
     }
-    private Sprite[] SpriteAtlas
+    private Sprite[] Sprites
     {
         get
         {            
-            if (spriteAtlas.Length == 0)
+            if (sprites.Length == 0)
             {
-                spriteAtlas = Resources.LoadAll<Sprite>(GlobalValue.Sprites_UI_Path +"/"+ GlobalValue.StatsSprites_UI_Path);
+                sprites = Resources.LoadAll<Sprite>(GlobalValue.Sprites_UI_Path +"/"+ GlobalValue.StatsSprites_UI_Path);
             }
-            return spriteAtlas;
+            return sprites;
         }
     }
-    private Sprite[] spriteAtlas = { };
+    private Sprite[] sprites = { };
 
     [SerializeField] private TextMeshProUGUI StatsPowerTxt;
     [SerializeField] private LocalizeStringEvent StatsTxtLocalizeStringEvent;

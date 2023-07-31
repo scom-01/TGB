@@ -296,7 +296,6 @@ public class DataManager : MonoBehaviour
         {
             try
             {
-
                 File.Delete(Application.dataPath + JSON_DataParsing.DefaultData_FilePath);
                 
                 if (GameManager.Inst != null)
