@@ -34,23 +34,7 @@ namespace SOB.CoreSystem
 
         public void Damage(StatsData AttackterCommonData, StatsData VictimCommonData, float amount)
         {
-            if (death.Comp.isDead)
-            {
-                Debug.Log(core.Unit.name + "is Dead");
-                return;
-            }
-
-            if (isHit)
-            {
-                Debug.Log(core.Unit.name + " isHit = true");
-                return;
-            }
-            Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
-
-            var damage = stats.Comp.DecreaseHealth(AttackterCommonData, VictimCommonData, AttackterCommonData.Elemental, AttackterCommonData.DamageAttiribute, amount);
-            isHit = true;
-            stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
-            RandomEffectInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
+            Damage(AttackterCommonData,VictimCommonData,AttackterCommonData.Elemental, amount);
         }
         public void Damage(StatsData AttackterCommonData, StatsData VictimCommonData, E_Power _elemental, float amount)
         {
@@ -67,10 +51,35 @@ namespace SOB.CoreSystem
             }
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
 
+            bool isCritical = false;
+            //크리티컬 계산
+            if (AttackterCommonData.CriticalPer >= Random.Range(0, 100.0f))
+            {
+                isCritical = true;
+                amount *= 1f + (AttackterCommonData.AdditionalCriticalPer / 100.0f);
+            }
+
             var damage = stats.Comp.DecreaseHealth(AttackterCommonData, VictimCommonData, _elemental, AttackterCommonData.DefaultPower + amount);
             isHit = true;
             stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
-            RandomEffectInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
+            RandomEffectInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute, isCritical);
+        }
+        public void Damage(StatsData AttackterCommonData, StatsData VictimCommonData, float amount, int repeat)
+        {
+            if (death.Comp.isDead)
+            {
+                Debug.Log(core.Unit.name + "is Dead");
+                return;
+            }
+
+            if (isHit)
+                return;
+
+            for (int i = 0; i < repeat; i++)
+            {                
+                TrueDamage(AttackterCommonData, VictimCommonData, amount);
+            }
+            isHit = true;
         }
         /// <summary>
         /// 히트 무적 무시
@@ -80,16 +89,7 @@ namespace SOB.CoreSystem
         /// <param name="amount"></param>
         public void TrueDamage(StatsData AttackterCommonData, StatsData VictimCommonData, float amount)
         {
-            if (death.Comp.isDead)
-            {
-                Debug.Log(core.Unit.name + "is Dead");
-                return;
-            }
-
-            Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
-            var damage = stats.Comp.DecreaseHealth(AttackterCommonData, VictimCommonData, AttackterCommonData.Elemental, amount);
-            stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
-            RandomEffectInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
+            TrueDamage(AttackterCommonData, VictimCommonData, AttackterCommonData.Elemental, AttackterCommonData.DamageAttiribute, amount);
         }
         public void TrueDamage(StatsData AttackterCommonData, StatsData VictimCommonData,E_Power _Elemental, DAMAGE_ATT attribute, float amount)
         {
@@ -99,28 +99,20 @@ namespace SOB.CoreSystem
                 return;
             }
 
+            bool isCritical = false;
+            //크리티컬 계산
+            if (AttackterCommonData.CriticalPer >= Random.Range(0, 100.0f))
+            {
+                isCritical = true;
+                amount *= 1f + (AttackterCommonData.AdditionalCriticalPer / 100.0f);
+            }
+
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
             var damage = stats.Comp.DecreaseHealth(AttackterCommonData, VictimCommonData, _Elemental, attribute, amount);
             stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
-            RandomEffectInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
+            RandomEffectInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute, isCritical);
         }
 
-        public void Damage(StatsData AttackterCommonData, StatsData VictimCommonData, float amount, int repeat)
-        {
-            if (isHit)
-                return;
-
-            for (int i = 0; i < repeat; i++)
-            {
-                //크리티컬 계산
-                if (AttackterCommonData.CriticalPer >= Random.Range(0, 100.0f))
-                {
-                    amount *= 1f + (AttackterCommonData.AdditionalCriticalPer / 100.0f);
-                }
-                TrueDamage(AttackterCommonData, VictimCommonData, amount);
-            }
-            isHit = true;
-        }
 
         /// <summary>
         /// 
@@ -140,7 +132,7 @@ namespace SOB.CoreSystem
                 Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
                 var damage = stats.Comp.DecreaseHealth(amount);
                 stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
-                RandomEffectInstantiate(1.0f, damage, 50, DAMAGE_ATT.Fixed);
+                RandomEffectInstantiate(1.0f, damage, 50, DAMAGE_ATT.Fixed, false);
             }
             else
             {
@@ -153,7 +145,7 @@ namespace SOB.CoreSystem
                 var damage = stats.Comp.DecreaseHealth(amount);
                 isHit = true;
                 stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
-                RandomEffectInstantiate(1.0f, damage, 50, DAMAGE_ATT.Fixed);
+                RandomEffectInstantiate(1.0f, damage, 50, DAMAGE_ATT.Fixed, false);
             }
         }
         public void TrapDamage(StatsData AttackterCommonData, float amount)
@@ -228,14 +220,28 @@ namespace SOB.CoreSystem
 
         public GameObject RandomEffectInstantiate(float range, float damage, float fontSize, DAMAGE_ATT damageAttiribute)
         {
+            return RandomEffectInstantiate(range, damage, fontSize, damageAttiribute, false);
+        }
+        public GameObject RandomEffectInstantiate(float range, float damage, float fontSize, DAMAGE_ATT damageAttiribute, bool isCritical = false)
+        {
             var randomPos = new Vector2(transform.position.x + Random.Range(-range, range), transform.position.y + Random.Range(-range, range));
 
             var pos = new Vector2((Camera.main.WorldToViewportPoint(randomPos).x * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x * 0.5f),
                                     (Camera.main.WorldToViewportPoint(randomPos).y * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y * 0.5f) + 50);   //50 = DamageText의 높이
-            
-            var damageText = Instantiate(GlobalValue.DamageTextPrefab,
+
+            GameObject damageText;
+            if (isCritical)
+            {
+                damageText = Instantiate(GlobalValue.CriticalDamageTextPrefab,
                             new Vector3(pos.x, pos.y),
                             Quaternion.identity, GameManager.Inst.DamageUI.transform);
+            }
+            else
+            {
+                damageText = Instantiate(GlobalValue.DamageTextPrefab,
+                            new Vector3(pos.x, pos.y),
+                            Quaternion.identity, GameManager.Inst.DamageUI.transform);
+            }            
 
             damageText.GetComponent<RectTransform>().anchoredPosition = pos;
             switch (damageAttiribute)
