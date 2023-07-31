@@ -5,8 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class LoadSceneController : MonoBehaviour
 {
+    private bool isMoveScene = false;
     public void MoveScene()
     {
+        if (isMoveScene)
+            return;
+
         if (GameManager.Inst == null)
             return;
                 
@@ -18,6 +22,7 @@ public class LoadSceneController : MonoBehaviour
             DataManager.Inst.NextStage(GameManager.Inst.StageManager.NextStageNumber);
         }
         AsyncOperation operation = SceneManager.LoadSceneAsync("LoadingScene");
+        isMoveScene = true;
     }
 
     public void MoveTitle()
@@ -28,5 +33,11 @@ public class LoadSceneController : MonoBehaviour
         GameManager.Inst.ChangeUI(UI_State.Loading);
 
         AsyncOperation operation = SceneManager.LoadSceneAsync("LoadingScene");
+    }
+
+    private void Start()
+    {
+        //혹시나 애니메이션이 멈춤이 발생할 경우를 대비
+        Invoke("MoveScene", 5f);
     }
 }
