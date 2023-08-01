@@ -8,7 +8,7 @@ public class EffectController : MonoBehaviour
     public bool isDestroy = false;
     private ParticleSystem particle;
     private EffectPooling parent;
-
+    [SerializeField] private float isLoopDurationTime;
     public void Start()
     {
         particle = this.GetComponent<ParticleSystem>();
@@ -28,6 +28,10 @@ public class EffectController : MonoBehaviour
             {                
                 main.stopAction = ParticleSystemStopAction.Disable;
             }
+        }
+        if (isLoopDurationTime > 0.0f)
+        {
+            Invoke("FinishAnim", isLoopDurationTime);
         }
     }
 

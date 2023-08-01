@@ -89,12 +89,11 @@ public class EnemyCollisionSenses : CollisionSenses
     protected override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
-        Gizmos.color = Color.cyan;
-        //Gizmos.DrawWireCube(transform.position + new Vector3((BC2D.offset.x+ (core.Unit.UnitData as EnemyData).UnitDetectedDistance/2) * Movement.FancingDirection, BC2D.offset.y), new Vector2(BC2D.bounds.size.x/2+ (core.Unit.UnitData as EnemyData).UnitDetectedDistance, BC2D.bounds.size.y * 0.95f));
+        
         if (CC2D == null)
             return;
 
-        Gizmos.color = Color.white;
+        Gizmos.color = Color.cyan;
         Gizmos.DrawWireCube(new Vector3(groundCheck.position.x + (CC2D.size.x/2 * Movement.FancingDirection), groundCheck.position.y+CC2D.size.y*0.5f, 0), new Vector2(CC2D.size.x + (core.Unit.UnitData as EnemyData).UnitDetectedDistance, CC2D.bounds.size.y)); ;
 
         //Gizmos.DrawWireCube(transform.position + new Vector3((CC2D.offset.x) * Movement.FancingDirection, (CC2D.offset.y - (CAPC2D.radius / 2))), new Vector2(CC2D.bounds.size.x, (CC2D.bounds.size.y + CAPC2D.radius) * 0.95f));
