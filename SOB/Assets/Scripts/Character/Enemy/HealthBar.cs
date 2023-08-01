@@ -88,11 +88,11 @@ public class HealthBar : MonoBehaviour
             {
                 if (GameManager.Inst.StageManager.Cam != null)
                 {
-                    m_Slider.transform.position = GameManager.Inst.StageManager.Cam.WorldToScreenPoint(unit.Core.CoreCollisionSenses.GroundCheck.position + new Vector3(0.0f, -1.0f, 0.0f));
+                    m_Slider.transform.position = GameManager.Inst.StageManager.Cam.WorldToScreenPoint(unit.Core.CoreCollisionSenses.GroundCheck.position + new Vector3(0.0f, -0.5f, 0.0f));
                 }
                 else
                 {
-                    m_Slider.transform.position = Camera.main.WorldToScreenPoint(unit.Core.CoreCollisionSenses.GroundCheck.position + new Vector3(0.0f, -1.0f, 0.0f));
+                    m_Slider.transform.position = Camera.main.WorldToScreenPoint(unit.Core.CoreCollisionSenses.GroundCheck.position + new Vector3(0.0f, -0.5f, 0.0f));
                 }
             }            
         }
