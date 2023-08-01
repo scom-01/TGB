@@ -6136,8 +6136,8 @@ MonoBehaviour:
   m_ScreenX: 0.5
   m_ScreenY: 0.6
   m_CameraDistance: 10
-  m_DeadZoneWidth: 0
-  m_DeadZoneHeight: 0
+  m_DeadZoneWidth: 0.04
+  m_DeadZoneHeight: 0.05
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
   m_SoftZoneWidth: 0.8
@@ -40516,7 +40516,10 @@ MonoBehaviour:
     Boss_Enemy_Count: 0
   BuffDatas: []
   SkipCutSceneList: 
+  SkipBossCutScene: 
   UnlockItemList: 
+  WaitUnlockItemList: 
+  lockItemList: 
 --- !u!114 &1143652532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40531,17 +40534,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IM: {fileID: 1594972038}
   SPM: {fileID: 387809413}
+  MasterManagerList: []
   CurrStageNumber: 4
   NextStageNumber: 5
   Start_UIState: 0
+  Cam: {fileID: 0}
   respawnPoint: {fileID: 1917196998}
   EndPoint: {fileID: 489737334}
   PlayerPrefab: {fileID: 840319699589423306, guid: 842ba7b90e3d58f4baa7c0b00def52ec, type: 3}
   player: {fileID: 0}
-  respawnTime: 2
   SceneNameFade: {fileID: 0}
-  isStageClear: 0
   CutSceneDirector: {fileID: 471482491}
+  isStageClear: 0
   CVC: {fileID: 0}
 --- !u!4 &1143652533
 Transform:
@@ -42250,7 +42254,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 1
+  m_RenderPostProcessing: 0
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -54767,7 +54771,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 9.25
+  orthographic size: 35
   m_Depth: -2.01
   m_CullingMask:
     serializedVersion: 2

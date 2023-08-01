@@ -2189,7 +2189,7 @@ MonoBehaviour:
   weaponData:
     weaponCommandDataSO: {fileID: 0}
     weaponDataSO: {fileID: 0}
-  _items: []
+  Items: []
   Inititems: []
   CheckItem: {fileID: 0}
 --- !u!114 &3639027602819861585
@@ -2520,8 +2520,10 @@ MonoBehaviour:
     MagicDefensivePer: 0
     PhysicsAggressivePer: 0
     MagicAggressivePer: 0
+    CriticalPer: 0
+    AdditionalCriticalPer: 0
     DamageAttiribute: 0
-    MyElemental: 0
+    Elemental: 0
     ElementalDefensivePer: 0
     ElementalAggressivePer: 0
   invincibleTime: 0
@@ -3167,7 +3169,7 @@ GameObject:
   - component: {fileID: 5457414151569685069}
   - component: {fileID: 2607286457389321378}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: NameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
