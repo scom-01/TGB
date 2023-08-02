@@ -1,9 +1,12 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
 {
     private MiddleBoss_Stage_1 MiddleBoss_Stage_1;
+
+    private bool isDelayCheck = false;
 
     private List<bool> Phase = new List<bool>() { false, false, false };
     public MiddleBoss_Stage_1_IdleState(Unit unit, string animBoolName) : base(unit, animBoolName)
@@ -14,8 +17,8 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
     {
         if (MiddleBoss_Stage_1.TargetUnit == null)
             return;
-
-        Pattern();
+        
+        //Pattern();
         //if ((MiddleBoss_Stage_1.TargetUnit.transform.position - MiddleBoss_Stage_1.transform.position).magnitude < MiddleBoss_Stage_1.enemyData.UnitDetectedDistance)
         //{
         //    Attack();
@@ -27,6 +30,18 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
 
         //unit.FSM.ChangeState(boss_Static_Stage_1.RunState);
     }
+
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+
+        if(Time.time >= startTime + MiddleBoss_Stage_1.enemyData.minIdleTime)
+        {            
+            isDelayCheck = true;
+        }
+        Pattern();
+    }
+
 
     private void Teleport()
     {
@@ -45,15 +60,41 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
 
     private void Pattern()
     {
-        MiddleBoss_Stage_1.AttackState.SetWeapon(unit.Inventory.Weapon);
+        if (MiddleBoss_Stage_1.TargetUnit == null)
+            return;
 
+        if (!isDelayCheck)
+            return;
+
+        isDelayCheck = false;
+
+        MiddleBoss_Stage_1.AttackState.SetWeapon(unit.Inventory.Weapon);
         //현재 체력 50% ~ 100%
         if (unit.Core.CoreUnitStats.CurrentHealth >= unit.Core.CoreUnitStats.MaxHealth / 2f)
         {
             Phase[0] = true;
-            var max = unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList.Count;
-            unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[1].commands[0]);
-            unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
+            if (EnemyCollisionSenses.isUnitInFrontDetectedArea)
+            {
+                Debug.Log("Front1");
+            }
+
+            if ((MiddleBoss_Stage_1.TargetUnit.transform.position - MiddleBoss_Stage_1.transform.position).magnitude < MiddleBoss_Stage_1.enemyData.UnitDetectedDistance)
+            {
+                if (EnemyCollisionSenses.isUnitInFrontDetectedArea)
+                {
+                    Debug.Log("Front2");
+                    //unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[1].commands[0]);
+                    //unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
+                }
+                //|| EnemyCollisionSenses.isUnitInBackDetectedArea)
+                //if((MiddleBoss_Stage_1.Core.CoreCollisionSenses as EnemyCollisionSenses).)
+                //투사체
+            }
+            else
+            {
+                //Teleport();
+            }
+            
         }
         //현재 체력 20% ~ 49%
         else if (unit.Core.CoreUnitStats.CurrentHealth >= unit.Core.CoreUnitStats.MaxHealth / 5f)
