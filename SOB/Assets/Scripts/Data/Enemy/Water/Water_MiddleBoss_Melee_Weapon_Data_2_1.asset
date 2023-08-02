@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 829d099c869488a49a5f24ab18f0f054, type: 3}
-  m_Name: Water_MiddleBoss_Melee_Weapon_Data_2
+  m_Name: Water_MiddleBoss_Melee_Weapon_Data_2_1
   m_EditorClassIdentifier: 
   <NumberOfActions>k__BackingField: 1
   <CanJump>k__BackingField: 0
@@ -24,9 +24,89 @@ MonoBehaviour:
   - rid: 942642657160069129
   - rid: 942642657160069130
   - rid: 942642657160069131
+  - rid: 878558199784144906
   references:
     version: 2
     RefIds:
+    - rid: 878558199784144906
+      type: {class: WeaponProjectileData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: WeaponProjectileData
+        actionData:
+        - name: Action 1
+          ProjectileActionData:
+          - Stats:
+              MaxHealth: 0
+              MovementVelocity: 0
+              JumpVelocity: 0
+              DefaultPower: 0
+              AttackSpeedPer: 0
+              PhysicsDefensivePer: 0
+              MagicDefensivePer: 0
+              PhysicsAggressivePer: 0
+              MagicAggressivePer: 0
+              CriticalPer: 0
+              AdditionalCriticalPer: 0
+              DamageAttiribute: 0
+              Elemental: 0
+              ElementalDefensivePer: 0
+              ElementalAggressivePer: 0
+            Pos: {x: 0, y: 0.5, z: 0}
+            Rot: {x: 1, y: 0, z: 0}
+            Radius: 0.5
+            Offset: {x: -0.55, y: 0}
+            GravityScale: 0
+            Speed: 10
+            isSingleShoot: 1
+            isCollisionGround: 0
+            DurationTime: 5
+            ProjectilePrefab: {fileID: 5432264242224142895, guid: 10511c5cf85ce1f4b8a4427e4c0c9975, type: 3}
+            ImpactPrefab: {fileID: 44559380964511440, guid: e10cc02853686e7408ad51618b403677, type: 3}
+            KnockbackAngle: {x: 0, y: 0}
+            ProjectileShootClip: {fileID: 0}
+            ImpactClip: {fileID: 0}
+            isOnHit: 1
+            isShakeCam: 0
+            camDatas:
+              Duration: 0
+              Range: 0
+              RepeatRate: 0
+          - Stats:
+              MaxHealth: 0
+              MovementVelocity: 0
+              JumpVelocity: 0
+              DefaultPower: 0
+              AttackSpeedPer: 0
+              PhysicsDefensivePer: 0
+              MagicDefensivePer: 0
+              PhysicsAggressivePer: 0
+              MagicAggressivePer: 0
+              CriticalPer: 0
+              AdditionalCriticalPer: 0
+              DamageAttiribute: 0
+              Elemental: 0
+              ElementalDefensivePer: 0
+              ElementalAggressivePer: 0
+            Pos: {x: 0, y: 0.5, z: 0}
+            Rot: {x: 1, y: 0, z: 0}
+            Radius: 0.5
+            Offset: {x: -0.55, y: 0}
+            GravityScale: 0
+            Speed: 10
+            isSingleShoot: 1
+            isCollisionGround: 0
+            DurationTime: 5
+            ProjectilePrefab: {fileID: 5432264242224142895, guid: 10511c5cf85ce1f4b8a4427e4c0c9975, type: 3}
+            ImpactPrefab: {fileID: 44559380964511440, guid: e10cc02853686e7408ad51618b403677, type: 3}
+            KnockbackAngle: {x: 0, y: 0}
+            ProjectileShootClip: {fileID: 0}
+            ImpactClip: {fileID: 0}
+            isOnHit: 1
+            isShakeCam: 0
+            camDatas:
+              Duration: 0
+              Range: 0
+              RepeatRate: 0
     - rid: 942642657160069128
       type: {class: EffectSpawnData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -62,7 +142,7 @@ MonoBehaviour:
         actionData:
         - name: Action 1
           ActionHit:
-          - Debug: 0
+          - Debug: 1
             ActionRect:
               serializedVersion: 2
               x: -1.79
@@ -85,7 +165,7 @@ MonoBehaviour:
               y: 0
               width: 3.32
               height: 1.8
-            RepeatAction: 0
+            RepeatAction: 1
             AdditionalDamage: 0
             KnockbackAngle: {x: 0, y: 0}
             EffectPrefab: []

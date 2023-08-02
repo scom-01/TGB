@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Water_Middle_Melee_Data
   m_EditorClassIdentifier: 
   statsStats:
-    MaxHealth: 50000
+    MaxHealth: 500
     MovementVelocity: 2
     JumpVelocity: 10
     DefaultPower: 5
@@ -22,6 +22,8 @@ MonoBehaviour:
     MagicDefensivePer: 5
     PhysicsAggressivePer: 0
     MagicAggressivePer: 0
+    CriticalPer: 0
+    AdditionalCriticalPer: 0
     DamageAttiribute: 1
     Elemental: 0
     ElementalDefensivePer: 35
@@ -46,7 +48,7 @@ MonoBehaviour:
   UnitCC2DMaterial: {fileID: 6200000, guid: 276e6b76b7c10234da4b8bbe6b28d093, type: 2}
   groundCheckRadius: 0.1
   wallCheckDistance: 0.5
-  UnitDetectedDistance: 10
+  UnitDetectedDistance: 15
   whatIsGround:
     serializedVersion: 2
     m_Bits: 896
@@ -64,8 +66,8 @@ MonoBehaviour:
   enemy_size: 0
   enemy_level: 1
   UnitAttackDistance: 4.3
-  minIdleTime: 0
-  maxIdleTime: 0
+  minIdleTime: 1
+  maxIdleTime: 1
   references:
     version: 2
     RefIds: []

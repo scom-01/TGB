@@ -29,6 +29,11 @@ MonoBehaviour:
   <WeaponClassLevel>k__BackingField: 0
   DefaultAnimator: {fileID: 22100000, guid: 2f82af94d7b0ae7458aafe1b019d34da, type: 2}
   DefaultWeaponDataSO: {fileID: 11400000, guid: 4319cff07b5b5d04e9910cba7a5b4843, type: 2}
+  elementalgoods:
+    FireGoods: 0
+    WaterGoods: 0
+    EarthGoods: 0
+    WindGoods: 0
   UpgradeWeaponCommandDataSO: []
   GroundedCommandList:
   - commands:
@@ -39,6 +44,9 @@ MonoBehaviour:
     - command: 0
       animOC: {fileID: 22100000, guid: bf3b7e5a371924941837da1f74be869a, type: 2}
       data: {fileID: 11400000, guid: 81b4a66a7963a454280d0cee0637636c, type: 2}
+    - command: 0
+      animOC: {fileID: 22100000, guid: bf3b7e5a371924941837da1f74be869a, type: 2}
+      data: {fileID: 11400000, guid: c15299fcd907fc340b5cd04c6cd465b5, type: 2}
   - commands:
     - command: 0
       animOC: {fileID: 22100000, guid: ba03097bbacbb3e45829848e70c58b07, type: 2}
@@ -52,6 +60,9 @@ MonoBehaviour:
     - command: 0
       animOC: {fileID: 22100000, guid: 95a0aa9618c50b5428daa4fe32f745b7, type: 2}
       data: {fileID: 11400000, guid: 4319cff07b5b5d04e9910cba7a5b4843, type: 2}
+    - command: 0
+      animOC: {fileID: 22100000, guid: 79ad252e9ee7d1549b3bf59f314b899b, type: 2}
+      data: {fileID: 11400000, guid: 0b15036464023cf4d94d416f4c3f5ded, type: 2}
   references:
     version: 2
     RefIds: []
