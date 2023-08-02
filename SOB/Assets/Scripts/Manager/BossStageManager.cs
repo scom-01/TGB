@@ -9,7 +9,7 @@ public class BossStageManager : StageManager
     public override void Start()
     {
         base.Start();
-        GameManager.Inst.ChangeUI(UI_State.CutScene);
+        GameManager.Inst.ChangeUI(UI_State.GamePlay);
     }
 
     public void PlayPattern(GameObject Pattern)

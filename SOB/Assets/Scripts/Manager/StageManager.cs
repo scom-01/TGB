@@ -66,7 +66,7 @@ public class StageManager : MonoBehaviour
     {
         CVC = GameObject.Find("Player Camera").GetComponent<CinemachineVirtualCamera>();
         CVC.Follow = player.transform;
-        Application.targetFrameRate = 144;
+        GameManager.Inst.ChangeUI(UI_State.GamePlay);
         isStageClear = false;
     }
 
