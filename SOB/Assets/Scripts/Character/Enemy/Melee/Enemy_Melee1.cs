@@ -45,7 +45,7 @@ public class Enemy_Melee1 : Enemy
     public override void HitEffect()
     {
         base.HitEffect();
-        if(!isCCimmunity)
+        if(!isCC_immunity)
         {
             FSM.ChangeState(HitState);
         }

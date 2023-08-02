@@ -72,34 +72,31 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
         //현재 체력 50% ~ 100%
         if (unit.Core.CoreUnitStats.CurrentHealth >= unit.Core.CoreUnitStats.MaxHealth / 2f)
         {
-            Phase[0] = true;
-            if (EnemyCollisionSenses.isUnitInFrontDetectedArea)
+            if (!Phase[0])
             {
-                Debug.Log("Front1");
+                Phase[0] = true;
+                return;
             }
 
-            if ((MiddleBoss_Stage_1.TargetUnit.transform.position - MiddleBoss_Stage_1.transform.position).magnitude < MiddleBoss_Stage_1.enemyData.UnitDetectedDistance)
+            if ((MiddleBoss_Stage_1.TargetUnit.transform.position - MiddleBoss_Stage_1.transform.position).magnitude <= MiddleBoss_Stage_1.enemyData.UnitDetectedDistance)
             {
+                //투사체
                 if (EnemyCollisionSenses.isUnitInFrontDetectedArea)
                 {
-                    Debug.Log("Front2");
-                    //unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[1].commands[0]);
-                    //unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
-                }
-                //|| EnemyCollisionSenses.isUnitInBackDetectedArea)
-                //if((MiddleBoss_Stage_1.Core.CoreCollisionSenses as EnemyCollisionSenses).)
-                //투사체
+                    unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[1].commands[0]);
+                    unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
+                }                
             }
             else
             {
-                //Teleport();
+                Teleport();
             }
             
         }
         //현재 체력 20% ~ 49%
         else if (unit.Core.CoreUnitStats.CurrentHealth >= unit.Core.CoreUnitStats.MaxHealth / 5f)
         {            
-            //페이즈당 한 번 실행
+            //페이즈당 한 번 실행 BloodWave            
             if (!Phase[1])
             {
                 if (GameManager.Inst?.StageManager.GetType() == typeof(BossStageManager))
@@ -111,17 +108,52 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
                 }
                 Phase[1] = true;
                 return;
-            }            
+            }
+
+            if ((MiddleBoss_Stage_1.TargetUnit.transform.position - MiddleBoss_Stage_1.transform.position).magnitude <= MiddleBoss_Stage_1.enemyData.UnitDetectedDistance)
+            {
+                if (EnemyCollisionSenses.isUnitInFrontDetectedArea)
+                {
+                    unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[1].commands[1]);
+                    unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
+                }
+            }
+            else
+            {
+                Teleport();
+            }
         }
         //현재 체력 0 ~ 19%
         else
         {
-            //페이즈당 한 번 실행
+            //페이즈당 한 번 실행 BloodWave            
             if (!Phase[2])
             {
-
+                if (GameManager.Inst?.StageManager.GetType() == typeof(BossStageManager))
+                {
+                    unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.AirCommandList[0].commands[1]);
+                    unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
+                    var boss_stage = GameManager.Inst?.StageManager as BossStageManager;
+                    boss_stage.PlayPattern(boss_stage.Pattern[0]);
+                }
                 Phase[2] = true;
                 return;
+            }
+
+            if ((MiddleBoss_Stage_1.TargetUnit.transform.position - MiddleBoss_Stage_1.transform.position).magnitude <= MiddleBoss_Stage_1.enemyData.UnitDetectedDistance)
+            {
+                if (EnemyCollisionSenses.isUnitInFrontDetectedArea)
+                {
+                    if (unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[1].commands.Count >= 3)
+                    {
+                        unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[1].commands[2]);
+                        unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
+                    }
+                }
+            }
+            else
+            {
+                Teleport();
             }
         }
     }

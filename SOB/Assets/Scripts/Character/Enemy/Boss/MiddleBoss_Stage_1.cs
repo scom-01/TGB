@@ -9,7 +9,7 @@ public class MiddleBoss_Stage_1 : Enemy
     public MiddleBoss_Stage_1_AttackState AttackState { get; private set; }
     public MiddleBoss_Stage_1_TeleportState TeleportState { get; private set; }
     public MiddleBoss_Stage_1_IdleState IdleState { get; private set; }
-    //public Boss_Static_Stage_1_MoveState RunState { get; private set; }
+
     public MiddleBoss_Stage_1_HitState HitState { get; private set; }
     public MiddleBoss_Stage_1_DeathState DeathState { get; private set; }
     #endregion
@@ -47,7 +47,7 @@ public class MiddleBoss_Stage_1 : Enemy
     public override void HitEffect()
     {
         base.HitEffect();
-        if (!isCCimmunity)
+        if (!isCC_immunity)
         {
             FSM.ChangeState(HitState);
         }

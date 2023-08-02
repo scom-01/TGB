@@ -13,12 +13,12 @@ public class MiddleBoss_Stage_1_TeleportState : EnemyAttackState
     public override void Enter()
     {
         base.Enter();
-        MiddleBoss_Stage_1.isCCimmunity = true;
+        MiddleBoss_Stage_1.isCC_immunity = true;
     }
     public override void Exit()
     {
         base.Exit();
-        MiddleBoss_Stage_1.isCCimmunity = false;
+        MiddleBoss_Stage_1.isCC_immunity = false;
     }
     public override void IdleState()
     {

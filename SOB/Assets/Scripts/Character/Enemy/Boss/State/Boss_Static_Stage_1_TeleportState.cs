@@ -13,12 +13,12 @@ public class Boss_Static_Stage_1_TeleportState : EnemyAttackState
     public override void Enter()
     {
         base.Enter();
-        boss_Static_Stage_1.isCCimmunity = true;
+        boss_Static_Stage_1.isCC_immunity = true;
     }
     public override void Exit()
     {
         base.Exit();
-        boss_Static_Stage_1.isCCimmunity = false;
+        boss_Static_Stage_1.isCC_immunity = false;
     }
     public override void IdleState()
     {

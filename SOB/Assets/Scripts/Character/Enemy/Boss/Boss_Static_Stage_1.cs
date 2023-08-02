@@ -57,7 +57,7 @@ public class Boss_Static_Stage_1 : Enemy
     public override void HitEffect()
     {
         base.HitEffect();
-        if (!isCCimmunity)
+        if (!isCC_immunity)
         {
             FSM.ChangeState(HitState);
         }

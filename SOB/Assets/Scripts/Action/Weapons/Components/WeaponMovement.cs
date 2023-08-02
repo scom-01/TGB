@@ -67,14 +67,14 @@ namespace SOB.Weapons.Components
 
         private void HandleStartInvincible()
         {
-            CoreDamageReceiver.isHit = true;
-            core.Unit.isCCimmunity = true;
+            core.Unit.isFixed_Hit_Immunity = true;
+            core.Unit.isCC_immunity = true;
         }
 
         private void HandleStopInvincible()
         {
-            CoreDamageReceiver.isHit = false;
-            core.Unit.isCCimmunity = false;
+            core.Unit.isFixed_Hit_Immunity = false;
+            core.Unit.isCC_immunity = false;
         }
 
         #endregion
@@ -120,8 +120,7 @@ namespace SOB.Weapons.Components
 
             eventHandler.OnStopMovement -= HandleStopMovement;
             eventHandler.OnStopMovement += HandleStopMovement;
-
-            eventHandler.OnStartInvincible -= HandleStartInvincible;
+                        
             eventHandler.OnStartInvincible += HandleStartInvincible;
 
             eventHandler.OnStartFlip -= HandleStartFlip;

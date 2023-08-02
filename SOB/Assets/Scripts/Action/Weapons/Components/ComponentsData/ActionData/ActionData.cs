@@ -30,4 +30,30 @@ public struct AnimCommand
     public CommandEnum command;
     public AnimatorOverrideController animOC;
     public WeaponDataSO data;
+
+    public static bool operator ==(AnimCommand s1, AnimCommand s2)
+    {
+        if(s1.animOC != s2.animOC)
+        {
+            return false;
+        }
+        if(s1.data != s2.data)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public static bool operator !=(AnimCommand s1, AnimCommand s2)
+    {
+        if(s1.animOC == s2.animOC)
+        {
+            return false;
+        }
+        if(s1.data == s2.data)
+        {
+            return false;
+        }
+        return true;
+    }
 }

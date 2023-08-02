@@ -63,18 +63,22 @@ public class Unit : MonoBehaviour
     private DamageFlash[] DamageFlash;
 
     /// <summary>
-    /// 절대 면역값
+    /// 절대 CC 면역값
     /// </summary>
-    public bool isImmunity = false;
+    public bool isFixed_CC_Immunity = false;
+    /// <summary>
+    /// 절대 피격 면역값
+    /// </summary>
+    public bool isFixed_Hit_Immunity = false;
 
     /// <summary>
     /// 면역값
     /// </summary>
-    public bool isCCimmunity
+    public bool isCC_immunity
     {
         get
         {
-            if (isImmunity)
+            if (isFixed_CC_Immunity)
             {
                 _isCCimmunity = true;
             }
@@ -83,7 +87,7 @@ public class Unit : MonoBehaviour
         set
         {
             _isCCimmunity = value;
-            if (isImmunity)
+            if (isFixed_CC_Immunity)
             {
                 _isCCimmunity = true;
             }
@@ -155,7 +159,7 @@ public class Unit : MonoBehaviour
         else
             Debug.Log("Core is null");
 
-        if (Core.CoreUnitStats.invincibleTime > 0.0f)
+        if (Core.CoreUnitStats.invincibleTime >= 0.0f && Core.CoreDamageReceiver.isHit)
         {
             Core.CoreUnitStats.invincibleTime -= Time.deltaTime;
 
@@ -167,7 +171,7 @@ public class Unit : MonoBehaviour
             }
         }
 
-        if (Core.CoreUnitStats.TouchinvincibleTime > 0.0f)
+        if (Core.CoreUnitStats.TouchinvincibleTime >= 0.0f && Core.CoreDamageReceiver.isTouch)
         {
             Core.CoreUnitStats.TouchinvincibleTime -= Time.deltaTime;
 

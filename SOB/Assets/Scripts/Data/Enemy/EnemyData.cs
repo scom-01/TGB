@@ -17,7 +17,12 @@ public class EnemyData : UnitData
     [Header("EnemyAttack")]
     public float UnitAttackDistance;
 
+    /// <summary>
+    /// 패턴 딜레이
+    /// </summary>
     [Header("StateData")]
+    [Min(1f)]
     public float minIdleTime;
+    [Min(1f)]
     public float maxIdleTime;
 }

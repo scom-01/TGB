@@ -36,7 +36,7 @@ namespace SOB.CoreSystem
             }
 
             //CC기 면역
-            if(core.Unit.isCCimmunity)
+            if(core.Unit.isCC_immunity)
             {
                 return;
             }

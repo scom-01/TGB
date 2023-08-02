@@ -14,11 +14,27 @@ namespace SOB.CoreSystem
 
         public bool isHit
         {
-            get => ishit;
+            get
+            {
+                if (core.Unit.isFixed_Hit_Immunity)
+                {
+                    return true;
+                }
+
+                return ishit;
+            }
             set
             {
-                BC2D.enabled = !value;
-                ishit = value;
+                if(core.Unit.isFixed_Hit_Immunity)
+                {
+                    BC2D.enabled = false;
+                    ishit = true;
+                }
+                else
+                {
+                    BC2D.enabled = !value;
+                    ishit = value;
+                }
             }
         }
         private bool ishit = false;
