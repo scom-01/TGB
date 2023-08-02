@@ -10,6 +10,10 @@ namespace SOB.Weapons.Components
     public class WeaponMovement : WeaponComponent<MovementData, ActionMovement>
     {
         private int currentMovementIndex = -1;
+        private bool isFixedRush = false;
+        private Vector3 RushPoint;
+        private Vector3 RushStartPoint;
+        private float RushDurationTime = 0f;
         protected override void HandleEnter()
         {
             base.HandleEnter();
@@ -38,7 +42,7 @@ namespace SOB.Weapons.Components
             {
                 CheckMovementAction(currentActionData);
             }
-            core.Unit.RB.gravityScale = 0f;
+            FixedGravityOn();
             currentMovementIndex++;
         }
         private void HandleFixedStopMovement()
@@ -46,8 +50,18 @@ namespace SOB.Weapons.Components
             Debug.Log("HandleFixedStop");
             CoreMovement.CanMovement = false;
             CoreMovement.SetVelocityX(0f);
+            FixedGravityOff();
+        }
+
+        private void FixedGravityOn()
+        {
+            core.Unit.RB.gravityScale = 0f;
+        }
+        private void FixedGravityOff()
+        {
             core.Unit.RB.gravityScale = core.Unit.UnitData.UnitGravity;
         }
+
         #endregion
 
         #region Teleport
@@ -59,7 +73,50 @@ namespace SOB.Weapons.Components
                 return;
             }
             CoreMovement.SetVelocityZero();
-            core.Unit.transform.position = core.Unit.TargetUnit.transform.position;
+
+            //타겟 유닛의 뒤로 이동
+            if( core.Unit.TargetUnit.transform.position.x > core.Unit.transform.position.x)
+            {
+                core.Unit.transform.position = core.Unit.TargetUnit.transform.position + new Vector3(1, 0);
+            }
+            else
+            {
+                core.Unit.transform.position = core.Unit.TargetUnit.transform.position + new Vector3(-1, 0);
+            }
+            
+        }
+
+        private void HandleRush()
+        {
+            isFixedRush = true;
+            RushPoint = core.Unit.TargetUnit.transform.position;
+            RushStartPoint = core.Unit.transform.position;
+            CoreMovement.SetVelocityZero();
+            FixedGravityOn();
+        }
+
+        private void FixedUpdate()
+        {
+            if (!isFixedRush)
+                return;
+            if(RushPoint.x >= RushStartPoint.x)
+            {
+                core.Unit.transform.Translate((RushPoint - RushStartPoint).normalized * 20f * Time.deltaTime);
+            }
+            else
+            {
+                core.Unit.transform.Translate((RushStartPoint - RushPoint).normalized * 20f * Time.deltaTime);
+            }
+            //core.Unit.transform.position = Vector3.Lerp(core.Unit.transform.position, RushPoint, Time.deltaTime);
+            RushDurationTime += Time.deltaTime;
+            //0.05f거리 오차 이내로 이동 후 종료
+            if (Math.Abs((core.Unit.transform.position - RushPoint).magnitude) <= 0.05f || RushDurationTime >= 2.0f )
+            {
+                CoreMovement.SetVelocityZero();
+                FixedGravityOff();
+                isFixedRush = false;
+                RushDurationTime = 0f;
+            }
         }
         #endregion
 
@@ -114,6 +171,9 @@ namespace SOB.Weapons.Components
             
             eventHandler.OnTeleportToTarget -= HandleTeleport;
             eventHandler.OnTeleportToTarget += HandleTeleport;
+
+            eventHandler.OnRushToTarget -= HandleRush;
+            eventHandler.OnRushToTarget += HandleRush;
             
             eventHandler.OnStartMovement -= HandleStartMovement;
             eventHandler.OnStartMovement += HandleStartMovement;
@@ -134,7 +194,7 @@ namespace SOB.Weapons.Components
 
             //애니메이션 종료 시 원래 상태로 돌리기 위함
             eventHandler.OnFinish += HandleStopInvincible;
-            eventHandler.OnFinish += HandleFixedStopMovement;
+            eventHandler.OnFinish += FixedGravityOff;
         }
 
         protected override void OnDestroy()
@@ -144,6 +204,7 @@ namespace SOB.Weapons.Components
             eventHandler.OnFixedStartMovement -= HandleFixedStartMovement;
             eventHandler.OnFixedStopMovement -= HandleFixedStopMovement;
             eventHandler.OnTeleportToTarget -= HandleTeleport;
+            eventHandler.OnRushToTarget -= HandleRush;
             eventHandler.OnStartMovement -= HandleStartMovement;
             eventHandler.OnStopMovement -= HandleStopMovement;
             eventHandler.OnStartInvincible -= HandleStartInvincible;
@@ -153,7 +214,7 @@ namespace SOB.Weapons.Components
 
             //애니메이션 종료 시 원래 상태로 돌리기 위함
             eventHandler.OnFinish -= HandleStopInvincible;
-            eventHandler.OnFinish -= HandleFixedStopMovement;
+            eventHandler.OnFinish -= FixedGravityOff;
         }
     }
 }

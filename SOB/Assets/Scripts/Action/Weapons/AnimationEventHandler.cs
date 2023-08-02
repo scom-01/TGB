@@ -16,11 +16,14 @@ public class AnimationEventHandler : MonoBehaviour
     public event Action OnStopFlip;
 
     public event Action OnTeleportToTarget;
+    public event Action OnRushToTarget;
 
     //Action
     public event Action OnAttackAction;
     public event Action OnActionRectOn;
     public event Action OnActionRectOff;
+    public event Action OnRushActionRectOn;
+    public event Action OnRushActionRectOff;
     public event Action OnShootProjectile;
     
     //Effect
@@ -47,11 +50,14 @@ public class AnimationEventHandler : MonoBehaviour
     public void StopFlipTrigger() => OnStopFlip?.Invoke();
 
     public void TeleportToTargetTrigger() => OnTeleportToTarget?.Invoke();
+    public void RushToTargetTrigger() => OnRushToTarget?.Invoke();
 
     //Action
     public void AttackActionTrigger() => OnAttackAction?.Invoke();
     public void StartActionRectTrigger() => OnActionRectOn?.Invoke();
     public void StopActionRectTrigger() => OnActionRectOff?.Invoke();
+    public void StartRushActionRectTrigger() => OnRushActionRectOn?.Invoke();
+    public void StopRushActionRectTrigger() => OnRushActionRectOff?.Invoke();
     public void ShootProjectileTrigger() => OnShootProjectile?.Invoke();
 
     //Effect
