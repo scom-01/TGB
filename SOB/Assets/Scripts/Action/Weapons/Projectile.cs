@@ -71,6 +71,7 @@ namespace SOB
 
 
             CC2D.radius = ProjectileData.Radius;
+            CC2D.offset = ProjectileData.Offset;
             CC2D.enabled = false;
             RB2D.gravityScale = ProjectileData.GravityScale;
 
@@ -102,6 +103,7 @@ namespace SOB
 
 
             CC2D.radius = ProjectileData.Radius;
+            CC2D.offset = ProjectileData.Offset;
             CC2D.enabled = false;
             RB2D.gravityScale = ProjectileData.GravityScale;
         }
@@ -134,6 +136,11 @@ namespace SOB
             if (unit != null)
             {
                 FancingDirection = unit.Core.CoreMovement.FancingDirection;
+                //Default가 0을 전제
+                if(FancingDirection < 0)
+                {
+                    RB2D.transform.Rotate(0.0f, 180.0f, 0.0f);
+                }
                 RB2D.velocity = new Vector2(ProjectileData.Rot.x * unit.Core.CoreMovement.fancingDirection, ProjectileData.Rot.y).normalized * ProjectileData.Speed;
             }
             else
@@ -213,10 +220,13 @@ namespace SOB
                 return;
 
             //피격 대상이 Ground면 이펙트
-            if (coll.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            if(ProjectileData.isCollisionGround)
             {
-                Hit(ProjectileData.isSingleShoot);
-                return;
+                if (coll.gameObject.layer == LayerMask.NameToLayer("Ground"))
+                {
+                    Hit(ProjectileData.isSingleShoot);
+                    return;
+                }
             }
 
             //Damagable이 아니면 무시
