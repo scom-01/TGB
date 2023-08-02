@@ -21,8 +21,12 @@ public struct ProjectileData
     /// <summary>
     /// CircleCollider Radius
     /// </summary>
-    [Min(0.5f)]
+    [Min(0.3f)]
     public float Radius;
+    /// <summary>
+    /// CircleCollider Offset
+    /// </summary>
+    public Vector2 Offset;
     /// <summary>
     /// 중력 크기
     /// </summary>
@@ -35,6 +39,10 @@ public struct ProjectileData
     /// 싱글 히트인지 다단 히트인지 판별
     /// </summary>
     public bool isSingleShoot;
+    /// <summary>
+    /// Ground와 충돌 판별 여부
+    /// </summary>
+    public bool isCollisionGround;
     /// <summary>
     /// 투사체 지속시간
     /// </summary>
