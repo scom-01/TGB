@@ -16,7 +16,7 @@ namespace SOB.CoreSystem
             }
             private set { fancingDirection = value; }
         }
-        public int fancingDirection = 1;
+        private int fancingDirection = 1;
         public bool CanSetVelocity { get; set; }
         public Vector2 CurrentVelocity { get; private set; }
 

@@ -113,7 +113,7 @@ public class PlayerInputHandler : MonoBehaviour
         playerInput.SwitchCurrentActionMap(Name);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         bool jumpInput = JumpInput;
         bool dashInput = DashInput;

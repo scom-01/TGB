@@ -16,19 +16,7 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
     public override void ChangeState()
     {
         if (MiddleBoss_Stage_1.TargetUnit == null)
-            return;
-        
-        //Pattern();
-        //if ((MiddleBoss_Stage_1.TargetUnit.transform.position - MiddleBoss_Stage_1.transform.position).magnitude < MiddleBoss_Stage_1.enemyData.UnitDetectedDistance)
-        //{
-        //    Attack();
-        //}
-        //else
-        //{
-        //    Teleport();
-        //}
-
-        //unit.FSM.ChangeState(boss_Static_Stage_1.RunState);
+            return;        
     }
 
     public override void LogicUpdate()
@@ -48,14 +36,6 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
         MiddleBoss_Stage_1.TeleportState.SetWeapon(unit.Inventory.Weapon);
         unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.AirCommandList[0].commands[0]);
         unit.FSM.ChangeState(MiddleBoss_Stage_1.TeleportState);
-    }
-
-    private void Attack()
-    {
-        MiddleBoss_Stage_1.AttackState.SetWeapon(unit.Inventory.Weapon);
-        var max = unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList.Count;
-        unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[Random.Range(0, max)].commands[0]);
-        unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
     }
 
     private void Pattern()
@@ -89,6 +69,8 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
             }
             else
             {
+                //unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[2].commands[1]);
+                //unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
                 Teleport();
             }
             
@@ -120,7 +102,8 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
             }
             else
             {
-                Teleport();
+                unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[2].commands[1]);
+                unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
             }
         }
         //현재 체력 0 ~ 19%
@@ -153,7 +136,8 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
             }
             else
             {
-                Teleport();
+                unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[2].commands[1]);
+                unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
             }
         }
     }
