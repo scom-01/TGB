@@ -1,3 +1,4 @@
+using SOB.CoreSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,11 +15,7 @@ public class PlayerWallSlideState : PlayerTouchingWallState
 
         if (isExitingState) return;
 
+        Movement.SetVelocityX(0);
         Movement.SetVelocityY(-player.playerData.wallSlideVelocity);
-
-        /*if (grabInput && yInput >= 0 && !isExitingState)
-        {
-            FSM.ChangeState(player.WallGrabState);
-        }*/
     }
 }
