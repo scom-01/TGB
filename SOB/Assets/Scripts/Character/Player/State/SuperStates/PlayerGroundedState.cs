@@ -79,8 +79,9 @@ public class PlayerGroundedState : PlayerState
             //FSM.ChangeState(player.SecondaryAttackState);
         }
         //아래로 점프
-        else if (JumpInput && isPlatform && isGrounded && yInput < 0)
+        else if (JumpInput && isPlatform && yInput < 0)
         {
+            player.InputHandler.JumpInput = false;
             player.StartCoroutine(player.DisableCollision());
             return;
         }
@@ -89,7 +90,7 @@ public class PlayerGroundedState : PlayerState
             player.FSM.ChangeState(player.JumpState);
             return;
         }
-        else if (!isGrounded)
+        else if (!(isGrounded || CollisionSenses.CheckIfPlatform))
         {
             player.InAirState.StartCoyoteTime();
             player.FSM.ChangeState(player.InAirState);

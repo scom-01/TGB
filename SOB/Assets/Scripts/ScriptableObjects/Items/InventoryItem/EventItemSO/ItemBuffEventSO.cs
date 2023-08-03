@@ -27,7 +27,7 @@ public class ItemBuffEventSO : ItemEffectSO
             if(unit.GetComponent<BuffSystem>().AddBuff(buff))
             {
                 if (itemEffectData.VFX != null)
-                    unit.Core.CoreEffectManager.StartEffects(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCheck.position);
+                    unit.Core.CoreEffectManager.StartEffects(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCenterPos);
 
             }
         }

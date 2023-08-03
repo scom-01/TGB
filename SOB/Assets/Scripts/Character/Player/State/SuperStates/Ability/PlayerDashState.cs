@@ -60,7 +60,7 @@ public class PlayerDashState : PlayerAbilityState
         player.InputHandler.UseInput(ref player.InputHandler.DashInput);
         if (Dash_Effect != null)
         {
-            EffectManager.StartEffects(Dash_Effect, CollisionSenses.GroundCheck.position);
+            EffectManager.StartEffects(Dash_Effect, CollisionSenses.GroundCenterPos);
         }
         Movement.SetVelocityY(0f);
         player.RB.gravityScale = 0f;

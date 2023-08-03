@@ -13,7 +13,7 @@ public class ItemProjectileEventSO : ItemEffectSO
     private void ProjectileShoot(Unit unit)
     {
         if (itemEffectData.VFX != null)
-            unit.Core.CoreEffectManager.StartEffects(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCheck.position);
+            unit.Core.CoreEffectManager.StartEffects(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCenterPos);
 
         unit.Core.CoreEffectManager.StartProjectileCheck(unit, ProjectileData);
     }

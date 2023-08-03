@@ -100,7 +100,12 @@ public class PlayerInAirState : PlayerState
             }
         }
 
-        if (isGrounded && Movement.CurrentVelocity.y < 0.01f)
+        if (CollisionSenses.CheckIfPlatformGrounded && Movement.CurrentVelocity.y <= 0.01f)
+        {
+            player.FSM.ChangeState(player.LandState);
+            return;
+        }
+        else if (isGrounded && Movement.CurrentVelocity.y <= 0.01f)
         {
             player.FSM.ChangeState(player.LandState);
             return;

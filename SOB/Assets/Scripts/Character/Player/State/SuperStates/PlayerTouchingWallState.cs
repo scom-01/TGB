@@ -58,7 +58,7 @@ public class PlayerTouchingWallState : PlayerState
             player.WallJumpState.DetermineWallJumpDirection(isTouchingWall);
             player.FSM.ChangeState(player.WallJumpState);
         }
-        else if (isGrounded)
+        else if (isGrounded || CollisionSenses.CheckIfPlatform)
         {
             player.FSM.ChangeState(player.IdleState);
         }

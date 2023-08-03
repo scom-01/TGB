@@ -16,7 +16,7 @@ public class ItemKnockBackEventSO : ItemEffectSO
             return;
 
         if (itemEffectData.VFX != null)
-            unit.Core.CoreEffectManager.StartEffects(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCheck.position);
+            unit.Core.CoreEffectManager.StartEffects(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCenterPos);
 
         enemy.Core.CoreKnockBackReceiver.KnockBack(angle, strength, unit.Core.CoreMovement.FancingDirection);
     }

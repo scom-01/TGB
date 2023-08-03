@@ -20,7 +20,7 @@ public class ItemAttackEventSO : ItemEffectSO
         if(isSelf_harm)
         {
             if (itemEffectData.VFX != null)
-                unit.Core.CoreEffectManager.StartEffects(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCheck.position);
+                unit.Core.CoreEffectManager.StartEffects(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCenterPos);
 
             if (isFixed)
             {
@@ -44,7 +44,7 @@ public class ItemAttackEventSO : ItemEffectSO
                 return;
 
             if (itemEffectData.VFX != null)
-                unit.Core.CoreEffectManager.StartEffects(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCheck.position);
+                unit.Core.CoreEffectManager.StartEffects(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCenterPos);
 
 
             if (isFixed)

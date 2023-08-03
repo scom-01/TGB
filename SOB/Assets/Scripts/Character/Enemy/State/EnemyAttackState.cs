@@ -24,7 +24,7 @@ public abstract class EnemyAttackState : EnemyState
         base.Enter();
         this.weapon.OnExit += ExitHandler;
 
-        weapon.InAir = !EnemyCollisionSenses.CheckIfGrounded;
+        weapon.InAir = !(EnemyCollisionSenses.CheckIfGrounded || CollisionSenses.CheckIfPlatform);
         weapon.EnterWeapon();
 
         startTime = Time.time;

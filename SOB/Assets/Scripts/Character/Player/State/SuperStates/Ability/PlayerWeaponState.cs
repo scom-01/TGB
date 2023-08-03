@@ -55,7 +55,7 @@ public class PlayerWeaponState : PlayerAbilityState
     {
         base.PhysicsUpdate();
 
-        weapon.InAir = !CollisionSenses.CheckIfGrounded;
+        weapon.InAir = !(CollisionSenses.CheckIfGrounded || CollisionSenses.CheckIfPlatform);
         xInput = player.InputHandler.NormInputX;
         yInput = player.InputHandler.NormInputY;
         JumpInput = player.InputHandler.JumpInput;
@@ -119,7 +119,7 @@ public class PlayerWeaponState : PlayerAbilityState
         if (isPrimary)
             command = CommandEnum.Primary;
         q.Add(command);
-        if (!CollisionSenses.CheckIfGrounded)
+        if (!(CollisionSenses.CheckIfGrounded || CollisionSenses.CheckIfPlatform))
         {
             if (CalCommand(weapon.weaponData.weaponCommandDataSO.AirCommandList, q))
             {

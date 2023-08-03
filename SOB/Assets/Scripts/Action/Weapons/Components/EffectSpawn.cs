@@ -49,12 +49,12 @@ namespace SOB.Weapons.Components
                 if(currParticles[currentEffectSpawnIndex].isRandomPosRot)
                 {
                     CoreEffectManager.StartEffects(currParticles[currentEffectSpawnIndex].Object,
-                        CoreCollisionSenses.GroundCheck.position, currParticles[currentEffectSpawnIndex].isFollowing);
+                        CoreCollisionSenses.GroundCenterPos, currParticles[currentEffectSpawnIndex].isFollowing);
                 }
                 else
                 {
                     CoreEffectManager.StartEffects(currParticles[currentEffectSpawnIndex].Object,
-                        CoreCollisionSenses.GroundCheck.position + offset, currParticles[currentEffectSpawnIndex].isFollowing);
+                        CoreCollisionSenses.GroundCenterPos + offset, currParticles[currentEffectSpawnIndex].isFollowing);
                 }
             }
             else

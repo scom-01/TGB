@@ -79,7 +79,7 @@ namespace SOB.CoreSystem
         private void CheckKnockBack()
         {
             if (isKnockBackActive
-                && ((movement.Comp?.CurrentVelocity.y <= 0.01f && collisionSenses.Comp.GroundCheck)
+                && ((movement.Comp?.CurrentVelocity.y <= 0.01f && (collisionSenses.Comp.CheckIfGrounded || collisionSenses.Comp.CheckIfPlatform)/*collisionSenses.Comp.GroundCheck*/)
                     || Time.time >= knockBackStartTime + maxKnockBackTime)
                )
             {

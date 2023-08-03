@@ -37,7 +37,7 @@ public class PlayerAbilityState : PlayerState
 
         if(isAbilityDone)
         {
-            if (isGrounded && Movement.CurrentVelocity.y < 0.01f)
+            if ((isGrounded || CollisionSenses.CheckIfPlatform) && Movement.CurrentVelocity.y <= 0.01f)
             {
                 player.FSM.ChangeState(player.IdleState);
             }
