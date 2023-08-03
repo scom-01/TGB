@@ -141,7 +141,7 @@ namespace SOB
                 {
                     RB2D.transform.Rotate(0.0f, 180.0f, 0.0f);
                 }
-                RB2D.velocity = new Vector2(ProjectileData.Rot.x * unit.Core.CoreMovement.fancingDirection, ProjectileData.Rot.y).normalized * ProjectileData.Speed;
+                RB2D.velocity = new Vector2(ProjectileData.Rot.x * unit.Core.CoreMovement.FancingDirection, ProjectileData.Rot.y).normalized * ProjectileData.Speed;
             }
             else
             {
@@ -149,7 +149,7 @@ namespace SOB
             }
         }
         // Update is called once per frame
-        void Update()
+        void FixedUpdate()
         {
             if (GameManager.Inst == null)
                 return;

@@ -10,10 +10,6 @@ public class UnitData : ScriptableObject
 
     public string UnitName;
     public LocalizedString UnitNameLocal;
-    [Tooltip("넉백지속시간")]
-    public float knockBackDuration;
-    [Tooltip("넉백 속도")]
-    public Vector2 knockBackSpeed;
 
     [Header("RigidBody2D")]
     public float UnitGravity;

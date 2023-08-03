@@ -16,7 +16,8 @@ public class AnimationEventHandler : MonoBehaviour
     public event Action OnStopFlip;
 
     public event Action OnTeleportToTarget;
-    public event Action OnRushToTarget;
+    public event Action OnRushToTargetOn;
+    public event Action OnRushToTargetOff;
 
     //Action
     public event Action OnAttackAction;
@@ -50,7 +51,8 @@ public class AnimationEventHandler : MonoBehaviour
     public void StopFlipTrigger() => OnStopFlip?.Invoke();
 
     public void TeleportToTargetTrigger() => OnTeleportToTarget?.Invoke();
-    public void RushToTargetTrigger() => OnRushToTarget?.Invoke();
+    public void StartRushToTargetTrigger() => OnRushToTargetOn?.Invoke();
+    public void StopRushToTargetTrigger() => OnRushToTargetOff?.Invoke();
 
     //Action
     public void AttackActionTrigger() => OnAttackAction?.Invoke();

@@ -112,10 +112,13 @@ namespace SOB.Weapons
                 Destroy(weaponComponent);
             }
         }
-        public void GenerateWeapon(AnimCommand CommandData)
+        public bool GenerateWeapon(AnimCommand CommandData)
         {
+            if (CommandData.animOC == null || CommandData.data == null)
+                return false;
             Weapon.oc = CommandData.animOC;
             GenerateWeapon(CommandData.data);
+            return true;
         }
     }
 }

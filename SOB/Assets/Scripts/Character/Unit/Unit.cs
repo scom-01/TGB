@@ -242,15 +242,9 @@ public class Unit : MonoBehaviour
     }
     public IEnumerator DisableCollision()
     {
-        if (CC2D != null)
-        {
-            CC2D.isTrigger = true;
-        }
+        Physics2D.IgnoreLayerCollision(this.gameObject.layer, LayerMask.NameToLayer("Platform"), true);
         yield return new WaitForSeconds(0.2f);
-        if (CC2D != null)
-        {
-            CC2D.isTrigger = false;
-        }
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Platform"), false);
     }
 
     protected virtual void FixedUpdate()

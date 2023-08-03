@@ -91,7 +91,6 @@ MonoBehaviour:
             RepeatAction: 1
             AdditionalDamage: 1
             KnockbackAngle: {x: 0, y: 0}
-            Power: 0
             EffectPrefab:
             - isGround: 0
               isRandomPosRot: 0
@@ -119,7 +118,6 @@ MonoBehaviour:
             RepeatAction: 1
             AdditionalDamage: 1
             KnockbackAngle: {x: 0, y: 0}
-            Power: 0
             EffectPrefab: []
             audioClip: []
             camDatas:
@@ -153,4 +151,8 @@ MonoBehaviour:
         name: MovementData
         actionData:
         - name: Action 1
-          <movements>k__BackingField: []
+          <movements>k__BackingField:
+          - CanFlip: 0
+            CanMoveCtrl: 0
+            Direction: {x: 0, y: 0}
+            Velocity: 0.25

@@ -14660,6 +14660,7 @@ GameObject:
   - component: {fileID: 5426671820504617256}
   - component: {fileID: 1258535857153350436}
   - component: {fileID: 2162505174348469638}
+  - component: {fileID: 4958692237921045625}
   m_Layer: 0
   m_Name: Impact_Blood_Lv2_2
   m_TagString: Untagged
@@ -19477,3 +19478,17 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &4958692237921045625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9090052037473767930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 650768dbc266aa34fb82269cccf75184, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDestroy: 0
+  isLoopDurationTime: 0

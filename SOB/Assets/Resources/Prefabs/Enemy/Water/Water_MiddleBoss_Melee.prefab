@@ -1743,7 +1743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData:
     weaponCommandDataSO: {fileID: 11400000, guid: ace31054136ad2940bb7a9ced63539e5, type: 2}
-    weaponDataSO: {fileID: 11400000, guid: 81b4a66a7963a454280d0cee0637636c, type: 2}
+    weaponDataSO: {fileID: 11400000, guid: 095bd28a156e2ca46beb6de9e4978347, type: 2}
 --- !u!114 &3860709593921002772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2620,7 +2620,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d97953454d73a429821a37579dc88c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fancingDirection: 1
   CanFlip: 0
   CanMovement: 0
 --- !u!1 &3640253523459399150
@@ -2729,7 +2728,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3640253523737029722}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -2871,7 +2870,7 @@ Animator:
   m_GameObject: {fileID: 4242634074962048764}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 79ad252e9ee7d1549b3bf59f314b899b, type: 2}
+  m_Controller: {fileID: 22100000, guid: d5dfdcfeca2b5e142884e5ab6e94e914, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

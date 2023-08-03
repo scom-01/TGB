@@ -22,8 +22,10 @@ MonoBehaviour:
     MagicDefensivePer: 0
     PhysicsAggressivePer: 0
     MagicAggressivePer: 0
+    CriticalPer: 0
+    AdditionalCriticalPer: 0
     DamageAttiribute: 0
-    MyElemental: 0
+    Elemental: 0
     ElementalDefensivePer: 0
     ElementalAggressivePer: 0
   UnitName: 
@@ -36,20 +38,18 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  knockBackDuration: 0
-  knockBackSpeed: {x: 0, y: 0}
   UnitGravity: 5
   invincibleTime: 1.5
   touchDamageinvincibleTime: 1
   standCC2DOffset: {x: 0, y: -0.16}
   standCC2DSize: {x: 0.625, y: 1.3225}
   UnitCC2DMaterial: {fileID: 6200000, guid: 276e6b76b7c10234da4b8bbe6b28d093, type: 2}
-  groundCheckRadius: 0.1
+  groundCheckRadius: 0.125
   wallCheckDistance: 0.4
   UnitDetectedDistance: 0.5
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 896
+    m_Bits: 384
   whatIsWall:
     serializedVersion: 2
     m_Bits: 256
@@ -60,7 +60,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 262144
   UnitAnimator: {fileID: 9100000, guid: f8140e6895d29404cb3c31ff401edc68, type: 2}
-  jumpVelocity: 90
   amountOfJumps: 4
   dashColliderHeight: 0.93
   wallJumpVelocity: 20
