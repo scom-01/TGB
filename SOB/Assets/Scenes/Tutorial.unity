@@ -38242,10 +38242,9 @@ GameObject:
   m_Component:
   - component: {fileID: 869523811}
   - component: {fileID: 869523815}
-  - component: {fileID: 869523814}
   - component: {fileID: 869523813}
   - component: {fileID: 869523812}
-  m_Layer: 27
+  m_Layer: 23
   m_Name: Consumption_Item
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -38302,7 +38301,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.25}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -38313,23 +38312,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &869523814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 869523810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dc03701987cf2845a833e6cc2324cb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Item: {fileID: 11400000, guid: 45bf890e301b83740a4dafff7b7b6674, type: 2}
-  unit: {fileID: 0}
-  DetectedRadius: 1
 --- !u!212 &869523815
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -41612,7 +41596,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1219580241}
   - component: {fileID: 1219580242}
-  m_Layer: 28
+  - component: {fileID: 1219580243}
+  m_Layer: 26
   m_Name: Circle
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -41649,7 +41634,22 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
+--- !u!114 &1219580243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219580240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 648d7fecd484a93428f79668dd27feaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tag: 
+  Item: {fileID: 11400000, guid: 45bf890e301b83740a4dafff7b7b6674, type: 2}
+  SpriteRenderer: {fileID: 0}
 --- !u!1 &1224067715
 GameObject:
   m_ObjectHideFlags: 0

@@ -58,7 +58,6 @@ public class Detector : MonoBehaviour
                     currentGO.GetComponent<InteractiveObject>()?.Interactive();
                 }
             }
-
         }
     }
     IEnumerator CheckCurrentGO()

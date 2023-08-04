@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 8962217813712015486}
   - component: {fileID: 8962217813712015485}
   - component: {fileID: 8962217813712015484}
+  - component: {fileID: 3008337661219010266}
   m_Layer: 27
   m_Name: Consumption_Item
   m_TagString: Item
@@ -201,7 +202,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.25}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -212,7 +213,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &8962217813712015484
 Rigidbody2D:
@@ -235,6 +236,37 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &3008337661219010266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8962217813712015482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 648d7fecd484a93428f79668dd27feaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BC2D: {fileID: 0}
+  Tag: Item
+  StatsData:
+    MaxHealth: 0
+    MovementVelocity: 0
+    JumpVelocity: 0
+    DefaultPower: 0
+    AttackSpeedPer: 0
+    PhysicsDefensivePer: 0
+    MagicDefensivePer: 0
+    PhysicsAggressivePer: 0
+    MagicAggressivePer: 0
+    CriticalPer: 0
+    AdditionalCriticalPer: 0
+    DamageAttiribute: 0
+    Elemental: 0
+    ElementalDefensivePer: 0
+    ElementalAggressivePer: 0
+  Item: {fileID: 11400000, guid: 45bf890e301b83740a4dafff7b7b6674, type: 2}
 --- !u!1 &8962217815196950770
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,4 +314,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
