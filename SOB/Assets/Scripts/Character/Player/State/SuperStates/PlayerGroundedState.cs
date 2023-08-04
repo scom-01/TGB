@@ -85,7 +85,7 @@ public class PlayerGroundedState : PlayerState
             player.StartCoroutine(player.DisableCollision());
             return;
         }
-        else if (JumpInput && player.JumpState.CanJump() && isGrounded && yInput >= 0 && !player.CC2D.isTrigger)
+        else if (JumpInput && player.JumpState.CanJump() && (isGrounded || CollisionSenses.CheckIfPlatform) && yInput >= 0 && !player.CC2D.isTrigger)
         {
             player.FSM.ChangeState(player.JumpState);
             return;
