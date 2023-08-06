@@ -9,6 +9,7 @@ namespace SOB.CoreSystem
     public class UnitStats : CoreComponent
     {
         public event Action OnHealthZero;
+        public event Action OnChangeHealth;
 
         #region Stats        
         public StatsData StatsData { get => statsData; set => statsData = value; }
@@ -22,6 +23,7 @@ namespace SOB.CoreSystem
             set
             {
                 currentHealth = value <= 0 ? 0 : (value >= statsData.MaxHealth ? statsData.MaxHealth : value);
+                OnChangeHealth?.Invoke();
             }
         }
         [SerializeField] private float currentHealth;
