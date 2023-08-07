@@ -35,14 +35,8 @@ public class UnitData : ScriptableObject
     public float wallCheckDistance = 0.5f;
     [Tooltip("유닛 감지 거리")]
     public float UnitDetectedDistance = 0.5f;
-    [Tooltip("지면 LayerMask")]
-    public LayerMask whatIsGround;
-    [Tooltip("벽면 LayerMask")]
-    public LayerMask whatIsWall;
-    [Tooltip("Platform LayerMask")]
-    public LayerMask whatIsPlatform;
-    [Tooltip("적으로 인지하는 Object LayerMask")]
-    public LayerMask WhatIsEnemyUnit;
+
+    public LayerMaskSO LayerMaskSO;
 
     [Header("Animator")]
     public RuntimeAnimatorController UnitAnimator;

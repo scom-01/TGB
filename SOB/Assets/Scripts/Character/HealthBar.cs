@@ -16,17 +16,7 @@ public class HealthBar : MonoBehaviour
         {
             if (unit == null)
             {
-                if (m_isUnit)
-                {
-                    unit = this.GetComponentInParent<Unit>();                    
-                }
-                else
-                {
-                    if (GameManager.Inst?.StageManager != null)
-                    {
-                        unit = GameManager.Inst.StageManager.player;
-                    }
-                }
+                unit = this.GetComponentInParent<Unit>();
             }
             return unit;
         }
@@ -49,15 +39,15 @@ public class HealthBar : MonoBehaviour
     }
     private UnitStats stats;
     [SerializeField] private Slider m_Slider;
-    [SerializeField] private bool m_isUnit = true;
     [SerializeField] private bool m_IsFollow = true;
-    private Image Img;
+    [SerializeField] private bool m_IsShowTxt = true;
     [SerializeField] private TextMeshProUGUI Txt;
-    [SerializeField] private BackHealthBarEffect HealthBarEffect
+    [SerializeField]
+    private BackHealthBarEffect HealthBarEffect
     {
         get
         {
-            if(m_HealthBarEffect == null)
+            if (m_HealthBarEffect == null)
             {
                 m_HealthBarEffect = this.GetComponentInChildren<BackHealthBarEffect>();
             }
@@ -68,6 +58,24 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private float lerpduration = 0.5f;
     private Coroutine runningCoroutine;
 
+    private Vector3 old_sliderPos;
+
+    private void FixedUpdate()
+    {
+        if (!m_IsFollow)
+            return;
+
+        if (old_sliderPos == m_Slider.transform.position)
+            return;
+
+        Camera mainCamera = Camera.main; // 필요한 경우에만 Camera 변수를 사용합니다.
+        if (GameManager.Inst.StageManager.Cam != null)
+        {
+            mainCamera = GameManager.Inst.StageManager.Cam;
+        }
+
+        m_Slider.transform.position = mainCamera.WorldToScreenPoint(unit.Core.CoreCollisionSenses.GroundCenterPos + new Vector3(0.0f, -0.5f, 0.0f));
+    }
     private void OnEnable()
     {
         if (Stats != null)
@@ -89,16 +97,23 @@ public class HealthBar : MonoBehaviour
         // 슬라이더의 목표 값을 계산합니다.
         float targetValue = Stats.CurrentHealth / Stats.MaxHealth;
 
-
-        if (runningCoroutine != null) 
+        if (runningCoroutine != null)
         {
             StopCoroutine(runningCoroutine);
         }
         runningCoroutine = StartCoroutine(LerpHealthBar(targetValue));
         if (Txt != null)
         {
-            Txt.text = string.Format($"{(int)Stats.CurrentHealth} / {Stats.MaxHealth}");
-        }                
+            if (m_IsShowTxt)
+            {
+                Txt.gameObject.SetActive(true);
+                Txt.text = string.Format($"{(int)Stats.CurrentHealth} / {Stats.MaxHealth}");
+            }
+            else
+            {
+                Txt.gameObject.SetActive(false);
+            }
+        }
     }
     IEnumerator LerpHealthBar(float targetValue)
     {
@@ -112,17 +127,6 @@ public class HealthBar : MonoBehaviour
                 float elapsedTime = Time.time - startTime;
                 lerpValue = Mathf.Lerp(m_Slider.value, targetValue, elapsedTime / lerpduration);
                 m_Slider.value = lerpValue;
-
-                if (m_IsFollow)
-                {
-                    Camera mainCamera = Camera.main; // 필요한 경우에만 Camera 변수를 사용합니다.
-                    if (GameManager.Inst.StageManager.Cam != null)
-                    {
-                        mainCamera = GameManager.Inst.StageManager.Cam;
-                    }
-
-                    m_Slider.transform.position = mainCamera.WorldToScreenPoint(unit.Core.CoreCollisionSenses.GroundCenterPos + new Vector3(0.0f, -0.5f, 0.0f));
-                }
 
                 yield return null;
             }
@@ -150,44 +154,4 @@ public class HealthBar : MonoBehaviour
         }
     }
     private Canvas _canvas;
-        
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    if (!m_Canvas.enabled)
-    //        return;
-
-    //    if (GameManager.Inst?.StageManager == null)
-    //    {
-    //        return;
-    //    }
-
-    //    if (Stats == null)
-    //    {
-
-    //        return;
-    //    }
-
-    //    if (m_Slider != null)
-    //    {
-    //        m_Slider.value = Stats.CurrentHealth / Stats.MaxHealth;
-
-    //        if(m_IsFollow)
-    //        {
-    //            if (GameManager.Inst.StageManager.Cam != null)
-    //            {
-    //                m_Slider.transform.position = GameManager.Inst.StageManager.Cam.WorldToScreenPoint(unit.Core.CoreCollisionSenses.GroundCenterPos + new Vector3(0.0f, -0.5f, 0.0f));
-    //            }
-    //            else
-    //            {
-    //                m_Slider.transform.position = Camera.main.WorldToScreenPoint(unit.Core.CoreCollisionSenses.GroundCenterPos + new Vector3(0.0f, -0.5f, 0.0f));
-    //            }
-    //        }            
-    //    }
-    //    if (Txt != null) 
-    //    {
-    //        Txt.text = string.Format($"{(int)Stats.CurrentHealth} / {Stats.MaxHealth}");        
-    //        Txt = this.GetComponentInChildren<TextMeshProUGUI>();
-    //    }
-    //}
 }

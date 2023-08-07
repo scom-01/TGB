@@ -43,9 +43,9 @@ namespace SOB.CoreSystem
         public float GroundCheckRadius { get => core.Unit.UnitData.groundCheckRadius; }
         public float WallCheckDistance { get => core.Unit.UnitData.wallCheckDistance; }
 
-        public LayerMask WhatIsGround { get => core.Unit.UnitData.whatIsGround; }
-        public LayerMask WhatIsWall { get => core.Unit.UnitData.whatIsWall; }
-        public LayerMask WhatIsPlatform { get => core.Unit.UnitData.whatIsPlatform; }
+        public LayerMask WhatIsGround { get => core.Unit.UnitData.LayerMaskSO.WhatIsGround;}
+        public LayerMask WhatIsWall { get => core.Unit.UnitData.LayerMaskSO.WhatIsWall;}
+        public LayerMask WhatIsPlatform { get => core.Unit.UnitData.LayerMaskSO.WhatIsPlatform;}
 
         [SerializeField] protected Transform groundCheck;
         [SerializeField] protected Transform wallCheck;
@@ -114,9 +114,9 @@ namespace SOB.CoreSystem
         {
             get
             {
-                RaycastHit2D ray1 = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + 0.5f), Vector2.right * Movement.FancingDirection, core.Unit.UnitData.UnitDetectedDistance, core.Unit.UnitData.WhatIsEnemyUnit);
-                RaycastHit2D ray2 = Physics2D.Raycast(transform.position, Vector2.right * Movement.FancingDirection, core.Unit.UnitData.UnitDetectedDistance, core.Unit.UnitData.WhatIsEnemyUnit);
-                RaycastHit2D ray3 = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 0.5f), Vector2.right * Movement.FancingDirection, core.Unit.UnitData.UnitDetectedDistance, core.Unit.UnitData.WhatIsEnemyUnit);
+                RaycastHit2D ray1 = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + 0.5f), Vector2.right * Movement.FancingDirection, core.Unit.UnitData.UnitDetectedDistance, core.Unit.UnitData.LayerMaskSO.WhatIsEnemyUnit);
+                RaycastHit2D ray2 = Physics2D.Raycast(transform.position, Vector2.right * Movement.FancingDirection, core.Unit.UnitData.UnitDetectedDistance, core.Unit.UnitData.LayerMaskSO.WhatIsEnemyUnit);
+                RaycastHit2D ray3 = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 0.5f), Vector2.right * Movement.FancingDirection, core.Unit.UnitData.UnitDetectedDistance, core.Unit.UnitData.LayerMaskSO.WhatIsEnemyUnit);
                 return (ray1 || ray2 || ray3);
             }
         }
