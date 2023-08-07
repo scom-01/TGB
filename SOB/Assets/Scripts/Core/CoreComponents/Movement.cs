@@ -19,6 +19,7 @@ namespace SOB.CoreSystem
         private int fancingDirection = 1;
         public bool CanSetVelocity { get; set; }
         public Vector2 CurrentVelocity { get; private set; }
+        public Vector2 FixedVelocity { get; private set; }
 
         [HideInInspector] public bool CanFlip = false;
         [HideInInspector] public bool CanMovement = false;
@@ -54,7 +55,7 @@ namespace SOB.CoreSystem
         public void SetVelocity(float velocity, Vector2 angle, int direction)
         {
             angle.Normalize();
-            workspace.Set(angle.x * velocity * direction,angle.y * velocity);
+            workspace.Set(angle.x * velocity * direction, angle.y * velocity);
             SetFinalVelocity();
         }
         public void SetVelocityX(float velocity)
@@ -67,7 +68,6 @@ namespace SOB.CoreSystem
             workspace.Set(CurrentVelocity.x, velocity);
             SetFinalVelocity();
         }
-
         private void SetFinalVelocity()
         {
             if (CanSetVelocity)

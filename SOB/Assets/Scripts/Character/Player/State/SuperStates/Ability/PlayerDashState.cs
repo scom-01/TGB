@@ -31,7 +31,8 @@ public class PlayerDashState : PlayerAbilityState
     public override void Enter()
     {
         IsGrounded = CollisionSenses.CheckIfGrounded;
-        if(IsGrounded)
+        player.isFixedMovement = false;
+        if (IsGrounded)
         {
             animBoolName = "dash";
         }

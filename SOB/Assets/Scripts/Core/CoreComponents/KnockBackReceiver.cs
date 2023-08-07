@@ -40,26 +40,9 @@ namespace SOB.CoreSystem
             {
                 return;
             }
-
-            movement.Comp?.SetVelocity(strength, angle, direction);
-            movement.Comp.CanSetVelocity = false;
-            isKnockBackActive = true;
-            knockBackStartTime = Time.time;
+            SetKnockBack(angle, strength, direction);
         }
-        public void KnockBack(Vector2 angle, float strength)
-        {
-            
-            if(death.Comp.isDead)
-            {
-                Debug.Log(core.Unit.name + "is Dead");
-                return;
-            }
-            movement.Comp?.SetVelocity(strength, angle, movement.Comp.FancingDirection);
-            movement.Comp.CanSetVelocity = false;
-            isKnockBackActive = true;
-            knockBackStartTime = Time.time;
-        }
-        public void TrapKnockBack(Vector2 angle, float strength)
+        public void TrapKnockBack(Vector2 angle, float strength, bool isUnitFancingDirection = true)
         {
             
             if(death.Comp.isDead)
@@ -71,8 +54,21 @@ namespace SOB.CoreSystem
             {
                 return;
             }
+            if(isUnitFancingDirection)
+            {
+                SetKnockBack(angle, strength, movement.Comp.FancingDirection);
+            }
+            else
+            {
+                SetKnockBack(angle, strength, 1);
+            }
+        }
+
+        private void SetKnockBack(Vector2 angle, float strength, int direction)
+        {
             movement.Comp?.SetVelocity(strength, angle, movement.Comp.FancingDirection);
             movement.Comp.CanSetVelocity = false;
+            core.Unit.isFixedMovement = true;
             isKnockBackActive = true;
             knockBackStartTime = Time.time;
         }

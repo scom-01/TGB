@@ -6,7 +6,8 @@ using UnityEngine;
 public class TouchJumpPad : TouchObject
 {
     [SerializeField] private float JumpVelocity;
-    [SerializeField] private GameObject JumpEffectPrefab;
+    [SerializeField] private GameObject JumpEffectPrefab;    
+    [SerializeField] private Vector2 angle;
     private BoxCollider2D BC2D;
     private Animator animator;
     private void Awake()
@@ -18,6 +19,7 @@ public class TouchJumpPad : TouchObject
     public override void OnTriggerStay2D(Collider2D collision)
     {
         base.OnTriggerStay2D(collision);
+
         Collision(collision.gameObject);
     }
 
@@ -37,11 +39,7 @@ public class TouchJumpPad : TouchObject
 
     private void Collision(GameObject gameObject)
     {
-        if (gameObject.GetComponent<Unit>().Core.CoreDamageReceiver.isTouch)
-            return;
-
-        gameObject.GetComponent<Unit>().Core.CoreDamageReceiver.isTouch = true;
-
+        
         if (JumpEffectPrefab != null)
         {
             if (JumpEffectPrefab != null)
@@ -49,6 +47,14 @@ public class TouchJumpPad : TouchObject
         }
         Touch();
 
-        gameObject.GetComponent<Unit>().Core.CoreMovement.SetVelocityY(JumpVelocity);
+        gameObject.GetComponent<Unit>().Core.CoreKnockBackReceiver.TrapKnockBack(angle, JumpVelocity, false);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Vector2 m_angle = angle;
+        m_angle.Normalize();
+        Debug.DrawRay(transform.position, new Vector3(m_angle.x, m_angle.y, 0), Color.red);
     }
 }

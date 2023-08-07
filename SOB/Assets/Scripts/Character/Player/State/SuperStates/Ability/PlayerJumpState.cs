@@ -31,6 +31,7 @@ public class PlayerJumpState : PlayerAbilityState
     {
         Debug.Log("Jump");
         Debug.Log("Gravity = "+unit.RB.gravityScale);
+        player.isFixedMovement = false;
         player.InputHandler.UseInput(ref player.InputHandler.JumpInput);
         Movement.SetVelocityY(UnitStats.JumpVelocity);
         if (amountOfJumpLeft < player.playerData.amountOfJumps)

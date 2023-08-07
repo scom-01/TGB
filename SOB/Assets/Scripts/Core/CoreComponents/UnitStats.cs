@@ -100,6 +100,7 @@ namespace SOB.CoreSystem
             {
                 StatsData = core.Unit.UnitData.statsStats;
                 invincibleTime = core.Unit.UnitData.invincibleTime;
+                TouchinvincibleTime = core.Unit.UnitData.touchDamageinvincibleTime;
                 CurrentHealth = MaxHealth;
             }
         }

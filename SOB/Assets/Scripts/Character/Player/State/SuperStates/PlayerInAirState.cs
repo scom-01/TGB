@@ -113,6 +113,7 @@ public class PlayerInAirState : PlayerState
         else if (JumpInput && (isTouchingWall || isTouchingWallBack || wallJumpCoyoteTime))
         {
             StopWallJumpCoyoteTime();
+            unit.isFixedMovement = false;
             isTouchingWall = CollisionSenses.CheckIfTouchingWall;
             player.WallJumpState.DetermineWallJumpDirection(isTouchingWall);
             player.FSM.ChangeState(player.WallJumpState);
@@ -137,7 +138,9 @@ public class PlayerInAirState : PlayerState
         }
 
         Movement.CheckIfShouldFlip(xInput);
-        Movement.SetVelocityX(UnitStats.MoveSpeed * xInput);
+        //if(Movement.CanSetVelocity)
+        if (!unit.isFixedMovement)
+            Movement.SetVelocityX(UnitStats.MoveSpeed * xInput);        
 
         player.Anim.SetFloat("yVelocity", Mathf.Clamp(Movement.CurrentVelocity.y, -3, 13));
         player.Anim.SetFloat("xVelocity", Mathf.Abs(Movement.CurrentVelocity.x));
