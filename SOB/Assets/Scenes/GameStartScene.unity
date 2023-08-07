@@ -27442,7 +27442,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: 1842.2898}
+  m_AnchoredPosition: {x: 7, y: 36417.664}
   m_SizeDelta: {x: 21.1497, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1368125264
@@ -29722,9 +29722,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Slider: {fileID: 285163894}
-  m_isUnit: 0
   m_IsFollow: 0
+  m_IsShowTxt: 1
   Txt: {fileID: 511981031}
+  lerpduration: 0.5
 --- !u!1 &1495630656
 GameObject:
   m_ObjectHideFlags: 0
@@ -35710,6 +35711,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a6848a6b16f9714d80b8876a94f5953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lerpduration: 0.5
+  startDelay: 1
 --- !u!114 &1729426909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43933,7 +43936,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: -676.8153}
+  m_AnchoredPosition: {x: 7, y: -10022.251}
   m_SizeDelta: {x: 21.1497, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2125587133
