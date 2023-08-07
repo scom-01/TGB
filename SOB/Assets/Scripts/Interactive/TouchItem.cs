@@ -9,6 +9,7 @@ public class TouchItem : TouchObject
     [SerializeField] private SpriteRenderer SpriteRenderer;
     private void Awake()
     {
+        this.gameObject.layer = LayerMask.NameToLayer("TouchObject");
         if (SpriteRenderer == null)
         {
             SpriteRenderer = this.GetComponent<SpriteRenderer>();
@@ -46,8 +47,8 @@ public class TouchItem : TouchObject
             Buff buff = new Buff();
             var items = Item as BuffItemSO;
             buff.buffItemSO = items;
-            gameObject.GetComponent<Unit>().Core.CoreSoundEffect.AudioSpawn(Item.effectData.AcquiredSoundEffect);
-            gameObject.GetComponent<Unit>().gameObject.GetComponent<BuffSystem>().AddBuff(buff);
+            gameObject.GetComponent<Unit>().Core.CoreSoundEffect?.AudioSpawn(Item.effectData.AcquiredSoundEffect);
+            gameObject.GetComponent<Unit>().gameObject.GetComponent<BuffSystem>()?.AddBuff(buff);
 
             if (Item.effectData.AcquiredEffectPrefab != null)
                 Instantiate(Item.effectData.AcquiredEffectPrefab, this.gameObject.transform.position, Quaternion.identity, effectContainer);
