@@ -72,6 +72,11 @@ public class Unit : MonoBehaviour
     public bool isFixed_Hit_Immunity = false;
 
     /// <summary>
+    /// KnockBack, JumpPad 등 외부요인으로 움직이는지 판별하는 요소
+    /// </summary>
+    [HideInInspector] public bool isFixedMovement = false;
+
+    /// <summary>
     /// 면역값
     /// </summary>
     public bool isCC_immunity

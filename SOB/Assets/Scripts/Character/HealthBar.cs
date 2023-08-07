@@ -75,6 +75,7 @@ public class HealthBar : MonoBehaviour
         }
 
         m_Slider.transform.position = mainCamera.WorldToScreenPoint(unit.Core.CoreCollisionSenses.GroundCenterPos + new Vector3(0.0f, -0.5f, 0.0f));
+        old_sliderPos = m_Slider.transform.position;
     }
     private void OnEnable()
     {

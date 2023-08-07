@@ -47,18 +47,7 @@ MonoBehaviour:
   groundCheckRadius: 0.125
   wallCheckDistance: 0.4
   UnitDetectedDistance: 0.5
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 384
-  whatIsWall:
-    serializedVersion: 2
-    m_Bits: 256
-  whatIsPlatform:
-    serializedVersion: 2
-    m_Bits: 512
-  WhatIsEnemyUnit:
-    serializedVersion: 2
-    m_Bits: 262144
+  LayerMaskSO: {fileID: 11400000, guid: 3fc1b3c24e4833340904f12b0925ee9d, type: 2}
   UnitAnimator: {fileID: 9100000, guid: f8140e6895d29404cb3c31ff401edc68, type: 2}
   amountOfJumps: 4
   dashColliderHeight: 0.93

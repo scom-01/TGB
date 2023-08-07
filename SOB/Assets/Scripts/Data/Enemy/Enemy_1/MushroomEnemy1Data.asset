@@ -22,8 +22,10 @@ MonoBehaviour:
     MagicDefensivePer: 0
     PhysicsAggressivePer: 0
     MagicAggressivePer: 0
+    CriticalPer: 0
+    AdditionalCriticalPer: 0
     DamageAttiribute: 0
-    MyElemental: 0
+    Elemental: 0
     ElementalDefensivePer: 0
     ElementalAggressivePer: 0
   UnitName: Agitator
@@ -36,8 +38,6 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  knockBackDuration: 0.2
-  knockBackSpeed: {x: 1, y: 0}
   UnitGravity: 5
   invincibleTime: 0.125
   touchDamageinvincibleTime: 1
@@ -47,18 +47,7 @@ MonoBehaviour:
   groundCheckRadius: 0.1
   wallCheckDistance: 0.5
   UnitDetectedDistance: 5
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 896
-  whatIsWall:
-    serializedVersion: 2
-    m_Bits: 256
-  whatIsPlatform:
-    serializedVersion: 2
-    m_Bits: 512
-  WhatIsEnemyUnit:
-    serializedVersion: 2
-    m_Bits: 4096
+  LayerMaskSO: {fileID: 11400000, guid: cf54109d9cea214498d740045d9d3ff9, type: 2}
   UnitAnimator: {fileID: 9100000, guid: 148f491a8697a074081f7cee04680cf5, type: 2}
   enemy_form: 0
   enemy_size: 0

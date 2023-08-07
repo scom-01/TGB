@@ -38,8 +38,6 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  knockBackDuration: 0.2
-  knockBackSpeed: {x: 1, y: 0}
   UnitGravity: 5
   invincibleTime: 0.125
   touchDamageinvincibleTime: 1
@@ -49,18 +47,7 @@ MonoBehaviour:
   groundCheckRadius: 0.1
   wallCheckDistance: 0.5
   UnitDetectedDistance: 15
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 896
-  whatIsWall:
-    serializedVersion: 2
-    m_Bits: 256
-  whatIsPlatform:
-    serializedVersion: 2
-    m_Bits: 512
-  WhatIsEnemyUnit:
-    serializedVersion: 2
-    m_Bits: 4096
+  LayerMaskSO: {fileID: 11400000, guid: 6a02539928b944f408d465411dcf116c, type: 2}
   UnitAnimator: {fileID: 22100000, guid: 404fd0e81a18a5f4e9e1c8e974227e75, type: 2}
   enemy_form: 0
   enemy_size: 0
