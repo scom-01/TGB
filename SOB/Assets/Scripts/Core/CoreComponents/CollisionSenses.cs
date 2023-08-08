@@ -71,6 +71,14 @@ namespace SOB.CoreSystem
             }
             //get => Physics2D.OverlapCircle(GroundCenterPos, groundCheckRadius, whatIsGround);
         }
+        public bool CheckIfAirGrounded
+        {
+            get
+            {
+                return Physics2D.OverlapBox(GroundCenterPos + Vector3.down * (GroundCheckRadius) * 3 / 2, new Vector2(CC2D.bounds.size.x * 0.95f, CC2D.bounds.size.y * GroundCheckRadius), 0f, WhatIsGround);                
+            }
+            //get => Physics2D.OverlapCircle(GroundCenterPos, groundCheckRadius, whatIsGround);
+        }
         public bool CheckIfPlatformGrounded
         {
             get
@@ -128,16 +136,27 @@ namespace SOB.CoreSystem
                 return;
 
             //Gizmos.DrawWireCube(transform.position + new Vector3((CC2D.offset.x) * Movement.FancingDirection, CC2D.offset.y - (CAPC2D.radius/2)), new Vector2(CC2D.bounds.size.x, (CC2D.bounds.size.y + CAPC2D.radius) * 0.95f));
+
             Gizmos.color = Color.blue;
+            //CheckIfPlatformGrounded
             Gizmos.DrawWireCube(GroundCenterPos + Vector3.down * (GroundCheckRadius) * 3 / 2,
                 new Vector2(CC2D.bounds.size.x * 0.95f, GroundCheckRadius));
-            Debug.DrawRay(GroundCenterPos, Vector2.down, Color.red);
 
+            Gizmos.color = Color.red;
+            //CheckIfPlatform
+            Gizmos.DrawWireCube(GroundCenterPos + Vector3.down * (GroundCheckRadius) * 1 / 2,
+                new Vector2(CC2D.bounds.size.x * 0.95f, GroundCheckRadius));
+
+
+            Gizmos.DrawLine(GroundCenterPos, GroundCenterPos + Vector3.down);
+
+            Gizmos.color = Color.blue;
             //CheckIfTouchingWallBack
-            Debug.DrawRay(WallCheck.position, Vector2.right * -Movement.FancingDirection * (WallCheckDistance + CC2D.bounds.size.x / 2), Color.red);
+            Gizmos.DrawLine(WallCheck.position, WallCheck.position + Vector3.right * -Movement.FancingDirection * (WallCheckDistance + CC2D.bounds.size.x / 2));
 
+            Gizmos.color = Color.red;
             //CheckIfTouchingWall
-            Debug.DrawRay(WallCheck.position, Vector2.right * Movement.FancingDirection * (WallCheckDistance + CC2D.bounds.size.x / 2), Color.green);
+            Gizmos.DrawLine(WallCheck.position, WallCheck.position + Vector3.right * Movement.FancingDirection * (WallCheckDistance + CC2D.bounds.size.x / 2));
         }
     }
 }

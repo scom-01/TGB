@@ -9,7 +9,6 @@ public class PlayerDashState : PlayerAbilityState
     public bool CanDash { get; private set; }
     public int DashCount { get; private set; }
     private float lastDashTime;
-    private bool IsGrounded = true;
 
     private Vector2 lastAIPos;
 
@@ -30,9 +29,8 @@ public class PlayerDashState : PlayerAbilityState
 
     public override void Enter()
     {
-        IsGrounded = CollisionSenses.CheckIfGrounded;
         player.isFixedMovement = false;
-        if (IsGrounded)
+        if (isGrounded)
         {
             animBoolName = "dash";
         }
@@ -42,9 +40,8 @@ public class PlayerDashState : PlayerAbilityState
         }
         base.Enter();
         Movement.CheckIfShouldFlip(player.InputHandler.NormInputX);
-        IsGrounded = CollisionSenses.CheckIfGrounded;
         SoundEffect.AudioSpawn(Dash_SFX);
-        if (IsGrounded)
+        if (isGrounded)
         {
             //콜라이더 크기 변경
             player.SetColliderHeight(player.playerData.dashColliderHeight);
@@ -74,7 +71,7 @@ public class PlayerDashState : PlayerAbilityState
         base.Exit();
         player.RB.gravityScale = unit.UnitData.UnitGravity;
         DamageReceiver.isHit = false;
-        if (IsGrounded)
+        if (isGrounded)
         {
             //콜라이더 크기 변경
             player.SetColliderHeight(player.playerData.standCC2DSize.y);
@@ -99,7 +96,7 @@ public class PlayerDashState : PlayerAbilityState
             if (player.InputHandler.ActionInputs[(int)CombatInputs.primary])
             {
                 player.PrimaryAttackState.SetWeapon(player.Inventory.Weapon);
-                if (player.PrimaryAttackState.CheckCommand(ref player.Inventory.Weapon.CommandList))
+                if (player.PrimaryAttackState.CheckCommand(isGrounded, ref player.Inventory.Weapon.CommandList))
                 {
                     player.FSM.ChangeState(player.PrimaryAttackState);
                 }
@@ -107,7 +104,7 @@ public class PlayerDashState : PlayerAbilityState
             else if (player.InputHandler.ActionInputs[(int)CombatInputs.secondary])
             {
                 player.SecondaryAttackState.SetWeapon(player.Inventory.Weapon);
-                if (player.SecondaryAttackState.CheckCommand(ref player.Inventory.Weapon.CommandList))
+                if (player.SecondaryAttackState.CheckCommand(isGrounded, ref player.Inventory.Weapon.CommandList))
                 {
                     player.FSM.ChangeState(player.SecondaryAttackState);
                 }

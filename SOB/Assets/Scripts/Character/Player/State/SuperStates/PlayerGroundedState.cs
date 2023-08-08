@@ -23,7 +23,7 @@ public class PlayerGroundedState : PlayerState
     {
         base.DoChecks();
 
-        isGrounded = CollisionSenses.CheckIfGrounded;
+        isGrounded = CollisionSenses.CheckIfGrounded || CollisionSenses.CheckIfPlatform;
         isPlatform = CollisionSenses.CheckIfPlatform;
         isTouchingWall = CollisionSenses.CheckIfTouchingWall;
     }
@@ -41,15 +41,14 @@ public class PlayerGroundedState : PlayerState
         base.Exit();
     }
 
-    public override void LogicUpdate()
+    public override void PhysicsUpdate()
     {
-        base.LogicUpdate();
-        
+        base.PhysicsUpdate();
         xInput = player.InputHandler.NormInputX;
         yInput = player.InputHandler.NormInputY;
         JumpInput = player.InputHandler.JumpInput;
         dashInput = player.InputHandler.DashInput;
-        
+
         if (player.DashState.CheckIfResetDash())
         {
             player.DashState.ResetDash(player.playerData.dashCount);
@@ -58,18 +57,18 @@ public class PlayerGroundedState : PlayerState
         if (player.InputHandler.ActionInputs[(int)CombatInputs.primary])
         {
             player.PrimaryAttackState.SetWeapon(player.Inventory.Weapon);
-            if(player.PrimaryAttackState.CheckCommand(ref player.Inventory.Weapon.CommandList))
+            if (player.PrimaryAttackState.CheckCommand(isGrounded, ref player.Inventory.Weapon.CommandList))
             {
                 player.FSM.ChangeState(player.PrimaryAttackState);
             }
         }
-        else if(player.InputHandler.ActionInputs[(int)CombatInputs.secondary])
+        else if (player.InputHandler.ActionInputs[(int)CombatInputs.secondary])
         {
             player.SecondaryAttackState.SetWeapon(player.Inventory.Weapon);
-            if (player.SecondaryAttackState.CheckCommand(ref player.Inventory.Weapon.CommandList))
+            if (player.SecondaryAttackState.CheckCommand(isGrounded, ref player.Inventory.Weapon.CommandList))
             {
                 player.FSM.ChangeState(player.SecondaryAttackState);
-            }      
+            }
         }
         else if (player.InputHandler.Skill1Input)
         {
@@ -86,12 +85,12 @@ public class PlayerGroundedState : PlayerState
             player.StartCoroutine(player.DisableCollision());
             return;
         }
-        else if (JumpInput && player.JumpState.CanJump() && (isGrounded || CollisionSenses.CheckIfPlatform) && yInput >= 0 && !player.CC2D.isTrigger)
+        else if (JumpInput && player.JumpState.CanJump() && isGrounded && yInput >= 0 && !player.CC2D.isTrigger)
         {
             player.FSM.ChangeState(player.JumpState);
             return;
         }
-        else if (!(isGrounded || CollisionSenses.CheckIfPlatform))
+        else if (!(isGrounded || CollisionSenses.CheckIfAirGrounded))
         {
             player.InAirState.StartCoyoteTime();
             player.FSM.ChangeState(player.InAirState);
@@ -100,10 +99,5 @@ public class PlayerGroundedState : PlayerState
         {
             player.FSM.ChangeState(player.DashState);
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
     }
 }

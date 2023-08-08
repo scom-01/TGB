@@ -26,7 +26,7 @@ public class EnemyState : UnitState
         base.DoChecks();
 
         if (EnemyCollisionSenses)
-            isGrounded = EnemyCollisionSenses.CheckIfGrounded;
+            isGrounded = (EnemyCollisionSenses.CheckIfGrounded || EnemyCollisionSenses.CheckIfPlatform);
     }
 
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerAbilityState : PlayerState
@@ -16,7 +17,7 @@ public class PlayerAbilityState : PlayerState
         base.DoChecks();
 
         if(CollisionSenses)
-            isGrounded = CollisionSenses.CheckIfGrounded;
+            isGrounded = CollisionSenses.CheckIfGrounded || CollisionSenses.CheckIfPlatform;
     }
 
     public override void Enter()
@@ -33,24 +34,31 @@ public class PlayerAbilityState : PlayerState
 
     public override void LogicUpdate()
     {
-        base.LogicUpdate();
+        base.LogicUpdate();       
+    }
 
-        if(isAbilityDone)
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+
+        if (isAbilityDone)
         {
-            if ((isGrounded || CollisionSenses.CheckIfPlatform) && Movement.CurrentVelocity.y <= 0.01f)
+            if (isGrounded && Movement.CurrentVelocity.y <= 0.01f)
             {
-                player.FSM.ChangeState(player.IdleState);
+                if (player.FSM.OldState == player.InAirState || player.FSM.OldState == player.JumpState)
+                {
+                    player.FSM.ChangeState(player.LandState);
+                }
+                else
+                {
+                    player.FSM.ChangeState(player.IdleState);
+                }
             }
             else
             {
                 player.FSM.ChangeState(player.InAirState);
             }
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
     }
 
     public override void AnimationFinishTrigger()

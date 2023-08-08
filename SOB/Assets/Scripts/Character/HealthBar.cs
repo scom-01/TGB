@@ -43,6 +43,7 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private bool m_IsShowTxt = true;
     [SerializeField] private TextMeshProUGUI Txt;
     [SerializeField]
+    private Camera m_Camera;
     private BackHealthBarEffect HealthBarEffect
     {
         get
@@ -58,24 +59,20 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private float lerpduration = 0.5f;
     private Coroutine runningCoroutine;
 
-    private Vector3 old_sliderPos;
-
+    private void Start()
+    {
+        m_Camera = Camera.main; // 필요한 경우에만 Camera 변수를 사용합니다.
+        if (GameManager.Inst.StageManager.Cam != null)
+        {
+            m_Camera = GameManager.Inst.StageManager.Cam;
+        }
+    }
     private void FixedUpdate()
     {
         if (!m_IsFollow)
             return;
 
-        if (old_sliderPos == m_Slider.transform.position)
-            return;
-
-        Camera mainCamera = Camera.main; // 필요한 경우에만 Camera 변수를 사용합니다.
-        if (GameManager.Inst.StageManager.Cam != null)
-        {
-            mainCamera = GameManager.Inst.StageManager.Cam;
-        }
-
-        m_Slider.transform.position = mainCamera.WorldToScreenPoint(unit.Core.CoreCollisionSenses.GroundCenterPos + new Vector3(0.0f, -0.5f, 0.0f));
-        old_sliderPos = m_Slider.transform.position;
+        m_Slider.transform.position = m_Camera.WorldToScreenPoint(unit.Core.CoreCollisionSenses.GroundCenterPos + new Vector3(0.0f, -0.5f, 0.0f));        
     }
     private void OnEnable()
     {

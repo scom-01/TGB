@@ -31,14 +31,19 @@ public class PlayerLandState : PlayerGroundedState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
 
         if (isExitingState) return;
-        
-        if(xInput != 0f)
+
+        if (xInput != 0f)
         {
             player.FSM.ChangeState(player.MoveState);
         }
-        else if(isAnimationFinished)
+        else if (isAnimationFinished)
         {
             player.FSM.ChangeState(player.IdleState);
         }

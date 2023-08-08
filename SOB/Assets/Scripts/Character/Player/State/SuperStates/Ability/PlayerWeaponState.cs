@@ -50,16 +50,19 @@ public class PlayerWeaponState : PlayerAbilityState
     {
         AnimationFinishTrigger();
     }
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+    }
 
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-
-        weapon.InAir = !(CollisionSenses.CheckIfGrounded || CollisionSenses.CheckIfPlatform);
+        weapon.InAir = !isGrounded;
         xInput = player.InputHandler.NormInputX;
         yInput = player.InputHandler.NormInputY;
         JumpInput = player.InputHandler.JumpInput;
-
+                
         if (JumpInput && player.JumpState.CanJump() && CollisionSenses.CheckIfPlatform && yInput < 0)
         {
             player.StartCoroutine(player.DisableCollision());
@@ -74,8 +77,7 @@ public class PlayerWeaponState : PlayerAbilityState
         }
 
         //공중에서 공격 후 착지상태
-        //TODO:Input의 boolean값을 가져와서 판별하는 방법으로 변경해야 할 듯 하다 ex)AttackInputs
-        if (/*!player.InputHandler.ActionInputs[(int)CombatInputs.primary] &&*/ weapon.InAir && CollisionSenses.CheckIfGrounded)
+        if ( weapon.InAir && CollisionSenses.CheckIfAirGrounded)
         {
             weapon.EventHandler.AnimationFinishedTrigger();
             player.FSM.ChangeState(player.LandState);
@@ -102,8 +104,6 @@ public class PlayerWeaponState : PlayerAbilityState
             player.FSM.ChangeState(player.DashState);
             return;
         }
-
-        //player.SetVelocityX(0f);
     }
 
     public void SetWeapon(Weapon weapon)
@@ -113,13 +113,13 @@ public class PlayerWeaponState : PlayerAbilityState
     }
 
     public bool CheckCommand
-        (ref List<CommandEnum> q)
+        (bool isGround,ref List<CommandEnum> q)
     {
         CommandEnum command = CommandEnum.Secondary;
         if (isPrimary)
             command = CommandEnum.Primary;
         q.Add(command);
-        if (!(CollisionSenses.CheckIfGrounded || CollisionSenses.CheckIfPlatform))
+        if (!isGround)
         {
             if (CalCommand(weapon.weaponData.weaponCommandDataSO.AirCommandList, q))
             {
@@ -137,7 +137,7 @@ public class PlayerWeaponState : PlayerAbilityState
         return false;
     }
 
-    private bool CalCommand(List<CommandList> commandLists, List<CommandEnum> q)
+    protected bool CalCommand(List<CommandList> commandLists, List<CommandEnum> q)
     {
         for (int i = 0; i < commandLists.Count; i++)
         {

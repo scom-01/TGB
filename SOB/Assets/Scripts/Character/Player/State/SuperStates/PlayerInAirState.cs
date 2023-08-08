@@ -38,7 +38,7 @@ public class PlayerInAirState : PlayerState
         oldIsTouchingWall = isTouchingWall;
         oldIsTouchingWallBack = isTouchingWallBack;
 
-        isGrounded = CollisionSenses.CheckIfGrounded;
+        isGrounded = CollisionSenses.CheckIfGrounded || CollisionSenses.CheckIfPlatform || CollisionSenses.CheckIfAirGrounded || CollisionSenses.CheckIfPlatformGrounded;
         isTouchingWall = CollisionSenses.CheckIfTouchingWall;
         isTouchingWallBack = CollisionSenses.CheckIfTouchingWallBack;
 
@@ -69,6 +69,11 @@ public class PlayerInAirState : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
 
         CheckCoyoteTime();
         CheckWallJumpCoyoteTime();
@@ -76,7 +81,7 @@ public class PlayerInAirState : PlayerState
         xInput = player.InputHandler.NormInputX;
         JumpInput = player.InputHandler.JumpInput;
         JumpInputStop = player.InputHandler.JumpInputStop;
-        
+
         CheckJumpMultiplier();
 
         dashInput = player.InputHandler.DashInput;
@@ -86,7 +91,7 @@ public class PlayerInAirState : PlayerState
         if (player.InputHandler.ActionInputs[(int)CombatInputs.primary])
         {
             player.PrimaryAttackState.SetWeapon(player.Inventory.Weapon);
-            if (player.PrimaryAttackState.CheckCommand(ref player.Inventory.Weapon.CommandList))
+            if (player.PrimaryAttackState.CheckCommand(isGrounded, ref player.Inventory.Weapon.CommandList))
             {
                 player.FSM.ChangeState(player.PrimaryAttackState);
             }
@@ -94,17 +99,19 @@ public class PlayerInAirState : PlayerState
         else if (player.InputHandler.ActionInputs[(int)CombatInputs.secondary])
         {
             player.SecondaryAttackState.SetWeapon(player.Inventory.Weapon);
-            if (player.SecondaryAttackState.CheckCommand(ref player.Inventory.Weapon.CommandList))
+            if (player.SecondaryAttackState.CheckCommand(isGrounded, ref player.Inventory.Weapon.CommandList))
             {
                 player.FSM.ChangeState(player.SecondaryAttackState);
             }
         }
 
+        //Platform 착지
         if (CollisionSenses.CheckIfPlatformGrounded && Movement.CurrentVelocity.y <= 0.01f)
         {
             player.FSM.ChangeState(player.LandState);
             return;
         }
+        //Ground 착지
         else if (isGrounded && Movement.CurrentVelocity.y <= 0.01f)
         {
             player.FSM.ChangeState(player.LandState);
@@ -119,7 +126,7 @@ public class PlayerInAirState : PlayerState
             player.FSM.ChangeState(player.WallJumpState);
             return;
         }
-        else if (JumpInput && player.JumpState.CanJump()&& !player.CC2D.isTrigger)
+        else if (JumpInput && player.JumpState.CanJump() && !player.CC2D.isTrigger)
         {
             coyoteTime = false;
             player.FSM.ChangeState(player.JumpState);
@@ -140,11 +147,12 @@ public class PlayerInAirState : PlayerState
         Movement.CheckIfShouldFlip(xInput);
         //if(Movement.CanSetVelocity)
         if (!unit.isFixedMovement)
-            Movement.SetVelocityX(UnitStats.MoveSpeed * xInput);        
+            Movement.SetVelocityX(UnitStats.MoveSpeed * xInput);
 
         player.Anim.SetFloat("yVelocity", Mathf.Clamp(Movement.CurrentVelocity.y, -3, 13));
         player.Anim.SetFloat("xVelocity", Mathf.Abs(Movement.CurrentVelocity.x));
     }
+
 
     private void CheckJumpMultiplier()
     {
@@ -161,11 +169,6 @@ public class PlayerInAirState : PlayerState
                 isJumping = false;
             }
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
     }
 
     private void CheckCoyoteTime()

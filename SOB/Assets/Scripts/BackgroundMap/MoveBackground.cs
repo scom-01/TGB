@@ -9,6 +9,7 @@ public class MoveBackground : MonoBehaviour
     /// <summary>
     /// 거리감
     /// </summary>
+    [Tooltip("수가 낮을 수록 근접한 움직임 표현")]
     [SerializeField] private Vector2 Distance;
 
     [SerializeField] private bool infiniteHorizontal;
