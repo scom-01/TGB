@@ -33,8 +33,8 @@ public class PlayerMoveState : PlayerGroundedState
         if (isExitingState) return;
 
         Movement.SetVelocityX(UnitStats.MoveSpeed * xInput);
-        
-        if(xInput == 0f && !isExitingState)
+
+        if (xInput == 0f && !isExitingState)
         {
             player.FSM.ChangeState(player.IdleState);
         }

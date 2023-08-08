@@ -1,3 +1,4 @@
+using SOB.Weapons;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -34,31 +35,24 @@ public class PlayerAbilityState : PlayerState
 
     public override void LogicUpdate()
     {
-        base.LogicUpdate();       
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
+        base.LogicUpdate();
 
         if (isAbilityDone)
         {
             if (isGrounded && Movement.CurrentVelocity.y <= 0.01f)
             {
-                if (player.FSM.OldState == player.InAirState || player.FSM.OldState == player.JumpState)
-                {
-                    player.FSM.ChangeState(player.LandState);
-                }
-                else
-                {
-                    player.FSM.ChangeState(player.IdleState);
-                }
+                player.FSM.ChangeState(player.IdleState);
             }
             else
             {
                 player.FSM.ChangeState(player.InAirState);
             }
         }
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
     }
 
     public override void AnimationFinishTrigger()
