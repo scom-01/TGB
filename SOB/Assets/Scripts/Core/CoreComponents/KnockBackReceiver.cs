@@ -66,7 +66,7 @@ namespace SOB.CoreSystem
 
         private void SetKnockBack(Vector2 angle, float strength, int direction)
         {
-            movement.Comp?.SetVelocity(strength, angle, movement.Comp.FancingDirection);
+            movement.Comp?.SetVelocity(strength, angle, direction);
             movement.Comp.CanSetVelocity = false;
             core.Unit.isFixedMovement = true;
             isKnockBackActive = true;
