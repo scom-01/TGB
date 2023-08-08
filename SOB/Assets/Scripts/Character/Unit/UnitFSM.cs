@@ -6,7 +6,6 @@ using UnityEngine;
 public class UnitFSM
 {
     public UnitState CurrentState { get; private set; }
-    public UnitState OldState { get; private set; }
 
     //State 변경 후 호출되는 함수
     public void Initialize(UnitState startingState)
@@ -19,7 +18,6 @@ public class UnitFSM
     //State 변경 시 호출되는 함수
     public void ChangeState(UnitState newState)
     {
-        OldState = CurrentState;
         CurrentState.Exit();
         CurrentState = newState;
         CurrentState.Enter();
