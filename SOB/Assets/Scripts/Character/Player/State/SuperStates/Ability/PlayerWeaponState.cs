@@ -40,7 +40,7 @@ public class PlayerWeaponState : PlayerAbilityState
         {
             weapon.Command = CommandEnum.Secondary;
         }
-
+        weapon.InAir = !isGrounded;
         weapon.EnterWeapon();
         CanAttack = false;
         startTime = Time.time;
@@ -58,7 +58,7 @@ public class PlayerWeaponState : PlayerAbilityState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        weapon.InAir = !isGrounded;
+        
         xInput = player.InputHandler.NormInputX;
         yInput = player.InputHandler.NormInputY;
         JumpInput = player.InputHandler.JumpInput;
@@ -77,7 +77,7 @@ public class PlayerWeaponState : PlayerAbilityState
         }
 
         //공중에서 공격 후 착지상태
-        if ( weapon.InAir && CollisionSenses.CheckIfAirGrounded)
+        if ( weapon.InAir && isGrounded)
         {
             weapon.EventHandler.AnimationFinishedTrigger();
             player.FSM.ChangeState(player.LandState);
