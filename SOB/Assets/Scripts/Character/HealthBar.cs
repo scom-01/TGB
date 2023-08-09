@@ -38,7 +38,18 @@ public class HealthBar : MonoBehaviour
         }
     }
     private UnitStats stats;
-    [SerializeField] private Slider m_Slider;
+    private Slider m_Slider
+    {
+        get
+        {
+            if (m_slider == null)
+            {
+                m_slider = this.GetComponent<Slider>();
+            }
+            return m_slider; 
+        }
+    }
+    private Slider m_slider;
     [SerializeField] private bool m_IsFollow = true;
     [SerializeField] private bool m_IsShowTxt = true;
     [SerializeField] private TextMeshProUGUI Txt;
@@ -66,13 +77,17 @@ public class HealthBar : MonoBehaviour
         {
             m_Camera = GameManager.Inst.StageManager.Cam;
         }
+
+        if (m_Slider != null)
+            m_Slider.value = 1f;
     }
     private void FixedUpdate()
     {
         if (!m_IsFollow)
             return;
 
-        m_Slider.transform.position = m_Camera.WorldToScreenPoint(unit.Core.CoreCollisionSenses.GroundCenterPos + new Vector3(0.0f, -0.5f, 0.0f));        
+        if (m_Slider != null)
+            m_Slider.transform.position = m_Camera.WorldToScreenPoint(unit.Core.CoreCollisionSenses.GroundCenterPos + new Vector3(0.0f, -0.5f, 0.0f));        
     }
     private void OnEnable()
     {
@@ -94,7 +109,8 @@ public class HealthBar : MonoBehaviour
     {
         // 슬라이더의 목표 값을 계산합니다.
         float targetValue = Stats.CurrentHealth / Stats.MaxHealth;
-        m_Slider.value = targetValue;
+        if (m_Slider != null)
+            m_Slider.value = targetValue;
         //if (runningCoroutine != null)
         //{
         //    StopCoroutine(runningCoroutine);
@@ -112,7 +128,9 @@ public class HealthBar : MonoBehaviour
                 Txt.gameObject.SetActive(false);
             }
         }
-        CallBackHealthBarEffect();
+
+        if (m_Slider != null)
+            CallBackHealthBarEffect();
     }
 
     //Lerp
