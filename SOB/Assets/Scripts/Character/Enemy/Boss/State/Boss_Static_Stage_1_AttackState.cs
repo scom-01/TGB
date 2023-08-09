@@ -13,7 +13,7 @@ public class Boss_Static_Stage_1_AttackState : EnemyAttackState
     public override void Enter()
     {
         base.Enter();
-        FollowTarget();
+        FlipToTarget();
     }
     public override void IdleState()
     {

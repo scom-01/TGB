@@ -46,18 +46,6 @@ public abstract class EnemyIdleState : EnemyState
         checkifTouchingWallBack = EnemyCollisionSenses.CheckIfTouchingWallBack;
         checkifTouchingGrounded = EnemyCollisionSenses.CheckIfStayGrounded;
 
-        //if (enemy.enemyData.enemy_form == ENEMY_Form.Grounded && !isGrounded)
-        //{            
-        //    if(checkifTouchingGrounded)
-        //    {
-        //        enemy.transform.Translate(Vector2.up * 0.05f);
-        //    }
-        //    else
-        //    {
-        //        return;
-        //    }
-        //}
-
         if(EnemyCollisionSenses.isUnitInFrontDetectedArea || EnemyCollisionSenses.isUnitInBackDetectedArea)
         {
             enemy.SetTarget(EnemyCollisionSenses.UnitFrontDetectArea?.GetComponent<Unit>());
@@ -67,7 +55,7 @@ public abstract class EnemyIdleState : EnemyState
         {
             if ((!checkifCliff && !checkifCliffBack) || (checkifTouchingWall && checkifTouchingWallBack))
             {
-                FollowTarget();
+                FlipToTarget();
             }
             ChangeState();
             return;

@@ -50,7 +50,7 @@ public class EnemyState : UnitState
             return;
     }
 
-    public void FollowTarget()
+    public void FlipToTarget()
     {
         if (enemy.TargetUnit == null)
             return;

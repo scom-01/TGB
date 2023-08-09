@@ -42,6 +42,7 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
     {
         if (MiddleBoss_Stage_1.TargetUnit == null)
             return;
+        FlipToTarget();
 
         if (!isDelayCheck)
             return;
