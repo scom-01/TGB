@@ -41,16 +41,16 @@ public class PlayerDashState : PlayerAbilityState
         base.Enter();
         Movement.CheckIfShouldFlip(player.InputHandler.NormInputX);
         SoundEffect.AudioSpawn(Dash_SFX);
-        if (isGrounded)
-        {
-            //콜라이더 크기 변경
-            player.SetColliderHeight(player.playerData.dashColliderHeight);
-        }
-        else
-        {
-            //콜라이더 크기 변경
-            player.SetColliderHeight(player.playerData.dashColliderHeight, false);
-        }
+        //if (isGrounded)
+        //{
+        //    //콜라이더 크기 변경
+        //    player.SetColliderHeight(player.playerData.dashColliderHeight);
+        //}
+        //else
+        //{
+        //    //콜라이더 크기 변경
+        //    player.SetColliderHeight(player.playerData.dashColliderHeight, false);
+        //}
 
         player.isFixed_Hit_Immunity = true;
 
@@ -72,16 +72,16 @@ public class PlayerDashState : PlayerAbilityState
         player.RB.gravityScale = unit.UnitData.UnitGravity;
         player.isFixed_Hit_Immunity = false;
 
-        if (isGrounded)
-        {
-            //콜라이더 크기 변경
-            player.SetColliderHeight(player.playerData.standCC2DSize.y);
-        }
-        else
-        {
-            //콜라이더 크기 변경
-            player.SetColliderHeight(player.playerData.standCC2DSize.y, false);
-        }
+        //if (isGrounded)
+        //{
+        //    //콜라이더 크기 변경
+        //    player.SetColliderHeight(player.playerData.standCC2DSize.y);
+        //}
+        //else
+        //{
+        //    //콜라이더 크기 변경
+        //    player.SetColliderHeight(player.playerData.standCC2DSize.y, false);
+        //}
     }
 
     public override void LogicUpdate()
