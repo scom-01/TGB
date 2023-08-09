@@ -12,6 +12,7 @@ namespace SOB.CoreSystem
         private CoreComp<Death> death;
         private BoxCollider2D BC2D;
 
+        //객체가 이미 Hit를 했는지 판별(ex. true면 이미 피격당했다고 생각함)
         public bool isHit
         {
             get
@@ -27,12 +28,10 @@ namespace SOB.CoreSystem
             {
                 if(core.Unit.isFixed_Hit_Immunity)
                 {
-                    BC2D.enabled = false;
                     ishit = true;
                 }
                 else
                 {
-                    BC2D.enabled = !value;
                     ishit = value;
                 }
             }
