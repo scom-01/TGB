@@ -52,7 +52,7 @@ public class PlayerDashState : PlayerAbilityState
             player.SetColliderHeight(player.playerData.dashColliderHeight, false);
         }
 
-        DamageReceiver.isHit = true;
+        player.isFixed_Hit_Immunity = true;
 
         CanDash = false;
         player.InputHandler.UseInput(ref player.InputHandler.DashInput);
@@ -70,7 +70,8 @@ public class PlayerDashState : PlayerAbilityState
     {
         base.Exit();
         player.RB.gravityScale = unit.UnitData.UnitGravity;
-        DamageReceiver.isHit = false;
+        player.isFixed_Hit_Immunity = false;
+
         if (isGrounded)
         {
             //콜라이더 크기 변경
