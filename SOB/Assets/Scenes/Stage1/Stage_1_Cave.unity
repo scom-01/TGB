@@ -2719,6 +2719,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EffectList: []
   EffectControllerList: []
+  ProjectileList: []
+  ProjectilePoolingList: []
   EffectPoolList: []
 --- !u!1 &618682963
 GameObject:
@@ -94238,7 +94240,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1501241002}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
@@ -95576,7 +95578,10 @@ MonoBehaviour:
     Boss_Enemy_Count: 0
   BuffDatas: []
   SkipCutSceneList: 
+  SkipBossCutScene: 
   UnlockItemList: 
+  WaitUnlockItemList: 
+  lockItemList: 
 --- !u!114 &1679714829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95591,17 +95596,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IM: {fileID: 1161023654}
   SPM: {fileID: 1292705702}
+  MasterManagerList: []
   CurrStageNumber: 6
   NextStageNumber: 7
   Start_UIState: 0
+  Cam: {fileID: 0}
   respawnPoint: {fileID: 1814375134}
   EndPoint: {fileID: 299998475}
   PlayerPrefab: {fileID: 840319699589423306, guid: 842ba7b90e3d58f4baa7c0b00def52ec, type: 3}
   player: {fileID: 0}
-  respawnTime: 2
   SceneNameFade: {fileID: 1714188898339614809, guid: 2521cea28fa98a74ab099a73a3fd1d6f, type: 3}
-  isStageClear: 0
   CutSceneDirector: {fileID: 0}
+  isStageClear: 0
   CVC: {fileID: 0}
 --- !u!4 &1679714830
 Transform:
@@ -96139,6 +96145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitData: {fileID: 11400000, guid: 27eaf0c531753bd45891897fd5c4886a, type: 2}
   knockbackAngle: {x: 5, y: 10}
+  IgnoreTag: 
 --- !u!66 &1745956720
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -96705,8 +96712,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1945594361}
   - component: {fileID: 1945594362}
-  m_Layer: 6
-  m_Name: Map Light 2D
+  m_Layer: 7
+  m_Name: Global Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96747,7 +96754,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: f549cd26dfd5e22c
+  m_ApplyToSortingLayers: 00000000e1286a6fdfd5e22ce90c348b09447f860bf15375fdd0acee41eb07663d76bfb8f549cd262b5287e4dd625dda4ded6011
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
