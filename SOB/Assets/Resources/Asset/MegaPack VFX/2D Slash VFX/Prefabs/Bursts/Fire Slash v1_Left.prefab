@@ -9777,7 +9777,7 @@ GameObject:
   - component: {fileID: 6074111397971087693}
   - component: {fileID: -3276668059693208655}
   m_Layer: 0
-  m_Name: Fire Slash v1_75
+  m_Name: Fire Slash v1_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9790,7 +9790,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 668831008311998851}
-  m_LocalRotation: {x: 0.60876137, y: 0, z: 0, w: 0.7933534}
+  m_LocalRotation: {x: 0.56443375, y: 0.22804594, z: -0.29719532, w: 0.7355845}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9805,7 +9805,7 @@ Transform:
   - {fileID: 1178368431761940937}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 75, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 75, y: 0, z: -44}
 --- !u!198 &4237568806749004884
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -14610,6 +14610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDestroy: 0
+  isLoopDurationTime: 0
 --- !u!1 &993493490739146913
 GameObject:
   m_ObjectHideFlags: 0

@@ -4831,7 +4831,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3debac9dd0475d345856c4fde7954068, type: 2}
+  - {fileID: 2100000, guid: e52541a5e6c2cea41a59cc1688ac3208, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4849,8 +4849,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -631414051
+  m_SortingLayer: 11
   m_SortingOrder: 1
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -4893,9 +4893,9 @@ GameObject:
   - component: {fileID: 4679232310514125024}
   - component: {fileID: 7348948081310904120}
   - component: {fileID: 5495536844221152836}
-  - component: {fileID: -3080255273802004214}
+  - component: {fileID: 2927970435103869600}
   m_Layer: 0
-  m_Name: Blue Slash v10_60
+  m_Name: White Slash v10_Lower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9708,7 +9708,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &-3080255273802004214
+--- !u!114 &2927970435103869600
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9721,4 +9721,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDestroy: 0
-  isLoopDurationTime: 0
