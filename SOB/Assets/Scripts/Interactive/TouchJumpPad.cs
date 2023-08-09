@@ -47,7 +47,15 @@ public class TouchJumpPad : TouchObject
         }
         Touch();
 
-        gameObject.GetComponent<Unit>().Core.CoreKnockBackReceiver.TrapKnockBack(angle, JumpVelocity, false);
+        //x = 0 인 위로만 올리는 점프패드일 때는 공중 움직임 제한 X
+        if(angle.x == 0)
+        {
+            gameObject.GetComponent<Unit>().Core.CoreMovement.SetVelocityY(JumpVelocity);
+        }
+        else
+        {
+            gameObject.GetComponent<Unit>().Core.CoreKnockBackReceiver.TrapKnockBack(angle, JumpVelocity, false);
+        }
     }
 
     private void OnDrawGizmos()
