@@ -19,6 +19,7 @@ namespace SOB.Weapons.Components
         /// 공격 범위
         /// </summary>
         public Rect ActionRect;
+
         [field: Min(1)]
         /// <summary>
         /// 다단 히트 횟수
