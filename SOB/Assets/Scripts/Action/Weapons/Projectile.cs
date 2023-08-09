@@ -11,6 +11,8 @@ namespace SOB
     {
         //공격하는 주체
         public Unit unit;
+        //지정 타겟
+        public Unit target;
         public ProjectileData ProjectileData;
         private ProjectilePooling parent;
 
@@ -86,9 +88,10 @@ namespace SOB
             this.gameObject.SetActive(false);
         }
 
-        public void SetUp(Unit _unit, ProjectileData m_ProjectileData)
+        public void SetUp(Unit _unit, Unit _target, ProjectileData m_ProjectileData)
         {
             unit = _unit;
+            target = _target;
 
             ProjectileData = m_ProjectileData;
 
@@ -139,7 +142,7 @@ namespace SOB
                 //Default가 0을 전제
                 if(FancingDirection < 0)
                 {
-                    RB2D.transform.Rotate(0.0f, 180.0f, 0.0f);
+                    RB2D.rotation = 180f;
                 }
                 RB2D.velocity = new Vector2(ProjectileData.Rot.x * unit.Core.CoreMovement.FancingDirection, ProjectileData.Rot.y).normalized * ProjectileData.Speed;
             }
@@ -153,6 +156,38 @@ namespace SOB
         {
             if (GameManager.Inst == null)
                 return;
+
+            if (target != null)
+            {
+                Vector2 dir = transform.right;
+                Vector3 targetDir = (target.gameObject.transform.position - transform.position).normalized;
+
+                // 바라보는 방향과 타겟 방향 외적
+                Vector3 crossVec = Vector3.Cross(dir, targetDir);
+                // 상향 벡터와 외적으로 생성한 벡터 내적
+                float inner = Vector3.Dot(Vector3.forward, crossVec);
+                // 내적이 0보다 크면 오른쪽 0보다 작으면 왼쪽으로 회전
+                float addAngle = inner > 0 ? 500 * Time.fixedDeltaTime : -500 * Time.fixedDeltaTime;
+                float saveAngle = addAngle + transform.rotation.eulerAngles.z;
+                //transform.rotation = Quaternion.Euler(0, 0, saveAngle);
+                RB2D.rotation += addAngle;
+                float moveDirAngle = transform.rotation.eulerAngles.z * Mathf.Deg2Rad;
+                var moveDir = new Vector2(Mathf.Cos(moveDirAngle), Mathf.Sin(moveDirAngle));
+
+                Vector2 movePosition = RB2D.position + (moveDir * ProjectileData.Speed) * Time.fixedDeltaTime;
+                RB2D.MovePosition(movePosition);
+
+                //RB2D.velocity = new Vector2(targetDir.x * ProjectileData.Speed, targetDir.y * ProjectileData.Speed);
+                //if ((target.gameObject.transform.position - transform.position).magnitude > 3.0f)
+                //{
+                //    // 타겟 방향으로 회전함
+                //    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                //    var rotTarget = Quaternion.AngleAxis(angle, Vector3.forward);
+                //    transform.rotation = Quaternion.Slerp(transform.rotation, rotTarget,Time.deltaTime * ProjectileData.Speed);                    
+                //    RB2D.velocity = new Vector2(dir.x * ProjectileData.Speed, dir.y * ProjectileData.Speed);
+                //}                
+            }
+
             if (GameManager.Inst.PlayTime >= m_startTime + ProjectileData.DurationTime)
             {
                 Hit();

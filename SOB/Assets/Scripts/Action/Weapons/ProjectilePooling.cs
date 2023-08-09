@@ -34,14 +34,14 @@ public class ProjectilePooling : MonoBehaviour
         }
     }
 
-    public GameObject GetObejct(Unit unit, ProjectileData _projectilData)
+    public GameObject GetObejct(Unit unit,Unit enemy, ProjectileData _projectilData)
     {
         if (m_projectileQueue.Count > 0)
         {
             var obj = m_projectileQueue.Dequeue();
             if(obj != null)
             {
-                obj.GetComponent<Projectile>().SetUp(unit, _projectilData);
+                obj.GetComponent<Projectile>().SetUp(unit, enemy, _projectilData);
                 obj.gameObject.SetActive(true);
                 obj.GetComponent<Projectile>().Shoot();
             }            
@@ -50,7 +50,7 @@ public class ProjectilePooling : MonoBehaviour
         else
         {
             var newobj = CreateObject();
-            newobj.GetComponent<Projectile>().SetUp(unit, _projectilData);
+            newobj.GetComponent<Projectile>().SetUp(unit, enemy, _projectilData);
             newobj.gameObject.SetActive(true);
             newobj.GetComponent<Projectile>().Shoot();
             return newobj;

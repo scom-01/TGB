@@ -26,8 +26,14 @@ namespace SOB.Weapons.Components
         }
         private void CheckAttackAction(WeaponProjectileActionData actionData)
         {
-            CoreEffectManager.StartProjectileCheck(core.Unit, actionData.ProjectileActionData[currentProjectileIndex]);
-            //obj.Shoot();
+            if (core.Unit.TargetUnit != null) 
+            {
+                CoreEffectManager.StartProjectileCheck(core.Unit, core.Unit.TargetUnit, actionData.ProjectileActionData[currentProjectileIndex]);
+            }
+            else
+            {
+                CoreEffectManager.StartProjectileCheck(core.Unit, actionData.ProjectileActionData[currentProjectileIndex]);
+            }
         }
 
         protected override void Start()
