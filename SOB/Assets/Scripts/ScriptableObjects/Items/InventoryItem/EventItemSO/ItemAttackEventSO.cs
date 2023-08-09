@@ -69,7 +69,7 @@ public class ItemAttackEventSO : ItemEffectSO
         }
     }
 
-    public override int ExecuteOnAction(StatsItemSO parentItem, Unit unit, int attackCount)
+    public override int ExecuteOnAction(StatsItemSO parentItem, Unit unit, Unit enemy, int attackCount)
     {
         if (Item_Type != ITEM_TPYE.OnAction || Item_Type == ITEM_TPYE.None)
             return attackCount;
@@ -78,27 +78,13 @@ public class ItemAttackEventSO : ItemEffectSO
         Debug.Log("ExcuteEffect Attack!");
 
         if (attackCount >= itemEffectData.MaxCount)
-        {            
-            AttackAction(parentItem, unit);
-            attackCount = 0;
-        }
-        return attackCount;
-    }
-
-    public override int ExecuteOnHit(StatsItemSO parentItem, Unit unit, int attackCount)
-    {
-        if (Item_Type != ITEM_TPYE.OnHit || Item_Type == ITEM_TPYE.None)
-            return attackCount;
-
-        attackCount++;
-        Debug.Log("ExcuteEffect Attack!");
-        if (attackCount >= itemEffectData.MaxCount)
         {
-            AttackAction(parentItem,unit);
+            AttackAction(parentItem, unit, enemy);
             attackCount = 0;
         }
         return attackCount;
     }
+
     public override int ExecuteOnHit(StatsItemSO parentItem, Unit unit, Unit enemy, int attackCount)
     {
         if (Item_Type != ITEM_TPYE.OnHit || Item_Type == ITEM_TPYE.None)
@@ -114,14 +100,14 @@ public class ItemAttackEventSO : ItemEffectSO
         return attackCount;
     }
 
-    public override float ContinouseEffectExcute(StatsItemSO parentItem, Unit unit, float startTime)
+    public override float ContinouseEffectExcute(StatsItemSO parentItem, Unit unit, Unit enemy, float startTime)
     {
         if (Item_Type != ITEM_TPYE.OnUpdate || Item_Type == ITEM_TPYE.None)
             return startTime;
 
         if (GameManager.Inst.PlayTime >= startTime + itemEffectData.CooldownTime)
         {
-            AttackAction(parentItem, unit);
+            AttackAction(parentItem, unit, enemy);
             startTime = GameManager.Inst.PlayTime;
         }
         return startTime;

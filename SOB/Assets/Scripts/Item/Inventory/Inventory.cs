@@ -14,6 +14,7 @@ using static UnityEditor.Progress;
 public class ItemSet
 {
     public StatsItemSO item;
+    public List<bool> init = new List<bool>();
     public List<float> startTime = new List<float>();
     public List<int> OnActionCount = new List<int>();
     public List<int> OnHitCount = new List<int>();
@@ -100,6 +101,24 @@ public class Inventory : MonoBehaviour
     {
         ItemExeUpdate(Unit);
     }
+    public bool ItemOnInit(Unit unit)
+    {
+        for (int i = 0; i < Items.Count; i++)
+        {
+            for (int j = 0; j < Items[i].item.ItemEffects.Count; j++)
+            {
+                if (Items[i].item.ItemEffects[j] == null)
+                    continue;
+
+                if (Items[i].init.Count < j + 1)
+                {
+                    Items[i].init.Add(false);
+                }
+                Items[i].init[j] = Items[i].item.ExeInit(unit, Items[i].item.ItemEffects[j], Items[i].init[j]);
+            }
+        }
+        return true;
+    }
 
     /// <summary>
     /// 적중 시 효과
@@ -118,7 +137,6 @@ public class Inventory : MonoBehaviour
                 if (Items[i].OnHitCount.Count < j + 1)
                 {
                     Items[i].OnHitCount.Add(0);
-
                 }
                 Items[i].OnHitCount[j]= Items[i].item.ExeOnHit(unit, Items[i].item.ItemEffects[j], Items[i].OnHitCount[j]);
             }
@@ -143,7 +161,6 @@ public class Inventory : MonoBehaviour
                 if (Items[i].OnHitCount.Count < j + 1)
                 {
                     Items[i].OnHitCount.Add(0);
-
                 }
                 Items[i].OnHitCount[j] = Items[i].item.ExeOnHit(unit, Enemy, Items[i].item.ItemEffects[j], Items[i].OnHitCount[j]);
             }
@@ -168,7 +185,6 @@ public class Inventory : MonoBehaviour
                 if (Items[i].OnActionCount.Count < j + 1)
                 {
                     Items[i].OnActionCount.Add(0);
-
                 }
                 Items[i].OnActionCount[j] = Items[i].item.ExeAction(unit, Items[i].item.ItemEffects[j], Items[i].OnActionCount[j]);
             }
