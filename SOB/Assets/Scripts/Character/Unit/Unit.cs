@@ -164,7 +164,7 @@ public class Unit : MonoBehaviour
         else
             Debug.Log("Core is null");
 
-        if (Core.CoreUnitStats.invincibleTime >= 0.0f && Core.CoreDamageReceiver.isHit)
+        if (Core.CoreUnitStats.invincibleTime > 0.0f && Core.CoreDamageReceiver.isHit)
         {
             Core.CoreUnitStats.invincibleTime -= Time.deltaTime;
 
