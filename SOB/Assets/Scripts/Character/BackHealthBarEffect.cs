@@ -10,8 +10,8 @@ public class BackHealthBarEffect : MonoBehaviour
     /// <summary>
     /// 보간 시간을 조절합니다.
     /// </summary>
-    [SerializeField] private float lerpduration = 0.5f;
-    [SerializeField] private float startDelay = 1.0f; // 시작 딜레이를 설정합니다.
+    private float lerpduration = 0.25f;
+    private float startDelay = 0.25f; // 시작 딜레이를 설정합니다.
 
     public float Health_value
     {

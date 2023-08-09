@@ -94,12 +94,12 @@ public class HealthBar : MonoBehaviour
     {
         // 슬라이더의 목표 값을 계산합니다.
         float targetValue = Stats.CurrentHealth / Stats.MaxHealth;
-
-        if (runningCoroutine != null)
-        {
-            StopCoroutine(runningCoroutine);
-        }
-        runningCoroutine = StartCoroutine(LerpHealthBar(targetValue));
+        m_Slider.value = targetValue;
+        //if (runningCoroutine != null)
+        //{
+        //    StopCoroutine(runningCoroutine);
+        //}
+        //runningCoroutine = StartCoroutine(LerpHealthBar(targetValue));
         if (Txt != null)
         {
             if (m_IsShowTxt)
@@ -112,7 +112,10 @@ public class HealthBar : MonoBehaviour
                 Txt.gameObject.SetActive(false);
             }
         }
+        CallBackHealthBarEffect();
     }
+
+    //Lerp
     IEnumerator LerpHealthBar(float targetValue)
     {
         if (m_Slider != null)
