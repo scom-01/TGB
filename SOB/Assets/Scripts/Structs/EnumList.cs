@@ -57,6 +57,7 @@ public enum ITEM_TPYE
     OnAction = 1,
     OnHit = 2,
     OnUpdate = 3,
+    OnInit = 4,
 }
 
 public enum ITEM_Level

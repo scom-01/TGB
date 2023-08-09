@@ -170,7 +170,11 @@ namespace SOB.CoreSystem
 
         public GameObject StartProjectileCheck(Unit _unit, ProjectileData projectile)
         {
-            return effectContainer.CheckProjectile(projectile).GetObejct(_unit, projectile);
+            return effectContainer.CheckProjectile(projectile).GetObejct(_unit, null, projectile);
+        }
+        public GameObject StartProjectileCheck(Unit _unit,Unit _enemy, ProjectileData projectile)
+        {
+            return effectContainer.CheckProjectile(projectile).GetObejct(_unit, _enemy, projectile);
         }
     }
 }
