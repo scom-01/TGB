@@ -94,29 +94,29 @@ public class Player : Unit
 
     #region Set Func
 
-    public void SetColliderHeight(float height, bool pivot = true)
-    {
-        if (CC2D == null)
-        {
-            Debug.Log("CapsuleCollider is null");
-            return;
-        }
+    //public void SetColliderHeight(float height, bool pivot = true)
+    //{
+    //    if (CC2D == null)
+    //    {
+    //        Debug.Log("CapsuleCollider is null");
+    //        return;
+    //    }
 
-        if (pivot)
-        {
-            Vector2 center = CC2D.offset;
-            workspace.Set(CC2D.size.x, height);
+    //    if (pivot)
+    //    {
+    //        Vector2 center = CC2D.offset;
+    //        workspace.Set(CC2D.size.x, height);
 
-            center.y += (height - CC2D.size.y) / 2;
-            CC2D.size = workspace;
-            CC2D.offset = center;
-        }
-        else
-        {
-            workspace.Set(CC2D.size.x, height);
-            CC2D.size = workspace;
-        }
-    }
+    //        center.y += (height - CC2D.size.y) / 2;
+    //        CC2D.size = workspace;
+    //        CC2D.offset = center;
+    //    }
+    //    else
+    //    {
+    //        workspace.Set(CC2D.size.x, height);
+    //        CC2D.size = workspace;
+    //    }
+    //}
 
     #endregion
 
