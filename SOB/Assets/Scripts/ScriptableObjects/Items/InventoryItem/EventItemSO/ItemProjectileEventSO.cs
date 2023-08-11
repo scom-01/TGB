@@ -8,14 +8,14 @@ using UnityEngine;
 public class ItemProjectileEventSO : ItemEffectSO
 {
     [Header("Projectile Event")]
-    public ProjectileData ProjectileData;
+    public ProjectileActionData ProjectileActionData;
 
     private void ProjectileShoot(Unit unit, Unit enemy)
     {
         if (itemEffectData.VFX != null)
             unit.Core.CoreEffectManager.StartEffects(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCenterPos);
 
-        unit.Core.CoreEffectManager.StartProjectileCheck(unit, enemy, ProjectileData);
+        unit.Core.CoreEffectManager.StartProjectileCheck(unit, ProjectileActionData);
     }
 
     public override int ExecuteOnAction(StatsItemSO parentItem, Unit unit, Unit enemy, int attackCount)

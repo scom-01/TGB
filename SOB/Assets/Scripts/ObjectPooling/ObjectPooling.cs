@@ -1,41 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 
-public class EffectPooling : MonoBehaviour
-{    
-    public GameObject Effect;
+public class ObjectPooling : MonoBehaviour
+{
+    public GameObject Object;
     public int MaxPoolAmount;
-    private Queue<GameObject> effectQueue = new Queue<GameObject>();
+    protected Queue<GameObject> ObjectQueue = new Queue<GameObject>();
 
-    public GameObject CreateObject()
+    public virtual GameObject CreateObject()
     {
-        var newobj = Instantiate(Effect, transform);
+        var newobj = Instantiate(Object, transform);
         newobj.gameObject.SetActive(false);
-        return newobj; 
+        return newobj;
     }
-    public void Init(GameObject _effect, int count)
+
+    public virtual void Init(GameObject _obj, int count)
     {
-        if (_effect == null)
+        if (_obj == null)
             return;
 
-        Effect = _effect;
+        Object = _obj;
         MaxPoolAmount = count;
 
-        for(int i = 0; i< MaxPoolAmount; i++)
+        for (int i = 0; i < MaxPoolAmount; i++)
         {
-            effectQueue.Enqueue(CreateObject());
+            ObjectQueue.Enqueue(CreateObject());
         }
     }
 
-    public GameObject GetObejct(Vector3 pos, Quaternion quaternion)
+    public virtual GameObject GetObejct(Vector3 pos, Quaternion quaternion)
     {
-        if(effectQueue.Count > 0)
+        if (ObjectQueue.Count > 0)
         {
-            var obj = effectQueue.Dequeue();
-            if(obj != null)
+            var obj = ObjectQueue.Dequeue();
+            if (obj != null)
             {
                 obj.transform.SetPositionAndRotation(pos, quaternion);
                 obj.gameObject.SetActive(true);
@@ -51,16 +51,16 @@ public class EffectPooling : MonoBehaviour
         }
     }
 
-    public void ReturnObject(GameObject obj)
+    public virtual void ReturnObject(GameObject obj)
     {
-        if(effectQueue.Count >= MaxPoolAmount)
+        if (ObjectQueue.Count >= MaxPoolAmount)
         {
             Destroy(obj.gameObject);
         }
         else
         {
             obj.gameObject.SetActive(false);
-            effectQueue.Enqueue(obj);
+            ObjectQueue.Enqueue(obj);
         }
     }
 }

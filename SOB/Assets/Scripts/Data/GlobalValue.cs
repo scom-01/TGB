@@ -21,6 +21,7 @@ public class GlobalValue : MonoBehaviour
     public static GameObject Base_Projectile = Resources.Load<GameObject>("Prefabs/Weapons/Projectiles/Base_Projectile");
     public static GameObject Base_EffectPooling = Resources.Load<GameObject>("Prefabs/Effects/Base_EffectPooling");
     public static GameObject Base_ProjectilePooling = Resources.Load<GameObject>("Prefabs/Effects/Base_ProjectilePooling");
+    public static GameObject Base_DmgTxtPooling = Resources.Load<GameObject>("Prefabs/Effects/Base_DmgTxtPooling");
     /// <summary>
     /// AudioMixer의 SFX Parameter값과 일치해야함
     /// </summary>

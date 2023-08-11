@@ -77,7 +77,7 @@ namespace SOB.CoreSystem
             var damage = stats.Comp.DecreaseHealth(AttackterCommonData, VictimCommonData, _elemental, AttackterCommonData.DefaultPower + amount);
             isHit = true;
             stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
-            RandomEffectInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute, isCritical);
+            HUD_DmgTxt(1.0f, damage, 50, AttackterCommonData.DamageAttiribute, isCritical);
         }
         public void Damage(StatsData AttackterCommonData, StatsData VictimCommonData, float amount, int repeat)
         {
@@ -125,7 +125,7 @@ namespace SOB.CoreSystem
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
             var damage = stats.Comp.DecreaseHealth(AttackterCommonData, VictimCommonData, _Elemental, attribute, amount);
             stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
-            RandomEffectInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute, isCritical);
+            HUD_DmgTxt(1.0f, damage, 50, AttackterCommonData.DamageAttiribute, isCritical);
         }
 
 
@@ -147,7 +147,7 @@ namespace SOB.CoreSystem
                 Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
                 var damage = stats.Comp.DecreaseHealth(amount);
                 stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
-                RandomEffectInstantiate(1.0f, damage, 50, DAMAGE_ATT.Fixed, false);
+                HUD_DmgTxt(1.0f, damage, 50, DAMAGE_ATT.Fixed, false);
             }
             else
             {
@@ -160,7 +160,7 @@ namespace SOB.CoreSystem
                 var damage = stats.Comp.DecreaseHealth(amount);
                 isHit = true;
                 stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
-                RandomEffectInstantiate(1.0f, damage, 50, DAMAGE_ATT.Fixed, false);
+                HUD_DmgTxt(1.0f, damage, 50, DAMAGE_ATT.Fixed, false);
             }
         }
         public void TrapDamage(StatsData AttackterCommonData, float amount)
@@ -180,7 +180,7 @@ namespace SOB.CoreSystem
             var damage = stats.Comp.DecreaseHealth(AttackterCommonData.Elemental, AttackterCommonData.DamageAttiribute, amount);
             stats.Comp.TouchinvincibleTime = core.Unit.UnitData.touchDamageinvincibleTime;
 
-            RandomEffectInstantiate(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
+            HUD_DmgTxt(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
         }
         public void HitEffect(GameObject EffectPrefab, float Range, int FancingDirection)
         {
@@ -205,73 +205,63 @@ namespace SOB.CoreSystem
         /// <param name="fontSize">DamageText 폰트 사이즈</param>
         /// <param name="damageAttiribute">Damage속성</param>
         /// <returns></returns>
-        public GameObject RandomEffectInstantiate(GameObject effectPrefab, float range, float damage, float fontSize, DAMAGE_ATT damageAttiribute)
+        public GameObject HUD_DmgTxt(GameObject effectPrefab, float range, float damage, float fontSize, DAMAGE_ATT damageAttiribute, bool isCritical = false)
         {
             var effect = effectManager.Comp?.StartEffectsWithRandomPos(effectPrefab, range);
 
-            var pos = new Vector2((Camera.main.WorldToViewportPoint(effect.transform.position).x * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x * 0.5f),
-                                    (Camera.main.WorldToViewportPoint(effect.transform.position).y * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y * 0.5f) + 50);   //50 = DamageText의 높이
+            var pos = new Vector2((Camera.main.WorldToViewportPoint(transform.position).x * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x * 0.5f),
+                                    (Camera.main.WorldToViewportPoint(transform.position).y * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y * 0.5f));
+            GameObject damageText;
 
-            var damageText = Instantiate(GlobalValue.DamageTextPrefab,
-                            new Vector3(pos.x, pos.y),
-                            Quaternion.identity, GameManager.Inst.DamageUI.transform);
-
-            damageText.GetComponent<RectTransform>().anchoredPosition = pos;
-            switch (damageAttiribute)
+            if (isCritical)
             {
-                case DAMAGE_ATT.Magic:
-                    damageText.GetComponentInChildren<DamageText>().SetText(damage, fontSize, Color.magenta);
-                    break;
-                case DAMAGE_ATT.Physics:
-                    damageText.GetComponentInChildren<DamageText>().SetText(damage, fontSize, Color.yellow);
-                    break;
-                case DAMAGE_ATT.Fixed:
-                    damageText.GetComponentInChildren<DamageText>().SetText(damage, fontSize, Color.black);
-                    break;
+                damageText = (GameManager.Inst.StageManager.EffectContainer.CheckObject(ObjectPooling_TYPE.DmgText, GlobalValue.CriticalDamageTextPrefab) as DmgTxtPooling).GetObejct(new Vector3(pos.x, pos.y), Quaternion.identity, damage, fontSize, damageAttiribute);
             }
-
+            else
+            {
+                damageText = (GameManager.Inst.StageManager.EffectContainer.CheckObject(ObjectPooling_TYPE.DmgText, GlobalValue.DamageTextPrefab) as DmgTxtPooling).GetObejct(new Vector3(pos.x, pos.y), Quaternion.identity, damage, fontSize, damageAttiribute);
+            }
             return damageText;
         }
 
-        public GameObject RandomEffectInstantiate(float range, float damage, float fontSize, DAMAGE_ATT damageAttiribute)
+        public GameObject HUD_DmgTxt(float damage, float fontSize, DAMAGE_ATT damageAttiribute, bool isCritical = false)
         {
-            return RandomEffectInstantiate(range, damage, fontSize, damageAttiribute, false);
+            var pos = new Vector2((Camera.main.WorldToViewportPoint(transform.position).x * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x * 0.5f),
+                                    (Camera.main.WorldToViewportPoint(transform.position).y * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y * 0.5f));
+            GameObject damageText;
+
+            if (isCritical)
+            {
+                damageText = (GameManager.Inst.StageManager.EffectContainer.CheckObject(ObjectPooling_TYPE.DmgText, GlobalValue.CriticalDamageTextPrefab) as DmgTxtPooling).GetObejct(new Vector3(pos.x, pos.y), Quaternion.identity, damage, fontSize, damageAttiribute);
+            }
+            else
+            {
+                damageText = (GameManager.Inst.StageManager.EffectContainer.CheckObject(ObjectPooling_TYPE.DmgText, GlobalValue.DamageTextPrefab) as DmgTxtPooling).GetObejct(new Vector3(pos.x, pos.y), Quaternion.identity, damage, fontSize, damageAttiribute);
+            }
+            return damageText;
         }
-        public GameObject RandomEffectInstantiate(float range, float damage, float fontSize, DAMAGE_ATT damageAttiribute, bool isCritical = false)
+
+        public GameObject HUD_DmgTxt(float range, float damage, float fontSize, DAMAGE_ATT damageAttiribute)
+        {
+            return HUD_DmgTxt(range, damage, fontSize, damageAttiribute, false);
+        }
+        public GameObject HUD_DmgTxt(float range, float damage, float fontSize, DAMAGE_ATT damageAttiribute, bool isCritical = false)
         {
             var randomPos = new Vector2(transform.position.x + Random.Range(-range, range), transform.position.y + Random.Range(-range, range));
 
             var pos = new Vector2((Camera.main.WorldToViewportPoint(randomPos).x * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x * 0.5f),
-                                    (Camera.main.WorldToViewportPoint(randomPos).y * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y * 0.5f) + 50);   //50 = DamageText의 높이
+                                    (Camera.main.WorldToViewportPoint(randomPos).y * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y * 0.5f));
 
             GameObject damageText;
+
             if (isCritical)
             {
-                damageText = Instantiate(GlobalValue.CriticalDamageTextPrefab,
-                            new Vector3(pos.x, pos.y),
-                            Quaternion.identity, GameManager.Inst.DamageUI.transform);
+                damageText = (GameManager.Inst.StageManager.EffectContainer.CheckObject(ObjectPooling_TYPE.DmgText, GlobalValue.CriticalDamageTextPrefab) as DmgTxtPooling).GetObejct(new Vector3(pos.x, pos.y), Quaternion.identity, damage, fontSize, damageAttiribute);
             }
             else
             {
-                damageText = Instantiate(GlobalValue.DamageTextPrefab,
-                            new Vector3(pos.x, pos.y),
-                            Quaternion.identity, GameManager.Inst.DamageUI.transform);
-            }            
-
-            damageText.GetComponent<RectTransform>().anchoredPosition = pos;
-            switch (damageAttiribute)
-            {
-                case DAMAGE_ATT.Magic:
-                    damageText.GetComponentInChildren<DamageText>().SetText(damage, fontSize, Color.magenta);
-                    break;
-                case DAMAGE_ATT.Physics:
-                    damageText.GetComponentInChildren<DamageText>().SetText(damage, fontSize, Color.yellow);
-                    break;
-                case DAMAGE_ATT.Fixed:
-                    damageText.GetComponentInChildren<DamageText>().SetText(damage, fontSize, Color.white);
-                    break;
+                damageText = (GameManager.Inst.StageManager.EffectContainer.CheckObject(ObjectPooling_TYPE.DmgText, GlobalValue.DamageTextPrefab) as DmgTxtPooling).GetObejct(new Vector3(pos.x, pos.y), Quaternion.identity, damage, fontSize, damageAttiribute);
             }
-
             return damageText;
         }
 

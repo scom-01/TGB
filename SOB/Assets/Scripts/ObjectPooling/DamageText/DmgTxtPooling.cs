@@ -1,10 +1,11 @@
+using SOB.Weapons.Components;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class DamageText : MonoBehaviour
+
+public class DmgTxtPooling : ObjectPooling
 {
     public TextMeshProUGUI HitTextMeshPro
     {
@@ -83,41 +84,6 @@ public class DamageText : MonoBehaviour
     private float fontSize;
     private Color color;
 
-    private RectTransform CoverTransform
-    {
-        get
-        {
-            if(m_CoverTransform == null)
-            {
-                m_CoverTransform = this.GetComponentInParent<DamageTextParent>().GetComponent<RectTransform>();
-            }
-            return m_CoverTransform;
-        }
-    }
-    private RectTransform m_CoverTransform;
-    private DmgTxtPooling Parent
-    {
-        get
-        {
-            if (parent == null)
-            {
-                parent = this.GetComponentInParent<DmgTxtPooling>();
-            }
-            return parent;
-        }
-    }
-    private DmgTxtPooling parent;
-    private void Awake()
-    {
-        this.HitTextMeshPro = this.GetComponent<TextMeshProUGUI>();
-    }
-
-    /// <summary>
-    /// DamageText세팅
-    /// </summary>
-    /// <param name="damage">데미지크기</param>
-    /// <param name="fontsize">폰트 사이즈</param>
-    /// <param name="color">폰트 색상</param>
     public void SetText(float damage, float fontsize, Color color)
     {
         this.DamageAmount = damage;
@@ -125,14 +91,48 @@ public class DamageText : MonoBehaviour
         this.Color = color;
     }
 
-    /// <summary>
-    /// AnimationEvent
-    /// </summary>
-    public void FinishAnim()
+    public GameObject GetObejct(Vector3 pos, Quaternion quaternion,float damage, float fontSize, DAMAGE_ATT damageAttiribute)
     {
-        if (Parent != null)
+        if (ObjectQueue.Count > 0)
         {
-            Parent.ReturnObject(CoverTransform.gameObject);
+            var obj = ObjectQueue.Dequeue();
+            if (obj != null)
+            {
+                obj.GetComponent<RectTransform>().anchoredPosition = pos;
+                switch (damageAttiribute)
+                {
+                    case DAMAGE_ATT.Magic:
+                        obj.GetComponentInChildren<DamageText>().SetText(damage, fontSize, Color.magenta);
+                        break;
+                    case DAMAGE_ATT.Physics:
+                        obj.GetComponentInChildren<DamageText>().SetText(damage, fontSize, Color.yellow);
+                        break;
+                    case DAMAGE_ATT.Fixed:
+                        obj.GetComponentInChildren<DamageText>().SetText(damage, fontSize, Color.white);
+                        break;
+                }
+                obj.gameObject.SetActive(true);
+            }
+            return obj;
+        }
+        else
+        {
+            var newobj = CreateObject();
+            newobj.GetComponent<RectTransform>().anchoredPosition = pos;
+            switch (damageAttiribute)
+            {
+                case DAMAGE_ATT.Magic:
+                    newobj.GetComponentInChildren<DamageText>().SetText(damage, fontSize, Color.magenta);
+                    break;
+                case DAMAGE_ATT.Physics:
+                    newobj.GetComponentInChildren<DamageText>().SetText(damage, fontSize, Color.yellow);
+                    break;
+                case DAMAGE_ATT.Fixed:
+                    newobj.GetComponentInChildren<DamageText>().SetText(damage, fontSize, Color.white);
+                    break;
+            }
+            newobj.gameObject.SetActive(true);
+            return newobj;
         }
     }
 }

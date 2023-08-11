@@ -10,10 +10,17 @@ namespace SOB
     public class Projectile : MonoBehaviour
     {
         //공격하는 주체
-        public Unit unit;
+        [SerializeField] private Unit unit;
         //지정 타겟
-        public Unit target;
-        public ProjectileData ProjectileData;
+        private Unit target;
+        [HideInInspector] public ProjectileData ProjectileData;
+
+        public GameObject ProjectileObject;
+        public GameObject ImpactObject;
+        [Space(10)]
+        public AudioClip ProjectileShootClip;
+        public AudioClip ImpactClip;
+
         private ProjectilePooling parent;
 
         [HideInInspector] public int FancingDirection = 1;
@@ -78,7 +85,7 @@ namespace SOB
             RB2D.gravityScale = ProjectileData.GravityScale;
 
             //set ProjectilPrefab
-            var _prefab = Instantiate(ProjectileData.ProjectilePrefab, this.transform);
+            var _prefab = Instantiate(ProjectileObject, this.transform);
             var main = _prefab.GetComponent<ParticleSystem>().main;
             main.stopAction = ParticleSystemStopAction.Disable;
             foreach (var _renderer in _prefab.GetComponentsInChildren<ParticleSystemRenderer>())
@@ -88,10 +95,10 @@ namespace SOB
             this.gameObject.SetActive(false);
         }
 
-        public void SetUp(Unit _unit, Unit _target, ProjectileData m_ProjectileData)
+        public void SetUp(Unit _unit, ProjectileData m_ProjectileData)
         {
             unit = _unit;
-            target = _target;
+            target = unit.TargetUnit;
 
             ProjectileData = m_ProjectileData;
 
@@ -110,6 +117,7 @@ namespace SOB
             CC2D.enabled = false;
             RB2D.gravityScale = ProjectileData.GravityScale;
         }
+
         public void Init(ProjectileData m_ProjectileData)
         {
             ProjectileData = m_ProjectileData;
@@ -128,9 +136,9 @@ namespace SOB
                 m_startTime = Time.time;
             }
 
-            if (ProjectileData.ProjectileShootClip != null)
+            if (ProjectileShootClip != null)
             {
-                unit.Core.CoreSoundEffect.AudioSpawn(ProjectileData.ProjectileShootClip);
+                unit.Core.CoreSoundEffect.AudioSpawn(ProjectileShootClip);
             }
 
             RB2D.isKinematic = false;
@@ -205,22 +213,23 @@ namespace SOB
 
         private void Hit(bool _isSingleShoot = true)
         {
-            //Impact
-            var impact = Instantiate(ProjectileData.ImpactPrefab);
-            impact.transform.position = this.transform.position;
-
-            foreach (var _renderer in impact.GetComponentsInChildren<ParticleSystemRenderer>())
+            //Impact            
+            if(unit !=null)
             {
-                _renderer.sortingLayerName = "Effect";
+                var impact = unit.Core.CoreEffectManager.StartEffects(ImpactObject, this.transform.position);
+                foreach (var _renderer in impact.GetComponentsInChildren<ParticleSystemRenderer>())
+                {
+                    _renderer.sortingLayerName = "Effect";
+                }
+                var main = impact.GetComponent<ParticleSystem>().main;
+                main.stopAction = ParticleSystemStopAction.Disable;
             }
-            var main = impact.GetComponent<ParticleSystem>().main;
-            main.stopAction = ParticleSystemStopAction.Destroy;
 
             //Impact AudioClip
             #region AudioClip
-            if (unit != null && ProjectileData.ImpactClip != null)
+            if (unit != null && ImpactClip != null)
             {
-                unit.Core.CoreSoundEffect.AudioSpawn(ProjectileData.ImpactClip);
+                unit.Core.CoreSoundEffect.AudioSpawn(ImpactClip);
             }
             #endregion
 
@@ -295,7 +304,7 @@ namespace SOB
                 Debug.Log($"Projectile Touch {coll.name}");
                 //Impact EffectPrefab
                 #region EffectPrefab
-                if (ProjectileData.ImpactPrefab != null)
+                if (ImpactObject!= null)
                 {
                     Hit(ProjectileData.isSingleShoot);
                 }
@@ -319,7 +328,7 @@ namespace SOB
                 {
                     damageable.Damage
                     (
-                        unit.Core.CoreUnitStats.StatsData + ProjectileData.Stats,
+                        unit.Core.CoreUnitStats.StatsData,
                         coll.GetComponentInParent<Unit>().UnitData.statsStats,
                         unit.Core.CoreUnitStats.DefaultPower
                     );
@@ -332,36 +341,36 @@ namespace SOB
                         case ENEMY_Size.Small:
                             damageable.Damage
                         (
-                            unit.Core.CoreUnitStats.StatsData + ProjectileData.Stats,
+                            unit.Core.CoreUnitStats.StatsData,
                             coll.GetComponentInParent<Unit>().UnitData.statsStats,
-                            (unit.Core.CoreUnitStats.DefaultPower + ProjectileData.Stats.DefaultPower) * (1.0f + GlobalValue.Enemy_Size_WeakPer)
+                            (unit.Core.CoreUnitStats.DefaultPower) * (1.0f + GlobalValue.Enemy_Size_WeakPer)
                         );
                             Debug.Log("Projectile Enemy Type Small, Normal Dam = " +
-                                unit.Core.CoreUnitStats.DefaultPower + ProjectileData.Stats.DefaultPower
+                                unit.Core.CoreUnitStats.DefaultPower
                                 + " Enemy_Size_WeakPer Additional Dam = " +
-                                (unit.Core.CoreUnitStats.DefaultPower + ProjectileData.Stats.DefaultPower) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
+                                (unit.Core.CoreUnitStats.DefaultPower) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
                             break;
                         case ENEMY_Size.Medium:
                             damageable.Damage
                         (
-                            unit.Core.CoreUnitStats.StatsData + ProjectileData.Stats,
+                            unit.Core.CoreUnitStats.StatsData,
                             coll.GetComponentInParent<Unit>().UnitData.statsStats,
-                            (unit.Core.CoreUnitStats.DefaultPower + ProjectileData.Stats.DefaultPower));
+                            (unit.Core.CoreUnitStats.DefaultPower));
                             Debug.Log("Projectile Enemy Type Medium, Normal Dam = " +
-                                unit.Core.CoreUnitStats.DefaultPower + ProjectileData.Stats.DefaultPower);
+                                unit.Core.CoreUnitStats.DefaultPower);
                             break;
                         case ENEMY_Size.Big:
                             damageable.Damage
                         (
-                            unit.Core.CoreUnitStats.StatsData + ProjectileData.Stats,
+                            unit.Core.CoreUnitStats.StatsData,
                             coll.GetComponentInParent<Unit>().UnitData.statsStats,
-                            (unit.Core.CoreUnitStats.DefaultPower + ProjectileData.Stats.DefaultPower) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
+                            (unit.Core.CoreUnitStats.DefaultPower) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
                         );
 
                             Debug.Log("Projectile Enemy Type Big, Normal Dam = " +
-                                unit.Core.CoreUnitStats.DefaultPower + ProjectileData.Stats.DefaultPower
+                                unit.Core.CoreUnitStats.DefaultPower
                                 + " Enemy_Size_WeakPer Additional Dam = " +
-                                (unit.Core.CoreUnitStats.DefaultPower + ProjectileData.Stats.DefaultPower) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
+                                (unit.Core.CoreUnitStats.DefaultPower) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
                                 );
                             break;
                     }

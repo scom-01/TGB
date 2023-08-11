@@ -175,3 +175,10 @@ public enum Localization
     kr,
 }
 #endregion
+
+public enum ObjectPooling_TYPE
+{
+    Effect,
+    Projectile,
+    DmgText,
+}

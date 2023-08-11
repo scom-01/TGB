@@ -8,17 +8,18 @@ using SOB.CoreSystem;
 using SOB.Weapons.Components;
 using UnityEngine.UIElements;
 using SOB;
+using static UnityEditor.PlayerSettings;
 
 public class EffectContainer : MonoBehaviour
 {
     public List<GameObject> EffectList = new List<GameObject>();
     public List<RuntimeAnimatorController> EffectControllerList = new List<RuntimeAnimatorController>();
-    
-    public List<GameObject> ProjectileList = new List<GameObject>();
+
 
     public List<ProjectilePooling> ProjectilePoolingList = new List<ProjectilePooling>();
+    public List<EffectPooling> EffectPoolingList = new List<EffectPooling>();
+    public List<DmgTxtPooling> DmgTxtPoolingList = new List<DmgTxtPooling>();
 
-    public List<EffectPooling> EffectPoolList = new List<EffectPooling>();
     public GameObject AddEffectList(GameObject effectPrefab, Vector3 vector, Quaternion position, Transform transform)
     {
         if (EffectControllerList.Contains(effectPrefab.GetComponent<Animator>().runtimeAnimatorController))
@@ -41,101 +42,115 @@ public class EffectContainer : MonoBehaviour
             return effect;
         }
     }
-    public ProjectilePooling CheckProjectile(ProjectileData _projectileData)
+    public ProjectilePooling CheckProjectile(GameObject _projectile)
     {
         if (ProjectilePoolingList.Count == 0)
         {
-            var projectilePooling = AddProjectile(_projectileData, 5);
+            var projectilePooling = AddProjectile(_projectile, 5);
             return projectilePooling.GetComponent<ProjectilePooling>();
         }
 
         for (int i = 0; i < ProjectilePoolingList.Count; i++)
         {
-            if (ProjectilePoolingList[i].Effect == _projectileData.ProjectilePrefab)
+            if (ProjectilePoolingList[i].Object == _projectile)
             {
                 return ProjectilePoolingList[i];
             }
         }
 
-        var newProjectile = AddProjectile(_projectileData, 5).GetComponent<ProjectilePooling>();
+        var newProjectile = AddProjectile(_projectile, 5).GetComponent<ProjectilePooling>();
         return newProjectile;
     }
 
-    public GameObject AddProjectile(ProjectileData _projectileData, int amount = 5)
+    public GameObject AddProjectile(GameObject _projectile, int amount = 5)
     {
         var projectilePool = Instantiate(GlobalValue.Base_ProjectilePooling, this.transform);
-        projectilePool.GetComponent<ProjectilePooling>().Init(_projectileData, amount);
+        projectilePool.GetComponent<ProjectilePooling>().Init(_projectile, amount);
         ProjectilePoolingList.Add(projectilePool.GetComponent<ProjectilePooling>());
         return projectilePool;
     }
 
-    /// <summary>
-    /// EffectPoolingList에 Effect가 존재하는 지 판단 후 return
-    /// 없다면 생성 후 return
-    /// </summary>
-    /// <param name="_effect"></param>
-    /// <returns></returns>
-    public EffectPooling CheckEffect(GameObject _effect, Transform transform = null)
+    public ObjectPooling CheckObject(ObjectPooling_TYPE objectPooling_TYPE, GameObject _obj, Transform transform = null)
     {
-        if (transform == this.transform)
+        switch (objectPooling_TYPE)
         {
-            if (EffectPoolList.Count == 0)
-            {
-                var effect = AddEffect(_effect, 5, transform);
-                return effect.GetComponent<EffectPooling>();
-            }
-
-            for (int i = 0; i < EffectPoolList.Count; i++)
-            {
-                if (EffectPoolList[i].Effect == _effect)
+            case ObjectPooling_TYPE.Effect:
+                if (EffectPoolingList.Count == 0)
                 {
-                    return EffectPoolList[i];
+                    var obj = AddObject(objectPooling_TYPE, _obj, 5, transform).GetComponent<EffectPooling>();
+                    return obj;
                 }
-            }
 
-            var newEffect = AddEffect(_effect, 5, transform).GetComponent<EffectPooling>();
-            return newEffect;
+                for (int i = 0; i < EffectPoolingList.Count; i++)
+                {
+                    if (EffectPoolingList[i].Object == _obj)
+                    {
+                        return EffectPoolingList[i];
+                    }
+                }
+
+                var newObj = AddObject(objectPooling_TYPE, _obj, 5, transform).GetComponent<EffectPooling>();
+                return newObj;
+            case ObjectPooling_TYPE.Projectile:
+                if (ProjectilePoolingList.Count == 0)
+                {
+                    var projectilePooling = AddProjectile(_obj, 5);
+                    return projectilePooling.GetComponent<ProjectilePooling>();
+                }
+
+                for (int i = 0; i < ProjectilePoolingList.Count; i++)
+                {
+                    if (ProjectilePoolingList[i].Object == _obj)
+                    {
+                        return ProjectilePoolingList[i];
+                    }
+                }
+
+                var newProjectile = AddProjectile(_obj, 5).GetComponent<ProjectilePooling>();
+                return newProjectile;
+            case ObjectPooling_TYPE.DmgText:
+                if (DmgTxtPoolingList.Count == 0)
+                {
+                    var obj = AddObject(objectPooling_TYPE, _obj, 5, transform).GetComponent<DmgTxtPooling>();
+                    return obj;
+                }
+
+                for (int i = 0; i < DmgTxtPoolingList.Count; i++)
+                {
+                    if (DmgTxtPoolingList[i].Object == _obj)
+                    {
+                        return DmgTxtPoolingList[i];
+                    }
+                }
+
+                var DmgObj = AddObject(objectPooling_TYPE, _obj, 5, transform).GetComponent<DmgTxtPooling>();
+                return DmgObj;
+            default:
+                return null;
         }
-        else
+    }
+
+    public GameObject AddObject(ObjectPooling_TYPE objectPooling_TYPE, GameObject _Obj, int amount, Transform transform = null)
+    {
+        switch (objectPooling_TYPE)
         {
-            var _EffectPoolList = transform.GetComponent<EffectManager>().EffectPoolList;
-
-            if (_EffectPoolList.Count == 0)
-            {
-                var effect = AddEffect(_effect, _EffectPoolList, 5, transform);
-                return effect.GetComponent<EffectPooling>();
-            }
-
-            for (int i = 0; i < _EffectPoolList.Count; i++)
-            {
-                if (_EffectPoolList[i].Effect == _effect)
-                {
-                    return _EffectPoolList[i];
-                }
-            }
-
-            var newEffect = AddEffect(_effect, _EffectPoolList, 5, transform).GetComponent<EffectPooling>();
-            return newEffect;
-        }        
-    }
-
-    /// <summary>
-    /// EffectPoolingList에 EffectPoolingBase를 기반으로 EffectPooling 생성 후 amount 수 만큼 effectPool 생성
-    /// </summary>
-    /// <param name="_effect"></param>
-    /// <returns></returns>
-    private GameObject AddEffect(GameObject _effect, int amount = 5, Transform transform = null)
-    {
-        var effectPool = Instantiate(GlobalValue.Base_EffectPooling, transform ? transform : this.transform);
-        effectPool.GetComponent<EffectPooling>().Init(_effect, amount);
-        EffectPoolList.Add(effectPool.GetComponent<EffectPooling>());
-        return effectPool;
-    }
-    private GameObject AddEffect(GameObject _effect, List<EffectPooling> effectPoolList, int amount = 5, Transform transform = null)
-    {
-        var effectPool = Instantiate(GlobalValue.Base_EffectPooling, transform ? transform : this.transform);
-        effectPool.GetComponent<EffectPooling>().Init(_effect, amount);
-        effectPoolList.Add(effectPool.GetComponent<EffectPooling>());
-        return effectPool;
+            case ObjectPooling_TYPE.Effect:
+                var effectPool = Instantiate(GlobalValue.Base_EffectPooling, transform ? transform : this.transform);
+                effectPool.GetComponent<EffectPooling>().Init(_Obj, amount);
+                EffectPoolingList.Add(effectPool.GetComponent<EffectPooling>());
+                return effectPool;
+            case ObjectPooling_TYPE.Projectile:
+                var projectilePool = Instantiate(GlobalValue.Base_ProjectilePooling, transform ? transform : this.transform);
+                projectilePool.GetComponent<EffectPooling>().Init(_Obj, amount);
+                ProjectilePoolingList.Add(projectilePool.GetComponent<ProjectilePooling>());
+                return projectilePool;
+            case ObjectPooling_TYPE.DmgText:
+                var DmgTxtPool = Instantiate(GlobalValue.Base_DmgTxtPooling, transform ? transform : this.transform);
+                DmgTxtPool.GetComponent<DmgTxtPooling>().Init(_Obj, amount);
+                DmgTxtPoolingList.Add(DmgTxtPool.GetComponent<DmgTxtPooling>());
+                return DmgTxtPool;
+            default:
+                return null;
+        }
     }
 }

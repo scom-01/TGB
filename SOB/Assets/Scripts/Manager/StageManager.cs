@@ -27,6 +27,32 @@ public class StageManager : MonoBehaviour
     public UI_State Start_UIState;
     public Camera Cam;
 
+    [TagField]
+    [field: SerializeField] private string effectContainerTagName = "EffectContainer";
+    public EffectContainer EffectContainer
+    {
+        get
+        {
+            if(effectContainer == null)
+            {
+                if (effectContainerTagName == "")
+                {
+                    effectContainerTagName = "EffectContainer";
+                }
+
+                effectContainer = GameObject.FindGameObjectWithTag(effectContainerTagName).GetComponent<EffectContainer>();
+                effectContainerTransform = GameObject.FindGameObjectWithTag(effectContainerTagName).transform;
+                if (effectContainer == null)
+                {
+                    effectContainer = effectContainerTransform.gameObject.AddComponent<EffectContainer>();
+                }
+            }
+            return effectContainer;
+        }
+    }
+    private EffectContainer effectContainer;
+    private Transform effectContainerTransform;
+
     [Header("----Player----")]
     [SerializeField]
     public Transform respawnPoint;

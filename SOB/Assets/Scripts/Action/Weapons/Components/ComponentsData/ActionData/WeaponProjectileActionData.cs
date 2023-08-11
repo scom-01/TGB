@@ -7,10 +7,6 @@ using UnityEngine;
 public struct ProjectileData
 {
     /// <summary>
-    /// 투사체의 스탯
-    /// </summary>
-    public StatsData Stats;
-    /// <summary>
     /// 발사 위치
     /// </summary>
     public Vector3 Pos;
@@ -19,56 +15,24 @@ public struct ProjectileData
     /// </summary>
     public Vector3 Rot;
     /// <summary>
-    /// CircleCollider Radius
-    /// </summary>
-    [Min(0.3f)]
-    public float Radius;
-    /// <summary>
-    /// CircleCollider Offset
-    /// </summary>
-    public Vector2 Offset;
-    /// <summary>
-    /// 중력 크기
-    /// </summary>
-    public float GravityScale;
-    /// <summary>
-    /// 발사 속도
+    /// 투사체 속도
     /// </summary>
     public float Speed;
-    /// <summary>
-    /// 싱글 히트인지 다단 히트인지 판별
-    /// </summary>
-    public bool isSingleShoot;
-    /// <summary>
-    /// Ground와 충돌 판별 여부
-    /// </summary>
-    public bool isCollisionGround;
     /// <summary>
     /// 투사체 지속시간
     /// </summary>
     [Min(0.5f)]
     public float DurationTime;
-    /// <summary>
-    /// 투사체 Loop 이펙트
-    /// </summary>
-    public GameObject ProjectilePrefab;
-    /// <summary>
-    /// 투사체 피격 시 이펙트 
-    /// </summary>
-    public GameObject ImpactPrefab;
-    /// <summary>
-    /// Knockback Angle
-    /// </summary>
-    [field: Tooltip("넉백 Angle, 벡터 크기에 따라 넉백 증가")]
+
+    public float Radius;
+    public Vector2 Offset;
+    public float GravityScale;
+    public bool isSingleShoot;
     public Vector2 KnockbackAngle;
     /// <summary>
-    /// 투사체 발사 클립
+    /// Ground와 충돌 판별 여부
     /// </summary>
-    public AudioClip ProjectileShootClip;
-    /// <summary>
-    /// 임팩트 클립
-    /// </summary>
-    public AudioClip ImpactClip;
+    public bool isCollisionGround;    
 
     /// <summary>
     /// 온힛효과 발동여부
@@ -81,11 +45,21 @@ public struct ProjectileData
     public CamData camDatas;
 }
 
+[System.Serializable]
+public struct ProjectileActionData
+{
+    public ProjectileData ProjectileData;
+    /// <summary>
+    /// 투사체
+    /// </summary>
+    public GameObject Projectile;
+}
+
 namespace SOB.Weapons.Components
 {
     [Serializable]
     public class WeaponProjectileActionData : ActionData
     {
-        [field: SerializeField] public ProjectileData[] ProjectileActionData;
+        [field: SerializeField] public ProjectileActionData[] ProjectileActionData;
     }
 }
