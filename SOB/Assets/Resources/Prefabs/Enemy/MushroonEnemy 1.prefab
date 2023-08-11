@@ -109,6 +109,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4767351454996826392}
   - component: {fileID: 8169858257504762649}
+  - component: {fileID: 8159555865841368007}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -190,6 +191,23 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8159555865841368007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875667979185802461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c5173f66d272754987e2ea457467358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsFollow: 1
+  m_IsShowTxt: 0
+  Txt: {fileID: 0}
+  m_Camera: {fileID: 0}
+  lerpduration: 0.5
 --- !u!1 &911794221531483040
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,7 +375,6 @@ GameObject:
   - component: {fileID: 6977698015634361585}
   - component: {fileID: 3097181729844303255}
   - component: {fileID: 7076014501931169537}
-  - component: {fileID: 705147193507651867}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -447,23 +464,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &705147193507651867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1654328480484542619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c5173f66d272754987e2ea457467358, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Slider: {fileID: 8169858257504762649}
-  m_IsFollow: 1
-  m_IsShowTxt: 1
-  Txt: {fileID: 0}
-  lerpduration: 0.5
 --- !u!1 &2276618219728866538
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,6 +905,7 @@ MonoBehaviour:
   IsAlive: 1
   isFixed_CC_Immunity: 0
   isFixed_Hit_Immunity: 0
+  isFixedMovement: 0
   enemyData: {fileID: 0}
 --- !u!114 &3639027602819861585
 MonoBehaviour:

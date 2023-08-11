@@ -145,39 +145,21 @@ MonoBehaviour:
         actionData:
         - name: Action 1
           ProjectileActionData:
-          - Stats:
-              MaxHealth: 0
-              MovementVelocity: 0
-              JumpVelocity: 0
-              DefaultPower: 0
-              AttackSpeedPer: 0
-              PhysicsDefensivePer: 0
-              MagicDefensivePer: 0
-              PhysicsAggressivePer: 0
-              MagicAggressivePer: 0
-              CriticalPer: 0
-              AdditionalCriticalPer: 0
-              DamageAttiribute: 0
-              Elemental: 0
-              ElementalDefensivePer: 0
-              ElementalAggressivePer: 0
-            Pos: {x: 0, y: 0, z: 0}
-            Rot: {x: 1, y: 0, z: 0}
-            Radius: 0.5
-            Offset: {x: 0, y: 0}
-            GravityScale: 0
-            Speed: 20
-            isSingleShoot: 1
-            isCollisionGround: 0
-            DurationTime: 4
-            ProjectilePrefab: {fileID: 4989398529186746364, guid: bbb517c847eb0514f87af6a44c7efef3, type: 3}
-            ImpactPrefab: {fileID: 2408267167856685790, guid: 58fda082f086e4f4b80b3723cb1246f1, type: 3}
-            KnockbackAngle: {x: 10, y: 0}
-            ProjectileShootClip: {fileID: 8300000, guid: 674258a055e994b72bbb15a28eb79838, type: 3}
-            ImpactClip: {fileID: 8300000, guid: 8a44b12d3e3f24b1a89dc7f0b66756f4, type: 3}
-            isOnHit: 0
-            isShakeCam: 0
-            camDatas:
-              Duration: 0.1
-              Range: 0.01
-              RepeatRate: 0.001
+          - ProjectileData:
+              Pos: {x: 0, y: 0, z: 0}
+              Rot: {x: 1, y: 0, z: 0}
+              Speed: 20
+              DurationTime: 4
+              Radius: 0.75
+              Offset: {x: 0, y: 0}
+              GravityScale: 0
+              isSingleShoot: 1
+              KnockbackAngle: {x: 1, y: 0}
+              isCollisionGround: 1
+              isOnHit: 0
+              isShakeCam: 0
+              camDatas:
+                Duration: 0
+                Range: 0
+                RepeatRate: 0
+            Projectile: {fileID: 2222910967692216358, guid: 1af7a89b518ecd141b7b6da807692a50, type: 3}

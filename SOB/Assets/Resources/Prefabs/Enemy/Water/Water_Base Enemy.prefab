@@ -366,7 +366,7 @@ MonoBehaviour:
   weaponData:
     weaponCommandDataSO: {fileID: 0}
     weaponDataSO: {fileID: 0}
-  _items: []
+  Items: []
   Inititems: []
   CheckItem: {fileID: 0}
 --- !u!114 &6735750043806285471
@@ -384,7 +384,9 @@ MonoBehaviour:
   RespawnPoint: {fileID: 0}
   UnitData: {fileID: 11400000, guid: d580fe4e3495bc649b2e71bee623dabd, type: 2}
   IsAlive: 1
-  isImmunity: 0
+  isFixed_CC_Immunity: 0
+  isFixed_Hit_Immunity: 0
+  isFixedMovement: 0
   enemyData: {fileID: 0}
 --- !u!114 &3639027602819861585
 MonoBehaviour:
@@ -492,7 +494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dbfb8afd8d07ea46877f2a0730681d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectContainerTagName: EffectContainer
+  ObjectPoolList: []
 --- !u!1 &3640253523003701948
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,8 +698,10 @@ MonoBehaviour:
     MagicDefensivePer: 0
     PhysicsAggressivePer: 0
     MagicAggressivePer: 0
+    CriticalPer: 0
+    AdditionalCriticalPer: 0
     DamageAttiribute: 0
-    MyElemental: 0
+    Elemental: 0
     ElementalDefensivePer: 0
     ElementalAggressivePer: 0
   invincibleTime: 0
@@ -793,7 +797,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d97953454d73a429821a37579dc88c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fancingDirection: 1
   CanFlip: 0
   CanMovement: 0
 --- !u!1 &3640253523459399150

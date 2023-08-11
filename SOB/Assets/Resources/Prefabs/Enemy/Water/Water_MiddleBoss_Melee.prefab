@@ -2223,6 +2223,7 @@ MonoBehaviour:
   IsAlive: 1
   isFixed_CC_Immunity: 1
   isFixed_Hit_Immunity: 0
+  isFixedMovement: 0
   enemyData: {fileID: 0}
 --- !u!1 &3640253522240484911
 GameObject:
@@ -3076,6 +3077,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2252689135599605532}
   - component: {fileID: 436731836707935235}
+  - component: {fileID: 3742185737632910414}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -3119,13 +3121,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -3153,10 +3155,27 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.76
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3742185737632910414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6640505042211254577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c5173f66d272754987e2ea457467358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsFollow: 0
+  m_IsShowTxt: 0
+  Txt: {fileID: 0}
+  m_Camera: {fileID: 0}
+  lerpduration: 0.5
 --- !u!1 &7328027343331437889
 GameObject:
   m_ObjectHideFlags: 0
@@ -3211,7 +3230,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7328027343331437889}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -3323,7 +3342,6 @@ GameObject:
   - component: {fileID: 3031144336334078129}
   - component: {fileID: 5219939230734823982}
   - component: {fileID: 4711340543070371606}
-  - component: {fileID: 4919515967357026106}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3414,22 +3432,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &4919515967357026106
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8929912243676606868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c5173f66d272754987e2ea457467358, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Slider: {fileID: 436731836707935235}
-  m_isUnit: 1
-  m_IsFollow: 0
-  Txt: {fileID: 0}
 --- !u!1 &8934162646917045617
 GameObject:
   m_ObjectHideFlags: 0

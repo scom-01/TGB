@@ -894,8 +894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dbfb8afd8d07ea46877f2a0730681d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectContainerTagName: EffectContainer
-  EffectPoolList: []
+  ObjectPoolList: []
 --- !u!1 &840319700836062322
 GameObject:
   m_ObjectHideFlags: 0
@@ -1174,6 +1173,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 840319699589423311}
     m_Modifications:
+    - target: {fileID: 806417114113261697, guid: 757a5a8c323c370488f413032d3b8e3e, type: 3}
+      propertyPath: Txt
+      value: 
+      objectReference: {fileID: 3320179910336066076}
     - target: {fileID: 1040395683713608165, guid: 757a5a8c323c370488f413032d3b8e3e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1280,6 +1283,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 757a5a8c323c370488f413032d3b8e3e, type: 3}
+--- !u!114 &3320179910336066076 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6323963802070806977, guid: 757a5a8c323c370488f413032d3b8e3e, type: 3}
+  m_PrefabInstance: {fileID: 8777688966735578077}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &6428276196254547091 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2370387364095344462, guid: 757a5a8c323c370488f413032d3b8e3e, type: 3}
