@@ -147,7 +147,6 @@ GameObject:
   - component: {fileID: 8698990960130435648}
   - component: {fileID: 558651861563515547}
   - component: {fileID: 6814094541939202640}
-  - component: {fileID: 8327453097772229473}
   m_Layer: 5
   m_Name: HPBar_Slider
   m_TagString: Untagged
@@ -238,23 +237,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &8327453097772229473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5065480159789777694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c5173f66d272754987e2ea457467358, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Slider: {fileID: 4616901024779806742}
-  m_isUnit: 1
-  m_IsFollow: 0
-  Txt: {fileID: 6323963802070806977}
-  lerpduration: 0.5
 --- !u!1 &5194693052518682893
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,6 +436,7 @@ GameObject:
   m_Component:
   - component: {fileID: 557648878564763031}
   - component: {fileID: 4616901024779806742}
+  - component: {fileID: 806417114113261697}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -535,6 +518,23 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &806417114113261697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7895600557891546255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c5173f66d272754987e2ea457467358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsFollow: 0
+  m_IsShowTxt: 1
+  Txt: {fileID: 0}
+  m_Camera: {fileID: 0}
+  lerpduration: 0.5
 --- !u!1001 &808865363762280135
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -763,6 +763,7 @@ GameObject:
   m_Component:
   - component: {fileID: 622900346}
   - component: {fileID: 622900347}
+  - component: {fileID: 622900348}
   m_Layer: 25
   m_Name: DeadArea
   m_TagString: DeadArea
@@ -819,6 +820,18 @@ PolygonCollider2D:
       - {x: -2.6248226, y: -15.27789}
       - {x: 8.939186, y: -15.285927}
       - {x: 8.554541, y: -9.737792}
+--- !u!114 &622900348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622900345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7d9513fef8696d449f5cccb09b8007e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &634392598
 GameObject:
   m_ObjectHideFlags: 0
@@ -24581,7 +24594,10 @@ MonoBehaviour:
     Boss_Enemy_Count: 0
   BuffDatas: []
   SkipCutSceneList: 
+  SkipBossCutScene: 
   UnlockItemList: 
+  WaitUnlockItemList: 
+  lockItemList: 
 --- !u!4 &1498734594
 Transform:
   m_ObjectHideFlags: 0
@@ -24621,17 +24637,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IM: {fileID: 2129369524}
   SPM: {fileID: 193596151}
+  MasterManagerList: []
   CurrStageNumber: 10
   NextStageNumber: 5
   Start_UIState: 0
+  Cam: {fileID: 0}
   respawnPoint: {fileID: 2048269062}
   EndPoint: {fileID: 795737771}
   PlayerPrefab: {fileID: 840319699589423306, guid: 842ba7b90e3d58f4baa7c0b00def52ec, type: 3}
   player: {fileID: 0}
-  respawnTime: 2
   SceneNameFade: {fileID: 1714188898339614809, guid: ff0e618899c094e4db31e32280d58b18, type: 3}
-  isStageClear: 0
   CutSceneDirector: {fileID: 0}
+  isStageClear: 0
   CVC: {fileID: 0}
 --- !u!1 &1515707101
 GameObject:
@@ -26466,7 +26483,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2597608c53d61f24bb7d27ca00089214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 0
+  Distance: {x: 0, y: 0}
+  infiniteHorizontal: 0
+  infiniteVertical: 0
 --- !u!1 &1938419458
 GameObject:
   m_ObjectHideFlags: 0

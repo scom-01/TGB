@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class RespawnArea : MonoBehaviour
+public class RespawnArea : TouchObject
 {
     public Transform RespawnPoint;
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    public override void OnTriggerEnter2D(Collider2D collision)
     {
         var unit = collision.GetComponent<Unit>();
         if (unit == null)

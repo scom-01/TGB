@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,9 @@ using UnityEngine;
 
 public class TouchItem : TouchObject
 {
+    [TagField]
+    public string Ignore_Tag;
+
     [SerializeField] private StatsItemSO Item;
     [SerializeField] private SpriteRenderer SpriteRenderer;
     private void Awake()
@@ -32,6 +36,9 @@ public class TouchItem : TouchObject
 
     public override void OnTriggerStay2D(Collider2D collision)
     {
+        if (collision.tag == Ignore_Tag)
+            return;
+
         base.OnTriggerStay2D(collision);
 
         if (!collision.gameObject.GetComponent<BuffSystem>())

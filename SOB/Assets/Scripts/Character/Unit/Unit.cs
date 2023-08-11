@@ -198,29 +198,6 @@ public class Unit : MonoBehaviour
         TargetUnit = unit;
     }
 
-    protected void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag != "DeadArea")
-            return;
-
-        Core?.CoreMovement.SetVelocityZero();
-
-        //지정된 리스폰 위치로 이동
-        if (GameManager.Inst?.StageManager?.respawnPoint != null)
-            this.gameObject.transform.position = RespawnPoint.position;
-
-        var amount = Core.CoreUnitStats.DecreaseHealth(E_Power.Normal, DAMAGE_ATT.Fixed, 10);
-        if (Core.CoreDamageReceiver.DefaultEffectPrefab == null)
-        {
-            Core.CoreDamageReceiver.RandomEffectInstantiate(0.5f, amount, 50, DAMAGE_ATT.Fixed);
-        }
-        else
-        {
-            Core.CoreDamageReceiver.RandomEffectInstantiate(Core.CoreDamageReceiver.DefaultEffectPrefab, 0.5f, amount, 50, DAMAGE_ATT.Fixed);
-        }
-
-    }
-
     private void CheckLife(Unit unit)
     {
         //unit.IsAlive = unit.gameObject.activeSelf;
