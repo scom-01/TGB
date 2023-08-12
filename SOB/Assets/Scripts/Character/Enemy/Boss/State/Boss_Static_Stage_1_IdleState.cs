@@ -9,7 +9,7 @@ public class Boss_Static_Stage_1_IdleState : EnemyIdleState
     {
         boss_Static_Stage_1 = enemy as Boss_Static_Stage_1;
     }
-    public override void ChangeState()
+    public override void Pattern()
     {
         if (boss_Static_Stage_1.TargetUnit == null)
             return;
@@ -22,8 +22,6 @@ public class Boss_Static_Stage_1_IdleState : EnemyIdleState
         {
             Teleport();
         }
-
-        //unit.FSM.ChangeState(boss_Static_Stage_1.RunState);
     }
 
     private void Teleport()

@@ -9,10 +9,13 @@ public abstract class EnemyIdleState : EnemyState
     protected float idleTime;
     protected bool isIdleTimeOver;
     protected bool checkifCliff;
+    protected bool isDelayCheck = false;
+
     private bool checkifCliffBack;
     private bool checkifTouchingGrounded;
     private bool checkifTouchingWall;
     private bool checkifTouchingWallBack;
+
 
     public EnemyIdleState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
@@ -50,6 +53,7 @@ public abstract class EnemyIdleState : EnemyState
         {
             enemy.SetTarget(EnemyCollisionSenses.UnitFrontDetectArea?.GetComponent<Unit>());
         }
+        
 
         if (enemy.TargetUnit != null)
         {
@@ -57,7 +61,13 @@ public abstract class EnemyIdleState : EnemyState
             {
                 FlipToTarget();
             }
-            ChangeState();
+
+            //패턴 딜레이
+            if (Time.time >= startTime + enemy.enemyData.minIdleTime)
+            {
+                isDelayCheck = true;
+            }
+            Pattern();
             return;
         }
 
@@ -67,7 +77,7 @@ public abstract class EnemyIdleState : EnemyState
         }
     }
 
-    public abstract void ChangeState();
+    public abstract void Pattern();
 
     public override void PhysicsUpdate()
     {

@@ -13,23 +13,6 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
     {
         MiddleBoss_Stage_1 = enemy as MiddleBoss_Stage_1;
     }
-    public override void ChangeState()
-    {
-        if (MiddleBoss_Stage_1.TargetUnit == null)
-            return;        
-    }
-
-    public override void LogicUpdate()
-    {
-        base.LogicUpdate();
-
-        if(Time.time >= startTime + MiddleBoss_Stage_1.enemyData.minIdleTime)
-        {            
-            isDelayCheck = true;
-        }
-        Pattern();
-    }
-
 
     private void Teleport()
     {
@@ -38,7 +21,7 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
         unit.FSM.ChangeState(MiddleBoss_Stage_1.TeleportState);
     }
 
-    private void Pattern()
+    public override void Pattern()
     {
         if (MiddleBoss_Stage_1.TargetUnit == null)
             return;
