@@ -33,12 +33,22 @@ public class Detector : MonoBehaviour
             }
             if (currentGO.tag == "Item")
             {
+                var item = currentGO.GetComponentInParent<SOB_Item>();
                 if (player.InputHandler.InteractionInput)
                 {
                     player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
-                    Debug.Log($"{currentGO.transform.parent.name} is Add Inventory");
-                    if (player.Inventory.AddInventoryItem(currentGO.transform.parent.gameObject))
+                    Debug.Log($"{item.name} is Add Inventory");
+                    if (player.Inventory.AddInventoryItem(item.gameObject))
                     {
+                        //Vfx
+                        if (item.Item.effectData.AcquiredEffectPrefab != null)
+                            player.Core.CoreEffectManager.StartEffects(item.Item.effectData.AcquiredEffectPrefab, item.gameObject.transform.position, Quaternion.identity);
+
+                        //Sfx
+                        if (item.Item.effectData.AcquiredSoundEffect != null)
+                            player.Core.CoreSoundEffect.AudioSpawn(currentGO.transform.parent.GetComponent<SOB_Item>().Item.effectData.AcquiredSoundEffect);
+
+
                         Destroy(currentGO.transform.parent.gameObject);
                         currentGO = null;
                     }
@@ -176,36 +186,6 @@ public class Detector : MonoBehaviour
         }
     }
     //Detected
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //DetectorMask 의 LayerMask가 아니면 return
-        if ((DetectorMask.value & (1 << collision.gameObject.layer)) <= 0)
-            return;
-
-        if (collision.tag == "Item")
-        {
-            var item = collision.GetComponentInParent<SOB_Item>();
-
-            if (item == null)
-                return;
-
-            //Item
-            if (item.Item.effectData.isEquipment)
-            {
-                //Debug.Log($"Detected {collision.name} {this.name}");
-                //var collItem = collision.GetComponentInParent<SOB_Item>();
-                //collItem.Detected();
-            }
-            //ConsumptionItem
-            else
-            {
-                item.unit = unit;
-                item.CallCoroutine(ItemGetType.Collision.ToString());
-            }
-        }
-
-    }
-    //Detected
     private void OnTriggerExit2D(Collider2D collision)
     {
         //DetectorMask 의 LayerMask가 아니면 return
@@ -239,11 +219,5 @@ public class Detector : MonoBehaviour
             currentGO.GetComponent<InteractiveObject>()?.UnInteractive();
             currentGO = null;
         }
-    }
-
-
-    //Collider
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
     }
 }

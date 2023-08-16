@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 
 public class TouchItem : TouchObject
@@ -57,8 +58,15 @@ public class TouchItem : TouchObject
             gameObject.GetComponent<Unit>().Core.CoreSoundEffect?.AudioSpawn(Item.effectData.AcquiredSoundEffect);
             gameObject.GetComponent<Unit>().gameObject.GetComponent<BuffSystem>()?.AddBuff(buff);
 
+            //Vfx
             if (Item.effectData.AcquiredEffectPrefab != null)
-                Instantiate(Item.effectData.AcquiredEffectPrefab, this.gameObject.transform.position, Quaternion.identity, effectContainer);
+                gameObject.GetComponent<Unit>().Core.CoreEffectManager.StartEffects(Item.effectData.AcquiredEffectPrefab, this.gameObject.transform.position, Quaternion.identity);
+            Instantiate(Item.effectData.AcquiredEffectPrefab, this.gameObject.transform.position, Quaternion.identity, effectContainer);
+
+            //Sfx
+            if (Item.effectData.AcquiredSoundEffect != null)
+                gameObject.GetComponent<Unit>().Core.CoreSoundEffect.AudioSpawn(Item.effectData.AcquiredSoundEffect);
+
 
             Destroy(SpriteRenderer.gameObject);
         }

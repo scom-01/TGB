@@ -91,58 +91,6 @@ namespace SOB.Item
             GameManager.Inst.SubUI.SetSubUI(false);
         }
 
-        public void CallCoroutine(string coroutine)
-        {
-            //ifBuff
-            if (unit.gameObject.GetComponent<BuffSystem>() && Item.GetType() == typeof(BuffItemSO))
-            {
-                Buff buff = new Buff();
-                var items = Item as BuffItemSO;
-                buff.buffItemSO = items;
-                //buff.buffItem = items.BuffData;
-                //buff.statsData = items.StatsDatas;
-                //buff.Health = items.Health;
-                //buff.effectData = items.effectData;
-                //buff.itemEffects = items.ItemEffects;
-                unit.Core.CoreSoundEffect.AudioSpawn(Item.effectData.AcquiredSoundEffect);                
-                unit.gameObject.GetComponent<BuffSystem>().AddBuff(buff);
-            }
-
-            //Effect
-            StartCoroutine(coroutine);
-        }
-
-        
-
-        #region IEnumerator
-        
-        IEnumerator DetectedSense()
-        {
-            
-            yield return 0;
-        }
-        IEnumerator Collision()
-        {
-            Debug.LogWarning($"Conflict {this.name}");
-            if (Item != null ? true : false)
-            {
-                if (Item.effectData.AcquiredEffectPrefab != null)
-                    Instantiate(Item.effectData.AcquiredEffectPrefab, this.gameObject.transform.position, Quaternion.identity, effectContainer);
-
-                Debug.LogWarning($"Get {this.name}");
-                //this.gameObject.SetActive(false);
-                GetComponent<SpriteRenderer>().enabled = false;
-                Destroy(this.gameObject);
-                yield return 0;
-            }
-            else
-            {
-                Debug.LogWarning("itemData is null");
-            }
-            yield return 0;
-        }
-        #endregion
-
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.white;
