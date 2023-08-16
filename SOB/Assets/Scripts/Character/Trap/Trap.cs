@@ -5,13 +5,13 @@ using UnityEngine.Localization;
 using UnityEngine;
 using Cinemachine;
 
-public class Trap : MonoBehaviour
+public class Trap : TouchObject
 {
     public UnitData UnitData;
     public Vector2 knockbackAngle;
     [TagField]
     public string IgnoreTag;
-    public void OnTriggerStay2D(Collider2D collision)
+    public override void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == IgnoreTag)
         {
@@ -20,7 +20,7 @@ public class Trap : MonoBehaviour
 
         if (knockbackAngle.x != 0 || knockbackAngle.y != 0)
         {
-            var knockback = collision.GetComponent<KnockBackReceiver>();
+            var knockback = collision.GetComponent<Unit>().Core.CoreKnockBackReceiver;
             if (knockback != null)
             {
                 knockback.TrapKnockBack(knockbackAngle, knockbackAngle.magnitude);
@@ -28,7 +28,7 @@ public class Trap : MonoBehaviour
             }
         }
 
-        var damage = collision.GetComponent<DamageReceiver>();
+        var damage = collision.GetComponent<Unit>().Core.CoreDamageReceiver;
         if (damage != null)
         {
             damage.TrapDamage(UnitData.statsStats, UnitData.statsStats.DefaultPower);
