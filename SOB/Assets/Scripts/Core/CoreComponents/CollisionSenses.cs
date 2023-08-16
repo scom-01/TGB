@@ -59,7 +59,7 @@ namespace SOB.CoreSystem
         {
             get
             {                
-                return Physics2D.OverlapBox(GroundCenterPos, new Vector2(CC2D.bounds.size.x * 0.95f, CC2D.bounds.size.y * GroundCheckRadius), 0f, WhatIsPlatform);                
+                return Physics2D.OverlapBox(GroundCenterPos + Vector3.down * (GroundCheckRadius) * 1 / 2, new Vector2(CC2D.bounds.size.x * 0.95f, CC2D.bounds.size.y * GroundCheckRadius), 0f, WhatIsPlatform);                
             }
         }
 
@@ -75,7 +75,7 @@ namespace SOB.CoreSystem
         {
             get
             {
-                return Physics2D.OverlapBox(GroundCenterPos + Vector3.down * (GroundCheckRadius) * 3 / 2, new Vector2(CC2D.bounds.size.x * 0.95f, CC2D.bounds.size.y * GroundCheckRadius), 0f, WhatIsGround);                
+                return Physics2D.OverlapBox(GroundCenterPos + Vector3.down * (GroundCheckRadius), new Vector2(CC2D.bounds.size.x * 0.95f, CC2D.bounds.size.y * GroundCheckRadius), 0f, WhatIsGround);                
             }
             //get => Physics2D.OverlapCircle(GroundCenterPos, groundCheckRadius, whatIsGround);
         }
@@ -83,7 +83,7 @@ namespace SOB.CoreSystem
         {
             get
             {
-                return Physics2D.OverlapBox(GroundCenterPos + Vector3.down * (GroundCheckRadius) * 3 / 2, new Vector2(CC2D.bounds.size.x * 0.95f, CC2D.bounds.size.y * GroundCheckRadius), 0f, WhatIsPlatform);                
+                return Physics2D.OverlapBox(GroundCenterPos + Vector3.down * (GroundCheckRadius), new Vector2(CC2D.bounds.size.x * 0.95f, CC2D.bounds.size.y * GroundCheckRadius), 0f, WhatIsPlatform);                
             }
             //get => Physics2D.OverlapCircle(GroundCenterPos, groundCheckRadius, whatIsGround);
         }
@@ -142,7 +142,7 @@ namespace SOB.CoreSystem
 
             Gizmos.color = Color.blue;
             //CheckIfPlatformGrounded
-            Gizmos.DrawWireCube(GroundCenterPos + Vector3.down * (GroundCheckRadius) * 3 / 2,
+            Gizmos.DrawWireCube(GroundCenterPos + Vector3.down * (GroundCheckRadius),
                 new Vector2(CC2D.bounds.size.x * 0.95f, GroundCheckRadius));
 
             Gizmos.color = Color.red;
