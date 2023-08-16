@@ -20,7 +20,7 @@ public class TouchJumpPad : TouchObject
     {
         base.OnTriggerStay2D(collision);
 
-        Collision(collision.gameObject);
+        Collision(collision.GetComponent<Unit>());
     }
 
     public override void Touch()
@@ -37,7 +37,7 @@ public class TouchJumpPad : TouchObject
             animator.SetBool("Action", false);
     }
 
-    private void Collision(GameObject gameObject)
+    private void Collision(Unit unit)
     {
         
         if (JumpEffectPrefab != null)
@@ -50,11 +50,11 @@ public class TouchJumpPad : TouchObject
         //x = 0 인 위로만 올리는 점프패드일 때는 공중 움직임 제한 X
         if(angle.x == 0)
         {
-            gameObject.GetComponent<Unit>().Core.CoreMovement.SetVelocityY(JumpVelocity);
+            unit.Core.CoreMovement.SetVelocityY(JumpVelocity);
         }
         else
         {
-            gameObject.GetComponent<Unit>().Core.CoreKnockBackReceiver.TrapKnockBack(angle, JumpVelocity, false);
+            unit.Core.CoreKnockBackReceiver.TrapKnockBack(angle, JumpVelocity, false);
         }
     }
 
