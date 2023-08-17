@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 #region Input
 [Serializable]
@@ -86,6 +83,7 @@ public enum DAMAGE_ATT
     Physics = 0,
     Magic = 1,
     Fixed = 2,
+    Heal = 3,
 }
 
 /// <summary>

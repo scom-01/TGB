@@ -4,15 +4,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.Experimental.AI;
 using UnityEngine.InputSystem;
 using UnityEngine.Localization.Settings;
-using UnityEngine.SceneManagement;
-using Random = UnityEngine.Random;
 
 public class DataManager : MonoBehaviour
 {
@@ -396,7 +392,7 @@ public class DataManager : MonoBehaviour
         {
             return;
         }
-        stats.CurrentHealth = JSON_DataParsing.m_JSON_SceneData.PlayerHealth;
+        stats.SetHealth(JSON_DataParsing.m_JSON_SceneData.PlayerHealth);
         Debug.LogWarning("Success CurrHealth Save");
     }
     public void PlayerCurrHealthSave(int m_playerHealth)

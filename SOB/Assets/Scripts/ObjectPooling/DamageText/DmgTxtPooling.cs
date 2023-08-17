@@ -1,6 +1,3 @@
-using SOB.Weapons.Components;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -109,6 +106,9 @@ public class DmgTxtPooling : ObjectPooling
                         break;
                     case DAMAGE_ATT.Fixed:
                         obj.GetComponentInChildren<DamageText>().SetText(damage, fontSize, Color.white);
+                        break;
+                    case DAMAGE_ATT.Heal:
+                        obj.GetComponentInChildren<DamageText>().SetText(damage, fontSize, Color.green);
                         break;
                 }
                 obj.gameObject.SetActive(true);
