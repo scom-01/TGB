@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
@@ -20,13 +17,9 @@ public class CutSceneManager : MonoBehaviour
     {
         get
         {
-            for (int i = 0; i < GameManager.Inst.SceneNameList.Count; i++)
+            if(GameManager.Inst.SceneNameList.Count > 0)
             {
-                if (GameManager.Inst.SceneNameList[i] == GameManager.Inst.StageManager.CurrStageName)
-                {
-                    DataManager.Inst.JSON_DataParsing.SceneNumber = i;
-                    return i;
-                }
+                return GameManager.Inst.SceneNameList.FindIndex(str => str.Equals(SceneManager.GetActiveScene().name));
             }
             return 0;
         }
@@ -95,8 +88,9 @@ public class CutSceneManager : MonoBehaviour
                     this.GetComponent<SkipCutSceneIndex>().AddSkipCutScene();
                 }
 
-                if(PlayableDirector!=null)
+                if (PlayableDirector != null)
                 {
+                    DataManager.Inst?.JSON_DataParsing.JSON_DefaultDataSave();
                     PlayableDirector.Stop();
                 }
                 isDone = true;
