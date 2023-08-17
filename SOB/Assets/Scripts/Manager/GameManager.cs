@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            if(m_sceneNameList.Count > 0)
+            if(m_sceneNameList.Count < SceneManager.sceneCountInBuildSettings)
             {
                 for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
                 {
@@ -186,7 +186,6 @@ public class GameManager : MonoBehaviour
         if (DataManager.Inst.JSON_DataParsing.Json_DefaultDataParsing())
         {
             DataManager.Inst?.PlayerUnlockItem();
-            DataManager.Inst?.LoadSkipCutSceneList();
         }
     }
 
