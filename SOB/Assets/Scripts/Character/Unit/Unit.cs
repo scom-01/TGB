@@ -2,8 +2,6 @@ using SOB.CoreSystem;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.U2D.IK;
-using static UnityEngine.Rendering.DebugUI;
 
 public class Unit : MonoBehaviour
 {
@@ -164,7 +162,7 @@ public class Unit : MonoBehaviour
         else
             Debug.Log("Core is null");
 
-        if (Core.CoreUnitStats.invincibleTime > 0.0f && Core.CoreDamageReceiver.isHit)
+        if (Core.CoreUnitStats.invincibleTime >= 0.0f && Core.CoreDamageReceiver.isHit)
         {
             Core.CoreUnitStats.invincibleTime -= Time.deltaTime;
 
