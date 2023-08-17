@@ -59,7 +59,7 @@ namespace SOB.CoreSystem
         {
             get
             {                
-                return Physics2D.OverlapBox(GroundCenterPos + Vector3.down * (GroundCheckRadius) * 1 / 2, new Vector2(CC2D.bounds.size.x * 0.95f, CC2D.bounds.size.y * GroundCheckRadius), 0f, WhatIsPlatform);                
+                return Physics2D.OverlapBox(GroundCenterPos + Vector3.down * (GroundCheckRadius) * 1 / 2, new Vector2(CC2D.bounds.size.x * 0.65f, CC2D.bounds.size.y * GroundCheckRadius), 0f, WhatIsPlatform);                
             }
         }
 
@@ -67,7 +67,7 @@ namespace SOB.CoreSystem
         {
             get
             {
-                return Physics2D.OverlapBox(GroundCenterPos + Vector3.down * (GroundCheckRadius) * 1 / 2, new Vector2(CC2D.bounds.size.x * 0.95f, CC2D.bounds.size.y * GroundCheckRadius), 0f, WhatIsGround);                
+                return Physics2D.OverlapBox(GroundCenterPos + Vector3.down * (GroundCheckRadius) * 1 / 2, new Vector2(CC2D.bounds.size.x * 0.65f, CC2D.bounds.size.y * GroundCheckRadius), 0f, WhatIsGround);                
             }
             //get => Physics2D.OverlapCircle(GroundCenterPos, groundCheckRadius, whatIsGround);
         }
@@ -75,7 +75,7 @@ namespace SOB.CoreSystem
         {
             get
             {
-                return Physics2D.OverlapBox(GroundCenterPos + Vector3.down * (GroundCheckRadius), new Vector2(CC2D.bounds.size.x * 0.95f, CC2D.bounds.size.y * GroundCheckRadius), 0f, WhatIsGround);                
+                return Physics2D.OverlapBox(GroundCenterPos + Vector3.down * (GroundCheckRadius), new Vector2(CC2D.bounds.size.x * 0.65f, CC2D.bounds.size.y * GroundCheckRadius), 0f, WhatIsGround);                
             }
             //get => Physics2D.OverlapCircle(GroundCenterPos, groundCheckRadius, whatIsGround);
         }
@@ -83,7 +83,7 @@ namespace SOB.CoreSystem
         {
             get
             {
-                return Physics2D.OverlapBox(GroundCenterPos + Vector3.down * (GroundCheckRadius), new Vector2(CC2D.bounds.size.x * 0.95f, CC2D.bounds.size.y * GroundCheckRadius), 0f, WhatIsPlatform);                
+                return Physics2D.OverlapBox(GroundCenterPos + Vector3.down * (GroundCheckRadius), new Vector2(CC2D.bounds.size.x * 0.65f, CC2D.bounds.size.y * GroundCheckRadius), 0f, WhatIsPlatform);                
             }
             //get => Physics2D.OverlapCircle(GroundCenterPos, groundCheckRadius, whatIsGround);
         }
@@ -104,8 +104,8 @@ namespace SOB.CoreSystem
         {
             get
             {
-                return Physics2D.OverlapBox(transform.position + new Vector3((CC2D.offset.x + 0.1f) * Movement.FancingDirection, CC2D.offset.y), new Vector2(CC2D.bounds.size.x, CC2D.bounds.size.y * 0.95f), 0f, WhatIsGround) ||
-                    Physics2D.OverlapBox(transform.position + new Vector3((CC2D.offset.x + 0.1f) * Movement.FancingDirection, CC2D.offset.y), new Vector2(CC2D.bounds.size.x, CC2D.bounds.size.y * 0.95f), 0f, WhatIsPlatform);
+                return Physics2D.OverlapBox(transform.position + new Vector3((CC2D.offset.x + 0.1f) * Movement.FancingDirection, CC2D.offset.y), new Vector2(CC2D.bounds.size.x, CC2D.bounds.size.y * 0.65f), 0f, WhatIsGround) ||
+                    Physics2D.OverlapBox(transform.position + new Vector3((CC2D.offset.x + 0.1f) * Movement.FancingDirection, CC2D.offset.y), new Vector2(CC2D.bounds.size.x, CC2D.bounds.size.y * 0.65f), 0f, WhatIsPlatform);
             }
         }
 
@@ -143,12 +143,12 @@ namespace SOB.CoreSystem
             Gizmos.color = Color.blue;
             //CheckIfPlatformGrounded
             Gizmos.DrawWireCube(GroundCenterPos + Vector3.down * (GroundCheckRadius),
-                new Vector2(CC2D.bounds.size.x * 0.95f, GroundCheckRadius));
+                new Vector2(CC2D.bounds.size.x * 0.65f, GroundCheckRadius));
 
             Gizmos.color = Color.red;
             //CheckIfPlatform
             Gizmos.DrawWireCube(GroundCenterPos + Vector3.down * (GroundCheckRadius) * 1 / 2,
-                new Vector2(CC2D.bounds.size.x * 0.95f, GroundCheckRadius));
+                new Vector2(CC2D.bounds.size.x * 0.65f, GroundCheckRadius));
 
 
             Gizmos.DrawLine(GroundCenterPos, GroundCenterPos + Vector3.down);
