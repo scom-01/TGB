@@ -1,8 +1,5 @@
 using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 
 public class TouchItem : TouchObject
@@ -60,8 +57,7 @@ public class TouchItem : TouchObject
 
             //Vfx
             if (Item.effectData.AcquiredEffectPrefab != null)
-                gameObject.GetComponent<Unit>().Core.CoreEffectManager.StartEffects(Item.effectData.AcquiredEffectPrefab, this.gameObject.transform.position, Quaternion.identity);
-            Instantiate(Item.effectData.AcquiredEffectPrefab, this.gameObject.transform.position, Quaternion.identity, effectContainer);
+                gameObject.GetComponent<Unit>().Core.CoreEffectManager.StartEffects(Item.effectData.AcquiredEffectPrefab, this.gameObject.transform.position, Quaternion.identity);            
 
             //Sfx
             if (Item.effectData.AcquiredSoundEffect != null)
