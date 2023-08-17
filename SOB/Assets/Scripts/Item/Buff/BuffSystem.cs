@@ -1,5 +1,3 @@
-using SOB.CoreSystem;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -77,7 +75,7 @@ public class BuffSystem : MonoBehaviour
 
                 //중복 X
                 if (!buffs[i].buffItemSO.BuffData.isOverlap)
-                {
+                {                    
                     return false;
                 }
 
@@ -88,6 +86,12 @@ public class BuffSystem : MonoBehaviour
                 }
 
                 buffs[i].CurrBuffCount++;
+
+                if (buff.buffItemSO.Health != 0.0f)
+                {
+                    unit.Core.CoreUnitStats.IncreaseHealth(buff.buffItemSO.Health * buffs[i].CurrBuffCount);
+                }
+
                 return true;
             }
         }
@@ -101,7 +105,7 @@ public class BuffSystem : MonoBehaviour
         unit.Core.CoreUnitStats.StatsData += buff.buffItemSO.StatsData;
         if (buff.buffItemSO.Health != 0.0f)
         {
-            unit.Core.CoreUnitStats.CurrentHealth += buff.buffItemSO.Health;
+            unit.Core.CoreUnitStats.IncreaseHealth(buff.buffItemSO.Health);
         }
         return true;
     }
