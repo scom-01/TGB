@@ -30,7 +30,7 @@ public class BuffPanelItem : MonoBehaviour
         if (GameManager.Inst == null)
             return;
                 
-        if(buff.CurrBuffCount >= 1)
+        if(buff.CurrBuffCount > 0)
         {
             CountText.text = buff.CurrBuffCount == 1 ? "" : buff.CurrBuffCount.ToString();
             BuffCurrentTime = ((GameManager.Inst.PlayTime - buff.startTime) / buff.buffItemSO.BuffData.DurationTime);
