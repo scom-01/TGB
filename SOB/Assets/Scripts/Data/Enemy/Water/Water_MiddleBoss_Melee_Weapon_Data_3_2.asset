@@ -118,7 +118,18 @@ MonoBehaviour:
             RepeatAction: 1
             AdditionalDamage: 1
             KnockbackAngle: {x: 0, y: 0}
-            EffectPrefab: []
+            EffectPrefab:
+            - isGround: 0
+              isRandomPosRot: 0
+              isRandomRange: 0
+              EffectRect:
+                serializedVersion: 2
+                x: 0
+                y: 0
+                width: 0
+                height: 0
+              isFollowing: 0
+              Object: {fileID: 8011878559192583505, guid: e0ac80d4ce57a224e9a052ef50576e5b, type: 3}
             audioClip: []
             camDatas:
             - Duration: 0.2

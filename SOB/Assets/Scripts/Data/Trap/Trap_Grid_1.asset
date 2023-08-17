@@ -16,36 +16,39 @@ MonoBehaviour:
     MaxHealth: 0
     MovementVelocity: 0
     JumpVelocity: 0
-    DefaultPower: 10
+    DefaultPower: 5
     AttackSpeedPer: 0
     PhysicsDefensivePer: 0
     MagicDefensivePer: 0
     PhysicsAggressivePer: 0
     MagicAggressivePer: 0
+    CriticalPer: 0
+    AdditionalCriticalPer: 0
     DamageAttiribute: 0
-    MyElemental: 0
+    Elemental: 0
     ElementalDefensivePer: 0
     ElementalAggressivePer: 0
-  knockBackDuration: 0
-  knockBackSpeed: {x: 0, y: 0}
+  UnitName: 
+  UnitNameLocal:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  UnitGravity: 0
   invincibleTime: 1
   touchDamageinvincibleTime: 1
-  standColliderOffset: {x: 0, y: 0}
-  standColliderSize: {x: 0, y: 0}
-  UnitColliderMaterial: {fileID: 0}
+  standCC2DOffset: {x: 0, y: 0}
+  standCC2DSize: {x: 0, y: 0}
+  UnitCC2DMaterial: {fileID: 0}
   groundCheckRadius: 0.1
   wallCheckDistance: 0.5
   UnitDetectedDistance: 0.5
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 128
-  whatIsWall:
-    serializedVersion: 2
-    m_Bits: 0
-  whatIsPlatform:
-    serializedVersion: 2
-    m_Bits: 0
-  WhatIsEnemyUnit:
-    serializedVersion: 2
-    m_Bits: 0
+  LayerMaskSO: {fileID: 0}
   UnitAnimator: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []

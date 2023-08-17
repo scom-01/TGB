@@ -35,78 +35,42 @@ MonoBehaviour:
         actionData:
         - name: Action 1
           ProjectileActionData:
-          - Stats:
-              MaxHealth: 0
-              MovementVelocity: 0
-              JumpVelocity: 0
-              DefaultPower: 0
-              AttackSpeedPer: 0
-              PhysicsDefensivePer: 0
-              MagicDefensivePer: 0
-              PhysicsAggressivePer: 0
-              MagicAggressivePer: 0
-              CriticalPer: 0
-              AdditionalCriticalPer: 0
-              DamageAttiribute: 0
-              Elemental: 0
-              ElementalDefensivePer: 0
-              ElementalAggressivePer: 0
-            Pos: {x: 0, y: 0.5, z: 0}
-            Rot: {x: 1, y: 0, z: 0}
-            Radius: 0.5
-            Offset: {x: -0.55, y: 0}
-            GravityScale: 0
-            Speed: 10
-            isSingleShoot: 1
-            isCollisionGround: 0
-            DurationTime: 5
-            ProjectilePrefab: {fileID: 5432264242224142895, guid: 10511c5cf85ce1f4b8a4427e4c0c9975, type: 3}
-            ImpactPrefab: {fileID: 44559380964511440, guid: e10cc02853686e7408ad51618b403677, type: 3}
-            KnockbackAngle: {x: 0, y: 0}
-            ProjectileShootClip: {fileID: 0}
-            ImpactClip: {fileID: 0}
-            isOnHit: 1
-            isShakeCam: 0
-            camDatas:
-              Duration: 0
-              Range: 0
-              RepeatRate: 0
-          - Stats:
-              MaxHealth: 0
-              MovementVelocity: 0
-              JumpVelocity: 0
-              DefaultPower: 0
-              AttackSpeedPer: 0
-              PhysicsDefensivePer: 0
-              MagicDefensivePer: 0
-              PhysicsAggressivePer: 0
-              MagicAggressivePer: 0
-              CriticalPer: 0
-              AdditionalCriticalPer: 0
-              DamageAttiribute: 0
-              Elemental: 0
-              ElementalDefensivePer: 0
-              ElementalAggressivePer: 0
-            Pos: {x: 0, y: 0.5, z: 0}
-            Rot: {x: 1, y: 0, z: 0}
-            Radius: 0.5
-            Offset: {x: -0.55, y: 0}
-            GravityScale: 0
-            Speed: 10
-            isSingleShoot: 1
-            isCollisionGround: 0
-            DurationTime: 5
-            ProjectilePrefab: {fileID: 5432264242224142895, guid: 10511c5cf85ce1f4b8a4427e4c0c9975, type: 3}
-            ImpactPrefab: {fileID: 44559380964511440, guid: e10cc02853686e7408ad51618b403677, type: 3}
-            KnockbackAngle: {x: 0, y: 0}
-            ProjectileShootClip: {fileID: 0}
-            ImpactClip: {fileID: 0}
-            isOnHit: 1
-            isShakeCam: 0
-            camDatas:
-              Duration: 0
-              Range: 0
-              RepeatRate: 0
+          - ProjectileData:
+              Pos: {x: 0, y: 0, z: 0}
+              Rot: {x: 0, y: 0, z: 0}
+              Speed: 0
+              DurationTime: 0
+              Radius: 0
+              Offset: {x: 0, y: 0}
+              GravityScale: 0
+              isSingleShoot: 0
+              KnockbackAngle: {x: 0, y: 0}
+              isCollisionGround: 0
+              isOnHit: 0
+              isShakeCam: 0
+              camDatas:
+                Duration: 0
+                Range: 0
+                RepeatRate: 0
+            Projectile: {fileID: 0}
+          - ProjectileData:
+              Pos: {x: 0, y: 0, z: 0}
+              Rot: {x: 0, y: 0, z: 0}
+              Speed: 0
+              DurationTime: 0
+              Radius: 0
+              Offset: {x: 0, y: 0}
+              GravityScale: 0
+              isSingleShoot: 0
+              KnockbackAngle: {x: 0, y: 0}
+              isCollisionGround: 0
+              isOnHit: 0
+              isShakeCam: 0
+              camDatas:
+                Duration: 0
+                Range: 0
+                RepeatRate: 0
+            Projectile: {fileID: 0}
     - rid: 942642657160069128
       type: {class: EffectSpawnData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -168,7 +132,18 @@ MonoBehaviour:
             RepeatAction: 1
             AdditionalDamage: 0
             KnockbackAngle: {x: 0, y: 0}
-            EffectPrefab: []
+            EffectPrefab:
+            - isGround: 0
+              isRandomPosRot: 0
+              isRandomRange: 0
+              EffectRect:
+                serializedVersion: 2
+                x: 0
+                y: 0
+                width: 0
+                height: 0
+              isFollowing: 0
+              Object: {fileID: 7555031585622908223, guid: dbd0a9584b295d04f9d828d2def2dcba, type: 3}
             audioClip: []
             camDatas:
             - Duration: 0.2

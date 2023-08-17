@@ -63,6 +63,17 @@ MonoBehaviour:
               height: 0
             isFollowing: 1
             Object: {fileID: 9156198701906943596, guid: a1266d24971a0994ba51bee910d4ecdc, type: 3}
+          - isGround: 1
+            isRandomPosRot: 0
+            isRandomRange: 0
+            EffectRect:
+              serializedVersion: 2
+              x: 0
+              y: 0
+              width: 0
+              height: 0
+            isFollowing: 1
+            Object: {fileID: 4679710873576103131, guid: 8b8debff20aa6074d84da32a03408dd0, type: 3}
     - rid: 878558199784144923
       type: {class: KnockbackData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -83,14 +94,19 @@ MonoBehaviour:
         name: ShakeCamData
         actionData:
         - name: Action 1
-          <ShakeCamData>k__BackingField: []
+          <ShakeCamData>k__BackingField:
+          - Duration: 3
+            Range: 0.01
+            RepeatRate: 0.001
     - rid: 878558199784144926
       type: {class: SoundClipData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: SoundClipData
         actionData:
         - name: Action 1
-          audioClips: []
+          audioClips:
+          - {fileID: 0}
+          - {fileID: 0}
     - rid: 878558199784144927
       type: {class: WeaponProjectileData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
