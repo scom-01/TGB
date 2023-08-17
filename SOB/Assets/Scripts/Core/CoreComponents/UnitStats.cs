@@ -17,7 +17,7 @@ namespace SOB.CoreSystem
         public float CurrentHealth 
         { 
             get => currentHealth; 
-            set
+            private set
             {                
                 currentHealth = value <= 0 ? 0 : (value >= statsData.MaxHealth ? statsData.MaxHealth : value);
                 OnChangeHealth?.Invoke();
@@ -102,10 +102,17 @@ namespace SOB.CoreSystem
             }
         }
 
+        public void SetHealth(float amount)
+        {
+            CurrentHealth = amount;
+        }
+
         public float IncreaseHealth(float amount)
         {
             var oldHealth = CurrentHealth;
             CurrentHealth += amount;
+
+            core.CoreDamageReceiver.HUD_DmgTxt(1.0f, CurrentHealth - oldHealth, 30, DAMAGE_ATT.Heal, false);
 
             //증가한 체력량
             return CurrentHealth - oldHealth;
