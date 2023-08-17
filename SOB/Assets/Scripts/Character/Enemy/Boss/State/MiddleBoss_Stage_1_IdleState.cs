@@ -1,12 +1,8 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
 
 public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
 {
     private MiddleBoss_Stage_1 MiddleBoss_Stage_1;
-
-    private bool isDelayCheck = false;
 
     private List<bool> Phase = new List<bool>() { false, false, false };
     public MiddleBoss_Stage_1_IdleState(Unit unit, string animBoolName) : base(unit, animBoolName)
