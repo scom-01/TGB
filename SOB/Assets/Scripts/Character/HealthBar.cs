@@ -1,11 +1,7 @@
 using SOB.CoreSystem;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem.iOS;
 using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
@@ -87,11 +83,11 @@ public class HealthBar : MonoBehaviour
     private Coroutine runningCoroutine;
 
     private void Start()
-    {
-        
-
+    {        
         if (m_Slider != null)
             m_Slider.value = 1f;
+
+        UpdateBar();
     }
     private void FixedUpdate()
     {
