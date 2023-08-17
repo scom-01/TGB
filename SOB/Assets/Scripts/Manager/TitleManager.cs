@@ -1,14 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Composites;
-using UnityEngine.Rendering;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
@@ -74,9 +66,9 @@ public class TitleManager : MonoBehaviour
 
         if (DataManager.Inst != null)
         {
-            if (DataManager.Inst.JSON_DataParsing.WaitUnlockItemList.Count > 0)
+            if (DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.WaitUnlockItemIdxs.Count > 0)
             {
-                DataManager.Inst.JSON_DataParsing.WaitUnlockItemList = new List<int>();
+                DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.WaitUnlockItemIdxs = new List<int>();
                 DataManager.Inst?.JSON_DataParsing.JSON_DefaultDataSave();
             }
         }
@@ -146,7 +138,7 @@ public class TitleManager : MonoBehaviour
             Debug.LogWarning("Save file not found");
         }
 
-        DataManager.Inst.JSON_DataParsing.SceneDataIdx = DataManager.Inst.LoadSceneDataIdx();
+        DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.SceneDataIdx = DataManager.Inst.LoadSceneDataIdx();
     }
 
     public void OnUnlockItemClicked()

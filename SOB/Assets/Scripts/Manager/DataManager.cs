@@ -245,6 +245,7 @@ public class DataManager : MonoBehaviour
             try
             {
                 File.Delete(Application.dataPath + JSON_DataParsing.UnitInventoryData_FilePath);
+                JSON_DataParsing.m_JSON_Inventory = new DataParsing.JSON_Inventory();
             }
             catch (Exception e)
             {
@@ -261,6 +262,7 @@ public class DataManager : MonoBehaviour
             try
             {
                 File.Delete(Application.dataPath + JSON_DataParsing.UnitGoodsData_FilePath);
+                JSON_DataParsing.m_JSON_Goods = new DataParsing.JSON_Goods();
             }
             catch (Exception e)
             {
@@ -277,6 +279,7 @@ public class DataManager : MonoBehaviour
             try
             {
                 File.Delete(Application.dataPath + JSON_DataParsing.SceneData_FilePath);
+                JSON_DataParsing.m_JSON_SceneData = new DataParsing.JSON_SceneData();
             }
             catch (Exception e)
             {
@@ -297,7 +300,8 @@ public class DataManager : MonoBehaviour
             try
             {
                 File.Delete(Application.dataPath + JSON_DataParsing.DefaultData_FilePath);
-                
+                JSON_DataParsing.m_JSON_DefaultData = new DataParsing.JSON_DefaultData();
+                JSON_DataParsing.lockItemList = new List<int>();
                 if (GameManager.Inst != null)
                 {
                     GameManager.Inst.GoTitleScene();
@@ -315,7 +319,7 @@ public class DataManager : MonoBehaviour
     }
     public void PlayerInventoryDataLoad(Inventory inventory)
     {
-        var inventory_Itemlist = JSON_DataParsing.ItemListIdx;
+        var inventory_Itemlist = JSON_DataParsing.m_JSON_Inventory.items;
 
         for (int i = 0; i < inventory_Itemlist.Count; i++)
         {
@@ -326,7 +330,7 @@ public class DataManager : MonoBehaviour
             inventory.AddInventoryItem(All_ItemDB.ItemDBList[inventory_Itemlist[i]]);
         }
 
-        var inventory_Weaponlist = JSON_DataParsing.WeaponListIdx;
+        var inventory_Weaponlist = JSON_DataParsing.m_JSON_Inventory.weapons;
 
         if (inventory_Weaponlist.Count > 0)
         {
@@ -346,7 +350,7 @@ public class DataManager : MonoBehaviour
         List<int> items = new List<int>();
         if (itemList == null)
         {
-            JSON_DataParsing.ItemListIdx = items;
+            JSON_DataParsing.m_JSON_Inventory.items = items;
         }
         else
         {
@@ -355,19 +359,19 @@ public class DataManager : MonoBehaviour
                 items.Add(itemList[i].item.ItemIdx);
             }
 
-            JSON_DataParsing.ItemListIdx = items;
+            JSON_DataParsing.m_JSON_Inventory.items = items;
         }
 
 
         List<int> weapons = new List<int>();
         if (weapon == null)
         {
-            JSON_DataParsing.WeaponListIdx = weapons;
+            JSON_DataParsing.m_JSON_Inventory.weapons = weapons;
         }
         else
         {
             weapons.Add(weapon.weaponData.weaponCommandDataSO.WeaponIdx);
-            JSON_DataParsing.WeaponListIdx = weapons;
+            JSON_DataParsing.m_JSON_Inventory.weapons = weapons;
         }
 
         Debug.LogWarning("Success Inventory Data Save");
@@ -375,31 +379,29 @@ public class DataManager : MonoBehaviour
 
     public void PlayerUnlockItem()
     {
-        var idxs = new List<int>();
-
-        for (int i = 0; i < JSON_DataParsing.WaitUnlockItemList.Count; i++)
+        for (int i = 0; i < JSON_DataParsing.m_JSON_DefaultData.WaitUnlockItemIdxs.Count; i++)
         {
-            if (JSON_DataParsing.UnlockItemList.Contains(JSON_DataParsing.WaitUnlockItemList[i]))
+            if (JSON_DataParsing.m_JSON_DefaultData.UnlockItemIdxs.Contains(JSON_DataParsing.m_JSON_DefaultData.WaitUnlockItemIdxs[i]))
             {
                 continue;
             }
-            JSON_DataParsing.UnlockItemList.Add(JSON_DataParsing.WaitUnlockItemList[i]);
-            GameManager.Inst.EffectTextUI.UnlockitemNames.Add(All_ItemDB.ItemDBList[JSON_DataParsing.WaitUnlockItemList[i]].itemData.ItemNameLocal);
+            JSON_DataParsing.m_JSON_DefaultData.UnlockItemIdxs.Add(JSON_DataParsing.m_JSON_DefaultData.WaitUnlockItemIdxs[i]);
+            GameManager.Inst.EffectTextUI.UnlockitemNames.Add(All_ItemDB.ItemDBList[JSON_DataParsing.m_JSON_DefaultData.WaitUnlockItemIdxs[i]].itemData.ItemNameLocal);
         }
     }
 
     public void PlayerCurrHealthLoad(UnitStats stats)
     {
-        if (JSON_DataParsing.PlayerHealth == -1)
+        if (JSON_DataParsing.m_JSON_SceneData.PlayerHealth == -1)
         {
             return;
         }
-        stats.CurrentHealth = JSON_DataParsing.PlayerHealth;
+        stats.CurrentHealth = JSON_DataParsing.m_JSON_SceneData.PlayerHealth;
         Debug.LogWarning("Success CurrHealth Save");
     }
     public void PlayerCurrHealthSave(int m_playerHealth)
     {
-        JSON_DataParsing.PlayerHealth = m_playerHealth;
+        JSON_DataParsing.m_JSON_SceneData.PlayerHealth = m_playerHealth;
         Debug.LogWarning("Success CurrHealth Save");
     }
 
@@ -416,24 +418,24 @@ public class DataManager : MonoBehaviour
 
     public int GameGoldLoad()
     {
-        return JSON_DataParsing.GoldAmount;
+        return JSON_DataParsing.m_JSON_Goods.gold;
     }
     public int GameElementalsculptureLoad()
     {
-        return JSON_DataParsing.ElementalSculptureAmount;
+        return JSON_DataParsing.m_JSON_Goods.elementalSculpture;
     }
     //public bool GameElementalsculptureSave(int m_Elementalsculpture)
     //{
     //    if (m_Elementalsculpture <= 0)
     //        return false;
 
-    //    JSON_DataParsing.ElementalSculptureAmount = m_Elementalsculpture;
+    //    JSON_DataParsing.m_JSON_Goods.elementalSculpture = m_Elementalsculpture;
 
     //    return true;
     //}
     public ElementalGoods GameElementalGoodsLoad()
     {
-        return JSON_DataParsing.ElementalGoodsAmount;
+        return JSON_DataParsing.m_JSON_Goods.elementalGoods;
     }
 
     public void SaveScene(int _stageNumber)
@@ -444,12 +446,12 @@ public class DataManager : MonoBehaviour
             {
                 if (GameManager.Inst.SceneNameList[i] == GameManager.Inst.StageManager.CurrStageName)
                 {
-                    JSON_DataParsing.SceneNumber = i;
+                    JSON_DataParsing.m_JSON_SceneData.SceneNumber = i;
                     return;
                 }
             }
         }
-        JSON_DataParsing.SceneNumber = _stageNumber;
+        JSON_DataParsing.m_JSON_SceneData.SceneNumber = _stageNumber;
     }
 
     public void LoadScene()
@@ -465,21 +467,21 @@ public class DataManager : MonoBehaviour
 
     //public Enemy_Count LoadEnemyCount()
     //{
-    //    return JSON_DataParsing.EnemyCount;
+    //    return JSON_DataParsing.m_JSON_SceneData.EnemyCount;
     //}
     //public void SaveEnemyCount(Enemy_Count enemy_Count)
     //{
-    //    JSON_DataParsing.EnemyCount = enemy_Count;
+    //    JSON_DataParsing.m_JSON_SceneData.EnemyCount = enemy_Count;
     //}
 
     //public void SavePlayTime(float _playTime)
     //{
-    //    JSON_DataParsing.PlayTime = _playTime;
+    //    JSON_DataParsing.m_JSON_SceneData.PlayTime = _playTime;
     //}
 
     //public void SaveSceneDataIdx(int _sceneDataIdx)
     //{
-    //    JSON_DataParsing.SceneDataIdx = _sceneDataIdx;
+    //    JSON_DataParsing.m_JSON_SceneData.SceneDataIdx = _sceneDataIdx;
     //}
     public void SaveBuffs(List<Buff> _buffs)
     {
@@ -489,13 +491,13 @@ public class DataManager : MonoBehaviour
             var buff = new BuffData() { ButtItemIdx = _buffs[i].buffItemSO.ItemIdx, startTime = _buffs[i].startTime, CurrBuffCount = _buffs[i].CurrBuffCount };
             _buffDatas.Add(buff);
         }
-        JSON_DataParsing.BuffDatas = _buffDatas;
+        JSON_DataParsing.m_JSON_SceneData.BuffDatas = _buffDatas;
 
     }
 
     public void LoadBuffs(BuffSystem buffSystem)
     {
-        var buffDatas = JSON_DataParsing.BuffDatas;
+        var buffDatas = JSON_DataParsing.m_JSON_SceneData.BuffDatas;
 
         if (buffDatas == null)
             return;
@@ -520,7 +522,7 @@ public class DataManager : MonoBehaviour
 
     public int LoadSceneDataIdx()
     {
-        return JSON_DataParsing.SceneDataIdx;
+        return JSON_DataParsing.m_JSON_SceneData.SceneDataIdx;
     }
 
     public void LoadPlayTime()
@@ -528,50 +530,8 @@ public class DataManager : MonoBehaviour
         if (GameManager.Inst == null)
             return;
 
-        GameManager.Inst.PlayTime = JSON_DataParsing.PlayTime;
+        GameManager.Inst.PlayTime = JSON_DataParsing.m_JSON_SceneData.PlayTime;
     }
-
-    public void SaveSkipCutSceneList(List<int> idxs)
-    {
-        if (idxs == null)
-        {
-            return;
-        }
-
-        if (idxs.Count == 0)
-        {
-            return;
-        }
-        JSON_DataParsing.SkipCutSceneList = idxs;
-    }
-
-    public List<int> LoadSkipCutSceneList()
-    {
-        return JSON_DataParsing.SkipCutSceneList;
-    }
-    public void SaveSkipBossCutSceneList(List<int> idxs)
-    {
-        if (idxs == null)
-        {
-            return;
-        }
-
-        if (idxs.Count == 0)
-        {
-            return;
-        }
-        JSON_DataParsing.SkipBossCutScene = idxs;
-    }
-
-    //public List<int> LoadSkipBossCutSceneList()
-    //{
-    //    return JSON_DataParsing.SkipBossCutScene;
-    //}
-
-    //public List<int> LoadUnlockItemList()
-    //{
-    //    return JSON_DataParsing.UnlockItemList;
-    //}
     #endregion
 
     #region Data Controll Func
@@ -582,7 +542,7 @@ public class DataManager : MonoBehaviour
     /// <param name="stageIndex"></param>
     public void NextStage(int stageIndex)
     {
-        JSON_DataParsing.SceneNumber = stageIndex;
+        JSON_DataParsing.m_JSON_SceneData.SceneNumber = stageIndex;
     }
 
     public void IncreaseGoods(GOODS_TPYE type, int goodsAmount)
@@ -590,19 +550,19 @@ public class DataManager : MonoBehaviour
         switch (type)
         {
             case GOODS_TPYE.Gold:
-                JSON_DataParsing.GoldAmount += goodsAmount;
+                JSON_DataParsing.m_JSON_Goods.gold += goodsAmount;
                 break;
             case GOODS_TPYE.FireGoods:
-                JSON_DataParsing.ElementalGoodsAmount.FireGoods += goodsAmount;
+                JSON_DataParsing.m_JSON_Goods.elementalGoods.FireGoods += goodsAmount;
                 break;
             case GOODS_TPYE.WaterGoods:
-                JSON_DataParsing.ElementalGoodsAmount.WaterGoods += goodsAmount;
+                JSON_DataParsing.m_JSON_Goods.elementalGoods.WaterGoods += goodsAmount;
                 break;
             case GOODS_TPYE.EarthGoods:
-                JSON_DataParsing.ElementalGoodsAmount.EarthGoods += goodsAmount;
+                JSON_DataParsing.m_JSON_Goods.elementalGoods.EarthGoods += goodsAmount;
                 break;
             case GOODS_TPYE.WindGoods:
-                JSON_DataParsing.ElementalGoodsAmount.WindGoods += goodsAmount;
+                JSON_DataParsing.m_JSON_Goods.elementalGoods.WindGoods += goodsAmount;
                 break;
         }
     }
@@ -611,19 +571,19 @@ public class DataManager : MonoBehaviour
         switch (type)
         {
             case GOODS_TPYE.Gold:
-                JSON_DataParsing.GoldAmount -= goodsAmount;
+                JSON_DataParsing.m_JSON_Goods.gold -= goodsAmount;
                 break;
             case GOODS_TPYE.FireGoods:
-                JSON_DataParsing.ElementalGoodsAmount.FireGoods -= goodsAmount;
+                JSON_DataParsing.m_JSON_Goods.elementalGoods.FireGoods -= goodsAmount;
                 break;
             case GOODS_TPYE.WaterGoods:
-                JSON_DataParsing.ElementalGoodsAmount.WaterGoods -= goodsAmount;
+                JSON_DataParsing.m_JSON_Goods.elementalGoods.WaterGoods -= goodsAmount;
                 break;
             case GOODS_TPYE.EarthGoods:
-                JSON_DataParsing.ElementalGoodsAmount.EarthGoods -= goodsAmount;
+                JSON_DataParsing.m_JSON_Goods.elementalGoods.EarthGoods -= goodsAmount;
                 break;
             case GOODS_TPYE.WindGoods:
-                JSON_DataParsing.ElementalGoodsAmount.WindGoods -= goodsAmount;
+                JSON_DataParsing.m_JSON_Goods.elementalGoods.WindGoods -= goodsAmount;
                 break;
         }
     }
@@ -636,7 +596,7 @@ public class DataManager : MonoBehaviour
     {
         for (int i = 0; i < All_ItemDB.ItemDBList.Count; i++)
         {
-            if (JSON_DataParsing.UnlockItemList.Contains(All_ItemDB.ItemDBList[i].ItemIdx))
+            if (JSON_DataParsing.m_JSON_DefaultData.UnlockItemIdxs.Contains(All_ItemDB.ItemDBList[i].ItemIdx))
             {
                 continue;
             }
@@ -655,11 +615,11 @@ public class DataManager : MonoBehaviour
         if (GameManager.Inst.StageManager == null)
             return;
 
-        if(JSON_DataParsing.SceneDataIdx >= GlobalValue.MaxSceneIdx)
+        if(JSON_DataParsing.m_JSON_SceneData.SceneDataIdx >= GlobalValue.MaxSceneIdx)
         {
             if (JSON_DataParsing.lockItemList.Count > 0)
             {
-                var idx = DataManager.Inst.JSON_DataParsing.SceneDataIdx % JSON_DataParsing.lockItemList.Count;
+                var idx = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.SceneDataIdx % JSON_DataParsing.lockItemList.Count;
                 var itemData = All_ItemDB.ItemDBList[JSON_DataParsing.lockItemList[idx]];
 
                 if (itemData == null)
@@ -668,7 +628,7 @@ public class DataManager : MonoBehaviour
                 if (GameManager.Inst.StageManager.SPM.SpawnItem(GameManager.Inst.StageManager.IM.InventoryItem, pos, GameManager.Inst.StageManager.IM.transform, itemData))
                 {
                     Debug.Log($"SpawnItem {itemData.name}");
-                    JSON_DataParsing.WaitUnlockItemList.Add(JSON_DataParsing.lockItemList[idx]);
+                    JSON_DataParsing.m_JSON_DefaultData.WaitUnlockItemIdxs.Add(JSON_DataParsing.lockItemList[idx]);
                 }
                 return;
             }
@@ -693,7 +653,7 @@ public class DataManager : MonoBehaviour
                 }
             }
 
-            var idx = DataManager.Inst.JSON_DataParsing.SceneDataIdx % AllItemIdxs.Count;
+            var idx = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.SceneDataIdx % AllItemIdxs.Count;
             var itemData = All_ItemDB.ItemDBList[AllItemIdxs[idx]];
 
             if (itemData == null)

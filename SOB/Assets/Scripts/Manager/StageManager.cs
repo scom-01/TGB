@@ -1,11 +1,9 @@
-using System.Collections;
+using Cinemachine;
+using SOB.Manager;
 using System.Collections.Generic;
 using UnityEngine;
-using SOB.Manager;
-using Cinemachine;
-using SOB.CoreSystem;
-using UnityEngine.SceneManagement;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 
 public class StageManager : MonoBehaviour
 {
@@ -107,7 +105,7 @@ public class StageManager : MonoBehaviour
         {
             if(MasterManagerList.Count > 0)
             {
-                var idx = DataManager.Inst.JSON_DataParsing.SceneDataIdx % MasterManagerList.Count;
+                var idx = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.SceneDataIdx % MasterManagerList.Count;
 
                 if (idx == MasterManagerList.Count)
                 {
@@ -128,26 +126,6 @@ public class StageManager : MonoBehaviour
 
             if (SPM == null)
                 SPM = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
-
-            //if (MasterManagerList.Count > 0)
-            //{
-            //    if (MasterManagerList.Count < DataManager.Inst.JSON_DataParsing.SceneDataIdx || DataManager.Inst.JSON_DataParsing.SceneDataIdx <= 1)
-            //    {
-            //        MasterManagerList[0].gameObject.SetActive(true);
-            //        IM = MasterManagerList[0].GetComponentInChildren<ItemManager>();
-            //        SPM = MasterManagerList[0].GetComponentInChildren<SpawnManager>();
-            //    }
-            //    else
-            //    {
-            //        MasterManagerList[DataManager.Inst.JSON_DataParsing.SceneDataIdx - 1].gameObject.SetActive(true);
-            //        IM = MasterManagerList[DataManager.Inst.JSON_DataParsing.SceneDataIdx - 1].GetComponentInChildren<ItemManager>();
-            //        SPM = MasterManagerList[DataManager.Inst.JSON_DataParsing.SceneDataIdx - 1].GetComponentInChildren<SpawnManager>();
-            //    }
-            //}
-            //else
-            //{
-                
-            //}
         }
 
         if (respawnPoint == null)

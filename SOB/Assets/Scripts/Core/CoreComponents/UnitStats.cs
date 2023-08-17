@@ -1,7 +1,4 @@
-using SOB.CoreSystem;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace SOB.CoreSystem
@@ -21,7 +18,7 @@ namespace SOB.CoreSystem
         { 
             get => currentHealth; 
             set
-            {
+            {                
                 currentHealth = value <= 0 ? 0 : (value >= statsData.MaxHealth ? statsData.MaxHealth : value);
                 OnChangeHealth?.Invoke();
             }

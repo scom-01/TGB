@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class OpenGate : InteractiveObject
@@ -16,7 +14,7 @@ public class OpenGate : InteractiveObject
             return;
 
         //씬 이동할 때마다 게임 Idx 설정
-        DataManager.Inst.JSON_DataParsing.SceneDataIdx = UnityEngine.Random.Range(0, GlobalValue.MaxSceneIdx);
+        DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.SceneDataIdx = UnityEngine.Random.Range(0, GlobalValue.MaxSceneIdx);
 
         GameManager.Inst.Data_Save();
 

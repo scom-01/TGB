@@ -2,7 +2,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 using UnityEngine;
 
@@ -191,25 +190,36 @@ public class DataParsing : MonoBehaviour
     public string UnitData_DirectoryPath = "/Resources/json/";
 
     /// <summary>
-    /// 인벤토리 데이터
-    /// </summary>
+    /// 인벤토리 데이터 경로
+    /// </summary> 
     public string UnitInventoryData_FileName;
     /// <summary>
-    /// 재화 데이터
+    /// 재화 데이터 경로
     /// </summary>
     public string UnitGoodsData_FileName;
+    /// <summary>
+    ///  씬 데이터 경로
+    /// </summary>
     public string SceneData_FileName;
+    /// <summary>
+    /// 기본 데이터 경로
+    /// </summary>
     public string DefaultData_FileName;
+
+    private JsonSerializerSettings serializerSettings = new JsonSerializerSettings
+    {
+        ObjectCreationHandling = ObjectCreationHandling.Replace
+    };
 
     #region JSON_Inventory
     public class JSON_Inventory
     {
-        public int[] items;
-        public int[] weapons;
+        public List<int> items = new List<int>();
+        public List<int> weapons = new List<int>();
         public JSON_Inventory()
         {
-            items = new int[0];
-            weapons = new int[0];
+            items = new List<int>();
+            weapons = new List<int>();
         }
 
         public void Print()
@@ -224,8 +234,8 @@ public class DataParsing : MonoBehaviour
             }
         }
     }
-    [HideInInspector] public List<int> ItemListIdx = new List<int>();
-    [HideInInspector] public List<int> WeaponListIdx = new List<int>();
+
+    public JSON_Inventory m_JSON_Inventory = new JSON_Inventory();
     #endregion
 
     #region JSON_Goods
@@ -248,10 +258,8 @@ public class DataParsing : MonoBehaviour
             Debug.Log($"ElementalGoods = {elementalGoods}");
         }
     }
-    [HideInInspector] public int GoldAmount;
-    [HideInInspector] public int ElementalSculptureAmount;
-    [HideInInspector] public ElementalGoods ElementalGoodsAmount;
 
+    public JSON_Goods m_JSON_Goods = new JSON_Goods();
     #endregion
 
     #region JSON_SceneData
@@ -289,33 +297,27 @@ public class DataParsing : MonoBehaviour
             Debug.Log($"EnemyCount.Boss_Enemy_Count = {EnemyCount.Boss_Enemy_Count}");
         }
     }
-    [HideInInspector] public int SceneNumber = 2;
-    [HideInInspector] public int SceneDataIdx;
-    [HideInInspector] public int PlayerHealth = -1;
-    [HideInInspector] public float PlayTime;
-    [HideInInspector] public Enemy_Count EnemyCount;
-    [HideInInspector] public List<BuffData> BuffDatas;
-
+    public JSON_SceneData m_JSON_SceneData =new JSON_SceneData();
     #endregion
 
     #region JSON_DefaultData
     public class JSON_DefaultData
     {
-        public int[] SkipCutSceneList = new int[0];
-        public int[] SkipBossCutScene = new int[0];
-        public int[] UnlockItemIdxs = GlobalValue.DefaultUnlockItem;
-        public int[] WaitUnlockItemIdxs = new int[0];
+        public List<int> SkipCutSceneList = new List<int>();
+        public List<int> SkipBossCutScene = new List<int>();
+        public List<int> UnlockItemIdxs = new List<int>() { 0, 1, 2, 3, 4, 5, 6 };
+        public List<int> WaitUnlockItemIdxs = new List<int>();
 
         public JSON_DefaultData()
         {
-            SkipCutSceneList = new int[0];
-            SkipBossCutScene = new int[0];
-            UnlockItemIdxs = GlobalValue.DefaultUnlockItem;
-            WaitUnlockItemIdxs = new int[0];
+            SkipCutSceneList = new List<int>();
+            SkipBossCutScene = new List<int>();
+            UnlockItemIdxs = new List<int>() { 0, 1, 2, 3, 4, 5, 6 };
+            WaitUnlockItemIdxs = new List<int>();
         }
         public void Print()
         {
-            if (SkipCutSceneList.Length > 0)
+            if (SkipCutSceneList.Count > 0)
             {
                 var str = "";
                 foreach (int item in SkipCutSceneList)
@@ -326,7 +328,7 @@ public class DataParsing : MonoBehaviour
 
             }
 
-            if (SkipBossCutScene.Length > 0)
+            if (SkipBossCutScene.Count > 0)
             {
                 var str = "";
                 foreach (int item in SkipBossCutScene)
@@ -337,7 +339,7 @@ public class DataParsing : MonoBehaviour
 
             }
 
-            if (UnlockItemIdxs.Length > 0)
+            if (UnlockItemIdxs.Count > 0)
             {
                 var str = "";
                 foreach (int idx in UnlockItemIdxs)
@@ -347,7 +349,7 @@ public class DataParsing : MonoBehaviour
                 Debug.Log($"UnlockItemIdxs = {str}");
             }
 
-            if (WaitUnlockItemIdxs.Length > 0)
+            if (WaitUnlockItemIdxs.Count > 0)
             {
                 var str = "";
                 foreach (int idx in WaitUnlockItemIdxs)
@@ -359,12 +361,15 @@ public class DataParsing : MonoBehaviour
         }
     }
 
-    [HideInInspector] public List<int> SkipCutSceneList;
-    [HideInInspector] public List<int> SkipBossCutScene;
-    [HideInInspector] public List<int> UnlockItemList;
-    [HideInInspector] public List<int> WaitUnlockItemList;
-    [HideInInspector] public List<int> lockItemList;
+    public JSON_DefaultData m_JSON_DefaultData = new JSON_DefaultData();
+    public List<int> lockItemList = new List<int>();
     #endregion
+
+
+    private void Awake()
+    {
+
+    }
 
     private bool Json_InventoryParsing()
     {
@@ -377,22 +382,38 @@ public class DataParsing : MonoBehaviour
             if (File.Exists(Application.dataPath + UnitInventoryData_FilePath))
             {
                 FileStream stream = new FileStream(Application.dataPath + UnitInventoryData_FilePath, FileMode.Open, FileAccess.ReadWrite);
-                byte[] data = new byte[stream.Length];
-                stream.Read(data, 0, data.Length);
-                stream.Close();
-                string jsonData = Encoding.UTF8.GetString(data);
-                JSON_Inventory jtest2 = JsonConvert.DeserializeObject<JSON_Inventory>(jsonData);
-                jtest2.Print();
-                ItemListIdx = jtest2.items.ToList();
-                WeaponListIdx = jtest2.weapons.ToList();
+                try
+                {
+                    byte[] data = new byte[stream.Length];
+                    stream.Read(data, 0, data.Length);
+                    stream.Close();
+                    string jsonData = Encoding.UTF8.GetString(data);
+                    JSON_Inventory jtest2 = JsonConvert.DeserializeObject<JSON_Inventory>(jsonData, serializerSettings);
+                    jtest2.Print();
+                    m_JSON_Inventory = jtest2;
+                }
+                catch
+                {
+                    stream.Close();
+                    stream = new FileStream(Application.dataPath + UnitInventoryData_FilePath, FileMode.Open, FileAccess.ReadWrite);
+                    byte[] data = new byte[stream.Length];
+                    stream.Read(data, 0, data.Length);
+                    stream.Close();
+                    string jsonData = Encoding.UTF8.GetString(data);
+                    JSON_Inventory jtest2 = JsonConvert.DeserializeObject<JSON_Inventory>(jsonData, serializerSettings);
+                    jtest2.Print();
+                    m_JSON_Inventory = jtest2;
+                }
             }
             else
             {
                 FileStream stream = new FileStream(Application.dataPath + UnitInventoryData_FilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-                JSON_Inventory jTest1 = new JSON_Inventory();
-                ItemListIdx = jTest1.items.ToList();
-                WeaponListIdx = jTest1.weapons.ToList();
-                string jsonData = JsonConvert.SerializeObject(jTest1);
+                if (m_JSON_Inventory == null)
+                {
+
+                    m_JSON_Inventory = new JSON_Inventory();
+                }
+                string jsonData = JsonConvert.SerializeObject(m_JSON_Inventory);
                 byte[] data = Encoding.UTF8.GetBytes(jsonData);
                 stream.Write(data, 0, data.Length);
                 stream.Close();
@@ -416,24 +437,37 @@ public class DataParsing : MonoBehaviour
             if (File.Exists(Application.dataPath + UnitGoodsData_FilePath))
             {
                 FileStream stream = new FileStream(Application.dataPath + UnitGoodsData_FilePath, FileMode.Open, FileAccess.ReadWrite);
-                byte[] data = new byte[stream.Length];
-                stream.Read(data, 0, data.Length);
-                stream.Close();
-                string jsonData = Encoding.UTF8.GetString(data);
-                JSON_Goods jtest2 = JsonConvert.DeserializeObject<JSON_Goods>(jsonData);
-                jtest2.Print();
-                GoldAmount = jtest2.gold;
-                ElementalSculptureAmount = jtest2.elementalSculpture;
-                ElementalGoodsAmount = jtest2.elementalGoods;
+                try
+                {
+                    byte[] data = new byte[stream.Length];
+                    stream.Read(data, 0, data.Length);
+                    stream.Close();
+                    string jsonData = Encoding.UTF8.GetString(data);
+                    JSON_Goods jtest2 = JsonConvert.DeserializeObject<JSON_Goods>(jsonData, serializerSettings);
+                    jtest2.Print();
+                    m_JSON_Goods = jtest2;
+                }
+                catch
+                {
+                    stream.Close();
+                    stream = new FileStream(Application.dataPath + UnitGoodsData_FilePath, FileMode.Open, FileAccess.ReadWrite);
+                    byte[] data = new byte[stream.Length];
+                    stream.Read(data, 0, data.Length);
+                    stream.Close();
+                    string jsonData = Encoding.UTF8.GetString(data);
+                    JSON_Goods jtest2 = JsonConvert.DeserializeObject<JSON_Goods>(jsonData, serializerSettings);
+                    jtest2.Print();
+                    m_JSON_Goods = jtest2;
+                }
             }
             else
             {
                 FileStream stream = new FileStream(Application.dataPath + UnitGoodsData_FilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-                JSON_Goods jTest1 = new JSON_Goods();
-                GoldAmount = jTest1.gold;
-                ElementalSculptureAmount = jTest1.elementalSculpture;
-                ElementalGoodsAmount = jTest1.elementalGoods;
-                string jsonData = JsonConvert.SerializeObject(jTest1);
+                if (m_JSON_Goods == null)
+                {
+                    m_JSON_Goods = new JSON_Goods();
+                }
+                string jsonData = JsonConvert.SerializeObject(m_JSON_Goods);
                 byte[] data = Encoding.UTF8.GetBytes(jsonData);
                 stream.Write(data, 0, data.Length);
                 stream.Close();
@@ -457,30 +491,37 @@ public class DataParsing : MonoBehaviour
             if (File.Exists(Application.dataPath + SceneData_FilePath))
             {
                 FileStream stream = new FileStream(Application.dataPath + SceneData_FilePath, FileMode.Open, FileAccess.ReadWrite);
-                byte[] data = new byte[stream.Length];
-                stream.Read(data, 0, data.Length);
-                stream.Close();
-                string jsonData = Encoding.UTF8.GetString(data);
-                JSON_SceneData json = JsonConvert.DeserializeObject<JSON_SceneData>(jsonData);
-                json.Print();
-                SceneNumber = json.SceneNumber;
-                SceneDataIdx = json.SceneDataIdx;
-                PlayerHealth = json.PlayerHealth;
-                PlayTime = json.PlayTime;
-                EnemyCount = json.EnemyCount;
-                BuffDatas = json.BuffDatas;
+                try
+                {
+                    byte[] data = new byte[stream.Length];
+                    stream.Read(data, 0, data.Length);
+                    stream.Close();
+                    string jsonData = Encoding.UTF8.GetString(data);
+                    JSON_SceneData json = JsonConvert.DeserializeObject<JSON_SceneData>(jsonData, serializerSettings);
+                    json.Print();
+                    m_JSON_SceneData = json;
+                }
+                catch
+                {
+                    stream.Close();
+                    stream = new FileStream(Application.dataPath + SceneData_FilePath, FileMode.Open, FileAccess.ReadWrite);
+                    byte[] data = new byte[stream.Length];
+                    stream.Read(data, 0, data.Length);
+                    stream.Close();
+                    string jsonData = Encoding.UTF8.GetString(data);
+                    JSON_SceneData json = JsonConvert.DeserializeObject<JSON_SceneData>(jsonData, serializerSettings);
+                    json.Print();
+                    m_JSON_SceneData = json;
+                }                
             }
             else
             {
                 FileStream stream = new FileStream(Application.dataPath + SceneData_FilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-                JSON_SceneData json = new JSON_SceneData();
-                SceneNumber = json.SceneNumber;
-                SceneDataIdx = json.SceneDataIdx;
-                PlayerHealth = json.PlayerHealth;
-                PlayTime = json.PlayTime;
-                EnemyCount = json.EnemyCount;
-                BuffDatas = json.BuffDatas;
-                string jsonData = JsonConvert.SerializeObject(json);
+                if (m_JSON_SceneData == null)
+                {
+                    m_JSON_SceneData = new JSON_SceneData();
+                }
+                string jsonData = JsonConvert.SerializeObject(m_JSON_SceneData);
                 byte[] data = Encoding.UTF8.GetBytes(jsonData);
                 stream.Write(data, 0, data.Length);
                 stream.Close();
@@ -504,33 +545,43 @@ public class DataParsing : MonoBehaviour
             if (File.Exists(Application.dataPath + DefaultData_FilePath))
             {
                 FileStream stream = new FileStream(Application.dataPath + DefaultData_FilePath, FileMode.Open, FileAccess.ReadWrite);
-                byte[] data = new byte[stream.Length];
-                stream.Read(data, 0, data.Length);
-                stream.Close();
-                string jsonData = Encoding.UTF8.GetString(data);
-                JSON_DefaultData jtest2 = JsonConvert.DeserializeObject<JSON_DefaultData>(jsonData);
-                jtest2.Print();
-                SkipCutSceneList = jtest2.SkipCutSceneList.ToList();
-                SkipBossCutScene = jtest2.SkipBossCutScene.ToList();
-                UnlockItemList = jtest2.UnlockItemIdxs.ToList();
-                WaitUnlockItemList = jtest2.WaitUnlockItemIdxs.ToList();
+                try
+                {
+                    byte[] data = new byte[stream.Length];
+                    stream.Read(data, 0, data.Length);
+                    stream.Close();
+                    string jsonData = Encoding.UTF8.GetString(data);
+
+                    JSON_DefaultData jtest2 = JsonConvert.DeserializeObject<JSON_DefaultData>(jsonData, serializerSettings);
+                    jtest2.Print();
+                    m_JSON_DefaultData = jtest2;
+                }
+                catch
+                {
+                    stream.Close();
+                    stream = new FileStream(Application.dataPath + DefaultData_FilePath, FileMode.Open, FileAccess.ReadWrite);
+                    byte[] data = new byte[stream.Length];
+                    stream.Read(data, 0, data.Length);
+                    stream.Close();
+                    string jsonData = Encoding.UTF8.GetString(data);
+                    JSON_DefaultData jtest2 = JsonConvert.DeserializeObject<JSON_DefaultData>(jsonData, serializerSettings);
+                    jtest2.Print();
+                    m_JSON_DefaultData = jtest2;
+                }                
             }
             else
             {
+                if (m_JSON_DefaultData == null)
+                    m_JSON_DefaultData = new JSON_DefaultData();
                 FileStream stream = new FileStream(Application.dataPath + DefaultData_FilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-                JSON_DefaultData jTest1 = new JSON_DefaultData();
-                SkipCutSceneList = jTest1.SkipCutSceneList.ToList();
-                SkipBossCutScene = jTest1.SkipBossCutScene.ToList();
-                UnlockItemList = jTest1.UnlockItemIdxs.ToList();
-                WaitUnlockItemList = jTest1.WaitUnlockItemIdxs.ToList();
-                string jsonData = JsonConvert.SerializeObject(jTest1);
+                string jsonData = JsonConvert.SerializeObject(m_JSON_DefaultData);
                 byte[] data = Encoding.UTF8.GetBytes(jsonData);
                 stream.Write(data, 0, data.Length);
                 stream.Close();
             }
         }
         catch (Exception e)
-        {
+        {            
             Debug.LogError(e.Message);
             return false;
         }
@@ -600,18 +651,16 @@ public class DataParsing : MonoBehaviour
                 stream.Read(data, 0, data.Length);
                 stream.Close();
                 string jsonData = Encoding.UTF8.GetString(data);
-                JSON_Inventory json = JsonConvert.DeserializeObject<JSON_Inventory>(jsonData);
+                JSON_Inventory json = JsonConvert.DeserializeObject<JSON_Inventory>(jsonData, serializerSettings);
                 json.Print();
-                ItemListIdx = json.items.ToList();
-                WeaponListIdx = json.weapons.ToList();
+                m_JSON_Inventory = json;
                 return json;
             }
             else
             {
                 FileStream stream = new FileStream(Application.dataPath + UnitInventoryData_FilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
                 JSON_Inventory json = new JSON_Inventory();
-                ItemListIdx = json.items.ToList();
-                WeaponListIdx = json.weapons.ToList();
+                m_JSON_Inventory = json;
                 string jsonData = JsonConvert.SerializeObject(json);
                 byte[] data = Encoding.UTF8.GetBytes(jsonData);
                 stream.Write(data, 0, data.Length);
@@ -641,20 +690,16 @@ public class DataParsing : MonoBehaviour
                 stream.Read(data, 0, data.Length);
                 stream.Close();
                 string jsonData = Encoding.UTF8.GetString(data);
-                JSON_Goods json = JsonConvert.DeserializeObject<JSON_Goods>(jsonData);
+                JSON_Goods json = JsonConvert.DeserializeObject<JSON_Goods>(jsonData, serializerSettings);
                 json.Print();
-                GoldAmount = json.gold;
-                ElementalSculptureAmount = json.elementalSculpture;
-                ElementalGoodsAmount = json.elementalGoods;
+                m_JSON_Goods = json;
                 return json;
             }
             else
             {
                 FileStream stream = new FileStream(Application.dataPath + UnitGoodsData_FilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
                 JSON_Goods json = new JSON_Goods();
-                GoldAmount = json.gold;
-                ElementalSculptureAmount = json.elementalSculpture;
-                ElementalGoodsAmount = json.elementalGoods;
+                m_JSON_Goods = json;
                 string jsonData = JsonConvert.SerializeObject(json);
                 byte[] data = Encoding.UTF8.GetBytes(jsonData);
                 stream.Write(data, 0, data.Length);
@@ -683,26 +728,16 @@ public class DataParsing : MonoBehaviour
                 stream.Read(data, 0, data.Length);
                 stream.Close();
                 string jsonData = Encoding.UTF8.GetString(data);
-                JSON_SceneData json = JsonConvert.DeserializeObject<JSON_SceneData>(jsonData);
+                JSON_SceneData json = JsonConvert.DeserializeObject<JSON_SceneData>(jsonData, serializerSettings);
                 json.Print();
-                SceneNumber = json.SceneNumber;
-                PlayerHealth = json.PlayerHealth;
-                SceneDataIdx = json.SceneDataIdx;
-                PlayTime = json.PlayTime;
-                EnemyCount = json.EnemyCount;
-                BuffDatas = json.BuffDatas;
+                m_JSON_SceneData = json;
                 return json;
             }
             else
             {
                 FileStream stream = new FileStream(Application.dataPath + SceneData_FilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
                 JSON_SceneData json = new JSON_SceneData();
-                SceneNumber = json.SceneNumber;
-                PlayerHealth = json.PlayerHealth;
-                SceneDataIdx = json.SceneDataIdx;
-                PlayTime = json.PlayTime;
-                EnemyCount = json.EnemyCount;
-                BuffDatas = json.BuffDatas;
+                m_JSON_SceneData = json;
                 string jsonData = JsonConvert.SerializeObject(json);
                 byte[] data = Encoding.UTF8.GetBytes(jsonData);
                 stream.Write(data, 0, data.Length);
@@ -732,18 +767,16 @@ public class DataParsing : MonoBehaviour
                 stream.Read(data, 0, data.Length);
                 stream.Close();
                 string jsonData = Encoding.UTF8.GetString(data);
-                JSON_DefaultData json = JsonConvert.DeserializeObject<JSON_DefaultData>(jsonData);
+                JSON_DefaultData json = JsonConvert.DeserializeObject<JSON_DefaultData>(jsonData, serializerSettings);
                 json.Print();
+                m_JSON_DefaultData = json;
                 return json;
             }
             else
             {
                 FileStream stream = new FileStream(Application.dataPath + DefaultData_FilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
                 JSON_DefaultData json = new JSON_DefaultData();
-                SkipCutSceneList = json.SkipCutSceneList.ToList();
-                SkipBossCutScene = json.SkipBossCutScene.ToList();
-                UnlockItemList = json.UnlockItemIdxs.ToList();
-                WaitUnlockItemList = json.WaitUnlockItemIdxs.ToList();
+                m_JSON_DefaultData = json;
                 string jsonData = JsonConvert.SerializeObject(json);
                 byte[] data = Encoding.UTF8.GetBytes(jsonData);
                 stream.Write(data, 0, data.Length);
@@ -760,21 +793,16 @@ public class DataParsing : MonoBehaviour
 
     public bool JSON_InventorySave()
     {
-        JSON_Inventory inventory = new JSON_Inventory()
-        {
-            items = ItemListIdx.ToArray(),
-            weapons = WeaponListIdx.ToArray()
-        };
         try
         {
-            inventory.Print();
+            m_JSON_Inventory.Print();
             if (!Directory.Exists(Application.dataPath + UnitData_DirectoryPath))
             {
                 Directory.CreateDirectory(Application.dataPath + UnitData_DirectoryPath);
             }
             if (File.Exists(Application.dataPath + UnitInventoryData_FilePath))
             {
-                string jsonData = JsonUtility.ToJson(inventory);
+                string jsonData = JsonUtility.ToJson(m_JSON_Inventory);
                 File.WriteAllText(Application.dataPath + UnitInventoryData_FilePath, jsonData);
             }
         }
@@ -788,18 +816,16 @@ public class DataParsing : MonoBehaviour
     }
     public bool JSON_GoodsSave()
     {
-        JSON_Goods goods = new JSON_Goods(GoldAmount, ElementalSculptureAmount, ElementalGoodsAmount);
-
         try
         {
-            goods.Print();
+            m_JSON_Goods.Print();
             if (!Directory.Exists(Application.dataPath + UnitData_DirectoryPath))
             {
                 Directory.CreateDirectory(Application.dataPath + UnitData_DirectoryPath);
             }
             if (File.Exists(Application.dataPath + UnitGoodsData_FilePath))
             {
-                string jsonData = JsonUtility.ToJson(goods);
+                string jsonData = JsonUtility.ToJson(m_JSON_Goods);
                 File.WriteAllText(Application.dataPath + UnitGoodsData_FilePath, jsonData);
             }
         }
@@ -813,21 +839,17 @@ public class DataParsing : MonoBehaviour
     }
     public bool JSON_SceneDataSave()
     {
-        PlayTime = GameManager.Inst.PlayTime;
-        JSON_SceneData sceneData = new JSON_SceneData(SceneNumber, SceneDataIdx, PlayerHealth, PlayTime, EnemyCount)
-        {
-            BuffDatas = BuffDatas
-        };
+        m_JSON_SceneData.PlayTime = GameManager.Inst.PlayTime;
         try
         {
-            sceneData.Print();
+            m_JSON_SceneData.Print();
             if (!Directory.Exists(Application.dataPath + UnitData_DirectoryPath))
             {
                 Directory.CreateDirectory(Application.dataPath + UnitData_DirectoryPath);
             }
             if (File.Exists(Application.dataPath + SceneData_FilePath))
             {
-                string jsonData = JsonUtility.ToJson(sceneData);
+                string jsonData = JsonUtility.ToJson(m_JSON_SceneData);
                 File.WriteAllText(Application.dataPath + SceneData_FilePath, jsonData);
             }
         }
@@ -842,23 +864,16 @@ public class DataParsing : MonoBehaviour
 
     public bool JSON_DefaultDataSave()
     {
-        JSON_DefaultData Data = new JSON_DefaultData()
-        {
-            SkipCutSceneList = SkipCutSceneList.ToArray(),
-            SkipBossCutScene = SkipBossCutScene.ToArray(),
-            UnlockItemIdxs = UnlockItemList.ToArray(),
-            WaitUnlockItemIdxs = WaitUnlockItemList.ToArray()
-        };
         try
         {
-            Data.Print();
+            m_JSON_DefaultData.Print();
             if (!Directory.Exists(Application.dataPath + UnitData_DirectoryPath))
             {
                 Directory.CreateDirectory(Application.dataPath + UnitData_DirectoryPath);
             }
             if (File.Exists(Application.dataPath + DefaultData_FilePath))
             {
-                string jsonData = JsonUtility.ToJson(Data);
+                string jsonData = JsonUtility.ToJson(m_JSON_DefaultData);
                 File.WriteAllText(Application.dataPath + DefaultData_FilePath, jsonData);
             }
         }

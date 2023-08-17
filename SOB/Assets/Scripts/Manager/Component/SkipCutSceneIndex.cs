@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -25,18 +23,16 @@ public class SkipCutSceneIndex : MonoBehaviour
                 Debug.LogWarning("Scene Not found");
             }
 
-            if (!DataManager.Inst.JSON_DataParsing.SkipCutSceneList.Contains(idx))
+            if (!DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.SkipCutSceneList.Contains(idx))
             {
-                DataManager.Inst.JSON_DataParsing.SkipCutSceneList.Add(idx);
-                DataManager.Inst.SaveSkipCutSceneList(DataManager.Inst.JSON_DataParsing.SkipCutSceneList);
+                DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.SkipCutSceneList.Add(idx);
             }
         }
         else
         {
-            if (!DataManager.Inst.JSON_DataParsing.SkipBossCutScene.Contains(idx))
+            if (!DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.SkipBossCutScene.Contains(idx))
             {
-                DataManager.Inst.JSON_DataParsing.SkipBossCutScene.Add(idx);
-                DataManager.Inst.SaveSkipBossCutSceneList(DataManager.Inst.JSON_DataParsing.SkipBossCutScene);
+                DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.SkipBossCutScene.Add(idx);
             }
         }
 
@@ -49,9 +45,9 @@ public class SkipCutSceneIndex : MonoBehaviour
             return;
         }
 
-        if (!DataManager.Inst.JSON_DataParsing.SkipCutSceneList.Contains(_idx))
+        if (!DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.SkipCutSceneList.Contains(_idx))
         {
-            DataManager.Inst.JSON_DataParsing.SkipCutSceneList.Add(_idx);
+            DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.SkipCutSceneList.Add(_idx);
         }
     }
 
@@ -62,7 +58,7 @@ public class SkipCutSceneIndex : MonoBehaviour
             return;
         }
 
-        if(DataManager.Inst.JSON_DataParsing.SkipCutSceneList.Contains(idx))
+        if(DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.SkipCutSceneList.Contains(idx))
         {
             if (Director != null)
             {
@@ -83,7 +79,7 @@ public class SkipCutSceneIndex : MonoBehaviour
             return;
         }
 
-        if(!DataManager.Inst.JSON_DataParsing.SkipCutSceneList.Contains(_idx))
+        if(!DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.SkipCutSceneList.Contains(_idx))
         {
             return;
         }

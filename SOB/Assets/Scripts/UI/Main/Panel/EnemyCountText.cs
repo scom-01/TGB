@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization.Components;
-using UnityEngine.UI;
 
 public class EnemyCountText : MonoBehaviour
 {
@@ -24,13 +21,13 @@ public class EnemyCountText : MonoBehaviour
             switch (Type)
             {
                 case ENEMY_Level.NormalEnemy:
-                    enemyCount = DataManager.Inst.JSON_DataParsing.EnemyCount.Normal_Enemy_Count;
+                    enemyCount = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.EnemyCount.Normal_Enemy_Count;
                     break;
                 case ENEMY_Level.EleteEnemy:
-                    enemyCount = DataManager.Inst.JSON_DataParsing.EnemyCount.Elete_Enemy_Count;
+                    enemyCount = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.EnemyCount.Elete_Enemy_Count;
                     break;
                 case ENEMY_Level.BossEnemy:
-                    enemyCount = DataManager.Inst.JSON_DataParsing.EnemyCount.Boss_Enemy_Count;
+                    enemyCount = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.EnemyCount.Boss_Enemy_Count;
                     break;
             }
             return enemyCount;

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization.Components;
@@ -161,19 +159,19 @@ public class GoodsText : MonoBehaviour
                 switch (Type)
                 {
                     case GOODS_TPYE.Gold:
-                        count = DataManager.Inst.JSON_DataParsing.GoldAmount;
+                        count = DataManager.Inst.JSON_DataParsing.m_JSON_Goods.gold;
                         return count;
                     case GOODS_TPYE.FireGoods:
-                        count = DataManager.Inst.JSON_DataParsing.ElementalGoodsAmount.FireGoods;
+                        count = DataManager.Inst.JSON_DataParsing.m_JSON_Goods.elementalGoods.FireGoods;
                         return count;
                     case GOODS_TPYE.WaterGoods:
-                        count = DataManager.Inst.JSON_DataParsing.ElementalGoodsAmount.WaterGoods;
+                        count = DataManager.Inst.JSON_DataParsing.m_JSON_Goods.elementalGoods.WaterGoods;
                         return count;
                     case GOODS_TPYE.EarthGoods:
-                        count = DataManager.Inst.JSON_DataParsing.ElementalGoodsAmount.EarthGoods;
+                        count = DataManager.Inst.JSON_DataParsing.m_JSON_Goods.elementalGoods.EarthGoods;
                         return count;
                     case GOODS_TPYE.WindGoods:
-                        count = DataManager.Inst.JSON_DataParsing.ElementalGoodsAmount.WindGoods;
+                        count = DataManager.Inst.JSON_DataParsing.m_JSON_Goods.elementalGoods.WindGoods;
                         return count;
                 }
             }
