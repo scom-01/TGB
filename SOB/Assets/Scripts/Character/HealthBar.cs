@@ -89,7 +89,7 @@ public class HealthBar : MonoBehaviour
 
         UpdateBar();
     }
-    private void FixedUpdate()
+    private void Update()
     {
         if (!m_IsFollow)
             return;
