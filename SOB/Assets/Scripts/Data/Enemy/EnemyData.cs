@@ -21,8 +21,8 @@ public class EnemyData : UnitData
     /// 패턴 딜레이
     /// </summary>
     [Header("StateData")]
-    [Min(1f)]
+    [Min(0.25f)]
     public float minIdleTime;
-    [Min(1f)]
+    [Min(0.5f)]
     public float maxIdleTime;
 }

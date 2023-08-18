@@ -10,6 +10,7 @@ public abstract class EnemyRunState : EnemyState
     private bool checkifTouchingGrounded;
     private bool checkifTouchingWall;
     private bool checkifTouchingWallBack;
+
     public EnemyRunState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
     }
@@ -67,6 +68,24 @@ public abstract class EnemyRunState : EnemyState
             Enemy_Attack();
             return;
         }
+
+        //일직선 상
+        if (EnemyCollisionSenses.isUnitInFrontDetectedArea || EnemyCollisionSenses.isUnitInBackDetectedArea)
+        {
+            FlipToTarget();
+        }
+
+        //패턴 딜레이
+        if (Time.time >= startTime + enemy.enemyData.maxIdleTime)
+        {
+            isDelayCheck = true;
+        }
+
+        if (!isDelayCheck)
+            return;
+                
+        isDelayCheck = false;
+        IdleState();
     }
 
     public abstract void Enemy_Attack();

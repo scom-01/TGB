@@ -10,6 +10,7 @@ public class EnemyState : UnitState
     protected bool isGrounded;
     protected Enemy enemy;
 
+    protected bool isDelayCheck = false;
     protected EnemyCollisionSenses EnemyCollisionSenses
     {
         get => collisionSenses ?? enemy.Core.GetCoreComponent(ref collisionSenses);

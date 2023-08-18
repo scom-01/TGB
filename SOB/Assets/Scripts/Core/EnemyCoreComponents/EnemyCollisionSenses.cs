@@ -132,12 +132,13 @@ public class EnemyCollisionSenses : CollisionSenses
         if (CC2D == null)
             return;
 
-        Gizmos.color = Color.cyan;
+        Gizmos.color = Color.red;
         //front
         Gizmos.DrawWireCube(
             new Vector3(GroundCenterPos.x + ((CC2D.size.x / 2 + (core.Unit.UnitData as EnemyData).UnitDetectedDistance / 2) * Movement.FancingDirection), GroundCenterPos.y + CC2D.size.y * 0.5f, 0),
             new Vector2((core.Unit.UnitData as EnemyData).UnitDetectedDistance, CC2D.bounds.size.y));
-        
+
+        Gizmos.color = Color.blue;
         //back
         Gizmos.DrawWireCube(
             new Vector3(GroundCenterPos.x + ((CC2D.size.x / 2 + (core.Unit.UnitData as EnemyData).UnitDetectedDistance / 2) * -1f * Movement.FancingDirection), GroundCenterPos.y + CC2D.size.y * 0.5f, 0),
