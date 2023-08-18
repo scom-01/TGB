@@ -19,15 +19,6 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
 
     public override void Pattern()
     {
-        if (MiddleBoss_Stage_1.TargetUnit == null)
-            return;
-        FlipToTarget();
-
-        if (!isDelayCheck)
-            return;
-
-        isDelayCheck = false;
-
         MiddleBoss_Stage_1.AttackState.SetWeapon(unit.Inventory.Weapon);
         //현재 체력 50% ~ 100%
         if (unit.Core.CoreUnitStats.CurrentHealth >= unit.Core.CoreUnitStats.MaxHealth / 2f)
@@ -72,14 +63,22 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
                 return;
             }
 
+            //인식 범위 내 
             if ((MiddleBoss_Stage_1.TargetUnit.transform.position - MiddleBoss_Stage_1.transform.position).magnitude <= MiddleBoss_Stage_1.enemyData.UnitDetectedDistance)
             {
-                if (EnemyCollisionSenses.isUnitInFrontDetectedArea)
+                //일직선 상
+                if (EnemyCollisionSenses.isUnitInFrontDetectedArea || EnemyCollisionSenses.isUnitInBackDetectedArea)
                 {
+                    FlipToTarget();
                     unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[1].commands[1]);
                     unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
                 }
+                else
+                {
+                    FlipToTarget();
+                }
             }
+            //인식 범위 밖
             else
             {
                 unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[2].commands[1]);
@@ -120,5 +119,9 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
                 unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
             }
         }
+    }
+
+    public override void MoveState()
+    {
     }
 }

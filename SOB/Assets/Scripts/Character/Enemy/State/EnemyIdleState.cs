@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Localization;
 using UnityEngine;
+using UnityEngine.ResourceManagement.ResourceProviders.Simulation;
 
 public abstract class EnemyIdleState : EnemyState
 {
     protected float idleTime;
     protected bool isIdleTimeOver;
     protected bool checkifCliff;
-    protected bool isDelayCheck = false;
-
+    
     private bool checkifCliffBack;
     private bool checkifTouchingGrounded;
     private bool checkifTouchingWall;
@@ -24,6 +24,12 @@ public abstract class EnemyIdleState : EnemyState
     public override void DoChecks()
     {
         base.DoChecks();
+
+        checkifCliff = EnemyCollisionSenses.CheckIfCliff;
+        checkifCliffBack = EnemyCollisionSenses.CheckIfCliffBack;
+        checkifTouchingWall = EnemyCollisionSenses.CheckIfTouchingWall;
+        checkifTouchingWallBack = EnemyCollisionSenses.CheckIfTouchingWallBack;
+        checkifTouchingGrounded = EnemyCollisionSenses.CheckIfStayGrounded;
     }
 
     public override void Enter()
@@ -43,41 +49,40 @@ public abstract class EnemyIdleState : EnemyState
     {
         base.LogicUpdate();
 
-        checkifCliff = EnemyCollisionSenses.CheckIfCliff;
-        checkifCliffBack = EnemyCollisionSenses.CheckIfCliffBack;
-        checkifTouchingWall = EnemyCollisionSenses.CheckIfTouchingWall;
-        checkifTouchingWallBack = EnemyCollisionSenses.CheckIfTouchingWallBack;
-        checkifTouchingGrounded = EnemyCollisionSenses.CheckIfStayGrounded;
-
         if(EnemyCollisionSenses.isUnitInFrontDetectedArea || EnemyCollisionSenses.isUnitInBackDetectedArea)
         {
             enemy.SetTarget(EnemyCollisionSenses.UnitFrontDetectArea?.GetComponent<Unit>());
         }
         
-
-        if (enemy.TargetUnit != null)
+    
+        //패턴 딜레이
+        if (Time.time >= startTime + Random.Range(enemy.enemyData.minIdleTime, enemy.enemyData.maxIdleTime))
         {
-            if ((!checkifCliff && !checkifCliffBack) || (checkifTouchingWall && checkifTouchingWallBack))
-            {
-                FlipToTarget();
-            }
+            isDelayCheck = true;
+        }
+            
+        //타겟 방향 회전
+        FlipToTarget();
 
-            //패턴 딜레이
-            if (Time.time >= startTime + enemy.enemyData.minIdleTime)
-            {
-                isDelayCheck = true;
-            }
-            Pattern();
+
+        if (!isDelayCheck)
+            return;
+
+        isDelayCheck = false;
+
+        if (enemy.TargetUnit == null)
+        {
+            MoveState();
             return;
         }
 
-        if (Time.time >= startTime + idleTime)
-        {
-            isIdleTimeOver = true;
-        }
+        Pattern();
+        return;
     }
 
     public abstract void Pattern();
+
+    public abstract void MoveState();
 
     public override void PhysicsUpdate()
     {

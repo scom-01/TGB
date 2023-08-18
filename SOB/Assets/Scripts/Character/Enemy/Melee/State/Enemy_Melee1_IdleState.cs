@@ -13,27 +13,50 @@ public class Enemy_Melee1_IdleState : EnemyIdleState
 
     public override void Pattern()
     {
-        //공격 대상 판단
-        if (enemy_Melee1.TargetUnit == null)
-            return;
-
-        //타겟 방향 회전
-        FlipToTarget();
-
-        if (!isDelayCheck)
-            return;
-
-        isDelayCheck = false;
-
-        enemy_Melee1.AttackState.SetWeapon(unit.Inventory.Weapon);
+        //인식 범위 내 
         if ((enemy_Melee1.TargetUnit.transform.position - enemy_Melee1.transform.position).magnitude <= enemy_Melee1.enemyData.UnitDetectedDistance)
         {
-            unit.FSM.ChangeState(enemy_Melee1.RunState);
+            //일직선 상
+            if (EnemyCollisionSenses.isUnitInFrontDetectedArea || EnemyCollisionSenses.isUnitInBackDetectedArea)
+            {
+                //달려듬
+                FlipToTarget();
+                enemy_Melee1.AttackState.SetWeapon(unit.Inventory.Weapon);
+                unit.FSM.ChangeState(enemy_Melee1.RunState);
+                return;
+            }
         }
-        else
+        if (Random.Range(0.5f, 1f) >= 0.5f)
         {
-            //타겟 초기화
-            enemy_Melee1.SetTarget(null);
+            Movement.Flip();
         }
+        unit.FSM.ChangeState(enemy_Melee1.RunState);
+        //    else
+        //    {
+        //        if (Random.Range(0.5f, 1f) >= 0.5f)
+        //        {
+        //            Movement.Flip();
+        //        }
+        //        unit.FSM.ChangeState(enemy_Melee1.RunState);
+        //    }
+        //}
+        ////인식 범위 밖
+        //else
+        //{
+        //    if (Random.Range(0.5f, 1f) >= 0.5f)
+        //    {
+        //        Movement.Flip();
+        //    }
+        //    unit.FSM.ChangeState(enemy_Melee1.RunState);
+        //}
+    }
+
+    public override void MoveState()
+    {
+        if (Random.Range(0.5f, 1f) >= 0.5f)
+        {
+            Movement.Flip();
+        }
+        unit.FSM.ChangeState(enemy_Melee1.RunState);
     }
 }
