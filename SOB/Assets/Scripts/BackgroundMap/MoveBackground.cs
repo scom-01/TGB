@@ -38,7 +38,6 @@ public class MoveBackground : MonoBehaviour
         textureUnitSizeY = texture.height * transform.localScale.y / sprite.pixelsPerUnit;
     }
 
-    [ExecuteInEditMode]
     // Update is called once per frame
     void LateUpdate()
     {

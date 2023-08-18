@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class FixedCamera : MonoBehaviour
 {
     [SerializeField]
@@ -11,7 +12,7 @@ public class FixedCamera : MonoBehaviour
     {
 
     }
-
+        
     // Update is called once per frame
     void Update()
     {

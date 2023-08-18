@@ -9,9 +9,9 @@ public class RespawnPoint : MonoBehaviour
     public GameObject SpawnEffectPrefab;
     private GameObject spawnEffectPrefab;
 
-    public bool isEffectSpawn = false;
-    public bool isSpawn = false;
-    public bool FinishSpawn = false;
+    private bool isEffectSpawn = false;
+    private bool isSpawn = false;
+    private bool FinishSpawn = false;
     public void Update()
     {
         if (spawnEffectPrefab == null && isEffectSpawn)
