@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -90,8 +91,16 @@ public class TitleManager : MonoBehaviour
             return;
         
         GameManager.Inst.ResetData();
-        
-        DataManager.Inst?.NextStage(3);
+
+        var skipCutScene = DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.SkipCutSceneList.ToList();
+        if(skipCutScene.Contains(4))
+        {
+            DataManager.Inst?.NextStage(3);
+        }
+        else
+        {
+            DataManager.Inst?.NextStage(4);
+        }
         GameManager.Inst.ClearScene();
         isDone = true;
     }
