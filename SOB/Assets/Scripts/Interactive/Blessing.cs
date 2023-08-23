@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -26,14 +27,18 @@ public class Blessing : InteractiveObject
 
     public override void Interactive()
     {
+        if (GlobalValue.ContainParam(animator, "Action"))
+        {
+            Debug.Log("Open");
+            animator.SetBool("Action", true);
+        }
         GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.UI, true, true);
         canvas.enabled = true;
-        animator.SetBool("Action", true);
     }
 
     public override void UnInteractive()
     {
-        GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, false);
+        GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, true);
         canvas.enabled = false;
     }
 }

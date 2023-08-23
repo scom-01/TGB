@@ -8,6 +8,11 @@ public class OpenGate : InteractiveObject
     {
         isDone = false;
     }
+    protected override void Start()
+    {
+        base.Start();
+    }
+
     public override void Interactive()
     {
         if (isDone)

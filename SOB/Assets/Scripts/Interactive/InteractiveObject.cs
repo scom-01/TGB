@@ -8,7 +8,7 @@ public class InteractiveObject : MonoBehaviour, IInteractive
     public LayerMask Interactive_Layer;
     public GameObject BtnObj;
 
-    private void Start()
+    protected virtual void Start()
     {
         SetActiveBtnObj(false);
     }
