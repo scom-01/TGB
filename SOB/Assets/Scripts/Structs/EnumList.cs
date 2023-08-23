@@ -115,6 +115,20 @@ public enum Stats_TYPE
     Health,
 }
 
+public enum Blessing_Stats_TYPE
+{
+    //Physics, Magic
+    Bless_Agg,
+    //Physics, Magic
+    Bless_Def,
+    //AttackSpeed, Move
+    Bless_Speed,
+    //CriticalPer, Dmg
+    Bless_Critical,
+    //Agg, Def
+    Bless_Elemental,
+}
+
 #endregion
 
 #region Enemy
