@@ -51,6 +51,8 @@ public class PlayerInputHandler : MonoBehaviour
     private float[] ActionInputsStartTime;
     private float[] ActionInputsStopTime;
 
+
+    public event Action OnESCInput_Action;
     private void Awake()
     {
         Init();
@@ -289,6 +291,12 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.started)
         {
+            if (OnESCInput_Action != null)
+            {
+                OnESCInput_Action?.Invoke();
+                OnESCInput_Action = null;
+                return;
+            }
             ESCInput = true;
             escInputStartTime = Time.time;
             Debug.Log("OnESCInput Start");
@@ -361,7 +369,7 @@ public class PlayerInputHandler : MonoBehaviour
     /// </summary>
     /// <param name="inputEnum"></param>
     /// <param name="Pause"></param>
-    public void ChangeCurrentActionMap(InputEnum inputEnum, bool Pause)
+    public void ChangeCurrentActionMap(InputEnum inputEnum, bool Pause, bool Init = false)
     {
         //현재와 동일한 ActionMap으로 변경하려하면 ActionMap변경을 원치않으므로 Pause기능만 하도록
         if (playerInput.currentActionMap == playerInput.actions.FindActionMap(inputEnum.ToString()))
@@ -373,7 +381,7 @@ public class PlayerInputHandler : MonoBehaviour
 
             if (Pause)
             {
-                GameManager.Inst.CheckPause(inputEnum);
+                GameManager.Inst.CheckPause(inputEnum, Init);
             }
         }
         else
@@ -382,7 +390,7 @@ public class PlayerInputHandler : MonoBehaviour
 
             if (Pause)
             {
-                GameManager.Inst.CheckPause(inputEnum);
+                GameManager.Inst.CheckPause(inputEnum, Init);
             }
         }
     }
