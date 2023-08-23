@@ -1,18 +1,27 @@
-using SOB.CoreSystem;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.Localization.Components;
 using UnityEngine.U2D;
 using UnityEngine.UI;
 
-public class StatsText : MonoBehaviour
+public class StatsText : Stats
 {
+    public override float variable
+    {
+        get
+        {
+            return TypeStats;
+        }
+    }
+    public override string TypeStr
+    {
+        get
+        {
+            return Type.ToString();
+        }
+    }
     [SerializeField] private Stats_TYPE Type;
-    [SerializeField] private Image Img;
-
+    [SerializeField] private Image Img;    
     private SpriteAtlas SpriteAtlas
     {
         get
@@ -40,7 +49,6 @@ public class StatsText : MonoBehaviour
     }
 
     [SerializeField] private TextMeshProUGUI StatsPowerTxt;
-    [SerializeField] private LocalizeStringEvent StatsTxtLocalizeStringEvent;
 
     private float TypeStats
     {
@@ -114,9 +122,9 @@ public class StatsText : MonoBehaviour
             return;
         }
 
-        if (StatsTxtLocalizeStringEvent != null)
+        if (LocalStringEvent != null)
         {
-            StatsTxtLocalizeStringEvent.StringReference.SetReference("Stats_Table", Type.ToString());
+            LocalStringEvent.StringReference.SetReference("Stats_Table", Type.ToString());
         }
 
         if (StatsPowerTxt != null)
