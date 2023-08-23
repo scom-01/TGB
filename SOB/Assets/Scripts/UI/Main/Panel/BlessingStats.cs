@@ -22,8 +22,41 @@ public class BlessingStats : Stats
             return Type.ToString();
         }
     }
+    public override Sprite TypeSprite
+    {
+        get
+        {
+            return m_TypeSprite;
+        }
+    }
+
     [SerializeField] private Blessing_Stats_TYPE Type;
-    [SerializeField] private TextMeshProUGUI StatsPowerTxt;
+    [SerializeField] private Image StatsImg;
+
+    private SpriteAtlas SpriteAtlas
+    {
+        get
+        {
+            if (m_SpriteAtlas == null)
+            {
+                m_SpriteAtlas = Resources.Load<SpriteAtlas>(GlobalValue.Sprites_UI_Path + "/Stats_Atlas");
+            }
+            return m_SpriteAtlas;
+        }
+    }
+    private SpriteAtlas m_SpriteAtlas;
+    [SerializeField] private Sprite m_TypeSprite
+    {
+        get
+        {
+            if (SpriteAtlas.spriteCount > 0)
+            {
+                return SpriteAtlas.GetSprite(Type.ToString());
+            }
+
+            return Resources.Load<Sprite>(GlobalValue.Sprites_UI_Path + "/" + Type.ToString());
+        }
+    }
 
     private int TypeStats_Lv
     {

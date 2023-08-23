@@ -10,7 +10,7 @@ public class StatsText : Stats
     {
         get
         {
-            return TypeStats;
+            return m_TypeStats;
         }
     }
     public override string TypeStr
@@ -18,6 +18,13 @@ public class StatsText : Stats
         get
         {
             return Type.ToString();
+        }
+    }
+    public override Sprite TypeSprite
+    {
+        get
+        {
+            return m_TypeSprite;
         }
     }
     [SerializeField] private Stats_TYPE Type;
@@ -35,7 +42,7 @@ public class StatsText : Stats
     }
     private SpriteAtlas m_SpriteAtlas;
 
-    private Sprite TypeSprite
+    private Sprite m_TypeSprite
     {
         get
         {
@@ -50,7 +57,7 @@ public class StatsText : Stats
 
     [SerializeField] private TextMeshProUGUI StatsPowerTxt;
 
-    private float TypeStats
+    private float m_TypeStats
     {
         get
         {
@@ -129,16 +136,16 @@ public class StatsText : Stats
 
         if (StatsPowerTxt != null)
         {
-            if (OldStats != TypeStats)
+            if (OldStats != m_TypeStats)
             {                
-                StatsPowerTxt.text = TypeStats.ToString() + " %";
-                OldStats = TypeStats;
+                StatsPowerTxt.text = m_TypeStats.ToString() + " %";
+                OldStats = m_TypeStats;
             }
         }
 
-        if (Img != null && TypeSprite != null && Img.sprite != TypeSprite)
+        if (Img != null && m_TypeSprite != null && Img.sprite != m_TypeSprite)
         {
-            Img.sprite = TypeSprite;
+            Img.sprite = m_TypeSprite;
         }
     }
     [ContextMenu("Set Img")]

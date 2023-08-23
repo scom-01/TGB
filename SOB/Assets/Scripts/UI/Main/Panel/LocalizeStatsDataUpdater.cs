@@ -19,7 +19,7 @@ public class LocalizeStatsDataUpdater : MonoBehaviour
         localizeStringEvent.OnUpdateString.AddListener(delegate { UpdateLocalizedText(); });
     }
 
-    private void UpdateLocalizedText()
+    public void UpdateLocalizedText()
     {
         if (Stats == null)
             return;
