@@ -20,8 +20,33 @@ public class StageManager : MonoBehaviour
             return SceneManager.GetActiveScene().name;
         }
     }
-    public int CurrStageNumber;
-    public int NextStageNumber;
+
+    [Tooltip("true면 다음 씬은 무조건 현재씬 idx +1 ")]
+    public bool isGotoNext = true;
+    public int CurrStageNumber
+    {
+        get
+        {
+            if (GameManager.Inst.SceneNameList.Count > 0)
+            {
+                return GameManager.Inst.SceneNameList.FindIndex(str => str.Equals(SceneManager.GetActiveScene().name));
+            }
+            return 0;
+        }
+    }
+    public int NextStageNumber
+    {
+        get
+        {
+            if(isGotoNext)
+            {
+                return CurrStageNumber + 1;
+            }
+            return m_NextStageNumber;
+        }
+    }
+
+    public int m_NextStageNumber;
     public UI_State Start_UIState;
     public Camera Cam;
 
