@@ -94,6 +94,16 @@ public class GlobalValue : MonoBehaviour
     public static float Enemy_Size_WeakPer = 0.1f;
     /*~Param*/
 
+    //Check Animator Parameters
+    public static bool ContainParam(Animator _Anim, string _paramName)
+    {
+        foreach (AnimatorControllerParameter param in _Anim.parameters)
+        {
+            if (param.name == _paramName) return true;
+        }
+        return false;
+    }
+
     public static GlobalValue Instance
     {
         get
