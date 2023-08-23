@@ -59909,8 +59909,8 @@ MonoBehaviour:
   IM: {fileID: 1594972038}
   SPM: {fileID: 387809413}
   MasterManagerList: []
-  CurrStageNumber: 5
-  NextStageNumber: 6
+  isGotoNext: 1
+  m_NextStageNumber: 0
   Start_UIState: 0
   Cam: {fileID: 0}
   effectContainerTagName: EffectContainer
@@ -69308,7 +69308,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 35
+  orthographic size: 21
   m_Depth: 2
   m_CullingMask:
     serializedVersion: 2

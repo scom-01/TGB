@@ -4644,7 +4644,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000e1286a6fdfd5e22ce90c348b09447f860bf1537541eb0766fdd0aceef549cd262b5287e4dd625dda4ded6011
+  m_ApplyToSortingLayers: f549cd26
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -4794,7 +4794,7 @@ GameObject:
   m_Component:
   - component: {fileID: 706970956}
   - component: {fileID: 706970957}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4809,12 +4809,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 706970955}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.791228, y: -5.276213, z: 10}
+  m_LocalPosition: {x: 0.015095711, y: -0.6762134, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1565334267}
-  m_RootOrder: 0
+  m_Father: {fileID: 1331309213}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &706970957
 MonoBehaviour:
@@ -4829,14 +4829,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
-  m_LightType: 3
+  m_LightType: 4
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000e1286a6fdfd5e22ce90c348b09447f860bf1537541eb0766fdd0aceef549cd262b5287e4dd625dda
+  m_ApplyToSortingLayers: 00000000e1286a6fdfd5e22ce90c348b09447f860bf1537541eb0766fdd0acee2b5287e4dd625dda3d76bfb84ded6011
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -20686,6 +20686,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 666685465}
+  - {fileID: 706970956}
   m_Father: {fileID: 1498734594}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24550,7 +24551,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1498734594}
   - component: {fileID: 1498734596}
-  - component: {fileID: 1498734590}
   m_Layer: 0
   m_Name: StageManager
   m_TagString: Untagged
@@ -24558,46 +24558,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1498734590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1498734589}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8042d2fc6943ce54eaa5cb7a4e92496e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UnitData_DirectoryPath: /Resources/json/
-  UnitInventoryData_FileName: 
-  UnitGoodsData_FileName: 
-  SceneData_FileName: 
-  DefaultData_FileName: 
-  ItemListIdx: 
-  WeaponListIdx: 
-  GoldAmount: 0
-  ElementalSculptureAmount: 0
-  ElementalGoodsAmount:
-    FireGoods: 0
-    WaterGoods: 0
-    EarthGoods: 0
-    WindGoods: 0
-  SceneNumber: 2
-  SceneDataIdx: 0
-  PlayerHealth: -1
-  PlayTime: 0
-  EnemyCount:
-    Normal_Enemy_Count: 0
-    Elete_Enemy_Count: 0
-    Boss_Enemy_Count: 0
-  BuffDatas: []
-  SkipCutSceneList: 
-  SkipBossCutScene: 
-  UnlockItemList: 
-  WaitUnlockItemList: 
-  lockItemList: 
 --- !u!4 &1498734594
 Transform:
   m_ObjectHideFlags: 0
@@ -24638,10 +24598,11 @@ MonoBehaviour:
   IM: {fileID: 2129369524}
   SPM: {fileID: 193596151}
   MasterManagerList: []
-  CurrStageNumber: 10
-  NextStageNumber: 5
+  isGotoNext: 1
+  m_NextStageNumber: 0
   Start_UIState: 0
   Cam: {fileID: 0}
+  effectContainerTagName: EffectContainer
   respawnPoint: {fileID: 2048269062}
   EndPoint: {fileID: 795737771}
   PlayerPrefab: {fileID: 840319699589423306, guid: 842ba7b90e3d58f4baa7c0b00def52ec, type: 3}
@@ -24836,7 +24797,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1543169326}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: -10}
+  m_LocalPosition: {x: 3.123867, y: 3.1999998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24916,7 +24877,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 17.972244
+  orthographic size: 21
   m_Depth: -2.01
   m_CullingMask:
     serializedVersion: 2
@@ -25208,8 +25169,7 @@ Transform:
   m_LocalPosition: {x: 3.123867, y: 3.1999998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 706970956}
+  m_Children: []
   m_Father: {fileID: 2018248595}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

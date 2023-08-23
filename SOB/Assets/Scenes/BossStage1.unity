@@ -30859,28 +30859,6 @@ MonoBehaviour:
   UnitGoodsData_FileName: 
   SceneData_FileName: 
   DefaultData_FileName: 
-  ItemListIdx: 
-  WeaponListIdx: 
-  GoldAmount: 0
-  ElementalSculptureAmount: 0
-  ElementalGoodsAmount:
-    FireGoods: 0
-    WaterGoods: 0
-    EarthGoods: 0
-    WindGoods: 0
-  SceneNumber: 2
-  SceneDataIdx: 0
-  PlayerHealth: -1
-  PlayTime: 0
-  EnemyCount:
-    Normal_Enemy_Count: 0
-    Elete_Enemy_Count: 0
-    Boss_Enemy_Count: 0
-  BuffDatas: []
-  SkipCutSceneList: 
-  SkipBossCutScene: 
-  UnlockItemList: 
-  WaitUnlockItemList: 
   lockItemList: 
 --- !u!4 &1498734594
 Transform:
@@ -30922,10 +30900,11 @@ MonoBehaviour:
   IM: {fileID: 2129369524}
   SPM: {fileID: 193596151}
   MasterManagerList: []
-  CurrStageNumber: 8
-  NextStageNumber: 10
+  isGotoNext: 1
+  m_NextStageNumber: 0
   Start_UIState: 4
   Cam: {fileID: 0}
+  effectContainerTagName: EffectContainer
   respawnPoint: {fileID: 2048269062}
   EndPoint: {fileID: 795737771}
   PlayerPrefab: {fileID: 840319699589423306, guid: 842ba7b90e3d58f4baa7c0b00def52ec, type: 3}
@@ -31254,7 +31233,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1543169326}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: -10}
+  m_LocalPosition: {x: 3.82, y: 0.56, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -31334,7 +31313,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 17.972244
+  orthographic size: 21
   m_Depth: -2.01
   m_CullingMask:
     serializedVersion: 2
@@ -31865,9 +31844,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpawnPrefab: {fileID: 3640253521839122302, guid: c5e69ae7fa8781048a2538c94537171b, type: 3}
   SpawnEffectPrefab: {fileID: 473367449769654189, guid: 77713d9c40bfe40489bfdb5b89be76a9, type: 3}
-  isEffectSpawn: 0
-  isSpawn: 0
-  FinishSpawn: 0
 --- !u!1 &1781262462
 GameObject:
   m_ObjectHideFlags: 0
@@ -32045,9 +32021,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EffectList: []
   EffectControllerList: []
-  ProjectileList: []
   ProjectilePoolingList: []
-  EffectPoolList: []
+  EffectPoolingList: []
+  DmgTxtPoolingList: []
 --- !u!1 &2013305806
 GameObject:
   m_ObjectHideFlags: 0

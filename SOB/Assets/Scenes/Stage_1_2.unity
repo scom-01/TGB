@@ -48919,8 +48919,8 @@ MonoBehaviour:
   IM: {fileID: 1594972038}
   SPM: {fileID: 387809413}
   MasterManagerList: []
-  CurrStageNumber: 6
-  NextStageNumber: 7
+  isGotoNext: 1
+  m_NextStageNumber: 8
   Start_UIState: 0
   Cam: {fileID: 0}
   effectContainerTagName: EffectContainer
@@ -54434,7 +54434,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 144
-      m_TileSpriteIndex: 84
+      m_TileSpriteIndex: 93
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -54444,7 +54444,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 143
-      m_TileSpriteIndex: 83
+      m_TileSpriteIndex: 84
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -55264,7 +55264,7 @@ Tilemap:
       - {fileID: -1307918836, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: -184935631, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: 1404723520, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15.000001
+      m_AnimationSpeed: 15
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 148, y: 19, z: 0}
@@ -55278,7 +55278,7 @@ Tilemap:
       - {fileID: -1764541156, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: -1805019761, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: 683491791, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15
+      m_AnimationSpeed: 15.000001
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 149, y: 19, z: 0}
@@ -55572,7 +55572,7 @@ Tilemap:
       - {fileID: 1067532178, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: 1922972716, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: -1157763925, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15
+      m_AnimationSpeed: 15.000001
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 148, y: 30, z: 0}
@@ -55600,7 +55600,7 @@ Tilemap:
       - {fileID: 1396469913, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: 1235773790, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: 1451730261, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15.000001
+      m_AnimationSpeed: 15
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 148, y: 31, z: 0}
@@ -55852,7 +55852,7 @@ Tilemap:
       - {fileID: 1396469913, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: 1235773790, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: 1451730261, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15
+      m_AnimationSpeed: 15.000001
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 148, y: 40, z: 0}
@@ -55908,7 +55908,7 @@ Tilemap:
       - {fileID: 1067532178, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: 1922972716, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: -1157763925, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15.000001
+      m_AnimationSpeed: 15
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 148, y: 42, z: 0}
@@ -56479,10 +56479,10 @@ Tilemap:
     m_Data: {fileID: 1404723520, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: -826265070, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: -81816391, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: -746585069, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
   - m_RefCount: 7
     m_Data: {fileID: 1451730261, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
   - m_RefCount: 7
@@ -56499,8 +56499,8 @@ Tilemap:
     m_Data: {fileID: 1610324957, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -495451929, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -746585069, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: -1351431444, guid: e881444c7506f6f4c9b008800b7b28d8, type: 3}
   - m_RefCount: 5
@@ -94002,7 +94002,7 @@ Camera:
   far clip plane: 5000
   field of view: 60
   orthographic: 1
-  orthographic size: 35
+  orthographic size: 21
   m_Depth: 2
   m_CullingMask:
     serializedVersion: 2
