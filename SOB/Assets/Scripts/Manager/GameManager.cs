@@ -189,17 +189,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void CheckPause(InputEnum inputEnum, bool pause)
-    {
-        if (pause)
-            Pause(inputEnum);
-        else
-            Continue(inputEnum);
-    }
-    public void CheckPause(InputEnum inputEnum)
+    public void CheckPause(InputEnum inputEnum, bool Init = false)
     {
         if (!isPause)
-            Pause(inputEnum);
+            Pause(inputEnum, Init);
         else
             Continue(inputEnum);
     }
@@ -209,17 +202,17 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
         isPause = true;
     }
-    private void Pause(InputEnum inputEnum)
+    private void Pause(InputEnum inputEnum, bool Init = false)
     {
         Time.timeScale = 0f;
         switch (inputEnum)
         {
             //InventoryOpen
             case InputEnum.UI:
-                ChangeUI(UI_State.Inventory);
+                ChangeUI(UI_State.Inventory, Init);
                 break;
             case InputEnum.Cfg:
-                ChangeUI(UI_State.Cfg);
+                ChangeUI(UI_State.Cfg, Init);
                 
                 break;
         }
@@ -262,7 +255,7 @@ public class GameManager : MonoBehaviour
 
     #region UI
 
-    public void ChangeUI(UI_State ui)
+    public void ChangeUI(UI_State ui, bool Init = false)
     {
         var _ui = ui;
         if (Curr_UIState == UI_State.Cfg && Curr_UIState != Old_UIState)
@@ -272,6 +265,9 @@ public class GameManager : MonoBehaviour
         Old_UIState = Curr_UIState;
         Debug.Log($"Switch UI {_ui}");
         UI_Init();
+
+        if (Init)
+            return;
 
         switch (_ui)
         {            
