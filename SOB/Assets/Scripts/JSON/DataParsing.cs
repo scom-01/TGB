@@ -308,12 +308,28 @@ public class DataParsing : MonoBehaviour
         public List<int> UnlockItemIdxs = new List<int>() { 0, 1, 2, 3, 4, 5, 6 };
         public List<int> WaitUnlockItemIdxs = new List<int>();
 
+        public int hammer_piece = 0;
+
+        public int Blessing_Agg_Lv = 0;
+        public int Blessing_Def_Lv = 0;
+        public int Blessing_Speed_Lv = 0;
+        public int Blessing_Critical_Lv = 0;
+        public int Blessing_Elemental_Lv = 0;
+
         public JSON_DefaultData()
         {
             SkipCutSceneList = new List<int>();
             SkipBossCutScene = new List<int>();
             UnlockItemIdxs = new List<int>() { 0, 1, 2, 3, 4, 5, 6 };
             WaitUnlockItemIdxs = new List<int>();
+
+            hammer_piece = 0;
+
+            Blessing_Agg_Lv = 0;
+            Blessing_Def_Lv = 0;
+            Blessing_Speed_Lv = 0;
+            Blessing_Critical_Lv = 0;
+            Blessing_Elemental_Lv = 0;
         }
         public void Print()
         {
