@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Blessing_Open
+  m_Name: Shop_Open
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -42,7 +42,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: Blessing_Img/Blessing
+    path: Shop_Img/Shop
     classID: 223
     script: {fileID: 0}
   m_PPtrCurves:
@@ -61,8 +61,10 @@ AnimationClip:
       value: {fileID: 21300000, guid: 76c693795ac624b4ea763f057cc9a6a0, type: 3}
     - time: 0.75
       value: {fileID: 21300000, guid: 5f2fefd0f91b6a246a6eb63d3d655ce5, type: 3}
+    - time: 0.875
+      value: {fileID: 21300000, guid: 5f2fefd0f91b6a246a6eb63d3d655ce5, type: 3}
     attribute: m_Sprite
-    path: Blessing_Img
+    path: Shop_Img
     classID: 114
     script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_SampleRate: 8
@@ -73,14 +75,14 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 4017109013
+      path: 2854953310
       attribute: 3305885265
       script: {fileID: 0}
       typeID: 223
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3374238019
+      path: 3909237796
       attribute: 2015549526
       script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
       typeID: 114
@@ -94,12 +96,13 @@ AnimationClip:
     - {fileID: 21300000, guid: 44e4b3da5236d254b920e62f1bf48b34, type: 3}
     - {fileID: 21300000, guid: 76c693795ac624b4ea763f057cc9a6a0, type: 3}
     - {fileID: 21300000, guid: 5f2fefd0f91b6a246a6eb63d3d655ce5, type: 3}
+    - {fileID: 21300000, guid: 5f2fefd0f91b6a246a6eb63d3d655ce5, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.875
+    m_StopTime: 1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -140,7 +143,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: Blessing_Img/Blessing
+    path: Shop_Img/Shop
     classID: 223
     script: {fileID: 0}
   m_EulerEditorCurves: []
