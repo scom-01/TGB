@@ -25,6 +25,14 @@ public class Blessing : InteractiveObject
         animator = this.GetComponentInChildren<Animator>();
     }
 
+    private void End_Action()
+    {
+        if (GlobalValue.ContainParam(animator, "Action"))
+        {
+            Debug.Log("Close");
+            animator.SetBool("Action", false);
+        }
+    }
     public override void Interactive()
     {
         if (GlobalValue.ContainParam(animator, "Action"))
@@ -38,14 +46,6 @@ public class Blessing : InteractiveObject
         GameManager.Inst.InputHandler.OnESCInput_Action += End_Action;
     }
 
-    private void End_Action()
-    {
-        if (GlobalValue.ContainParam(animator, "Action"))
-        {
-            Debug.Log("Close");
-            animator.SetBool("Action", false);
-        }
-    }
     public override void UnInteractive()
     {
         GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, true);
