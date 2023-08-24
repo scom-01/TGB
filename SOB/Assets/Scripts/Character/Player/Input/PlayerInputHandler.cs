@@ -269,6 +269,13 @@ public class PlayerInputHandler : MonoBehaviour
             if (GameManager.Inst.StageManager == null)
                 return;
 
+            if (OnESCInput_Action != null)
+            {
+                OnESCInput_Action?.Invoke();
+                OnESCInput_Action = null;
+                return;
+            }
+
             Debug.Log("OnTapInput Start");
             if (playerInput.actions.actionMaps.ToArray().Length > 0)
             {
