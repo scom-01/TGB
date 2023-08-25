@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour, ISelectHandler
 {
@@ -16,7 +12,7 @@ public class InventoryItem : MonoBehaviour, ISelectHandler
         get => statsItemData;
         set
         {
-            if(value == null)
+            if (value == null)
             {
 
             }
@@ -43,7 +39,7 @@ public class InventoryItem : MonoBehaviour, ISelectHandler
         var MaxIndex = Parent.GetComponentInParent<InventoryItems>().MaxIndex;
         var MaxRow = Parent.GetComponentInParent<InventoryItems>().MaxRow;
         var items = Parent.gameObject.GetComponentsInChildren<InventoryItem>();
-        for (int i = 0; i < items.Length;i++)
+        for (int i = 0; i < items.Length; i++)
         {
             if (items[i] != this)
             {
@@ -83,7 +79,7 @@ public class InventoryItem : MonoBehaviour, ISelectHandler
     //Index를 현재 Select된 아이템 Index로 설정
     public void CurrentItem()
     {
-        if(this.GetComponentInParent<InventoryItems>() ==null)
+        if (this.GetComponentInParent<InventoryItems>() == null)
         {
             return;
         }
@@ -108,11 +104,10 @@ public class InventoryItem : MonoBehaviour, ISelectHandler
     //OnSelect
     void ISelectHandler.OnSelect(BaseEventData eventData)
     {
-        if(eventData.selectedObject == this.gameObject)
+        if (eventData.selectedObject == this.gameObject)
         {
             Debug.Log($"{this.gameObject.name} selected");
             CurrentItem();
         }
     }
 }
-

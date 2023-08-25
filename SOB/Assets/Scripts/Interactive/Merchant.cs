@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class Merchant : InteractiveObject
 {
@@ -31,6 +27,22 @@ public class Merchant : InteractiveObject
         if (items != null)
         {
             EventSystem.current.SetSelectedGameObject(items?.Items[0].gameObject);
+            if (GameManager.Inst.StageManager?.player == null)
+            {
+                return;
+            }
+
+            for (int i = 0; i < items.Items.Count; i++)
+            {
+                if (i < GameManager.Inst.StageManager?.player.Inventory.Items.Count)
+                {
+                    items.Items[i].StatsItemData = GameManager.Inst.StageManager?.player.Inventory.Items[i].item;
+                }
+                else
+                {
+                    items.Items[i].StatsItemData = null;
+                }
+            }
         }
     }
     public override void End_Action()
