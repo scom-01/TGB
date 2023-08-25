@@ -77,6 +77,11 @@ namespace SOB.Manager
         private void Start()
         {
             CurrentSpawnIndex = 0;
+            if(UIEnemyCount == 0)
+            {
+                if (GameManager.Inst.gameObject && GameManager.Inst.StageManager)
+                    GameManager.Inst.MainUI.MainPanel.EnemyPanelSystem.EnemyCountText.text = "0";
+            }
         }
         private void Update()
         {
