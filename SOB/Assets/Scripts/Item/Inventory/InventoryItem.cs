@@ -26,23 +26,61 @@ public class InventoryItem : MonoBehaviour, ISelectHandler
     }
     [SerializeField] private StatsItemSO statsItemData;
     public bool isSelect;
-    //{
-    //    set => BackImgAlpha = value ? 1f : 0.5f;
-    //}
-
     public int Index;
 
-    public Image iconBackImg;
     /// <summary>
     /// 아이템 아이콘 이미지
     /// </summary>
     public Image iconImg;
-
-    private float BackImgAlpha
+    /// <summary>
+    /// 방향키로 움직일 버튼
+    /// </summary>
+    public Button Btn;
+    [ContextMenu("Set Index")]
+    public void SetIndex()
     {
-        set => iconBackImg.color = new Color(iconBackImg.color.r, iconBackImg.color.g, iconBackImg.color.b, value);
+        var Parent = this.transform.parent;
+        var MaxIndex = Parent.GetComponentInParent<InventoryItems>().MaxIndex;
+        var MaxRow = Parent.GetComponentInParent<InventoryItems>().MaxRow;
+        var items = Parent.gameObject.GetComponentsInChildren<InventoryItem>();
+        for (int i = 0; i < items.Length;i++)
+        {
+            if (items[i] != this)
+            {
+                continue;
+            }
+
+            Index = i;
+            var nav = this.GetComponent<Button>().navigation;
+            if (i - 1 >= 0)
+            {
+                nav.selectOnLeft = items[i - 1].GetComponent<Button>();
+            }
+            //가장 왼쪽, 가장 아래있는 버튼
+            else
+            {
+                nav.selectOnLeft = items[MaxIndex - 1].GetComponent<Button>();
+            }
+
+            if (i + 1 < items.Length)
+            {
+                nav.selectOnRight = items[i + 1].GetComponent<Button>();
+            }
+
+            if (i - (MaxIndex / MaxRow) >= 0)
+            {
+                nav.selectOnUp = items[i - (MaxIndex / MaxRow)].GetComponent<Button>();
+            }
+            if (i + (MaxIndex / MaxRow) < items.Length)
+            {
+                nav.selectOnDown = items[i + (MaxIndex / MaxRow)].GetComponent<Button>();
+            }
+            items[i].GetComponent<Button>().navigation = nav;
+            return;
+        }
     }
-    
+
+    //Index를 현재 Select된 아이템 Index로 설정
     public void CurrentItem()
     {
         if(this.GetComponentInParent<InventoryItems>() ==null)

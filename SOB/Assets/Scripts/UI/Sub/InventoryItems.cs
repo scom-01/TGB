@@ -18,7 +18,10 @@ public class InventoryItems : MonoBehaviour
     private List<InventoryItem> items = new List<InventoryItem>();
 
     public GameObject InventoryItemPrefab;
+    [Min(1)]
     public int MaxIndex;
+    [Min(1)]
+    public int MaxRow;
 
     /// <summary>
     /// 현재 선택된 아이템
