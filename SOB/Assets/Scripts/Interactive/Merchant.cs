@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Merchant : InteractiveObject
 {
     private Animator animator;
+    [SerializeField] private InventoryItems items;
     private Canvas canvas
     {
         get
@@ -23,7 +26,14 @@ public class Merchant : InteractiveObject
         base.Start();
         animator = this.GetComponentInChildren<Animator>();
     }
-    private void End_Action()
+    public override void Start_Action()
+    {
+        if (items != null)
+        {
+            EventSystem.current.SetSelectedGameObject(items?.Items[0].gameObject);
+        }
+    }
+    public override void End_Action()
     {
         if (GlobalValue.ContainParam(animator, "Action"))
         {

@@ -20,12 +20,9 @@ public class InteractiveObject : MonoBehaviour, IInteractive
             BtnObj.gameObject.SetActive(isShow);
         }
     }
-    public virtual void Interactive()
-    {
+    public virtual void Start_Action() { }
+    public virtual void End_Action() { }
+    public virtual void Interactive() { }
 
-    }
-
-    public virtual void UnInteractive()
-    {
-    }
+    public virtual void UnInteractive() { }
 }
