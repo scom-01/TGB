@@ -15,7 +15,7 @@ public class ResultItem : MonoBehaviour
     [SerializeField] private int index;
 
     // Update is called once per frame
-    void Update()
+    public void Init()
     {
         if(GameManager.Inst == null)
         {
@@ -38,8 +38,7 @@ public class ResultItem : MonoBehaviour
 
         if (olditem != curritem)
         {
-            Img.sprite = GameManager.Inst.SubUI.InventorySubUI.InventoryItems.Items[index].iconImg.sprite;
-            BackImg.sprite = GameManager.Inst.SubUI.InventorySubUI.InventoryItems.Items[index].iconBackImg.sprite;
+            Img.sprite = GameManager.Inst.SubUI.InventorySubUI.InventoryItems.Items[index].iconImg.sprite;            
             olditem = curritem;
         }
     }
