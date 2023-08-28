@@ -27,24 +27,10 @@ public class Merchant : InteractiveObject
         if (items != null)
         {
             EventSystem.current.SetSelectedGameObject(items?.Items[0].gameObject);
-            if (GameManager.Inst.StageManager?.player == null)
-            {
-                return;
-            }
-
-            for (int i = 0; i < items.Items.Count; i++)
-            {
-                if (i < GameManager.Inst.StageManager?.player.Inventory.Items.Count)
-                {
-                    items.Items[i].StatsItemData = GameManager.Inst.StageManager?.player.Inventory.Items[i].item;
-                }
-                else
-                {
-                    items.Items[i].StatsItemData = null;
-                }
-            }
+            
         }
     }
+
     public override void End_Action()
     {
         if (GlobalValue.ContainParam(animator, "Action"))
@@ -53,6 +39,7 @@ public class Merchant : InteractiveObject
             animator.SetBool("Action", false);
         }
     }
+
     public override void Interactive()
     {
         if (GlobalValue.ContainParam(animator, "Action"))
@@ -60,6 +47,25 @@ public class Merchant : InteractiveObject
             Debug.Log("Open");
             animator.SetBool("Action", true);
         }
+
+        //Set item StatsItem
+        if (GameManager.Inst.StageManager?.player == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < items.Items.Count; i++)
+        {
+            if (i < GameManager.Inst.StageManager?.player.Inventory.Items.Count)
+            {
+                items.Items[i].StatsItemData = GameManager.Inst.StageManager?.player.Inventory.Items[i].item;
+            }
+            else
+            {
+                items.Items[i].StatsItemData = null;
+            }
+        }
+
         GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.UI, true, true);
         canvas.enabled = true;
         GameManager.Inst.InputHandler.OnESCInput_Action -= End_Action;
