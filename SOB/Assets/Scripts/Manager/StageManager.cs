@@ -23,6 +23,10 @@ public class StageManager : MonoBehaviour
 
     [Tooltip("true면 다음 씬은 무조건 현재씬 idx +1 ")]
     public bool isGotoNext = true;
+
+    [Tooltip("현재 스테이지 단계")]
+    [Min(1)]
+    public int StageLevel = 1;
     public int CurrStageNumber
     {
         get
