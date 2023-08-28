@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -315,7 +316,7 @@ public class DataManager : MonoBehaviour
     }
     public void PlayerInventoryDataLoad(Inventory inventory)
     {
-        var inventory_Itemlist = JSON_DataParsing.m_JSON_Inventory.items;
+        var inventory_Itemlist = JSON_DataParsing.m_JSON_Inventory.items.ToList();
 
         for (int i = 0; i < inventory_Itemlist.Count; i++)
         {
