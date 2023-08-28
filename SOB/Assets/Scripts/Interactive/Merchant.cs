@@ -4,7 +4,8 @@ using UnityEngine.EventSystems;
 public class Merchant : InteractiveObject
 {
     private Animator animator;
-    [SerializeField] private InventoryItems items;
+    public InventoryItems Inventoryitems;
+    public InventoryItems Shopitems;
     private Canvas canvas
     {
         get
@@ -24,10 +25,9 @@ public class Merchant : InteractiveObject
     }
     public override void Start_Action()
     {
-        if (items != null)
+        if (Inventoryitems != null)
         {
-            EventSystem.current.SetSelectedGameObject(items?.Items[0].gameObject);
-            
+            EventSystem.current.SetSelectedGameObject(Inventoryitems?.Items[0].gameObject);            
         }
     }
 
@@ -54,15 +54,16 @@ public class Merchant : InteractiveObject
             return;
         }
 
-        for (int i = 0; i < items.Items.Count; i++)
+        //Inventory Item Setup
+        for (int i = 0; i < Inventoryitems.Items.Count; i++)
         {
             if (i < GameManager.Inst.StageManager?.player.Inventory.Items.Count)
             {
-                items.Items[i].StatsItemData = GameManager.Inst.StageManager?.player.Inventory.Items[i].item;
+                Inventoryitems.Items[i].StatsItemData = GameManager.Inst.StageManager?.player.Inventory.Items[i].item;
             }
             else
             {
-                items.Items[i].StatsItemData = null;
+                Inventoryitems.Items[i].StatsItemData = null;
             }
         }
 

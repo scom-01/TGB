@@ -1,11 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using static UnityEditor.Progress;
 
 public class Shop_Items : InventoryItems, IUI_Select
 {
@@ -113,6 +109,7 @@ public class Shop_Items : InventoryItems, IUI_Select
         //DB에서 찾을 아이템 Index
         int ItemNum = list[Itemidx];
 
+        //다른 상점아이템 리스트와의 중복 제거
         for (int i = 0; i < Items.Count;)
         {
             if (Items[i] == Items[idx])
@@ -122,8 +119,7 @@ public class Shop_Items : InventoryItems, IUI_Select
             }
 
             if (Items[i].StatsItemData == DataManager.Inst.All_ItemDB.ItemDBList[ItemNum])
-            {
-                //다른 상점아이템 리스트와의 중복 제거
+            {                
                 list.Remove(ItemNum);
                 if(list.Count == 0)
                 {
@@ -137,24 +133,6 @@ public class Shop_Items : InventoryItems, IUI_Select
             }
             i++;
         }
-        //foreach (var item in Items)
-        //{
-        //    if (item == Items[idx])
-        //    {
-        //        continue;
-        //    }
-
-        //    if (item.StatsItemData == DataManager.Inst.All_ItemDB.ItemDBList[ItemNum])
-        //    {
-        //        if (list.Count < Items.Count)
-        //        {
-        //            Items[idx].StatsItemData = null;
-        //            return false;
-        //        }
-        //        return ChangeItem(idx);
-        //    }
-        //}
-
         Items[idx].StatsItemData = DataManager.Inst.All_ItemDB.ItemDBList[ItemNum];
         return true;
     }

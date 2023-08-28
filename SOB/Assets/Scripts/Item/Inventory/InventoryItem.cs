@@ -91,13 +91,21 @@ public class InventoryItem : MonoBehaviour, ISelectHandler
     {
         if (statsItemData != null)
         {
-            iconImg.sprite = statsItemData.itemData.ItemSprite;
-            iconImg.color = new Color(iconImg.color.r, iconImg.color.g, iconImg.color.b, 1f);
+            if(iconImg != null)
+            {
+                iconImg.enabled = true;
+                iconImg.sprite = statsItemData.itemData.ItemSprite;
+                iconImg.color = new Color(iconImg.color.r, iconImg.color.g, iconImg.color.b, 1f);
+            }
         }
         else
         {
-            iconImg.sprite = null;
-            iconImg.color = new Color(iconImg.color.r, iconImg.color.g, iconImg.color.b, 0);
+            if(iconImg != null)
+            {
+                iconImg.enabled = false;
+                iconImg.sprite = null;
+                iconImg.color = new Color(iconImg.color.r, iconImg.color.g, iconImg.color.b, 0);
+            }
         }
     }
 
