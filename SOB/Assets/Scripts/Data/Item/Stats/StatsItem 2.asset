@@ -44,18 +44,21 @@ MonoBehaviour:
     MagicDefensivePer: 0
     PhysicsAggressivePer: 0
     MagicAggressivePer: 0
+    CriticalPer: 0
+    AdditionalCriticalPer: 0
     DamageAttiribute: 0
     Elemental: 0
     ElementalDefensivePer: 0
     ElementalAggressivePer: 0
   Health: 0
   effectData:
-    <AcquiredEffectPrefab>k__BackingField: {fileID: 0}
+    <AcquiredEffectPrefab>k__BackingField: {fileID: 1380205584940949931, guid: 07623d638bfe48c4bbf7a6dc202419de, type: 3}
     <AcquiredSoundEffect>k__BackingField: {fileID: 0}
     <isEquipment>k__BackingField: 1
     <DetailSubUI>k__BackingField: 0
   ItemEffects:
   - {fileID: 11400000, guid: 01409fbc76d0cd34495b523ccf1b4df0, type: 2}
+  - {fileID: 11400000, guid: ac8857d8b95b7d045b3c3c67b4452a2e, type: 2}
   references:
     version: 2
     RefIds: []

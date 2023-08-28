@@ -59,10 +59,10 @@ public enum ITEM_TPYE
 
 public enum ITEM_Level
 {
-    Common,
-    Elete,
-    Special,
-    Legend,
+    Common = 1,
+    Elete = 2,
+    Special = 3,
+    Legend = 4,
 }
 
 public enum GOODS_TPYE

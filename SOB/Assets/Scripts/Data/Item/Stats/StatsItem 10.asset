@@ -14,26 +14,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemIdx: 9
   itemData:
-    ItemName: Stat10
-    ItemDescription: Stat10
+    <ItemNameLocal>k__BackingField:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    <ItemDescriptionLocal>k__BackingField:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     ItemSprite: {fileID: 1614517988, guid: a0e4db65e203e1540af7f570753abfaa, type: 3}
-  StatsDatas:
-    MaxHealth: 10
+    ItemLevel: 1
+  StatsData:
+    MaxHealth: 0
     MovementVelocity: 0
     JumpVelocity: 0
-    DefaultPower: 10
-    AttackSpeedPer: 10
-    PhysicsDefensivePer: 10
-    MagicDefensivePer: 10
-    PhysicsAggressivePer: 10
-    MagicAggressivePer: 10
+    DefaultPower: 0
+    AttackSpeedPer: 0
+    PhysicsDefensivePer: 0
+    MagicDefensivePer: 0
+    PhysicsAggressivePer: 0
+    MagicAggressivePer: 0
+    CriticalPer: 0
+    AdditionalCriticalPer: 0
     DamageAttiribute: 0
-    MyElemental: 0
-    ElementalDefensivePer: 10
-    ElementalAggressivePer: 10
+    Elemental: 0
+    ElementalDefensivePer: 0
+    ElementalAggressivePer: 0
+  Health: 0
   effectData:
     <AcquiredEffectPrefab>k__BackingField: {fileID: 0}
     <AcquiredSoundEffect>k__BackingField: {fileID: 0}
     <isEquipment>k__BackingField: 1
     <DetailSubUI>k__BackingField: 0
   ItemEffects: []
+  references:
+    version: 2
+    RefIds: []
