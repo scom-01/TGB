@@ -79,6 +79,10 @@ public class GlobalValue : MonoBehaviour
     public const int MaxSceneIdx = 50;
     public static int[] DefaultUnlockItem = { 0, 1, 2, 3, 4, 5, 6, };
     #endregion
+
+    public static int Gold_Inflation = 250;
+    public static int ReRoll_Inflation = 60;
+
     /// <summary>
     /// Elemetal 속성 공격에 따른 추가 데미지 퍼센트
     /// ex) 0.3f일때 Weak Elemental에 대한 추가 데미지는 30%이다.
