@@ -48,26 +48,29 @@ public class InventoryItems : MonoBehaviour
         get => currentSelectItemIndex;
         set
         {
-            currentSelectItemIndex = Mathf.Clamp(value, 0, items.Count - 1);
+            if(items.Count  != 0)
+            {
+                currentSelectItemIndex = Mathf.Clamp(value, 0, items.Count - 1);
+            }
+            else
+            {
+                currentSelectItemIndex = 0;
+            }
             CurrentSelectItem = Items[currentSelectItemIndex];
             GameManager.Inst.SubUI.InventorySubUI.InventoryDescript.SetDescript();
         }
     }
     private int currentSelectItemIndex = 0;
 
-    private void OnEnable()
-    {
-        //if (!(items.Count > 0))
-        //{
-        //    Init();
-        //}
-    }
     private void Init()
     {
-        if(this.GetComponentsInChildren<InventoryItem>().Length == 0)
-        {
+        if (InventoryItemPrefab == null)
+            return;
+
+        if (this.GetComponentsInChildren<InventoryItem>().Length == 0)
+        {            
             for (int i = 0; i < MaxIndex; i++)
-            {
+            {                
                 var item = Instantiate(InventoryItemPrefab, this.transform).GetComponent<InventoryItem>();
                 Items.Add(item);
                 item.Index = i;

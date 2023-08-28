@@ -185,7 +185,6 @@ namespace SOB.Manager
 
         public void PutItem()
         {
-
             if (this.InventoryItems.CurrentSelectItem == null)
             {
                 Debug.Log("선택된 아이템 없음");
