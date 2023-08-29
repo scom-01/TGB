@@ -5,7 +5,7 @@ using UnityEngine.Localization.Components;
 
 public class Stats : MonoBehaviour
 {
-    public virtual float variable { get; private set; }
+    public virtual float variable { get; set; }
     public virtual string TypeStr { get; private set; }
     public virtual Sprite TypeSprite { get; private set; }
     public LocalizeStringEvent LocalStringEvent;

@@ -297,7 +297,7 @@ public class DataParsing : MonoBehaviour
             Debug.Log($"EnemyCount.Boss_Enemy_Count = {EnemyCount.Boss_Enemy_Count}");
         }
     }
-    public JSON_SceneData m_JSON_SceneData =new JSON_SceneData();
+    public JSON_SceneData m_JSON_SceneData = new JSON_SceneData();
     #endregion
 
     #region JSON_DefaultData
@@ -309,27 +309,18 @@ public class DataParsing : MonoBehaviour
         public List<int> WaitUnlockItemIdxs = new List<int>();
 
         public int hammer_piece = 0;
-
-        public int Blessing_Agg_Lv = 0;
-        public int Blessing_Def_Lv = 0;
-        public int Blessing_Speed_Lv = 0;
-        public int Blessing_Critical_Lv = 0;
-        public int Blessing_Elemental_Lv = 0;
-
+        /// <summary>
+        /// agg, def, speed, critical, elemental
+        /// </summary>
+        public List<int> Bless = new List<int>() { 0, 0, 0, 0, 0 };
         public JSON_DefaultData()
         {
             SkipCutSceneList = new List<int>();
             SkipBossCutScene = new List<int>();
             UnlockItemIdxs = new List<int>() { 0, 1, 2, 3, 4, 5, 6 };
             WaitUnlockItemIdxs = new List<int>();
-
             hammer_piece = 0;
-
-            Blessing_Agg_Lv = 0;
-            Blessing_Def_Lv = 0;
-            Blessing_Speed_Lv = 0;
-            Blessing_Critical_Lv = 0;
-            Blessing_Elemental_Lv = 0;
+            Bless = new List<int>() { 0, 0, 0, 0, 0 };
         }
         public void Print()
         {
@@ -374,17 +365,43 @@ public class DataParsing : MonoBehaviour
                 }
                 Debug.Log($"WaitUnlockItemIdxs = {str}");
             }
+            Debug.Log($"hammer_piece = {hammer_piece}");
+            Debug.Log($"BlessStatsData.Bless_Agg_Lv = {Bless[0]}");
+            Debug.Log($"BlessStatsData.Bless_Def_Lv = {Bless[1]}");
+            Debug.Log($"BlessStatsData.Bless_Speed_Lv = {Bless[2]}");
+            Debug.Log($"BlessStatsData.Bless_Critical_Lv = {Bless[3]}");
+            Debug.Log($"BlessStatsData.Bless_Elemental_Lv = {Bless[4]}");
         }
     }
 
-    public JSON_DefaultData m_JSON_DefaultData = new JSON_DefaultData();
+    public JSON_DefaultData m_JSON_DefaultData
+    {
+        get
+        {
+            return m_temp_DefaultData;
+        }
+        set
+        {
+            m_temp_DefaultData = value;
+            if (GameManager.Inst?.StageManager?.player != null)
+            {
+                GameManager.Inst.StageManager.player.Core.CoreUnitStats.BlessStats.Bless_Agg_Lv = m_temp_DefaultData.Bless[0];
+                GameManager.Inst.StageManager.player.Core.CoreUnitStats.BlessStats.Bless_Def_Lv = m_temp_DefaultData.Bless[1];
+                GameManager.Inst.StageManager.player.Core.CoreUnitStats.BlessStats.Bless_Speed_Lv = m_temp_DefaultData.Bless[2];
+                GameManager.Inst.StageManager.player.Core.CoreUnitStats.BlessStats.Bless_Critical_Lv= m_temp_DefaultData.Bless[3];
+                GameManager.Inst.StageManager.player.Core.CoreUnitStats.BlessStats.Bless_Elemental_Lv = m_temp_DefaultData.Bless[4];
+            }
+        }
+    }
+    private JSON_DefaultData m_temp_DefaultData = new JSON_DefaultData();
     public List<int> lockItemList = new List<int>();
     #endregion
 
+    private bool isInit = false;
 
-    private void Awake()
+    private void Start()
     {
-
+        isInit = true;
     }
 
     private bool Json_InventoryParsing()
@@ -528,7 +545,7 @@ public class DataParsing : MonoBehaviour
                     JSON_SceneData json = JsonConvert.DeserializeObject<JSON_SceneData>(jsonData, serializerSettings);
                     json.Print();
                     m_JSON_SceneData = json;
-                }                
+                }
             }
             else
             {
@@ -583,7 +600,7 @@ public class DataParsing : MonoBehaviour
                     JSON_DefaultData jtest2 = JsonConvert.DeserializeObject<JSON_DefaultData>(jsonData, serializerSettings);
                     jtest2.Print();
                     m_JSON_DefaultData = jtest2;
-                }                
+                }
             }
             else
             {
@@ -597,7 +614,7 @@ public class DataParsing : MonoBehaviour
             }
         }
         catch (Exception e)
-        {            
+        {
             Debug.LogError(e.Message);
             return false;
         }

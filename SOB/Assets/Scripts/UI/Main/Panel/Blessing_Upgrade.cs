@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Localization;
 
-public class Blessing_Upgrade : MonoBehaviour
+public class Blessing_Upgrade : MonoBehaviour, IUI_Select
 {
     private Stats Stats;
     [SerializeField] private Image Icon;
@@ -16,6 +16,7 @@ public class Blessing_Upgrade : MonoBehaviour
     [SerializeField] private TMP_Text TMP_BlessingCost;
     [SerializeField] private LocalizeStringEvent LocalizeStringEvent_BlessingCost;
     [SerializeField] private int Max_level;
+    [SerializeField] private Button Blessing_Btn;
     private int piece;
     //OnClick
     public void Set(Stats _stats)
@@ -38,7 +39,7 @@ public class Blessing_Upgrade : MonoBehaviour
 
         // 텍스트 업데이트
         string localizedText = LocalizeStringEvent_BlessingCost.StringReference.GetLocalizedString();
-        localizedText += string.Format($" : <color={(CheckUpgrade(piece) ? "green" : "red")}>{piece}</color> : {200 * Stats.variable}");
+        localizedText += string.Format($" : <color={(CheckUpgrade(piece) ? "green" : "red")}>{piece}</color> : {GlobalValue.Bless_Inflation * Stats.variable}");
 
         if (TMP_BlessingCost != null)
             TMP_BlessingCost.text = localizedText;
@@ -49,11 +50,11 @@ public class Blessing_Upgrade : MonoBehaviour
         {
             return;
         }
-        DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.hammer_piece -= 200 * (int)Stats.variable;
-        if (DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.hammer_piece < 0)
-        {
-            DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.hammer_piece = 0;
-        }
+        DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.hammer_piece -= GlobalValue.Bless_Inflation * (int)Stats.variable;
+        //Stats.IncreaseVariable(Stats.variable, Max_level);
+        Stats.variable++;
+        Debug.Log($"{Stats.TypeStr} lv = {Stats.variable}");
+        Set_Blessing();
         LocalizeStatsDataUpdater.UpdateLocalizedText();
     }
 
@@ -68,6 +69,33 @@ public class Blessing_Upgrade : MonoBehaviour
         {
             return false;
         }
-        return _piece >= 200 * Stats.variable;
+        return _piece >= GlobalValue.Bless_Inflation * Stats.variable;
+    }
+
+    public void Select(GameObject go)
+    {
+        if (go.GetComponent<Stats>() == null)
+            return;
+
+        Stats = go.GetComponent<Stats>();
+
+        //현재 선택된 축복
+        if (Blessing_Btn != null)
+        {
+            var nav = Blessing_Btn.navigation;
+            nav.selectOnRight = go.GetComponent<Button>();
+            Blessing_Btn.navigation = nav;
+        }
+
+        if (Stats.TypeSprite != null)
+        {
+            Icon.sprite = Stats.TypeSprite;
+        }
+
+        LocalizeStringEvent_Descript.StringReference.SetReference("Stats_Table", Stats.TypeStr + "_Descript");
+        LocalizeStatsDataUpdater.SetStats(go.GetComponent<Stats>());
+        LocalizeStatsDataUpdater.UpdateLocalizedText();
+        Set_Blessing();
+
     }
 }

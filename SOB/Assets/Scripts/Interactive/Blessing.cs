@@ -1,12 +1,14 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Linq;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Blessing : InteractiveObject
 {
     private Animator animator;
+    [SerializeField] private List<BlessingStats> BlessingStats;
+
     private Canvas canvas
     {
         get
@@ -23,9 +25,17 @@ public class Blessing : InteractiveObject
     {
         base.Start();
         animator = this.GetComponentInChildren<Animator>();
+        BlessingStats = this.GetComponentsInChildren<BlessingStats>().ToList();
+    }
+    public override void Start_Action()
+    {
+        if (BlessingStats.Count > 0)
+        {
+            EventSystem.current.SetSelectedGameObject(BlessingStats[0].gameObject);
+        }
     }
 
-    private void End_Action()
+    public override void End_Action()
     {
         if (GlobalValue.ContainParam(animator, "Action"))
         {
@@ -33,6 +43,7 @@ public class Blessing : InteractiveObject
             animator.SetBool("Action", false);
         }
     }
+
     public override void Interactive()
     {
         if (GlobalValue.ContainParam(animator, "Action"))

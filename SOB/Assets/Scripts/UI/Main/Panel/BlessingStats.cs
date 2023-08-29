@@ -1,5 +1,6 @@
 using TMPro;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.Localization.Components;
 using UnityEngine.Localization.SmartFormat.PersistentVariables;
@@ -13,6 +14,10 @@ public class BlessingStats : Stats
         get
         {
             return TypeStats_Lv;
+        }
+        set
+        {
+            TypeStats_Lv = (int)value;
         }
     }
     public override string TypeStr
@@ -68,27 +73,74 @@ public class BlessingStats : Stats
             switch (Type)
             {
                 case Blessing_Stats_TYPE.Bless_Agg:
-                    stats = DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.Blessing_Agg_Lv;
+                    stats = DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.Bless[0];
                     break;                    
                 case Blessing_Stats_TYPE.Bless_Def:
-                    stats = DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.Blessing_Def_Lv;
+                    stats = DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.Bless[1];
                     break;
                 case Blessing_Stats_TYPE.Bless_Speed:
-                    stats = DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.Blessing_Speed_Lv;
+                    stats = DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.Bless[2];
                     break;
                 case Blessing_Stats_TYPE.Bless_Critical:
-                    stats = DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.Blessing_Critical_Lv;
+                    stats = DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.Bless[3];
                     break;
                 case Blessing_Stats_TYPE.Bless_Elemental:
-                    stats = DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.Blessing_Elemental_Lv;
+                    stats = DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.Bless[4];
                     break;
             }
             return stats;
         }
+        set
+        {
+            switch (Type)
+            {
+                case Blessing_Stats_TYPE.Bless_Agg:
+                    DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.Bless[0]= value;
+                    break;
+                case Blessing_Stats_TYPE.Bless_Def:
+                    DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.Bless[1]= value;
+                    break;
+                case Blessing_Stats_TYPE.Bless_Speed:
+                    DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.Bless[2]= value;
+                    break;
+                case Blessing_Stats_TYPE.Bless_Critical:
+                    DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.Bless[3] = value;
+                    break;
+                case Blessing_Stats_TYPE.Bless_Elemental:
+                    DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.Bless[4] = value;
+                    break;
+            }
+        }
     }
+    private Blessing_Stats_TYPE Old_Type;
     // Start is called before the first frame update
     void Start()
     {
         Init();
+        if (LocalStringEvent != null)
+        {
+            LocalStringEvent.StringReference.SetReference("Stats_Table", Type.ToString());
+        }
+
+        if (StatsImg != null && m_TypeSprite != null && StatsImg.sprite != m_TypeSprite)
+        {
+            StatsImg.sprite = m_TypeSprite;
+        }
+    }
+    private void Update()
+    {
+        if (Old_Type == Type)
+            return;
+
+        if (LocalStringEvent != null)
+        {
+            LocalStringEvent.StringReference.SetReference("Stats_Table", Type.ToString());
+        }
+
+        if (StatsImg != null && m_TypeSprite != null && StatsImg.sprite != m_TypeSprite)
+        {
+            StatsImg.sprite = m_TypeSprite;
+        }
+        Old_Type = Type;
     }
 }

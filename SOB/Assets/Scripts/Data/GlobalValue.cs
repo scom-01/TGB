@@ -82,6 +82,8 @@ public class GlobalValue : MonoBehaviour
 
     public static int Gold_Inflation = 250;
     public static int ReRoll_Inflation = 60;
+    public static int Bless_Inflation = 200;
+    public static int BlessingStats_Inflation = 5;
 
     /// <summary>
     /// Elemetal 속성 공격에 따른 추가 데미지 퍼센트
