@@ -39,7 +39,7 @@ public class Blessing_Upgrade : MonoBehaviour, IUI_Select
 
         // 텍스트 업데이트
         string localizedText = LocalizeStringEvent_BlessingCost.StringReference.GetLocalizedString();
-        localizedText += string.Format($" : <color={(CheckUpgrade(piece) ? "green" : "red")}>{piece}</color> : {GlobalValue.Bless_Inflation * Stats.variable}");
+        localizedText += string.Format($" : <color={(CheckUpgrade(piece) ? "green" : "red")}>{piece}</color> : {GlobalValue.Bless_Inflation * (Stats.variable + 1)}");
 
         if (TMP_BlessingCost != null)
             TMP_BlessingCost.text = localizedText;
@@ -50,7 +50,7 @@ public class Blessing_Upgrade : MonoBehaviour, IUI_Select
         {
             return;
         }
-        DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.hammer_piece -= GlobalValue.Bless_Inflation * (int)Stats.variable;
+        DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.hammer_piece -= GlobalValue.Bless_Inflation * (int)(Stats.variable + 1);
         //Stats.IncreaseVariable(Stats.variable, Max_level);
         Stats.variable++;
         Debug.Log($"{Stats.TypeStr} lv = {Stats.variable}");
@@ -69,7 +69,7 @@ public class Blessing_Upgrade : MonoBehaviour, IUI_Select
         {
             return false;
         }
-        return _piece >= GlobalValue.Bless_Inflation * Stats.variable;
+        return _piece >= GlobalValue.Bless_Inflation * (Stats.variable + 1);
     }
 
     public void Select(GameObject go)

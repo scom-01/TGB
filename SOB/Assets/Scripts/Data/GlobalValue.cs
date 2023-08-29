@@ -82,7 +82,7 @@ public class GlobalValue : MonoBehaviour
 
     public static int Gold_Inflation = 250;
     public static int ReRoll_Inflation = 60;
-    public static int Bless_Inflation = 200;
+    public static int Bless_Inflation = 1000;
     public static int BlessingStats_Inflation = 5;
 
     /// <summary>
