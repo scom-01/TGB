@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace SOB.CoreSystem
 {
@@ -11,7 +12,36 @@ namespace SOB.CoreSystem
         #region Stats        
         public StatsData StatsData { get => statsData; set => statsData = value; }
         [field: SerializeField] private StatsData statsData;
-
+        public StatsData CalculStatsData 
+        {
+            get
+            {
+                StatsData data = new StatsData()
+                {
+                    MaxHealth = MaxHealth,
+                    DefaultPower = DefaultPower,
+                    DefaultMoveSpeed = DefaultMoveSpeed,
+                    DefaultJumpVelocity = DefaultJumpVelocity,
+                    DefaultAttSpeed = DefaultAttSpeed,
+                    MovementVelocity = MoveSpeed,
+                    JumpVelocity = JumpVelocity,
+                    AttackSpeedPer = AttackSpeedPer,
+                    PhysicsDefensivePer = PhysicsDefensivePer,
+                    MagicDefensivePer = MagicDefensivePer,
+                    PhysicsAggressivePer = PhysicsAggressivePer,
+                    MagicAggressivePer = MagicAggressivePer,
+                    CriticalPer = CriticalPer,
+                    AdditionalCriticalPer = AdditionalCriticalPer,
+                    DamageAttiribute = DamageAttiribute,
+                    Elemental = Elemental,
+                    ElementalDefensivePer = ElementalDefensivePer,
+                    ElementalAggressivePer = ElementalAggressivePer,
+                };
+                return data;
+            } 
+            set => m_statsData = value; 
+        }
+        public StatsData m_statsData;
         public float invincibleTime;
         public float TouchinvincibleTime;
         public float CurrentHealth 
@@ -25,62 +55,82 @@ namespace SOB.CoreSystem
         }
         [SerializeField] private float currentHealth;
 
+        public BlessStatsData BlessStats;
+
         /// <summary>
         /// 물리 방어력 최대 100%의 피해 흡수
         /// </summary>
-        public float PhysicsDefensivePer { get => statsData.PhysicsDefensivePer; set => statsData.PhysicsDefensivePer = Mathf.Clamp(value, 0, 100.0f); }
+        public float PhysicsDefensivePer { get => Mathf.Clamp((statsData.PhysicsDefensivePer + BlessStats.Bless_Def_Lv * GlobalValue.BlessingStats_Inflation), 0, 100.0f);}
 
         /// <summary>
         /// 마법 방어력 최대 100%의 피해 흡수
         /// </summary>
-        public float MagicDefensivePer { get => statsData.MagicDefensivePer; set => statsData.MagicDefensivePer = Mathf.Clamp(value, 0, 100.0f); }
+        public float MagicDefensivePer { get => Mathf.Clamp((statsData.MagicDefensivePer + BlessStats.Bless_Def_Lv * GlobalValue.BlessingStats_Inflation), 0, 100.0f);}
 
         /// <summary>
         /// 공격력
         /// </summary>
-        public float DefaultPower { get => statsData.DefaultPower; set => statsData.DefaultPower = value <= 0 ? 0 : value; }
+        public float DefaultPower { get => statsData.DefaultPower;}
 
         /// <summary>
         /// 추가 물리공격력 %
         /// </summary>
-        public float PhysicsAggressivePer { get => statsData.PhysicsAggressivePer; set => statsData.PhysicsAggressivePer = value <= 0 ? 0 : value; }
+        public float PhysicsAggressivePer { get => (statsData.PhysicsAggressivePer + BlessStats.Bless_Agg_Lv * GlobalValue.BlessingStats_Inflation);}
 
         /// <summary>
         /// 추가 마법공격력 %
         /// </summary>
-        public float MagicAggressivePer { get => statsData.MagicAggressivePer; set => statsData.MagicAggressivePer = value <= 0 ? 0 : value; }
+        public float MagicAggressivePer { get => (statsData.MagicAggressivePer + BlessStats.Bless_Agg_Lv * GlobalValue.BlessingStats_Inflation);}
 
         /// <summary>
         /// 크리티컬 확률
         /// </summary>
-        public float CriticalPer { get=>statsData.CriticalPer; set => statsData.CriticalPer = Mathf.Clamp(value, 0, 100.0f); }
+        public float CriticalPer { get => Mathf.Clamp((statsData.CriticalPer + BlessStats.Bless_Critical_Lv * GlobalValue.BlessingStats_Inflation), 0, 100.0f); }
 
         /// <summary>
         /// 추가 크리티컬 데미지
         /// </summary>
-        public float AdditionalCriticalPer { get => statsData.AdditionalCriticalPer; set => statsData.AdditionalCriticalPer = value <= 0 ? 0 : value; }
+        public float AdditionalCriticalPer { get => (statsData.AdditionalCriticalPer + BlessStats.Bless_Critical_Lv * GlobalValue.BlessingStats_Inflation); }
         
         /// <summary>
         /// 원소 속성 (공격과 방어 모두에 적용)
         /// </summary>
-        public E_Power Elemental { get => statsData.Elemental; set => statsData.Elemental = value; }
+        public E_Power Elemental { get => statsData.Elemental;}
 
         /// <summary>
         /// 원소 저항력 (수치만큼 %로 감소)
         /// </summary>
-        public float ElementalDefensivePer { get => statsData.ElementalDefensivePer; set => statsData.ElementalDefensivePer = Mathf.Clamp(value, 0, 100.0f); }
+        public float ElementalDefensivePer { get => Mathf.Clamp((statsData.ElementalDefensivePer + BlessStats.Bless_Elemental_Lv * GlobalValue.BlessingStats_Inflation), 0, 100.0f); }
 
         /// <summary>
         /// 원소 공격력 (수치만큼 %로 증가)
         /// </summary>
-        public float ElementalAggressivePer { get => statsData.ElementalAggressivePer; set => statsData.ElementalAggressivePer = value; }
+        public float ElementalAggressivePer { get => (statsData.ElementalAggressivePer + BlessStats.Bless_Elemental_Lv * GlobalValue.BlessingStats_Inflation);}
         /// <summary>
-        /// 원소 공격력 (수치만큼 %로 증가)
+        /// 기본 공격 속도
         /// </summary>
-        public float AttackSpeedPer { get => statsData.AttackSpeedPer; set => statsData.AttackSpeedPer = value; }
+        public float DefaultAttSpeed { get => statsData.DefaultAttSpeed; }
+        /// <summary>
+        /// 공격속도 (수치만큼 %로 증가)
+        /// </summary>
+        public float AttackSpeedPer { get => (statsData.AttackSpeedPer + BlessStats.Bless_Speed_Lv * GlobalValue.BlessingStats_Inflation); }
         public float MaxHealth { get => statsData.MaxHealth; set => statsData.MaxHealth = value; }
-        public float MoveSpeed { get => statsData.MovementVelocity; set => statsData.MovementVelocity = value; }
-        public float JumpVelocity { get => statsData.JumpVelocity; set => statsData.JumpVelocity = value; }
+        /// <summary>
+        /// 기본 이동속도
+        /// </summary>
+        public float DefaultMoveSpeed { get => statsData.DefaultMoveSpeed; }
+        /// <summary>
+        /// 추가 이동속도(수치만큼 %로 증가)
+        /// </summary>
+        public float MoveSpeed { get => (statsData.MovementVelocity + BlessStats.Bless_Speed_Lv * GlobalValue.BlessingStats_Inflation); }
+        /// <summary>
+        /// 기본 점프력
+        /// </summary>
+        public float DefaultJumpVelocity { get => statsData.DefaultJumpVelocity; }
+        /// <summary>
+        /// 추가 점프력 (수치만큼 %로 증가)
+        /// </summary>
+        public float JumpVelocity { get => statsData.JumpVelocity;}
 
         /// <summary>
         /// 공격 속성 
@@ -146,14 +196,14 @@ namespace SOB.CoreSystem
             core.Unit.HitEffect();
             float amount1 = CalculateElementDamage(AttackerData, VictimData, _elemental, amount);
             float amount2 = CalculateDamageAtt(AttackerData, VictimData, AttackerData.DamageAttiribute, amount1);
-            CurrentHealth -= amount;
+            CurrentHealth -= amount2;
 
             Debug.Log($"{core.transform.parent.name} Health = {currentHealth}");
             if (CurrentHealth == 0.0f)
             {
                 OnHealthZero?.Invoke();
             }
-            return amount;
+            return amount2;
         }
 
         //공격자의 보유 Elemental과 다른 Elemental속성을 공격할 때

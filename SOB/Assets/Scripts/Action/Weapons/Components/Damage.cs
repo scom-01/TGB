@@ -56,7 +56,7 @@ namespace SOB.Weapons.Components
                         damageable.Damage
                         (
                             CoreUnitStats.StatsData,
-                            coll.GetComponentInParent<Unit>().UnitData.statsStats,
+                            coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
                             CoreUnitStats.DefaultPower + currDamage[hitBox.currentHitBoxIndex].AdditionalDamage,
                             currDamage[hitBox.currentHitBoxIndex].RepeatAmount
                         );
@@ -69,7 +69,7 @@ namespace SOB.Weapons.Components
                             damageable.Damage
                         (
                             CoreUnitStats.StatsData,
-                            coll.GetComponentInParent<Unit>().UnitData.statsStats,
+                            coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
                             (CoreUnitStats.DefaultPower + currDamage[hitBox.currentHitBoxIndex].AdditionalDamage) * (1.0f + GlobalValue.Enemy_Size_WeakPer),
                             currDamage[hitBox.currentHitBoxIndex].RepeatAmount
                         );
@@ -82,7 +82,7 @@ namespace SOB.Weapons.Components
                             damageable.Damage
                         (
                             CoreUnitStats.StatsData,
-                            coll.GetComponentInParent<Unit>().UnitData.statsStats,
+                            coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
                             (CoreUnitStats.DefaultPower + currDamage[hitBox.currentHitBoxIndex].AdditionalDamage),
                             currDamage[hitBox.currentHitBoxIndex].RepeatAmount
                         );
@@ -91,7 +91,7 @@ namespace SOB.Weapons.Components
                             damageable.Damage
                         (
                             CoreUnitStats.StatsData,
-                            coll.GetComponentInParent<Unit>().UnitData.statsStats,
+                            coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
                             (CoreUnitStats.DefaultPower + currDamage[hitBox.currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer),
                             currDamage[hitBox.currentHitBoxIndex].RepeatAmount
                         );

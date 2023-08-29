@@ -264,7 +264,7 @@ public class Inventory : MonoBehaviour
         //{
         //    Unit.Core.CoreUnitStats.CurrentHealth += itemData.StatsDatas.MaxHealth;
         //}
-        Debug.Log($"Change UnitStats {unit.Core.CoreUnitStats.StatsData}");
+        Debug.Log($"Change UnitStats {unit.Core.CoreUnitStats.CalculStatsData}");
         //}
         return true;
     }
@@ -312,7 +312,7 @@ public class Inventory : MonoBehaviour
         //{
         //    Unit.Core.CoreUnitStats.CurrentHealth += itemObject.StatsDatas.MaxHealth;
         //}
-        Debug.Log($"Change UnitStats {Unit.Core.CoreUnitStats.StatsData}");
+        Debug.Log($"Change UnitStats {Unit.Core.CoreUnitStats.CalculStatsData}");
         //}
         return true;
     }
@@ -401,6 +401,6 @@ public class Inventory : MonoBehaviour
     /// <param name="statsData"></param>
     private void AddStat(StatsData statsData)
     {
-        Unit.Core.CoreUnitStats.StatsData += statsData;
+        Unit.Core.CoreUnitStats.CalculStatsData += statsData;
     }
 }   

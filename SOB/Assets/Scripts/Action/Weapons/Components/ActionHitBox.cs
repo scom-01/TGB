@@ -150,8 +150,8 @@ namespace SOB.Weapons.Components
                         {
                             _damageable.Damage
                             (
-                                CoreUnitStats.StatsData,
-                                coll.GetComponentInParent<Unit>().UnitData.statsStats,
+                                CoreUnitStats.CalculStatsData,
+                                coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
                                 CoreUnitStats.DefaultPower + currHitBox[currentHitBoxIndex].AdditionalDamage,
                                 currHitBox[currentHitBoxIndex].RepeatAction
                             );
@@ -163,8 +163,8 @@ namespace SOB.Weapons.Components
                             case ENEMY_Size.Small:
                                 _damageable.Damage
                             (
-                                CoreUnitStats.StatsData,
-                                coll.GetComponentInParent<Unit>().UnitData.statsStats,
+                                CoreUnitStats.CalculStatsData,
+                                coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
                                 (CoreUnitStats.DefaultPower + currHitBox[currentHitBoxIndex].AdditionalDamage) * (1.0f + GlobalValue.Enemy_Size_WeakPer),
                                 currHitBox[currentHitBoxIndex].RepeatAction
                             );
@@ -176,8 +176,8 @@ namespace SOB.Weapons.Components
                             case ENEMY_Size.Medium:
                                 _damageable.Damage
                             (
-                                CoreUnitStats.StatsData,
-                                coll.GetComponentInParent<Unit>().UnitData.statsStats,
+                                CoreUnitStats.CalculStatsData,
+                                coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
                                 (CoreUnitStats.DefaultPower + currHitBox[currentHitBoxIndex].AdditionalDamage),
                                 currHitBox[currentHitBoxIndex].RepeatAction
                                 );
@@ -185,8 +185,8 @@ namespace SOB.Weapons.Components
                             case ENEMY_Size.Big:
                                 _damageable.Damage
                             (
-                                CoreUnitStats.StatsData,
-                                coll.GetComponentInParent<Unit>().UnitData.statsStats,
+                                CoreUnitStats.CalculStatsData,
+                                coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
                                 (CoreUnitStats.DefaultPower + currHitBox[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer),
                                 currHitBox[currentHitBoxIndex].RepeatAction
                             );
@@ -315,8 +315,8 @@ namespace SOB.Weapons.Components
                         {
                             _damageable.Damage
                             (
-                                CoreUnitStats.StatsData,
-                                coll.GetComponentInParent<Unit>().UnitData.statsStats,
+                                CoreUnitStats.CalculStatsData,
+                                coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
                                 CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage,
                                 hitActions[currentHitBoxIndex].RepeatAction
                             );
@@ -328,8 +328,8 @@ namespace SOB.Weapons.Components
                             case ENEMY_Size.Small:
                                 _damageable.Damage
                             (
-                                CoreUnitStats.StatsData,
-                                coll.GetComponentInParent<Unit>().UnitData.statsStats,
+                                CoreUnitStats.CalculStatsData,
+                                coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
                                 (CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage) * (1.0f + GlobalValue.Enemy_Size_WeakPer),
                                 hitActions[currentHitBoxIndex].RepeatAction
                             );
@@ -341,8 +341,8 @@ namespace SOB.Weapons.Components
                             case ENEMY_Size.Medium:
                                 _damageable.Damage
                             (
-                                CoreUnitStats.StatsData,
-                                coll.GetComponentInParent<Unit>().UnitData.statsStats,
+                                CoreUnitStats.CalculStatsData,
+                                coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
                                 (CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage),
                                 hitActions[currentHitBoxIndex].RepeatAction
                                 );
@@ -350,8 +350,8 @@ namespace SOB.Weapons.Components
                             case ENEMY_Size.Big:
                                 _damageable.Damage
                             (
-                                CoreUnitStats.StatsData,
-                                coll.GetComponentInParent<Unit>().UnitData.statsStats,
+                                CoreUnitStats.CalculStatsData,
+                                coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
                                 (CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer),
                                 hitActions[currentHitBoxIndex].RepeatAction
                             );
@@ -492,8 +492,8 @@ namespace SOB.Weapons.Components
                         {
                             _damageable.Damage
                             (
-                                CoreUnitStats.StatsData,
-                                coll.GetComponentInParent<Unit>().UnitData.statsStats,
+                                CoreUnitStats.CalculStatsData,
+                                coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
                                 CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage,
                                 hitActions[currentHitBoxIndex].RepeatAction
                             );
@@ -505,8 +505,8 @@ namespace SOB.Weapons.Components
                             case ENEMY_Size.Small:
                                 _damageable.Damage
                             (
-                                CoreUnitStats.StatsData,
-                                coll.GetComponentInParent<Unit>().UnitData.statsStats,
+                                CoreUnitStats.CalculStatsData,
+                                coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
                                 (CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage) * (1.0f + GlobalValue.Enemy_Size_WeakPer),
                                 hitActions[currentHitBoxIndex].RepeatAction
                             );
@@ -518,8 +518,8 @@ namespace SOB.Weapons.Components
                             case ENEMY_Size.Medium:
                                 _damageable.Damage
                             (
-                                CoreUnitStats.StatsData,
-                                coll.GetComponentInParent<Unit>().UnitData.statsStats,
+                                CoreUnitStats.CalculStatsData,
+                                coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
                                 (CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage),
                                 hitActions[currentHitBoxIndex].RepeatAction
                                 );
@@ -527,8 +527,8 @@ namespace SOB.Weapons.Components
                             case ENEMY_Size.Big:
                                 _damageable.Damage
                             (
-                                CoreUnitStats.StatsData,
-                                coll.GetComponentInParent<Unit>().UnitData.statsStats,
+                                CoreUnitStats.CalculStatsData,
+                                coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
                                 (CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer),
                                 hitActions[currentHitBoxIndex].RepeatAction
                             );

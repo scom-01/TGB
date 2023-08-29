@@ -71,8 +71,8 @@ namespace SOB.Weapons
         {
             if (WeaponCore == null)
                 return;
-            
-            BaseGameObject.GetComponent<Animator>().speed = 1f + (WeaponCore.CoreUnitStats.AttackSpeedPer * 1 / 100);
+
+            BaseGameObject.GetComponent<Animator>().speed = (WeaponCore.CoreUnitStats.DefaultAttSpeed / 100) * ((100 + WeaponCore.CoreUnitStats.AttackSpeedPer) / 100);
             actionCounterResetTimer.Tick();
         }
 

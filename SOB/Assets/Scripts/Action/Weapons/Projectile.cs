@@ -329,7 +329,7 @@ namespace SOB
                     damageable.Damage
                     (
                         unit.Core.CoreUnitStats.StatsData,
-                        coll.GetComponentInParent<Unit>().UnitData.statsStats,
+                        coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
                         unit.Core.CoreUnitStats.DefaultPower
                     );
                 }
@@ -342,7 +342,7 @@ namespace SOB
                             damageable.Damage
                         (
                             unit.Core.CoreUnitStats.StatsData,
-                            coll.GetComponentInParent<Unit>().UnitData.statsStats,
+                            coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
                             (unit.Core.CoreUnitStats.DefaultPower) * (1.0f + GlobalValue.Enemy_Size_WeakPer)
                         );
                             Debug.Log("Projectile Enemy Type Small, Normal Dam = " +
@@ -354,7 +354,7 @@ namespace SOB
                             damageable.Damage
                         (
                             unit.Core.CoreUnitStats.StatsData,
-                            coll.GetComponentInParent<Unit>().UnitData.statsStats,
+                            coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
                             (unit.Core.CoreUnitStats.DefaultPower));
                             Debug.Log("Projectile Enemy Type Medium, Normal Dam = " +
                                 unit.Core.CoreUnitStats.DefaultPower);
@@ -363,7 +363,7 @@ namespace SOB
                             damageable.Damage
                         (
                             unit.Core.CoreUnitStats.StatsData,
-                            coll.GetComponentInParent<Unit>().UnitData.statsStats,
+                            coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
                             (unit.Core.CoreUnitStats.DefaultPower) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
                         );
 
