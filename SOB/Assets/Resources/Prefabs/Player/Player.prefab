@@ -833,9 +833,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statsData:
     MaxHealth: 0
+    DefaultPower: 0
+    DefaultMoveSpeed: 0
+    DefaultJumpVelocity: 0
+    DefaultAttSpeed: 0
     MovementVelocity: 0
     JumpVelocity: 0
+    AttackSpeedPer: 0
+    PhysicsDefensivePer: 0
+    MagicDefensivePer: 0
+    PhysicsAggressivePer: 0
+    MagicAggressivePer: 0
+    CriticalPer: 0
+    AdditionalCriticalPer: 0
+    DamageAttiribute: 0
+    Elemental: 0
+    ElementalDefensivePer: 0
+    ElementalAggressivePer: 0
+  m_statsData:
+    MaxHealth: 0
     DefaultPower: 0
+    DefaultMoveSpeed: 0
+    DefaultJumpVelocity: 0
+    DefaultAttSpeed: 0
+    MovementVelocity: 0
+    JumpVelocity: 0
     AttackSpeedPer: 0
     PhysicsDefensivePer: 0
     MagicDefensivePer: 0
@@ -850,6 +872,12 @@ MonoBehaviour:
   invincibleTime: 0
   TouchinvincibleTime: 0
   currentHealth: 0
+  BlessStats:
+    Bless_Agg_Lv: 0
+    Bless_Def_Lv: 0
+    Bless_Speed_Lv: 0
+    Bless_Critical_Lv: 0
+    Bless_Elemental_Lv: 0
 --- !u!1 &840319700660627236
 GameObject:
   m_ObjectHideFlags: 0
