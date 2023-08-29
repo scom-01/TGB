@@ -138,7 +138,7 @@ public class StatsText : Stats
         {
             if (OldStats != m_TypeStats)
             {                
-                StatsPowerTxt.text = m_TypeStats.ToString() + " %";
+                StatsPowerTxt.text = m_TypeStats.ToString("F0") + " %";
                 OldStats = m_TypeStats;
             }
         }
