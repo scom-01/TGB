@@ -123,7 +123,7 @@ public class GoodsText : MonoBehaviour
     private Sprite windIcon;
 
     private Sprite TypeIcon
-    { 
+    {
         get
         {
             Sprite img = null;
@@ -144,6 +144,9 @@ public class GoodsText : MonoBehaviour
                 case GOODS_TPYE.WindGoods:
                     img = WindIcon;
                     return img;
+                case GOODS_TPYE.HammerPiece:
+                    img = WindIcon;
+                    return img;
             }
             return img;
         }
@@ -154,7 +157,7 @@ public class GoodsText : MonoBehaviour
         get
         {
             int count = 0;
-            if(DataManager.Inst != null)
+            if (DataManager.Inst != null)
             {
                 switch (Type)
                 {
@@ -172,6 +175,9 @@ public class GoodsText : MonoBehaviour
                         return count;
                     case GOODS_TPYE.WindGoods:
                         count = DataManager.Inst.JSON_DataParsing.m_JSON_Goods.elementalGoods.WindGoods;
+                        return count;
+                    case GOODS_TPYE.HammerPiece:
+                        count = DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.hammer_piece;
                         return count;
                 }
             }
@@ -209,19 +215,24 @@ public class GoodsText : MonoBehaviour
 
         if (IconImg != null && TypeIcon != null)
         {
-            if(OldType != Type)
+            if (OldType == Type && oldGoodsCount == TypeGoodsCount)
+            {
+                return;
+            }
+
+            if (OldType != Type)
             {
                 IconImg.sprite = TypeIcon;
                 OldType = Type;
             }
         }
 
-        if(CurrGoodsTxtLocalStringEvent != null)
+        if (CurrGoodsTxtLocalStringEvent != null)
         {
             CurrGoodsTxtLocalStringEvent.StringReference.SetReference("Goods_Table", Type.ToString());
         }
 
-        if(oldGoodsCount != TypeGoodsCount)
+        if (oldGoodsCount != TypeGoodsCount)
         {
             if (CurrGoodsCountTxt != null)
             {
