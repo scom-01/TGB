@@ -378,31 +378,24 @@ public class DataParsing : MonoBehaviour
     {
         get
         {
-            return m_temp_DefaultData;
-        }
-        set
-        {
-            m_temp_DefaultData = value;
             if (GameManager.Inst?.StageManager?.player != null)
             {
                 GameManager.Inst.StageManager.player.Core.CoreUnitStats.BlessStats.Bless_Agg_Lv = m_temp_DefaultData.Bless[0];
                 GameManager.Inst.StageManager.player.Core.CoreUnitStats.BlessStats.Bless_Def_Lv = m_temp_DefaultData.Bless[1];
                 GameManager.Inst.StageManager.player.Core.CoreUnitStats.BlessStats.Bless_Speed_Lv = m_temp_DefaultData.Bless[2];
-                GameManager.Inst.StageManager.player.Core.CoreUnitStats.BlessStats.Bless_Critical_Lv= m_temp_DefaultData.Bless[3];
+                GameManager.Inst.StageManager.player.Core.CoreUnitStats.BlessStats.Bless_Critical_Lv = m_temp_DefaultData.Bless[3];
                 GameManager.Inst.StageManager.player.Core.CoreUnitStats.BlessStats.Bless_Elemental_Lv = m_temp_DefaultData.Bless[4];
             }
+            return m_temp_DefaultData;
+        }
+        set
+        {
+            m_temp_DefaultData = value;            
         }
     }
     private JSON_DefaultData m_temp_DefaultData = new JSON_DefaultData();
     public List<int> lockItemList = new List<int>();
     #endregion
-
-    private bool isInit = false;
-
-    private void Start()
-    {
-        isInit = true;
-    }
 
     private bool Json_InventoryParsing()
     {
