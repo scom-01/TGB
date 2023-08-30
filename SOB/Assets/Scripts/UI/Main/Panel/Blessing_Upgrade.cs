@@ -39,7 +39,7 @@ public class Blessing_Upgrade : MonoBehaviour, IUI_Select
 
         // 텍스트 업데이트
         string localizedText = LocalizeStringEvent_BlessingCost.StringReference.GetLocalizedString();
-        localizedText += string.Format($" : <color={(CheckUpgrade(piece) ? "green" : "red")}>{piece}</color> : {GlobalValue.Bless_Inflation * (Stats.variable + 1)}");
+        localizedText += string.Format($" : <color={(CheckUpgrade(piece) ? "green" : "red")}>{piece.ToString("N0")}</color> : {(GlobalValue.Bless_Inflation * (Stats.variable + 1)).ToString("N0")}");
 
         if (TMP_BlessingCost != null)
             TMP_BlessingCost.text = localizedText;
