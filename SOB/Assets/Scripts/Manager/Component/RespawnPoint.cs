@@ -16,7 +16,8 @@ public class RespawnPoint : MonoBehaviour
     {
         if (spawnEffectPrefab == null && isEffectSpawn)
         {
-            Spawn(SpawnPrefab, this.transform.position, this.transform);
+            if(SpawnPrefab != null)
+                Spawn(SpawnPrefab, this.transform.position, this.transform);
             isEffectSpawn = false;
         }
 
