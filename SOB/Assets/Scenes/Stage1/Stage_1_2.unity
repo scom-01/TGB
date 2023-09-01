@@ -48920,6 +48920,7 @@ MonoBehaviour:
   SPM: {fileID: 387809413}
   MasterManagerList: []
   isGotoNext: 1
+  StageLevel: 1
   m_NextStageNumber: 8
   Start_UIState: 0
   Cam: {fileID: 0}
@@ -49000,7 +49001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b0f7f1199092f140b94cdfb84739462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnPrefab: {fileID: 3640253521839122302, guid: 32f6c347520c2c744b73c5bf649aa375, type: 3}
+  SpawnPrefab: {fileID: 3640253521839122302, guid: c677cee845f7c864ca7796014ff46c03, type: 3}
   SpawnEffectPrefab: {fileID: 2778760166630123670, guid: d05cb25ed7a0e9547a9d280d8bb32ce4, type: 3}
 --- !u!1001 &1202413478
 PrefabInstance:
@@ -49814,7 +49815,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b0f7f1199092f140b94cdfb84739462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnPrefab: {fileID: 3640253521839122302, guid: 32f6c347520c2c744b73c5bf649aa375, type: 3}
+  SpawnPrefab: {fileID: 3640253521839122302, guid: c677cee845f7c864ca7796014ff46c03, type: 3}
   SpawnEffectPrefab: {fileID: 2778760166630123670, guid: d05cb25ed7a0e9547a9d280d8bb32ce4, type: 3}
 --- !u!1 &1405603462
 GameObject:
@@ -55278,7 +55279,7 @@ Tilemap:
       - {fileID: -1764541156, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: -1805019761, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: 683491791, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15.000001
+      m_AnimationSpeed: 15
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 149, y: 19, z: 0}
@@ -55404,7 +55405,7 @@ Tilemap:
       - {fileID: 1436631263, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: 1828345550, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: 1105275054, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15
+      m_AnimationSpeed: 15.000001
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 148, y: 24, z: 0}
@@ -55572,7 +55573,7 @@ Tilemap:
       - {fileID: 1067532178, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: 1922972716, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: -1157763925, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15.000001
+      m_AnimationSpeed: 15
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 148, y: 30, z: 0}
@@ -55852,7 +55853,7 @@ Tilemap:
       - {fileID: 1396469913, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: 1235773790, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: 1451730261, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15.000001
+      m_AnimationSpeed: 15
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 148, y: 40, z: 0}
@@ -55950,7 +55951,7 @@ Tilemap:
       - {fileID: -1233912219, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: 1122979778, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: -495451929, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15
+      m_AnimationSpeed: 15.000001
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 149, y: 43, z: 0}
@@ -93944,7 +93945,7 @@ MonoBehaviour:
   m_RenderShadows: 1
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 1
+  m_CameraType: 0
   m_Cameras: []
   m_RendererIndex: -1
   m_VolumeLayerMask:
@@ -93998,8 +93999,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
-  far clip plane: 5000
+  near clip plane: 0.3
+  far clip plane: 1000
   field of view: 60
   orthographic: 1
   orthographic size: 21
@@ -94008,11 +94009,11 @@ Camera:
     serializedVersion: 2
     m_Bits: 64
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: cd209db36d2115148b68e2af9961e6f5, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 0
+  m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
