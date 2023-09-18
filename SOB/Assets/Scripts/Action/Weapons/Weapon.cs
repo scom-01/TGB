@@ -54,7 +54,7 @@ namespace SOB.Weapons
 
         protected virtual void Awake()
         {
-            BaseGameObject = transform.Find("Base").gameObject;
+            BaseGameObject = transform.GetComponentInChildren<Animator>().gameObject;
             WeaponSpriteGameObject = transform.Find("Weapon").gameObject;
 
             baseAnimator = BaseGameObject.GetComponent<Animator>();
@@ -80,8 +80,10 @@ namespace SOB.Weapons
         {
             if (WeaponCore == null)
                 return;
-
-            SetBoolName("inAir", InAir);
+            if(GlobalValue.ContainParam(baseAnimator, "inAir"))
+            {
+                SetBoolName("inAir", InAir);
+            }
         }
 
         private void OnEnable()
@@ -108,9 +110,11 @@ namespace SOB.Weapons
             if (oc != null)
             {
                 baseAnimator.runtimeAnimatorController = oc;
-            }            
-            SetBoolName("action", true);
-            SetIntName("actionCounter", CurrentActionCounter);
+            }
+            if (GlobalValue.ContainParam(baseAnimator, "action"))
+                SetBoolName("action", true);
+            if (GlobalValue.ContainParam(baseAnimator, "actionCounter"))
+                SetIntName("actionCounter", CurrentActionCounter);
             OnEnter?.Invoke();
         }
 
