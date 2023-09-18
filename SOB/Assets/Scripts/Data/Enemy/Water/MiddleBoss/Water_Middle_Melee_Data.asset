@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 789ccafd0a6fa6b488c550d87e922e3c, type: 3}
+  m_Name: Water_Middle_Melee_Data
+  m_EditorClassIdentifier: 
+  statsStats:
+    MaxHealth: 500
+    DefaultPower: 5
+    DefaultMoveSpeed: 0
+    DefaultJumpVelocity: 0
+    DefaultAttSpeed: 100
+    MovementVelocity: 2
+    JumpVelocity: 10
+    AttackSpeedPer: 0
+    PhysicsDefensivePer: 5
+    MagicDefensivePer: 5
+    PhysicsAggressivePer: 0
+    MagicAggressivePer: 0
+    CriticalPer: 0
+    AdditionalCriticalPer: 0
+    DamageAttiribute: 1
+    Elemental: 0
+    ElementalDefensivePer: 35
+    ElementalAggressivePer: 20
+  UnitName: Agitator
+  UnitNameLocal:
+    m_TableReference:
+      m_TableCollectionName: GUID:624403414fdcaad4497611155e8721fa
+    m_TableEntryReference:
+      m_KeyId: 22104574218625024
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  UnitGravity: 5
+  invincibleTime: 0.125
+  touchDamageinvincibleTime: 1
+  standCC2DOffset: {x: -0.116348, y: 0.6578598}
+  standCC2DSize: {x: 0.8806024, y: 1.296134}
+  UnitCC2DMaterial: {fileID: 6200000, guid: 276e6b76b7c10234da4b8bbe6b28d093, type: 2}
+  groundCheckRadius: 0.1
+  wallCheckDistance: 0.5
+  UnitDetectedDistance: 15
+  LayerMaskSO: {fileID: 11400000, guid: 6a02539928b944f408d465411dcf116c, type: 2}
+  UnitAnimator: {fileID: 22100000, guid: 404fd0e81a18a5f4e9e1c8e974227e75, type: 2}
+  enemy_form: 0
+  enemy_size: 0
+  enemy_level: 1
+  UnitAttackDistance: 4.3
+  minIdleTime: 1
+  maxIdleTime: 1
+  references:
+    version: 2
+    RefIds: []
