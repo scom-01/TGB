@@ -1,14 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using SOB.Weapons;
 using SOB.Item;
-using Unity.VisualScripting;
-using SOB.CoreSystem;
+using SOB.Weapons;
 using System;
-using TMPro;
-using UnityEngine.Localization.SmartFormat.Utilities;
-using static UnityEditor.Progress;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
 
 [Serializable]
 public class ItemSet
@@ -90,7 +85,10 @@ public class Inventory : MonoBehaviour
             foreach (var item in Inititems)
             {
                 ItemSet _item = new ItemSet(item, Time.time);
-                Items.Add(_item);
+                if(!Items.Contains(_item))
+                {
+                    Items.Add(_item);
+                }
             }
         }
 

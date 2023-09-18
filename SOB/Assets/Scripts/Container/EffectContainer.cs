@@ -1,14 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
-using UnityEngine.Animations;
 using UnityEngine;
-using Unity.VisualScripting;
-using SOB.CoreSystem;
-using SOB.Weapons.Components;
-using UnityEngine.UIElements;
-using SOB;
-using static UnityEditor.PlayerSettings;
 
 public class EffectContainer : MonoBehaviour
 {

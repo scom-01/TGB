@@ -29,10 +29,10 @@ public class DamageFlash : MonoBehaviour
         Init();
     }
     void Init()
-    {        
+    {
         _materials = new Material[_spriteRenderers.Length];
 
-        for (int i =0;i<_spriteRenderers.Length;i++)
+        for (int i = 0; i < _spriteRenderers.Length; i++)
         {
             _materials[i] = _spriteRenderers[i].material;
         }
@@ -48,7 +48,7 @@ public class DamageFlash : MonoBehaviour
         SetFlashColor();
         float currentFlashAmount = 0f;
         float elapsedTime = 0f;
-        while(elapsedTime < _flashTime)
+        while (elapsedTime < _flashTime)
         {
             elapsedTime += Time.deltaTime;
             currentFlashAmount = Mathf.Lerp(1f, 0f, (elapsedTime / _flashTime));

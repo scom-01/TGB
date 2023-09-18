@@ -1,6 +1,3 @@
-using AssetKits.ParticleImage.Editor;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 

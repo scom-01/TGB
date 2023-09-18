@@ -12,6 +12,6 @@ public class Enemy_Melee1_AttackState : EnemyAttackState
     }
     public override void IdleState()
     {
-        enemy.FSM.ChangeState(enemy_Melee1.RunState);
+        enemy.FSM.ChangeState(enemy_Melee1.IdleState);
     }
 }

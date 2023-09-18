@@ -150,39 +150,39 @@ public class DataManager : MonoBehaviour
     {
         SFX_Volume = sfx;
         PlayerPrefs.SetFloat(GlobalValue.SFX_Vol, SFX_Volume);
-        Debug.LogWarning("Success Cfg SFX Data Save");
+        //Debug.LogWarning("Success Cfg SFX Data Save");
     }
     public void PlayerCfgSFXLoad()
     {
         float sfx = PlayerPrefs.GetFloat(GlobalValue.SFX_Vol, 1.0f);
         SFX.audioMixer.SetFloat(GlobalValue.SFX_Vol, Mathf.Log10(sfx) * 20);
         SFX_Volume = sfx;
-        Debug.LogWarning($"Success Cfg SFX Data Load {SFX_Volume}");
+        //Debug.LogWarning($"Success Cfg SFX Data Load {SFX_Volume}");
     }
     public void PlayerCfgBGMSave(float bgm)
     {
         BGM_Volume = bgm;
         PlayerPrefs.SetFloat(GlobalValue.BGM_Vol, BGM_Volume);
-        Debug.LogWarning($"Success Cfg BGM Data Save {BGM_Volume}");
+        //Debug.LogWarning($"Success Cfg BGM Data Save {BGM_Volume}");
     }
     public void PlayerCfgBGMLoad()
     {
         float bgm = PlayerPrefs.GetFloat(GlobalValue.BGM_Vol, 1.0f);
         BGM.audioMixer.SetFloat(GlobalValue.BGM_Vol, Mathf.Log10(bgm) * 20);
         BGM_Volume = bgm;
-        Debug.LogWarning($"Success Cfg BGM Data Load {BGM_Volume}");
+        //Debug.LogWarning($"Success Cfg BGM Data Load {BGM_Volume}");
     }
 
     public void PlayerCfgQualityLoad()
     {
         int quality = PlayerPrefs.GetInt(GlobalValue.Quality, QualitySettings.names.Length);
         QualitySettings.SetQualityLevel(quality);
-        Debug.LogWarning("Success Cfg QualityLevel Data Load");
+        //Debug.LogWarning("Success Cfg QualityLevel Data Load");
     }
     public void PlayerCfgQualitySave()
     {
         PlayerPrefs.SetInt(GlobalValue.Quality, QualitySettings.GetQualityLevel());
-        Debug.LogWarning("Success Cfg QualityLevel Data Save");
+        //Debug.LogWarning("Success Cfg QualityLevel Data Save");
     }
 
     public void PlayerCfgLanguageLoad()
@@ -194,12 +194,12 @@ public class DataManager : MonoBehaviour
             PlayerPrefs.SetInt(GlobalValue.Language, localizationIdx);
         }
         StartCoroutine(ChangeRoutine(localizationIdx));
-        Debug.LogWarning("Success Cfg Language Data Load");
+        //Debug.LogWarning("Success Cfg Language Data Load");
     }
     public void PlayerCfgLanguageSave()
     {
         PlayerPrefs.SetInt(GlobalValue.Language, localizationIdx);
-        Debug.LogWarning("Success Cfg Language Data Save");
+        //Debug.LogWarning("Success Cfg Language Data Save");
     }
 
     IEnumerator ChangeRoutine(int index)

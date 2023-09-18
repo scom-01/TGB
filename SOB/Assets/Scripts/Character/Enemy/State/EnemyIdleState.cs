@@ -1,9 +1,5 @@
 using SOB.CoreSystem;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.Localization;
 using UnityEngine;
-using UnityEngine.ResourceManagement.ResourceProviders.Simulation;
 
 public abstract class EnemyIdleState : EnemyState
 {
