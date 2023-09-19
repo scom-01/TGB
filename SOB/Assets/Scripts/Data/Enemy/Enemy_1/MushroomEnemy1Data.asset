@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statsStats:
     MaxHealth: 200
+    DefaultPower: 5
+    DefaultMoveSpeed: 0
+    DefaultJumpVelocity: 0
+    DefaultAttSpeed: 100
     MovementVelocity: 3
     JumpVelocity: 10
-    DefaultPower: 5
     AttackSpeedPer: 0
     PhysicsDefensivePer: 0
     MagicDefensivePer: 0
@@ -46,13 +49,13 @@ MonoBehaviour:
   UnitCC2DMaterial: {fileID: 6200000, guid: 5cc90d2fd1f3c2d4ba56287afb0442d4, type: 2}
   groundCheckRadius: 0.1
   wallCheckDistance: 0.5
-  UnitDetectedDistance: 5
+  UnitDetectedDistance: 6
   LayerMaskSO: {fileID: 11400000, guid: cf54109d9cea214498d740045d9d3ff9, type: 2}
   UnitAnimator: {fileID: 9100000, guid: 148f491a8697a074081f7cee04680cf5, type: 2}
   enemy_form: 0
   enemy_size: 0
   enemy_level: 0
-  UnitAttackDistance: 2
+  UnitAttackDistance: 2.5
   minIdleTime: 0.5
   maxIdleTime: 3
   references:

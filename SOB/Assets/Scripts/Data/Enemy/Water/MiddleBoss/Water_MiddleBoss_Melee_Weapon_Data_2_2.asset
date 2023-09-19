@@ -52,16 +52,16 @@ MonoBehaviour:
                 Duration: 0
                 Range: 0
                 RepeatRate: 0
-            Projectile: {fileID: 4317839354509645243, guid: c6d7001f002e202409339b77a4584337, type: 3}
+            Projectile: {fileID: 2222910967692216358, guid: bcd213c059f473648b43d9bc112eae8f, type: 3}
           - ProjectileData:
               Pos: {x: 0, y: 0, z: 0}
-              Rot: {x: 0, y: 0, z: 0}
-              Speed: 0
-              DurationTime: 0
-              Radius: 0
+              Rot: {x: 1, y: 0, z: 0}
+              Speed: 10
+              DurationTime: 2.5
+              Radius: 0.5
               Offset: {x: 0, y: 0}
               GravityScale: 0
-              isSingleShoot: 0
+              isSingleShoot: 1
               KnockbackAngle: {x: 0, y: 0}
               isCollisionGround: 0
               isOnHit: 0
@@ -70,7 +70,7 @@ MonoBehaviour:
                 Duration: 0
                 Range: 0
                 RepeatRate: 0
-            Projectile: {fileID: 4317839354509645243, guid: c6d7001f002e202409339b77a4584337, type: 3}
+            Projectile: {fileID: 2222910967692216358, guid: bcd213c059f473648b43d9bc112eae8f, type: 3}
     - rid: 942642657160069128
       type: {class: EffectSpawnData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:

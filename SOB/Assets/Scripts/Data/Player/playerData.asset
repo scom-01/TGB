@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statsStats:
     MaxHealth: 100
-    MovementVelocity: 10
-    JumpVelocity: 15
     DefaultPower: 10
+    DefaultMoveSpeed: 10
+    DefaultJumpVelocity: 15
+    DefaultAttSpeed: 100
+    MovementVelocity: 0
+    JumpVelocity: 0
     AttackSpeedPer: 0
     PhysicsDefensivePer: 0
     MagicDefensivePer: 0

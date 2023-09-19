@@ -581,9 +581,9 @@ GameObject:
   - component: {fileID: 3640253521839122299}
   - component: {fileID: 2030867593848256410}
   - component: {fileID: 3640253521839122247}
-  - component: {fileID: 6735750043806285471}
   - component: {fileID: 3639027602819861585}
   - component: {fileID: 8530842778410030304}
+  - component: {fileID: 3770291432719512204}
   m_Layer: 18
   m_Name: MushroomEnemy 1
   m_TagString: SmallEnemy
@@ -740,25 +740,6 @@ MonoBehaviour:
   Inititems:
   - {fileID: 11400000, guid: 95208878e233e92409560005b58d7636, type: 2}
   CheckItem: {fileID: 0}
---- !u!114 &6735750043806285471
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3640253521839122302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6601a4f2e7d95364a90edc423b918a3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RespawnPoint: {fileID: 0}
-  UnitData: {fileID: 11400000, guid: 18e5526c4f9924a4e9be2f0de80b92a9, type: 2}
-  IsAlive: 1
-  isFixed_CC_Immunity: 0
-  isFixed_Hit_Immunity: 0
-  isFixedMovement: 0
-  enemyData: {fileID: 0}
 --- !u!114 &3639027602819861585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -786,6 +767,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffs: []
+--- !u!114 &3770291432719512204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3640253521839122302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe3b267fcebec584588749831b5fe805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RespawnPoint: {fileID: 0}
+  UnitData: {fileID: 11400000, guid: 18e5526c4f9924a4e9be2f0de80b92a9, type: 2}
+  IsAlive: 1
+  isFixed_CC_Immunity: 0
+  isFixed_Hit_Immunity: 0
+  isFixedMovement: 0
+  enemyData: {fileID: 0}
 --- !u!1 &3640253522240484911
 GameObject:
   m_ObjectHideFlags: 0
