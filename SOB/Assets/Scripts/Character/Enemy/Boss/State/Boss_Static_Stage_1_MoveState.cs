@@ -10,12 +10,6 @@ public class Boss_Static_Stage_1_MoveState : EnemyRunState
         this.boss_Static_Stage_1 = enemy as Boss_Static_Stage_1;
     }
 
-    public override void Enemy_Attack()
-    {
-        boss_Static_Stage_1.AttackState.SetWeapon(unit.Inventory.Weapon);
-        unit.FSM.ChangeState(boss_Static_Stage_1.AttackState);
-    }
-
     public override void IdleState()
     {
         unit.FSM.ChangeState(boss_Static_Stage_1.IdleState);

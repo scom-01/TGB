@@ -76,8 +76,6 @@ public abstract class EnemyIdleState : EnemyState
         return;
     }
 
-    public abstract void Pattern();
-
     public abstract void MoveState();
 
     public override void PhysicsUpdate()

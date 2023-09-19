@@ -61,11 +61,10 @@ public abstract class EnemyRunState : EnemyState
 
         if (unit.UnitData.GetType() != typeof(EnemyData))
             return;
-
-        if (EnemyCollisionSenses.isUnitInAttackArea && unit.Inventory.Weapon != null)
+        if (EnemyCollisionSenses.UnitFrontDetectArea || EnemyCollisionSenses.UnitBackDetectArea)
         {
-            Debug.Log($"{enemy.name}'s EOE = {enemy.TargetUnit}");
-            Enemy_Attack();
+            enemy.SetTarget(EnemyCollisionSenses.UnitFrontDetectArea?.GetComponent<Unit>());
+            Pattern();
             return;
         }
 
@@ -87,8 +86,6 @@ public abstract class EnemyRunState : EnemyState
         isDelayCheck = false;
         IdleState();
     }
-
-    public abstract void Enemy_Attack();
     public abstract void IdleState();
 
     public override void PhysicsUpdate()

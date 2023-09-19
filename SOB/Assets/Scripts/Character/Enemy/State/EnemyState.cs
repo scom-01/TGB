@@ -43,6 +43,8 @@ public class EnemyState : UnitState
         base.Exit();
     }
 
+    public virtual void Pattern() { }
+
     public override void LogicUpdate()
     {
         base.LogicUpdate();

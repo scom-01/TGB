@@ -1,65 +1,38 @@
-using SOB.CoreSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Water_Melee_Enemy_1 : Enemy
+
+public class Water_Melee_Enemy_1 : Melee_Enemy_1
 {
-    #region State Variables
-    public Water_Melee_Enemy_1_AttackState AttackState { get; private set; }
-    public Water_Melee_Enemy_1_IdleState IdleState { get; private set; }
-    public Water_Melee_Enemy_1_MoveState RunState { get; private set; }
-    public Water_Melee_Enemy_1_HitState HitState { get; private set; }
-    public Water_Melee_Enemy_1_DeathState DeathState { get; private set; }
-    #endregion
-
-    #region Unity Callback Func
-    protected override void Awake()
+    public override void EnemyPattern()
     {
-        base.Awake();
+        if (TargetUnit == null)
+            return;
 
-        AttackState = new Water_Melee_Enemy_1_AttackState(this, "action");
-        IdleState = new Water_Melee_Enemy_1_IdleState(this, "idle");
-        RunState = new Water_Melee_Enemy_1_MoveState(this, "run");
-        HitState = new Water_Melee_Enemy_1_HitState(this, "hit");
-        DeathState = new Water_Melee_Enemy_1_DeathState(this, "death");
-    }
-
-    // Start is called before the first frame update
-    protected override void Start()
-    {
-        base.Start();
-    }
-
-    // Update is called once per frame
-    protected override void Update()
-    {
-        base.Update();
-    }
-    protected override void FixedUpdate()
-    {
-        base.FixedUpdate();
-    }
-    #endregion
-
-    public override void HitEffect()
-    {
-        base.HitEffect();
-        if (!isCC_immunity)
+        //인식 범위 내 
+        if ((TargetUnit.transform.position - transform.position).magnitude <= enemyData.UnitAttackDistance)
         {
-            FSM.ChangeState(HitState);
+            //일직선 상
+            if ((Core.CoreCollisionSenses as EnemyCollisionSenses).isUnitInFrontDetectedArea || (Core.CoreCollisionSenses as EnemyCollisionSenses).isUnitInBackDetectedArea)
+            {
+                AttackState.SetWeapon(Inventory.Weapon);
+                //근거리
+                if ((TargetUnit.transform.position - transform.position).magnitude <= 1.5)
+                {
+                    RunState.FlipToTarget();
+                    Inventory.Weapon.weaponGenerator.GenerateWeapon(Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[0].commands[0]);
+                    FSM.ChangeState(AttackState);
+                    return;
+                }
+                //중거리 돌진 공격
+                RunState.FlipToTarget();
+                Inventory.Weapon.weaponGenerator.GenerateWeapon(Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[1].commands[0]);
+                FSM.ChangeState(AttackState);
+                return;
+            }
         }
-    }
-
-    public override void DieEffect()
-    {
-        base.DieEffect();
-        FSM.ChangeState(DeathState);
-    }
-
-    protected override void Init()
-    {
-        base.Init();
-        FSM.Initialize(IdleState);
+        RunState.FlipToTarget();
+        FSM.ChangeState(RunState);
     }
 }

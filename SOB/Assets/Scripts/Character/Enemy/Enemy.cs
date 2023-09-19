@@ -27,7 +27,7 @@ public class Enemy : Unit
     {
 
     }
-
+    public virtual void EnemyPattern() { }
     public override void DieEffect()
     {
         var item = Inventory.Items;
