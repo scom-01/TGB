@@ -1,16 +1,17 @@
 using SOB.CoreSystem;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Enemy_Melee1 : Enemy
+public class Melee_Enemy_1 : Enemy
 {
     #region State Variables
-    public Enemy_Melee1_AttackState AttackState { get; private set; }
-    public Enemy_Melee1_IdleState IdleState { get; private set; }
-    public Enemy_Melee1_MoveState RunState { get; private set; }
-    public Enemy_Melee1_HitState HitState { get; private set; }
-    public Enemy_Melee1_DeathState DeathState { get; private set; }
+    public Melee_Enemy_1_AttackState AttackState { get; private set; }
+    public Melee_Enemy_1_IdleState IdleState { get; private set; }
+    public Melee_Enemy_1_MoveState RunState { get; private set; }
+    public Melee_Enemy_1_HitState HitState { get; private set; }
+    public Melee_Enemy_1_DeathState DeathState { get; private set; }
     #endregion
 
     #region Unity Callback Func
@@ -18,11 +19,11 @@ public class Enemy_Melee1 : Enemy
     {
         base.Awake();
 
-        AttackState = new Enemy_Melee1_AttackState(this, "action");
-        IdleState = new Enemy_Melee1_IdleState(this, "idle");
-        RunState = new Enemy_Melee1_MoveState(this, "run");
-        HitState = new Enemy_Melee1_HitState(this, "hit");
-        DeathState = new Enemy_Melee1_DeathState(this, "death");
+        AttackState = new Melee_Enemy_1_AttackState(this, "action");
+        IdleState = new Melee_Enemy_1_IdleState(this, "idle");
+        RunState = new Melee_Enemy_1_MoveState(this, "run");
+        HitState = new Melee_Enemy_1_HitState(this, "hit");
+        DeathState = new Melee_Enemy_1_DeathState(this, "death");
     }
 
     // Start is called before the first frame update
@@ -45,12 +46,15 @@ public class Enemy_Melee1 : Enemy
     public override void HitEffect()
     {
         base.HitEffect();
-        if(!isCC_immunity)
+        if (!isCC_immunity)
         {
             FSM.ChangeState(HitState);
         }
     }
 
+    public override void EnemyPattern()
+    {
+    }
     public override void DieEffect()
     {
         base.DieEffect();
@@ -63,4 +67,3 @@ public class Enemy_Melee1 : Enemy
         FSM.Initialize(IdleState);
     }
 }
-
