@@ -240,7 +240,7 @@ Transform:
   - {fileID: 3027203238880253435}
   - {fileID: 4154571279345452185}
   m_Father: {fileID: 3640253521839122301}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8016165242470822881
 MonoBehaviour:
@@ -310,7 +310,7 @@ RectTransform:
   m_Children:
   - {fileID: 4767351454996826392}
   m_Father: {fileID: 3640253521839122301}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -605,7 +605,6 @@ Transform:
   m_Children:
   - {fileID: 3640253523092253583}
   - {fileID: 3640253523737029721}
-  - {fileID: 3640253523614428214}
   - {fileID: 6845263046501251454}
   - {fileID: 5014059752026800173}
   - {fileID: 7219168016213950639}
@@ -1216,37 +1215,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CanFlip: 0
   CanMovement: 0
---- !u!1 &3640253523614428215
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3640253523614428214}
-  m_Layer: 18
-  m_Name: Items
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3640253523614428214
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3640253523614428215}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3640253521839122301}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3640253523737029722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1500,7 +1468,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3640253521839122301}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9133862921410785083
 MonoBehaviour:
@@ -1520,6 +1488,7 @@ MonoBehaviour:
   GoodsPrefab: {fileID: 1952279293685994997, guid: cb4cccd4b8f68bc48a25aac822abd0d2, type: 3}
   GoodsSprite: {fileID: 218339756, guid: f7bf72b4be9086e4c9eef46270d4a8f3, type: 3}
   EquipSoundClip: {fileID: 8300000, guid: 0e89b476d4715fd42935e9900eedb033, type: 3}
+  EquipEffect: {fileID: 1380205584940949931, guid: 07623d638bfe48c4bbf7a6dc202419de, type: 3}
   CircleSize: 0.3125
   DestroyTime: 2.5
 --- !u!114 &4029409388226351098
@@ -1540,6 +1509,7 @@ MonoBehaviour:
   GoodsPrefab: {fileID: 1952279293685994997, guid: cb4cccd4b8f68bc48a25aac822abd0d2, type: 3}
   GoodsSprite: {fileID: -613753843, guid: f7bf72b4be9086e4c9eef46270d4a8f3, type: 3}
   EquipSoundClip: {fileID: 8300000, guid: 0e89b476d4715fd42935e9900eedb033, type: 3}
+  EquipEffect: {fileID: 1380205584940949931, guid: 07623d638bfe48c4bbf7a6dc202419de, type: 3}
   CircleSize: 0.3125
   DestroyTime: 2.5
 --- !u!1001 &6386328288435780554
