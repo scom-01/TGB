@@ -8,6 +8,9 @@ public class Mushroom_Melee_1 : Melee_Enemy_1
 {
     public override void EnemyPattern()
     {
+        if (TargetUnit == null)
+            return;
+
         //인식 범위 내 
         if ((TargetUnit.transform.position - transform.position).magnitude <= enemyData.UnitAttackDistance)
         {
