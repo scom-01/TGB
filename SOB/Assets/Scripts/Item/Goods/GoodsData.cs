@@ -11,6 +11,7 @@ public class GoodsData : MonoBehaviour
     public GOODS_TPYE Goods;
     public int Amount;
     public AudioClip EquipSoundClip;
+    public GameObject EquipEffect;
     public float InvokeTime
     {
         set
@@ -75,6 +76,8 @@ public class GoodsData : MonoBehaviour
         {
             if (EquipSoundClip != null)
                 GameManager.Inst.StageManager.player.Core.CoreSoundEffect.AudioSpawn(EquipSoundClip);
+            if (EquipEffect != null)
+                GameManager.Inst.StageManager.player.Core.CoreEffectManager.StartEffects(EquipEffect, this.gameObject.transform.position);
         }
 
         Destroy(this.gameObject);
