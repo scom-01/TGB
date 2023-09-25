@@ -785,6 +785,14 @@ MonoBehaviour:
   isFixed_Hit_Immunity: 0
   isFixedMovement: 0
   enemyData: {fileID: 0}
+  Test_Distance: 3.5
+  Pattern_Idx:
+  - Used: 0
+    Detected_Distance: 1
+    Boundary: 0
+  - Used: 0
+    Detected_Distance: 3.5
+    Boundary: 0
 --- !u!1 &3640253522240484911
 GameObject:
   m_ObjectHideFlags: 0
@@ -1401,7 +1409,7 @@ Animator:
   m_GameObject: {fileID: 4242634074962048764}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 8f97525fa3a35fe4491f93c91534b2b1, type: 2}
+  m_Controller: {fileID: 22100000, guid: 13c55c5b3c00a444c92f4af0115c7037, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

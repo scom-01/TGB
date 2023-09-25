@@ -45,7 +45,7 @@ MonoBehaviour:
               width: 0
               height: 0
             isFollowing: 1
-            Object: {fileID: 5314433521719334783, guid: e2789a887ca3fa24ea63d2f6e6d230f7, type: 3}
+            Object: {fileID: 5314433521719334783, guid: 88bd8df1b1e39e54592bebbab2f6014b, type: 3}
     - rid: 1770984693643870209
       type: {class: SoundClipData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -131,39 +131,21 @@ MonoBehaviour:
         actionData:
         - name: Action 1
           ProjectileActionData:
-          - Stats:
-              MaxHealth: 0
-              MovementVelocity: 0
-              JumpVelocity: 0
-              DefaultPower: 0
-              AttackSpeedPer: 0
-              PhysicsDefensivePer: 0
-              MagicDefensivePer: 0
-              PhysicsAggressivePer: 0
-              MagicAggressivePer: 0
-              CriticalPer: 0
-              AdditionalCriticalPer: 0
-              DamageAttiribute: 1
-              Elemental: 2
-              ElementalDefensivePer: 0
-              ElementalAggressivePer: 0
-            Pos: {x: 0, y: 0, z: 0}
-            Rot: {x: 1, y: 0, z: 0}
-            Radius: 0.5
-            Offset: {x: 0, y: 0}
-            GravityScale: 0
-            Speed: 20
-            isSingleShoot: 1
-            isCollisionGround: 0
-            DurationTime: 2
-            ProjectilePrefab: {fileID: 6363408910417065239, guid: a897f2220dde73a41bde2ca1c261301e, type: 3}
-            ImpactPrefab: {fileID: 8482821253585752479, guid: b2d1a7e3c779c334183600eee56341df, type: 3}
-            KnockbackAngle: {x: 1, y: 0}
-            ProjectileShootClip: {fileID: 8300000, guid: 674258a055e994b72bbb15a28eb79838, type: 3}
-            ImpactClip: {fileID: 8300000, guid: 8a44b12d3e3f24b1a89dc7f0b66756f4, type: 3}
-            isOnHit: 0
-            isShakeCam: 0
-            camDatas:
-              Duration: 0.1
-              Range: 0.01
-              RepeatRate: 0.001
+          - ProjectileData:
+              Pos: {x: 0, y: 0, z: 0}
+              Rot: {x: 0, y: 0, z: 0}
+              Speed: 0
+              DurationTime: 0
+              Radius: 0
+              Offset: {x: 0, y: 0}
+              GravityScale: 0
+              isSingleShoot: 0
+              KnockbackAngle: {x: 0, y: 0}
+              isCollisionGround: 0
+              isOnHit: 0
+              isShakeCam: 0
+              camDatas:
+                Duration: 0
+                Range: 0
+                RepeatRate: 0
+            Projectile: {fileID: 0}

@@ -49729,7 +49729,7 @@ MonoBehaviour:
   EndPoint: {fileID: 795737771}
   PlayerPrefab: {fileID: 840319699589423306, guid: 842ba7b90e3d58f4baa7c0b00def52ec, type: 3}
   player: {fileID: 0}
-  SceneNameFade: {fileID: 1714188898339614809, guid: ff0e618899c094e4db31e32280d58b18, type: 3}
+  SceneNameFade: {fileID: 1714188898339614809, guid: 2521cea28fa98a74ab099a73a3fd1d6f, type: 3}
   CutSceneDirector: {fileID: 0}
   isStageClear: 0
   CVC: {fileID: 0}
@@ -52425,6 +52425,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4300576158377282444, guid: 4eb5db616318c4d4597aecea8ea4a72c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4300576158377282444, guid: 4eb5db616318c4d4597aecea8ea4a72c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4300576158377282444, guid: 4eb5db616318c4d4597aecea8ea4a72c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4300576158377282444, guid: 4eb5db616318c4d4597aecea8ea4a72c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4855517120458689437, guid: 4eb5db616318c4d4597aecea8ea4a72c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -52613,17 +52629,5 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1615966483}
-    - target: {fileID: 0}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 5f2fefd0f91b6a246a6eb63d3d655ce5, type: 3}
-    - target: {fileID: 0}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4eb5db616318c4d4597aecea8ea4a72c, type: 3}
