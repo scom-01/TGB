@@ -7,6 +7,7 @@ public enum InputEnum
     GamePlay,
     UI,
     Cfg,
+    CutScene,
 }
 
 [Serializable]

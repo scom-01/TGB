@@ -213,7 +213,9 @@ public class GameManager : MonoBehaviour
                 break;
             case InputEnum.Cfg:
                 ChangeUI(UI_State.Cfg, Init);
-                
+                break;
+            case InputEnum.CutScene:
+                ChangeUI(UI_State.CutScene, Init);
                 break;
         }
         isPause = true;

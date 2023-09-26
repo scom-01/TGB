@@ -104,6 +104,11 @@ namespace SOB.Manager
             Debug.Log("Stage Clear!!!");
             StageManager.isStageClear = true;
             StageManager.OpenGate(StageManager.isStageClear);
+
+            if (StageManager.CutSceneDirector != null)
+            {
+                Instantiate(StageManager.CutSceneDirector);
+            }
         }
 
         public bool SpawnItem(GameObject SpawnPrefab, Vector3 pos, Transform transform, StatsItemSO itemData)

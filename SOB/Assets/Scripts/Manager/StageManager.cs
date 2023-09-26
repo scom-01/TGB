@@ -92,7 +92,7 @@ public class StageManager : MonoBehaviour
 
     [SerializeField] private GameObject SceneNameFade;
 
-    public PlayableDirector CutSceneDirector;
+    public GameObject CutSceneDirector;
 
     [HideInInspector] public bool isStageClear = false;
     [HideInInspector] public CinemachineVirtualCamera CVC;
