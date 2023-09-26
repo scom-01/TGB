@@ -76,7 +76,7 @@ namespace SOB.Weapons.Components
                             Debug.Log("Enemy Type Small, Normal Dam = " +
                                 CoreUnitStats.DefaultPower + currDamage[hitBox.currentHitBoxIndex]
                                 + " Enemy_Size_WeakPer Additional Dam = " +
-                                (CoreUnitStats.DefaultPower + currDamage[hitBox.currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
+                                (CoreUnitStats.DefaultPower + currDamage[hitBox.currentHitBoxIndex].AdditionalDamage) * (1.0f + GlobalValue.Enemy_Size_WeakPer));
                             break;
                         case ENEMY_Size.Medium:
                             damageable.Damage
