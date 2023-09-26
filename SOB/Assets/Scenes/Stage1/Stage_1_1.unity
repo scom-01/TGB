@@ -59881,7 +59881,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IM: {fileID: 1594972038}
   SPM: {fileID: 387809413}
-  MasterManagerList: []
+  MasterManagerList:
+  - {fileID: 1257247272}
   isGotoNext: 1
   StageLevel: 1
   m_NextStageNumber: 0
@@ -59893,7 +59894,7 @@ MonoBehaviour:
   PlayerPrefab: {fileID: 840319699589423306, guid: 842ba7b90e3d58f4baa7c0b00def52ec, type: 3}
   player: {fileID: 0}
   SceneNameFade: {fileID: 1714188898339614809, guid: f4cdb854681dced4e91b5e7cc74f56b8, type: 3}
-  CutSceneDirector: {fileID: 471482491}
+  CutSceneDirector: {fileID: 0}
   isStageClear: 0
   CVC: {fileID: 0}
 --- !u!4 &1143652533
@@ -60308,7 +60309,7 @@ Camera:
   m_Depth: 2
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1485250487
+    m_Bits: 1485258679
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

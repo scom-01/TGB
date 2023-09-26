@@ -48918,7 +48918,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IM: {fileID: 1594972038}
   SPM: {fileID: 387809413}
-  MasterManagerList: []
+  MasterManagerList:
+  - {fileID: 1257247272}
   isGotoNext: 1
   StageLevel: 1
   m_NextStageNumber: 8
@@ -48930,7 +48931,7 @@ MonoBehaviour:
   PlayerPrefab: {fileID: 840319699589423306, guid: 842ba7b90e3d58f4baa7c0b00def52ec, type: 3}
   player: {fileID: 0}
   SceneNameFade: {fileID: 0}
-  CutSceneDirector: {fileID: 471482491}
+  CutSceneDirector: {fileID: 0}
   isStageClear: 0
   CVC: {fileID: 0}
 --- !u!4 &1143652533
@@ -49345,7 +49346,7 @@ Camera:
   m_Depth: 2
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1485250487
+    m_Bits: 1485258679
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -55313,7 +55314,7 @@ Tilemap:
       - {fileID: -1542176093, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: 1032908904, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: -746585069, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15
+      m_AnimationSpeed: 15.000001
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 149, y: 17, z: 0}
@@ -55327,7 +55328,7 @@ Tilemap:
       - {fileID: -1881503559, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: -1404866482, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: -81816391, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15.000001
+      m_AnimationSpeed: 15
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 148, y: 18, z: 0}
@@ -55523,7 +55524,7 @@ Tilemap:
       - {fileID: -1307918836, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: -184935631, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: 1404723520, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15.000001
+      m_AnimationSpeed: 15
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 148, y: 25, z: 0}
@@ -55537,7 +55538,7 @@ Tilemap:
       - {fileID: -1764541156, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: -1805019761, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: 683491791, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15
+      m_AnimationSpeed: 15.000001
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 149, y: 25, z: 0}
@@ -55551,7 +55552,7 @@ Tilemap:
       - {fileID: -434558179, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: 645913966, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: 335927796, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15
+      m_AnimationSpeed: 15.000001
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 148, y: 26, z: 0}
@@ -55649,7 +55650,7 @@ Tilemap:
       - {fileID: -825848517, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: 994713661, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: 962365732, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15
+      m_AnimationSpeed: 15.000001
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 149, y: 29, z: 0}
@@ -55887,7 +55888,7 @@ Tilemap:
       - {fileID: -1839117802, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: -1333801810, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: -445940520, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15.000001
+      m_AnimationSpeed: 15
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 148, y: 38, z: 0}
@@ -55999,7 +56000,7 @@ Tilemap:
       - {fileID: 1067532178, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: 1922972716, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: -1157763925, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15
+      m_AnimationSpeed: 15.000001
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 148, y: 42, z: 0}

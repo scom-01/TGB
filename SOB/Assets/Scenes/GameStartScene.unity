@@ -2456,6 +2456,22 @@ MonoBehaviour:
         m_CallState: 1
     m_ActionId: 8c182f52-4e1b-44ea-a69f-d8a4f950b3c8
     m_ActionName: Cfg/Skip[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 109329983}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnInteractionInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+    m_ActionId: 3dff42eb-8ca5-4517-acb4-d657f8e7ea1e
+    m_ActionName: CutScene/Interaction[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Cfg
@@ -7017,7 +7033,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LocalStringEvent: {fileID: 0}
-  Type: 7
+  Type: 12
   Img: {fileID: 0}
   StatsPowerTxt: {fileID: 1215638201}
 --- !u!1 &364036428
@@ -15252,7 +15268,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 866249035}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.7644152
   m_NumberOfSteps: 3
   m_OnValueChanged:
     m_PersistentCalls:
@@ -27328,7 +27344,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: 0}
+  m_AnchoredPosition: {x: 7, y: 368032.75}
   m_SizeDelta: {x: 21.1497, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1368125264
@@ -27454,8 +27470,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 21968101}
   m_HandleRect: {fileID: 1712788832}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0
   m_NumberOfSteps: 3
   m_OnValueChanged:
     m_PersistentCalls:
@@ -33112,7 +33128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LocalStringEvent: {fileID: 0}
-  Type: 8
+  Type: 10
   Img: {fileID: 0}
   StatsPowerTxt: {fileID: 1424726816}
 --- !u!114 &1643641638
@@ -39734,7 +39750,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LocalStringEvent: {fileID: 0}
-  Type: 9
+  Type: 11
   Img: {fileID: 0}
   StatsPowerTxt: {fileID: 1066050756}
 --- !u!114 &1945367960
@@ -43815,7 +43831,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: 0}
+  m_AnchoredPosition: {x: 7, y: -95645.73}
   m_SizeDelta: {x: 21.1497, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2125587133
@@ -51516,6 +51532,7 @@ MonoBehaviour:
   m_Actions:
   - {fileID: 6978892987364155691, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
   - {fileID: 2499290777318898020, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
+  - {fileID: -6464969289359993046, guid: f7b5d21d56ec90441a08bc4d27951e5a, type: 3}
   CurrentKeyBtnNameTxt: {fileID: 3450347899838261371}
   CurrentKeyBtnNameTxt_3D: {fileID: 0}
   keyName: Interaction
