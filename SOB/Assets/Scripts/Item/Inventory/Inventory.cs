@@ -399,6 +399,6 @@ public class Inventory : MonoBehaviour
     /// <param name="statsData"></param>
     private void AddStat(StatsData statsData)
     {
-        Unit.Core.CoreUnitStats.CalculStatsData += statsData;
+        Unit.Core.CoreUnitStats.m_statsData += statsData;
     }
 }   
