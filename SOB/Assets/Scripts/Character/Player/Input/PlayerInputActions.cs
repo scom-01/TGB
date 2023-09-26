@@ -410,6 +410,34 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""CutScene"",
+            ""id"": ""b686a676-a57a-4b89-ae48-7a7d21d6e6ec"",
+            ""actions"": [
+                {
+                    ""name"": ""Interaction"",
+                    ""type"": ""Button"",
+                    ""id"": ""3dff42eb-8ca5-4517-acb4-d657f8e7ea1e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""7bb546c5-3566-455d-a612-4e52d8561df0"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Interaction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -453,6 +481,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Cfg = asset.FindActionMap("Cfg", throwIfNotFound: true);
         m_Cfg_ESC = m_Cfg.FindAction("ESC", throwIfNotFound: true);
         m_Cfg_Skip = m_Cfg.FindAction("Skip", throwIfNotFound: true);
+        // CutScene
+        m_CutScene = asset.FindActionMap("CutScene", throwIfNotFound: true);
+        m_CutScene_Interaction = m_CutScene.FindAction("Interaction", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -752,6 +783,52 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         }
     }
     public CfgActions @Cfg => new CfgActions(this);
+
+    // CutScene
+    private readonly InputActionMap m_CutScene;
+    private List<ICutSceneActions> m_CutSceneActionsCallbackInterfaces = new List<ICutSceneActions>();
+    private readonly InputAction m_CutScene_Interaction;
+    public struct CutSceneActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public CutSceneActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Interaction => m_Wrapper.m_CutScene_Interaction;
+        public InputActionMap Get() { return m_Wrapper.m_CutScene; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CutSceneActions set) { return set.Get(); }
+        public void AddCallbacks(ICutSceneActions instance)
+        {
+            if (instance == null || m_Wrapper.m_CutSceneActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_CutSceneActionsCallbackInterfaces.Add(instance);
+            @Interaction.started += instance.OnInteraction;
+            @Interaction.performed += instance.OnInteraction;
+            @Interaction.canceled += instance.OnInteraction;
+        }
+
+        private void UnregisterCallbacks(ICutSceneActions instance)
+        {
+            @Interaction.started -= instance.OnInteraction;
+            @Interaction.performed -= instance.OnInteraction;
+            @Interaction.canceled -= instance.OnInteraction;
+        }
+
+        public void RemoveCallbacks(ICutSceneActions instance)
+        {
+            if (m_Wrapper.m_CutSceneActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ICutSceneActions instance)
+        {
+            foreach (var item in m_Wrapper.m_CutSceneActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_CutSceneActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public CutSceneActions @CutScene => new CutSceneActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -785,5 +862,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     {
         void OnESC(InputAction.CallbackContext context);
         void OnSkip(InputAction.CallbackContext context);
+    }
+    public interface ICutSceneActions
+    {
+        void OnInteraction(InputAction.CallbackContext context);
     }
 }
