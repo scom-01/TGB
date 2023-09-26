@@ -114,8 +114,8 @@ public class KeySetting : MonoBehaviour
                 m_PlayerInputHandler.SwitchActionMap(m_Actions[i].action.actionMap.name);
                 m_Actions[i].action.ChangeBinding(0).WithPath($"<{m_Action.action.controls[m_BindingIndex].parent.name}>/{m_Action.action.controls[m_BindingIndex].name}");
             }
+            GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.Cfg, false);
         })
-        .Start();        
-        m_PlayerInputHandler.SwitchActionMap(InputEnum.Cfg.ToString());
+        .Start();
     }
 }
