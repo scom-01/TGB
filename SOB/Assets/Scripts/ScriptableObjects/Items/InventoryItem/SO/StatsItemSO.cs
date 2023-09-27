@@ -7,16 +7,59 @@ using Unity.VisualScripting;
 using UnityEngine.Localization;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
+using UnityEngine.Localization.Settings;
+using UnityEngine.Localization.Components;
+
+[Serializable]
+public struct StatsData_item
+{
+    public Stats_TYPE type;
+    public LocalizedString StatsLocalizeString;
+    public float variable;
+    public float value;
+}
 
 [CreateAssetMenu(fileName = "newItemData", menuName = "Data/Item Data/Stats Data")]
 public class StatsItemSO : ItemDataSO
 {
+    [Header("--StatsData--")]
     [Tooltip("아이템이 갖는 스탯")]
     public StatsData StatsData;
+
+    public List<StatsData_item> StatsItems;
+    
+    /// <summary>
+    /// 아이템의 스탯 설명
+    /// </summary>
+    public string StatsData_Descripts
+    {
+        get
+        {
+            string temp = "";
+            for (int i = 0; i < StatsItems.Count; i++)
+            {
+                temp += (LocalizationSettings.StringDatabase.GetTableEntry("Stats_Table", (StatsItems[i].StatsLocalizeString.TableEntryReference.KeyId == 0) ?
+                    StatsItems[i].type.ToString() :
+                    StatsItems[i].StatsLocalizeString.TableEntryReference).Entry.Value);
+                if (temp.Contains("{variable}"))
+                {
+                    temp.Replace("{variable}", StatsItems[i].variable.ToString());
+                    temp += " : " + StatsItems[i].value;
+                }   
+                else
+                {
+                    temp += " +" + StatsItems[i].value + "%" + "\n";
+                }   
+            }
+            return temp;
+        }
+    }
     [Tooltip("최대체력이 아닌 현재 체력 증가값")]
     public int Health;
-    public EffectData effectData;
 
+    [Header("--Effects--")]
+    public EffectData effectData;
     [field: SerializeField] public List<ItemEffectSO> ItemEffects = new List<ItemEffectSO>();
     private List<ItemEffectSO> clone = new List<ItemEffectSO>();
 

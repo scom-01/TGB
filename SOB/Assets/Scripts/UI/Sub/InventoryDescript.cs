@@ -10,6 +10,7 @@ public class InventoryDescript : MonoBehaviour
 {
     [SerializeField] private LocalizeStringEvent ItemNameStringEvent;
     [SerializeField] private LocalizeStringEvent ItemDescriptStringEvent;
+    [SerializeField] private TextMeshProUGUI ItemStatsTMP;
     public GameObject DropButton;
     public GameObject DropKeyButton;
 
@@ -32,6 +33,18 @@ public class InventoryDescript : MonoBehaviour
             {
                 ItemDescriptStringEvent.StringReference.SetReference("Item_Table", item.StatsItemData.itemData.ItemDescriptionLocal.TableEntryReference);
             }
+
+            if (ItemStatsTMP != null)
+            {
+                if(item.StatsItemData.StatsItems.Count > 0)
+                {
+                    ItemStatsTMP.text = item.StatsItemData.StatsData_Descripts;
+                }
+                else
+                {
+                    ItemStatsTMP.text = "";
+                }
+            }
             
             if (DropButton != null)
                 DropButton.SetActive(true);
@@ -46,6 +59,10 @@ public class InventoryDescript : MonoBehaviour
         if (ItemDescriptStringEvent != null)
         {
             ItemDescriptStringEvent.StringReference.SetReference("Item_Table", "Empty");
+        }
+        if (ItemStatsTMP != null)
+        {
+            ItemStatsTMP.text = "";
         }
         if (DropButton != null)
             DropButton.SetActive(false);

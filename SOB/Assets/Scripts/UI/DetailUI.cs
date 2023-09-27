@@ -32,9 +32,10 @@ public class DetailUI : MonoBehaviour
     [SerializeField]
     private GameObject subUI;
     [SerializeField] private LocalizeStringEvent SubStringEvent;
+    [SerializeField] private TextMeshProUGUI StatsDescript;
     [Tooltip("하위 컴포넌트 중 'SubText' Text String")]
 
-    public void SetInit(LocalizedString _ItemNameLocal, LocalizedString _ItemDescriptLocal, Sprite _sprite)
+    public void SetInit(LocalizedString _ItemNameLocal, LocalizedString _ItemDescriptLocal, Sprite _sprite, string _StatsDescripts)
     {
         if (_ItemNameLocal != null) 
         {
@@ -44,6 +45,12 @@ public class DetailUI : MonoBehaviour
         if (SubStringEvent != null)
         {
             SubStringEvent.StringReference.SetReference("Item_Table", _ItemDescriptLocal.TableEntryReference);
+        }
+
+        if (StatsDescript != null)
+        {
+            StatsDescript.text = "";
+            StatsDescript.text = _StatsDescripts;
         }
 
         if (Icon!=null)

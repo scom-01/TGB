@@ -183,6 +183,9 @@ namespace SOB.Manager
             OnInteractionInput += ChangeItem;
         }
 
+        /// <summary>
+        /// 선택된 아이템(CurrentSelectItem) 드랍
+        /// </summary>
         public void PutItem()
         {
             if (this.InventoryItems.CurrentSelectItem == null)
@@ -198,6 +201,10 @@ namespace SOB.Manager
             inputHandler.UseInput(ref inputHandler.InteractionInput);
         }
 
+        /// <summary>
+        /// 아이템 변경
+        /// 선택된 아이템(CurrentSelectItem)을 바닥에 드랍하고 변경할 아이템(CheckItem)을 장착한다.
+        /// </summary>
         public void ChangeItem()
         {
             if (this.InventoryItems.CurrentSelectItem == null)

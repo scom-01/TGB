@@ -155,6 +155,12 @@ public enum ENEMY_Level
     BossEnemy = 2,
 }
 
+public enum ENEMY_DetectedType
+{
+    Box = 0,
+    Circle = 1,
+}
+
 #endregion
 
 #region CC

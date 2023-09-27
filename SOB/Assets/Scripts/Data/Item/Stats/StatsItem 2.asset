@@ -36,9 +36,12 @@ MonoBehaviour:
     ItemLevel: 1
   StatsData:
     MaxHealth: 0
+    DefaultPower: 0
+    DefaultMoveSpeed: 0
+    DefaultJumpVelocity: 0
+    DefaultAttSpeed: 0
     MovementVelocity: 0
     JumpVelocity: 0
-    DefaultPower: 0
     AttackSpeedPer: 0
     PhysicsDefensivePer: 0
     MagicDefensivePer: 0
@@ -50,6 +53,7 @@ MonoBehaviour:
     Elemental: 0
     ElementalDefensivePer: 0
     ElementalAggressivePer: 0
+  StatsItems: []
   Health: 0
   effectData:
     <AcquiredEffectPrefab>k__BackingField: {fileID: 1380205584940949931, guid: 07623d638bfe48c4bbf7a6dc202419de, type: 3}

@@ -71,7 +71,7 @@ namespace SOB.Item
             }
 
             GameManager.Inst.SubUI.isRight(isright);
-            GameManager.Inst.SubUI.DetailSubUI.SetInit(Item.itemData.ItemNameLocal, Item.itemData.ItemDescriptionLocal, Item.itemData.ItemSprite);
+            GameManager.Inst.SubUI.DetailSubUI.SetInit(Item.itemData.ItemNameLocal, Item.itemData.ItemDescriptionLocal, Item.itemData.ItemSprite, Item.StatsData_Descripts);
 
             if (GameManager.Inst.SubUI.DetailSubUI.Canvas.enabled)
             {
