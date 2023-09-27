@@ -22,6 +22,8 @@ public class Pattern_Data
     [Min(0f)]
     [Tooltip("Of이면 패턴의 경계를 나누지 않음")]
     public float Boundary;
+
+    public ENEMY_DetectedType DetectedType;
 }
 
 public class Enemy : Unit
