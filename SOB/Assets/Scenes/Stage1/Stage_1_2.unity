@@ -48926,12 +48926,12 @@ MonoBehaviour:
   Start_UIState: 0
   Cam: {fileID: 0}
   effectContainerTagName: EffectContainer
-  respawnPoint: {fileID: 1917196998}
+  SpawnPoint: {fileID: 1917196998}
   EndPoint: {fileID: 489737334}
   PlayerPrefab: {fileID: 840319699589423306, guid: 842ba7b90e3d58f4baa7c0b00def52ec, type: 3}
   player: {fileID: 0}
   SceneNameFade: {fileID: 0}
-  CutSceneDirector: {fileID: 0}
+  EndingCutSceneDirector: {fileID: 0}
   isStageClear: 0
   CVC: {fileID: 0}
 --- !u!4 &1143652533
@@ -55314,7 +55314,7 @@ Tilemap:
       - {fileID: -1542176093, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: 1032908904, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: -746585069, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15.000001
+      m_AnimationSpeed: 15
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 149, y: 17, z: 0}
@@ -55440,7 +55440,7 @@ Tilemap:
       - {fileID: 1067532178, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: 1922972716, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: -1157763925, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15
+      m_AnimationSpeed: 15.000001
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 148, y: 22, z: 0}
@@ -55538,7 +55538,7 @@ Tilemap:
       - {fileID: -1764541156, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: -1805019761, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: 683491791, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15.000001
+      m_AnimationSpeed: 15
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 149, y: 25, z: 0}
@@ -55552,7 +55552,7 @@ Tilemap:
       - {fileID: -434558179, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: 645913966, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: 335927796, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15.000001
+      m_AnimationSpeed: 15
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 148, y: 26, z: 0}
@@ -55692,7 +55692,7 @@ Tilemap:
       - {fileID: 1396469913, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: 1235773790, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: 1451730261, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15
+      m_AnimationSpeed: 15.000001
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 148, y: 31, z: 0}
@@ -56000,7 +56000,7 @@ Tilemap:
       - {fileID: 1067532178, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: 1922972716, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: -1157763925, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15.000001
+      m_AnimationSpeed: 15
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 148, y: 42, z: 0}
