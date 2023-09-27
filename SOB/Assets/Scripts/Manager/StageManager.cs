@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class StageManager : MonoBehaviour
 {
-    [Header("----Manager----")]
+    [Header("----Manager----")]    
     public ItemManager IM;
     public SpawnManager SPM;
 
@@ -81,18 +81,31 @@ public class StageManager : MonoBehaviour
     private Transform effectContainerTransform;
 
     [Header("----Player----")]
-    [SerializeField]
-    public Transform respawnPoint;
-    [SerializeField]
-    public Transform EndPoint;
-    [SerializeField]
-    public GameObject PlayerPrefab;
-    private GameObject playerGO;
-    public Player player;
 
+    /// <summary>
+    /// Player SpawnPoint
+    /// </summary>
+    public Transform SpawnPoint;    
+    /// <summary>
+    /// 
+    /// </summary>
+    public Transform EndPoint;
+    /// <summary>    
+    /// </summary>
+    public GameObject PlayerPrefab;
+
+    private GameObject playerGO;
+    [HideInInspector] public Player player;
+
+    /// <summary>
+    /// Stage 시작 시 Stage이름 Fade
+    /// </summary>
     [SerializeField] private GameObject SceneNameFade;
 
-    public GameObject CutSceneDirector;
+    /// <summary>
+    /// Stage 클리어 시 생성
+    /// </summary>
+    public GameObject EndingCutSceneDirector;
 
     [HideInInspector] public bool isStageClear = false;
     [HideInInspector] public CinemachineVirtualCamera CVC;
@@ -104,7 +117,7 @@ public class StageManager : MonoBehaviour
         {
             GameManager.Inst.StageManager = this;
         }
-        playerGO = Instantiate(PlayerPrefab, respawnPoint);
+        playerGO = Instantiate(PlayerPrefab, SpawnPoint);
         player = playerGO.GetComponent<Player>();
 
         var FadeIn = Resources.Load<GameObject>(GlobalValue.FadeInCutScene);
@@ -157,8 +170,8 @@ public class StageManager : MonoBehaviour
                 SPM = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         }
 
-        if (respawnPoint == null)
-            respawnPoint = GameObject.Find("SpawnPoint").GetComponent<Transform>();
+        if (SpawnPoint == null)
+            SpawnPoint = GameObject.Find("SpawnPoint").GetComponent<Transform>();
         GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, false);
         GameManager.Inst.ChangeUI(Start_UIState);
         //Loading시 ESC를 눌러서 Pause가 됐을 때 생기는 오류 방지
@@ -176,9 +189,17 @@ public class StageManager : MonoBehaviour
         if (!isClear)
             return;
         DataManager.Inst?.NextStage(NextStageNumber);
+        
         //End 애니메이션
-        EndPoint.GetComponentInChildren<Animator>()?.SetBool("Action", true);
-        EndPoint.GetComponent<BoxCollider2D>().enabled = true;
+        if (EndPoint.GetComponentInChildren<Animator>() != null)
+        {
+            if (GlobalValue.ContainParam(EndPoint.GetComponentInChildren<Animator>(), "Action"))
+            {
+                EndPoint.GetComponentInChildren<Animator>()?.SetBool("Action", true);            
+            }
+        }
+        if (EndPoint.GetComponent<BoxCollider2D>() != null)
+            EndPoint.GetComponent<BoxCollider2D>().enabled = true;
     }
 
 
