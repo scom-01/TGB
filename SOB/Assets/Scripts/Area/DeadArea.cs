@@ -12,7 +12,7 @@ public class DeadArea : TouchObject
         unit.Core?.CoreMovement.SetVelocityZero();
 
         //지정된 리스폰 위치로 이동
-        if (GameManager.Inst?.StageManager?.respawnPoint != null)
+        if (GameManager.Inst?.StageManager?.SpawnPoint != null)
             unit.gameObject.transform.position = unit.RespawnPoint.position;
 
         var amount = unit.Core.CoreUnitStats.DecreaseHealth(E_Power.Normal, DAMAGE_ATT.Fixed, 10);

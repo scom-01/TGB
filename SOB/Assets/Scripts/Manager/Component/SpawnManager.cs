@@ -105,9 +105,9 @@ namespace SOB.Manager
             StageManager.isStageClear = true;
             StageManager.OpenGate(StageManager.isStageClear);
 
-            if (StageManager.CutSceneDirector != null)
+            if (StageManager.EndingCutSceneDirector != null)
             {
-                Instantiate(StageManager.CutSceneDirector);
+                Instantiate(StageManager.EndingCutSceneDirector);
             }
         }
 

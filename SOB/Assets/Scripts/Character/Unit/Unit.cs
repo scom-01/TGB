@@ -149,7 +149,7 @@ public class Unit : MonoBehaviour
 
     protected virtual void Start()
     {
-        RespawnPoint = GameManager.Inst.StageManager.respawnPoint.transform;
+        RespawnPoint = GameManager.Inst.StageManager.SpawnPoint.transform;
     }
 
     // Update is called once per frame
