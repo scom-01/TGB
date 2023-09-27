@@ -28,43 +28,47 @@ public class Water_Melee_Enemy_2 : Melee_Enemy_1
                     Pattern_Idx[i].Used = true;
                     continue;
                 }
-                //일직선 상
-                if ((Core.CoreCollisionSenses as EnemyCollisionSenses).isUnitInFrontDetectedArea || (Core.CoreCollisionSenses as EnemyCollisionSenses).isUnitInBackDetectedArea)
+                switch (Pattern_Idx[i].DetectedType)
                 {
-                    if (Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList.Count > i)
-                    {
-                        if ((TargetUnit.transform.position - transform.position).magnitude > Pattern_Idx[i].Detected_Distance)
-                            continue;
+                    case ENEMY_DetectedType.Box:
+                        //일직선 상
+                        if ((Core.CoreCollisionSenses as EnemyCollisionSenses).isUnitInFrontDetectedArea || (Core.CoreCollisionSenses as EnemyCollisionSenses).isUnitInBackDetectedArea)
+                        {
+                            if (Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList.Count > i)
+                            {
+                                if ((TargetUnit.transform.position - transform.position).magnitude > Pattern_Idx[i].Detected_Distance)
+                                    continue;
 
-                        if (Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[i].commands[0] == null)
-                            break;
-                        AttackState.SetWeapon(Inventory.Weapon);
-                        RunState.FlipToTarget();
-                        Inventory.Weapon.weaponGenerator.GenerateWeapon(Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[i].commands[0]);
-                        FSM.ChangeState(AttackState);
-                        return;
-                    }
+                                if (Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[i].commands[0] == null)
+                                    break;
+                                AttackState.SetWeapon(Inventory.Weapon);
+                                RunState.FlipToTarget();
+                                Inventory.Weapon.weaponGenerator.GenerateWeapon(Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[i].commands[0]);
+                                FSM.ChangeState(AttackState);
+                                return;
+                            }
+                        }
+                        break;
+                    case ENEMY_DetectedType.Circle:
+                        if ((Core.CoreCollisionSenses as EnemyCollisionSenses).isUnitDetectedCircle)
+                        {
+                            if (Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList.Count > i)
+                            {
+                                if ((TargetUnit.transform.position - transform.position).magnitude > Pattern_Idx[i].Detected_Distance)
+                                    continue;
+
+                                if (Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[i].commands[0] == null)
+                                    break;
+                                AttackState.SetWeapon(Inventory.Weapon);
+                                RunState.FlipToTarget();
+                                Inventory.Weapon.weaponGenerator.GenerateWeapon(Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[i].commands[0]);
+                                FSM.ChangeState(AttackState);
+                                return;
+                            }
+                        }
+                        break;
                 }
-                break;
             }
-            ////일직선 상
-            //if ((Core.CoreCollisionSenses as EnemyCollisionSenses).isUnitInFrontDetectedArea || (Core.CoreCollisionSenses as EnemyCollisionSenses).isUnitInBackDetectedArea)
-            //{
-            //    AttackState.SetWeapon(Inventory.Weapon);
-            //    //근거리
-            //    if ((TargetUnit.transform.position - transform.position).magnitude <= 1.5)
-            //    {
-            //        RunState.FlipToTarget();
-            //        Inventory.Weapon.weaponGenerator.GenerateWeapon(Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[0].commands[0]);
-            //        FSM.ChangeState(AttackState);
-            //        return;
-            //    }
-            //    //중거리 돌진 공격
-            //    RunState.FlipToTarget();
-            //    Inventory.Weapon.weaponGenerator.GenerateWeapon(Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[1].commands[0]);
-            //    FSM.ChangeState(AttackState);
-            //    return;
-            //}
         }
         RunState.FlipToTarget();
         FSM.ChangeState(RunState);

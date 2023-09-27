@@ -45,9 +45,9 @@ public abstract class EnemyIdleState : EnemyState
     {
         base.LogicUpdate();
 
-        if(EnemyCollisionSenses.isUnitInFrontDetectedArea || EnemyCollisionSenses.isUnitInBackDetectedArea)
+        if(EnemyCollisionSenses.isUnitDetectedCircle)// EnemyCollisionSenses.isUnitInFrontDetectedArea || EnemyCollisionSenses.isUnitInBackDetectedArea)
         {
-            enemy.SetTarget(EnemyCollisionSenses.UnitFrontDetectArea?.GetComponent<Unit>());
+            enemy.SetTarget(EnemyCollisionSenses.UnitDetectedCircle?.GetComponent<Unit>());
         }
         
     

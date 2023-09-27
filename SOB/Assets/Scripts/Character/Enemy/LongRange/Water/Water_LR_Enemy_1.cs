@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Water_Melee_Enemy_1 : Melee_Enemy_1
+public class Water_LR_Enemy_1 : LR_Enemy_1
 {
     public override void EnemyPattern()
     {
@@ -27,6 +27,7 @@ public class Water_Melee_Enemy_1 : Melee_Enemy_1
                     Pattern_Idx[i].Used = true;
                     continue;
                 }
+
                 switch (Pattern_Idx[i].DetectedType)
                 {
                     case ENEMY_DetectedType.Box:
@@ -66,7 +67,7 @@ public class Water_Melee_Enemy_1 : Melee_Enemy_1
                             }
                         }
                         break;
-                }
+                }                
             }
         }
         RunState.FlipToTarget();

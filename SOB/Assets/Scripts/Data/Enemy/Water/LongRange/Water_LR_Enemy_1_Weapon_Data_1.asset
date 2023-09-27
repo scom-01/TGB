@@ -34,20 +34,7 @@ MonoBehaviour:
         name: ActionHitBoxData
         actionData:
         - name: 
-          ActionHit:
-          - Debug: 1
-            ActionRect:
-              serializedVersion: 2
-              x: -1
-              y: 0
-              width: 2
-              height: 2.5
-            RepeatAction: 1
-            AdditionalDamage: 0
-            KnockbackAngle: {x: 1, y: 1}
-            EffectPrefab: []
-            audioClip: []
-            camDatas: []
+          ActionHit: []
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
           m_Bits: 2048
@@ -100,7 +87,25 @@ MonoBehaviour:
         name: WeaponProjectileData
         actionData:
         - name: Action 1
-          ProjectileActionData: []
+          ProjectileActionData:
+          - ProjectileData:
+              Pos: {x: 1, y: 0, z: 0}
+              Rot: {x: 0, y: 0, z: 0}
+              Speed: 10
+              DurationTime: 4
+              Radius: 0.5
+              Offset: {x: 0, y: 0}
+              GravityScale: 0
+              isSingleShoot: 1
+              KnockbackAngle: {x: 0, y: 0}
+              isCollisionGround: 1
+              isOnHit: 0
+              isShakeCam: 0
+              camDatas:
+                Duration: 0
+                Range: 0
+                RepeatRate: 0
+            Projectile: {fileID: 2222910967692216358, guid: ab1a26bd3910e604f961eab15b868b98, type: 3}
     - rid: 5136140284931866634
       type: {class: WeaponSpriteData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:

@@ -702,7 +702,7 @@ GameObject:
   - component: {fileID: 3640253521839122247}
   - component: {fileID: 8530842778410030304}
   - component: {fileID: 3639027602819861585}
-  - component: {fileID: 1152448141559882592}
+  - component: {fileID: 527933265053156335}
   m_Layer: 18
   m_Name: Water_LR_Enemy_1
   m_TagString: SmallEnemy
@@ -885,7 +885,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _flashColor: {r: 1, g: 1, b: 1, a: 1}
   _flashTime: 0.25
---- !u!114 &1152448141559882592
+--- !u!114 &527933265053156335
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -894,16 +894,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 3640253521839122302}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7ba5b9775eb7dd418abfbeb29908eff, type: 3}
+  m_Script: {fileID: 11500000, guid: cd20e8d00687aaa438fc2f37757ac17f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   RespawnPoint: {fileID: 0}
-  UnitData: {fileID: 11400000, guid: d0fee12abeea76641beca73ff9289dd7, type: 2}
+  UnitData: {fileID: 11400000, guid: 2410b7866e725e84297f57155f51b018, type: 2}
   IsAlive: 1
   isFixed_CC_Immunity: 0
   isFixed_Hit_Immunity: 0
   isFixedMovement: 0
   enemyData: {fileID: 0}
+  Test_Distance: 0
+  Pattern_Idx:
+  - Used: 0
+    Detected_Distance: 6
+    Boundary: 0
+    DetectedType: 0
+  - Used: 0
+    Detected_Distance: 12.5
+    Boundary: 0
+    DetectedType: 1
 --- !u!1 &3640253522240484911
 GameObject:
   m_ObjectHideFlags: 0
@@ -1186,7 +1196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c9855e77531ec458ce701591569b49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statsData:
+  Default_statsData:
     MaxHealth: 0
     DefaultPower: 0
     DefaultMoveSpeed: 0
@@ -1224,15 +1234,15 @@ MonoBehaviour:
     Elemental: 0
     ElementalDefensivePer: 0
     ElementalAggressivePer: 0
-  invincibleTime: 0
-  TouchinvincibleTime: 0
-  currentHealth: 0
   BlessStats:
     Bless_Agg_Lv: 0
     Bless_Def_Lv: 0
     Bless_Speed_Lv: 0
     Bless_Critical_Lv: 0
     Bless_Elemental_Lv: 0
+  invincibleTime: 0
+  TouchinvincibleTime: 0
+  currentHealth: 0
 --- !u!1 &3640253523265248516
 GameObject:
   m_ObjectHideFlags: 0
