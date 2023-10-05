@@ -50,7 +50,8 @@ public class BlessingStats : Stats
         }
     }
     private SpriteAtlas m_SpriteAtlas;
-    [SerializeField] private Sprite m_TypeSprite
+    [SerializeField]
+    private Sprite m_TypeSprite
     {
         get
         {
@@ -74,7 +75,7 @@ public class BlessingStats : Stats
             {
                 case Blessing_Stats_TYPE.Bless_Agg:
                     stats = DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.Bless[0];
-                    break;                    
+                    break;
                 case Blessing_Stats_TYPE.Bless_Def:
                     stats = DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.Bless[1];
                     break;
@@ -95,13 +96,13 @@ public class BlessingStats : Stats
             switch (Type)
             {
                 case Blessing_Stats_TYPE.Bless_Agg:
-                    DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.Bless[0]= value;
+                    DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.Bless[0] = value;
                     break;
                 case Blessing_Stats_TYPE.Bless_Def:
-                    DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.Bless[1]= value;
+                    DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.Bless[1] = value;
                     break;
                 case Blessing_Stats_TYPE.Bless_Speed:
-                    DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.Bless[2]= value;
+                    DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.Bless[2] = value;
                     break;
                 case Blessing_Stats_TYPE.Bless_Critical:
                     DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.Bless[3] = value;

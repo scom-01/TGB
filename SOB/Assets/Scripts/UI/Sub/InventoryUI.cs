@@ -77,10 +77,22 @@ namespace SOB.Manager
             }
             set => inventoryDescript = value;
         }
+        public EquipWeapon EquipWeapon
+        {
+            get
+            {
+                if (equipWeapon == null)
+                {
+                    equipWeapon = this.GetComponentInChildren<EquipWeapon>();
+                }
+                return equipWeapon;
+            }
+            set => equipWeapon = value;
+        }
 
         private InventoryItems inventoryItems;
         private InventoryDescript inventoryDescript;
-
+        private EquipWeapon equipWeapon;
 
         public event Action OnInteractionInput;
         private InventoryUI_State State = InventoryUI_State.Put;
