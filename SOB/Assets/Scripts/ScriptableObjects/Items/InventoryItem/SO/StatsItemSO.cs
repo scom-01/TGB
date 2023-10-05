@@ -18,6 +18,7 @@ public struct StatsData_item
     public LocalizedString StatsLocalizeString;
     public float variable;
     public float value;
+    public bool ShowPercent;
 }
 
 [CreateAssetMenu(fileName = "newItemData", menuName = "Data/Item Data/Stats Data")]
@@ -41,16 +42,19 @@ public class StatsItemSO : ItemDataSO
             {
                 temp += (LocalizationSettings.StringDatabase.GetTableEntry("Stats_Table", (StatsItems[i].StatsLocalizeString.TableEntryReference.KeyId == 0) ?
                     StatsItems[i].type.ToString() :
-                    StatsItems[i].StatsLocalizeString.TableEntryReference).Entry.Value);
+                    StatsItems[i].StatsLocalizeString.TableEntryReference).Entry.Value)
+                    + ((StatsItems[i].value >= 0) ? (" +") : " ") + StatsItems[i].value;
                 if (temp.Contains("{variable}"))
                 {
                     temp.Replace("{variable}", StatsItems[i].variable.ToString());
-                    temp += " : " + StatsItems[i].value;
                 }   
-                else
+
+                if (StatsItems[i].ShowPercent)
                 {
-                    temp += " +" + StatsItems[i].value + "%" + "\n";
-                }   
+                    temp += "%";
+                }
+
+                temp += "\n";
             }
             return temp;
         }
