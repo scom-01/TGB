@@ -2,6 +2,7 @@ using Cinemachine;
 using SOB.Weapons.Components;
 using System.Collections.Generic;
 using System.Data;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace SOB.CoreSystem
@@ -15,6 +16,7 @@ namespace SOB.CoreSystem
             base.Awake();            
         }
 
+        #region Effects
         public GameObject StartEffects(GameObject effectPrefab, Vector2 pos, Quaternion rot, bool _isFollow = false)
         {
             if (effectPrefab.GetComponent<EffectController>() == null)
@@ -28,7 +30,10 @@ namespace SOB.CoreSystem
             }
             else
             {
-                return (GameManager.Inst.StageManager.EffectContainer?.CheckObject(ObjectPooling_TYPE.Effect, effectPrefab, _isFollow ? this.transform : GameManager.Inst.StageManager.EffectContainer.transform) as EffectPooling).GetObejct(pos, rot);
+                if(_isFollow)
+                    return (CheckObject(ObjectPooling_TYPE.Effect, effectPrefab) as EffectPooling).GetObejct(pos,rot);
+                else
+                    return (GameManager.Inst.StageManager.EffectContainer?.CheckObject(ObjectPooling_TYPE.Effect, effectPrefab, GameManager.Inst.StageManager.EffectContainer.transform) as EffectPooling).GetObejct(pos, rot);
             }
         }
         public GameObject StartEffects(GameObject effectPrefab, Vector2 pos, bool _isFollow = false)
@@ -50,9 +55,15 @@ namespace SOB.CoreSystem
             {
                 if (core.CoreMovement.FancingDirection > 0)
                 {
-                    return (GameManager.Inst.StageManager.EffectContainer?.CheckObject(ObjectPooling_TYPE.Effect, effectPrefab, _isFollow ? this.transform : GameManager.Inst.StageManager.EffectContainer.transform) as EffectPooling).GetObejct(pos, Quaternion.Euler(effectPrefab.transform.eulerAngles));
+                    if (_isFollow)
+                        return (CheckObject(ObjectPooling_TYPE.Effect, effectPrefab) as EffectPooling).GetObejct(pos, Quaternion.Euler(effectPrefab.transform.eulerAngles));
+                    else
+                        return (GameManager.Inst.StageManager.EffectContainer?.CheckObject(ObjectPooling_TYPE.Effect, effectPrefab, _isFollow ? this.transform : GameManager.Inst.StageManager.EffectContainer.transform) as EffectPooling).GetObejct(pos, Quaternion.Euler(effectPrefab.transform.eulerAngles));
                 }
-                return (GameManager.Inst.StageManager.EffectContainer?.CheckObject(ObjectPooling_TYPE.Effect, effectPrefab, _isFollow ? this.transform : GameManager.Inst.StageManager.EffectContainer.transform) as EffectPooling).GetObejct(pos, Quaternion.Euler(effectPrefab.transform.eulerAngles.x, effectPrefab.transform.eulerAngles.y + 180.0f, effectPrefab.transform.eulerAngles.z));
+                if (_isFollow)
+                    return (CheckObject(ObjectPooling_TYPE.Effect, effectPrefab) as EffectPooling).GetObejct(pos, Quaternion.Euler(effectPrefab.transform.eulerAngles.x, effectPrefab.transform.eulerAngles.y + 180.0f, effectPrefab.transform.eulerAngles.z));
+                else
+                    return (GameManager.Inst.StageManager.EffectContainer?.CheckObject(ObjectPooling_TYPE.Effect, effectPrefab, _isFollow ? this.transform : GameManager.Inst.StageManager.EffectContainer.transform) as EffectPooling).GetObejct(pos, Quaternion.Euler(effectPrefab.transform.eulerAngles.x, effectPrefab.transform.eulerAngles.y + 180.0f, effectPrefab.transform.eulerAngles.z));
             }
         }
         public GameObject StartEffects(GameObject effectPrefab, Vector2 pos, Vector3 euler, bool _isFollow = false)
@@ -74,9 +85,15 @@ namespace SOB.CoreSystem
             {
                 if (core.CoreMovement.FancingDirection > 0)
                 {
-                    return (GameManager.Inst.StageManager.EffectContainer?.CheckObject(ObjectPooling_TYPE.Effect, effectPrefab, _isFollow ? this.transform : GameManager.Inst.StageManager.EffectContainer.transform) as EffectPooling).GetObejct(pos, Quaternion.Euler(euler));
+                    if (_isFollow)
+                        return (CheckObject(ObjectPooling_TYPE.Effect, effectPrefab) as EffectPooling).GetObejct(pos, Quaternion.Euler(euler));
+                    else
+                        return (GameManager.Inst.StageManager.EffectContainer?.CheckObject(ObjectPooling_TYPE.Effect, effectPrefab, _isFollow ? this.transform : GameManager.Inst.StageManager.EffectContainer.transform) as EffectPooling).GetObejct(pos, Quaternion.Euler(euler));
                 }
-                return (GameManager.Inst.StageManager.EffectContainer?.CheckObject(ObjectPooling_TYPE.Effect, effectPrefab, _isFollow ? this.transform : GameManager.Inst.StageManager.EffectContainer.transform) as EffectPooling).GetObejct(pos, Quaternion.Euler(euler.x, euler.y + 180f, euler.z));
+                if (_isFollow)
+                    return (CheckObject(ObjectPooling_TYPE.Effect, effectPrefab) as EffectPooling).GetObejct(pos, Quaternion.Euler(euler.x, euler.y + 180f, euler.z));
+                else
+                    return (GameManager.Inst.StageManager.EffectContainer?.CheckObject(ObjectPooling_TYPE.Effect, effectPrefab, _isFollow ? this.transform : GameManager.Inst.StageManager.EffectContainer.transform) as EffectPooling).GetObejct(pos, Quaternion.Euler(euler.x, euler.y + 180f, euler.z));
             }
         }
 
@@ -153,6 +170,35 @@ namespace SOB.CoreSystem
         public GameObject StartProjectileCheck(Unit _unit, ProjectileActionData _projectileActionData)
         {
             return GameManager.Inst.StageManager.EffectContainer?.CheckProjectile(_projectileActionData.Projectile).GetObejct(_unit, _projectileActionData.ProjectileData);
+        }
+        #endregion
+
+
+        private ObjectPooling CheckObject(ObjectPooling_TYPE objectPooling_TYPE, GameObject _obj)
+        {
+            if (ObjectPoolList.Count == 0)
+            {
+                var obj = AddObject(objectPooling_TYPE, _obj, 5).GetComponent<EffectPooling>();
+                return obj;
+            }
+
+            for (int i = 0; i < ObjectPoolList.Count; i++)
+            {
+                if (ObjectPoolList[i].Object == _obj)
+                {
+                    return ObjectPoolList[i];
+                }
+            }
+
+            var newObj = AddObject(objectPooling_TYPE, _obj, 5).GetComponent<EffectPooling>();
+            return newObj;
+        }
+        private GameObject AddObject(ObjectPooling_TYPE objectPooling_TYPE, GameObject _Obj, int amount)
+        {
+            var effectPool = Instantiate(GlobalValue.Base_EffectPooling, this.transform);
+            effectPool.GetComponent<EffectPooling>().Init(_Obj, amount);
+            ObjectPoolList.Add(effectPool.GetComponent<EffectPooling>());
+            return effectPool;            
         }
     }
 }
