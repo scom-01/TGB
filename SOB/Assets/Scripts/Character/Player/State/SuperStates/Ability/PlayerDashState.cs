@@ -53,6 +53,7 @@ public class PlayerDashState : PlayerAbilityState
         //}
 
         player.isFixed_Hit_Immunity = true;
+        player.isCC_immunity = true;
 
         CanDash = false;
         player.InputHandler.UseInput(ref player.InputHandler.DashInput);
@@ -71,6 +72,7 @@ public class PlayerDashState : PlayerAbilityState
         base.Exit();
         player.RB.gravityScale = unit.UnitData.UnitGravity;
         player.isFixed_Hit_Immunity = false;
+        player.isCC_immunity = false;
 
         //if (isGrounded)
         //{
