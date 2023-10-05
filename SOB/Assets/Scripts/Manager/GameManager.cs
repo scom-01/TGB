@@ -300,6 +300,11 @@ public class GameManager : MonoBehaviour
                 {
                     EventSystem.current.SetSelectedGameObject(SubUI.InventorySubUI.InventoryItems.CurrentSelectItem.gameObject);
                 }
+                if (StageManager != null)
+                {
+                    SubUI.InventorySubUI.EquipWeapon?.SetWeaponCommandData(StageManager.player.Inventory.weaponData.weaponCommandDataSO);
+                }
+
                 Curr_UIState = UI_State.Inventory;
                 break;
             case UI_State.Reforging:
