@@ -61,14 +61,14 @@ public class EffectContainer : MonoBehaviour
         return projectilePool;
     }
 
-    public ObjectPooling CheckObject(ObjectPooling_TYPE objectPooling_TYPE, GameObject _obj, Transform transform = null)
+    public ObjectPooling CheckObject(ObjectPooling_TYPE objectPooling_TYPE, GameObject _obj, Transform transform = null, float size = 0)
     {
         switch (objectPooling_TYPE)
         {
             case ObjectPooling_TYPE.Effect:
                 if (EffectPoolingList.Count == 0)
                 {
-                    var obj = AddObject(objectPooling_TYPE, _obj, 5, transform).GetComponent<EffectPooling>();
+                    var obj = AddObject(objectPooling_TYPE, _obj, 5, transform, size).GetComponent<EffectPooling>();
                     return obj;
                 }
 
@@ -80,7 +80,7 @@ public class EffectContainer : MonoBehaviour
                     }
                 }
 
-                var newObj = AddObject(objectPooling_TYPE, _obj, 5, transform).GetComponent<EffectPooling>();
+                var newObj = AddObject(objectPooling_TYPE, _obj, 5, transform, size).GetComponent<EffectPooling>();
                 return newObj;
             case ObjectPooling_TYPE.Projectile:
                 if (ProjectilePoolingList.Count == 0)
@@ -102,7 +102,7 @@ public class EffectContainer : MonoBehaviour
             case ObjectPooling_TYPE.DmgText:
                 if (DmgTxtPoolingList.Count == 0)
                 {
-                    var obj = AddObject(objectPooling_TYPE, _obj, 5, transform).GetComponent<DmgTxtPooling>();
+                    var obj = AddObject(objectPooling_TYPE, _obj, 5, transform/*, size*/).GetComponent<DmgTxtPooling>();
                     return obj;
                 }
 
@@ -114,30 +114,30 @@ public class EffectContainer : MonoBehaviour
                     }
                 }
 
-                var DmgObj = AddObject(objectPooling_TYPE, _obj, 5, transform).GetComponent<DmgTxtPooling>();
+                var DmgObj = AddObject(objectPooling_TYPE, _obj, 5, transform/*, size*/).GetComponent<DmgTxtPooling>();
                 return DmgObj;
             default:
                 return null;
         }
     }
 
-    public GameObject AddObject(ObjectPooling_TYPE objectPooling_TYPE, GameObject _Obj, int amount, Transform transform = null)
+    public GameObject AddObject(ObjectPooling_TYPE objectPooling_TYPE, GameObject _Obj, int amount, Transform transform = null, float size = 0)
     {
         switch (objectPooling_TYPE)
         {
             case ObjectPooling_TYPE.Effect:
                 var effectPool = Instantiate(GlobalValue.Base_EffectPooling, transform ? transform : this.transform);
-                effectPool.GetComponent<EffectPooling>().Init(_Obj, amount);
+                effectPool.GetComponent<EffectPooling>().Init(_Obj, amount, size) ;
                 EffectPoolingList.Add(effectPool.GetComponent<EffectPooling>());
                 return effectPool;
             case ObjectPooling_TYPE.Projectile:
                 var projectilePool = Instantiate(GlobalValue.Base_ProjectilePooling, transform ? transform : this.transform);
-                projectilePool.GetComponent<EffectPooling>().Init(_Obj, amount);
+                projectilePool.GetComponent<EffectPooling>().Init(_Obj, amount, size);
                 ProjectilePoolingList.Add(projectilePool.GetComponent<ProjectilePooling>());
                 return projectilePool;
             case ObjectPooling_TYPE.DmgText:
                 var DmgTxtPool = Instantiate(GlobalValue.Base_DmgTxtPooling, transform ? transform : this.transform);
-                DmgTxtPool.GetComponent<DmgTxtPooling>().Init(_Obj, amount);
+                DmgTxtPool.GetComponent<DmgTxtPooling>().Init(_Obj, amount/*, size*/);
                 DmgTxtPoolingList.Add(DmgTxtPool.GetComponent<DmgTxtPooling>());
                 return DmgTxtPool;
             default:

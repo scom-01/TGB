@@ -9,14 +9,15 @@ public class ObjectPooling : MonoBehaviour
     public int MaxPoolAmount;
     protected Queue<GameObject> ObjectQueue = new Queue<GameObject>();
 
-    public virtual GameObject CreateObject()
+    public virtual GameObject CreateObject(float size = 0)
     {
         var newobj = Instantiate(Object, transform);
+        newobj.transform.localScale = Vector3.one + new Vector3(size, size, size);
         newobj.gameObject.SetActive(false);
         return newobj;
     }
 
-    public virtual void Init(GameObject _obj, int count)
+    public virtual void Init(GameObject _obj, int count, float size = 0)
     {
         if (_obj == null)
             return;
@@ -26,11 +27,11 @@ public class ObjectPooling : MonoBehaviour
 
         for (int i = 0; i < MaxPoolAmount; i++)
         {
-            ObjectQueue.Enqueue(CreateObject());
+            ObjectQueue.Enqueue(CreateObject(size));
         }
     }
 
-    public virtual GameObject GetObejct(Vector3 pos, Quaternion quaternion)
+    public virtual GameObject GetObejct(Vector3 pos, Quaternion quaternion, float size = 0)
     {
         if (ObjectQueue.Count > 0)
         {

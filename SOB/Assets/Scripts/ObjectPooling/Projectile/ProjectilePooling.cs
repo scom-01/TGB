@@ -10,7 +10,7 @@ public class ProjectilePooling : ObjectPooling
 {
     public ProjectileData m_ProjectileData;
 
-    public override GameObject CreateObject()
+    public override GameObject CreateObject(float size = 0)
     {
         Projectile obj = Instantiate(Object, transform).GetComponent<Projectile>();
         var projectile_Data = m_ProjectileData;

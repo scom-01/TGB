@@ -45,19 +45,20 @@ namespace SOB.Weapons.Components
             if (currParticles[currentEffectSpawnIndex].Object == null)
                 return;
 
-            var offset = new Vector3(currParticles[currentEffectSpawnIndex].EffectRect.x * CoreMovement.FancingDirection, currParticles[currentEffectSpawnIndex].EffectRect.y);
-            var size = new Vector2(currParticles[currentEffectSpawnIndex].EffectRect.width, currParticles[currentEffectSpawnIndex].EffectRect.height);
+            var offset = new Vector3(currParticles[currentEffectSpawnIndex].EffectOffset.x * CoreMovement.FancingDirection, currParticles[currentEffectSpawnIndex].EffectOffset.y);
+            var size = currParticles[currentEffectSpawnIndex].EffectScale;
+
             if (currParticles[currentEffectSpawnIndex].isGround)
             {
                 if(currParticles[currentEffectSpawnIndex].isRandomPosRot)
                 {
                     CoreEffectManager.StartEffects(currParticles[currentEffectSpawnIndex].Object,
-                        CoreCollisionSenses.GroundCenterPos, currParticles[currentEffectSpawnIndex].isFollowing);
+                        CoreCollisionSenses.GroundCenterPos, currParticles[currentEffectSpawnIndex].isFollowing, size);
                 }
                 else
                 {
                     CoreEffectManager.StartEffects(currParticles[currentEffectSpawnIndex].Object,
-                        CoreCollisionSenses.GroundCenterPos + offset, currParticles[currentEffectSpawnIndex].isFollowing);
+                        CoreCollisionSenses.GroundCenterPos + offset, currParticles[currentEffectSpawnIndex].isFollowing, size);
                 }
             }
             else
@@ -66,11 +67,11 @@ namespace SOB.Weapons.Components
                 {
                     CoreEffectManager.StartEffectsWithRandomPosRot(
                             currParticles[currentEffectSpawnIndex].Object, 
-                            currParticles[currentEffectSpawnIndex].isRandomRange, currParticles[currentEffectSpawnIndex].isFollowing);
+                            currParticles[currentEffectSpawnIndex].isRandomRange, currParticles[currentEffectSpawnIndex].isFollowing,size);
                 }
                 else
                 {
-                    CoreEffectManager.StartEffects(currParticles[currentEffectSpawnIndex].Object, this.transform.position + offset, currParticles[currentEffectSpawnIndex].isFollowing);
+                    CoreEffectManager.StartEffects(currParticles[currentEffectSpawnIndex].Object, this.transform.position + offset, currParticles[currentEffectSpawnIndex].isFollowing, size);
                 }
             }
         }
