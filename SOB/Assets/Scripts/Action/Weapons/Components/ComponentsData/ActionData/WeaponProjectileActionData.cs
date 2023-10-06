@@ -40,6 +40,10 @@ public struct ProjectileData
     public bool isOnHit;
     public bool isShakeCam;
     /// <summary>
+    /// 자동 추적
+    /// </summary>
+    public bool isHoming;
+    /// <summary>
     /// 투사체 발사 시 ShakeCam
     /// </summary>
     public CamData camDatas;

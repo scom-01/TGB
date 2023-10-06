@@ -27,9 +27,14 @@ namespace SOB.Weapons.Components
         /// </summary>
         public float isRandomRange;
         /// <summary>
-        /// Effect Offset과 Size
+        /// Effect Offset
         /// </summary>
-        public Rect EffectRect;
+        public Vector2 EffectOffset;
+        /// <summary>
+        /// Additional Effect Scale
+        /// </summary>
+        [field: Tooltip("This Additional float , ex.1) default 1 + additionalScale , ex.2) EffectScale(1) = 2")]
+        public float EffectScale;
         /// <summary>
         /// isFollow Unit
         /// </summary>

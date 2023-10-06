@@ -165,7 +165,7 @@ namespace SOB
             if (GameManager.Inst == null)
                 return;
 
-            if (target != null)
+            if (target != null && ProjectileData.isHoming)
             {
                 Vector2 dir = transform.right;
                 Vector3 targetDir = (target.gameObject.transform.position - transform.position).normalized;
@@ -184,16 +184,6 @@ namespace SOB
 
                 Vector2 movePosition = RB2D.position + (moveDir * ProjectileData.Speed) * Time.fixedDeltaTime;
                 RB2D.MovePosition(movePosition);
-
-                //RB2D.velocity = new Vector2(targetDir.x * ProjectileData.Speed, targetDir.y * ProjectileData.Speed);
-                //if ((target.gameObject.transform.position - transform.position).magnitude > 3.0f)
-                //{
-                //    // 타겟 방향으로 회전함
-                //    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-                //    var rotTarget = Quaternion.AngleAxis(angle, Vector3.forward);
-                //    transform.rotation = Quaternion.Slerp(transform.rotation, rotTarget,Time.deltaTime * ProjectileData.Speed);                    
-                //    RB2D.velocity = new Vector2(dir.x * ProjectileData.Speed, dir.y * ProjectileData.Speed);
-                //}                
             }
 
             if (GameManager.Inst.PlayTime >= m_startTime + ProjectileData.DurationTime)
