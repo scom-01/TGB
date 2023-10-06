@@ -546,7 +546,7 @@ namespace SOB.Weapons.Components
 
                 //KnockBack
                 #region KnockBack
-                if (coll.TryGetComponent(out IKnockBackable knockbackables))
+                if (coll.TryGetComponent(out IKnockBackable knockbackables) && hitActions[currentHitBoxIndex].KnockbackAngle.magnitude > 0)
                 {
                     knockbackables.KnockBack(hitActions[currentHitBoxIndex].KnockbackAngle, hitActions[currentHitBoxIndex].KnockbackAngle.magnitude, CoreMovement.FancingDirection);
                 }
