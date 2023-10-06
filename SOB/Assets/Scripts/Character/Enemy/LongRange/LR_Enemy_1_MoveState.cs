@@ -11,7 +11,17 @@ public class LR_Enemy_1_MoveState : EnemyRunState
     }
     public override void Pattern()
     {
-        enemy_LR.EnemyPattern();
+        //패턴 딜레이
+        if (Time.time >= startTime + Random.Range(enemy.enemyData.minIdleTime, enemy.enemyData.maxIdleTime))
+        {
+            isDelayCheck = true;
+        }
+
+        if(isDelayCheck)
+        {
+            enemy_LR.EnemyPattern();
+            isDelayCheck = false;
+        }
     }
     public override void IdleState()
     {

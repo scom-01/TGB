@@ -67,13 +67,7 @@ public abstract class EnemyRunState : EnemyState
             Pattern();
             return;
         }
-
-        //일직선 상
-        if (EnemyCollisionSenses.isUnitInFrontDetectedArea || EnemyCollisionSenses.isUnitInBackDetectedArea)
-        {
-            FlipToTarget();
-        }
-
+        
         //패턴 딜레이
         if (Time.time >= startTime + enemy.enemyData.maxIdleTime)
         {
@@ -82,7 +76,13 @@ public abstract class EnemyRunState : EnemyState
 
         if (!isDelayCheck)
             return;
-                
+
+        //일직선 상
+        if (EnemyCollisionSenses.isUnitInFrontDetectedArea || EnemyCollisionSenses.isUnitInBackDetectedArea)
+        {
+            FlipToTarget();
+        }
+
         isDelayCheck = false;
         IdleState();
     }

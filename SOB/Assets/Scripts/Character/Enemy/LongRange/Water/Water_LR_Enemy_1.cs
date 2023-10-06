@@ -70,7 +70,7 @@ public class Water_LR_Enemy_1 : LR_Enemy_1
                 }                
             }
         }
-        RunState.FlipToTarget();
+        //RunState.FlipToTarget();
         FSM.ChangeState(RunState);
     }
 }
