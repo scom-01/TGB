@@ -37,12 +37,8 @@ MonoBehaviour:
           - isGround: 0
             isRandomPosRot: 0
             isRandomRange: 0
-            EffectRect:
-              serializedVersion: 2
-              x: -0.19
-              y: 0.1
-              width: 0
-              height: 0
+            EffectOffset: {x: -0.19, y: 0.1}
+            EffectScale: 0
             isFollowing: 1
             Object: {fileID: 5314433521719334783, guid: 88bd8df1b1e39e54592bebbab2f6014b, type: 3}
     - rid: 1770984693643870209
@@ -80,12 +76,8 @@ MonoBehaviour:
             - isGround: 0
               isRandomPosRot: 1
               isRandomRange: 1.5
-              EffectRect:
-                serializedVersion: 2
-                x: 0
-                y: 0
-                width: 0
-                height: 0
+              EffectOffset: {x: 0, y: 0}
+              EffectScale: 0
               isFollowing: 0
               Object: {fileID: 1380205584940949931, guid: 0bb297cbbf5453a4bb3ec12d67ee5f82, type: 3}
             audioClip:

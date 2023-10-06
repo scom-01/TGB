@@ -21,19 +21,21 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 1610560290, guid: acd2c0885ed5b4e4e869f3fe19a202a5, type: 3}
-    - time: 0.06666667
+    - time: 0.375
+      value: {fileID: -1814632725, guid: 3c5c9437090bc0f4383a7ce4d574caf4, type: 3}
+    - time: 0.5
       value: {fileID: 1493137090, guid: e73fdaf1e134c6a408f38f3d9bfb35e9, type: 3}
-    - time: 0.13333334
+    - time: 0.625
       value: {fileID: -1315459098, guid: e73fdaf1e134c6a408f38f3d9bfb35e9, type: 3}
-    - time: 0.2
+    - time: 0.75
       value: {fileID: 1452458156, guid: e73fdaf1e134c6a408f38f3d9bfb35e9, type: 3}
-    - time: 0.26666668
+    - time: 0.875
       value: {fileID: -97915619, guid: e73fdaf1e134c6a408f38f3d9bfb35e9, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 15
+  m_SampleRate: 8
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -49,6 +51,7 @@ AnimationClip:
       isPPtrCurve: 1
     pptrCurveMapping:
     - {fileID: 1610560290, guid: acd2c0885ed5b4e4e869f3fe19a202a5, type: 3}
+    - {fileID: -1814632725, guid: 3c5c9437090bc0f4383a7ce4d574caf4, type: 3}
     - {fileID: 1493137090, guid: e73fdaf1e134c6a408f38f3d9bfb35e9, type: 3}
     - {fileID: -1315459098, guid: e73fdaf1e134c6a408f38f3d9bfb35e9, type: 3}
     - {fileID: 1452458156, guid: e73fdaf1e134c6a408f38f3d9bfb35e9, type: 3}
@@ -58,7 +61,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.33333334
+    m_StopTime: 1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -78,21 +81,28 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.06666667
+  - time: 0.5
     functionName: StartActionRectTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.13333334
+  - time: 0.5
+    functionName: SpawnEffectTrigger
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.625
     functionName: StopActionRectTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.33333334
+  - time: 1
     functionName: AnimationFinishedTrigger
     data: 
     objectReferenceParameter: {fileID: 0}

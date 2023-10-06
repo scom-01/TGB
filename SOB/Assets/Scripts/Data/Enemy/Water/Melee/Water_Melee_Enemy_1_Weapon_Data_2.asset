@@ -45,7 +45,14 @@ MonoBehaviour:
             RepeatAction: 1
             AdditionalDamage: 0
             KnockbackAngle: {x: 10, y: 5}
-            EffectPrefab: []
+            EffectPrefab:
+            - isGround: 0
+              isRandomPosRot: 0
+              isRandomRange: 0
+              EffectOffset: {x: 0, y: 0}
+              EffectScale: 0
+              isFollowing: 0
+              Object: {fileID: 6265323933180701124, guid: f0a9c8170ba7e6b44b61a4b6c007a047, type: 3}
             audioClip: []
             camDatas: []
         <DetectableLayers>k__BackingField:
@@ -83,7 +90,14 @@ MonoBehaviour:
         name: EffectSpawnData
         actionData:
         - name: Action 1
-          <EffectParticles>k__BackingField: []
+          <EffectParticles>k__BackingField:
+          - isGround: 0
+            isRandomPosRot: 0
+            isRandomRange: 0
+            EffectOffset: {x: 0, y: 0}
+            EffectScale: 0
+            isFollowing: 1
+            Object: {fileID: 4345000112811740201, guid: b6d6e35e103b73f4dbc6a89e710fafe8, type: 3}
     - rid: 5136140284931866631
       type: {class: ShakeCamData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:

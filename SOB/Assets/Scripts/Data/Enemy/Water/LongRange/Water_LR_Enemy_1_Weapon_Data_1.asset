@@ -66,7 +66,14 @@ MonoBehaviour:
         name: EffectSpawnData
         actionData:
         - name: Action 1
-          <EffectParticles>k__BackingField: []
+          <EffectParticles>k__BackingField:
+          - isGround: 0
+            isRandomPosRot: 0
+            isRandomRange: 0
+            EffectOffset: {x: 0, y: 0}
+            EffectScale: 0
+            isFollowing: 0
+            Object: {fileID: 7717499739723030709, guid: 32398646cb6ab3d418c04f6662e36a70, type: 3}
     - rid: 5136140284931866631
       type: {class: ShakeCamData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
       data:

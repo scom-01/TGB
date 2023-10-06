@@ -790,9 +790,11 @@ MonoBehaviour:
   - Used: 0
     Detected_Distance: 1
     Boundary: 0
+    DetectedType: 0
   - Used: 0
     Detected_Distance: 3.5
     Boundary: 0
+    DetectedType: 0
 --- !u!1 &3640253522240484911
 GameObject:
   m_ObjectHideFlags: 0
@@ -1075,7 +1077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c9855e77531ec458ce701591569b49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statsData:
+  Default_statsData:
     MaxHealth: 0
     DefaultPower: 0
     DefaultMoveSpeed: 0
@@ -1113,15 +1115,15 @@ MonoBehaviour:
     Elemental: 0
     ElementalDefensivePer: 0
     ElementalAggressivePer: 0
-  invincibleTime: 0
-  TouchinvincibleTime: 0
-  currentHealth: 0
   BlessStats:
     Bless_Agg_Lv: 0
     Bless_Def_Lv: 0
     Bless_Speed_Lv: 0
     Bless_Critical_Lv: 0
     Bless_Elemental_Lv: 0
+  invincibleTime: 0
+  TouchinvincibleTime: 0
+  currentHealth: 0
 --- !u!1 &3640253523265248516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1409,7 +1411,7 @@ Animator:
   m_GameObject: {fileID: 4242634074962048764}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 13c55c5b3c00a444c92f4af0115c7037, type: 2}
+  m_Controller: {fileID: 22100000, guid: 8f97525fa3a35fe4491f93c91534b2b1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
