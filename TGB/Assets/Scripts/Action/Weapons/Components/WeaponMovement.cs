@@ -38,6 +38,12 @@ namespace TGB.Weapons.Components
         private void HandleFixedStartMovement()
         {
             Debug.Log("HandleFixedStart");
+            if (currentActionData.movements.Length == 0)
+            {
+                Debug.Log("Movement Length zero");
+                return;
+            }
+
             CoreMovement.CanMovement = currentActionData.movements[currentMovementIndex].CanMoveCtrl;
             if (currentActionData != null)
             {
@@ -49,8 +55,15 @@ namespace TGB.Weapons.Components
         private void HandleFixedStopMovement()
         {
             Debug.Log("HandleFixedStop");
+            if (currentActionData.movements.Length == 0)
+            {
+                return;
+            }
+            if(!CoreMovement.CanMovement)
+            {
+                CoreMovement.SetVelocityX(0f);
+            }
             CoreMovement.CanMovement = false;
-            CoreMovement.SetVelocityX(0f);
             FixedGravityOff();
         }
 
@@ -182,7 +195,22 @@ namespace TGB.Weapons.Components
             {
                 return;
             }
-            CoreMovement.SetVelocity(currMovement[currentMovementIndex].Velocity, currMovement[currentMovementIndex].Direction, CoreMovement.FancingDirection);
+            if(currMovement[currentMovementIndex].Direction.magnitude == 0)
+            {
+                return;
+            }
+            if (currMovement[currentMovementIndex].Direction.x != 0 && currMovement[currentMovementIndex].Direction.y == 0)
+            {
+                CoreMovement.SetVelocityX(currMovement[currentMovementIndex].Velocity);
+            }
+            else if(currMovement[currentMovementIndex].Direction.x == 0 && currMovement[currentMovementIndex].Direction.y != 0)
+            {
+                CoreMovement.SetVelocityY(currMovement[currentMovementIndex].Velocity);
+            }
+            else
+            {
+                CoreMovement.SetVelocity(currMovement[currentMovementIndex].Velocity, currMovement[currentMovementIndex].Direction, CoreMovement.FancingDirection);
+            }
         }
 
         protected override void Start()
