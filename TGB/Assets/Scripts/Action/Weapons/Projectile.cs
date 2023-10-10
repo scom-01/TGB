@@ -371,6 +371,8 @@ namespace TGB
             //피격 대상에게 KnockBack
             //KnockBack
             #region KnockBack
+            if (ProjectileData.KnockbackAngle.magnitude == 0)
+                return;
             if (coll.TryGetComponent(out IKnockBackable knockbackables))
             {
                 knockbackables.KnockBack(ProjectileData.KnockbackAngle, ProjectileData.KnockbackAngle.magnitude, FancingDirection);
