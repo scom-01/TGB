@@ -201,7 +201,7 @@ namespace TGB.Weapons.Components
             }
             if (currMovement[currentMovementIndex].Direction.x != 0 && currMovement[currentMovementIndex].Direction.y == 0)
             {
-                CoreMovement.SetVelocityX(currMovement[currentMovementIndex].Velocity);
+                CoreMovement.SetVelocityX(currMovement[currentMovementIndex].Velocity * CoreMovement.FancingDirection);
             }
             else if(currMovement[currentMovementIndex].Direction.x == 0 && currMovement[currentMovementIndex].Direction.y != 0)
             {
