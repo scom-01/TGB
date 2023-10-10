@@ -34,10 +34,23 @@ MonoBehaviour:
         name: ActionHitBoxData
         actionData:
         - name: Action 1
-          ActionHit: []
+          ActionHit:
+          - Debug: 1
+            ActionRect:
+              serializedVersion: 2
+              x: -1.74
+              y: -0.55
+              width: 4.25
+              height: 1.27
+            RepeatAction: 0
+            AdditionalDamage: 0
+            KnockbackAngle: {x: 0, y: 0}
+            EffectPrefab: []
+            audioClip: []
+            camDatas: []
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
-          m_Bits: 0
+          m_Bits: 2048
     - rid: 2527592717927579880
       type: {class: DamageData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -51,7 +64,14 @@ MonoBehaviour:
         name: EffectSpawnData
         actionData:
         - name: Action 1
-          <EffectParticles>k__BackingField: []
+          <EffectParticles>k__BackingField:
+          - isGround: 0
+            isRandomPosRot: 0
+            isRandomRange: 0
+            EffectOffset: {x: -0.4, y: 0}
+            EffectScale: 0
+            isFollowing: 1
+            Object: {fileID: 668831008311998851, guid: f8ca85125fd128f46b3b3dfba47d4457, type: 3}
     - rid: 2527592717927579882
       type: {class: KnockbackData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -65,7 +85,11 @@ MonoBehaviour:
         name: MovementData
         actionData:
         - name: Action 1
-          <movements>k__BackingField: []
+          <movements>k__BackingField:
+          - CanFlip: 0
+            CanMoveCtrl: 0
+            Direction: {x: 0, y: 1}
+            Velocity: 0
     - rid: 2527592717927579884
       type: {class: ShakeCamData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:

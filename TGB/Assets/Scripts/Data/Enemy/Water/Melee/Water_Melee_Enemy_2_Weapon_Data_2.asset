@@ -38,13 +38,13 @@ MonoBehaviour:
           - Debug: 1
             ActionRect:
               serializedVersion: 2
-              x: -2.16
+              x: -2.64
               y: 0
-              width: 6
+              width: 7
               height: 6.2
-            RepeatAction: 0
+            RepeatAction: 1
             AdditionalDamage: 0
-            KnockbackAngle: {x: 0, y: 0}
+            KnockbackAngle: {x: 0, y: 10}
             EffectPrefab:
             - isGround: 0
               isRandomPosRot: 0
@@ -76,7 +76,7 @@ MonoBehaviour:
             isRandomPosRot: 0
             isRandomRange: 0
             EffectOffset: {x: 0, y: 0}
-            EffectScale: 1
+            EffectScale: 2
             isFollowing: 0
             Object: {fileID: 1654740954783398791, guid: 544e505c595052a4881661a54f634679, type: 3}
     - rid: 2527592717927579747

@@ -34,10 +34,23 @@ MonoBehaviour:
         name: ActionHitBoxData
         actionData:
         - name: Action 1
-          ActionHit: []
+          ActionHit:
+          - Debug: 1
+            ActionRect:
+              serializedVersion: 2
+              x: -0.35
+              y: -0.8
+              width: 3.37
+              height: 1.47
+            RepeatAction: 1
+            AdditionalDamage: 0
+            KnockbackAngle: {x: 0, y: 0}
+            EffectPrefab: []
+            audioClip: []
+            camDatas: []
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
-          m_Bits: 0
+          m_Bits: 2048
     - rid: 2527592717927579844
       type: {class: DamageData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -57,8 +70,8 @@ MonoBehaviour:
             isRandomRange: 0
             EffectOffset: {x: 0, y: 0}
             EffectScale: 0
-            isFollowing: 0
-            Object: {fileID: 668831008311998851, guid: 66943ebaee15bf54eacadeb121d52e23, type: 3}
+            isFollowing: 1
+            Object: {fileID: 668831008311998851, guid: f8ca85125fd128f46b3b3dfba47d4457, type: 3}
     - rid: 2527592717927579846
       type: {class: KnockbackData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:

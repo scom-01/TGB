@@ -38,11 +38,11 @@ MonoBehaviour:
           - Debug: 1
             ActionRect:
               serializedVersion: 2
-              x: 0
-              y: 0
-              width: 0
-              height: 0
-            RepeatAction: 0
+              x: -0.8
+              y: -0.8
+              width: 3.5
+              height: 1.86
+            RepeatAction: 1
             AdditionalDamage: 0
             KnockbackAngle: {x: 0, y: 0}
             EffectPrefab: []
@@ -50,7 +50,7 @@ MonoBehaviour:
             camDatas: []
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
-          m_Bits: 0
+          m_Bits: 2048
     - rid: 2527592717927579853
       type: {class: DamageData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -65,12 +65,12 @@ MonoBehaviour:
         actionData:
         - name: Action 1
           <EffectParticles>k__BackingField:
-          - isGround: 0
+          - isGround: 1
             isRandomPosRot: 0
             isRandomRange: 0
             EffectOffset: {x: 0, y: 0}
             EffectScale: 0
-            isFollowing: 0
+            isFollowing: 1
             Object: {fileID: 668831008311998851, guid: 661373794299a734a8c3cfe3bd10944e, type: 3}
     - rid: 2527592717927579855
       type: {class: KnockbackData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
