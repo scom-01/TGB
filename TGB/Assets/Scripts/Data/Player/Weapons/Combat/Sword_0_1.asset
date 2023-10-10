@@ -16,48 +16,20 @@ MonoBehaviour:
   <CanJump>k__BackingField: 1
   <CanAirAttack>k__BackingField: 1
   <ComponentData>k__BackingField:
-  - rid: 3615621173780152320
-  - rid: 3615621173780152321
-  - rid: 3615621236231503872
-  - rid: 3615621433789513728
-  - rid: 8358215245741948929
-  - rid: 1770984693643870209
-  - rid: 2811500879843950592
-  - rid: 942642603132715030
-  - rid: 9027618723447963654
+  - rid: 2527592717927579663
+  - rid: 2527592717927579664
+  - rid: 2527592717927579665
+  - rid: 2527592717927579666
+  - rid: 2527592717927579667
+  - rid: 2527592717927579668
+  - rid: 2527592717927579669
+  - rid: 2527592717927579670
+  - rid: 2527592717927579671
   references:
     version: 2
     RefIds:
-    - rid: 942642603132715030
-      type: {class: EffectSpawnData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
-      data:
-        name: EffectSpawnData
-        actionData:
-        - name: 
-          <EffectParticles>k__BackingField:
-          - isGround: 0
-            isRandomPosRot: 0
-            isRandomRange: 0
-            EffectOffset: {x: -0.1, y: -0.1}
-            EffectScale: 0
-            isFollowing: 1
-            Object: {fileID: 5314433521719334783, guid: 88bd8df1b1e39e54592bebbab2f6014b, type: 3}
-    - rid: 1770984693643870209
-      type: {class: SoundClipData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
-      data:
-        name: SoundClipData
-        actionData:
-        - name: 
-          audioClips: []
-    - rid: 2811500879843950592
-      type: {class: ShakeCamData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
-      data:
-        name: ShakeCamData
-        actionData:
-        - name: 
-          <ShakeCamData>k__BackingField: []
-    - rid: 3615621173780152320
-      type: {class: ActionHitBoxData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+    - rid: 2527592717927579663
+      type: {class: ActionHitBoxData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: ActionHitBoxData
         actionData:
@@ -66,32 +38,51 @@ MonoBehaviour:
           - Debug: 1
             ActionRect:
               serializedVersion: 2
-              x: 0
-              y: -0.79
-              width: 3.16
-              height: 1.23
+              x: -0.67
+              y: -0.81
+              width: 3.64
+              height: 1.34
             RepeatAction: 1
             AdditionalDamage: 0
-            KnockbackAngle: {x: 1, y: 1}
-            EffectPrefab:
-            - isGround: 0
-              isRandomPosRot: 1
-              isRandomRange: 1.5
-              EffectOffset: {x: 0, y: 0}
-              EffectScale: 0
-              isFollowing: 0
-              Object: {fileID: 1380205584940949931, guid: 0bb297cbbf5453a4bb3ec12d67ee5f82, type: 3}
-            audioClip:
-            - {fileID: 8300000, guid: 7dfd8119742582c47832bf5ec01273db, type: 3}
-            camDatas:
-            - Duration: 0.1
-              Range: 0.01
-              RepeatRate: 0.001
+            KnockbackAngle: {x: 0, y: 0}
+            EffectPrefab: []
+            audioClip: []
+            camDatas: []
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
-          m_Bits: 133120
-    - rid: 3615621173780152321
-      type: {class: MovementData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+          m_Bits: 2048
+    - rid: 2527592717927579664
+      type: {class: DamageData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: DamageData
+        actionData:
+        - name: 
+          <HitDamage>k__BackingField:
+          - AdditionalDamage: 1
+            RepeatAmount: 1
+    - rid: 2527592717927579665
+      type: {class: EffectSpawnData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: EffectSpawnData
+        actionData:
+        - name: Action 1
+          <EffectParticles>k__BackingField:
+          - isGround: 0
+            isRandomPosRot: 0
+            isRandomRange: 0
+            EffectOffset: {x: 0, y: 0}
+            EffectScale: 0
+            isFollowing: 1
+            Object: {fileID: 5314433521719334783, guid: 88bd8df1b1e39e54592bebbab2f6014b, type: 3}
+    - rid: 2527592717927579666
+      type: {class: KnockbackData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: KnockbackData
+        actionData:
+        - name: Action 1
+          <KnockbackAngle>k__BackingField: []
+    - rid: 2527592717927579667
+      type: {class: MovementData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: MovementData
         actionData:
@@ -101,8 +92,29 @@ MonoBehaviour:
             CanMoveCtrl: 0
             Direction: {x: 1, y: 0}
             Velocity: 3
-    - rid: 3615621236231503872
-      type: {class: WeaponSpriteData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+    - rid: 2527592717927579668
+      type: {class: ShakeCamData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ShakeCamData
+        actionData:
+        - name: Action 1
+          <ShakeCamData>k__BackingField: []
+    - rid: 2527592717927579669
+      type: {class: SoundClipData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: SoundClipData
+        actionData:
+        - name: Action 1
+          audioClips: []
+    - rid: 2527592717927579670
+      type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: WeaponProjectileData
+        actionData:
+        - name: Action 1
+          ProjectileActionData: []
+    - rid: 2527592717927579671
+      type: {class: WeaponSpriteData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: WeaponSpriteData
         actionData:
@@ -113,45 +125,3 @@ MonoBehaviour:
           - {fileID: 140725285, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
           - {fileID: 301393240, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
           - {fileID: -737698732, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-    - rid: 3615621433789513728
-      type: {class: DamageData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
-      data:
-        name: DamageData
-        actionData:
-        - name: Action 1
-          <HitDamage>k__BackingField:
-          - AdditionalDamage: 0
-            RepeatAmount: 5
-    - rid: 8358215245741948929
-      type: {class: KnockbackData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
-      data:
-        name: KnockbackData
-        actionData:
-        - name: Action 1
-          <KnockbackAngle>k__BackingField:
-          - {x: 3, y: 1}
-    - rid: 9027618723447963654
-      type: {class: WeaponProjectileData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
-      data:
-        name: WeaponProjectileData
-        actionData:
-        - name: Action 1
-          ProjectileActionData:
-          - ProjectileData:
-              Pos: {x: 0, y: 0, z: 0}
-              Rot: {x: 1, y: 0, z: 0}
-              Speed: 20
-              DurationTime: 4
-              Radius: 0.75
-              Offset: {x: 0, y: 0}
-              GravityScale: 0
-              isSingleShoot: 1
-              KnockbackAngle: {x: 1, y: 0}
-              isCollisionGround: 1
-              isOnHit: 0
-              isShakeCam: 0
-              camDatas:
-                Duration: 0
-                Range: 0
-                RepeatRate: 0
-            Projectile: {fileID: 2222910967692216358, guid: 1af7a89b518ecd141b7b6da807692a50, type: 3}

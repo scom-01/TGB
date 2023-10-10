@@ -16,48 +16,20 @@ MonoBehaviour:
   <CanJump>k__BackingField: 1
   <CanAirAttack>k__BackingField: 1
   <ComponentData>k__BackingField:
-  - rid: 3615621173780152320
-  - rid: 3615621173780152321
-  - rid: 3615621236231503872
-  - rid: 3615621433789513728
-  - rid: 8358215245741948929
-  - rid: 1770984693643870209
-  - rid: 2811500880619372554
-  - rid: 942642603132715037
+  - rid: 2527592717927579681
+  - rid: 2527592717927579682
+  - rid: 2527592717927579683
+  - rid: 2527592717927579684
+  - rid: 2527592717927579685
+  - rid: 2527592717927579686
+  - rid: 2527592717927579687
+  - rid: 2527592717927579688
+  - rid: 2527592717927579689
   references:
     version: 2
     RefIds:
-    - rid: 942642603132715037
-      type: {class: EffectSpawnData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
-      data:
-        name: EffectSpawnData
-        actionData:
-        - name: Action 1
-          <EffectParticles>k__BackingField:
-          - isGround: 0
-            isRandomPosRot: 0
-            isRandomRange: 0
-            EffectOffset: {x: -0.2, y: -0.63}
-            EffectScale: 0
-            isFollowing: 1
-            Object: {fileID: 5314433521719334783, guid: 8bdeadebc211f5b468080137d9bc244f, type: 3}
-    - rid: 1770984693643870209
-      type: {class: SoundClipData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
-      data:
-        name: SoundClipData
-        actionData:
-        - name: Action 1
-          audioClips:
-          - {fileID: 8300000, guid: a90b7184fb02659469901edc3ceb6a19, type: 3}
-    - rid: 2811500880619372554
-      type: {class: ShakeCamData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
-      data:
-        name: ShakeCamData
-        actionData:
-        - name: Action 1
-          <ShakeCamData>k__BackingField: []
-    - rid: 3615621173780152320
-      type: {class: ActionHitBoxData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+    - rid: 2527592717927579681
+      type: {class: ActionHitBoxData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: ActionHitBoxData
         actionData:
@@ -66,10 +38,10 @@ MonoBehaviour:
           - Debug: 1
             ActionRect:
               serializedVersion: 2
-              x: -0.29
-              y: -0.72
-              width: 3.47
-              height: 1.01
+              x: -0.8
+              y: -0.8
+              width: 3.5
+              height: 1.86
             RepeatAction: 1
             AdditionalDamage: 0
             KnockbackAngle: {x: 0, y: 0}
@@ -78,9 +50,37 @@ MonoBehaviour:
             camDatas: []
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
-          m_Bits: 133120
-    - rid: 3615621173780152321
-      type: {class: MovementData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+          m_Bits: 2048
+    - rid: 2527592717927579682
+      type: {class: DamageData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: DamageData
+        actionData:
+        - name: Action 1
+          <HitDamage>k__BackingField: []
+    - rid: 2527592717927579683
+      type: {class: EffectSpawnData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: EffectSpawnData
+        actionData:
+        - name: Action 1
+          <EffectParticles>k__BackingField:
+          - isGround: 1
+            isRandomPosRot: 0
+            isRandomRange: 0
+            EffectOffset: {x: 0, y: 0}
+            EffectScale: 0
+            isFollowing: 0
+            Object: {fileID: 5314433521719334783, guid: 8bdeadebc211f5b468080137d9bc244f, type: 3}
+    - rid: 2527592717927579684
+      type: {class: KnockbackData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: KnockbackData
+        actionData:
+        - name: Action 1
+          <KnockbackAngle>k__BackingField: []
+    - rid: 2527592717927579685
+      type: {class: MovementData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: MovementData
         actionData:
@@ -88,10 +88,31 @@ MonoBehaviour:
           <movements>k__BackingField:
           - CanFlip: 0
             CanMoveCtrl: 0
-            Direction: {x: 0, y: 0}
-            Velocity: 0
-    - rid: 3615621236231503872
-      type: {class: WeaponSpriteData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
+            Direction: {x: 1, y: 0}
+            Velocity: 5
+    - rid: 2527592717927579686
+      type: {class: ShakeCamData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ShakeCamData
+        actionData:
+        - name: Action 1
+          <ShakeCamData>k__BackingField: []
+    - rid: 2527592717927579687
+      type: {class: SoundClipData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: SoundClipData
+        actionData:
+        - name: Action 1
+          audioClips: []
+    - rid: 2527592717927579688
+      type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: WeaponProjectileData
+        actionData:
+        - name: Action 1
+          ProjectileActionData: []
+    - rid: 2527592717927579689
+      type: {class: WeaponSpriteData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: WeaponSpriteData
         actionData:
@@ -102,20 +123,3 @@ MonoBehaviour:
           - {fileID: -1284737267, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
           - {fileID: 1848349252, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
           - {fileID: -1175468386, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
-    - rid: 3615621433789513728
-      type: {class: DamageData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
-      data:
-        name: DamageData
-        actionData:
-        - name: Action 1
-          <HitDamage>k__BackingField:
-          - AdditionalDamage: 0
-            RepeatAmount: 5
-    - rid: 8358215245741948929
-      type: {class: KnockbackData, ns: SOB.Weapons.Components, asm: Assembly-CSharp}
-      data:
-        name: KnockbackData
-        actionData:
-        - name: Action 1
-          <KnockbackAngle>k__BackingField:
-          - {x: 0, y: 0}
