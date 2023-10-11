@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using Unity.VisualScripting;
 using UnityEngine;
+using System.Drawing;
 
 namespace TGB.CoreSystem
 {
@@ -144,18 +145,37 @@ namespace TGB.CoreSystem
 
         public GameObject StartEffectsWithRandomPos(GameObject effectPrefab, float Range)
         {
-            if (core.CoreMovement.FancingDirection > 0)
+            if (effectPrefab.GetComponent<EffectController>() == null)
             {
-                return StartEffects(effectPrefab, new Vector2(
-                                                    transform.position.x + Random.Range(-Range, Range),
-                                                    transform.position.y + Random.Range(-Range, Range)),
-                                                    Quaternion.Euler(effectPrefab.transform.eulerAngles));
+                effectPrefab.AddComponent<EffectController>();
             }
 
-            return StartEffects(effectPrefab, new Vector2(
-                                                    transform.position.x + Random.Range(-Range, Range),
-                                                    transform.position.y + Random.Range(-Range, Range)),
-                                                    Quaternion.Euler(effectPrefab.transform.eulerAngles.x, effectPrefab.transform.eulerAngles.y + 180.0f, effectPrefab.transform.eulerAngles.z));
+            if (effectPrefab.GetComponent<EffectController>().isDestroy)
+            {
+                if (core.CoreMovement.FancingDirection > 0)
+                {
+                    return StartEffects(effectPrefab, new Vector2(
+                                                        transform.position.x + Random.Range(-Range, Range),
+                                                        transform.position.y + Random.Range(-Range, Range)),
+                                                        Quaternion.Euler(effectPrefab.transform.eulerAngles));
+                }
+
+                return StartEffects(effectPrefab, new Vector2(
+                                                        transform.position.x + Random.Range(-Range, Range),
+                                                        transform.position.y + Random.Range(-Range, Range)),
+                                                        Quaternion.Euler(effectPrefab.transform.eulerAngles.x, effectPrefab.transform.eulerAngles.y + 180.0f, effectPrefab.transform.eulerAngles.z));
+            }
+            else
+            {
+                if (core.CoreMovement.FancingDirection > 0)
+                {
+                    return (GameManager.Inst.StageManager?.EffectContainer.CheckObject(ObjectPooling_TYPE.Effect, effectPrefab, null) as EffectPooling).GetObejct(transform.position, Quaternion.Euler(effectPrefab.transform.eulerAngles));
+                }
+                else
+                {
+                    return (GameManager.Inst.StageManager?.EffectContainer.CheckObject(ObjectPooling_TYPE.Effect, effectPrefab, null) as EffectPooling).GetObejct(transform.position, Quaternion.Euler(effectPrefab.transform.eulerAngles.x, effectPrefab.transform.eulerAngles.y + 180.0f, effectPrefab.transform.eulerAngles.z));
+                }
+            }
         }
         public GameObject StartEffectsWithRandomPos(GameObject effectPrefab, float Range, int FancingDirection, bool _isFollow = false)
         {
