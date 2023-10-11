@@ -23,7 +23,15 @@ namespace TGB
 
         private ProjectilePooling parent;
 
-        [HideInInspector] public int FancingDirection = 1;
+        public int FancingDirection
+        {
+            get
+            {
+                if (unit == null)
+                    return 1;
+                return unit.Core.CoreMovement.FancingDirection;
+            }
+        }
         private float m_startTime;
         public Rigidbody2D RB2D
         {
@@ -106,10 +114,10 @@ namespace TGB
             if (unit != null)
             {
                 this.tag = unit.tag;
-                this.transform.position = unit.transform.position + ProjectileData.Pos;
+                this.transform.position = unit.transform.position + ProjectileData.Pos * FancingDirection;
             }
             this.gameObject.layer = LayerMask.NameToLayer("Projectile");
-            this.transform.rotation = Quaternion.Euler(ProjectileData.Rot);
+            this.transform.rotation = Quaternion.Euler(ProjectileData.Rot * FancingDirection);
 
 
             CC2D.radius = ProjectileData.Radius;
@@ -146,7 +154,6 @@ namespace TGB
 
             if (unit != null)
             {
-                FancingDirection = unit.Core.CoreMovement.FancingDirection;
                 //Default가 0을 전제
                 if(FancingDirection < 0)
                 {
