@@ -112,18 +112,29 @@ public class PlayerWeaponState : PlayerAbilityState
         weapon.InitializeWeapon(this, player.Core);
     }
 
-    public bool CheckCommand
-        (bool isGround,ref List<CommandEnum> q)
+    public bool CheckCommand(bool isGround, ref List<CommandEnum> q)
     {
         CommandEnum command = CommandEnum.Secondary;
         if (isPrimary)
             command = CommandEnum.Primary;
         q.Add(command);
+        bool isCommandLock = false;
         if (!isGround)
         {
-            if (CalCommand(weapon.weaponData.weaponCommandDataSO.AirCommandList, q))
+            if (CalCommand(weapon.weaponData.weaponCommandDataSO.AirCommandList, q, ref isCommandLock))
             {
                 return true;
+            }
+            else
+            {
+                if (isCommandLock)
+                {
+                    for (int i = 0; i < player.InputHandler.ActionInputDelayCheck.Length; i++)
+                    {
+                        player.InputHandler.ActionInputDelayCheck[i] = false;
+                        player.InputHandler.ActionInputs[i] = false;
+                    }
+                }
             }
         }
         else
@@ -137,17 +148,23 @@ public class PlayerWeaponState : PlayerAbilityState
         return false;
     }
 
-    protected bool CalCommand(List<CommandList> commandLists, List<CommandEnum> q)
+    protected bool CalCommand(List<CommandList> commandLists, List<CommandEnum> q, ref bool isCommandLock)
     {
+        bool isCountOver = false;
         for (int i = 0; i < commandLists.Count; i++)
         {
             bool pass = true;
             for (int j = 0; j < q.Count; j++)
             {
-                if (commandLists[i].commands.Count < j + 1 ||
-                    commandLists[i].commands[j].command != q[j]
-                    )
+                if (commandLists[i].commands.Count < j + 1)
                 {
+                    isCountOver = true;
+                    pass = false;
+                    break;
+                }
+                else if (commandLists[i].commands[j].command != q[j])
+                {
+                    isCountOver = false;
                     pass = false;
                     break;
                 }
@@ -161,6 +178,49 @@ public class PlayerWeaponState : PlayerAbilityState
                     weapon.weaponGenerator.GenerateWeapon(commandLists[i].commands[j]);
                 }
             }
+            if (pass)
+            {
+                return true;
+            }
+            else
+            {
+                continue;
+            }
+        }
+        if (isCountOver)
+        {
+            isCommandLock = true;
+            return false;
+        }
+        return false;
+    }
+    protected bool CalCommand(List<CommandList> commandLists, List<CommandEnum> q)
+    {
+        for (int i = 0; i < commandLists.Count; i++)
+        {
+            bool pass = true;
+            for (int j = 0; j < q.Count; j++)
+            {
+                if (commandLists[i].commands.Count < j + 1)
+                {
+                    pass = false;
+                    break;
+                }
+                else if(commandLists[i].commands[j].command != q[j])
+                {
+                    pass = false;
+                    break;
+                }
+                if (commandLists[i].commands[j].animOC == null)
+                {
+                    weapon.oc = weapon.weaponData.weaponCommandDataSO.DefaultAnimator;
+                    weapon.weaponGenerator.GenerateWeapon(commandLists[i].commands[j].data);
+                }
+                else
+                {
+                    weapon.weaponGenerator.GenerateWeapon(commandLists[i].commands[j]);
+                }
+            }            
             if (pass)
             {
                 return true;
