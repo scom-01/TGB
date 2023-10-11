@@ -10,6 +10,7 @@ public class GoodsData : MonoBehaviour
     public SpriteRenderer SR;
     public GOODS_TPYE Goods;
     public int Amount;
+    public AudioClip DropSoundClip;
     public AudioClip EquipSoundClip;
     public GameObject EquipEffect;
     public float InvokeTime
@@ -87,6 +88,12 @@ public class GoodsData : MonoBehaviour
     {
         if (!isInit)
             return;
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") || collision.gameObject.layer == LayerMask.NameToLayer("Platform"))
+        {
+            if (DropSoundClip != null)
+                GameManager.Inst.StageManager.player.Core.CoreSoundEffect.AudioSpawn(DropSoundClip);
+        }
 
         if (collision.tag == "Player")
         {
