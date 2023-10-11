@@ -26,6 +26,9 @@ namespace TGB.Weapons.Components
 
         public void DetectedSoundClip(Collider2D[] coll)
         {
+            if (coll == null)
+                return;
+
             foreach(var item in coll)
             {
                 if (item.gameObject.tag == this.gameObject.tag)
