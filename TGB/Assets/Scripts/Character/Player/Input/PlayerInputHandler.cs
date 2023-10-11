@@ -37,6 +37,8 @@ public class PlayerInputHandler : MonoBehaviour
                     , InteractionInputStop = true;
     [HideInInspector]
     public bool[] ActionInputs;
+    [HideInInspector]
+    public bool[] ActionInputDelayCheck;
 
     [SerializeField]
     private float inputHoldTime = 0.2f;
@@ -82,6 +84,11 @@ public class PlayerInputHandler : MonoBehaviour
         InteractionInputStop = true;
 
         ActionInputs = new bool[count];
+        ActionInputDelayCheck = new bool[count];
+        for (int i = 0; i < ActionInputDelayCheck.Length; i++)
+        {
+            ActionInputDelayCheck[i] = true;
+        }
         ActionInputsStartTime = new float[count];
         ActionInputsStopTime = new float[count];
 
@@ -219,14 +226,17 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.started)
         {
-            ActionInputs[(int)CombatInputs.primary] = true;
-            ActionInputsStartTime[(int)CombatInputs.primary] = Time.time;
+            if (ActionInputDelayCheck[(int)CombatInputs.primary])
+            {
+                ActionInputs[(int)CombatInputs.primary] = true;
+                ActionInputsStartTime[(int)CombatInputs.primary] = Time.time;
+            }
         }
 
         if (context.canceled)
         {
-            ActionInputsStopTime[(int)CombatInputs.primary] = Time.time;
             ActionInputs[(int)CombatInputs.primary] = false;
+            ActionInputsStopTime[(int)CombatInputs.primary] = Time.time;
         }
     }
 
@@ -234,13 +244,17 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.started)
         {
-            ActionInputs[(int)CombatInputs.secondary] = true;
-            ActionInputsStartTime[(int)CombatInputs.secondary] = Time.time;
+            if (ActionInputDelayCheck[(int)CombatInputs.secondary])
+            {
+                ActionInputs[(int)CombatInputs.secondary] = true;
+                ActionInputsStartTime[(int)CombatInputs.secondary] = Time.time;
+            }
         }
 
         if (context.canceled)
         {
             ActionInputs[(int)CombatInputs.secondary] = false;
+            ActionInputsStopTime[(int)CombatInputs.secondary] = Time.time;
         }
     }
 
@@ -406,6 +420,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     //홀드 시간
 
+    #region CheckHoldTime
     private void CheckHoldTime(ref bool input, ref float inputStartTime)
     {
         if (Time.time >= inputStartTime + inputHoldTime)
@@ -442,6 +457,28 @@ public class PlayerInputHandler : MonoBehaviour
             }
         }
     }
+    #endregion
+    public void Delay(float seconds, ref bool input)
+    {
+        for (int i = 0; i < ActionInputDelayCheck.Length; i++)
+        {
+            Debug.Log("Seconds = false");
+            ActionInputDelayCheck[i] = false;
+            ActionInputs[i] = false;
+        }
+        StartCoroutine(DelayWait(seconds));
+        
+    }
+    IEnumerator DelayWait(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        for (int i = 0; i < ActionInputDelayCheck.Length; i++)
+        {
+            ActionInputDelayCheck[i] = true;
+            ActionInputs[i] = false;
+        }
+    }
+
 }
 
 public enum CombatInputs
