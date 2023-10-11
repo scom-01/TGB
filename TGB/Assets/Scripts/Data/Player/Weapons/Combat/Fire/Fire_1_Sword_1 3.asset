@@ -34,7 +34,27 @@ MonoBehaviour:
         name: ActionHitBoxData
         actionData:
         - name: Action 1
-          ActionHit: []
+          ActionHit:
+          - Debug: 1
+            ActionRect:
+              serializedVersion: 2
+              x: -1.59
+              y: -0.85
+              width: 3.98
+              height: 2.45
+            RepeatAction: 1
+            AdditionalDamage: 0
+            KnockbackAngle: {x: 0, y: 0}
+            EffectPrefab:
+            - isGround: 0
+              isRandomPosRot: 0
+              isRandomRange: 1.5
+              EffectOffset: {x: 0, y: 0}
+              EffectScale: 0
+              isFollowing: 0
+              Object: {fileID: 6396218264791124478, guid: 5cb7bf850a916ef4ea7845332a828fcf, type: 3}
+            audioClip: []
+            camDatas: []
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
           m_Bits: 2048
@@ -51,7 +71,14 @@ MonoBehaviour:
         name: EffectSpawnData
         actionData:
         - name: Action 1
-          <EffectParticles>k__BackingField: []
+          <EffectParticles>k__BackingField:
+          - isGround: 0
+            isRandomPosRot: 0
+            isRandomRange: 0
+            EffectOffset: {x: 0, y: -0.4}
+            EffectScale: 0
+            isFollowing: 1
+            Object: {fileID: 668831008311998851, guid: 661373794299a734a8c3cfe3bd10944e, type: 3}
     - rid: 2527592717927579873
       type: {class: KnockbackData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -86,11 +113,35 @@ MonoBehaviour:
         name: WeaponProjectileData
         actionData:
         - name: Action 1
-          ProjectileActionData: []
+          ProjectileActionData:
+          - ProjectileData:
+              Pos: {x: 0, y: 0, z: 0}
+              Rot: {x: 1, y: -1, z: 0}
+              Speed: 10
+              DurationTime: 3
+              Radius: 0.5
+              Offset: {x: 1, y: -1}
+              GravityScale: 0
+              isSingleShoot: 1
+              KnockbackAngle: {x: 0, y: 0}
+              isCollisionGround: 0
+              isOnHit: 1
+              isShakeCam: 0
+              isHoming: 0
+              camDatas:
+                Duration: 0
+                Range: 0
+                RepeatRate: 0
+            Projectile: {fileID: 0}
     - rid: 2527592717927579878
       type: {class: WeaponSpriteData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: WeaponSpriteData
         actionData:
         - name: Action 1
-          <WeaponSprites>k__BackingField: []
+          <WeaponSprites>k__BackingField:
+          - {fileID: 648369791, guid: c35d9502f2ada634592d079801c15dcb, type: 3}
+          - {fileID: 1118894025, guid: c35d9502f2ada634592d079801c15dcb, type: 3}
+          - {fileID: 1696006253, guid: c35d9502f2ada634592d079801c15dcb, type: 3}
+          - {fileID: -1647957830, guid: c35d9502f2ada634592d079801c15dcb, type: 3}
+          - {fileID: -1263320664, guid: c35d9502f2ada634592d079801c15dcb, type: 3}

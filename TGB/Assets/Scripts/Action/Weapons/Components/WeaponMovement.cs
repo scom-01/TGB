@@ -34,6 +34,27 @@ namespace TGB.Weapons.Components
         }
         #endregion
 
+        private void HandleMovementAction()
+        {
+            if (currentActionData.movements.Length == 0)
+                return;
+
+            CoreMovement.CanMovement = currentActionData.movements[currentMovementIndex].CanMoveCtrl;
+
+            if (currentActionData.movements[currentMovementIndex].Direction.x != 0 && currentActionData.movements[currentMovementIndex].Direction.y == 0)
+            {
+                CoreMovement.SetVelocityX(currentActionData.movements[currentMovementIndex].Velocity * CoreMovement.FancingDirection);
+            }
+            else if (currentActionData.movements[currentMovementIndex].Direction.x == 0 && currentActionData.movements[currentMovementIndex].Direction.y != 0)
+            {
+                CoreMovement.SetVelocityY(currentActionData.movements[currentMovementIndex].Velocity);
+            }
+            else
+            {
+                CoreMovement.SetVelocity(currentActionData.movements[currentMovementIndex].Velocity, currentActionData.movements[currentMovementIndex].Direction, CoreMovement.FancingDirection);
+            }
+        }
+
         #region 고정 Movement
         private void HandleFixedStartMovement()
         {
@@ -222,7 +243,10 @@ namespace TGB.Weapons.Components
             
             eventHandler.OnFixedStopMovement -= HandleFixedStopMovement;
             eventHandler.OnFixedStopMovement += HandleFixedStopMovement;
-            
+
+            eventHandler.OnMovementAction -= HandleMovementAction;
+            eventHandler.OnMovementAction += HandleMovementAction;
+
             eventHandler.OnTeleportToTarget -= HandleTeleport;
             eventHandler.OnTeleportToTarget += HandleTeleport;
 
@@ -261,6 +285,7 @@ namespace TGB.Weapons.Components
 
             eventHandler.OnFixedStartMovement -= HandleFixedStartMovement;
             eventHandler.OnFixedStopMovement -= HandleFixedStopMovement;
+            eventHandler.OnMovementAction -= HandleMovementAction;
             eventHandler.OnTeleportToTarget -= HandleTeleport;
             eventHandler.OnRushToTargetOn -= HandleRushOn;
             eventHandler.OnRushToTargetOff -= HandleRushOff;

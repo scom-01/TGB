@@ -45,7 +45,14 @@ MonoBehaviour:
             RepeatAction: 1
             AdditionalDamage: 0
             KnockbackAngle: {x: 0, y: 0}
-            EffectPrefab: []
+            EffectPrefab:
+            - isGround: 0
+              isRandomPosRot: 1
+              isRandomRange: 1.5
+              EffectOffset: {x: 0, y: 0}
+              EffectScale: 0
+              isFollowing: 0
+              Object: {fileID: 6396218264791124478, guid: 5cb7bf850a916ef4ea7845332a828fcf, type: 3}
             audioClip: []
             camDatas: []
         <DetectableLayers>k__BackingField:

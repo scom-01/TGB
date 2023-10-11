@@ -10,6 +10,7 @@ public class AnimationEventHandler : MonoBehaviour
     //Movement
     public event Action OnFixedStartMovement;
     public event Action OnFixedStopMovement;
+    public event Action OnMovementAction;
     public event Action OnStartMovement;
     public event Action OnStopMovement;
     public event Action OnStartFlip;
@@ -45,6 +46,7 @@ public class AnimationEventHandler : MonoBehaviour
     //Movement
     public void FixedStartMovementTrigger() => OnFixedStartMovement?.Invoke();
     public void FixedStopMovementTrigger() => OnFixedStopMovement?.Invoke();
+    public void MovementAction() => OnMovementAction?.Invoke();
     public void StartMovementTrigger() => OnStartMovement?.Invoke();
     public void StopMovementTrigger() => OnStopMovement?.Invoke();
     public void StartFlipTrigger() => OnStartFlip?.Invoke();
