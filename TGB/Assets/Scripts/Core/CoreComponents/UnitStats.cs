@@ -25,8 +25,8 @@ namespace TGB.CoreSystem
                     DefaultMoveSpeed = DefaultMoveSpeed,
                     DefaultJumpVelocity = DefaultJumpVelocity,
                     DefaultAttSpeed = DefaultAttSpeed,
-                    MovementVelocity = MoveSpeed,
-                    JumpVelocity = JumpVelocity,
+                    MovementVEL_Per = MoveSpeed,
+                    JumpVEL_Per = JumpVelocity,
                     AttackSpeedPer = AttackSpeedPer,
                     PhysicsDefensivePer = PhysicsDefensivePer,
                     MagicDefensivePer = MagicDefensivePer,
@@ -126,7 +126,7 @@ namespace TGB.CoreSystem
         /// <summary>
         /// 추가 이동속도(수치만큼 %로 증가)
         /// </summary>
-        public float MoveSpeed { get => (Default_statsData.MovementVelocity + m_statsData.MovementVelocity + BlessStats.Bless_Speed_Lv * GlobalValue.BlessingStats_Inflation); }
+        public float MoveSpeed { get => (Default_statsData.MovementVEL_Per + m_statsData.MovementVEL_Per + BlessStats.Bless_Speed_Lv * GlobalValue.BlessingStats_Inflation); }
         /// <summary>
         /// 기본 점프력
         /// </summary>
@@ -134,7 +134,7 @@ namespace TGB.CoreSystem
         /// <summary>
         /// 추가 점프력 (수치만큼 %로 증가)
         /// </summary>
-        public float JumpVelocity { get => Default_statsData.JumpVelocity + m_statsData.JumpVelocity; }
+        public float JumpVelocity { get => Default_statsData.JumpVEL_Per + m_statsData.JumpVEL_Per; }
 
         /// <summary>
         /// 공격 속성 
