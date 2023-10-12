@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.U2D.IK;
+using static UnityEditor.PlayerSettings;
 
 namespace TGB
 {
@@ -81,7 +82,7 @@ namespace TGB
             if (unit != null)
             {
                 this.tag = unit.tag;
-                this.transform.position = unit.transform.position + ProjectileData.Pos;
+                this.transform.position = unit.transform.position + Vector3.right * ProjectileData.Pos.x * FancingDirection + Vector3.up * ProjectileData.Pos.y;
             }
             this.gameObject.layer = LayerMask.NameToLayer("Projectile");
             this.transform.rotation = Quaternion.Euler(ProjectileData.Rot);
@@ -114,12 +115,10 @@ namespace TGB
             if (unit != null)
             {
                 this.tag = unit.tag;
-                this.transform.position = unit.transform.position + ProjectileData.Pos * FancingDirection;
+                this.transform.position = unit.transform.position + Vector3.right * ProjectileData.Pos.x * FancingDirection + Vector3.up * ProjectileData.Pos.y;
             }
             this.gameObject.layer = LayerMask.NameToLayer("Projectile");
-            this.transform.rotation = Quaternion.Euler(ProjectileData.Rot * FancingDirection);
-
-
+            
             CC2D.radius = ProjectileData.Radius;
             CC2D.offset = ProjectileData.Offset;
             CC2D.enabled = false;
