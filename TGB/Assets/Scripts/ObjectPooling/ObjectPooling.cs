@@ -12,7 +12,7 @@ public class ObjectPooling : MonoBehaviour
     public virtual GameObject CreateObject(float size = 0)
     {
         var newobj = Instantiate(Object, transform);
-        newobj.transform.localScale = Vector3.one + new Vector3(size, size, size);
+        newobj.transform.localScale = new Vector3(size, size, size);
         newobj.gameObject.SetActive(false);
         return newobj;
     }

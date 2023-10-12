@@ -25,6 +25,9 @@ namespace TGB.CoreSystem
                 effectPrefab.AddComponent<EffectController>();
             }
 
+            if (size == 0)
+                size = effectPrefab.gameObject.transform.localScale.x;
+
             if (effectPrefab.GetComponent<EffectController>().isDestroy)
             {
                 GameObject go = Instantiate(effectPrefab, pos, rot, _isFollow ? this.transform : GameManager.Inst.StageManager.EffectContainer.transform);
@@ -46,16 +49,19 @@ namespace TGB.CoreSystem
                 effectPrefab.AddComponent<EffectController>();
             }
 
+            if (size == 0)
+                size = effectPrefab.gameObject.transform.localScale.x;
+
             if (effectPrefab.GetComponent<EffectController>().isDestroy)
             {
                 if (core.CoreMovement.FancingDirection > 0)
                 {
                     GameObject gameObject = Instantiate(effectPrefab, pos, Quaternion.Euler(effectPrefab.transform.eulerAngles), _isFollow ? this.transform : GameManager.Inst.StageManager.EffectContainer.transform);
-                    gameObject.transform.localScale = Vector3.one + new Vector3(size, size, size);
+                    gameObject.transform.localScale = new Vector3(size, size, size);
                     return gameObject;
                 }
                 GameObject gameObject1 = Instantiate(effectPrefab, pos, Quaternion.Euler(effectPrefab.transform.eulerAngles.x, effectPrefab.transform.eulerAngles.y + 180.0f, effectPrefab.transform.eulerAngles.z), _isFollow ? this.transform : GameManager.Inst.StageManager.EffectContainer.transform);
-                gameObject1.transform.localScale = Vector3.one + new Vector3(size, size, size);
+                gameObject1.transform.localScale = new Vector3(size, size, size);
                 return gameObject1;
             }
             else
@@ -80,16 +86,19 @@ namespace TGB.CoreSystem
                 effectPrefab.AddComponent<EffectController>();
             }
 
+            if (size == 0)
+                size = effectPrefab.gameObject.transform.localScale.x;
+
             if (effectPrefab.GetComponent<EffectController>().isDestroy)
             {
                 if (core.CoreMovement.FancingDirection > 0)
                 {
                     GameObject go = Instantiate(effectPrefab, pos, Quaternion.Euler(euler), _isFollow ? this.transform : GameManager.Inst.StageManager.EffectContainer.transform);
-                    go.transform.localScale = Vector3.one + new Vector3(size, size, size);
+                    go.transform.localScale = new Vector3(size, size, size);
                     return go;
                 }
                 GameObject go1 = Instantiate(effectPrefab, pos, Quaternion.Euler(euler.x, euler.y + 180f, euler.z), GameManager.Inst.StageManager.EffectContainer.transform);
-                go1.transform.localScale = Vector3.one + new Vector3(size, size, size);
+                go1.transform.localScale = new Vector3(size, size, size);
                 return go1;
             }
             else
@@ -115,16 +124,19 @@ namespace TGB.CoreSystem
                 effectPrefab.AddComponent<EffectController>();
             }
 
+            if (size == 0)
+                size = effectPrefab.gameObject.transform.localScale.x;
+
             if (effectPrefab.GetComponent<EffectController>().isDestroy)
             {
                 if (core.CoreMovement.FancingDirection > 0)
                 {
                     GameObject go = Instantiate(effectPrefab, transform.position, Quaternion.Euler(effectPrefab.transform.eulerAngles), GameManager.Inst.StageManager.EffectContainer.transform);
-                    go.transform.localScale = Vector3.one + new Vector3(size, size, size);
+                    go.transform.localScale =new Vector3(size, size, size);
                     return go;
                 }
                 GameObject go1 = Instantiate(effectPrefab, transform.position, Quaternion.Euler(effectPrefab.transform.eulerAngles.x, effectPrefab.transform.eulerAngles.y + 180.0f, effectPrefab.transform.eulerAngles.z), GameManager.Inst.StageManager.EffectContainer.transform);
-                go1.transform.localScale = Vector3.one + new Vector3(size, size, size);
+                go1.transform.localScale = new Vector3(size, size, size);
                 return go1;
             }
             else
