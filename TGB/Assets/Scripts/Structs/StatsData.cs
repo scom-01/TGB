@@ -17,10 +17,10 @@ public struct StatsData
     public float DefaultJumpVelocity;
     [Tooltip("기본 공격속도 (animation 속도를 조절하기에 디폴트를 100으로 설정할 것을 권장")]
     public float DefaultAttSpeed;
-    [Tooltip("움직임 Velocity")]
-    public float MovementVelocity;
-    [Tooltip("점프 Velocity")]
-    public float JumpVelocity;
+    [Tooltip("움직임 Per")]
+    public float MovementVEL_Per;
+    [Tooltip("점프 Per")]
+    public float JumpVEL_Per;
     [Tooltip("추가 공격 속도 %")]
     public float AttackSpeedPer;
     [Tooltip("물리 방어력 % (max = 100)")]
@@ -55,8 +55,8 @@ public struct StatsData
         temp.DefaultJumpVelocity = s1.DefaultJumpVelocity + s2.DefaultJumpVelocity;
         temp.DefaultAttSpeed = s1.DefaultAttSpeed + s2.DefaultAttSpeed;
         temp.DefaultMoveSpeed = s1.DefaultMoveSpeed + s2.DefaultMoveSpeed;
-        temp.MovementVelocity = s1.MovementVelocity + s2.MovementVelocity;
-        temp.JumpVelocity = s1.JumpVelocity + s2.JumpVelocity;
+        temp.MovementVEL_Per = s1.MovementVEL_Per + s2.MovementVEL_Per;
+        temp.JumpVEL_Per = s1.JumpVEL_Per + s2.JumpVEL_Per;
         temp.AttackSpeedPer = s1.AttackSpeedPer + s2.AttackSpeedPer;
         temp.PhysicsDefensivePer = s1.PhysicsDefensivePer + s2.PhysicsDefensivePer;
         temp.MagicDefensivePer = s1.MagicDefensivePer + s2.MagicDefensivePer;
@@ -77,8 +77,8 @@ public struct StatsData
         temp.DefaultJumpVelocity = s1.DefaultJumpVelocity * f1;
         temp.DefaultAttSpeed = s1.DefaultAttSpeed * f1;
         temp.DefaultMoveSpeed = s1.DefaultMoveSpeed * f1;
-        temp.MovementVelocity = s1.MovementVelocity * f1;
-        temp.JumpVelocity = s1.JumpVelocity * f1;
+        temp.MovementVEL_Per = s1.MovementVEL_Per * f1;
+        temp.JumpVEL_Per = s1.JumpVEL_Per * f1;
         temp.AttackSpeedPer = s1.AttackSpeedPer * f1;
         temp.PhysicsDefensivePer = s1.PhysicsDefensivePer * f1;
         temp.MagicDefensivePer = s1.MagicDefensivePer * f1;

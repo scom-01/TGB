@@ -40,6 +40,10 @@ public class GoodsItem : MonoBehaviour
     /// 재화의 삭제 딜레이 시간
     /// </summary>
     [SerializeField]    private float DestroyTime;
+    /// <summary>
+    /// 재화의 삭제 딜레이 시간 랜덤 범위 (+- Random.Range)
+    /// </summary>
+    [SerializeField]    private float DestroyTimeRange;
     private Vector3 spawnPos;
     private GameObject Core; 
     private void Start()
@@ -66,15 +70,20 @@ public class GoodsItem : MonoBehaviour
         {
             var goods = Instantiate(GoodsPrefab, GameManager.Inst.StageManager.IM.transform);
             var goodsData = goods.GetComponent<GoodsData>();
-            goodsData.transform.position = spawnPos;
+            goodsData.transform.position = spawnPos + Vector3.up;
             goodsData.SR.sprite = GoodsSprite;
             goodsData.CircleSize = CircleSize;
             goodsData.Goods = Goods;
             goodsData.Amount = Amount;
             goodsData.EquipSoundClip = EquipSoundClip;
             goodsData.EquipEffect = EquipEffect;
+            goodsData.InvokeTimeRange = DestroyTimeRange;
             goodsData.InvokeTime = DestroyTime;    //DestroyTime
-            var vec = Vector2.right * Random.Range(-2f, 2f) + Vector2.up * Random.Range(400f, 700f);
+            float randX = Random.Range(-1f, 1f);
+            float randY = Random.Range(400f, 700f);
+            Debug.Log($"{this.name} , randX = {randX}, randY = {randY}");
+            goodsData.transform.position = goodsData.transform.position + Vector3.right * randX;
+            var vec = Vector2.up * randY;
             goodsData.RB2D.AddForce(vec);
             goodsData.isInit = true;
         }

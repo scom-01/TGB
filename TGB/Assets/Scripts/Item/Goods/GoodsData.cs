@@ -1,9 +1,4 @@
-using Mono.Cecil;
-using TGB.CoreSystem;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static DataParsing;
 
 public class GoodsData : MonoBehaviour
 {
@@ -19,15 +14,15 @@ public class GoodsData : MonoBehaviour
         {
             if(value <= 0)
             {
-                Invoke("GoodsEquip", 1.5f);
+                Invoke("GoodsEquip", Random.Range(1f,1.5f));
             }
             else
             {
-                Invoke("GoodsEquip", value);
+                Invoke("GoodsEquip", Random.Range(value - InvokeTimeRange, value + InvokeTimeRange));
             }
         }
     }
-
+    public float InvokeTimeRange;
     private CircleCollider2D CC2D;    
     public Rigidbody2D RB2D
     {
