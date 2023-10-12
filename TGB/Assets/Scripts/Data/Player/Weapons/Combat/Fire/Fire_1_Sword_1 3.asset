@@ -92,7 +92,11 @@ MonoBehaviour:
         name: MovementData
         actionData:
         - name: Action 1
-          <movements>k__BackingField: []
+          <movements>k__BackingField:
+          - CanFlip: 0
+            CanMoveCtrl: 1
+            Direction: {x: 0, y: 1}
+            Velocity: 10
     - rid: 2527592717927579875
       type: {class: ShakeCamData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -115,16 +119,16 @@ MonoBehaviour:
         - name: Action 1
           ProjectileActionData:
           - ProjectileData:
-              Pos: {x: 0, y: 0, z: 0}
-              Rot: {x: 1, y: -1, z: 0}
-              Speed: 10
+              Pos: {x: 1, y: -1, z: 0}
+              Rot: {x: 2, y: -1, z: 0}
+              Speed: 20
               DurationTime: 3
               Radius: 0.5
-              Offset: {x: 1, y: -1}
+              Offset: {x: 0, y: 0}
               GravityScale: 0
               isSingleShoot: 1
               KnockbackAngle: {x: 0, y: 0}
-              isCollisionGround: 0
+              isCollisionGround: 1
               isOnHit: 1
               isShakeCam: 0
               isHoming: 0
@@ -132,7 +136,7 @@ MonoBehaviour:
                 Duration: 0
                 Range: 0
                 RepeatRate: 0
-            Projectile: {fileID: 0}
+            Projectile: {fileID: 2222910967692216358, guid: ec259d96c89ebfa42a54fb67dc441e32, type: 3}
     - rid: 2527592717927579878
       type: {class: WeaponSpriteData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:

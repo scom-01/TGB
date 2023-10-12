@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -460893653
-  m_SortingLayer: 9
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: 218339756, guid: f7bf72b4be9086e4c9eef46270d4a8f3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -140,6 +140,10 @@ MonoBehaviour:
   SR: {fileID: 1952279293685995001}
   Goods: 0
   Amount: 0
+  DropSoundClip: {fileID: 8300000, guid: f2278fecc222f14459622deee93a4eae, type: 3}
+  EquipSoundClip: {fileID: 0}
+  EquipEffect: {fileID: 0}
+  isInit: 0
 --- !u!1 &1952279294793634156
 GameObject:
   m_ObjectHideFlags: 0

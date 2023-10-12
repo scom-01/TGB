@@ -1202,8 +1202,8 @@ MonoBehaviour:
     DefaultMoveSpeed: 0
     DefaultJumpVelocity: 0
     DefaultAttSpeed: 0
-    MovementVelocity: 0
-    JumpVelocity: 0
+    MovementVEL_Per: 0
+    JumpVEL_Per: 0
     AttackSpeedPer: 0
     PhysicsDefensivePer: 0
     MagicDefensivePer: 0
@@ -1221,8 +1221,8 @@ MonoBehaviour:
     DefaultMoveSpeed: 0
     DefaultJumpVelocity: 0
     DefaultAttSpeed: 0
-    MovementVelocity: 0
-    JumpVelocity: 0
+    MovementVEL_Per: 0
+    JumpVEL_Per: 0
     AttackSpeedPer: 0
     PhysicsDefensivePer: 0
     MagicDefensivePer: 0
@@ -1620,6 +1620,7 @@ MonoBehaviour:
   EquipEffect: {fileID: 1380205584940949931, guid: 07623d638bfe48c4bbf7a6dc202419de, type: 3}
   CircleSize: 0.3125
   DestroyTime: 2.5
+  DestroyTimeRange: 0.5
 --- !u!114 &4029409388226351098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1641,6 +1642,7 @@ MonoBehaviour:
   EquipEffect: {fileID: 1380205584940949931, guid: 07623d638bfe48c4bbf7a6dc202419de, type: 3}
   CircleSize: 0.3125
   DestroyTime: 2.5
+  DestroyTimeRange: 0.5
 --- !u!1001 &6386328288435780554
 PrefabInstance:
   m_ObjectHideFlags: 0

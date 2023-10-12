@@ -34,7 +34,27 @@ MonoBehaviour:
         name: ActionHitBoxData
         actionData:
         - name: Action 1
-          ActionHit: []
+          ActionHit:
+          - Debug: 1
+            ActionRect:
+              serializedVersion: 2
+              x: -1.47
+              y: -1.09
+              width: 3.6
+              height: 2.07
+            RepeatAction: 1
+            AdditionalDamage: 0
+            KnockbackAngle: {x: 0, y: 0}
+            EffectPrefab:
+            - isGround: 0
+              isRandomPosRot: 1
+              isRandomRange: 1.5
+              EffectOffset: {x: 0, y: 0}
+              EffectScale: 0
+              isFollowing: 0
+              Object: {fileID: 7681821613543600161, guid: f00585eb1d3761e4eb76dcce81aa6162, type: 3}
+            audioClip: []
+            camDatas: []
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
           m_Bits: 2048
