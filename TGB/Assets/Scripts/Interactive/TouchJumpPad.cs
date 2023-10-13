@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 public class TouchJumpPad : TouchObject
 {
     [SerializeField] private float JumpVelocity;
-    [SerializeField] private GameObject JumpEffectPrefab;    
+    [SerializeField] private GameObject JumpEffectPrefab;
     [SerializeField] private Vector2 angle;
     private BoxCollider2D BC2D;
     private Animator animator;
@@ -14,7 +11,6 @@ public class TouchJumpPad : TouchObject
     {
         if (BC2D == null)
             BC2D = this.GetComponent<BoxCollider2D>();
-
     }
     public override void OnTriggerStay2D(Collider2D collision)
     {
@@ -39,16 +35,19 @@ public class TouchJumpPad : TouchObject
 
     private void Collision(Unit unit)
     {
-        
+
         if (JumpEffectPrefab != null)
         {
             if (JumpEffectPrefab != null)
                 Instantiate(JumpEffectPrefab, this.gameObject.transform.position, Quaternion.identity, effectContainer);
         }
         Touch();
-
+        if (EffectObject)
+            unit.Core.CoreEffectManager.StartEffects(EffectObject, unit.transform.position);
+        if (SfxObject)
+            unit.Core.CoreSoundEffect.AudioSpawn(SfxObject);
         //x = 0 인 위로만 올리는 점프패드일 때는 공중 움직임 제한 X
-        if(angle.x == 0)
+        if (angle.x == 0)
         {
             unit.Core.CoreMovement.SetVelocityY(JumpVelocity);
         }

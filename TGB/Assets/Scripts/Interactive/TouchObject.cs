@@ -1,10 +1,13 @@
+using System.Drawing;
+using System.Xml.Linq;
 using UnityEngine;
 
 
 public class TouchObject : MonoBehaviour, ITouch
 {
     protected Transform effectContainer;
-
+    public AudioClip SfxObject;
+    public GameObject EffectObject;
     private void Awake()
     {
         effectContainer = GameObject.FindGameObjectWithTag("EffectContainer").transform;
@@ -12,14 +15,14 @@ public class TouchObject : MonoBehaviour, ITouch
     }
     public virtual void Touch()
     {
-
+        
     }
     public virtual void UnTouch()
     {
 
     }
     public virtual void OnTriggerStay2D(Collider2D collision)
-    {
+    {        
     }
 
     public virtual void OnTriggerEnter2D(Collider2D collision)
