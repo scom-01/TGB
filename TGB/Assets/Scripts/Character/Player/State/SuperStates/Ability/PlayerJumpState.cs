@@ -8,6 +8,7 @@ public class PlayerJumpState : PlayerAbilityState
 {
     private int amountOfJumpLeft;
     private GameObject Jump_Effect;
+    private AudioClip Jump_Sfx;
 
     public PlayerJumpState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
@@ -17,6 +18,10 @@ public class PlayerJumpState : PlayerAbilityState
         {
             Jump_Effect = Resources.Load<GameObject>("Prefabs/Effects/Jump_Smoke");
         }
+        if (Jump_Sfx == null)
+        {
+            Jump_Sfx = Resources.Load<AudioClip>("Sounds/Effects/SFX_Jump_01");
+        }
     }
 
     public override void Enter()
@@ -24,16 +29,16 @@ public class PlayerJumpState : PlayerAbilityState
         base.Enter();
         unit.RB.gravityScale = unit.UnitData.UnitGravity;
         isAbilityDone = true;
-        Jump();
+        Jump();        
     }
 
-    public void Jump()
+    private void Jump()
     {
         Debug.Log("Jump");
-        Debug.Log("Gravity = "+unit.RB.gravityScale);
         player.isFixedMovement = false;
         player.InputHandler.UseInput(ref player.InputHandler.JumpInput);
         Movement.SetVelocityY(UnitStats.DefaultJumpVelocity * (100f + UnitStats.JumpVelocity) / 100f);
+        SoundEffect.AudioSpawn(Jump_Sfx);
         if (amountOfJumpLeft < player.playerData.amountOfJumps)
         {
             player.Core.CoreEffectManager.StartEffects(Jump_Effect, CollisionSenses.GroundCenterPos);
