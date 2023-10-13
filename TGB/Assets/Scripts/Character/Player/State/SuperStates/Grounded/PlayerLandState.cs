@@ -26,6 +26,7 @@ public class PlayerLandState : PlayerGroundedState
         base.Enter();
         SoundEffect.AudioSpawn(Land_SFX);
         player.Core.CoreEffectManager.StartEffects(Land_Effect, CollisionSenses.GroundCenterPos);
+        Debug.Log("player.InputHandler.ActionInputDelayCheck[i] true");
         //Land 시 
         for (int i = 0; i < player.InputHandler.ActionInputDelayCheck.Length; i++)
         {
