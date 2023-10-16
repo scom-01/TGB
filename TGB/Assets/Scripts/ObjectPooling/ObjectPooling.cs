@@ -21,6 +21,8 @@ public class ObjectPooling : MonoBehaviour
     {
         if (_obj == null)
             return;
+        if (size == 0)
+            size = _obj.transform.localScale.x;
 
         Object = _obj;
         MaxPoolAmount = count;
