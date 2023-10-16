@@ -53,7 +53,7 @@ public class StageManager : MonoBehaviour
     public int m_NextStageNumber;
     public UI_State Start_UIState;
     public Camera Cam;
-
+    public float Cam_Distance;
     [TagField]
     [field: SerializeField] private string effectContainerTagName = "EffectContainer";
     public EffectContainer EffectContainer
@@ -112,13 +112,16 @@ public class StageManager : MonoBehaviour
 
     private void Awake()
     {
-        Debug.LogWarning($"Stage Awake {CurrStageName}");
+        Debug.LogWarning($"Stage Awake {CurrStageName}");        
         if (GameManager.Inst)
         {
             GameManager.Inst.StageManager = this;
         }
         playerGO = Instantiate(PlayerPrefab, SpawnPoint);
         player = playerGO.GetComponent<Player>();
+
+        if (Cam == null)
+            Cam = this.GetComponentsInChildren<Camera>()[0];
 
         var FadeIn = Resources.Load<GameObject>(GlobalValue.FadeInCutScene);
         if (FadeIn != null)
@@ -131,7 +134,11 @@ public class StageManager : MonoBehaviour
     public virtual void Start()
     {
         CVC = GameObject.Find("Player Camera").GetComponent<CinemachineVirtualCamera>();
-        CVC.Follow = player.transform;
+        if (CVC != null)
+        {
+            CVC.Follow = player.transform;
+            CVC.m_Lens.OrthographicSize = (Cam_Distance <= 0) ? 5 : Cam_Distance;
+        }
         GameManager.Inst.ChangeUI(UI_State.GamePlay);
         isStageClear = false;
     }
