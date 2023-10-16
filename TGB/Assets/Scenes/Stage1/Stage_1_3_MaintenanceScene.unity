@@ -750,6 +750,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d9513fef8696d449f5cccb09b8007e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SfxObject: {fileID: 0}
+  EffectObject: {fileID: 0}
 --- !u!1 &634392598
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,6 +798,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23101ca398c5f484291b344f41f6ebda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SfxObject: {fileID: 0}
+  EffectObject: {fileID: 0}
   RespawnPoint: {fileID: 863927861}
 --- !u!60 &634392601
 PolygonCollider2D:
@@ -66128,6 +66132,7 @@ MonoBehaviour:
   m_NextStageNumber: 6
   Start_UIState: 0
   Cam: {fileID: 0}
+  Cam_Distance: 8.5
   effectContainerTagName: EffectContainer
   SpawnPoint: {fileID: 2048269062}
   EndPoint: {fileID: 795737771}

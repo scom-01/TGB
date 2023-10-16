@@ -4333,6 +4333,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d9513fef8696d449f5cccb09b8007e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SfxObject: {fileID: 0}
+  EffectObject: {fileID: 0}
 --- !u!1 &408849922
 GameObject:
   m_ObjectHideFlags: 0
@@ -74485,6 +74487,7 @@ MonoBehaviour:
   m_NextStageNumber: 0
   Start_UIState: 0
   Cam: {fileID: 0}
+  Cam_Distance: 8.5
   effectContainerTagName: EffectContainer
   SpawnPoint: {fileID: 0}
   EndPoint: {fileID: 489737334}
@@ -75122,6 +75125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 648d7fecd484a93428f79668dd27feaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SfxObject: {fileID: 0}
+  EffectObject: {fileID: 0}
   Ignore_Tag: 
   Item: {fileID: 11400000, guid: 45bf890e301b83740a4dafff7b7b6674, type: 2}
   SpriteRenderer: {fileID: 0}
@@ -75590,7 +75595,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 8
   m_Depth: 2
   m_CullingMask:
     serializedVersion: 2
@@ -75614,7 +75619,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1254756151}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.009598, y: 3.34973, z: -10}
+  m_LocalPosition: {x: -14, y: 1.4000001, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -87419,7 +87424,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 10
+    OrthographicSize: 8
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -87700,7 +87705,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1810618134}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -229.00958, y: 1.74973, z: 36.586235}
+  m_LocalPosition: {x: -231, y: -0.19999981, z: 36.586235}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -89073,7 +89078,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1891580108}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.009598, y: 3.34973, z: -10}
+  m_LocalPosition: {x: -14, y: 1.4000001, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -89583,6 +89588,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f30e61af88ba84aaeeb01933203d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SfxObject: {fileID: 0}
+  EffectObject: {fileID: 0}
   UnitData: {fileID: 11400000, guid: 27eaf0c531753bd45891897fd5c4886a, type: 2}
   knockbackAngle: {x: 0, y: 0}
   IgnoreTag: 

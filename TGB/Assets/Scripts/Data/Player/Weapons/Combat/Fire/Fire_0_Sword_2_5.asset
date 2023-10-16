@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 829d099c869488a49a5f24ab18f0f054, type: 3}
+  m_Name: Fire_0_Sword_2_5
+  m_EditorClassIdentifier: 
+  <NumberOfActions>k__BackingField: 1
+  <CanJump>k__BackingField: 1
+  <CanAirAttack>k__BackingField: 1
+  <ComponentData>k__BackingField:
+  - rid: 2527592717927579852
+  - rid: 2527592717927579853
+  - rid: 2527592717927579854
+  - rid: 2527592717927579855
+  - rid: 2527592717927579856
+  - rid: 2527592717927579857
+  - rid: 2527592717927579858
+  - rid: 2527592717927579859
+  - rid: 2527592717927579860
+  references:
+    version: 2
+    RefIds:
+    - rid: 2527592717927579852
+      type: {class: ActionHitBoxData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ActionHitBoxData
+        actionData:
+        - name: Action 1
+          ActionHit:
+          - Debug: 1
+            ActionRect:
+              serializedVersion: 2
+              x: -0.8
+              y: -0.8
+              width: 3.5
+              height: 1.86
+            RepeatAction: 1
+            AdditionalDamage: 0
+            KnockbackAngle: {x: 0, y: 0}
+            EffectPrefab:
+            - isGround: 0
+              isRandomPosRot: 1
+              isRandomRange: 1.5
+              EffectOffset: {x: 0, y: 0}
+              EffectScale: 0
+              isFollowing: 0
+              Object: {fileID: 6396218264791124478, guid: 5cb7bf850a916ef4ea7845332a828fcf, type: 3}
+            audioClip: []
+            camDatas: []
+        <DetectableLayers>k__BackingField:
+          serializedVersion: 2
+          m_Bits: 2048
+    - rid: 2527592717927579853
+      type: {class: DamageData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: DamageData
+        actionData:
+        - name: Action 1
+          <HitDamage>k__BackingField: []
+    - rid: 2527592717927579854
+      type: {class: EffectSpawnData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: EffectSpawnData
+        actionData:
+        - name: Action 1
+          <EffectParticles>k__BackingField:
+          - isGround: 1
+            isRandomPosRot: 0
+            isRandomRange: 0
+            EffectOffset: {x: 0, y: 0}
+            EffectScale: 0
+            isFollowing: 1
+            Object: {fileID: 668831008311998851, guid: 661373794299a734a8c3cfe3bd10944e, type: 3}
+    - rid: 2527592717927579855
+      type: {class: KnockbackData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: KnockbackData
+        actionData:
+        - name: Action 1
+          <KnockbackAngle>k__BackingField: []
+    - rid: 2527592717927579856
+      type: {class: MovementData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: MovementData
+        actionData:
+        - name: Action 1
+          <movements>k__BackingField: []
+    - rid: 2527592717927579857
+      type: {class: ShakeCamData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ShakeCamData
+        actionData:
+        - name: Action 1
+          <ShakeCamData>k__BackingField: []
+    - rid: 2527592717927579858
+      type: {class: SoundClipData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: SoundClipData
+        actionData:
+        - name: Action 1
+          audioClips:
+          - {fileID: 8300000, guid: a43b3ed7a42c242489f8b5351bf08f67, type: 3}
+    - rid: 2527592717927579859
+      type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: WeaponProjectileData
+        actionData:
+        - name: Action 1
+          ProjectileActionData: []
+    - rid: 2527592717927579860
+      type: {class: WeaponSpriteData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: WeaponSpriteData
+        actionData:
+        - name: Action 1
+          <WeaponSprites>k__BackingField:
+          - {fileID: 1384342793, guid: 1aedf463434bc634b8a44f6287510561, type: 3}
+          - {fileID: 916677376, guid: 1aedf463434bc634b8a44f6287510561, type: 3}
+          - {fileID: -942968874, guid: 1aedf463434bc634b8a44f6287510561, type: 3}
+          - {fileID: 1209525265, guid: 1aedf463434bc634b8a44f6287510561, type: 3}
+          - {fileID: 124374751, guid: 1aedf463434bc634b8a44f6287510561, type: 3}

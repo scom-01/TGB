@@ -271,6 +271,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23101ca398c5f484291b344f41f6ebda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SfxObject: {fileID: 0}
+  EffectObject: {fileID: 0}
   RespawnPoint: {fileID: 335783075}
 --- !u!60 &204707223
 PolygonCollider2D:
@@ -2042,6 +2044,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23101ca398c5f484291b344f41f6ebda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SfxObject: {fileID: 0}
+  EffectObject: {fileID: 0}
   RespawnPoint: {fileID: 18369583}
 --- !u!60 &308611200
 PolygonCollider2D:
@@ -2322,6 +2326,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23101ca398c5f484291b344f41f6ebda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SfxObject: {fileID: 0}
+  EffectObject: {fileID: 0}
   RespawnPoint: {fileID: 1302566072}
 --- !u!60 &470470425
 PolygonCollider2D:
@@ -2400,6 +2406,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23101ca398c5f484291b344f41f6ebda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SfxObject: {fileID: 0}
+  EffectObject: {fileID: 0}
   RespawnPoint: {fileID: 1083617528}
 --- !u!60 &556219631
 PolygonCollider2D:
@@ -10894,6 +10902,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23101ca398c5f484291b344f41f6ebda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SfxObject: {fileID: 0}
+  EffectObject: {fileID: 0}
   RespawnPoint: {fileID: 1637061809}
 --- !u!60 &819889124
 PolygonCollider2D:
@@ -11103,6 +11113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23101ca398c5f484291b344f41f6ebda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SfxObject: {fileID: 0}
+  EffectObject: {fileID: 0}
   RespawnPoint: {fileID: 1886388820}
 --- !u!60 &977801527
 PolygonCollider2D:
@@ -62192,6 +62204,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23101ca398c5f484291b344f41f6ebda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SfxObject: {fileID: 0}
+  EffectObject: {fileID: 0}
   RespawnPoint: {fileID: 1643054962}
 --- !u!60 &1181735191
 PolygonCollider2D:
@@ -122635,6 +122649,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f30e61af88ba84aaeeb01933203d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SfxObject: {fileID: 0}
+  EffectObject: {fileID: 0}
   UnitData: {fileID: 11400000, guid: 27eaf0c531753bd45891897fd5c4886a, type: 2}
   knockbackAngle: {x: 5, y: 10}
   IgnoreTag: 
@@ -124407,6 +124423,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d9513fef8696d449f5cccb09b8007e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SfxObject: {fileID: 0}
+  EffectObject: {fileID: 0}
 --- !u!1 &1886388819
 GameObject:
   m_ObjectHideFlags: 0
@@ -126824,6 +126842,10 @@ PrefabInstance:
       propertyPath: SpawnPoint
       value: 
       objectReference: {fileID: 3403605677196648677}
+    - target: {fileID: 3403605678874512105, guid: 71b1d090ff623604dac370b9f4c0a400, type: 3}
+      propertyPath: Cam_Distance
+      value: 8.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3403605678874512105, guid: 71b1d090ff623604dac370b9f4c0a400, type: 3}
       propertyPath: SceneNameFade
       value: 

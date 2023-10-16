@@ -75,7 +75,7 @@ MonoBehaviour:
           - isGround: 0
             isRandomPosRot: 0
             isRandomRange: 0
-            EffectOffset: {x: 0, y: 0}
+            EffectOffset: {x: 0.2, y: 0}
             EffectScale: 0
             isFollowing: 1
             Object: {fileID: 668831008311998851, guid: f8ca85125fd128f46b3b3dfba47d4457, type: 3}
@@ -107,7 +107,7 @@ MonoBehaviour:
         actionData:
         - name: Action 1
           audioClips:
-          - {fileID: 8300000, guid: 7dfd8119742582c47832bf5ec01273db, type: 3}
+          - {fileID: 8300000, guid: cacb4988ddb54fc4b8a5412da73b04da, type: 3}
     - rid: 2527592717927579850
       type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
