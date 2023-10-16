@@ -4,15 +4,17 @@ using UnityEngine;
 
 namespace TGB.Manager
 {
-    public class MainPanelUI : MonoBehaviour
+    public class MainPanelUI : PanelUI
     {
         [HideInInspector] public BuffPanelSystem BuffPanelSystem;
         [HideInInspector] public EnemyPanel EnemyPanelSystem;
         [HideInInspector] public StatsPanel StatsPanelSystem;
         [HideInInspector] public MinimapPanel MinimapPanelSystem;
+
         // Start is called before the first frame update
-        void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             if (BuffPanelSystem == null)
                 BuffPanelSystem = this.GetComponentInChildren<BuffPanelSystem>();
             if (EnemyPanelSystem == null)
@@ -21,7 +23,11 @@ namespace TGB.Manager
                 StatsPanelSystem = this.GetComponentInChildren<StatsPanel>();
             if (MinimapPanelSystem == null)
                 MinimapPanelSystem = this.GetComponentInChildren<MinimapPanel>();
+        }
 
+        protected override void Update()
+        {
+            base.Update();
         }
     }
 }
