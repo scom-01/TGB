@@ -6,13 +6,28 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
+    [SerializeField]
+    private bool isPlayer;
     private Unit Unit
     {
         get
         {
             if (unit == null)
             {
-                unit = this.GetComponentInParent<Unit>();
+                if (isPlayer)
+                {
+                    unit = GameManager.Inst?.StageManager?.player;
+                }
+                else
+                {
+                    unit = this.GetComponentInParent<Unit>();
+                }
+                if (unit != null)
+                {
+                    Stats.OnChangeHealth -= UpdateBar;
+                    Stats.OnChangeHealth += UpdateBar;
+                    UpdateBar();
+                }
             }
             return unit;
         }
@@ -42,7 +57,7 @@ public class HealthBar : MonoBehaviour
             {
                 m_slider = this.GetComponent<Slider>();
             }
-            return m_slider; 
+            return m_slider;
         }
     }
     private Slider m_slider;
@@ -83,7 +98,7 @@ public class HealthBar : MonoBehaviour
     private Coroutine runningCoroutine;
 
     private void Start()
-    {        
+    {
         if (m_Slider != null)
             m_Slider.value = 1f;
 
@@ -91,11 +106,14 @@ public class HealthBar : MonoBehaviour
     }
     private void Update()
     {
+        if (Unit == null)
+            return;
+
         if (!m_IsFollow)
             return;
 
-        if (m_Slider != null && Cam != null)
-            m_Slider.transform.position = Cam.WorldToScreenPoint(unit.Core.CoreCollisionSenses.GroundCenterPos + new Vector3(0.0f, -0.5f, 0.0f));        
+        if (m_Slider != null && Cam != null && Unit != null)
+            m_Slider.transform.position = Cam.WorldToScreenPoint(Unit.Core.CoreCollisionSenses.GroundCenterPos + new Vector3(0.0f, -0.5f, 0.0f));
     }
     private void OnEnable()
     {
@@ -115,6 +133,9 @@ public class HealthBar : MonoBehaviour
 
     private void UpdateBar()
     {
+        if (Stats == null)
+            return;
+
         // 슬라이더의 목표 값을 계산합니다.
         float targetValue = Stats.CurrentHealth / Stats.MaxHealth;
         if (m_Slider != null)
