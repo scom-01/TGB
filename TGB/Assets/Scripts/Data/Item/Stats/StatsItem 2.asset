@@ -40,8 +40,8 @@ MonoBehaviour:
     DefaultMoveSpeed: 0
     DefaultJumpVelocity: 0
     DefaultAttSpeed: 0
-    MovementVelocity: 0
-    JumpVelocity: 0
+    MovementVEL_Per: 0
+    JumpVEL_Per: 0
     AttackSpeedPer: 0
     PhysicsDefensivePer: 0
     MagicDefensivePer: 0
@@ -66,12 +66,22 @@ MonoBehaviour:
       m_LocalVariables: []
     variable: 3
     value: 3
+    ShowPercent: 0
   Health: 0
-  effectData:
-    <AcquiredEffectPrefab>k__BackingField: {fileID: 1380205584940949931, guid: 07623d638bfe48c4bbf7a6dc202419de, type: 3}
+  buffItems: []
+  InitEffectData:
+    <AcquiredEffectPrefab>k__BackingField: {fileID: 0}
     <AcquiredSoundEffect>k__BackingField: {fileID: 0}
     <isEquipment>k__BackingField: 1
     <DetailSubUI>k__BackingField: 0
+  InfinityEffectObjects:
+  - isGround: 1
+    isRandomPosRot: 0
+    isRandomRange: 0
+    EffectOffset: {x: 0, y: 0}
+    EffectScale: 0
+    isFollowing: 1
+    Object: {fileID: 0}
   ItemEffects:
   - {fileID: 11400000, guid: 01409fbc76d0cd34495b523ccf1b4df0, type: 2}
   - {fileID: 11400000, guid: ac8857d8b95b7d045b3c3c67b4452a2e, type: 2}

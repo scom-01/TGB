@@ -40,8 +40,8 @@ MonoBehaviour:
     DefaultMoveSpeed: 0
     DefaultJumpVelocity: 0
     DefaultAttSpeed: 0
-    MovementVelocity: 0
-    JumpVelocity: 0
+    MovementVEL_Per: 0
+    JumpVEL_Per: 0
     AttackSpeedPer: -10
     PhysicsDefensivePer: 5
     MagicDefensivePer: 0
@@ -66,6 +66,7 @@ MonoBehaviour:
       m_LocalVariables: []
     variable: 0
     value: 3
+    ShowPercent: 0
   - type: 6
     StatsLocalizeString:
       m_TableReference:
@@ -78,6 +79,7 @@ MonoBehaviour:
       m_LocalVariables: []
     variable: 0
     value: -10
+    ShowPercent: 0
   - type: 0
     StatsLocalizeString:
       m_TableReference:
@@ -90,6 +92,7 @@ MonoBehaviour:
       m_LocalVariables: []
     variable: 0
     value: 20
+    ShowPercent: 0
   - type: 2
     StatsLocalizeString:
       m_TableReference:
@@ -102,12 +105,15 @@ MonoBehaviour:
       m_LocalVariables: []
     variable: 0
     value: 5
+    ShowPercent: 0
   Health: 0
-  effectData:
+  buffItems: []
+  InitEffectData:
     <AcquiredEffectPrefab>k__BackingField: {fileID: 0}
     <AcquiredSoundEffect>k__BackingField: {fileID: 0}
     <isEquipment>k__BackingField: 1
     <DetailSubUI>k__BackingField: 0
+  InfinityEffectObjects: []
   ItemEffects: []
   references:
     version: 2

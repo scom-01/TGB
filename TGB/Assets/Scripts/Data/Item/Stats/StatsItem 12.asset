@@ -40,8 +40,8 @@ MonoBehaviour:
     DefaultMoveSpeed: 0
     DefaultJumpVelocity: 0
     DefaultAttSpeed: 0
-    MovementVelocity: -5
-    JumpVelocity: -5
+    MovementVEL_Per: 0
+    JumpVEL_Per: 0
     AttackSpeedPer: 0
     PhysicsDefensivePer: 10
     MagicDefensivePer: 10
@@ -133,11 +133,13 @@ MonoBehaviour:
     value: -5
     ShowPercent: 1
   Health: 0
-  effectData:
+  buffItems: []
+  InitEffectData:
     <AcquiredEffectPrefab>k__BackingField: {fileID: 0}
     <AcquiredSoundEffect>k__BackingField: {fileID: 0}
     <isEquipment>k__BackingField: 1
     <DetailSubUI>k__BackingField: 0
+  InfinityEffectObjects: []
   ItemEffects: []
   references:
     version: 2
