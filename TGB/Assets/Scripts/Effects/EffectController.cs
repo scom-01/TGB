@@ -7,7 +7,10 @@ public class EffectController : MonoBehaviour
 {
     public bool isDestroy = false;
     private ParticleSystem particle;
-    private EffectPooling parent;
+    [HideInInspector]
+    public EffectPooling parent;
+
+    [Tooltip("infinity == 999f")]
     [SerializeField] private float isLoopDurationTime;
     public void Start()
     {
@@ -29,7 +32,7 @@ public class EffectController : MonoBehaviour
                 main.stopAction = ParticleSystemStopAction.Disable;
             }
         }
-        if (isLoopDurationTime > 0.0f)
+        if (isLoopDurationTime > 0.0f && isLoopDurationTime != 999f)
         {
             Invoke("FinishAnim", isLoopDurationTime);
         }
