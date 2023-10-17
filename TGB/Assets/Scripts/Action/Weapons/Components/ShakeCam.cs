@@ -16,7 +16,7 @@ namespace TGB.Weapons.Components
         }
         public void HandleShakeCam()
         {
-            if (Camera.main.GetComponent<CameraShake>() == null)
+            if (Camera.main?.GetComponent<CameraShake>() == null)
             {
                 Debug.LogWarning("The main camera does not have the CameraShake component.");
                 return;
