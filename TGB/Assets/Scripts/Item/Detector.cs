@@ -38,17 +38,8 @@ public class Detector : MonoBehaviour
                 {
                     player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
                     Debug.Log($"{item.name} is Add Inventory");
-                    if (player.Inventory.AddInventoryItem(item.gameObject))
-                    {
-                        //Vfx
-                        if (item.Item.effectData.AcquiredEffectPrefab != null)
-                            player.Core.CoreEffectManager.StartEffects(item.Item.effectData.AcquiredEffectPrefab, item.gameObject.transform.position, Quaternion.identity);
-
-                        //Sfx
-                        if (item.Item.effectData.AcquiredSoundEffect != null)
-                            player.Core.CoreSoundEffect.AudioSpawn(currentGO.transform.parent.GetComponent<SOB_Item>().Item.effectData.AcquiredSoundEffect);
-
-
+                    if (player.Inventory.AddInventoryItem(item.GetComponent<SOB_Item>().Item, item.transform))
+                    {                        
                         Destroy(currentGO.transform.parent.gameObject);
                         currentGO = null;
                     }
@@ -166,7 +157,7 @@ public class Detector : MonoBehaviour
                 return;
 
             //EquipmentItem
-            if (item.Item.effectData.isEquipment)
+            if (item.Item.InitEffectData.isEquipment)
             {
                 if (!DetectedList.Contains(collision.gameObject))
                 {
@@ -200,7 +191,7 @@ public class Detector : MonoBehaviour
             if (item == null)
                 return;
             //Item
-            if (item.Item.effectData.isEquipment)
+            if (item.Item.InitEffectData.isEquipment)
             {
                 Debug.Log($"UnDetected {this.name}");
                 if (currentGO == collision.gameObject)

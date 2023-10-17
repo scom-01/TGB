@@ -10,6 +10,7 @@ using UnityEngine.UI;
 using static UnityEditor.Progress;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization.Components;
+using TGB.Weapons.Components;
 
 [Serializable]
 public struct StatsData_item
@@ -26,9 +27,9 @@ public class StatsItemSO : ItemDataSO
 {
     [Header("--StatsData--")]
     [Tooltip("아이템이 갖는 스탯")]
-    public StatsData StatsData;
+    public StatsData StatsData = new StatsData();
 
-    public List<StatsData_item> StatsItems;
+    public List<StatsData_item> StatsItems = new List<StatsData_item>();
     
     /// <summary>
     /// 아이템의 스탯 설명
@@ -62,11 +63,14 @@ public class StatsItemSO : ItemDataSO
     [Tooltip("최대체력이 아닌 현재 체력 증가값")]
     public int Health;
 
+    [Header("--Buff--")]
+    public List<BuffItemSO> buffItems = new List<BuffItemSO>();
     [Header("--Effects--")]
-    public EffectData effectData;
+    public EffectData InitEffectData;
+    public List<EffectPrefab> InfinityEffectObjects = new List<EffectPrefab>();
+    [Header("--ItemEffects--")]
     [field: SerializeField] public List<ItemEffectSO> ItemEffects = new List<ItemEffectSO>();
-    private List<ItemEffectSO> clone = new List<ItemEffectSO>();
-
+    private List<ItemEffectSO> clone = new List<ItemEffectSO>();    
     private List<ItemEffectSO> itemEffects
     {
         get

@@ -18,7 +18,7 @@ public class ItemBuffEventSO : ItemEffectSO
             var items = buffItem;
             buff.buffItemSO = items;
             if (unit.Core.CoreSoundEffect)
-                unit.Core.CoreSoundEffect.AudioSpawn(buffItem.effectData.AcquiredSoundEffect);
+                unit.Core.CoreSoundEffect.AudioSpawn(buffItem.InitEffectData.AcquiredSoundEffect);
             if (unit.GetComponent<BuffSystem>() == null)
             {
                 return;

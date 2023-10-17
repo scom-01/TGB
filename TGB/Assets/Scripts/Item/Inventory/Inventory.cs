@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using System.Drawing;
+using UnityEditor.Rendering;
 
 [Serializable]
 public class ItemSet
@@ -13,10 +15,10 @@ public class ItemSet
     public List<float> startTime = new List<float>();
     public List<int> OnActionCount = new List<int>();
     public List<int> OnHitCount = new List<int>();
-    public ItemSet(StatsItemSO itemSO, float _startTime = 0 , int _actionCount = 0, int _hitCount = 0)
+    public ItemSet(StatsItemSO itemSO, float _startTime = 0, int _actionCount = 0, int _hitCount = 0)
     {
         this.item = itemSO;
-        
+
         if (this.startTime.Count < 1)
         {
             startTime.Add(_startTime);
@@ -64,9 +66,9 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    //public List<StatsItemSO> items = new List<StatsItemSO>();
     public List<ItemSet> Items = new List<ItemSet>();
     public List<StatsItemSO> Inititems = new List<StatsItemSO>();
+    public List<GameObject> InfinityEffectObjects = new List<GameObject>();
     public GameObject CheckItem;
 
     private Weapon m_weapon;
@@ -85,7 +87,7 @@ public class Inventory : MonoBehaviour
             foreach (var item in Inititems)
             {
                 ItemSet _item = new ItemSet(item, Time.time);
-                if(!Items.Contains(_item))
+                if (!Items.Contains(_item))
                 {
                     Items.Add(_item);
                 }
@@ -136,7 +138,7 @@ public class Inventory : MonoBehaviour
                 {
                     Items[i].OnHitCount.Add(0);
                 }
-                Items[i].OnHitCount[j]= Items[i].item.ExeOnHit(unit, Items[i].item.ItemEffects[j], Items[i].OnHitCount[j]);
+                Items[i].OnHitCount[j] = Items[i].item.ExeOnHit(unit, Items[i].item.ItemEffects[j], Items[i].OnHitCount[j]);
             }
         }
         return true;
@@ -197,10 +199,10 @@ public class Inventory : MonoBehaviour
             {
                 if (Items[i].item.ItemEffects[j] == null)
                     continue;
-                if(Items[i].startTime.Count < j + 1)
+                if (Items[i].startTime.Count < j + 1)
                 {
                     Items[i].startTime.Add(0);
-                    
+
                 }
                 Items[i].startTime[j] = Items[i].item.ExeUpdate(unit, Items[i].item.ItemEffects[j], Items[i].startTime[j]);
             }
@@ -222,51 +224,7 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
-    public bool AddInventoryItem(GameObject itemObject)
-    {
-        StatsItemSO itemData = itemObject.GetComponent<SOB_Item>().Item;
-
-        //중복금지
-        for (int i = 0; i < Items.Count; i++)
-        {
-            if (Items[i].item == itemData)
-            {
-                Debug.Log($"Contians {itemData.name}, fail add");
-                return false;
-            }
-        }
-
-        if (Items.Count >= 8)
-        {
-            CheckItem = itemObject;
-            Debug.LogWarning("Inventory is full");
-
-            if (Unit.GetType() == typeof(Player))
-                GameManager.Inst.SubUI.InventorySubUI.SetInventoryState(InventoryUI_State.Change);
-            if (Unit.GetType() == typeof(Player))
-                GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.UI, true);
-            //아이템 교체하는 코드
-            return false;
-        }
-
-        Debug.Log($"Add {itemData.name}, Success add {itemData.name}");
-        if (unit.GetType() == typeof(Player))
-            GameManager.Inst.SubUI.InventorySubUI.InventoryItems.AddItem(itemData);
-
-        ItemSet item = new ItemSet(itemData, Time.time);
-        Items.Add(item);
-
-        ItemCount++;
-        AddStat(itemData.StatsData);
-        //if (itemData.StatsDatas.MaxHealth != 0.0f)
-        //{
-        //    Unit.Core.CoreUnitStats.CurrentHealth += itemData.StatsDatas.MaxHealth;
-        //}
-        Debug.Log($"Change UnitStats {unit.Core.CoreUnitStats.CalculStatsData}");
-        //}
-        return true;
-    }
-    public bool AddInventoryItem(StatsItemSO itemObject)
+    public bool AddInventoryItem(StatsItemSO itemObject, Transform EffectTransform = null)
     {
         if (Items.Count >= 8)
         {
@@ -290,14 +248,39 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        ////중복금지
-        //if (items.Contains(itemObject))
-        //{
-        //    Debug.Log($"Contians {itemObject.name}, fail add");
-        //    return false;
-        //}
-        //else
-        //{
+        //VFX
+        if (itemObject.InitEffectData.AcquiredEffectPrefab != null)
+            unit.Core.CoreEffectManager.StartEffects(itemObject.InitEffectData.AcquiredEffectPrefab, EffectTransform.position, Quaternion.identity);
+
+        //InfinityVFX
+        if (itemObject.InfinityEffectObjects.Count > 0 )
+        {
+            for (int i = 0; i < itemObject.InfinityEffectObjects.Count; i++)
+            {
+                var offset = new Vector3(itemObject.InfinityEffectObjects[i].EffectOffset.x * unit.Core.CoreMovement.FancingDirection, itemObject.InfinityEffectObjects[i].EffectOffset.y);
+                var size = itemObject.InfinityEffectObjects[i].EffectScale;
+
+
+                InfinityEffectObjects.Add(
+                    itemObject.InfinityEffectObjects[i].isRandomPosRot ?
+                    unit.Core.CoreEffectManager.StartEffectsWithRandomPosRot(
+                        itemObject.InfinityEffectObjects[i].Object, itemObject.InfinityEffectObjects[i].isRandomRange, true,
+                        size)
+                    :
+                    unit.Core.CoreEffectManager.StartEffects(
+                        itemObject.InfinityEffectObjects[i].Object,
+                        itemObject.InfinityEffectObjects[i].isGround ?
+                        unit.Core.CoreCollisionSenses.GroundCenterPos + offset :
+                        this.transform.position + offset, true,
+                        size)
+                    );
+            }
+        }
+
+        //SFX
+        if (itemObject.InitEffectData.AcquiredSoundEffect != null)
+            unit.Core.CoreSoundEffect.AudioSpawn(itemObject.InitEffectData.AcquiredSoundEffect);
+
         Debug.Log($"Add {itemObject.name}, Success add {itemObject.name}");
         if (Unit.GetType() == typeof(Player))
             GameManager.Inst.SubUI.InventorySubUI.InventoryItems.AddItem(itemObject);
@@ -305,13 +288,8 @@ public class Inventory : MonoBehaviour
         Items.Add(item);
 
         ItemCount++;
-        AddStat(itemObject.StatsData);
-        //if (itemObject.StatsDatas.MaxHealth != 0.0f)
-        //{
-        //    Unit.Core.CoreUnitStats.CurrentHealth += itemObject.StatsDatas.MaxHealth;
-        //}
+        unit.Core.CoreUnitStats.AddStat(itemObject.StatsData);
         Debug.Log($"Change UnitStats {Unit.Core.CoreUnitStats.CalculStatsData}");
-        //}
         return true;
     }
 
@@ -332,14 +310,24 @@ public class Inventory : MonoBehaviour
             if (Items[i].item == itemData)
             {
                 Debug.Log($"Remove Item {itemData.name}");
-                AddStat(itemData.StatsData * -1f);
-                ////아이템에 추가 체력 증가 옵션이 있을 경우 현재 체력에서 아이템 추가 체력의 일정 비율 감소
-                //if (itemData.StatsDatas.MaxHealth != 0.0f)
-                //{
-                //    Unit.Core.CoreUnitStats.CurrentHealth -= itemData.StatsDatas.MaxHealth * 0.33f;
-                //}
+                unit.Core.CoreUnitStats.AddStat(itemData.StatsData * -1f);
 
                 Items.RemoveAt(i);
+
+                //Destroy InfinityVFX
+                if (itemData.InfinityEffectObjects.Count > 0)
+                {
+                    for (int j = 0; j < InfinityEffectObjects.Count; j++)
+                    {
+                        if (unit.Core.CoreEffectManager.ObjectPoolList.Contains(InfinityEffectObjects[j].GetComponent<EffectController>().parent))
+                        {
+                            var obj = InfinityEffectObjects[j];
+                            InfinityEffectObjects.RemoveAt(j);
+                            unit.Core.CoreEffectManager.ObjectPoolList.Remove(obj.GetComponent<EffectController>().parent);
+                            Destroy(obj.GetComponent<EffectController>().parent.gameObject);
+                        }
+                    }
+                }                
 
                 if (unit.GetType() == typeof(Player))
                     GameManager.Inst.SubUI.InventorySubUI.InventoryItems.RemoveItem(itemData);
@@ -349,15 +337,6 @@ public class Inventory : MonoBehaviour
                 break;
             }
         }
-
-        //if (_items.Contains(itemData))
-        //{
-
-        //}
-        //else
-        //{
-        //    Debug.Log($"Not Contians {itemData.name}, fail remove");
-        //}
         return true;
     }
     public bool RemoveInventoryItem(ItemSet itemData)
@@ -371,11 +350,7 @@ public class Inventory : MonoBehaviour
         if (Items.Contains(itemData))
         {
             Debug.Log($"Remove Item {itemData.item.name}");
-            AddStat(itemData.item.StatsData * -1f);
-            //if (itemData.item.StatsDatas.MaxHealth != 0.0f)
-            //{
-            //    Unit.Core.CoreUnitStats.CurrentHealth -= itemData.item.StatsDatas.MaxHealth;
-            //}
+            unit.Core.CoreUnitStats.AddStat(itemData.item.StatsData * -1f);
 
             Items.Remove(itemData);
 
@@ -392,13 +367,4 @@ public class Inventory : MonoBehaviour
         }
         return true;
     }
-
-    /// <summary>
-    /// Unit의 CommonData Stats 변경
-    /// </summary>
-    /// <param name="statsData"></param>
-    private void AddStat(StatsData statsData)
-    {
-        Unit.Core.CoreUnitStats.m_statsData += statsData;
-    }
-}   
+}

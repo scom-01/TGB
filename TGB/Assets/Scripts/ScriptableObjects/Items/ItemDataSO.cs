@@ -11,6 +11,7 @@ public class ItemDataSO : ScriptableObject
 {
     [field: Tooltip("아이템 index")]
     public int ItemIdx;
+    [Header("--ItemData--")]
     public ItemData itemData;
 }
 

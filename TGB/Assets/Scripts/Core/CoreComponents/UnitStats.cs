@@ -396,5 +396,9 @@ namespace TGB.CoreSystem
             CurrentHealth = _currentHealth;
             isSetup = true;
         }
+        public void AddStat(StatsData statsData)
+        {
+            m_statsData += statsData;
+        }
     }
 }

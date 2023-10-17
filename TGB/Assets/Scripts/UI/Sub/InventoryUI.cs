@@ -4,6 +4,8 @@ using UnityEngine.Localization;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using TGB.Item;
+
 public enum InventoryUI_State
 {
     Put,
@@ -228,7 +230,7 @@ namespace TGB.Manager
                 return;
             EventSystem.current.SetSelectedGameObject(this.InventoryItems.CurrentSelectItem.gameObject);
             GameManager.Inst.SubUI.InventorySubUI.InventoryDescript.SetDescript();
-            PlayerInventory.AddInventoryItem(PlayerInventory.CheckItem);
+            PlayerInventory.AddInventoryItem(PlayerInventory.CheckItem.GetComponent<SOB_Item>().Item);
             Destroy(PlayerInventory.CheckItem.GameObject());
             PlayerInventory.CheckItem = null;
             inputHandler.UseInput(ref inputHandler.InteractionInput);

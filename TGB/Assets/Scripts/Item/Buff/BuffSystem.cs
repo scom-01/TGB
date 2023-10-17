@@ -30,7 +30,7 @@ public class BuffSystem : MonoBehaviour
             {
                 Debug.Log($"Time = {Time.time}");
                 Debug.Log($"GlobalTime ={GameManager.Inst?.PlayTime}");
-                unit.Core.CoreUnitStats.StatsData += buffs[i].buffItemSO.StatsData* -1f * buffs[i].CurrBuffCount;
+                unit.Core.CoreUnitStats.AddStat(buffs[i].buffItemSO.StatsData * -1f * buffs[i].CurrBuffCount);
                 
                 buffs[i].CurrBuffCount--;
                 if (buffs[i].CurrBuffCount < 1)
@@ -102,7 +102,7 @@ public class BuffSystem : MonoBehaviour
         {
             GameManager.Inst?.MainUI?.MainPanel?.BuffPanelSystem.BuffPanelAdd(buff);
         }
-        unit.Core.CoreUnitStats.StatsData += buff.buffItemSO.StatsData;
+        unit.Core.CoreUnitStats.AddStat(buff.buffItemSO.StatsData);
         if (buff.buffItemSO.Health != 0.0f)
         {
             unit.Core.CoreUnitStats.IncreaseHealth(buff.buffItemSO.Health);
@@ -120,60 +120,4 @@ public class BuffSystem : MonoBehaviour
             }
         }      
     }
-
-    ////무쓸모 예정
-    //public void RemoveBuff(Buff buff)
-    //{
-    //    if (buffs.Contains(buff))
-    //    {
-    //        ClearBuff(buff);
-    //        buffs.Remove(buff);
-    //    }
-    //    else
-    //    {
-    //        Debug.Log($"Not Contians {buff}, fail remove");
-    //    }
-    //}
-
-    ////무쓸모 예정
-    //public void PlayBuff(Buff buff)
-    //{
-    //    StartCoroutine(ChangeStats(buff, buff.statsData, buff.buffItem.DurationTime));
-    //}
-    ////무쓸모 예정
-    //public void ClearBuff(Buff buff)
-    //{
-    //    StopCoroutine(ChangeStats(buff, buff.statsData, buff.buffItem.DurationTime));
-    //}
-
-    ////무쓸모 예정
-    //#region IEnumerator
-
-    //IEnumerator ChangeStats(Buff buff, StatsData statsData, float duration)
-    //{
-    //    if (unit != null)
-    //    {
-    //        unit.Core.CoreUnitStats.StatsData += statsData;
-    //        if (MaxHealth != 0.0f)
-    //        {
-    //            unit.Core.CoreUnitStats.CurrentHealth += MaxHealth;
-    //        }
-    //        if (duration == 999.0f)
-    //        {
-    //            Debug.LogWarning("duration is 999");
-    //            yield break;
-    //        }
-    //        yield return new WaitForSeconds(duration);
-    //        unit.Core.CoreUnitStats.StatsData += statsData * -1f;
-    //        if (MaxHealth != 0.0f)
-    //        {
-    //            unit.Core.CoreUnitStats.CurrentHealth += MaxHealth * -1f;
-    //        }
-    //        RemoveBuff(buff);
-    //        yield break;
-    //    }
-    //    Debug.LogWarning($"{buff} is not have unit");
-    //    yield break;
-    //}
-    //#endregion
 }

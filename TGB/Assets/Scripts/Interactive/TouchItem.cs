@@ -52,16 +52,16 @@ public class TouchItem : TouchObject
             Buff buff = new Buff();
             var items = Item as BuffItemSO;
             buff.buffItemSO = items;
-            gameObject.GetComponent<Unit>().Core.CoreSoundEffect?.AudioSpawn(Item.effectData.AcquiredSoundEffect);
+            gameObject.GetComponent<Unit>().Core.CoreSoundEffect?.AudioSpawn(Item.InitEffectData.AcquiredSoundEffect);
             gameObject.GetComponent<Unit>().gameObject.GetComponent<BuffSystem>()?.AddBuff(buff);
 
             //Vfx
-            if (Item.effectData.AcquiredEffectPrefab != null)
-                gameObject.GetComponent<Unit>().Core.CoreEffectManager.StartEffects(Item.effectData.AcquiredEffectPrefab, this.gameObject.transform.position, Quaternion.identity);            
+            if (Item.InitEffectData.AcquiredEffectPrefab != null)
+                gameObject.GetComponent<Unit>().Core.CoreEffectManager.StartEffects(Item.InitEffectData.AcquiredEffectPrefab, this.gameObject.transform.position, Quaternion.identity);            
 
             //Sfx
-            if (Item.effectData.AcquiredSoundEffect != null)
-                gameObject.GetComponent<Unit>().Core.CoreSoundEffect.AudioSpawn(Item.effectData.AcquiredSoundEffect);
+            if (Item.InitEffectData.AcquiredSoundEffect != null)
+                gameObject.GetComponent<Unit>().Core.CoreSoundEffect.AudioSpawn(Item.InitEffectData.AcquiredSoundEffect);
 
 
             Destroy(SpriteRenderer.gameObject);
