@@ -274,6 +274,7 @@ public class GameManager : MonoBehaviour
         switch (_ui)
         {            
             case UI_State.GamePlay:
+                InputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, false);
                 Application.targetFrameRate = 144;
                 if (StageManager != null)
                 {
@@ -325,6 +326,7 @@ public class GameManager : MonoBehaviour
                 Curr_UIState = UI_State.Cfg;
                 break;
             case UI_State.CutScene:
+                InputHandler.ChangeCurrentActionMap(InputEnum.CutScene, false);
                 Application.targetFrameRate = 30;
                 SubUI.InventorySubUI.SetInventoryState(InventoryUI_State.Put);
                 CutSceneUI.Canvas.enabled = true;
