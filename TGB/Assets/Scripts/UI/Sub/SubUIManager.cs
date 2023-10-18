@@ -44,6 +44,11 @@ namespace TGB.Manager
             if(DetailSubUI != null)
             {
                 DetailSubUI.Canvas.enabled = OnOff;
+                var KeySettings = this.gameObject.GetComponentsInChildren<KeySetting>();
+                foreach (var keySetting in KeySettings)
+                {
+                    keySetting.UpdateDisplayText();
+                }
             }
         }
     }
