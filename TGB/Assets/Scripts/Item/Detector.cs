@@ -38,7 +38,7 @@ public class Detector : MonoBehaviour
                 {
                     player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
                     Debug.Log($"{item.name} is Add Inventory");
-                    if (player.Inventory.AddInventoryItem(item.GetComponent<SOB_Item>().Item, item.transform))
+                    if (player.Inventory.AddInventoryItem(item.gameObject))
                     {                        
                         Destroy(currentGO.transform.parent.gameObject);
                         currentGO = null;

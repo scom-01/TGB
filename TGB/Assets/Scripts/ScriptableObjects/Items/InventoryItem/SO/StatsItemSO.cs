@@ -22,9 +22,20 @@ public struct StatsData_item
     public bool ShowPercent;
 }
 
+[Serializable]
+public struct ItemComposite
+{
+    public StatsItemSO Material;
+    public StatsItemSO Result;
+    public AudioClip EditSFX;
+    public GameObject EditVFX;
+}
+
 [CreateAssetMenu(fileName = "newItemData", menuName = "Data/Item Data/Stats Data")]
 public class StatsItemSO : ItemDataSO
 {
+    public List<ItemComposite> CompositeItems;
+
     [Header("--StatsData--")]
     [Tooltip("아이템이 갖는 스탯")]
     public StatsData StatsData = new StatsData();

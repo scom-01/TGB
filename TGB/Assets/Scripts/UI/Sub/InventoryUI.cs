@@ -230,7 +230,7 @@ namespace TGB.Manager
                 return;
             EventSystem.current.SetSelectedGameObject(this.InventoryItems.CurrentSelectItem.gameObject);
             GameManager.Inst.SubUI.InventorySubUI.InventoryDescript.SetDescript();
-            PlayerInventory.AddInventoryItem(PlayerInventory.CheckItem.GetComponent<SOB_Item>().Item);
+            PlayerInventory.AddInventoryItem(PlayerInventory.CheckItem);
             Destroy(PlayerInventory.CheckItem.GameObject());
             PlayerInventory.CheckItem = null;
             inputHandler.UseInput(ref inputHandler.InteractionInput);

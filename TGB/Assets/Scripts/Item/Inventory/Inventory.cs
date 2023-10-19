@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using System.Drawing;
 using UnityEditor.Rendering;
+using static UnityEditor.Progress;
 
 [Serializable]
 public class ItemSet
@@ -224,11 +225,21 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
-    public bool AddInventoryItem(StatsItemSO itemObject, Transform EffectTransform = null)
+    public bool AddInventoryItem(UnityEngine.Object Object)
     {
+        StatsItemSO itemObject = new StatsItemSO();
+        if (Object.GetType() == typeof(GameObject))
+        {
+            itemObject = Object.GameObject().GetComponent<SOB_Item>().Item;
+        }
+        else if (Object.GetType() == typeof(StatsItemSO))
+        {
+            itemObject = (StatsItemSO)Object;
+        }
+
         if (Items.Count >= 8)
         {
-            CheckItem = itemObject.GameObject();
+            CheckItem = Object.GameObject();
             Debug.LogWarning("Inventory is full");
 
             if (Unit.GetType() == typeof(Player))
@@ -237,6 +248,39 @@ public class Inventory : MonoBehaviour
                 GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.UI, true);
             //아이템 교체하는 코드
             return false;
+        }
+
+        if (itemObject.CompositeItems.Count > 0)
+        {
+            for (int i = 0; i < itemObject.CompositeItems.Count; i++)
+            {
+                for (int j = 0; j < Items.Count; j++)
+                {
+                    if (itemObject.CompositeItems[i].Material == Items[j].item)
+                    {
+                        //재료 아이템 제거(인벤토리)
+                        if (unit.GetType() == typeof(Player))
+                            GameManager.Inst.SubUI.InventorySubUI.InventoryItems.RemoveItem(Items[j].item);
+                        Items.RemoveAt(j);
+
+                        //합성 VFX
+                        if (itemObject.CompositeItems[i].EditVFX != null)
+                            unit.Core.CoreEffectManager.StartEffects(itemObject.CompositeItems[i].EditVFX, (Object.GameObject()?.transform == null) ? this.transform.position : Object.GameObject().transform.position, Quaternion.identity);
+
+                        //합성 SFX
+                        if (itemObject.CompositeItems[i].EditSFX != null)
+                            unit.Core.CoreSoundEffect.AudioSpawn(itemObject.CompositeItems[i].EditSFX);
+
+                        itemObject = itemObject.CompositeItems[i].Result;
+                        if (Object.GameObject() != null) 
+                        {
+                            Object.GameObject().GetComponent<SOB_Item>().Item = itemObject;
+                            Object.GameObject().GetComponent<SOB_Item>().Init();
+                        }
+                        return AddInventoryItem(itemObject);
+                    }
+                }
+            }
         }
 
         for (int i = 0; i < Items.Count; i++)
@@ -250,16 +294,18 @@ public class Inventory : MonoBehaviour
 
         //VFX
         if (itemObject.InitEffectData.AcquiredEffectPrefab != null)
-            unit.Core.CoreEffectManager.StartEffects(itemObject.InitEffectData.AcquiredEffectPrefab, EffectTransform.position, Quaternion.identity);
+            unit.Core.CoreEffectManager.StartEffects(itemObject.InitEffectData.AcquiredEffectPrefab, (Object.GameObject()?.transform == null) ? this.transform.position : Object.GameObject().transform.position, Quaternion.identity);
 
         //InfinityVFX
-        if (itemObject.InfinityEffectObjects.Count > 0 )
+        if (itemObject.InfinityEffectObjects.Count > 0)
         {
             for (int i = 0; i < itemObject.InfinityEffectObjects.Count; i++)
             {
                 var offset = new Vector3(itemObject.InfinityEffectObjects[i].EffectOffset.x * unit.Core.CoreMovement.FancingDirection, itemObject.InfinityEffectObjects[i].EffectOffset.y);
                 var size = itemObject.InfinityEffectObjects[i].EffectScale;
 
+                if (itemObject.InfinityEffectObjects[i].Object == null)
+                    continue;
 
                 InfinityEffectObjects.Add(
                     itemObject.InfinityEffectObjects[i].isRandomPosRot ?
@@ -291,7 +337,7 @@ public class Inventory : MonoBehaviour
         unit.Core.CoreUnitStats.AddStat(itemObject.StatsData);
         Debug.Log($"Change UnitStats {Unit.Core.CoreUnitStats.CalculStatsData}");
         return true;
-    }
+    }    
 
     /// <summary>
     /// Item 제거, Destory하지 않고 InventoryItem의 StatsItemSO 데이터값을 없앤다.
