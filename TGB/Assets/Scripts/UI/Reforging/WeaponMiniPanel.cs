@@ -7,6 +7,101 @@ using UnityEngine;
 
 public class WeaponMiniPanel : MonoBehaviour
 {
+    #region Symbol Icon
+    private Sprite[] SpriteAtlas
+    {
+        get
+        {
+            if (spriteAtlas.Length == 0)
+            {
+                spriteAtlas = Resources.LoadAll<Sprite>(GlobalValue.Sprites_UI_Path + "/Symbol_Sheet");
+            }
+            return spriteAtlas;
+        }
+    }
+
+    private Sprite[] spriteAtlas = { };
+    private Sprite FireIcon
+    {
+        get
+        {
+            if (fireIcon == null)
+            {
+                foreach (var sprite in SpriteAtlas)
+                {
+                    if (sprite.name == GlobalValue.Symbol_Fire_Path)
+                    {
+                        fireIcon = sprite;
+                        return fireIcon;
+                    }
+                }
+                fireIcon = Resources.Load<Sprite>(GlobalValue.Sprites_UI_Path + "/" + GlobalValue.Symbol_Fire_Path);
+            }
+            return fireIcon;
+        }
+    }
+    private Sprite fireIcon;
+    private Sprite WaterIcon
+    {
+        get
+        {
+            if (waterIcon == null)
+            {
+                foreach (var sprite in SpriteAtlas)
+                {
+                    if (sprite.name == GlobalValue.Symbol_Water_Path)
+                    {
+                        waterIcon = sprite;
+                        return waterIcon;
+                    }
+                }
+                waterIcon = Resources.Load<Sprite>(GlobalValue.Sprites_UI_Path + "/" + GlobalValue.Symbol_Water_Path);
+            }
+            return waterIcon;
+        }
+    }
+    private Sprite waterIcon;
+    private Sprite EarthIcon
+    {
+        get
+        {
+            if (earthIcon == null)
+            {
+                foreach (var sprite in SpriteAtlas)
+                {
+                    if (sprite.name == GlobalValue.Symbol_Earth_Path)
+                    {
+                        earthIcon = sprite;
+                        return earthIcon;
+                    }
+                }
+                earthIcon = Resources.Load<Sprite>(GlobalValue.Sprites_UI_Path + "/" + GlobalValue.Symbol_Earth_Path);
+            }
+            return earthIcon;
+        }
+    }
+    private Sprite earthIcon;
+    private Sprite WindIcon
+    {
+        get
+        {
+            if (windIcon == null)
+            {
+                foreach (var sprite in SpriteAtlas)
+                {
+                    if (sprite.name == GlobalValue.Symbol_Wind_Path)
+                    {
+                        windIcon = sprite;
+                        return windIcon;
+                    }
+                }
+                windIcon = Resources.Load<Sprite>(GlobalValue.Sprites_UI_Path + "/" + GlobalValue.Symbol_Wind_Path);
+            }
+            return windIcon;
+        }
+    }
+    private Sprite windIcon;
+    #endregion
     [Header("Data")]
     public WeaponCommandDataSO weaponCommandDataSO;
 
@@ -93,18 +188,21 @@ public class WeaponMiniPanel : MonoBehaviour
             switch (e_power)
             {
                 case E_Power.Normal:
-                    //e_powerImg.sprite = 
+                    //Symbol_Img.sprite = 
                     break;
                 case E_Power.Water:
+                    Symbol_Img.sprite = WaterIcon;
                     break;
                 case E_Power.Earth:
+                    Symbol_Img.sprite = EarthIcon;
                     break;
                 case E_Power.Wind:
+                    Symbol_Img.sprite = WindIcon;
                     break;
                 case E_Power.Fire:
+                    Symbol_Img.sprite = FireIcon;
                     break;
             }
-
         }
 
         if (WeaponImg != null)
