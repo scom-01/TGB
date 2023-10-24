@@ -56,9 +56,10 @@ public class StatsItemSO : ItemDataSO
                     StatsItems[i].type.ToString() :
                     StatsItems[i].StatsLocalizeString.TableEntryReference).Entry.Value)
                     + ((StatsItems[i].value >= 0) ? (" +") : " ") + StatsItems[i].value;
-                if (temp.Contains("{variable}"))
+                string var = "{variable}";
+                if (temp.Contains(var))
                 {
-                    temp.Replace("{variable}", StatsItems[i].variable.ToString());
+                    temp = temp.Replace(var, StatsItems[i].variable.ToString());
                 }   
 
                 if (StatsItems[i].ShowPercent)
