@@ -61,24 +61,6 @@ public class Enemy : Unit
         var item = Inventory.Items;
         int count = item.Count;
 
-        if(count > 0)
-        {
-            for (int i = 0; i < count; i++)
-            {
-                Inventory.RemoveInventoryItem(item[i]);
-            }
-        }
-        else
-        {
-            if (enemyData.enemy_level == ENEMY_Level.BossEnemy)
-            {
-                if (DataManager.Inst != null)
-                {
-                    DataManager.Inst.UnLockItemSpawn(transform.position);
-                }
-            }
-        }
-
         var goods = this.GetComponentsInChildren<GoodsItem>();
         if (goods != null)
         {

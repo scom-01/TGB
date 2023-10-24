@@ -147,7 +147,7 @@ public class TitleManager : MonoBehaviour
             Debug.LogWarning("Save file not found");
         }
 
-        DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.SceneDataIdx = DataManager.Inst.LoadSceneDataIdx();
+        DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.SceneDataIdxs = DataManager.Inst.LoadSceneDataIdx();
     }
 
     public void OnUnlockItemClicked()

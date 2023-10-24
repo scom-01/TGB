@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
+using static UnityEditor.PlayerSettings;
 
 public class StageManager : MonoBehaviour
 {
-    [Header("----Manager----")]    
+    [Header("----Manager----")]
     public ItemManager IM;
     public SpawnManager SPM;
 
@@ -42,7 +43,7 @@ public class StageManager : MonoBehaviour
     {
         get
         {
-            if(isGotoNext)
+            if (isGotoNext)
             {
                 return CurrStageNumber + 1;
             }
@@ -60,7 +61,7 @@ public class StageManager : MonoBehaviour
     {
         get
         {
-            if(effectContainer == null)
+            if (effectContainer == null)
             {
                 if (effectContainerTagName == "")
                 {
@@ -85,11 +86,40 @@ public class StageManager : MonoBehaviour
     /// <summary>
     /// Player SpawnPoint
     /// </summary>
-    public Transform SpawnPoint;    
+    public Transform SpawnPoint;
     /// <summary>
-    /// 
+    /// Next Scene Portal Point
     /// </summary>
     public Transform EndPoint;
+    /// <summary>
+    /// Item Spawn Point
+    /// </summary>
+    public Transform ItemSpawnPoint;
+    /// <summary>
+    /// Item Spawn Amount
+    /// </summary>
+    public int ItemSpawnAmount;
+    /// <summary>
+    /// Item Spawn Interval
+    /// </summary>
+    public float ItemSpawnInterval;
+    /// <summary>
+    /// Number of items you can get
+    /// 가져갈 수 있는 아이템 수
+    /// </summary>
+    public int ChoiceItemAmount;
+    public ChoiceItemManager ChoiceItemManager
+    {
+        get
+        {
+            if (choiceItemManager == null)
+            {
+                choiceItemManager = GetComponentInChildren<ChoiceItemManager>();
+            }
+            return choiceItemManager;
+        }
+    }
+    private ChoiceItemManager choiceItemManager;
     /// <summary>    
     /// </summary>
     public GameObject PlayerPrefab;
@@ -112,7 +142,7 @@ public class StageManager : MonoBehaviour
 
     private void Awake()
     {
-        Debug.LogWarning($"Stage Awake {CurrStageName}");        
+        Debug.LogWarning($"Stage Awake {CurrStageName}");
         if (GameManager.Inst)
         {
             GameManager.Inst.StageManager = this;
@@ -152,9 +182,13 @@ public class StageManager : MonoBehaviour
     {
         if (DataManager.Inst != null)
         {
-            if(MasterManagerList.Count > 0)
+            if (MasterManagerList.Count > 0)
             {
-                var idx = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.SceneDataIdx % MasterManagerList.Count;
+                int idx = 0;
+                if (DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.SceneDataIdxs.Count != 0)
+                {
+                    idx = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.SceneDataIdxs[0] % MasterManagerList.Count;
+                }
 
                 if (idx == MasterManagerList.Count)
                 {
@@ -196,13 +230,25 @@ public class StageManager : MonoBehaviour
         if (!isClear)
             return;
         DataManager.Inst?.NextStage(NextStageNumber);
-        
+
+        if (ChoiceItemManager != null)
+            ChoiceItemManager.ChoiceItemAmount = ChoiceItemAmount;
+
+        //아이템 스폰, 임의의 확률 30%
+        if (ItemSpawnPoint != null)
+        {
+            if (DataManager.Inst != null)
+            {
+                DataManager.Inst.RandomUnLockItemSpawn(ItemSpawnPoint.position, 30f, ItemSpawnAmount, ItemSpawnInterval);
+            }
+        }
+
         //End 애니메이션
         if (EndPoint.GetComponentInChildren<Animator>() != null)
         {
             if (GlobalValue.ContainParam(EndPoint.GetComponentInChildren<Animator>(), "Action"))
             {
-                EndPoint.GetComponentInChildren<Animator>()?.SetBool("Action", true);            
+                EndPoint.GetComponentInChildren<Animator>()?.SetBool("Action", true);
             }
         }
         if (EndPoint.GetComponent<BoxCollider2D>() != null)

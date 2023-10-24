@@ -273,15 +273,30 @@ public class DataParsing : MonoBehaviour
         /// <summary>
         /// 해당 게임의 랜덤성을 결정할 Int
         /// </summary>
-        public int SceneDataIdx;
+        public List<int> SceneDataIdxs
+        {
+            get
+            {
+                if(sceneDataIdxs == null)
+                {
+                    sceneDataIdxs = new List<int>();
+                }
+                return sceneDataIdxs;
+            }
+            set
+            {
+                sceneDataIdxs = value;
+            }
+        }
+        private List<int> sceneDataIdxs = new List<int>();
         public int PlayerHealth;
         public float PlayTime;
         public Enemy_Count EnemyCount;
         public List<BuffData> BuffDatas = new List<BuffData>();
-        public JSON_SceneData(int sceneNumber = 2, int _sceneDataIdx = 0, int playerHealth = -1, float playTime = 0, Enemy_Count _enemy_Count = new Enemy_Count())
+        public JSON_SceneData(int sceneNumber = 2, List<int> _sceneDataIdxs = null, int playerHealth = -1, float playTime = 0, Enemy_Count _enemy_Count = new Enemy_Count())
         {
             SceneNumber = sceneNumber;
-            SceneDataIdx = _sceneDataIdx;
+            SceneDataIdxs = _sceneDataIdxs ?? new List<int>();
             PlayerHealth = playerHealth;
             PlayTime = playTime;
             EnemyCount = _enemy_Count;
@@ -289,7 +304,7 @@ public class DataParsing : MonoBehaviour
         public void Print()
         {
             Debug.Log($"SceneNumber = {SceneNumber}");
-            Debug.Log($"SceneDataIdx = {SceneDataIdx}");
+            Debug.Log($"SceneDataIdx = {SceneDataIdxs}");
             Debug.Log($"PlayerHealth = {PlayerHealth}");
             Debug.Log($"PlayTime = {PlayTime}");
             Debug.Log($"EnemyCount.Normal_Enemy_Count = {EnemyCount.Normal_Enemy_Count}");
@@ -390,7 +405,7 @@ public class DataParsing : MonoBehaviour
         }
         set
         {
-            m_temp_DefaultData = value;            
+            m_temp_DefaultData = value;
         }
     }
     private JSON_DefaultData m_temp_DefaultData = new JSON_DefaultData();
