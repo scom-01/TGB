@@ -257,6 +257,8 @@ namespace TGB.CoreSystem
             if (isCritical)
             {
                 damageText = (GameManager.Inst.StageManager.EffectContainer.CheckObject(ObjectPooling_TYPE.DmgText, GlobalValue.CriticalDamageTextPrefab) as DmgTxtPooling).GetObejct(new Vector3(pos.x, pos.y), Quaternion.identity, damage, fontSize, damageAttiribute);
+                if (GlobalValue.CriticalHit_SFX != null)
+                    GameManager.Inst.StageManager?.player?.Core.CoreSoundEffect.AudioSpawn(GlobalValue.CriticalHit_SFX);
             }
             else
             {

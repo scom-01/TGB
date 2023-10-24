@@ -49,6 +49,10 @@ public class GlobalValue : MonoBehaviour
     public static GameObject CriticalDamageTextPrefab = Resources.Load<GameObject>("ScriptPath/UI/Prefabs/CriticalDamageText");
     #endregion
 
+    #region AudioSources
+    public static AudioClip CriticalHit_SFX = Resources.Load<AudioClip>("ScriptPath/UI/Sounds/CriticalHit_sfx");
+    #endregion
+
     #region UI Icon Path
     public const string Icon_UI_Path = "ScriptPath/UI/Goods";
     public const string Icon_Gold_Path = "GoldIcon";
@@ -109,36 +113,5 @@ public class GlobalValue : MonoBehaviour
         }
         return false;
     }
-
-    public static GlobalValue Instance
-    {
-        get
-        {
-            if (null == Inst)
-            {
-                return null;
-            }
-            return Inst;
-        }
-    }
-
-    /*func*/
-    public float GetSystemDelta() { return GV_SystemDeltatime; }
-    public void SetSystemDelta(float deltatime)
-    {
-        if (GV_SystemDeltatime != deltatime)
-        {
-            GV_SystemDeltatime = deltatime;
-        }
-    }
-    public float GetCharacterDelta() { return GV_CharacterDeltatime; }
-    public void SetCharacterDelta(float deltatime)
-    {
-        if (GV_CharacterDeltatime != deltatime)
-        {
-            GV_CharacterDeltatime = deltatime;
-        }
-    }
-    /*~func*/
 }
 
