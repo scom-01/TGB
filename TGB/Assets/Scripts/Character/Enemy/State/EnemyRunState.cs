@@ -77,12 +77,6 @@ public abstract class EnemyRunState : EnemyState
         if (!isDelayCheck)
             return;
 
-        //일직선 상
-        if (EnemyCollisionSenses.isUnitInFrontDetectedArea || EnemyCollisionSenses.isUnitInBackDetectedArea)
-        {
-            FlipToTarget();
-        }
-
         isDelayCheck = false;
         IdleState();
     }

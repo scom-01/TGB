@@ -32,7 +32,7 @@ public class Water_Melee_Enemy_2 : Melee_Enemy_1
                 {
                     case ENEMY_DetectedType.Box:
                         //일직선 상
-                        if ((Core.CoreCollisionSenses as EnemyCollisionSenses).isUnitInFrontDetectedArea || (Core.CoreCollisionSenses as EnemyCollisionSenses).isUnitInBackDetectedArea)
+                        if ((Core.CoreCollisionSenses as EnemyCollisionSenses).UnitFrontDetectArea || (Core.CoreCollisionSenses as EnemyCollisionSenses).UnitBackDetectArea)
                         {
                             if (Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList.Count > i)
                             {
@@ -70,7 +70,20 @@ public class Water_Melee_Enemy_2 : Melee_Enemy_1
                 }
             }
         }
-        RunState.FlipToTarget();
-        FSM.ChangeState(RunState);
+        
+        //RunState.FlipToTarget();
+        if ((!(Core.CoreCollisionSenses as EnemyCollisionSenses).CheckIfCliff && !(Core.CoreCollisionSenses as EnemyCollisionSenses).CheckIfCliffBack) || ((Core.CoreCollisionSenses as EnemyCollisionSenses).CheckIfTouchingWall && (Core.CoreCollisionSenses as EnemyCollisionSenses).CheckIfTouchingWallBack))
+        {
+            SetTarget(null);
+            return;
+        }
+        else if (!(Core.CoreCollisionSenses as EnemyCollisionSenses).CheckIfCliff || (Core.CoreCollisionSenses as EnemyCollisionSenses).CheckIfTouchingWall)
+        {
+            Core.CoreMovement.SetVelocityX(0);
+            Core.CoreMovement.Flip();
+        }
+
+        if (FSM.CurrentState != RunState)
+            FSM.ChangeState(RunState);
     }
 }

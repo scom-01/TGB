@@ -5,9 +5,14 @@ using UnityEngine;
 public class PlayerWallJumpState : PlayerAbilityState
 {
     private int wallJumpDirection;
-    
+    private AudioClip Jump_Sfx;
+
     public PlayerWallJumpState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
+        if (Jump_Sfx == null)
+        {
+            Jump_Sfx = Resources.Load<AudioClip>("Sounds/Effects/SFX_Jump_01");
+        }
     }
 
     public override void Enter()
@@ -16,6 +21,7 @@ public class PlayerWallJumpState : PlayerAbilityState
         player.InputHandler.UseInput(ref player.InputHandler.JumpInput);
         player.JumpState.ResetAmountOfJumpsLeft();
         Movement.SetVelocity(player.playerData.wallJumpVelocity, player.playerData.wallJumpAngle, wallJumpDirection);
+        SoundEffect.AudioSpawn(Jump_Sfx);
         Debug.Log("Wall Jump Velocity = " + Movement.CurrentVelocity);
         Movement.CheckIfShouldFlip(wallJumpDirection);
         player.JumpState.DecreaseAmountOfJumpsLeft();

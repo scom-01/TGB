@@ -58,7 +58,7 @@ public class EnemyCollisionSenses : CollisionSenses
                 (
                     new Vector2(GroundCenterPos.x, GroundCenterPos.y + CC2D.bounds.size.y * 0.5f),
                     (core.Unit.UnitData as EnemyData).UnitDetectedDistance,
-                    Vector2.right * -Movement.FancingDirection,
+                    Vector2.right * Movement.FancingDirection,
                     0,
                     core.Unit.UnitData.LayerMaskSO.WhatIsEnemyUnit
                 );
@@ -69,19 +69,37 @@ public class EnemyCollisionSenses : CollisionSenses
     {
         get
         {
-            Vector2 offset = Vector2.zero;
-            Vector2 size = new Vector2(CC2D.size.x + (core.Unit.UnitData as EnemyData).UnitDetectedDistance, CC2D.bounds.size.y);
-            offset.Set(GroundCenterPos.x + (CC2D.size.x * Movement.FancingDirection), GroundCenterPos.y);
-            var detected = Physics2D.OverlapBoxAll(offset, size, 0f, core.Unit.UnitData.LayerMaskSO.WhatIsEnemyUnit);
-
-            foreach (Collider2D coll in detected)
+            var RayHit = Physics2D.BoxCastAll
+                (
+                    new Vector2(GroundCenterPos.x, GroundCenterPos.y + CC2D.bounds.size.y * 0.5f),
+                    CC2D.bounds.size,
+                    0f,
+                    Vector2.right * Movement.FancingDirection,
+                    (core.Unit.UnitData as EnemyData).UnitDetectedDistance,
+                    core.Unit.UnitData.LayerMaskSO.WhatIsEnemyUnit
+                );
+            foreach (var coll in RayHit)
             {
-                if (coll.GetComponent<Unit>())
+                if (coll.collider.GetComponent<Unit>())
                 {
-                    return coll.gameObject;
+                    return coll.collider.gameObject;
                 }
             }
             return null;
+
+            //Vector2 offset = Vector2.zero;
+            //Vector2 size = new Vector2(CC2D.size.x + (core.Unit.UnitData as EnemyData).UnitDetectedDistance, CC2D.bounds.size.y);
+            //offset.Set(GroundCenterPos.x + (CC2D.size.x * Movement.FancingDirection), GroundCenterPos.y);
+            //var detected = Physics2D.OverlapBoxAll(offset, size, 0f, core.Unit.UnitData.LayerMaskSO.WhatIsEnemyUnit);
+
+            //foreach (Collider2D coll in detected)
+            //{
+            //    if (coll.GetComponent<Unit>())
+            //    {
+            //        return coll.gameObject;
+            //    }
+            //}
+            //return null;
             //var RayHit = Physics2D.BoxCastAll
             //    (
             //        new Vector2(GroundCenterPos.x + (CC2D.size.x / 2 * Movement.FancingDirection), GroundCenterPos.y + CC2D.bounds.size.y * 0.5f),
