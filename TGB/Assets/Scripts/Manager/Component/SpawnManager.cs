@@ -101,8 +101,14 @@ namespace TGB.Manager
                 }
             }
 
-            Debug.Log("Stage Clear!!!");
             StageManager.isStageClear = true;
+            StageClear();
+        }
+
+        private void StageClear()
+        {
+            Debug.Log("Stage Clear!!!");
+            
             StageManager.OpenGate(StageManager.isStageClear);
 
             if (StageManager.EndingCutSceneDirector != null)
@@ -111,16 +117,16 @@ namespace TGB.Manager
             }
         }
 
-        public bool SpawnItem(GameObject SpawnPrefab, Vector3 pos, Transform transform, StatsItemSO itemData)
+        public GameObject SpawnItem(GameObject SpawnPrefab, Vector3 pos, Transform transform, StatsItemSO itemData)
         {
             if (SpawnPrefab == null)
-                return false;
+                return null;
 
             var item = Instantiate(SpawnPrefab, pos, Quaternion.identity, transform);
             item.GetComponent<SOB_Item>().Item = itemData;
             item.GetComponent<SOB_Item>().Init();
 
-            return true;
+            return item;
         }
     }
 }
