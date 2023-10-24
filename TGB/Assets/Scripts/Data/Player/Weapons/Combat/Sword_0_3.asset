@@ -110,7 +110,8 @@ MonoBehaviour:
         name: SoundClipData
         actionData:
         - name: Action 1
-          audioClips: []
+          audioClips:
+          - {fileID: 8300000, guid: 3df5c9ffcef3cf741b6a9ebfec6dbf0b, type: 3}
     - rid: 2527592717927579688
       type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:

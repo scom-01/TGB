@@ -1,0 +1,160 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 836f02ead74e6a24db24927dd939c743, type: 3}
+  m_Name: StatsItem 15
+  m_EditorClassIdentifier: 
+  ItemIdx: 14
+  itemData:
+    <ItemNameLocal>k__BackingField:
+      m_TableReference:
+        m_TableCollectionName: GUID:0e85b71e0680fc942b5295e72ff4ba37
+      m_TableEntryReference:
+        m_KeyId: 57536575192850432
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    <ItemDescriptionLocal>k__BackingField:
+      m_TableReference:
+        m_TableCollectionName: GUID:0e85b71e0680fc942b5295e72ff4ba37
+      m_TableEntryReference:
+        m_KeyId: 57536582058926080
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    ItemSprite: {fileID: 21300000, guid: cbb2468bd229ffc49a8fbef83b1b5d35, type: 3}
+    ItemLevel: 1
+  CompositeItems: []
+  StatsData:
+    MaxHealth: 10
+    DefaultPower: 5
+    DefaultMoveSpeed: 0
+    DefaultJumpVelocity: 0
+    DefaultAttSpeed: 0
+    MovementVEL_Per: 0
+    JumpVEL_Per: 0
+    AttackSpeedPer: 0
+    PhysicsDefensivePer: 0
+    MagicDefensivePer: 20
+    PhysicsAggressivePer: 0
+    MagicAggressivePer: 30
+    CriticalPer: 5
+    AdditionalCriticalPer: 20
+    DamageAttiribute: 1
+    Elemental: 0
+    ElementalDefensivePer: 0
+    ElementalAggressivePer: 30
+  StatsItems:
+  - type: 0
+    StatsLocalizeString:
+      m_TableReference:
+        m_TableCollectionName: GUID:0d4742437ec6ec541bf0850b60cb729a
+      m_TableEntryReference:
+        m_KeyId: 38000898235326464
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    variable: 0
+    value: 5
+    ShowPercent: 0
+  - type: 9
+    StatsLocalizeString:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    variable: 0
+    value: 10
+    ShowPercent: 0
+  - type: 3
+    StatsLocalizeString:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    variable: 0
+    value: 20
+    ShowPercent: 1
+  - type: 1
+    StatsLocalizeString:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    variable: 0
+    value: 30
+    ShowPercent: 1
+  - type: 7
+    StatsLocalizeString:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    variable: 0
+    value: 5
+    ShowPercent: 1
+  - type: 8
+    StatsLocalizeString:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    variable: 0
+    value: 20
+    ShowPercent: 1
+  - type: 4
+    StatsLocalizeString:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    variable: 0
+    value: 30
+    ShowPercent: 1
+  Health: 0
+  buffItems: []
+  InitEffectData:
+    <AcquiredEffectPrefab>k__BackingField: {fileID: 0}
+    <AcquiredSoundEffect>k__BackingField: {fileID: 0}
+    <isEquipment>k__BackingField: 1
+    <DetailSubUI>k__BackingField: 0
+  InfinityEffectObjects: []
+  ItemEffects: []
+  references:
+    version: 2
+    RefIds: []

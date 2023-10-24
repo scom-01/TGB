@@ -43462,6 +43462,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1319651229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1319651230}
+  - component: {fileID: 1319651231}
+  m_Layer: 0
+  m_Name: ItemSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1319651230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319651229}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 22.96, y: -0.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1498734594}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1319651231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319651229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99118cb26868a074db2c7238b79a66b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemList: []
+  ChoiceItemAmount: 0
 --- !u!1 &1331309212
 GameObject:
   m_ObjectHideFlags: 0
@@ -66108,6 +66154,7 @@ Transform:
   - {fileID: 1331309213}
   - {fileID: 2018248595}
   - {fileID: 795737771}
+  - {fileID: 1319651230}
   - {fileID: 1525711793}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -66136,6 +66183,10 @@ MonoBehaviour:
   effectContainerTagName: EffectContainer
   SpawnPoint: {fileID: 2048269062}
   EndPoint: {fileID: 795737771}
+  ItemSpawnPoint: {fileID: 1319651230}
+  ItemSpawnAmount: 0
+  ItemSpawnInterval: 0
+  ChoiceItemAmount: 0
   PlayerPrefab: {fileID: 840319699589423306, guid: 842ba7b90e3d58f4baa7c0b00def52ec, type: 3}
   player: {fileID: 0}
   SceneNameFade: {fileID: 1714188898339614809, guid: ff0e618899c094e4db31e32280d58b18, type: 3}
@@ -66203,7 +66254,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1498734594}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1525711794
 AudioSource:

@@ -24587,6 +24587,52 @@ Transform:
   m_Father: {fileID: 1337746760}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &231677203
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 231677204}
+  - component: {fileID: 231677205}
+  m_Layer: 0
+  m_Name: ItemSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &231677204
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231677203}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 23.08, y: -3.78, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1679714830}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &231677205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231677203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99118cb26868a074db2c7238b79a66b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemList: []
+  ChoiceItemAmount: 0
 --- !u!1 &253869237
 GameObject:
   m_ObjectHideFlags: 0
@@ -55840,7 +55886,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1679714830}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1428434311
 AudioSource:
@@ -57221,6 +57267,7 @@ Transform:
   - {fileID: 1534105688}
   - {fileID: 1282509087}
   - {fileID: 299998475}
+  - {fileID: 231677204}
   - {fileID: 1428434310}
   - {fileID: 1859339619}
   m_Father: {fileID: 0}
@@ -57250,6 +57297,10 @@ MonoBehaviour:
   effectContainerTagName: EffectContainer
   SpawnPoint: {fileID: 1814375134}
   EndPoint: {fileID: 299998475}
+  ItemSpawnPoint: {fileID: 231677204}
+  ItemSpawnAmount: 5
+  ItemSpawnInterval: 2
+  ChoiceItemAmount: 1
   PlayerPrefab: {fileID: 840319699589423306, guid: 842ba7b90e3d58f4baa7c0b00def52ec, type: 3}
   player: {fileID: 0}
   SceneNameFade: {fileID: 1714188898339614809, guid: 83dd60147f8e5a84caa11aa4f3bd0d28, type: 3}
@@ -57558,7 +57609,7 @@ Transform:
   - {fileID: 1518051168}
   - {fileID: 494181718}
   m_Father: {fileID: 1679714830}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1873688725
 GameObject:
