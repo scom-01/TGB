@@ -24,16 +24,27 @@ public class CostText : MonoBehaviour
             Txt.text = "";
             return;
         }
-
-        UpdateCost();
     }
-
+    private void OnEnable()
+    {
+        if (item != null)
+        {
+            item.OnChangeStatItemData -= UpdateCost;
+            item.OnChangeStatItemData += UpdateCost;
+        }
+    }
+    private void OnDisable()
+    {
+        if (item != null)
+        {
+            item.OnChangeStatItemData -= UpdateCost;
+        }
+    }
     private void UpdateCost()
     {
-        Debug.Log("Enum = " + item.StatsItemData.itemData.ItemLevel);
-        Debug.Log("Enum(int) = " + (int)item.StatsItemData.itemData.ItemLevel);
+        Debug.Log("Enum = " + item?.StatsItemData?.itemData.ItemLevel);
+        Debug.Log("Enum(int) = " + (int)item?.StatsItemData?.itemData.ItemLevel);
         cost = (int)item.StatsItemData.itemData.ItemLevel * GameManager.Inst.StageManager.StageLevel * GlobalValue.Gold_Inflation;
-
         Txt.text = cost.ToString();
         switch (goods_tpye)
         {

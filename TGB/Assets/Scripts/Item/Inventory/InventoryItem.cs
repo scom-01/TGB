@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -12,18 +13,22 @@ public class InventoryItem : MonoBehaviour, ISelectHandler
         get => statsItemData;
         set
         {
+            statsItemData = value;
             if (value == null)
             {
 
             }
-            statsItemData = value;
+            else
+            {
+                OnChangeStatItemData?.Invoke();
+            }
             Init();
         }
     }
     [SerializeField] private StatsItemSO statsItemData;
     public bool isSelect;
     public int Index;
-
+    public Action OnChangeStatItemData;
     /// <summary>
     /// 아이템 아이콘 이미지
     /// </summary>
