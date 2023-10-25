@@ -39,7 +39,7 @@ public class Shop_Items : InventoryItems, IUI_Select
         if (GameManager.Inst?.StageManager?.player == null || SelectedItem == null)
             return;
 
-        if (DataManager.Inst.JSON_DataParsing.m_JSON_Goods.Goods.Gold < (int)SelectedItem.itemData.ItemLevel * GlobalValue.Gold_Inflation * GameManager.Inst.StageManager.StageLevel)
+        if (DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Goods.Gold < (int)SelectedItem.itemData.ItemLevel * GlobalValue.Gold_Inflation * GameManager.Inst.StageManager.StageLevel)
         {
             //재화 부족
             return;
@@ -140,7 +140,7 @@ public class Shop_Items : InventoryItems, IUI_Select
     public void ReRoll()
     {
         //보유 재화 체크
-        if (DataManager.Inst.JSON_DataParsing.m_JSON_Goods.Goods.Gold < (GameManager.Inst.StageManager.StageLevel * GlobalValue.ReRoll_Inflation * ReRollCount))
+        if (DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Goods.Gold < (GameManager.Inst.StageManager.StageLevel * GlobalValue.ReRoll_Inflation * ReRollCount))
         {
             return;
         }

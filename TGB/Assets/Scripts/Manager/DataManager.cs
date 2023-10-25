@@ -214,63 +214,16 @@ public class DataManager : MonoBehaviour
 
     public bool CheckJSONFile()
     {
-        if (!JSON_DataParsing.FileCheck(JSON_DataParsing.UnitInventoryData_FilePath))
-        {
-            Debug.LogWarning($"{JSON_DataParsing.UnitInventoryData_FilePath} File is not found");
-            return false;
-        }
-
-        if (!JSON_DataParsing.FileCheck(JSON_DataParsing.UnitGoodsData_FilePath))
-        {
-            Debug.LogWarning($"{JSON_DataParsing.UnitGoodsData_FilePath} File is not found");
-            return false;
-        }
-
         if (!JSON_DataParsing.FileCheck(JSON_DataParsing.SceneData_FilePath))
         {
             Debug.LogWarning($"{JSON_DataParsing.SceneData_FilePath} File is not found");
             return false;
         }
-
         return true;
     }
 
     public void DeleteJSONFile()
-    {
-        if (File.Exists(Application.dataPath + JSON_DataParsing.UnitInventoryData_FilePath))
-        {
-            try
-            {
-                File.Delete(Application.dataPath + JSON_DataParsing.UnitInventoryData_FilePath);
-                JSON_DataParsing.m_JSON_Inventory = new DataParsing.JSON_Inventory();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("The deletion failed: {0}", e.Message);
-            }
-        }
-        else
-        {
-            Console.WriteLine("Specified file doesn't exist");
-        }
-
-        if (File.Exists(Application.dataPath + JSON_DataParsing.UnitGoodsData_FilePath))
-        {
-            try
-            {
-                File.Delete(Application.dataPath + JSON_DataParsing.UnitGoodsData_FilePath);
-                JSON_DataParsing.m_JSON_Goods = new DataParsing.JSON_Goods();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("The deletion failed: {0}", e.Message);
-            }
-        }
-        else
-        {
-            Console.WriteLine("Specified file doesn't exist");
-        }
-
+    {                
         if (File.Exists(Application.dataPath + JSON_DataParsing.SceneData_FilePath))
         {
             try
@@ -298,7 +251,7 @@ public class DataManager : MonoBehaviour
             {
                 File.Delete(Application.dataPath + JSON_DataParsing.DefaultData_FilePath);
                 JSON_DataParsing.m_JSON_DefaultData = new DataParsing.JSON_DefaultData();
-                JSON_DataParsing.lockItemList = new List<int>();
+                JSON_DataParsing.LockItemList = new List<int>();
                 if (GameManager.Inst != null)
                 {
                     GameManager.Inst.GoTitleScene();
@@ -316,7 +269,7 @@ public class DataManager : MonoBehaviour
     }
     public void PlayerInventoryDataLoad(Inventory inventory)
     {
-        var inventory_Itemlist = JSON_DataParsing.m_JSON_Inventory.items.ToList();
+        var inventory_Itemlist = JSON_DataParsing.m_JSON_SceneData.Items.ToList();
 
         for (int i = 0; i < inventory_Itemlist.Count; i++)
         {
@@ -327,7 +280,7 @@ public class DataManager : MonoBehaviour
             inventory.AddInventoryItem(All_ItemDB.ItemDBList[inventory_Itemlist[i]]);
         }
 
-        var inventory_Weaponlist = JSON_DataParsing.m_JSON_Inventory.weapons;
+        var inventory_Weaponlist = JSON_DataParsing.m_JSON_SceneData.Weapons;
 
         if (inventory_Weaponlist.Count > 0)
         {
@@ -347,7 +300,7 @@ public class DataManager : MonoBehaviour
         List<int> items = new List<int>();
         if (itemList == null)
         {
-            JSON_DataParsing.m_JSON_Inventory.items = items;
+            JSON_DataParsing.m_JSON_SceneData.Items = items;
         }
         else
         {
@@ -356,19 +309,19 @@ public class DataManager : MonoBehaviour
                 items.Add(itemList[i].item.ItemIdx);
             }
 
-            JSON_DataParsing.m_JSON_Inventory.items = items;
+            JSON_DataParsing.m_JSON_SceneData.Items = items;
         }
 
 
         List<int> weapons = new List<int>();
         if (weapon == null)
         {
-            JSON_DataParsing.m_JSON_Inventory.weapons = weapons;
+            JSON_DataParsing.m_JSON_SceneData.Weapons = weapons;
         }
         else
         {
             weapons.Add(weapon.weaponData.weaponCommandDataSO.WeaponIdx);
-            JSON_DataParsing.m_JSON_Inventory.weapons = weapons;
+            JSON_DataParsing.m_JSON_SceneData.Weapons = weapons;
         }
 
         Debug.LogWarning("Success Inventory Data Save");
@@ -405,30 +358,9 @@ public class DataManager : MonoBehaviour
         JSON_DataParsing.m_JSON_SceneData.PlayerHealth = m_playerHealth;
         Debug.LogWarning("Success CurrHealth Save");
     }
-
-    //public void PlayerBuffSave(List<Buff> buffs)
-    //{
-    //    //Playerbuffs = buffs;
-    //    //Debug.LogWarning("Success BuffData Save");
-    //}
-    //public void PlayerBuffLoad(BuffSystem buffSystem)
-    //{
-    //    //buffSystem.buffs = Playerbuffs;
-    //    //Debug.LogWarning("Success BuffData Load");
-    //}
-
-    //public bool GameElementalsculptureSave(int m_Elementalsculpture)
-    //{
-    //    if (m_Elementalsculpture <= 0)
-    //        return false;
-
-    //    JSON_DataParsing.m_JSON_Goods.elementalSculpture = m_Elementalsculpture;
-
-    //    return true;
-    //}
     public Goods_Data GameGoodsLoad()
     {
-        return JSON_DataParsing.m_JSON_Goods.Goods;
+        return JSON_DataParsing.m_JSON_SceneData.Goods;
     }
 
     public void SaveScene(int _stageNumber)
@@ -457,25 +389,6 @@ public class DataManager : MonoBehaviour
 
         Debug.LogWarning("Success SceneName Save");
     }
-
-    //public Enemy_Count LoadEnemyCount()
-    //{
-    //    return JSON_DataParsing.m_JSON_SceneData.EnemyCount;
-    //}
-    //public void SaveEnemyCount(Enemy_Count enemy_Count)
-    //{
-    //    JSON_DataParsing.m_JSON_SceneData.EnemyCount = enemy_Count;
-    //}
-
-    //public void SavePlayTime(float _playTime)
-    //{
-    //    JSON_DataParsing.m_JSON_SceneData.PlayTime = _playTime;
-    //}
-
-    //public void SaveSceneDataIdx(int _sceneDataIdx)
-    //{
-    //    JSON_DataParsing.m_JSON_SceneData.SceneDataIdx = _sceneDataIdx;
-    //}
     public void SaveBuffs(List<Buff> _buffs)
     {
         var _buffDatas = new List<BuffData>();
@@ -543,19 +456,22 @@ public class DataManager : MonoBehaviour
         switch (type)
         {
             case GOODS_TPYE.Gold:
-                JSON_DataParsing.m_JSON_Goods.Goods.Gold += goodsAmount;
+                JSON_DataParsing.m_JSON_SceneData.Goods.Gold += goodsAmount;
                 break;
             case GOODS_TPYE.FireGoods:
-                JSON_DataParsing.m_JSON_Goods.Goods.FireGoods += goodsAmount;
+                JSON_DataParsing.m_JSON_SceneData.Goods.FireGoods += goodsAmount;
                 break;
             case GOODS_TPYE.WaterGoods:
-                JSON_DataParsing.m_JSON_Goods.Goods.WaterGoods += goodsAmount;
+                JSON_DataParsing.m_JSON_SceneData.Goods.WaterGoods += goodsAmount;
                 break;
             case GOODS_TPYE.EarthGoods:
-                JSON_DataParsing.m_JSON_Goods.Goods.EarthGoods += goodsAmount;
+                JSON_DataParsing.m_JSON_SceneData.Goods.EarthGoods += goodsAmount;
                 break;
             case GOODS_TPYE.WindGoods:
-                JSON_DataParsing.m_JSON_Goods.Goods.WindGoods += goodsAmount;
+                JSON_DataParsing.m_JSON_SceneData.Goods.WindGoods += goodsAmount;
+                break;
+            case GOODS_TPYE.HammerPiece:
+                JSON_DataParsing.m_JSON_DefaultData.hammer_piece += goodsAmount;
                 break;
         }
         JSON_DataParsing.InvokeAction();
@@ -567,7 +483,7 @@ public class DataManager : MonoBehaviour
 
     public void SetLockItemList()
     {
-        JSON_DataParsing.lockItemList.Clear();
+        JSON_DataParsing.LockItemList.Clear();
         //전체 아이템 인덱스 리스트 스캔
         for (int i = 0; i < All_ItemDB.ItemDBList.Count; i++)
         {
@@ -577,7 +493,7 @@ public class DataManager : MonoBehaviour
                 continue;
             }
             //미해금 아이템 인덱스 리스트에 해금된 아이템을 제외한 아이템 인덱스 추가
-            JSON_DataParsing.lockItemList.Add(All_ItemDB.ItemDBList[i].ItemIdx);
+            JSON_DataParsing.LockItemList.Add(All_ItemDB.ItemDBList[i].ItemIdx);
         }
     }
     /// <summary>
@@ -607,7 +523,7 @@ public class DataManager : MonoBehaviour
             if (JSON_DataParsing.m_JSON_SceneData.SceneDataIdxs[i] >= (GlobalValue.MaxSceneIdx * (_percent / 100f)))
             {
                 //전체 미해금 아이템 인덱스 리스트
-                List<int> AlllockItemIdxs = JSON_DataParsing.lockItemList;
+                List<int> AlllockItemIdxs = JSON_DataParsing.LockItemList;
                 //이미 스폰한 아이템은 제외
                 for (int j = 0; j < SpawnItemList.Count; j++)
                 {

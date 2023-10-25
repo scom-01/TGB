@@ -162,19 +162,19 @@ public class GoodsText : MonoBehaviour
                 switch (Type)
                 {
                     case GOODS_TPYE.Gold:
-                        count = DataManager.Inst.JSON_DataParsing.m_JSON_Goods.Goods.Gold;
+                        count = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Goods.Gold;
                         return count;
                     case GOODS_TPYE.FireGoods:
-                        count = DataManager.Inst.JSON_DataParsing.m_JSON_Goods.Goods.FireGoods;
+                        count = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Goods.FireGoods;
                         return count;
                     case GOODS_TPYE.WaterGoods:
-                        count = DataManager.Inst.JSON_DataParsing.m_JSON_Goods.Goods.WaterGoods;
+                        count = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Goods.WaterGoods;
                         return count;
                     case GOODS_TPYE.EarthGoods:
-                        count = DataManager.Inst.JSON_DataParsing.m_JSON_Goods.Goods.EarthGoods;
+                        count = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Goods.EarthGoods;
                         return count;
                     case GOODS_TPYE.WindGoods:
-                        count = DataManager.Inst.JSON_DataParsing.m_JSON_Goods.Goods.WindGoods;
+                        count = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Goods.WindGoods;
                         return count;
                     case GOODS_TPYE.HammerPiece:
                         count = DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.hammer_piece;

@@ -431,8 +431,6 @@ public class GameManager : MonoBehaviour
         DataManager.Inst?.PlayerCurrHealthSave(
             (int)GameManager.Inst.StageManager.player.Core.CoreUnitStats.CurrentHealth);
 
-        DataManager.Inst?.JSON_DataParsing.JSON_InventorySave();
-        DataManager.Inst?.JSON_DataParsing.JSON_GoodsSave();
         DataManager.Inst?.JSON_DataParsing.JSON_SceneDataSave();
         DataManager.Inst?.JSON_DataParsing.JSON_DefaultDataSave();
     }

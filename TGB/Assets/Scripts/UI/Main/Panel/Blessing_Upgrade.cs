@@ -50,8 +50,7 @@ public class Blessing_Upgrade : MonoBehaviour, IUI_Select
         {
             return;
         }
-        DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.hammer_piece -= GlobalValue.Bless_Inflation * (int)(Stats.variable + 1);
-        //Stats.IncreaseVariable(Stats.variable, Max_level);
+        DataManager.Inst.CalculateGoods(GOODS_TPYE.HammerPiece, -GlobalValue.Bless_Inflation * (int)(Stats.variable + 1));
         Stats.variable++;
         Debug.Log($"{Stats.TypeStr} lv = {Stats.variable}");
         Set_Blessing();
