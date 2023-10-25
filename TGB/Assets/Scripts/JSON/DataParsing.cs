@@ -6,23 +6,26 @@ using System.Text;
 using UnityEngine;
 
 [Serializable]
-public struct ElementalGoods
+public struct Goods_Data
 {
+    public int Gold;
     public int FireGoods;
     public int WaterGoods;
     public int EarthGoods;
     public int WindGoods;
-    public ElementalGoods(int fire = 0, int water = 0, int earth = 0, int wind = 0)
+    public Goods_Data(int gold = 0,int fire = 0, int water = 0, int earth = 0, int wind = 0)
     {
+        Gold = gold; 
         FireGoods = fire;
         WaterGoods = water;
         EarthGoods = earth;
         WindGoods = wind;
     }
-    public static ElementalGoods operator +(ElementalGoods s1, ElementalGoods s2)
+    public static Goods_Data operator +(Goods_Data s1, Goods_Data s2)
     {
-        ElementalGoods temp = new ElementalGoods()
+        Goods_Data temp = new Goods_Data()
         {
+            Gold = s1.Gold + s2.Gold,
             FireGoods = s1.FireGoods + s2.FireGoods,
             WaterGoods = s1.WaterGoods + s2.WaterGoods,
             EarthGoods = s1.EarthGoods + s2.EarthGoods,
@@ -30,10 +33,11 @@ public struct ElementalGoods
         };
         return temp;
     }
-    public static ElementalGoods operator *(ElementalGoods s1, int s2)
+    public static Goods_Data operator *(Goods_Data s1, int s2)
     {
-        ElementalGoods temp = new ElementalGoods()
+        Goods_Data temp = new Goods_Data()
         {
+            Gold = s1.Gold * s2,
             FireGoods = s1.FireGoods * s2,
             WaterGoods = s1.WaterGoods * s2,
             EarthGoods = s1.EarthGoods * s2,
@@ -41,10 +45,11 @@ public struct ElementalGoods
         };
         return temp;
     }
-    public static ElementalGoods operator *(int s1, ElementalGoods s2)
+    public static Goods_Data operator *(int s1, Goods_Data s2)
     {
-        ElementalGoods temp = new ElementalGoods()
+        Goods_Data temp = new Goods_Data()
         {
+            Gold = s2.Gold * s1,
             FireGoods = s2.FireGoods * s1,
             WaterGoods = s2.WaterGoods * s1,
             EarthGoods = s2.EarthGoods * s1,
@@ -76,7 +81,7 @@ public struct ElementalGoods
         return count;
     }
 
-    public static bool operator ==(ElementalGoods s1, ElementalGoods s2)
+    public static bool operator ==(Goods_Data s1, Goods_Data s2)
     {
         if (s1.FireGoods != s2.FireGoods)
         {
@@ -96,7 +101,7 @@ public struct ElementalGoods
         }
         return true;
     }
-    public static bool operator !=(ElementalGoods s1, ElementalGoods s2)
+    public static bool operator !=(Goods_Data s1, Goods_Data s2)
     {
         if (s1.FireGoods == s2.FireGoods)
         {
@@ -119,9 +124,9 @@ public struct ElementalGoods
     public override bool Equals(object obj)
     {
         if (obj is null) /*ReferenceEquals(null, obj))*/ return false;
-        return obj is ElementalGoods && Equals((ElementalGoods)obj);
+        return obj is Goods_Data && Equals((Goods_Data)obj);
     }
-    public bool Equals(ElementalGoods s1)
+    public bool Equals(Goods_Data s1)
     {
         return FireGoods == s1.FireGoods && WaterGoods == s1.WaterGoods && EarthGoods == s1.EarthGoods && WindGoods == s1.WindGoods;
     }
@@ -241,25 +246,26 @@ public class DataParsing : MonoBehaviour
     #region JSON_Goods
     public class JSON_Goods
     {
-        public int gold;
-        public int elementalSculpture;
-        public ElementalGoods elementalGoods;
-        public JSON_Goods(int _gold = 0, int _elementalSculpture = 0, ElementalGoods elemental = new ElementalGoods())
+        public Goods_Data Goods;
+
+        public JSON_Goods(Goods_Data goods = new Goods_Data())
         {
-            gold = _gold;
-            elementalSculpture = _elementalSculpture;
-            elementalGoods = elemental;
+            Goods = goods;
         }
 
         public void Print()
         {
-            Debug.Log($"Gold = {gold}");
-            Debug.Log($"ElementalSculpture = {elementalSculpture}");
-            Debug.Log($"ElementalGoods = {elementalGoods}");
+            Debug.Log($"ElementalGoods = {Goods}");
         }
     }
 
     public JSON_Goods m_JSON_Goods = new JSON_Goods();
+
+    public event Action OnChangeGoodsData;
+    public void InvokeAction()
+    {
+        OnChangeGoodsData?.Invoke();
+    }
     #endregion
 
     #region JSON_SceneData
@@ -473,6 +479,7 @@ public class DataParsing : MonoBehaviour
                     JSON_Goods jtest2 = JsonConvert.DeserializeObject<JSON_Goods>(jsonData, serializerSettings);
                     jtest2.Print();
                     m_JSON_Goods = jtest2;
+                    OnChangeGoodsData?.Invoke();
                 }
                 catch
                 {
@@ -485,6 +492,7 @@ public class DataParsing : MonoBehaviour
                     JSON_Goods jtest2 = JsonConvert.DeserializeObject<JSON_Goods>(jsonData, serializerSettings);
                     jtest2.Print();
                     m_JSON_Goods = jtest2;
+                    OnChangeGoodsData?.Invoke();
                 }
             }
             else
@@ -494,6 +502,7 @@ public class DataParsing : MonoBehaviour
                 {
                     m_JSON_Goods = new JSON_Goods();
                 }
+                OnChangeGoodsData?.Invoke();
                 string jsonData = JsonConvert.SerializeObject(m_JSON_Goods);
                 byte[] data = Encoding.UTF8.GetBytes(jsonData);
                 stream.Write(data, 0, data.Length);
@@ -720,6 +729,7 @@ public class DataParsing : MonoBehaviour
                 JSON_Goods json = JsonConvert.DeserializeObject<JSON_Goods>(jsonData, serializerSettings);
                 json.Print();
                 m_JSON_Goods = json;
+                OnChangeGoodsData?.Invoke();
                 return json;
             }
             else
@@ -727,6 +737,7 @@ public class DataParsing : MonoBehaviour
                 FileStream stream = new FileStream(Application.dataPath + UnitGoodsData_FilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
                 JSON_Goods json = new JSON_Goods();
                 m_JSON_Goods = json;
+                OnChangeGoodsData?.Invoke();
                 string jsonData = JsonConvert.SerializeObject(json);
                 byte[] data = Encoding.UTF8.GetBytes(jsonData);
                 stream.Write(data, 0, data.Length);

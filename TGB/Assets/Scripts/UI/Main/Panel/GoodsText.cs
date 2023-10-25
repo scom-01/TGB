@@ -162,19 +162,19 @@ public class GoodsText : MonoBehaviour
                 switch (Type)
                 {
                     case GOODS_TPYE.Gold:
-                        count = DataManager.Inst.JSON_DataParsing.m_JSON_Goods.gold;
+                        count = DataManager.Inst.JSON_DataParsing.m_JSON_Goods.Goods.Gold;
                         return count;
                     case GOODS_TPYE.FireGoods:
-                        count = DataManager.Inst.JSON_DataParsing.m_JSON_Goods.elementalGoods.FireGoods;
+                        count = DataManager.Inst.JSON_DataParsing.m_JSON_Goods.Goods.FireGoods;
                         return count;
                     case GOODS_TPYE.WaterGoods:
-                        count = DataManager.Inst.JSON_DataParsing.m_JSON_Goods.elementalGoods.WaterGoods;
+                        count = DataManager.Inst.JSON_DataParsing.m_JSON_Goods.Goods.WaterGoods;
                         return count;
                     case GOODS_TPYE.EarthGoods:
-                        count = DataManager.Inst.JSON_DataParsing.m_JSON_Goods.elementalGoods.EarthGoods;
+                        count = DataManager.Inst.JSON_DataParsing.m_JSON_Goods.Goods.EarthGoods;
                         return count;
                     case GOODS_TPYE.WindGoods:
-                        count = DataManager.Inst.JSON_DataParsing.m_JSON_Goods.elementalGoods.WindGoods;
+                        count = DataManager.Inst.JSON_DataParsing.m_JSON_Goods.Goods.WindGoods;
                         return count;
                     case GOODS_TPYE.HammerPiece:
                         count = DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.hammer_piece;
@@ -205,14 +205,26 @@ public class GoodsText : MonoBehaviour
         }
     }
     private Canvas _canvas;
-    // Update is called once per frame
-    void Update()
-    {
-        if (!m_Canvas.enabled)
-        {
-            return;
-        }
 
+    private void OnEnable()
+    {
+        if (DataManager.Inst?.JSON_DataParsing != null)
+        {
+            DataManager.Inst.JSON_DataParsing.OnChangeGoodsData -= UpdateGoodsTesxt;
+            DataManager.Inst.JSON_DataParsing.OnChangeGoodsData += UpdateGoodsTesxt;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (DataManager.Inst?.JSON_DataParsing != null)
+        {
+            DataManager.Inst.JSON_DataParsing.OnChangeGoodsData -= UpdateGoodsTesxt;
+        }
+    }
+    // Update is called once per frame
+    private void UpdateGoodsTesxt()
+    {
         if (IconImg != null && TypeIcon != null)
         {
             if (OldType == Type && oldGoodsCount == TypeGoodsCount)

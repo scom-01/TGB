@@ -1,16 +1,15 @@
-using TGB.CoreSystem;
-using TGB.Weapons;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using TGB.CoreSystem;
+using TGB.Weapons;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.Localization.Settings;
-using static UnityEditor.PlayerSettings;
 
 public class DataManager : MonoBehaviour
 {
@@ -45,7 +44,6 @@ public class DataManager : MonoBehaviour
             return JsonDataParsing;
         }
     }
-
     private DataParsing JsonDataParsing;
 
     #region GameData Value
@@ -419,14 +417,6 @@ public class DataManager : MonoBehaviour
     //    //Debug.LogWarning("Success BuffData Load");
     //}
 
-    public int GameGoldLoad()
-    {
-        return JSON_DataParsing.m_JSON_Goods.gold;
-    }
-    public int GameElementalsculptureLoad()
-    {
-        return JSON_DataParsing.m_JSON_Goods.elementalSculpture;
-    }
     //public bool GameElementalsculptureSave(int m_Elementalsculpture)
     //{
     //    if (m_Elementalsculpture <= 0)
@@ -436,9 +426,9 @@ public class DataManager : MonoBehaviour
 
     //    return true;
     //}
-    public ElementalGoods GameElementalGoodsLoad()
+    public Goods_Data GameGoodsLoad()
     {
-        return JSON_DataParsing.m_JSON_Goods.elementalGoods;
+        return JSON_DataParsing.m_JSON_Goods.Goods;
     }
 
     public void SaveScene(int _stageNumber)
@@ -548,47 +538,27 @@ public class DataManager : MonoBehaviour
         JSON_DataParsing.m_JSON_SceneData.SceneNumber = stageIndex;
     }
 
-    public void IncreaseGoods(GOODS_TPYE type, int goodsAmount)
+    public void CalculateGoods(GOODS_TPYE type, int goodsAmount)
     {
         switch (type)
         {
             case GOODS_TPYE.Gold:
-                JSON_DataParsing.m_JSON_Goods.gold += goodsAmount;
+                JSON_DataParsing.m_JSON_Goods.Goods.Gold += goodsAmount;
                 break;
             case GOODS_TPYE.FireGoods:
-                JSON_DataParsing.m_JSON_Goods.elementalGoods.FireGoods += goodsAmount;
+                JSON_DataParsing.m_JSON_Goods.Goods.FireGoods += goodsAmount;
                 break;
             case GOODS_TPYE.WaterGoods:
-                JSON_DataParsing.m_JSON_Goods.elementalGoods.WaterGoods += goodsAmount;
+                JSON_DataParsing.m_JSON_Goods.Goods.WaterGoods += goodsAmount;
                 break;
             case GOODS_TPYE.EarthGoods:
-                JSON_DataParsing.m_JSON_Goods.elementalGoods.EarthGoods += goodsAmount;
+                JSON_DataParsing.m_JSON_Goods.Goods.EarthGoods += goodsAmount;
                 break;
             case GOODS_TPYE.WindGoods:
-                JSON_DataParsing.m_JSON_Goods.elementalGoods.WindGoods += goodsAmount;
+                JSON_DataParsing.m_JSON_Goods.Goods.WindGoods += goodsAmount;
                 break;
         }
-    }
-    public void DecreseGoods(GOODS_TPYE type, int goodsAmount)
-    {
-        switch (type)
-        {
-            case GOODS_TPYE.Gold:
-                JSON_DataParsing.m_JSON_Goods.gold -= goodsAmount;
-                break;
-            case GOODS_TPYE.FireGoods:
-                JSON_DataParsing.m_JSON_Goods.elementalGoods.FireGoods -= goodsAmount;
-                break;
-            case GOODS_TPYE.WaterGoods:
-                JSON_DataParsing.m_JSON_Goods.elementalGoods.WaterGoods -= goodsAmount;
-                break;
-            case GOODS_TPYE.EarthGoods:
-                JSON_DataParsing.m_JSON_Goods.elementalGoods.EarthGoods -= goodsAmount;
-                break;
-            case GOODS_TPYE.WindGoods:
-                JSON_DataParsing.m_JSON_Goods.elementalGoods.WindGoods -= goodsAmount;
-                break;
-        }
+        JSON_DataParsing.InvokeAction();
     }
     #endregion
 

@@ -39,14 +39,14 @@ public class Shop_Items : InventoryItems, IUI_Select
         if (GameManager.Inst?.StageManager?.player == null || SelectedItem == null)
             return;
 
-        if (DataManager.Inst.JSON_DataParsing.m_JSON_Goods.gold < (int)SelectedItem.itemData.ItemLevel * GlobalValue.Gold_Inflation * GameManager.Inst.StageManager.StageLevel)
+        if (DataManager.Inst.JSON_DataParsing.m_JSON_Goods.Goods.Gold < (int)SelectedItem.itemData.ItemLevel * GlobalValue.Gold_Inflation * GameManager.Inst.StageManager.StageLevel)
         {
             //재화 부족
             return;
         }
         else
         {
-            DataManager.Inst.JSON_DataParsing.m_JSON_Goods.gold -= (int)SelectedItem.itemData.ItemLevel * GlobalValue.Gold_Inflation * GameManager.Inst.StageManager.StageLevel;
+            DataManager.Inst.CalculateGoods(GOODS_TPYE.Gold, -(int)SelectedItem.itemData.ItemLevel * GlobalValue.Gold_Inflation * GameManager.Inst.StageManager.StageLevel);
         }
 
         if (GameManager.Inst.StageManager.player.Inventory.AddInventoryItem(SelectedItem))
@@ -140,13 +140,13 @@ public class Shop_Items : InventoryItems, IUI_Select
     public void ReRoll()
     {
         //보유 재화 체크
-        if (DataManager.Inst.JSON_DataParsing.m_JSON_Goods.gold < (GameManager.Inst.StageManager.StageLevel * GlobalValue.ReRoll_Inflation * ReRollCount))
+        if (DataManager.Inst.JSON_DataParsing.m_JSON_Goods.Goods.Gold < (GameManager.Inst.StageManager.StageLevel * GlobalValue.ReRoll_Inflation * ReRollCount))
         {
             return;
         }
         else
         {
-            DataManager.Inst.JSON_DataParsing.m_JSON_Goods.gold -= (GameManager.Inst.StageManager.StageLevel * GlobalValue.ReRoll_Inflation * ReRollCount);
+            DataManager.Inst.CalculateGoods(GOODS_TPYE.Gold, -(GameManager.Inst.StageManager.StageLevel * GlobalValue.ReRoll_Inflation * ReRollCount));
             
         }
 

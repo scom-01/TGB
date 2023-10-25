@@ -14,20 +14,18 @@ public class GoodsPanel : MonoBehaviour
 
     private int currentGold;
     private int currentSculpture;
-    private ElementalGoods currentElementalGoods;
+    private Goods_Data currentElementalGoods;
     
     private int oldGold = 0;
     private int oldSculpture = 0;
-    private ElementalGoods oldElementalGoods = new ElementalGoods();
+    private Goods_Data oldElementalGoods = new Goods_Data();
 
     // Start is called before the first frame update
     void Start()
     {
         if (DataManager.Inst != null)
         {
-            currentGold = DataManager.Inst.GameGoldLoad();
-            currentSculpture = DataManager.Inst.GameElementalsculptureLoad();
-            currentElementalGoods = DataManager.Inst.GameElementalGoodsLoad();
+            currentElementalGoods = DataManager.Inst.GameGoodsLoad();
         }
     }
 
@@ -36,9 +34,7 @@ public class GoodsPanel : MonoBehaviour
     {
         if (DataManager.Inst != null)
         {
-            currentGold = DataManager.Inst.GameGoldLoad();
-            currentSculpture = DataManager.Inst.GameElementalsculptureLoad();
-            currentElementalGoods = DataManager.Inst.GameElementalGoodsLoad();
+            currentElementalGoods = DataManager.Inst.GameGoodsLoad();
         }
 
         if(oldGold != currentGold)

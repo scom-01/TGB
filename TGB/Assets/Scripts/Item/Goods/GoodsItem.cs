@@ -69,7 +69,7 @@ public class GoodsItem : MonoBehaviour
         for (int i = 0; i < DropCount; i++)
         {
             var goods = Instantiate(GoodsPrefab, GameManager.Inst.StageManager.IM.transform);
-            var goodsData = goods.GetComponent<GoodsData>();
+            var goodsData = goods.GetComponent<GoodsChunk>();
             goodsData.transform.position = spawnPos + Vector3.up;
             goodsData.SR.sprite = GoodsSprite;
             goodsData.CircleSize = CircleSize;

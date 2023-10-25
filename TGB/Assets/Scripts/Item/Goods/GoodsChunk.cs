@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GoodsData : MonoBehaviour
+public class GoodsChunk : MonoBehaviour
 {
     public SpriteRenderer SR;
     public GOODS_TPYE Goods;
@@ -67,7 +67,7 @@ public class GoodsData : MonoBehaviour
             return;
         }
 
-        DataManager.Inst.IncreaseGoods(Goods, Amount);
+        DataManager.Inst.CalculateGoods(Goods, Amount);
         if (GameManager.Inst.StageManager != null)
         {
             if (EquipSoundClip != null)
