@@ -203,6 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c5173f66d272754987e2ea457467358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 0
   m_IsFollow: 1
   m_IsShowTxt: 0
   Txt: {fileID: 0}
@@ -739,6 +740,7 @@ MonoBehaviour:
   Items: []
   Inititems:
   - {fileID: 11400000, guid: 95208878e233e92409560005b58d7636, type: 2}
+  InfinityEffectObjects: []
   CheckItem: {fileID: 0}
 --- !u!114 &3639027602819861585
 MonoBehaviour:
@@ -780,12 +782,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RespawnPoint: {fileID: 0}
-  UnitData: {fileID: 11400000, guid: 18e5526c4f9924a4e9be2f0de80b92a9, type: 2}
+  UnitData: {fileID: 11400000, guid: f52a4b64842c4e54296e6009975d5fce, type: 2}
   IsAlive: 1
   isFixed_CC_Immunity: 0
   isFixed_Hit_Immunity: 0
   isFixedMovement: 0
   enemyData: {fileID: 0}
+  Test_Distance: 0
+  Pattern_Idx: []
 --- !u!1 &3640253522240484911
 GameObject:
   m_ObjectHideFlags: 0
@@ -1068,14 +1072,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c9855e77531ec458ce701591569b49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statsData:
+  Default_statsData:
     MaxHealth: 0
     DefaultPower: 0
     DefaultMoveSpeed: 0
     DefaultJumpVelocity: 0
     DefaultAttSpeed: 0
-    MovementVelocity: 0
-    JumpVelocity: 0
+    MovementVEL_Per: 0
+    JumpVEL_Per: 0
     AttackSpeedPer: 0
     PhysicsDefensivePer: 0
     MagicDefensivePer: 0
@@ -1093,8 +1097,8 @@ MonoBehaviour:
     DefaultMoveSpeed: 0
     DefaultJumpVelocity: 0
     DefaultAttSpeed: 0
-    MovementVelocity: 0
-    JumpVelocity: 0
+    MovementVEL_Per: 0
+    JumpVEL_Per: 0
     AttackSpeedPer: 0
     PhysicsDefensivePer: 0
     MagicDefensivePer: 0
@@ -1106,15 +1110,15 @@ MonoBehaviour:
     Elemental: 0
     ElementalDefensivePer: 0
     ElementalAggressivePer: 0
-  invincibleTime: 0
-  TouchinvincibleTime: 0
-  currentHealth: 0
   BlessStats:
     Bless_Agg_Lv: 0
     Bless_Def_Lv: 0
     Bless_Speed_Lv: 0
     Bless_Critical_Lv: 0
     Bless_Elemental_Lv: 0
+  invincibleTime: 0
+  TouchinvincibleTime: 0
+  currentHealth: 0
 --- !u!1 &3640253523265248516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1552,8 +1556,10 @@ MonoBehaviour:
   GoodsPrefab: {fileID: 1952279293685994997, guid: cb4cccd4b8f68bc48a25aac822abd0d2, type: 3}
   GoodsSprite: {fileID: 218339756, guid: f7bf72b4be9086e4c9eef46270d4a8f3, type: 3}
   EquipSoundClip: {fileID: 8300000, guid: 0e89b476d4715fd42935e9900eedb033, type: 3}
+  EquipEffect: {fileID: 0}
   CircleSize: 0.3125
   DestroyTime: 2.5
+  DestroyTimeRange: 0
 --- !u!114 &4029409388226351098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1572,8 +1578,10 @@ MonoBehaviour:
   GoodsPrefab: {fileID: 1952279293685994997, guid: cb4cccd4b8f68bc48a25aac822abd0d2, type: 3}
   GoodsSprite: {fileID: -613753843, guid: f7bf72b4be9086e4c9eef46270d4a8f3, type: 3}
   EquipSoundClip: {fileID: 8300000, guid: 0e89b476d4715fd42935e9900eedb033, type: 3}
+  EquipEffect: {fileID: 0}
   CircleSize: 0.3125
   DestroyTime: 2.5
+  DestroyTimeRange: 0
 --- !u!1001 &6386328288435780554
 PrefabInstance:
   m_ObjectHideFlags: 0

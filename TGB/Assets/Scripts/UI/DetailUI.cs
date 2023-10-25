@@ -37,12 +37,12 @@ public class DetailUI : MonoBehaviour
 
     public void SetInit(LocalizedString _ItemNameLocal, LocalizedString _ItemDescriptLocal, Sprite _sprite, string _StatsDescripts)
     {
-        if (_ItemNameLocal != null) 
+        if (MainStringEvent != null && _ItemNameLocal != null)
         {
             MainStringEvent.StringReference.SetReference("Item_Table", _ItemNameLocal.TableEntryReference);
         }
 
-        if (SubStringEvent != null)
+        if (SubStringEvent != null && _ItemDescriptLocal != null)
         {
             SubStringEvent.StringReference.SetReference("Item_Table", _ItemDescriptLocal.TableEntryReference);
         }
