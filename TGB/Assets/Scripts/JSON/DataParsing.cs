@@ -273,33 +273,19 @@ public class DataParsing : MonoBehaviour
         /// <summary>
         /// 해당 게임의 랜덤성을 결정할 Int
         /// </summary>
-        public List<int> SceneDataIdxs
-        {
-            get
-            {
-                if(sceneDataIdxs == null)
-                {
-                    sceneDataIdxs = new List<int>();
-                }
-                return sceneDataIdxs;
-            }
-            set
-            {
-                sceneDataIdxs = value;
-            }
-        }
-        private List<int> sceneDataIdxs = new List<int>();
+        public List<int> SceneDataIdxs = new List<int>();
         public int PlayerHealth;
         public float PlayTime;
         public Enemy_Count EnemyCount;
         public List<BuffData> BuffDatas = new List<BuffData>();
-        public JSON_SceneData(int sceneNumber = 2, List<int> _sceneDataIdxs = null, int playerHealth = -1, float playTime = 0, Enemy_Count _enemy_Count = new Enemy_Count())
+        public JSON_SceneData()
         {
-            SceneNumber = sceneNumber;
-            SceneDataIdxs = _sceneDataIdxs ?? new List<int>();
-            PlayerHealth = playerHealth;
-            PlayTime = playTime;
-            EnemyCount = _enemy_Count;
+            SceneNumber = 2;
+            SceneDataIdxs =  new List<int>();
+            PlayerHealth = -1;
+            PlayTime = 0;
+            EnemyCount = new Enemy_Count();
+            BuffDatas = new List<BuffData>();
         }
         public void Print()
         {
