@@ -210,7 +210,7 @@ public class DataParsing : MonoBehaviour
         public List<BuffData> BuffDatas = new List<BuffData>();
         public Goods_Data Goods;
         public List<int> Items = new List<int>();
-        public List<int> Weapons = new List<int>();
+        public List<int> Weapons = new List<int>() { 0 };
         public JSON_SceneData()
         {
             SceneNumber = 2;
@@ -221,7 +221,7 @@ public class DataParsing : MonoBehaviour
             BuffDatas = new List<BuffData>();
             Goods = new Goods_Data();
             Items = new List<int>();
-            Weapons = new List<int>();
+            Weapons = new List<int>() { 0 };
         }
         public void Print()
         {
