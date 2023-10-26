@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using TGB.Manager;
 using UnityEngine;
 
 public class CfgBtn : MonoBehaviour
@@ -13,6 +12,10 @@ public class CfgBtn : MonoBehaviour
             return;
         }
 
+        foreach (var setting in ActiveUI.GetComponentsInChildren<SettingUI>())
+        {
+            setting.Canvas.enabled = _isShow;
+        }        
         ActiveUI.GetComponent<Canvas>().enabled = _isShow;
     }
 }
