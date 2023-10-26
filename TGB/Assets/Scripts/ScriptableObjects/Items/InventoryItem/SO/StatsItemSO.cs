@@ -1,16 +1,9 @@
-using TGB.Item;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using Unity.VisualScripting;
-using UnityEngine.Localization;
-using UnityEngine;
-using UnityEngine.UI;
-using static UnityEditor.Progress;
-using UnityEngine.Localization.Settings;
-using UnityEngine.Localization.Components;
 using TGB.Weapons.Components;
+using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 
 [Serializable]
 public struct StatsData_item
@@ -35,6 +28,10 @@ public struct ItemComposite
 public class StatsItemSO : ItemDataSO
 {
     public List<ItemComposite> CompositeItems;
+    /// <summary>
+    /// 필드 드랍
+    /// </summary>
+    public bool isFieldSpawn;
 
     [Header("--StatsData--")]
     [Tooltip("아이템이 갖는 스탯")]

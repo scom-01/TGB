@@ -223,7 +223,12 @@ public class DataManager : MonoBehaviour
     }
 
     public void DeleteJSONFile()
-    {                
+    {
+        foreach (var item in GameManager.Inst.SubUI.InventorySubUI.InventoryItems.Items)
+        {
+            item.StatsItemData = null;
+        }
+
         if (File.Exists(Application.dataPath + JSON_DataParsing.SceneData_FilePath))
         {
             try
@@ -520,16 +525,25 @@ public class DataManager : MonoBehaviour
             var pos = _pos + (Vector3.right * _spawnInterval * (i - ((_spawnAmount - 1) / 2)));
             int idx = 0;
             //새로운 아이템 언락
-            if (JSON_DataParsing.m_JSON_SceneData.SceneDataIdxs[i] >= (GlobalValue.MaxSceneIdx * (_percent / 100f)))
+            if (JSON_DataParsing.m_JSON_SceneData.SceneDataIdxs[i] <= (GlobalValue.MaxSceneIdx * (_percent / 100f)))
             {
                 //전체 미해금 아이템 인덱스 리스트
-                List<int> AlllockItemIdxs = JSON_DataParsing.LockItemList;
+                List<int> AlllockItemIdxs = JSON_DataParsing.LockItemList.ToList();
                 //이미 스폰한 아이템은 제외
                 for (int j = 0; j < SpawnItemList.Count; j++)
                 {
                     if (AlllockItemIdxs.Contains(SpawnItemList[j]))
                     {
                         AlllockItemIdxs.Remove(SpawnItemList[j]);
+                    }
+                }
+
+                //필드 드랍아이템이 아닐 시 제외
+                for (int j = 0; j < AlllockItemIdxs.Count; j++)
+                {
+                    if (All_ItemDB.ItemDBList[AlllockItemIdxs[j]].isFieldSpawn == false)
+                    {
+                        AlllockItemIdxs.RemoveAt(j);
                     }
                 }
 
@@ -550,14 +564,13 @@ public class DataManager : MonoBehaviour
                     //스폰한 아이템 리스트에 추가
                     SpawnItemList.Add(AlllockItemIdxs[idx]);
                     Debug.Log($"SpawnItem {itemData.name}");
-                    JSON_DataParsing.m_JSON_DefaultData.WaitUnlockItemIdxs.Add(AlllockItemIdxs[idx]);
                 }
             }
             //기존 해금 아이템 중 스폰
             else
             {
                 //전체 해금 아이템 인덱스 리스트
-                List<int> AllUnlockItemIdxs = JSON_DataParsing.m_JSON_DefaultData.UnlockItemIdxs;
+                List<int> AllUnlockItemIdxs = JSON_DataParsing.m_JSON_DefaultData.UnlockItemIdxs.ToList();
 
                 //플레이어 인벤토리에 아이템이 존재할 때
                 if (GameManager.Inst.StageManager.player.Inventory.Items.Count > 0)
@@ -590,6 +603,15 @@ public class DataManager : MonoBehaviour
                     }
                 }
 
+                //필드 드랍아이템이 아닐 시 제외
+                for (int j = 0; j < AllUnlockItemIdxs.Count; j++)
+                {
+                    if (All_ItemDB.ItemDBList[AllUnlockItemIdxs[j]].isFieldSpawn == false)
+                    {
+                        AllUnlockItemIdxs.RemoveAt(j);
+                    }
+                }
+
                 //AllUnlockItemIdxs.Count = 전체 해금 아이템 인덱스 리스트 - 플레이어가 소유하고있는 아이템 인덱스 리스트
                 //idx = 랜덤인덱스 % AllItemIdx.Count;
                 idx = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.SceneDataIdxs[i] % AllUnlockItemIdxs.Count;
@@ -603,7 +625,7 @@ public class DataManager : MonoBehaviour
                 if (item != null)
                 {
                     //아이템 선택 매니저 아이템 리스트에 추가
-                    if (GameManager.Inst.StageManager.ChoiceItemManager != null) 
+                    if (GameManager.Inst.StageManager.ChoiceItemManager != null)
                         GameManager.Inst.StageManager.ChoiceItemManager.ItemList.Add(item);
                     //스폰한 아이템 리스트에 추가
                     SpawnItemList.Add(AllUnlockItemIdxs[idx]);

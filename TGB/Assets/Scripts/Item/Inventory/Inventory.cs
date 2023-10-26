@@ -1,12 +1,9 @@
-using TGB.Item;
-using TGB.Weapons;
 using System;
 using System.Collections.Generic;
+using TGB.Item;
+using TGB.Weapons;
 using Unity.VisualScripting;
 using UnityEngine;
-using System.Drawing;
-using UnityEditor.Rendering;
-using static UnityEditor.Progress;
 
 [Serializable]
 public class ItemSet
@@ -250,6 +247,7 @@ public class Inventory : MonoBehaviour
             return false;
         }
 
+        //조합 아이템 조합 여부
         if (itemObject.CompositeItems.Count > 0)
         {
             for (int i = 0; i < itemObject.CompositeItems.Count; i++)
@@ -272,7 +270,7 @@ public class Inventory : MonoBehaviour
                             unit.Core.CoreSoundEffect.AudioSpawn(itemObject.CompositeItems[i].EditSFX);
 
                         itemObject = itemObject.CompositeItems[i].Result;
-                        if (Object.GameObject() != null) 
+                        if (Object.GameObject() != null)
                         {
                             Object.GameObject().GetComponent<SOB_Item>().Item = itemObject;
                             Object.GameObject().GetComponent<SOB_Item>().Init();
@@ -283,6 +281,7 @@ public class Inventory : MonoBehaviour
             }
         }
 
+        //인벤토리 초과
         for (int i = 0; i < Items.Count; i++)
         {
             if (Items[i].item == itemObject)
@@ -327,6 +326,11 @@ public class Inventory : MonoBehaviour
         if (itemObject.InitEffectData.AcquiredSoundEffect != null)
             unit.Core.CoreSoundEffect.AudioSpawn(itemObject.InitEffectData.AcquiredSoundEffect);
 
+        if (DataManager.Inst.JSON_DataParsing.LockItemList.Contains(itemObject.ItemIdx))
+        {
+            DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.WaitUnlockItemIdxs.Add(itemObject.ItemIdx);
+        }
+
         Debug.Log($"Add {itemObject.name}, Success add {itemObject.name}");
         if (Unit.GetType() == typeof(Player))
             GameManager.Inst.SubUI.InventorySubUI.InventoryItems.AddItem(itemObject);
@@ -337,7 +341,7 @@ public class Inventory : MonoBehaviour
         unit.Core.CoreUnitStats.AddStat(itemObject.StatsData);
         Debug.Log($"Change UnitStats {Unit.Core.CoreUnitStats.CalculStatsData}");
         return true;
-    }    
+    }
 
     /// <summary>
     /// Item 제거, Destory하지 않고 InventoryItem의 StatsItemSO 데이터값을 없앤다.
@@ -373,7 +377,7 @@ public class Inventory : MonoBehaviour
                             Destroy(obj.GetComponent<EffectController>().parent.gameObject);
                         }
                     }
-                }                
+                }
 
                 if (unit.GetType() == typeof(Player))
                     GameManager.Inst.SubUI.InventorySubUI.InventoryItems.RemoveItem(itemData);
