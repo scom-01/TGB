@@ -10,7 +10,7 @@ namespace TGB.CoreSystem
         public event Action OnChangeHealth;
 
         #region Stats       
-        
+
         public StatsData StatsData { get => Default_statsData; set => Default_statsData = value; }
         [field: Header("Stats")]
         [field: SerializeField] private StatsData Default_statsData;
@@ -43,6 +43,9 @@ namespace TGB.CoreSystem
             }
             set => m_statsData = value;
         }
+        /// <summary>
+        /// Item, Buff 등 증가로 인한 스탯
+        /// </summary>
         public StatsData m_statsData;
 
         public BlessStatsData BlessStats;
@@ -258,7 +261,7 @@ namespace TGB.CoreSystem
             Debug.Log($"Before Calculator ElementalPower = {amount}");
 
             //Normal이 아닌 속성을 보유하고있을 때
-            if(e_Power != E_Power.Normal)
+            if (e_Power != E_Power.Normal)
             {
                 amount *= (1.0f + AttackerData.ElementalAggressivePer / 100f);
             }
@@ -399,6 +402,7 @@ namespace TGB.CoreSystem
         public void AddStat(StatsData statsData)
         {
             m_statsData += statsData;
+            OnChangeHealth?.Invoke();
         }
     }
 }

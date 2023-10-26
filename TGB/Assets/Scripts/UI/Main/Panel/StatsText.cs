@@ -1,11 +1,48 @@
+using TGB.CoreSystem;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization.Components;
 using UnityEngine.U2D;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class StatsText : Stats
 {
+    private Unit Unit
+    {
+        get
+        {
+            if (unit == null)
+            {
+                unit = GameManager.Inst?.StageManager?.player;
+
+                if (unit != null)
+                {
+                    Stats.OnChangeHealth -= UpdateStats;
+                    Stats.OnChangeHealth += UpdateStats;
+                    UpdateStats();
+                }
+            }
+            return unit;
+        }
+    }
+    private Unit unit;
+    private UnitStats Stats
+    {
+        get
+        {
+            if (stats == null)
+            {
+                if (Unit == null)
+                {
+                    return null;
+                }
+                stats = Unit.Core.CoreUnitStats;
+            }
+            return stats;
+        }
+    }
+    private UnitStats stats;
     public override float variable
     {
         get
@@ -121,14 +158,32 @@ public class StatsText : Stats
         }
     }
     private Canvas m_canvas;
-    // Update is called once per frame
-    void Update()
-    {
-        if(!Canvas.enabled)
-        {
-            return;
-        }
 
+    private void OnEnable()
+    {
+        if (GameManager.Inst?.StageManager?.player != null)
+        {
+            GameManager.Inst.StageManager.player.Core.CoreUnitStats.OnChangeHealth -= UpdateStats;
+            GameManager.Inst.StageManager.player.Core.CoreUnitStats.OnChangeHealth += UpdateStats;
+        }
+    }
+    private void OnDisable()
+    {
+        if (GameManager.Inst?.StageManager?.player != null)
+        {
+            GameManager.Inst.StageManager.player.Core.CoreUnitStats.OnChangeHealth += UpdateStats;
+        }
+    }
+
+    private void Update()
+    {
+        if (Unit == null)
+            return;
+    }
+
+    // Update is called once per frame
+    private void UpdateStats()
+    {
         if (LocalStringEvent != null)
         {
             LocalStringEvent.StringReference.SetReference("Stats_Table", Type.ToString());
