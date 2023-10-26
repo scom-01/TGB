@@ -2,6 +2,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Localization.Components;
 
 public class Shop_Items : InventoryItems, IUI_Select
 {
@@ -11,6 +12,8 @@ public class Shop_Items : InventoryItems, IUI_Select
     private StatsItemSO SelectedItem;
     private int SelectedIdx;
     [SerializeField] private Merchant Merchant;
+    [SerializeField] private LocalizeStringEvent NotEnoughMessage_Local;
+    [SerializeField] private Animator NotEnoughMessage_Anim;
     private void Start()
     {
         Init();
@@ -20,7 +23,7 @@ public class Shop_Items : InventoryItems, IUI_Select
         Merchant = this.GetComponentInParent<Merchant>();
 
         if (reRollTxt != null)
-            reRollTxt.text = (GameManager.Inst.StageManager.StageLevel * GlobalValue.ReRoll_Inflation * ReRollCount) + "<color=yellow>G</color>";
+            reRollTxt.text = string.Format("{0:#,###}", (GameManager.Inst.StageManager.StageLevel * GlobalValue.ReRoll_Inflation * ReRollCount)) + "<color=yellow>G</color>";
         for (int i = 0; i < Items.Count; i++)
         {
             Items[i].StatsItemData = null;
@@ -42,6 +45,11 @@ public class Shop_Items : InventoryItems, IUI_Select
         if (DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Goods.Gold < (int)SelectedItem.itemData.ItemLevel * GlobalValue.Gold_Inflation * GameManager.Inst.StageManager.StageLevel)
         {
             //재화 부족
+            if (NotEnoughMessage_Anim != null && NotEnoughMessage_Local != null) 
+            {
+                NotEnoughMessage_Local.StringReference.SetReference("Goods_Table", GOODS_TPYE.Gold.ToString() + "_NotEnough");
+                NotEnoughMessage_Anim.Play("Action", -1, 0f);
+            }
             return;
         }
         else
@@ -142,14 +150,18 @@ public class Shop_Items : InventoryItems, IUI_Select
         //보유 재화 체크
         if (DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Goods.Gold < (GameManager.Inst.StageManager.StageLevel * GlobalValue.ReRoll_Inflation * ReRollCount))
         {
+            //재화 부족
+            if (NotEnoughMessage_Anim != null && NotEnoughMessage_Local != null)
+            {
+                NotEnoughMessage_Local.StringReference.SetReference("Goods_Table", GOODS_TPYE.Gold.ToString() + "_NotEnough");
+                NotEnoughMessage_Anim.Play("Action", -1, 0f);
+            }
             return;
         }
         else
         {
-            DataManager.Inst.CalculateGoods(GOODS_TPYE.Gold, -(GameManager.Inst.StageManager.StageLevel * GlobalValue.ReRoll_Inflation * ReRollCount));
-            
+            DataManager.Inst.CalculateGoods(GOODS_TPYE.Gold, -(GameManager.Inst.StageManager.StageLevel * GlobalValue.ReRoll_Inflation * ReRollCount));            
         }
-
         if (reRollTxt != null)
         {
             ReRollCount++;
