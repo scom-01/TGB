@@ -48,14 +48,40 @@ MonoBehaviour:
     PhysicsDefensivePer: 0
     MagicDefensivePer: 0
     PhysicsAggressivePer: 0
-    MagicAggressivePer: 0
+    MagicAggressivePer: 20
     CriticalPer: 0
     AdditionalCriticalPer: 0
     DamageAttiribute: 1
     Elemental: 1
     ElementalDefensivePer: 0
-    ElementalAggressivePer: 0
-  StatsItems: []
+    ElementalAggressivePer: 15
+  StatsItems:
+  - type: 1
+    StatsLocalizeString:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    variable: 0
+    value: 20
+    ShowPercent: 1
+  - type: 4
+    StatsLocalizeString:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    variable: 0
+    value: 15
+    ShowPercent: 1
   Health: 0
   buffItems: []
   InitEffectData:
