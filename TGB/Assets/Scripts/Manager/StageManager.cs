@@ -1,10 +1,8 @@
 using Cinemachine;
-using TGB.Manager;
 using System.Collections.Generic;
+using TGB.Manager;
 using UnityEngine;
-using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
-using static UnityEditor.PlayerSettings;
 
 public class StageManager : MonoBehaviour
 {
@@ -218,7 +216,7 @@ public class StageManager : MonoBehaviour
         //Loading시 ESC를 눌러서 Pause가 됐을 때 생기는 오류 방지
         GameManager.Inst.Continue();
         GameManager.Inst.LoadData();
-        GameManager.Inst.Data_Save();
+        GameManager.Inst.SaveData();
 
         //씬 이름 애니메이션 Instantiate
         if (SceneNameFade != null)
