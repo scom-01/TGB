@@ -82,14 +82,14 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: MovementAction
+    functionName: StartFlipTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0
-    functionName: StartFlipTrigger
+    functionName: MovementAction
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -116,7 +116,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.16666667
+  - time: 0.083333336
     functionName: SpawnEffectTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -124,14 +124,14 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.5
-    functionName: AnimationFinishedTrigger
+    functionName: StopMovementTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.5
-    functionName: StopMovementTrigger
+    functionName: AnimationFinishedTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

@@ -96,7 +96,7 @@ MonoBehaviour:
           - CanFlip: 0
             CanMoveCtrl: 1
             Direction: {x: 0, y: 1}
-            Velocity: 8
+            Velocity: 12
     - rid: 2527592717927579866
       type: {class: ShakeCamData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -125,4 +125,10 @@ MonoBehaviour:
         name: WeaponSpriteData
         actionData:
         - name: Action 1
-          <WeaponSprites>k__BackingField: []
+          <WeaponSprites>k__BackingField:
+          - {fileID: 147069158, guid: c35d9502f2ada634592d079801c15dcb, type: 3}
+          - {fileID: -1186967906, guid: c35d9502f2ada634592d079801c15dcb, type: 3}
+          - {fileID: -282424880, guid: c35d9502f2ada634592d079801c15dcb, type: 3}
+          - {fileID: -941643198, guid: c35d9502f2ada634592d079801c15dcb, type: 3}
+          - {fileID: -132705281, guid: c35d9502f2ada634592d079801c15dcb, type: 3}
+          - {fileID: 1179441322, guid: c35d9502f2ada634592d079801c15dcb, type: 3}
