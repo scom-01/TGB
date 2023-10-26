@@ -8,12 +8,14 @@ using UnityEngine.EventSystems;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Components;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class CurrItem : MonoBehaviour, IUI_Select
 {
     [SerializeField] private Image IconImg;
     [SerializeField] private LocalizeStringEvent Local_Name;
     [SerializeField] private LocalizeStringEvent Local_Descript;
+    [SerializeField] private TMP_Text Text_Stat;
     private StatsItemSO m_itemSO;
 
     private void Start()
@@ -28,6 +30,9 @@ public class CurrItem : MonoBehaviour, IUI_Select
 
             if (Local_Name != null)
                 Local_Name.StringReference.SetReference("Item_Table", "Empty");
+
+            if (Text_Stat != null)
+                Text_Stat.text = "";
         }
     }
 
@@ -50,6 +55,9 @@ public class CurrItem : MonoBehaviour, IUI_Select
 
                 if (Local_Name != null)
                     Local_Name.StringReference.SetReference("Item_Table", "Empty");
+
+                if (Text_Stat != null)
+                    Text_Stat.text = "";
             }
             else
             {
@@ -64,6 +72,18 @@ public class CurrItem : MonoBehaviour, IUI_Select
 
                 if (Local_Name != null)
                     Local_Name.StringReference.SetReference("Item_Table", m_itemSO.itemData.ItemNameLocal.TableEntryReference);
+
+                if (Text_Stat != null)
+                {
+                    if (m_itemSO.StatsItems.Count > 0)
+                    {
+                        Text_Stat.text = m_itemSO.StatsData_Descripts;
+                    }
+                    else
+                    {
+                        Text_Stat.text = "";
+                    }
+                }
             }
         }
     }
