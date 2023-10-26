@@ -73,7 +73,7 @@ public enum GOODS_TPYE
     WaterGoods,
     EarthGoods,
     WindGoods,
-    HammerPiece,
+    HammerShards,
     None,
 }
 

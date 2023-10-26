@@ -475,7 +475,7 @@ public class DataManager : MonoBehaviour
             case GOODS_TPYE.WindGoods:
                 JSON_DataParsing.m_JSON_SceneData.Goods.WindGoods += goodsAmount;
                 break;
-            case GOODS_TPYE.HammerPiece:
+            case GOODS_TPYE.HammerShards:
                 JSON_DataParsing.m_JSON_DefaultData.hammer_piece += goodsAmount;
                 break;
         }

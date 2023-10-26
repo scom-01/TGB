@@ -29,10 +29,10 @@ public class ReforgingMaterial : MonoBehaviour
 
     private int currentGoldAmount;
     private int reforgingCostGoldAmount;
-    private int currentSculptureAmount;
-    private int reforgingCostSculptureAmount;
-    private Goods_Data currentElementalGoodsAmount;
-    private Goods_Data reforgingCostElementalGoodsAmount;
+    private int currentShardsAmount;
+    private int reforgingCostShardsAmount;
+    private Goods_Data currentGoodsAmount;
+    private Goods_Data reforgingCostGoodsAmount;
 
     [SerializeField] private Transform GoodsTransform;
     [SerializeField] private List<GameObject> GoodsList;
@@ -78,13 +78,13 @@ public class ReforgingMaterial : MonoBehaviour
     {
         if (DataManager.Inst != null)
         {
-            currentElementalGoodsAmount = DataManager.Inst.GameGoodsLoad();
+            currentGoodsAmount = DataManager.Inst.GameGoodsLoad();
         }
         else
         {
             currentGoldAmount = 0;
-            currentSculptureAmount = 0;
-            currentElementalGoodsAmount = new Goods_Data();
+            currentShardsAmount = 0;
+            currentGoodsAmount = new Goods_Data();
         }
 
         for (int i = 0; i < GoodsTransform.childCount; i++)
@@ -95,7 +95,7 @@ public class ReforgingMaterial : MonoBehaviour
     }
     private bool CheckReforging()
     {
-        if (reforgingCostGoldAmount == -1 || reforgingCostSculptureAmount == -1)
+        if (reforgingCostGoldAmount == -1 || reforgingCostShardsAmount == -1)
         {
             Debug.Log("There is impossible reforging weapon");
             return false;
@@ -147,43 +147,43 @@ public class ReforgingMaterial : MonoBehaviour
             if (EquipWeaon == null || EquipWeaon.weaponCommandDataSO == null || EquipWeaon.weaponCommandDataSO == ReforgingWeaponDataSO)
             {
                 reforgingCostGoldAmount = -1;
-                reforgingCostSculptureAmount = -1;
-                reforgingCostElementalGoodsAmount = new Goods_Data();
+                reforgingCostShardsAmount = -1;
+                reforgingCostGoodsAmount = new Goods_Data();
                 return;
             }
 
             reforgingCostGoldAmount = ReforgingWeaponDataSO.WeaponClassLevel * 500;
-            reforgingCostSculptureAmount = ReforgingWeaponDataSO.WeaponClassLevel * 1000;
-            reforgingCostElementalGoodsAmount = ReforgingWeaponDataSO.GoodsCost;
-            if (reforgingCostGoldAmount > 0)
+            reforgingCostShardsAmount = ReforgingWeaponDataSO.WeaponClassLevel * 1000;
+            reforgingCostGoodsAmount = ReforgingWeaponDataSO.GoodsCost;
+            if (ReforgingWeaponDataSO.GoodsCost.Gold > 0)
             {
                 var goods = Instantiate(GoodsMaterial, GoodsTransform);
                 GoodsList.Add(goods);
-                goods.GetComponent<GoodsMaterial>().UpdateGoodsMaterial(GOODS_TPYE.Gold, currentGoldAmount, reforgingCostGoldAmount);
+                goods.GetComponent<GoodsMaterial>().UpdateGoodsMaterial(GOODS_TPYE.Gold, currentGoodsAmount.Gold, reforgingCostGoodsAmount.FireGoods);
             }
             if (ReforgingWeaponDataSO.GoodsCost.FireGoods > 0)
             {
                 var goods = Instantiate(GoodsMaterial, GoodsTransform);
                 GoodsList.Add(goods);
-                goods.GetComponent<GoodsMaterial>().UpdateGoodsMaterial(GOODS_TPYE.FireGoods, currentElementalGoodsAmount.FireGoods, reforgingCostElementalGoodsAmount.FireGoods);
+                goods.GetComponent<GoodsMaterial>().UpdateGoodsMaterial(GOODS_TPYE.FireGoods, currentGoodsAmount.FireGoods, reforgingCostGoodsAmount.FireGoods);
             }
             if (ReforgingWeaponDataSO.GoodsCost.WaterGoods > 0)
             {
                 var goods = Instantiate(GoodsMaterial, GoodsTransform);
                 GoodsList.Add(goods);
-                goods.GetComponent<GoodsMaterial>().UpdateGoodsMaterial(GOODS_TPYE.WaterGoods, currentElementalGoodsAmount.WaterGoods, reforgingCostElementalGoodsAmount.WaterGoods);
+                goods.GetComponent<GoodsMaterial>().UpdateGoodsMaterial(GOODS_TPYE.WaterGoods, currentGoodsAmount.WaterGoods, reforgingCostGoodsAmount.WaterGoods);
             }
             if (ReforgingWeaponDataSO.GoodsCost.EarthGoods > 0)
             {
                 var goods = Instantiate(GoodsMaterial, GoodsTransform);
                 GoodsList.Add(goods);
-                goods.GetComponent<GoodsMaterial>().UpdateGoodsMaterial(GOODS_TPYE.EarthGoods, currentElementalGoodsAmount.EarthGoods, reforgingCostElementalGoodsAmount.EarthGoods);
+                goods.GetComponent<GoodsMaterial>().UpdateGoodsMaterial(GOODS_TPYE.EarthGoods, currentGoodsAmount.EarthGoods, reforgingCostGoodsAmount.EarthGoods);
             }
             if (ReforgingWeaponDataSO.GoodsCost.WindGoods > 0)
             {
                 var goods = Instantiate(GoodsMaterial, GoodsTransform);
                 GoodsList.Add(goods);
-                goods.GetComponent<GoodsMaterial>().UpdateGoodsMaterial(GOODS_TPYE.WindGoods, currentElementalGoodsAmount.WindGoods, reforgingCostElementalGoodsAmount.WindGoods);
+                goods.GetComponent<GoodsMaterial>().UpdateGoodsMaterial(GOODS_TPYE.WindGoods, currentGoodsAmount.WindGoods, reforgingCostGoodsAmount.WindGoods);
             }
         }
     }
@@ -192,9 +192,7 @@ public class ReforgingMaterial : MonoBehaviour
     {
         GetCurrentGoods();
 
-        reforgingCostGoldAmount = -1;
-        reforgingCostSculptureAmount = -1;
-
+        reforgingCostShardsAmount = -1;
     }
     public void SetReforgingMaterial(WeaponCommandDataSO data)
     {

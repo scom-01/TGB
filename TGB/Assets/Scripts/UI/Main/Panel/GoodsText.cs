@@ -144,7 +144,7 @@ public class GoodsText : MonoBehaviour
                 case GOODS_TPYE.WindGoods:
                     img = WindIcon;
                     return img;
-                case GOODS_TPYE.HammerPiece:
+                case GOODS_TPYE.HammerShards:
                     img = WindIcon;
                     return img;
             }
@@ -176,7 +176,7 @@ public class GoodsText : MonoBehaviour
                     case GOODS_TPYE.WindGoods:
                         count = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Goods.WindGoods;
                         return count;
-                    case GOODS_TPYE.HammerPiece:
+                    case GOODS_TPYE.HammerShards:
                         count = DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.hammer_piece;
                         return count;
                 }

@@ -6,18 +6,18 @@ using UnityEngine;
 public class GoodsPanel : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI GoldCountText;
-    [SerializeField] private TextMeshProUGUI sculptureCountText;
+    [SerializeField] private TextMeshProUGUI ShardsCountText;
     [SerializeField] private TextMeshProUGUI FireGoodsCountText;
     [SerializeField] private TextMeshProUGUI WaterGoodsCountText;
     [SerializeField] private TextMeshProUGUI EarthGoodsCountText;
     [SerializeField] private TextMeshProUGUI WindGoodsCountText;
 
     private int currentGold;
-    private int currentSculpture;
+    private int currentShards;
     private Goods_Data currentElementalGoods;
     
     private int oldGold = 0;
-    private int oldSculpture = 0;
+    private int oldShards = 0;
     private Goods_Data oldElementalGoods = new Goods_Data();
 
     // Start is called before the first frame update
@@ -46,13 +46,13 @@ public class GoodsPanel : MonoBehaviour
             oldGold = currentGold;
         }
 
-        if(oldSculpture != currentSculpture)
+        if(oldShards != currentShards)
         {
-            if (sculptureCountText != null)
+            if (ShardsCountText != null)
             {
-                sculptureCountText.text = " : " + currentSculpture.ToString();
+                ShardsCountText.text = " : " + currentShards.ToString();
             }
-            oldSculpture = currentSculpture;
+            oldShards = currentShards;
         }        
 
         if(oldElementalGoods != currentElementalGoods)

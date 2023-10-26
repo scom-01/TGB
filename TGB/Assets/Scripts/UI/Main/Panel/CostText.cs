@@ -45,7 +45,7 @@ public class CostText : MonoBehaviour
         Debug.Log("Enum = " + item?.StatsItemData?.itemData.ItemLevel);
         Debug.Log("Enum(int) = " + (int)item?.StatsItemData?.itemData.ItemLevel);
         cost = (int)item.StatsItemData.itemData.ItemLevel * GameManager.Inst.StageManager.StageLevel * GlobalValue.Gold_Inflation;
-        Txt.text = cost.ToString();
+        Txt.text = string.Format("{0:#,###}", cost);
         switch (goods_tpye)
         {
             case GOODS_TPYE.Gold:
