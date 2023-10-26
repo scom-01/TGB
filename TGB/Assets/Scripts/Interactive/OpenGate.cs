@@ -25,8 +25,6 @@ public class OpenGate : InteractiveObject
             DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.SceneDataIdxs.Add(UnityEngine.Random.Range(0, GlobalValue.MaxSceneIdx));
         }
 
-        GameManager.Inst.Data_Save();
-
         Debug.LogWarning("OpenGate");
         GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.Cfg, false);
         GameManager.Inst?.ClearScene();
