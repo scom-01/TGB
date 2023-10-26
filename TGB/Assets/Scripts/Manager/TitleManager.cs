@@ -34,7 +34,7 @@ public class TitleManager : MonoBehaviour
         if (GameManager.Inst == null)
             return;
 
-        GameManager.Inst.ChangeUI(UI_State.CutScene);
+        GameManager.Inst.ChangeUI(UI_State.Cfg, true);
 
         
         //이어하기
@@ -155,6 +155,7 @@ public class TitleManager : MonoBehaviour
         if (UnlockItem_Canvas != null)
         {
             UnlockItem_Canvas.GetComponent<Canvas>().enabled = true;
+            GameManager.Inst.InputHandler.OnESCInput_Action += HideUnlockItemCanvas;
             UnlockItem_Canvas.GetComponentInChildren<UnlockItemList>()?.SetInit();
 
             if(UnlockItem_Canvas.GetComponentInChildren<UnlockItemList>()?.UnlockItems.Count > 0)
@@ -164,6 +165,12 @@ public class TitleManager : MonoBehaviour
         }
 
         GameManager.Inst.EffectTextUI.EffectTextOn();
+    }
+
+    private void HideUnlockItemCanvas()
+    {
+        UnlockItem_Canvas.GetComponent<Canvas>().enabled = false;
+        EventSystem.current.SetSelectedGameObject(buttons[0].gameObject);
     }
 
     public void OnOptionBtnClicked()

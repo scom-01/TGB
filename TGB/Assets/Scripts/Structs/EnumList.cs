@@ -13,7 +13,7 @@ public enum InputEnum
 [Serializable]
 public enum UI_State
 {
-    GamePlay,
+    GamePlay = 0,
     Inventory,
     Reforging,
     Cfg,

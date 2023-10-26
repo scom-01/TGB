@@ -1,13 +1,10 @@
-using TGB.CoreSystem;
-using TGB.Manager;
 using System;
 using System.Collections.Generic;
+using TGB.Manager;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 using UnityEngine.Localization.Settings;
-using UnityEngine.Playables;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
@@ -79,8 +76,8 @@ public class GameManager : MonoBehaviour
     public EffectTextUI EffectTextUI;
     public PlayTimeManagerUI PlayTimeUI;
 
-    [HideInInspector]    public UI_State Old_UIState;
-    [HideInInspector]    public UI_State Curr_UIState;
+    [HideInInspector]
+    public UI_State Old_UIState, Curr_UIState = UI_State.GamePlay;
 
     [HideInInspector]
     public float PlayTime;
@@ -270,7 +267,7 @@ public class GameManager : MonoBehaviour
 
         if (Init)
             return;
-
+                
         switch (_ui)
         {            
             case UI_State.GamePlay:
@@ -330,7 +327,6 @@ public class GameManager : MonoBehaviour
                 Application.targetFrameRate = 30;
                 SubUI.InventorySubUI.SetInventoryState(InventoryUI_State.Put);
                 CutSceneUI.Canvas.enabled = true;
-                //CutSceneUI.Director_SetAsset(CutSceneUI.FadeIn);
                 Curr_UIState = UI_State.CutScene;
                 break;
             case UI_State.Result:

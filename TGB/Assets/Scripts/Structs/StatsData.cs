@@ -49,24 +49,23 @@ public struct StatsData
 
     public static StatsData operator +(StatsData s1, StatsData s2)
     {
-        StatsData temp = new StatsData();
-        temp.MaxHealth = s1.MaxHealth + s2.MaxHealth;
-        temp.DefaultPower = s1.DefaultPower + s2.DefaultPower;
-        temp.DefaultJumpVelocity = s1.DefaultJumpVelocity + s2.DefaultJumpVelocity;
-        temp.DefaultAttSpeed = s1.DefaultAttSpeed + s2.DefaultAttSpeed;
-        temp.DefaultMoveSpeed = s1.DefaultMoveSpeed + s2.DefaultMoveSpeed;
-        temp.MovementVEL_Per = s1.MovementVEL_Per + s2.MovementVEL_Per;
-        temp.JumpVEL_Per = s1.JumpVEL_Per + s2.JumpVEL_Per;
-        temp.AttackSpeedPer = s1.AttackSpeedPer + s2.AttackSpeedPer;
-        temp.PhysicsDefensivePer = s1.PhysicsDefensivePer + s2.PhysicsDefensivePer;
-        temp.MagicDefensivePer = s1.MagicDefensivePer + s2.MagicDefensivePer;
-        temp.PhysicsAggressivePer = s1.PhysicsAggressivePer + s2.PhysicsAggressivePer;
-        temp.MagicAggressivePer = s1.MagicAggressivePer + s2.MagicAggressivePer;
-        temp.CriticalPer = s1.CriticalPer + s2.CriticalPer;
-        temp.AdditionalCriticalPer = s1.AdditionalCriticalPer + s2.AdditionalCriticalPer;
-        temp.ElementalDefensivePer = s1.ElementalDefensivePer + s2.ElementalDefensivePer;
-        temp.ElementalAggressivePer = s1.ElementalAggressivePer + s2.ElementalAggressivePer;
-        return temp;
+        s1.MaxHealth = s1.MaxHealth + s2.MaxHealth;
+        s1.DefaultPower = s1.DefaultPower + s2.DefaultPower;
+        s1.DefaultJumpVelocity = s1.DefaultJumpVelocity + s2.DefaultJumpVelocity;
+        s1.DefaultAttSpeed = s1.DefaultAttSpeed + s2.DefaultAttSpeed;
+        s1.DefaultMoveSpeed = s1.DefaultMoveSpeed + s2.DefaultMoveSpeed;
+        s1.MovementVEL_Per = s1.MovementVEL_Per + s2.MovementVEL_Per;
+        s1.JumpVEL_Per = s1.JumpVEL_Per + s2.JumpVEL_Per;
+        s1.AttackSpeedPer = s1.AttackSpeedPer + s2.AttackSpeedPer;
+        s1.PhysicsDefensivePer = s1.PhysicsDefensivePer + s2.PhysicsDefensivePer;
+        s1.MagicDefensivePer = s1.MagicDefensivePer + s2.MagicDefensivePer;
+        s1.PhysicsAggressivePer = s1.PhysicsAggressivePer + s2.PhysicsAggressivePer;
+        s1.MagicAggressivePer = s1.MagicAggressivePer + s2.MagicAggressivePer;
+        s1.CriticalPer = s1.CriticalPer + s2.CriticalPer;
+        s1.AdditionalCriticalPer = s1.AdditionalCriticalPer + s2.AdditionalCriticalPer;
+        s1.ElementalDefensivePer = s1.ElementalDefensivePer + s2.ElementalDefensivePer;
+        s1.ElementalAggressivePer = s1.ElementalAggressivePer + s2.ElementalAggressivePer;
+        return s1;
     }
 
     public static StatsData operator *(StatsData s1, float f1)
