@@ -151,9 +151,9 @@ public class GameManager : MonoBehaviour
             PlayTimeUI = this.GetComponentInChildren<PlayTimeManagerUI>();
 
 
-        SetSaveData();
+        
     }
-
+    
     private void Update()
     {
         if (StageManager != null && InputHandler.playerInput.currentActionMap == InputHandler.playerInput.actions.FindActionMap("GamePlay"))
@@ -171,6 +171,8 @@ public class GameManager : MonoBehaviour
     {
         if (DataManager.Inst == null)
             return;
+
+        SetSaveData();
 
         //해당 함수들은 GameManager에서 참조할 변수들이 있어 GameManager에서 선언
         DataManager.Inst.UserKeySettingLoad();

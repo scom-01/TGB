@@ -93,6 +93,8 @@ public class StatsText : Stats
     }
 
     [SerializeField] private TextMeshProUGUI StatsPowerTxt;
+    [SerializeField] private bool Showcolon;
+    [SerializeField] private bool isLeftcolon;
 
     private float m_TypeStats
     {
@@ -189,13 +191,10 @@ public class StatsText : Stats
             LocalStringEvent.StringReference.SetReference("Stats_Table", Type.ToString());
         }
 
-        if (StatsPowerTxt != null)
+        if (StatsPowerTxt != null && OldStats != m_TypeStats)
         {
-            if (OldStats != m_TypeStats)
-            {                
-                StatsPowerTxt.text = m_TypeStats.ToString("F0") + " %";
-                OldStats = m_TypeStats;
-            }
+            StatsPowerTxt.text = isLeftcolon ? ((Showcolon ? " : " : "") + m_TypeStats.ToString("F0") + " %") : m_TypeStats.ToString("F0") + " %" + (Showcolon ? " : " : "");
+            OldStats = m_TypeStats;
         }
 
         if (Img != null && m_TypeSprite != null && Img.sprite != m_TypeSprite)
