@@ -1,9 +1,8 @@
-using TGB.Manager;
 using System.Collections.Generic;
+using TGB.Manager;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 using static UnityEngine.InputSystem.InputActionRebindingExtensions;
 
 public class KeySetting : MonoBehaviour
@@ -31,6 +30,19 @@ public class KeySetting : MonoBehaviour
     [SerializeField] private Canvas WaitforInputCanvas;
     
     private InputActionRebindingExtensions.RebindingOperation m_Rebind;
+    private bool allCompositeParts
+    {
+        get
+        {
+            if(m_Action.action.bindings[m_BindingIndex].isComposite)
+            {
+                var firstPartIndex = m_BindingIndex + 1;
+                if (firstPartIndex < m_Action.action.bindings.Count && m_Action.action.bindings[firstPartIndex].isPartOfComposite)
+                    return true;
+            }
+            return false;
+        }
+    }
     private int m_BindingIndex;
     private SettingUI settingUI;
     private void OnEnable()
@@ -106,8 +118,39 @@ public class KeySetting : MonoBehaviour
         m_Rebind = m_Action.action.PerformInteractiveRebinding()
         .WithTargetBinding(m_BindingIndex)
         .WithControlsExcluding("Mouse")
+        .WithControlsExcluding("<Keyboard>/enter")      //enter => cancle
+        .WithControlsExcluding("<Keyboard>/numpadEnter")      //enter => cancle
+        .WithCancelingThrough("<Keyboard>/anyKey")
+        .WithCancelingThrough("<Keyboard>/escape")      //ESC => cancle
         .OnMatchWaitForAnother(0.1f)
-        .OnComplete(_ => {
+        .OnCancel(_ =>
+        {
+            if (WaitforInputCanvas != null)
+            {
+                WaitforInputCanvas.enabled = false;
+            }
+        })
+        .OnComplete(_ =>
+        {
+            if (m_Action.action.bindings[m_BindingIndex].effectivePath == "<Keyboard>/anyKey")
+            {
+                Debug.Log("<keyboard>/anyKey");
+                if (WaitforInputCanvas != null)
+                {
+                    WaitforInputCanvas.enabled = false;
+                }
+                return;
+            }
+            if(CheckDuplicateBinds(m_Action, m_BindingIndex, allCompositeParts))
+            {
+                m_Action.action.RemoveBindingOverride(m_BindingIndex);                
+                CleanUp();
+                if (WaitforInputCanvas != null)
+                {
+                    WaitforInputCanvas.enabled = false;
+                }
+                return;
+            }
             UpdateDisplayText();
             for (int i = 0; i < m_Actions.Count; i++)
             {
@@ -117,5 +160,42 @@ public class KeySetting : MonoBehaviour
             GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.Cfg, false);
         })
         .Start();
+    }
+
+    private bool CheckDuplicateBinds(InputAction action, int bindingIndex, bool allCompositeParts = false)
+    {
+        InputBinding newBinding = action.bindings[bindingIndex];
+        foreach (InputBinding binding in action.actionMap.bindings)
+        {
+            if(binding.action == newBinding.action)
+            {
+                Debug.Log("Duplicate binding found : " + newBinding.effectivePath);
+                return true;
+            }
+            if(binding.effectivePath == newBinding.effectivePath)
+            {
+                Debug.Log("Duplicate binding found : " + newBinding.effectivePath);
+                return true;
+            }
+
+            if(allCompositeParts)
+            {
+                for (int i = 0; i < bindingIndex; i++)
+                {
+                    if (action.bindings[i].effectivePath == newBinding.effectivePath)
+                    {
+                        Debug.Log("Duplicate binding found : " + newBinding.effectivePath);
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }    
+
+    private void CleanUp()
+    {
+        m_Rebind?.Dispose();
+        m_Rebind = null;
     }
 }
