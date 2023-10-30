@@ -12,6 +12,7 @@ namespace TGB.Manager
         public float Timer;
         private void Start()
         {
+            GameManager.Inst.ChangeUI(UI_State.Loading);
             StartCoroutine(LoadAsyncSceneCoroutine());
         }
 

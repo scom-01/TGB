@@ -368,22 +368,6 @@ public class DataManager : MonoBehaviour
         return JSON_DataParsing.m_JSON_SceneData.Goods;
     }
 
-    public void SaveScene(int _stageNumber)
-    {
-        if (_stageNumber == 0)
-        {
-            for (int i = 0; i < GameManager.Inst.SceneNameList.Count; i++)
-            {
-                if (GameManager.Inst.SceneNameList[i] == GameManager.Inst.StageManager.CurrStageName)
-                {
-                    JSON_DataParsing.m_JSON_SceneData.SceneNumber = i;
-                    return;
-                }
-            }
-        }
-        JSON_DataParsing.m_JSON_SceneData.SceneNumber = _stageNumber;
-    }
-
     public void LoadScene()
     {
         if (JSON_DataParsing.Json_Read_SceneData() == null)
@@ -396,6 +380,9 @@ public class DataManager : MonoBehaviour
     }
     public void SaveBuffs(List<Buff> _buffs)
     {
+        if (_buffs == null)
+            return;
+
         var _buffDatas = new List<BuffData>();
         for (int i = 0; i < _buffs.Count; i++)
         {

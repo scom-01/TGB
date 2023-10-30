@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TGB.Manager;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -421,7 +422,6 @@ public class GameManager : MonoBehaviour
         {
             return;
         }                
-        DataManager.Inst?.SaveScene(StageManager.CurrStageNumber);
         DataManager.Inst.PlayerInventoryDataSave(
             GameManager.Inst.StageManager.player.Inventory.Weapon,
             GameManager.Inst.StageManager.player.Inventory.Items);
@@ -443,12 +443,28 @@ public class GameManager : MonoBehaviour
     {
         if (DataManager.Inst == null)
             return;
-
+        SaveAction = null;
         DataManager.Inst.DeleteJSONFile();
 
         DataManager.Inst?.NextStage(2);
     }
+    public void NewGame()
+    {
+        if (DataManager.Inst == null)
+            return;
+        ResetData();
 
+        var skipCutScene = DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.SkipCutSceneList.ToList();
+        if (skipCutScene.Contains(4))
+        {
+            DataManager.Inst?.NextStage(3);
+        }
+        else
+        {
+            DataManager.Inst?.NextStage(4);
+        }
+        ClearScene();
+    }
     public void ClearScene()
     {        
         var FadeOut = Resources.Load<GameObject>(GlobalValue.FadeOutCutScene);

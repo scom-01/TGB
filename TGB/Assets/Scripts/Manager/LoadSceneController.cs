@@ -14,13 +14,8 @@ public class LoadSceneController : MonoBehaviour
         if (GameManager.Inst == null)
             return;
                 
-        GameManager.Inst.ChangeUI(UI_State.Loading);
+        GameManager.Inst.ChangeUI(UI_State.Loading);        
         GameManager.Inst.SaveData();
-
-        if (GameManager.Inst.StageManager != null)
-        {
-            DataManager.Inst.NextStage(GameManager.Inst.StageManager.NextStageNumber);
-        }
         AsyncOperation operation = SceneManager.LoadSceneAsync("LoadingScene");
         isMoveScene = true;
     }

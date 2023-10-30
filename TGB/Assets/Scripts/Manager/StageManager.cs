@@ -212,6 +212,9 @@ public class StageManager : MonoBehaviour
         if (SpawnPoint == null)
             SpawnPoint = GameObject.Find("SpawnPoint").GetComponent<Transform>();
         GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, false);
+
+        GameManager.Inst.SetSaveData();
+
         GameManager.Inst.ChangeUI(Start_UIState);
         //Loading시 ESC를 눌러서 Pause가 됐을 때 생기는 오류 방지
         GameManager.Inst.Continue();
