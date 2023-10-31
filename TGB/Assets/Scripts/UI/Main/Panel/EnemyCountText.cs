@@ -4,11 +4,37 @@ using UnityEngine.Localization.Components;
 
 public class EnemyCountText : MonoBehaviour
 {
+    private Unit Unit
+    {
+        get
+        {
+            if (unit == null)
+            {
+                unit = GameManager.Inst?.StageManager?.player;
+
+                if (unit != null)
+                {
+                    if(DataManager.Inst !=null)
+                    {
+                        DataManager.Inst.JSON_DataParsing.OnChangeEnemyCount-= UpdateEnemyCountText;
+                        DataManager.Inst.JSON_DataParsing.OnChangeEnemyCount+= UpdateEnemyCountText;
+                    }
+                    UpdateEnemyCountText();
+                }
+            }
+            return unit;
+        }
+    }
+    private Unit unit;
+
     [SerializeField] private ENEMY_Level Type;
 
     [SerializeField] private TextMeshProUGUI EnemyCountTxt;
     [SerializeField] private LocalizeStringEvent EnemyCountTxtLocalizeStringEvent;
-   
+
+    [SerializeField] private bool Showcolon;
+    [SerializeField] private bool isLeftcolon;
+
     private int TypeCount
     {
         get
@@ -47,11 +73,13 @@ public class EnemyCountText : MonoBehaviour
     }
     private Canvas _canvas;
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (!m_Canvas.enabled)
+        if (Unit == null)
             return;
-
+    }
+    private void UpdateEnemyCountText()
+    {
         if (EnemyCountTxtLocalizeStringEvent != null)
         {
             EnemyCountTxtLocalizeStringEvent.StringReference.SetReference("UI_Table", Type.ToString());
@@ -59,7 +87,7 @@ public class EnemyCountText : MonoBehaviour
 
         if (EnemyCountTxt != null)
         {
-            EnemyCountTxt.text = TypeCount.ToString();
+            EnemyCountTxt.text = isLeftcolon ? ((Showcolon ? " : " : "") + string.Format("{0:#,##0}", TypeCount)) : (string.Format("{0:#,##0}", TypeCount) + (Showcolon ? " : " : "")); ;
         }
     }
 }
