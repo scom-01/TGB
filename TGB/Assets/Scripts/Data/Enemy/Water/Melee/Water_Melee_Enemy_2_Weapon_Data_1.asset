@@ -42,9 +42,49 @@ MonoBehaviour:
               y: 0
               width: 9.6
               height: 4.68
-            RepeatAction: 0
+            RepeatAction: 1
             AdditionalDamage: 0
-            KnockbackAngle: {x: 0, y: 0}
+            KnockbackAngle: {x: 0, y: 15}
+            EffectPrefab:
+            - isGround: 0
+              isRandomPosRot: 0
+              isRandomRange: 0
+              EffectOffset: {x: 0, y: 0}
+              EffectScale: 0
+              isFollowing: 0
+              Object: {fileID: 6265323933180701124, guid: f0a9c8170ba7e6b44b61a4b6c007a047, type: 3}
+            audioClip: []
+            camDatas: []
+          - Debug: 1
+            ActionRect:
+              serializedVersion: 2
+              x: 6
+              y: 0
+              width: 2
+              height: 6
+            RepeatAction: 1
+            AdditionalDamage: 0
+            KnockbackAngle: {x: 0, y: 20}
+            EffectPrefab:
+            - isGround: 0
+              isRandomPosRot: 0
+              isRandomRange: 0
+              EffectOffset: {x: 0, y: 0}
+              EffectScale: 0
+              isFollowing: 0
+              Object: {fileID: 6265323933180701124, guid: f0a9c8170ba7e6b44b61a4b6c007a047, type: 3}
+            audioClip: []
+            camDatas: []
+          - Debug: 1
+            ActionRect:
+              serializedVersion: 2
+              x: 9
+              y: 0
+              width: 2
+              height: 6
+            RepeatAction: 1
+            AdditionalDamage: 0
+            KnockbackAngle: {x: 0, y: 20}
             EffectPrefab:
             - isGround: 0
               isRandomPosRot: 0
@@ -86,6 +126,20 @@ MonoBehaviour:
             EffectScale: 1.5
             isFollowing: 0
             Object: {fileID: 1654740954783398791, guid: 544e505c595052a4881661a54f634679, type: 3}
+          - isGround: 1
+            isRandomPosRot: 0
+            isRandomRange: 0
+            EffectOffset: {x: 7, y: 0}
+            EffectScale: 1.5
+            isFollowing: 0
+            Object: {fileID: 1654740954783398791, guid: 544e505c595052a4881661a54f634679, type: 3}
+          - isGround: 1
+            isRandomPosRot: 0
+            isRandomRange: 0
+            EffectOffset: {x: 10, y: 0}
+            EffectScale: 1.5
+            isFollowing: 0
+            Object: {fileID: 1654740954783398791, guid: 544e505c595052a4881661a54f634679, type: 3}
     - rid: 2527592717927579738
       type: {class: KnockbackData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -116,7 +170,10 @@ MonoBehaviour:
         name: SoundClipData
         actionData:
         - name: Action 1
-          audioClips: []
+          audioClips:
+          - {fileID: 8300000, guid: 4322976517a5c2f42a68209b86e38ca1, type: 3}
+          - {fileID: 8300000, guid: 4322976517a5c2f42a68209b86e38ca1, type: 3}
+          - {fileID: 8300000, guid: 4322976517a5c2f42a68209b86e38ca1, type: 3}
     - rid: 2527592717927579742
       type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:

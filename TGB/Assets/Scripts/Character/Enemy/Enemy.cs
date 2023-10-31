@@ -73,19 +73,7 @@ public class Enemy : Unit
         if (GameManager.Inst != null)
         {
             GameManager.Inst.StageManager.SPM.UIEnemyCount--;
-
-            switch(enemyData.enemy_level)
-            {
-                case ENEMY_Level.NormalEnemy:
-                    DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.EnemyCount.Normal_Enemy_Count++;
-                    break;
-                case ENEMY_Level.EleteEnemy:
-                    DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.EnemyCount.Elete_Enemy_Count++;
-                    break;
-                case ENEMY_Level.BossEnemy:
-                    DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.EnemyCount.Boss_Enemy_Count++;
-                    break;
-            }            
+            DataManager.Inst.SetEnemyCount(enemyData.enemy_level, 1);
         }
     }
 

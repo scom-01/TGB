@@ -24,6 +24,7 @@ public class Player : Unit
     public PlayerJumpState JumpState { get; private set; }
     public PlayerWallJumpState WallJumpState { get; private set; }
     public PlayerDashState DashState { get; private set; }
+    public PlayerDeathState DeathState { get; private set; }
     public PlayerWeaponState BlockState { get; private set; }
 
     public PlayerWeaponState PrimaryAttackState { get; private set; }
@@ -54,6 +55,7 @@ public class Player : Unit
         WallSlideState = new PlayerWallSlideState(this, "wallSlide");
         WallJumpState = new PlayerWallJumpState(this, "inAir");
         DashState = new PlayerDashState(this, "dash");
+        DeathState = new PlayerDeathState(this, "death");
         PrimaryAttackState = new PlayerWeaponState(this, "action", ((int)CombatInputs.primary == (int)CombatInputs.primary)); //, Inventory.weapon);
         SecondaryAttackState = new PlayerWeaponState(this, "action", ((int)CombatInputs.primary == (int)CombatInputs.secondary));//, Inventory.weapons[(int)CombatInputs.secondary]);        
         Inventory.Weapon.SetCore(Core);
@@ -97,11 +99,12 @@ public class Player : Unit
     public override void DieEffect()
     {
         base.DieEffect();
-        GameManager.Inst.Pause();
-        GameManager.Inst.ChangeUI(UI_State.Result);
-        GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.Cfg, false);
-        GameManager.Inst.ResetData();
-        GameManager.Inst.ResultUI.resultPanel.UpdateResultPanel();
+
+        //CutSceneActionMap
+        GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.CutScene, false);
+        FSM.ChangeState(DeathState);
+        //ZoomIn PlayableDirector
+        GameManager.Inst?.PlayerDieCutScene?.GetComponent<DirectorController>()?.PlayDirector();        
     }
 
     public override void HitEffect()

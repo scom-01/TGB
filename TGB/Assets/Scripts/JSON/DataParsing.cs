@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using UnityEngine;
 
@@ -241,16 +242,22 @@ public class DataParsing : MonoBehaviour
     #endregion
 
     public event Action OnChangeGoodsData;
-    public void InvokeAction()
+    public void OnChangeGoodsDataInvoke() => OnChangeGoodsData?.Invoke();
+    public event Action OnChangeEnemyCount;
+    public void OnChangeEnemyCountInvoke() => OnChangeEnemyCount?.Invoke();
+    public void All_ActionInvoke()
     {
-        OnChangeGoodsData?.Invoke();
+        OnChangeGoodsDataInvoke();
+        OnChangeEnemyCountInvoke();
     }
     #region JSON_DefaultData
+
+    private static int[] defaultUnlockItemList = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
     public class JSON_DefaultData
     {
         public List<int> SkipCutSceneList = new List<int>();
         public List<int> SkipBossCutScene = new List<int>();
-        public List<int> UnlockItemIdxs = new List<int>() { 0, 1, 2, 3, 4, 5, 6 };
+        public List<int> UnlockItemIdxs = defaultUnlockItemList.ToList();
         public List<int> WaitUnlockItemIdxs = new List<int>();
 
         public int hammer_piece = 0;
@@ -262,7 +269,7 @@ public class DataParsing : MonoBehaviour
         {
             SkipCutSceneList = new List<int>();
             SkipBossCutScene = new List<int>();
-            UnlockItemIdxs = new List<int>() { 0, 1, 2, 3, 4, 5, 6 };
+            UnlockItemIdxs = defaultUnlockItemList.ToList();
             WaitUnlockItemIdxs = new List<int>();
             hammer_piece = 0;
             Bless = new List<int>() { 0, 0, 0, 0, 0 };
@@ -362,7 +369,7 @@ public class DataParsing : MonoBehaviour
                     JSON_SceneData json = JsonConvert.DeserializeObject<JSON_SceneData>(jsonData, serializerSettings);
                     json.Print();
                     m_JSON_SceneData = json;
-                    InvokeAction();
+                    All_ActionInvoke();
                 }
                 catch
                 {
@@ -375,7 +382,7 @@ public class DataParsing : MonoBehaviour
                     JSON_SceneData json = JsonConvert.DeserializeObject<JSON_SceneData>(jsonData, serializerSettings);
                     json.Print();
                     m_JSON_SceneData = json;
-                    InvokeAction();
+                    All_ActionInvoke();
                 }
             }
             else
@@ -387,7 +394,7 @@ public class DataParsing : MonoBehaviour
                 }
                 string jsonData = JsonConvert.SerializeObject(m_JSON_SceneData);
                 byte[] data = Encoding.UTF8.GetBytes(jsonData);
-                InvokeAction();
+                All_ActionInvoke();
                 stream.Write(data, 0, data.Length);
                 stream.Close();
             }
@@ -496,7 +503,7 @@ public class DataParsing : MonoBehaviour
                 JSON_SceneData json = JsonConvert.DeserializeObject<JSON_SceneData>(jsonData, serializerSettings);
                 json.Print();
                 m_JSON_SceneData = json;
-                InvokeAction();
+                All_ActionInvoke();
                 return json;
             }
             else
@@ -504,7 +511,7 @@ public class DataParsing : MonoBehaviour
                 FileStream stream = new FileStream(Application.dataPath + SceneData_FilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
                 JSON_SceneData json = new JSON_SceneData();
                 m_JSON_SceneData = json;
-                InvokeAction();
+                All_ActionInvoke();
                 string jsonData = JsonConvert.SerializeObject(json);
                 byte[] data = Encoding.UTF8.GetBytes(jsonData);
                 stream.Write(data, 0, data.Length);

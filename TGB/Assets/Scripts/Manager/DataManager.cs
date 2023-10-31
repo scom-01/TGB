@@ -212,6 +212,7 @@ public class DataManager : MonoBehaviour
 
     #region GameData
 
+    #region JSON
     public bool CheckJSONFile()
     {
         if (!JSON_DataParsing.FileCheck(JSON_DataParsing.SceneData_FilePath))
@@ -272,6 +273,28 @@ public class DataManager : MonoBehaviour
             Console.WriteLine("Specified file doesn't exist");
         }
     }
+
+    #endregion
+
+    public void SetEnemyCount(ENEMY_Level enemyLevel,int amount)
+    {
+        switch (enemyLevel)
+        {
+            case ENEMY_Level.NormalEnemy:
+                JSON_DataParsing.m_JSON_SceneData.EnemyCount.Normal_Enemy_Count += amount;
+                break;
+            case ENEMY_Level.EleteEnemy:
+                JSON_DataParsing.m_JSON_SceneData.EnemyCount.Elete_Enemy_Count += amount;
+                break;
+            case ENEMY_Level.BossEnemy:
+                JSON_DataParsing.m_JSON_SceneData.EnemyCount.Boss_Enemy_Count += amount;
+                break;
+            default:
+                break;
+        }
+        JSON_DataParsing.OnChangeEnemyCountInvoke();
+    }
+
     public void PlayerInventoryDataLoad(Inventory inventory)
     {
         var inventory_Itemlist = JSON_DataParsing.m_JSON_SceneData.Items.ToList();
@@ -466,7 +489,7 @@ public class DataManager : MonoBehaviour
                 JSON_DataParsing.m_JSON_DefaultData.hammer_piece += goodsAmount;
                 break;
         }
-        JSON_DataParsing.InvokeAction();
+        JSON_DataParsing.All_ActionInvoke();
     }
     #endregion
 

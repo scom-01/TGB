@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Localization.Settings;
+using UnityEngine.Playables;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
@@ -32,7 +33,7 @@ public class GameManager : MonoBehaviour
     }
     private static GameManager _Inst = null;
 
-    private bool isPause = false;
+    [HideInInspector] public bool isPause = false;
     public PlayerInputHandler InputHandler
     {
         get
@@ -76,6 +77,7 @@ public class GameManager : MonoBehaviour
     public CutSceneManagerUI CutSceneUI;
     public EffectTextUI EffectTextUI;
     public PlayTimeManagerUI PlayTimeUI;
+    public PlayableDirector PlayerDieCutScene;
 
     [HideInInspector]
     public UI_State Old_UIState, Curr_UIState = UI_State.GamePlay;
@@ -151,8 +153,8 @@ public class GameManager : MonoBehaviour
         if (PlayTimeUI == null)
             PlayTimeUI = this.GetComponentInChildren<PlayTimeManagerUI>();
 
-
-        
+        if (PlayerDieCutScene == null)
+            PlayerDieCutScene = this.GetComponentInChildren<PlayableDirector>();        
     }
     
     private void Update()
