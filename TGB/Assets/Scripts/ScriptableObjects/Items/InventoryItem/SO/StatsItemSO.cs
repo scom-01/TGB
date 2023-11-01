@@ -18,8 +18,8 @@ public struct StatsData_item
 [Serializable]
 public struct ItemComposite
 {
-    public StatsItemSO Material;
-    public StatsItemSO Result;
+    public StatsItemSO MaterialItem;
+    public StatsItemSO ResultItem;
     public AudioClip EditSFX;
     public GameObject EditVFX;
 }
