@@ -79,10 +79,7 @@ public class GameManager : MonoBehaviour
     public PlayTimeManagerUI PlayTimeUI;
     public PlayableDirector PlayerDieCutScene;
 
-    [HideInInspector]
     public UI_State Old_UIState, Curr_UIState = UI_State.GamePlay;
-
-    [HideInInspector]
     public float PlayTime;
 
     /// <summary>
@@ -273,6 +270,7 @@ public class GameManager : MonoBehaviour
         if (Init)
             return;
                 
+        Curr_UIState = ui;
         switch (_ui)
         {            
             case UI_State.GamePlay:
@@ -288,8 +286,6 @@ public class GameManager : MonoBehaviour
                     MainUI.Canvas.enabled = true;
                 else
                     MainUI.Canvas.enabled = false;
-
-                Curr_UIState = UI_State.GamePlay;
                 break;
             case UI_State.Inventory:
                 Application.targetFrameRate = 30;
@@ -308,14 +304,12 @@ public class GameManager : MonoBehaviour
                     SubUI.InventorySubUI.EquipWeapon?.SetWeaponCommandData(StageManager.player.Inventory.weaponData.weaponCommandDataSO);
                 }
 
-                Curr_UIState = UI_State.Inventory;
                 break;
             case UI_State.Reforging:
                 SubUI.InventorySubUI.SetInventoryState(InventoryUI_State.Put);
                 ReforgingUI.EnabledChildrensCanvas(true);
                 ReforgingUI.Canvas.enabled = true;
                 EventSystem.current.SetSelectedGameObject(ReforgingUI.equipWeapon.gameObject);
-                Curr_UIState = UI_State.Reforging;
                 break;
             case UI_State.Cfg:
                 Application.targetFrameRate = 30;
@@ -325,25 +319,21 @@ public class GameManager : MonoBehaviour
                 }
                 CfgUI.Canvas.enabled = true;
                 EventSystem.current.SetSelectedGameObject(CfgUI.ConfigPanelUI.cfgBtns[0].gameObject);
-                Curr_UIState = UI_State.Cfg;
                 break;
             case UI_State.CutScene:
                 InputHandler.ChangeCurrentActionMap(InputEnum.CutScene, false);
                 Application.targetFrameRate = 30;
                 SubUI.InventorySubUI.SetInventoryState(InventoryUI_State.Put);
                 CutSceneUI.Canvas.enabled = true;
-                Curr_UIState = UI_State.CutScene;
                 break;
             case UI_State.Result:
                 Application.targetFrameRate = 30;
                 ResultUI.Canvas.enabled = true;
                 EventSystem.current.SetSelectedGameObject(ResultUI.GoTitleBtn.gameObject);
-                Curr_UIState = UI_State.Result;
                 break;
             case UI_State.Loading:
                 Application.targetFrameRate = 30;
                 SubUI.InventorySubUI.SetInventoryState(InventoryUI_State.Put);
-                Curr_UIState = UI_State.Loading;
                 break;
         }
     }

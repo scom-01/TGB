@@ -29,6 +29,17 @@ public class SetCineVirtualCam : MonoBehaviour
         SetFollow(Player.gameObject);
     }
 
+    public void SetPosZ(float posZ)
+    {
+        if (CVC == null)
+        {
+            CVC = this.GetComponent<CinemachineVirtualCamera>();
+            if (CVC == null)
+                return;
+        }
+
+        CVC.transform.position = new Vector3(CVC.transform.position.x, CVC.transform.position.y, posZ);
+    }
     public void SetFollow(GameObject gameObject)
     {
         if (gameObject == null)
@@ -41,7 +52,6 @@ public class SetCineVirtualCam : MonoBehaviour
             if (CVC == null)
                 return;
         }
-        CVC.transform.position =gameObject.transform.position;
         CVC.Follow = gameObject.transform;
     }
 }

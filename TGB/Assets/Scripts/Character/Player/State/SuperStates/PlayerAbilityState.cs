@@ -37,7 +37,7 @@ public class PlayerAbilityState : PlayerState
     {
         base.LogicUpdate();
 
-        if (isAbilityDone)
+        if (isAbilityDone && player.IsAlive)
         {
             if (isGrounded && Movement.CurrentVelocity.y <= 0.01f)
             {

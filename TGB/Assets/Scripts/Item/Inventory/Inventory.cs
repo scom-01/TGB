@@ -254,7 +254,7 @@ public class Inventory : MonoBehaviour
             {
                 for (int j = 0; j < Items.Count; j++)
                 {
-                    if (itemObject.CompositeItems[i].Material == Items[j].item)
+                    if (itemObject.CompositeItems[i].MaterialItem == Items[j].item)
                     {
                         //재료 아이템 제거(인벤토리)
                         if (unit.GetType() == typeof(Player))
@@ -269,7 +269,7 @@ public class Inventory : MonoBehaviour
                         if (itemObject.CompositeItems[i].EditSFX != null)
                             unit.Core.CoreSoundEffect.AudioSpawn(itemObject.CompositeItems[i].EditSFX);
 
-                        itemObject = itemObject.CompositeItems[i].Result;
+                        itemObject = itemObject.CompositeItems[i].ResultItem;
                         if (Object.GameObject() != null)
                         {
                             Object.GameObject().GetComponent<SOB_Item>().Item = itemObject;
