@@ -33,7 +33,8 @@ public class TitleManager : MonoBehaviour
         if (GameManager.Inst == null)
             return;
 
-        GameManager.Inst.ChangeUI(UI_State.Cfg, true);
+        GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.Cfg, false);
+        GameManager.Inst.ChangeUI(UI_State.GamePlay, false);
 
         
         //이어하기

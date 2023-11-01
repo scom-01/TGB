@@ -40,7 +40,7 @@ public class DirectorController : MonoBehaviour
 
         cvc.enabled = true;
     }
-
+        
     public void SetMainCamOrthographicSize(float size)
     {
         if (size == 0f)
