@@ -2,14 +2,16 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CartoonCoffee_Lightning_Comp_006-Add-[1.0]
-  m_Shader: {fileID: 4800000, guid: 1e9a07b1809f48344ac6fb78f7e2f733, type: 3}
-  m_ShaderKeywords: _ENABLECUSTOMFADE_ON
+  m_Shader: {fileID: 4800000, guid: aadfe0a66344be54383142419df4fc89, type: 3}
+  m_ValidKeywords:
+  - _ENABLECUSTOMFADE_ON
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -21,6 +23,10 @@ Material:
     m_TexEnvs:
     - _CustomFadeFadeMask:
         m_Texture: {fileID: 2800000, guid: 58a6ef46a6cd5de40910b07097c4fa16, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CutoutFadeTexture:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -39,6 +45,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _AdjustColorBrightness: 1
     - _AdjustColorContrast: 1
@@ -53,10 +60,13 @@ Material:
     - _CustomFadeAlpha: 1
     - _CustomFadeNoiseFactor: 0
     - _CustomFadeSmoothness: 2
+    - _CutoutFadeFrom: 0
+    - _CutoutFadeTo: 1
     - _EnableAdjustColor: 0
     - _EnableAlphaTint: 0
     - _EnableBlackTint: 0
     - _EnableCustomFade: 1
+    - _EnableCutoutSprite: 0
     - _EnableSplitToning: 0
     - _EnableUVDistort: 0
     - _EnableUVScroll: 0
@@ -79,3 +89,4 @@ Material:
     - _UVDistortSpeed: {r: 2, g: 2, b: 0, a: 0}
     - _UVDistortTo: {r: 0.02, g: 0.02, b: 0, a: 0}
     - _UVScrollSpeed: {r: 0, g: 0.2, b: 0, a: 0}
+  m_BuildTextureStacks: []

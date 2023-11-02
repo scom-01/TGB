@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5433001430848371639}
   - component: {fileID: 6670858470177129761}
   - component: {fileID: 5823787391333883120}
-  - component: {fileID: -8260458682629623581}
+  - component: {fileID: 1904745039451798860}
   m_Layer: 0
   m_Name: Water_Ground_Splash_v3_1
   m_TagString: Untagged
@@ -4777,6 +4777,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4827,7 +4828,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &-8260458682629623581
+--- !u!114 &1904745039451798860
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4840,6 +4841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDestroy: 0
+  parent: {fileID: 0}
   isLoopDurationTime: 0
 --- !u!1 &7568913909991395308
 GameObject:
@@ -9673,6 +9675,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: e2b758870473651458a2631c1a749339, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14564,6 +14567,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 5a9cc85bace36334b9be1b13fca233fc, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

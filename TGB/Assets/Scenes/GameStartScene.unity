@@ -15847,7 +15847,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 9
+  m_Priority: 20
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
@@ -35357,7 +35357,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: 802024.6}
+  m_AnchoredPosition: {x: 7, y: 866273}
   m_SizeDelta: {x: 21.1497, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1368125264
@@ -36634,7 +36634,7 @@ MonoBehaviour:
           m_CallState: 1
         - m_Target: {fileID: 1409794296}
           m_TargetAssemblyTypeName: DirectorController, Assembly-CSharp
-          m_MethodName: ChangeCVC
+          m_MethodName: OnCVC
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 608498868}
@@ -36707,6 +36707,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 1
+        - m_Target: {fileID: 1409794296}
+          m_TargetAssemblyTypeName: DirectorController, Assembly-CSharp
+          m_MethodName: OffCVC
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 608498868}
+            m_ObjectArgumentAssemblyTypeName: Cinemachine.CinemachineVirtualCamera,
+              Cinemachine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 608498869}
@@ -55528,7 +55541,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: -197887.56}
+  m_AnchoredPosition: {x: 7, y: -205223.86}
   m_SizeDelta: {x: 21.1497, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2125587133

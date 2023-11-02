@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 423557957499865397}
   - component: {fileID: 1300458970967910510}
   - component: {fileID: 4782121960410002313}
-  - component: {fileID: 2792458877857023752}
   m_Layer: 0
   m_Name: Blue Slash v1_Hoz_Oblique
   m_TagString: Untagged
@@ -26,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1462283702018711274}
-  m_LocalRotation: {x: -0.7645082, y: 0.036014877, z: 0.030099165, w: 0.64290303}
+  m_LocalRotation: {x: -0.764074, y: 0.035994183, z: 0.030135361, w: 0.64341843}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -35,7 +34,7 @@ Transform:
   - {fileID: 7329384043072428176}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -99.877, y: -0.0960083, z: 5.475006}
+  m_LocalEulerAnglesHint: {x: -99.8, y: -0.09, z: 5.47}
 --- !u!198 &1300458970967910510
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4777,6 +4776,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4827,20 +4827,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &2792458877857023752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1462283702018711274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650768dbc266aa34fb82269cccf75184, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDestroy: 1
-  isLoopDurationTime: 0
 --- !u!1 &4220577942622551241
 GameObject:
   m_ObjectHideFlags: 0
@@ -9673,6 +9659,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 28f99b964742d0b46916f81fc36e47ad, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14555,6 +14542,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 3d62dd580cbc5f24196e1b13c65235e9, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

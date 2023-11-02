@@ -2,14 +2,17 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CartoonCoffee_Wind_Lines_002-Basic-[1.0]
-  m_Shader: {fileID: 4800000, guid: f78f501938016f549b283b64e6df18ec, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _ENABLECUSTOMFADE_ON
+  m_Shader: {fileID: 4800000, guid: a2ba859f06850294e902625d8f643bba, type: 3}
+  m_ValidKeywords:
+  - _ENABLECUSTOMFADE_ON
+  m_InvalidKeywords:
+  - ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -25,6 +28,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _CustomFadeNoiseTexture:
         m_Texture: {fileID: 2800000, guid: 1c0841568877b4a4a989c5f8a22a8805, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CutoutFadeTexture:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -47,6 +54,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _AdjustColorBrightness: 5
     - _AdjustColorContrast: 1
@@ -64,11 +72,14 @@ Material:
     - _CustomFadeBrightness: 1
     - _CustomFadeNoiseFactor: 0.5
     - _CustomFadeSmoothness: 1
+    - _CutoutFadeFrom: 0
+    - _CutoutFadeTo: 1
     - _Distort: 0
     - _EnableAdjustColor: 0
     - _EnableAlphaTint: 0
     - _EnableBlackTint: 0
     - _EnableCustomFade: 1
+    - _EnableCutoutSprite: 0
     - _EnableSplitToning: 0
     - _EnableUVDistort: 0
     - _EnableUVScroll: 0
@@ -92,3 +103,4 @@ Material:
     - _UVDistortSpeed: {r: 2, g: 1, b: 0, a: 0}
     - _UVDistortTo: {r: 1, g: 1, b: 0, a: 0}
     - _UVScrollSpeed: {r: 0.2, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []

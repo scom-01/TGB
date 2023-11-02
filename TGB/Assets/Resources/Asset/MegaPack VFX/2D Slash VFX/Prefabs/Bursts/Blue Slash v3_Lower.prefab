@@ -4832,6 +4832,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 28f99b964742d0b46916f81fc36e47ad, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9714,6 +9715,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 860e6fe647b450442a65e806e3091262, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14596,6 +14598,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 3d62dd580cbc5f24196e1b13c65235e9, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14657,7 +14660,7 @@ GameObject:
   - component: {fileID: 6509111520189307426}
   - component: {fileID: 2625031348682692548}
   - component: {fileID: 8416035806690746120}
-  - component: {fileID: -7486887217474722710}
+  - component: {fileID: -276856947163159222}
   m_Layer: 0
   m_Name: Blue Slash v3_Lower
   m_TagString: Untagged
@@ -14672,7 +14675,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8057750970601848588}
-  m_LocalRotation: {x: -0, y: -0, z: 0.54616416, w: 0.8376782}
+  m_LocalRotation: {x: 0, y: 0, z: 0.54610187, w: 0.8377188}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14682,7 +14685,7 @@ Transform:
   - {fileID: 6242902261615010722}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 66.209}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 66.2}
 --- !u!198 &2625031348682692548
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -19424,6 +19427,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19474,7 +19478,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &-7486887217474722710
+--- !u!114 &-276856947163159222
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -19487,4 +19491,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDestroy: 0
+  parent: {fileID: 0}
   isLoopDurationTime: 0

@@ -9775,7 +9775,7 @@ GameObject:
   - component: {fileID: 3130516596896140512}
   - component: {fileID: 7040737485170715947}
   - component: {fileID: 6707748399326769263}
-  - component: {fileID: -421804677829385263}
+  - component: {fileID: 7101792269814912796}
   m_Layer: 0
   m_Name: Blue Slash v15_Diag_Upper
   m_TagString: Untagged
@@ -9790,7 +9790,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4345000112811740201}
-  m_LocalRotation: {x: 0.77469814, y: -0.116528735, z: 0.260125, w: 0.56444556}
+  m_LocalRotation: {x: 0.7738422, y: -0.11846082, z: 0.26264748, w: 0.5640493}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9800,7 +9800,7 @@ Transform:
   - {fileID: 6888843556129400727}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 110.744, y: -50.041016, z: -18.62201}
+  m_LocalEulerAnglesHint: {x: 110.74, y: -50.4, z: -18.6}
 --- !u!198 &7040737485170715947
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -14592,7 +14592,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &-421804677829385263
+--- !u!114 &7101792269814912796
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14605,6 +14605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDestroy: 0
+  parent: {fileID: 0}
   isLoopDurationTime: 0
 --- !u!1 &5510469921246918023
 GameObject:
