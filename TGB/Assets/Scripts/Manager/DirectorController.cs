@@ -29,16 +29,19 @@ public class DirectorController : MonoBehaviour
         Director.Stop();
     }
 
-    public void ChangeCVC(CinemachineVirtualCamera cvc)
+    public void OnCVC(CinemachineVirtualCamera cvc)
     {
         if (cvc == null)
             return;
 
-        if (GameManager.Inst?.StageManager?.CVC == null)
-            return;
-        GameManager.Inst.StageManager.CVC.enabled = false;
-
         cvc.enabled = true;
+    }
+    public void OffCVC(CinemachineVirtualCamera cvc)
+    {
+        if (cvc == null)
+            return;
+
+        cvc.enabled = false;
     }
         
     public void SetMainCamOrthographicSize(float size)
