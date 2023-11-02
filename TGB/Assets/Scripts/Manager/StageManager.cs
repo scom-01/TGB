@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections.Generic;
 using TGB.Manager;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class StageManager : MonoBehaviour
@@ -9,7 +10,7 @@ public class StageManager : MonoBehaviour
     [Header("----Manager----")]
     public ItemManager IM;
     public SpawnManager SPM;
-
+    public Volume StageVolume;
     public List<Transform> MasterManagerList;
 
     public string CurrStageName
@@ -118,8 +119,6 @@ public class StageManager : MonoBehaviour
         }
     }
     private ChoiceItemManager choiceItemManager;
-    /// <summary>    
-    /// </summary>
     public GameObject PlayerPrefab;
 
     private GameObject playerGO;
@@ -208,6 +207,9 @@ public class StageManager : MonoBehaviour
             if (SPM == null)
                 SPM = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         }
+        
+        if (StageVolume == null)
+            StageVolume = this.GetComponentInChildren<Volume>();
 
         if (SpawnPoint == null)
             SpawnPoint = GameObject.Find("SpawnPoint").GetComponent<Transform>();
