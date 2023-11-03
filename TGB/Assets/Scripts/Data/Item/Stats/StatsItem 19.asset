@@ -95,6 +95,19 @@ MonoBehaviour:
     variable: 0
     value: 10
     ShowPercent: 1
+  - type: 1
+    StatsLocalizeString:
+      m_TableReference:
+        m_TableCollectionName: GUID:0d4742437ec6ec541bf0850b60cb729a
+      m_TableEntryReference:
+        m_KeyId: 49718256700121088
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    variable: 0
+    value: 10
+    ShowPercent: 0
   Health: 0
   buffItems: []
   InitEffectData:
@@ -103,7 +116,8 @@ MonoBehaviour:
     <isEquipment>k__BackingField: 1
     <DetailSubUI>k__BackingField: 0
   InfinityEffectObjects: []
-  ItemEffects: []
+  ItemEffects:
+  - {fileID: 11400000, guid: 257b2b3173583a349843fdeb7cacafe5, type: 2}
   references:
     version: 2
     RefIds: []
