@@ -207,7 +207,6 @@ public class Inventory : MonoBehaviour
         }
         return true;
     }
-
     public bool SetWeapon(WeaponData weaponObject)
     {
         if (this.weaponData.weaponCommandDataSO == weaponObject.weaponCommandDataSO)

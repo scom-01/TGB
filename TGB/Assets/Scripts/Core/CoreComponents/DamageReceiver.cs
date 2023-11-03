@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace TGB.CoreSystem
@@ -26,7 +25,7 @@ namespace TGB.CoreSystem
             }
             set
             {
-                if(core.Unit.isFixed_Hit_Immunity)
+                if (core.Unit.isFixed_Hit_Immunity)
                 {
                     ishit = true;
                 }
@@ -49,7 +48,7 @@ namespace TGB.CoreSystem
 
         public void Damage(StatsData AttackterCommonData, StatsData VictimCommonData, float amount)
         {
-            Damage(AttackterCommonData,VictimCommonData,AttackterCommonData.Elemental, amount);
+            Damage(AttackterCommonData, VictimCommonData, AttackterCommonData.Elemental, amount);
         }
         public void Damage(StatsData AttackterCommonData, StatsData VictimCommonData, E_Power _elemental, float amount)
         {
@@ -91,7 +90,7 @@ namespace TGB.CoreSystem
                 return;
 
             for (int i = 0; i < repeat; i++)
-            {                
+            {
                 TrueDamage(AttackterCommonData, VictimCommonData, amount);
             }
             isHit = true;
@@ -106,7 +105,7 @@ namespace TGB.CoreSystem
         {
             TrueDamage(AttackterCommonData, VictimCommonData, AttackterCommonData.Elemental, AttackterCommonData.DamageAttiribute, amount);
         }
-        public void TrueDamage(StatsData AttackterCommonData, StatsData VictimCommonData,E_Power _Elemental, DAMAGE_ATT attribute, float amount)
+        public void TrueDamage(StatsData AttackterCommonData, StatsData VictimCommonData, E_Power _Elemental, DAMAGE_ATT attribute, float amount)
         {
             if (death.Comp.isDead)
             {
@@ -128,13 +127,70 @@ namespace TGB.CoreSystem
             HUD_DmgTxt(1.0f, damage, 50, AttackterCommonData.DamageAttiribute, isCritical);
         }
 
+        public void TypeCalDamage(Unit AttackerUnit, Unit VictimUnit, float AttackerDmg,int RepeatAmount = 1)
+        {
+            if (VictimUnit.gameObject.tag == "Player")
+            {
+                Damage
+                    (
+                    AttackerUnit.Core.CoreUnitStats.StatsData,
+                    VictimUnit.Core.CoreUnitStats.CalculStatsData,
+                    AttackerDmg,
+                    RepeatAmount
+                    );
+            }
+            else
+            {
+                //Damage
+                switch ((VictimUnit as Enemy).enemyData.enemy_size)
+                {
+                    case ENEMY_Size.Small:
+                        Damage
+                        (
+                        AttackerUnit.Core.CoreUnitStats.StatsData,
+                        VictimUnit.Core.CoreUnitStats.CalculStatsData,
+                        (AttackerDmg) * (1.0f + GlobalValue.Enemy_Size_WeakPer),
+                        RepeatAmount
+                        );
+                        Debug.Log("Projectile Enemy Type Small, Normal Dam = " +
+                            AttackerDmg
+                            + " Enemy_Size_WeakPer Additional Dam = " +
+                            (AttackerDmg) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
+                        break;
+                    case ENEMY_Size.Medium:
+                        Damage
+                        (
+                        AttackerUnit.Core.CoreUnitStats.StatsData,
+                        VictimUnit.Core.CoreUnitStats.CalculStatsData,
+                        (AttackerDmg), RepeatAmount
+                        );
+                        Debug.Log("Projectile Enemy Type Medium, Normal Dam = " +
+                            AttackerUnit.Core.CoreUnitStats.DefaultPower);
+                        break;
+                    case ENEMY_Size.Big:
+                        Damage
+                        (   
+                        AttackerUnit.Core.CoreUnitStats.StatsData,
+                        VictimUnit.Core.CoreUnitStats.CalculStatsData,
+                        (AttackerDmg) * (1.0f - GlobalValue.Enemy_Size_WeakPer),
+                        RepeatAmount);
 
+                        Debug.Log("Projectile Enemy Type Big, Normal Dam = " +
+                            AttackerDmg
+                            + " Enemy_Size_WeakPer Additional Dam = " +
+                            (AttackerDmg) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
+                            );
+                        break;
+                }
+            }
+        }
         /// <summary>
-        /// 
+        /// 고정 데미지
         /// </summary>
-        /// <param name="amount"></param>
-        /// <param name="isTrueHit"></param>
-        public void FixedDamage(int amount, bool isTrueHit = false)
+        /// <param name="amount">데미지 량</param>
+        /// <param name="isTrueHit">피격 후 무적판정 무시공격(true)</param>
+        /// <param name="RepeatAmount">반복 횟수(isTrueHit = false 때는 반영되지 않음)</param>
+        public void FixedDamage(int amount, bool isTrueHit = false, int RepeatAmount = 1)
         {
             if (death.Comp.isDead)
             {
@@ -142,12 +198,18 @@ namespace TGB.CoreSystem
                 return;
             }
 
-            if(isTrueHit)
+            if (isTrueHit)
             {
                 Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
                 var damage = stats.Comp.DecreaseHealth(amount);
-                stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
                 HUD_DmgTxt(1.0f, damage, 50, DAMAGE_ATT.Fixed, false);
+                if(RepeatAmount > 1)
+                {
+                    var temp = RepeatAmount - 1;
+                    FixedDamage(amount, isTrueHit, temp);
+                    return;
+                }
+                stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
             }
             else
             {
@@ -158,9 +220,9 @@ namespace TGB.CoreSystem
                 }
                 Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
                 var damage = stats.Comp.DecreaseHealth(amount);
+                HUD_DmgTxt(1.0f, damage, 50, DAMAGE_ATT.Fixed, false);
                 isHit = true;
                 stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
-                HUD_DmgTxt(1.0f, damage, 50, DAMAGE_ATT.Fixed, false);
             }
         }
         public void TrapDamage(StatsData AttackterCommonData, float amount)

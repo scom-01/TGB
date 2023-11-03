@@ -142,66 +142,15 @@ namespace TGB.Weapons.Components
                 //Damage
                 if (coll.TryGetComponent(out IDamageable _damageable))
                 {
-                    for (int j = 0; j < currHitBox[currentHitBoxIndex].RepeatAction; j++)
+                    if (currHitBox[currentHitBoxIndex].isFixed)
                     {
-                        #region Damage
-                        //플레이어는 EnemyType이 없기때문에 생략
-                        if (coll.gameObject.tag == "Player")
-                        {
-                            _damageable.Damage
-                            (
-                                CoreUnitStats.CalculStatsData,
-                                coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
-                                CoreUnitStats.DefaultPower + currHitBox[currentHitBoxIndex].AdditionalDamage,
-                                currHitBox[currentHitBoxIndex].RepeatAction
-                            );
-                            continue;
-                        }
-
-                        switch (coll.GetComponentInParent<Enemy>().enemyData.enemy_size)
-                        {
-                            case ENEMY_Size.Small:
-                                _damageable.Damage
-                            (
-                                CoreUnitStats.CalculStatsData,
-                                coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
-                                (CoreUnitStats.DefaultPower + currHitBox[currentHitBoxIndex].AdditionalDamage) * (1.0f + GlobalValue.Enemy_Size_WeakPer),
-                                currHitBox[currentHitBoxIndex].RepeatAction
-                            );
-                                Debug.Log("Enemy Type Small, Normal Dam = " +
-                                    CoreUnitStats.DefaultPower + currHitBox[currentHitBoxIndex]
-                                    + " Enemy_Size_WeakPer Additional Dam = " +
-                                    (CoreUnitStats.DefaultPower + currHitBox[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
-                                break;
-                            case ENEMY_Size.Medium:
-                                _damageable.Damage
-                            (
-                                CoreUnitStats.CalculStatsData,
-                                coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
-                                (CoreUnitStats.DefaultPower + currHitBox[currentHitBoxIndex].AdditionalDamage),
-                                currHitBox[currentHitBoxIndex].RepeatAction
-                                );
-                                break;
-                            case ENEMY_Size.Big:
-                                _damageable.Damage
-                            (
-                                CoreUnitStats.CalculStatsData,
-                                coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
-                                (CoreUnitStats.DefaultPower + currHitBox[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer),
-                                currHitBox[currentHitBoxIndex].RepeatAction
-                            );
-
-                                Debug.Log("Enemy Type Big, Normal Dam = " +
-                                    CoreUnitStats.DefaultPower + currHitBox[currentHitBoxIndex]
-                                    + " Enemy_Size_WeakPer Additional Dam = " +
-                                    (CoreUnitStats.DefaultPower + currHitBox[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
-                                    );
-                                break;
-                        }
+                        damageable.FixedDamage((int)currHitBox[currentHitBoxIndex].AdditionalDamage, true, currHitBox[currentHitBoxIndex].RepeatAction);
                     }
-                    #endregion
+                    else
+                    {
+                        damageable.TypeCalDamage(core.Unit, coll.GetComponentInParent<Unit>(), CoreUnitStats.DefaultPower + currHitBox[currentHitBoxIndex].AdditionalDamage, currHitBox[currentHitBoxIndex].RepeatAction);
+                    }
                 }
-
                 //KnockBack
                 #region KnockBack
                 if (coll.TryGetComponent(out IKnockBackable knockbackables))
@@ -209,7 +158,6 @@ namespace TGB.Weapons.Components
                     knockbackables.KnockBack(currHitBox[currentHitBoxIndex].KnockbackAngle, currHitBox[currentHitBoxIndex].KnockbackAngle.magnitude, CoreMovement.FancingDirection);
                 }
                 #endregion
-
             }
             #endregion
         }
@@ -307,64 +255,14 @@ namespace TGB.Weapons.Components
                 //Damage
                 if (coll.TryGetComponent(out IDamageable _damageable))
                 {
-                    for (int j = 0; j < hitActions[currentHitBoxIndex].RepeatAction; j++)
+                    if (hitActions[currentHitBoxIndex].isFixed)
                     {
-                        #region Damage
-                        //플레이어는 EnemyType이 없기때문에 생략
-                        if (coll.gameObject.tag == "Player")
-                        {
-                            _damageable.Damage
-                            (
-                                CoreUnitStats.CalculStatsData,
-                                coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
-                                CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage,
-                                hitActions[currentHitBoxIndex].RepeatAction
-                            );
-                            continue;
-                        }
-
-                        switch (coll.GetComponentInParent<Enemy>().enemyData.enemy_size)
-                        {
-                            case ENEMY_Size.Small:
-                                _damageable.Damage
-                            (
-                                CoreUnitStats.CalculStatsData,
-                                coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
-                                (CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage) * (1.0f + GlobalValue.Enemy_Size_WeakPer),
-                                hitActions[currentHitBoxIndex].RepeatAction
-                            );
-                                Debug.Log("Enemy Type Small, Normal Dam = " +
-                                    CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex]
-                                    + " Enemy_Size_WeakPer Additional Dam = " +
-                                    (CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
-                                break;
-                            case ENEMY_Size.Medium:
-                                _damageable.Damage
-                            (
-                                CoreUnitStats.CalculStatsData,
-                                coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
-                                (CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage),
-                                hitActions[currentHitBoxIndex].RepeatAction
-                                );
-                                break;
-                            case ENEMY_Size.Big:
-                                _damageable.Damage
-                            (
-                                CoreUnitStats.CalculStatsData,
-                                coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
-                                (CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer),
-                                hitActions[currentHitBoxIndex].RepeatAction
-                            );
-
-                                Debug.Log("Enemy Type Big, Normal Dam = " +
-                                    CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex]
-                                    + " Enemy_Size_WeakPer Additional Dam = " +
-                                    (CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
-                                    );
-                                break;
-                        }
+                        damageable.FixedDamage((int)hitActions[currentHitBoxIndex].AdditionalDamage, true, hitActions[currentHitBoxIndex].RepeatAction);
                     }
-                    #endregion
+                    else
+                    {
+                        damageable.TypeCalDamage(core.Unit, coll.GetComponentInParent<Unit>(), CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage, hitActions[currentHitBoxIndex].RepeatAction);
+                    }
                 }
 
                 //KnockBack
@@ -484,64 +382,14 @@ namespace TGB.Weapons.Components
                 //Damage
                 if (coll.TryGetComponent(out IDamageable _damageable))
                 {
-                    for (int j = 0; j < hitActions[currentHitBoxIndex].RepeatAction; j++)
+                    if (hitActions[currentHitBoxIndex].isFixed)
                     {
-                        #region Damage
-                        //플레이어는 EnemyType이 없기때문에 생략
-                        if (coll.gameObject.tag == "Player")
-                        {
-                            _damageable.Damage
-                            (
-                                CoreUnitStats.CalculStatsData,
-                                coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
-                                CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage,
-                                hitActions[currentHitBoxIndex].RepeatAction
-                            );
-                            continue;
-                        }
-
-                        switch (coll.GetComponentInParent<Enemy>().enemyData.enemy_size)
-                        {
-                            case ENEMY_Size.Small:
-                                _damageable.Damage
-                            (
-                                CoreUnitStats.CalculStatsData,
-                                coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
-                                (CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage) * (1.0f + GlobalValue.Enemy_Size_WeakPer),
-                                hitActions[currentHitBoxIndex].RepeatAction
-                            );
-                                Debug.Log("Enemy Type Small, Normal Dam = " +
-                                    CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex]
-                                    + " Enemy_Size_WeakPer Additional Dam = " +
-                                    (CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
-                                break;
-                            case ENEMY_Size.Medium:
-                                _damageable.Damage
-                            (
-                                CoreUnitStats.CalculStatsData,
-                                coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
-                                (CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage),
-                                hitActions[currentHitBoxIndex].RepeatAction
-                                );
-                                break;
-                            case ENEMY_Size.Big:
-                                _damageable.Damage
-                            (
-                                CoreUnitStats.CalculStatsData,
-                                coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
-                                (CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer),
-                                hitActions[currentHitBoxIndex].RepeatAction
-                            );
-
-                                Debug.Log("Enemy Type Big, Normal Dam = " +
-                                    CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex]
-                                    + " Enemy_Size_WeakPer Additional Dam = " +
-                                    (CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
-                                    );
-                                break;
-                        }
+                        damageable.FixedDamage((int)hitActions[currentHitBoxIndex].AdditionalDamage, true, hitActions[currentHitBoxIndex].RepeatAction);
                     }
-                    #endregion
+                    else
+                    {
+                        damageable.TypeCalDamage(core.Unit, coll.GetComponentInParent<Unit>(), CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage, hitActions[currentHitBoxIndex].RepeatAction);
+                    }
                 }
 
                 //KnockBack

@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace TGB.Weapons.Components
@@ -31,6 +29,8 @@ namespace TGB.Weapons.Components
         /// </summary>
         [field: Tooltip("추가 데미지")]
         public float AdditionalDamage;
+        [field: Tooltip("고정 데미지 | AdditionalDamage로 고정데미지 피해")]
+        public bool isFixed;
         /// <summary>
         /// Knockback Angle
         /// </summary>
