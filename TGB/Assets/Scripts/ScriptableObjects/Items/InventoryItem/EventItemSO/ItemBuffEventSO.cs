@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Timeline;
+using Unity.VisualScripting;
 
 [CreateAssetMenu(fileName = "newItemEffectData", menuName = "Data/Item Data/ItemBuffEvent Data")]
 public class ItemBuffEventSO : ItemEffectSO
@@ -31,6 +32,7 @@ public class ItemBuffEventSO : ItemEffectSO
             }
         }
     }
+
     public override int ExecuteOnAction(StatsItemSO parentItem, Unit unit, Unit enemy, int attackCount)
     {
         if (Item_Type != ITEM_TPYE.OnAction || Item_Type == ITEM_TPYE.None)
@@ -100,6 +102,30 @@ public class ItemBuffEventSO : ItemEffectSO
         if (Item_Type != ITEM_TPYE.OnInit || Item_Type == ITEM_TPYE.None)
             return isInit;
 
+        if (isInit)
+            return isInit;
+
+        if (enemy != null)
+        {
+            BuffEvent(enemy);
+        }
+        else
+        {
+            BuffEvent(unit);
+        }
+        isInit = false;
+
+        return isInit;
+    }
+
+    public override bool ExcuteOnDash(StatsItemSO parentItem, Unit unit, Unit enemy, bool isDash)
+    {
+        if (Item_Type != ITEM_TPYE.OnDash || Item_Type == ITEM_TPYE.None)
+            return isDash;
+
+        if (!isDash)
+            return isDash;
+
         if (enemy != null)
         {
             BuffEvent(enemy);
@@ -109,6 +135,6 @@ public class ItemBuffEventSO : ItemEffectSO
             BuffEvent(unit);
         }
 
-        return isInit;
+        return isDash;
     }
 }

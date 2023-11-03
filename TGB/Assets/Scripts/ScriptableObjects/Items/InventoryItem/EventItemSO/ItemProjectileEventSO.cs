@@ -60,4 +60,17 @@ public class ItemProjectileEventSO : ItemEffectSO
         }
         return startTime;
     }
+
+    public override bool ExcuteOnDash(StatsItemSO parentItem, Unit unit, Unit enemy, bool isDash)
+    {
+        if (Item_Type != ITEM_TPYE.OnDash || Item_Type == ITEM_TPYE.None)
+            return isDash;
+
+        if (!isDash)
+            return isDash;
+
+        ProjectileShoot(unit, enemy);
+
+        return isDash;
+    }
 }

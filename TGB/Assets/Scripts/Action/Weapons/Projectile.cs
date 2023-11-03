@@ -92,6 +92,10 @@ namespace TGB
             CC2D.offset = ProjectileData.Offset;
             CC2D.enabled = false;
             RB2D.gravityScale = ProjectileData.GravityScale;
+            if (ProjectileData.EffectScale == Vector3.zero)
+                this.gameObject.transform.localScale = Vector3.one;
+            else
+                this.gameObject.transform.localScale = ProjectileData.EffectScale;
 
             //set ProjectilPrefab
             var _prefab = Instantiate(ProjectileObject, this.transform);
@@ -118,11 +122,15 @@ namespace TGB
                 this.transform.position = unit.transform.position + Vector3.right * ProjectileData.Pos.x * FancingDirection + Vector3.up * ProjectileData.Pos.y;
             }
             this.gameObject.layer = LayerMask.NameToLayer("Projectile");
-            
+
             CC2D.radius = ProjectileData.Radius;
             CC2D.offset = ProjectileData.Offset;
             CC2D.enabled = false;
             RB2D.gravityScale = ProjectileData.GravityScale;
+            if (ProjectileData.EffectScale == Vector3.zero)
+                this.gameObject.transform.localScale = Vector3.one;
+            else
+                this.gameObject.transform.localScale = ProjectileData.EffectScale;
         }
 
         public void Init(ProjectileData m_ProjectileData)
@@ -131,6 +139,7 @@ namespace TGB
             SetUp();
         }
 
+        //발사체 투척
         public void Shoot()
         {
             //set startTime
@@ -154,7 +163,7 @@ namespace TGB
             if (unit != null)
             {
                 //Default가 0을 전제
-                if(FancingDirection < 0)
+                if (FancingDirection < 0)
                 {
                     RB2D.rotation = 180f;
                 }
@@ -204,13 +213,13 @@ namespace TGB
         }
         private void OnDisable()
         {
-            
+
         }
 
         private void Hit(bool _isSingleShoot = true)
         {
             //Impact            
-            if(unit !=null)
+            if (unit != null)
             {
                 var impact = unit.Core.CoreEffectManager.StartEffects(ImpactObject, this.transform.position);
                 foreach (var _renderer in impact.GetComponentsInChildren<ParticleSystemRenderer>())
@@ -260,7 +269,7 @@ namespace TGB
                 return;
 
             //피격 대상이 Ground면 이펙트
-            if(ProjectileData.isCollisionGround)
+            if (ProjectileData.isCollisionGround)
             {
                 if (coll.gameObject.layer == LayerMask.NameToLayer("Ground"))
                 {
@@ -291,16 +300,16 @@ namespace TGB
             //Damagable.cs를 가지고있는 collision이랑 부딪쳤을 때
             if (coll.TryGetComponent(out IDamageable damageable))
             {
-                if(ProjectileData.isOnHit)
+                if (ProjectileData.isOnHit)
                 {
                     //히트 시 효과
                     unit.Inventory.ItemOnHitExecute(unit, coll.GetComponentInParent<Unit>());
                 }
-                
+
                 Debug.Log($"Projectile Touch {coll.name}");
                 //Impact EffectPrefab
                 #region EffectPrefab
-                if (ImpactObject!= null)
+                if (ImpactObject != null)
                 {
                     Hit(ProjectileData.isSingleShoot);
                 }
@@ -319,57 +328,14 @@ namespace TGB
                 #endregion
 
                 #region Damage
-                //플레이어가 피격 당할 때는 EnemyType이 없기때문에 생략
-                if (coll.gameObject.tag == "Player")
+
+                if (ProjectileData.isFixed)
                 {
-                    damageable.Damage
-                    (
-                        unit.Core.CoreUnitStats.StatsData,
-                        coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
-                        unit.Core.CoreUnitStats.DefaultPower
-                    );
+                    damageable.FixedDamage((int)ProjectileData.AdditionalDmg, true);
                 }
                 else
                 {
-                    //Damage
-                    switch (coll.GetComponentInParent<Enemy>().enemyData.enemy_size)
-                    {
-                        case ENEMY_Size.Small:
-                            damageable.Damage
-                        (
-                            unit.Core.CoreUnitStats.StatsData,
-                            coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
-                            (unit.Core.CoreUnitStats.DefaultPower) * (1.0f + GlobalValue.Enemy_Size_WeakPer)
-                        );
-                            Debug.Log("Projectile Enemy Type Small, Normal Dam = " +
-                                unit.Core.CoreUnitStats.DefaultPower
-                                + " Enemy_Size_WeakPer Additional Dam = " +
-                                (unit.Core.CoreUnitStats.DefaultPower) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
-                            break;
-                        case ENEMY_Size.Medium:
-                            damageable.Damage
-                        (
-                            unit.Core.CoreUnitStats.StatsData,
-                            coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
-                            (unit.Core.CoreUnitStats.DefaultPower));
-                            Debug.Log("Projectile Enemy Type Medium, Normal Dam = " +
-                                unit.Core.CoreUnitStats.DefaultPower);
-                            break;
-                        case ENEMY_Size.Big:
-                            damageable.Damage
-                        (
-                            unit.Core.CoreUnitStats.StatsData,
-                            coll.GetComponentInParent<Unit>().Core.CoreUnitStats.CalculStatsData,
-                            (unit.Core.CoreUnitStats.DefaultPower) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
-                        );
-
-                            Debug.Log("Projectile Enemy Type Big, Normal Dam = " +
-                                unit.Core.CoreUnitStats.DefaultPower
-                                + " Enemy_Size_WeakPer Additional Dam = " +
-                                (unit.Core.CoreUnitStats.DefaultPower) * (1.0f - GlobalValue.Enemy_Size_WeakPer)
-                                );
-                            break;
-                    }
+                    damageable.TypeCalDamage(unit, coll.GetComponentInParent<Unit>(), unit.Core.CoreUnitStats.DefaultPower + ProjectileData.AdditionalDmg);
                 }
                 #endregion
             }

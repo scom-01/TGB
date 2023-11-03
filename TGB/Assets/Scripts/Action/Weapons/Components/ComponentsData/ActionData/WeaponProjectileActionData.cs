@@ -23,17 +23,45 @@ public struct ProjectileData
     /// </summary>
     [Min(0.5f)]
     public float DurationTime;
+    [Tooltip("추가 데미지")]
+    /// <summary>
+    /// 추가 데미지
+    /// </summary>
+    public float AdditionalDmg;
+    [Tooltip("고정 데미지(이때 데미지는 AdditionalDmg로 계산)")]
+    /// <summary>
+    /// 고정 데미지(이때 데미지는 AdditionalDmg로 계산)
+    /// </summary>
+    public bool isFixed;
 
+    /// <summary>
+    /// 발사체 피격 판정 크기
+    /// </summary>
     public float Radius;
+    /// <summary>
+    /// 피격 판정 CircleCollider의 Offset
+    /// </summary>
     public Vector2 Offset;
+    /// <summary>
+    /// RigidBody2D GravityScale
+    /// </summary>
     public float GravityScale;
+    /// <summary>
+    /// 단일 피격
+    /// </summary>
     public bool isSingleShoot;
+    /// <summary>
+    /// 넉백
+    /// </summary>
     public Vector2 KnockbackAngle;
     /// <summary>
     /// Ground와 충돌 판별 여부
     /// </summary>
-    public bool isCollisionGround;    
-
+    public bool isCollisionGround;
+    /// <summary>
+    /// 이펙트 로컬 스케일
+    /// </summary>
+    public Vector3 EffectScale;
     /// <summary>
     /// 온힛효과 발동여부
     /// </summary>

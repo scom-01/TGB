@@ -166,6 +166,23 @@ public class StatsItemSO : ItemDataSO
         return ExeUpdate(unit, null, itemEffect, startTime);
     }
     #endregion
+    #region ExeDash
+    /// <summary>
+    /// 대쉬 시 효과 부여
+    /// </summary>
+    /// <param name="unit"></param>
+    /// <param name="itemEffect"></param>
+    /// <param name="startTime"></param>
+    /// <returns></returns>
+    public virtual bool ExeDash(Unit unit, Unit enemy, ItemEffectSO itemEffect, bool CanDash)
+    {
+        return CanDash = itemEffect.ExcuteOnDash(this, unit, enemy, CanDash);
+    }
+    public virtual bool ExeDash(Unit unit, ItemEffectSO itemEffect, bool CanDash)
+    {
+        return ExeDash(unit, null, itemEffect, CanDash);
+    }
+    #endregion
 }
 
 [Serializable]

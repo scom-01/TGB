@@ -40,6 +40,13 @@ public abstract class ItemEffectSO : ScriptableObject, IExecuteEffect, IExecuteC
         return  startTime;
     }
 
+    public virtual bool ExcuteOnDash(StatsItemSO parentItem, Unit unit, Unit enemy, bool isDash)
+    {
+        if (Item_Type != ITEM_TPYE.OnDash || Item_Type == ITEM_TPYE.None)
+            return isDash;
+
+        return isDash;
+    }
 }
 
 [Serializable]
