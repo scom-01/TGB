@@ -38,7 +38,7 @@ public class PlayerInAirState : PlayerState
         oldIsTouchingWall = isTouchingWall;
         oldIsTouchingWallBack = isTouchingWallBack;
 
-        isGrounded = CollisionSenses.CheckIfGrounded || CollisionSenses.CheckIfPlatform;
+        isGrounded = CollisionSenses.CheckIfGrounded;
         isTouchingWall = CollisionSenses.CheckIfTouchingWall;
         isTouchingWallBack = CollisionSenses.CheckIfTouchingWallBack;
 
@@ -105,8 +105,14 @@ public class PlayerInAirState : PlayerState
             }
         }
 
+        //Platform 착지
+        else if ((CollisionSenses.CheckIfPlatform && CollisionSenses.CheckIfPlatformGrounded) && Movement.CurrentVelocity.y <= Mathf.Abs(0.01f))
+        {
+            player.FSM.ChangeState(player.LandState);
+            return;
+        }
         //Ground 착지
-        else if (isGrounded && Movement.CurrentVelocity.y <= 0.01f)
+        else if ((isGrounded ) && Movement.CurrentVelocity.y <= Mathf.Abs(0.01f))
         {
             player.FSM.ChangeState(player.LandState);
             return;

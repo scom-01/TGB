@@ -2,6 +2,7 @@ using TGB.CoreSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 
 public class PlayerDashState : PlayerAbilityState
@@ -39,31 +40,7 @@ public class PlayerDashState : PlayerAbilityState
             animBoolName = "airdash";
         }
         base.Enter();
-        Movement.CheckIfShouldFlip(player.InputHandler.NormInputX);
-        SoundEffect.AudioSpawn(Dash_SFX);
-        //if (isGrounded)
-        //{
-        //    //콜라이더 크기 변경
-        //    player.SetColliderHeight(player.playerData.dashColliderHeight);
-        //}
-        //else
-        //{
-        //    //콜라이더 크기 변경
-        //    player.SetColliderHeight(player.playerData.dashColliderHeight, false);
-        //}
-
-        player.isFixed_Hit_Immunity = true;
-        player.isCC_immunity = true;
-
-        CanDash = false;
-        player.InputHandler.UseInput(ref player.InputHandler.DashInput);
-        if (Dash_Effect != null)
-        {
-            EffectManager.StartEffects(Dash_Effect, CollisionSenses.GroundCenterPos);
-        }
-        Movement.SetVelocityY(0f);
-        player.RB.gravityScale = 0f;
-        DecreaseDashCount();
+        Dash();
         startTime = Time.time;        
     }
 
@@ -73,17 +50,6 @@ public class PlayerDashState : PlayerAbilityState
         player.RB.gravityScale = unit.UnitData.UnitGravity;
         player.isFixed_Hit_Immunity = false;
         player.isCC_immunity = false;
-
-        //if (isGrounded)
-        //{
-        //    //콜라이더 크기 변경
-        //    player.SetColliderHeight(player.playerData.standCC2DSize.y);
-        //}
-        //else
-        //{
-        //    //콜라이더 크기 변경
-        //    player.SetColliderHeight(player.playerData.standCC2DSize.y, false);
-        //}
     }
 
     public override void LogicUpdate()
@@ -138,6 +104,40 @@ public class PlayerDashState : PlayerAbilityState
                 }
             }
         }
+    }
+
+    private void Dash()
+    {
+        if (player.Inventory.Items.Count >= 0)
+        {
+            for (int i = 0; i < player.Inventory.Items.Count; i++)
+            {
+                for (int j = 0; j < player.Inventory.Items[i].item.ItemEffects.Count; j++)
+                {
+                    if (player.Inventory.Items[i].item.ItemEffects[j] == null)
+                        continue;
+
+                    player.Inventory.Items[i].item.ExeDash(unit, player.Inventory.Items[i].item.ItemEffects[j], CanDash);
+                }
+            }
+        }
+
+        Movement.CheckIfShouldFlip(player.InputHandler.NormInputX);
+        SoundEffect.AudioSpawn(Dash_SFX);
+
+        player.isFixed_Hit_Immunity = true;
+        player.isCC_immunity = true;
+
+        CanDash = false;
+
+        player.InputHandler.UseInput(ref player.InputHandler.DashInput);
+        if (Dash_Effect != null)
+        {
+            EffectManager.StartEffects(Dash_Effect, CollisionSenses.GroundCenterPos);
+        }
+        Movement.SetVelocityY(0f);
+        player.RB.gravityScale = 0f;
+        DecreaseDashCount();
     }
 
     private void CheckIfShouldPlaceAfterImage()

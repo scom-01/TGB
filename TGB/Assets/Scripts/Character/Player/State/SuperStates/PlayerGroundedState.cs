@@ -45,6 +45,12 @@ public class PlayerGroundedState : PlayerState
     {
         base.LogicUpdate();
 
+        
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
         xInput = player.InputHandler.NormInputX;
         yInput = player.InputHandler.NormInputY;
         JumpInput = player.InputHandler.JumpInput;
@@ -73,7 +79,7 @@ public class PlayerGroundedState : PlayerState
             {
                 player.FSM.ChangeState(player.SecondaryAttackState);
             }
-        }        
+        }
         else if (player.InputHandler.Skill1Input)
         {
             //FSM.ChangeState(player.PrimaryAttackState);
@@ -106,10 +112,5 @@ public class PlayerGroundedState : PlayerState
         {
             player.FSM.ChangeState(player.DashState);
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
     }
 }
