@@ -107,7 +107,10 @@ namespace TGB.Weapons.Components
                         {
                             for (int i = 0; i < currHitBox[currentHitBoxIndex].EffectPrefab.Length; i++)
                             {
-                                damageable.HitEffect(currHitBox[currentHitBoxIndex].EffectPrefab[i].Object, currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomRange, CoreMovement.FancingDirection);
+                                if (currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomPosRot)
+                                    damageable.HitEffectRandRot(currHitBox[currentHitBoxIndex].EffectPrefab[i].Object, currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomRange, currHitBox[currentHitBoxIndex].EffectPrefab[i].isFollowing, currHitBox[currentHitBoxIndex].EffectPrefab[i].EffectScale);
+                                else
+                                    damageable.HitEffect(currHitBox[currentHitBoxIndex].EffectPrefab[i].Object, currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomRange, CoreMovement.FancingDirection, currHitBox[currentHitBoxIndex].EffectPrefab[i].EffectScale);
                             }
                         }
                         #endregion
@@ -220,7 +223,10 @@ namespace TGB.Weapons.Components
                         {
                             for (int i = 0; i < hitActions[currentHitBoxIndex].EffectPrefab.Length; i++)
                             {
-                                damageable.HitEffect(hitActions[currentHitBoxIndex].EffectPrefab[i].Object, hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomRange, CoreMovement.FancingDirection);
+                                if (hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomPosRot)
+                                    damageable.HitEffectRandRot(hitActions[currentHitBoxIndex].EffectPrefab[i].Object, hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomRange, hitActions[currentHitBoxIndex].EffectPrefab[i].isFollowing, hitActions[currentHitBoxIndex].EffectPrefab[i].EffectScale);
+                                else
+                                    damageable.HitEffect(hitActions[currentHitBoxIndex].EffectPrefab[i].Object, hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomRange, CoreMovement.FancingDirection, hitActions[currentHitBoxIndex].EffectPrefab[i].EffectScale);
                             }
                         }
                         #endregion
@@ -347,7 +353,10 @@ namespace TGB.Weapons.Components
                         {
                             for (int i = 0; i < hitActions[currentHitBoxIndex].EffectPrefab.Length; i++)
                             {
-                                damageable.HitEffect(hitActions[currentHitBoxIndex].EffectPrefab[i].Object, hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomRange, CoreMovement.FancingDirection);
+                                if (hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomPosRot)
+                                    damageable.HitEffectRandRot(hitActions[currentHitBoxIndex].EffectPrefab[i].Object, hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomRange, hitActions[currentHitBoxIndex].EffectPrefab[i].isFollowing, hitActions[currentHitBoxIndex].EffectPrefab[i].EffectScale);
+                                else
+                                    damageable.HitEffect(hitActions[currentHitBoxIndex].EffectPrefab[i].Object, hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomRange, CoreMovement.FancingDirection, hitActions[currentHitBoxIndex].EffectPrefab[i].EffectScale);
                             }
                         }
                         #endregion

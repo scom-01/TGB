@@ -244,7 +244,7 @@ namespace TGB.CoreSystem
 
             HUD_DmgTxt(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
         }
-        public void HitEffect(GameObject EffectPrefab, float Range, int FancingDirection)
+        public void HitEffect(GameObject EffectPrefab, float Range, int FancingDirection, float size = 0)
         {
             if (EffectPrefab == null)
             {
@@ -256,6 +256,19 @@ namespace TGB.CoreSystem
             }
 
             effectManager.Comp.StartEffectsWithRandomPos(EffectPrefab, Range, FancingDirection);
+        }
+        public void HitEffectRandRot(GameObject EffectPrefab, float Range, bool isFollow = false, float size = 0)
+        {
+            if (EffectPrefab == null)
+            {
+                if (DefaultEffectPrefab != null)
+                {
+                    effectManager.Comp.StartEffectsWithRandomPosRot(DefaultEffectPrefab, Range, isFollow, size);
+                }
+                return;
+            }
+
+            effectManager.Comp.StartEffectsWithRandomPosRot(EffectPrefab, Range, isFollow, size);
         }
 
         /// <summary>

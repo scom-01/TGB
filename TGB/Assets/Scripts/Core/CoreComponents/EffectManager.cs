@@ -189,20 +189,20 @@ namespace TGB.CoreSystem
                 }
             }
         }
-        public GameObject StartEffectsWithRandomPos(GameObject effectPrefab, float Range, int FancingDirection, bool _isFollow = false)
+        public GameObject StartEffectsWithRandomPos(GameObject effectPrefab, float Range, int FancingDirection, bool _isFollow = false, float size = 0)
         {
             if (FancingDirection > 0)
             {
                 return StartEffects(effectPrefab, new Vector2(
                                                     transform.position.x + Random.Range(-Range, Range),
                                                     transform.position.y + Random.Range(-Range, Range)),
-                                                    Quaternion.Euler(effectPrefab.transform.eulerAngles), _isFollow);
+                                                    Quaternion.Euler(effectPrefab.transform.eulerAngles), _isFollow, size);
             }
 
             return StartEffects(effectPrefab, new Vector2(
                                                     transform.position.x + Random.Range(-Range, Range),
                                                     transform.position.y + Random.Range(-Range, Range)),
-                                                    Quaternion.Euler(effectPrefab.transform.eulerAngles.x, effectPrefab.transform.eulerAngles.y + 180.0f, effectPrefab.transform.eulerAngles.z), _isFollow);
+                                                    Quaternion.Euler(effectPrefab.transform.eulerAngles.x, effectPrefab.transform.eulerAngles.y + 180.0f, effectPrefab.transform.eulerAngles.z), _isFollow, size);
         }
 
         public GameObject StartEffectsWithRandomPosRot(GameObject effectPrefab, float Range, bool _isFollow = false, float size = 0)
