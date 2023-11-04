@@ -44,16 +44,18 @@ MonoBehaviour:
               height: 1.86
             RepeatAction: 1
             AdditionalDamage: 0
+            isFixed: 0
             KnockbackAngle: {x: 0, y: 0}
             EffectPrefab:
             - isGround: 0
               isRandomPosRot: 1
               isRandomRange: 1.5
               EffectOffset: {x: 0, y: 0}
-              EffectScale: 0
+              EffectScale: 0.5
               isFollowing: 0
-              Object: {fileID: 7681821613543600161, guid: f00585eb1d3761e4eb76dcce81aa6162, type: 3}
-            audioClip: []
+              Object: {fileID: 8867112169225384458, guid: 1b38d906900cd3244a833dafb0e14af6, type: 3}
+            audioClip:
+            - {fileID: 8300000, guid: 2375dadc4293d3f4380b59887ce8416b, type: 3}
             camDatas: []
         <DetectableLayers>k__BackingField:
           serializedVersion: 2

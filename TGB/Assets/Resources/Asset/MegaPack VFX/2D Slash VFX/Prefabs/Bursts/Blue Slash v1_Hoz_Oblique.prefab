@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 423557957499865397}
   - component: {fileID: 1300458970967910510}
   - component: {fileID: 4782121960410002313}
+  - component: {fileID: -6701275537217004224}
   m_Layer: 0
   m_Name: Blue Slash v1_Hoz_Oblique
   m_TagString: Untagged
@@ -4827,6 +4828,21 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &-6701275537217004224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462283702018711274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 650768dbc266aa34fb82269cccf75184, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDestroy: 0
+  parent: {fileID: 0}
+  isLoopDurationTime: 0
 --- !u!1 &4220577942622551241
 GameObject:
   m_ObjectHideFlags: 0
