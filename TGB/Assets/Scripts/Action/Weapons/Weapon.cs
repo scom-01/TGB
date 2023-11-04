@@ -156,16 +156,18 @@ namespace TGB.Weapons
         public void ChangeActionCounter(int value)
         {
             CurrentActionCounter = value;
-            //커맨드 List 초기화
-            CommandList.Clear();
+            ResetCommandList();
         }
 
-        private void ResetActionCounter()
+        public void ResetActionCounter()
         {
-            CommandList.Clear();
+            ResetCommandList();
             CurrentActionCounter = 0;            
         }
-
+        /// <summary>
+        /// 커맨드 List 초기화
+        /// </summary>
+        public void ResetCommandList() => CommandList.Clear();
         #region Set Func
 
         /// <summary>

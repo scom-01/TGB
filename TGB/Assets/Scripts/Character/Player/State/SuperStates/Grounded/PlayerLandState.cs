@@ -24,6 +24,8 @@ public class PlayerLandState : PlayerGroundedState
     public override void Enter()
     {
         base.Enter();
+        //착지 시 커맨드 리스트 초기화
+        player.Inventory.Weapon.ResetActionCounter();
         SoundEffect.AudioSpawn(Land_SFX);
         player.Core.CoreEffectManager.StartEffects(Land_Effect, CollisionSenses.GroundCenterPos);
         Debug.Log("player.InputHandler.ActionInputDelayCheck[i] true");
