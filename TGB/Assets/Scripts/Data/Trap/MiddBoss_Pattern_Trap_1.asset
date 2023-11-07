@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statsStats:
     MaxHealth: 0
-    MovementVelocity: 0
-    JumpVelocity: 0
     DefaultPower: 5
+    DefaultMoveSpeed: 0
+    DefaultJumpVelocity: 0
+    DefaultAttSpeed: 0
+    MovementVEL_Per: 0
+    JumpVEL_Per: 0
     AttackSpeedPer: 0
     PhysicsDefensivePer: 0
     MagicDefensivePer: 0
@@ -38,8 +41,6 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  knockBackDuration: 0
-  knockBackSpeed: {x: 0, y: 0}
   UnitGravity: 0
   invincibleTime: 1
   touchDamageinvincibleTime: 1
@@ -49,18 +50,7 @@ MonoBehaviour:
   groundCheckRadius: 0.1
   wallCheckDistance: 0.5
   UnitDetectedDistance: 0.5
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 128
-  whatIsWall:
-    serializedVersion: 2
-    m_Bits: 0
-  whatIsPlatform:
-    serializedVersion: 2
-    m_Bits: 0
-  WhatIsEnemyUnit:
-    serializedVersion: 2
-    m_Bits: 0
+  LayerMaskSO: {fileID: 0}
   UnitAnimator: {fileID: 0}
   references:
     version: 2

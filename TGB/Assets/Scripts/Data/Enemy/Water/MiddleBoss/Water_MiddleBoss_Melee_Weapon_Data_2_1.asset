@@ -44,6 +44,7 @@ MonoBehaviour:
               height: 1.69
             RepeatAction: 0
             AdditionalDamage: 0
+            isFixed: 0
             KnockbackAngle: {x: 0, y: 0}
             EffectPrefab: []
             audioClip: []
@@ -57,6 +58,7 @@ MonoBehaviour:
               height: 1.69
             RepeatAction: 0
             AdditionalDamage: 0
+            isFixed: 0
             KnockbackAngle: {x: 0, y: 0}
             EffectPrefab: []
             audioClip: []
@@ -118,14 +120,18 @@ MonoBehaviour:
               Rot: {x: 1, y: 0, z: 0}
               Speed: 25
               DurationTime: 3
+              AdditionalDmg: 0
+              isFixed: 0
               Radius: 0.5
-              Offset: {x: 0, y: 0}
+              Offset: {x: -0.5, y: 0}
               GravityScale: 0
               isSingleShoot: 1
               KnockbackAngle: {x: 0, y: 0}
               isCollisionGround: 1
+              EffectScale: {x: 0, y: 0, z: 0}
               isOnHit: 1
               isShakeCam: 0
+              isToTarget: 1
               isHoming: 0
               camDatas:
                 Duration: 0
@@ -137,14 +143,18 @@ MonoBehaviour:
               Rot: {x: 1, y: 0, z: 0}
               Speed: 25
               DurationTime: 3
+              AdditionalDmg: 0
+              isFixed: 0
               Radius: 0.5
               Offset: {x: 0, y: 0}
               GravityScale: 0
               isSingleShoot: 1
               KnockbackAngle: {x: 0, y: 0}
               isCollisionGround: 1
+              EffectScale: {x: 0, y: 0, z: 0}
               isOnHit: 1
               isShakeCam: 0
+              isToTarget: 1
               isHoming: 0
               camDatas:
                 Duration: 0

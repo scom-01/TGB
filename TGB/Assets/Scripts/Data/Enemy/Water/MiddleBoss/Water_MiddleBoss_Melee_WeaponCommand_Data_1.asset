@@ -29,7 +29,8 @@ MonoBehaviour:
   <WeaponClassLevel>k__BackingField: 0
   DefaultAnimator: {fileID: 22100000, guid: 2f82af94d7b0ae7458aafe1b019d34da, type: 2}
   DefaultWeaponDataSO: {fileID: 11400000, guid: 4319cff07b5b5d04e9910cba7a5b4843, type: 2}
-  elementalgoods:
+  GoodsCost:
+    Gold: 0
     FireGoods: 0
     WaterGoods: 0
     EarthGoods: 0
@@ -62,6 +63,9 @@ MonoBehaviour:
     - command: 0
       animOC: {fileID: 22100000, guid: 79ad252e9ee7d1549b3bf59f314b899b, type: 2}
       data: {fileID: 11400000, guid: 0b15036464023cf4d94d416f4c3f5ded, type: 2}
+    - command: 0
+      animOC: {fileID: 22100000, guid: ecc8b39b9935f714caf9eda02f89c6cd, type: 2}
+      data: {fileID: 11400000, guid: de23fcda8041e4c45aa64213a019329b, type: 2}
   references:
     version: 2
     RefIds: []

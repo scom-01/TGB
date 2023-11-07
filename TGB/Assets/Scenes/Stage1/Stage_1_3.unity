@@ -50201,28 +50201,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IM: {fileID: 1020092032}
   SPM: {fileID: 137725224}
+  StageVolume: {fileID: 0}
   MasterManagerList:
   - {fileID: 959307418}
   - {fileID: 2001113008}
+  SceneNameFade: {fileID: 1714188898339614809, guid: ebd56f7894261ad4fbdc801be861d7ae, type: 3}
   isGotoNext: 1
   StageLevel: 1
   m_NextStageNumber: 9
   Start_UIState: 0
+  isStageClear: 0
+  EndingCutSceneDirector: {fileID: 0}
   Cam: {fileID: 0}
+  CVC: {fileID: 0}
   Cam_Distance: 8.5
   effectContainerTagName: EffectContainer
+  PlayerPrefab: {fileID: 840319699589423306, guid: 842ba7b90e3d58f4baa7c0b00def52ec, type: 3}
+  player: {fileID: 0}
   SpawnPoint: {fileID: 1814375134}
   EndPoint: {fileID: 299998475}
   ItemSpawnPoint: {fileID: 1221508466}
   ItemSpawnAmount: 3
   ItemSpawnInterval: 2
   ChoiceItemAmount: 1
-  PlayerPrefab: {fileID: 840319699589423306, guid: 842ba7b90e3d58f4baa7c0b00def52ec, type: 3}
-  player: {fileID: 0}
-  SceneNameFade: {fileID: 1714188898339614809, guid: ebd56f7894261ad4fbdc801be861d7ae, type: 3}
-  EndingCutSceneDirector: {fileID: 0}
-  isStageClear: 0
-  CVC: {fileID: 0}
+  BGM: {fileID: 0}
 --- !u!4 &1679714830
 Transform:
   m_ObjectHideFlags: 0
@@ -54297,13 +54299,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6398382622319885691, guid: f8e15cc9130771f47adfeb42845a56a8, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8956074066647696590, guid: f8e15cc9130771f47adfeb42845a56a8, type: 3}
       propertyPath: m_Name
       value: Wind_JumpPad
       objectReference: {fileID: 0}
     - target: {fileID: 8956074066647696591, guid: f8e15cc9130771f47adfeb42845a56a8, type: 3}
+      propertyPath: SfxObject
+      value: 
+      objectReference: {fileID: 8300000, guid: fde6657a0220afa40903c69178572c11, type: 3}
+    - target: {fileID: 8956074066647696591, guid: f8e15cc9130771f47adfeb42845a56a8, type: 3}
       propertyPath: JumpVelocity
-      value: 50
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 8956074066647696592, guid: f8e15cc9130771f47adfeb42845a56a8, type: 3}
       propertyPath: m_Size.y

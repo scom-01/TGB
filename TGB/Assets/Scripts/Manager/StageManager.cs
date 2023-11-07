@@ -13,6 +13,11 @@ public class StageManager : MonoBehaviour
     public Volume StageVolume;
     public List<Transform> MasterManagerList;
 
+    [Header("----Scene----")]
+    /// <summary>
+    /// Stage 시작 시 Stage이름 Fade
+    /// </summary>
+    [SerializeField] private GameObject SceneNameFade;
     public string CurrStageName
     {
         get
@@ -52,7 +57,16 @@ public class StageManager : MonoBehaviour
 
     public int m_NextStageNumber;
     public UI_State Start_UIState;
+
+    [HideInInspector] public bool isStageClear = false;
+    /// <summary>
+    /// Stage 클리어 시 생성
+    /// </summary>
+    public GameObject EndingCutSceneDirector;
+
+    [Header("----Cam----")]
     public Camera Cam;
+    [HideInInspector] public CinemachineVirtualCamera CVC;
     public float Cam_Distance;
     [TagField]
     [field: SerializeField] private string effectContainerTagName = "EffectContainer";
@@ -79,17 +93,23 @@ public class StageManager : MonoBehaviour
     }
     private EffectContainer effectContainer;
     private Transform effectContainerTransform;
-
+    
     [Header("----Player----")]
 
+    public GameObject PlayerPrefab;
+    private GameObject playerGO;
+    [HideInInspector] public Player player;
     /// <summary>
     /// Player SpawnPoint
     /// </summary>
     public Transform SpawnPoint;
+
     /// <summary>
     /// Next Scene Portal Point
     /// </summary>
     public Transform EndPoint;
+
+    [Header("----Item----")]
     /// <summary>
     /// Item Spawn Point
     /// </summary>
@@ -119,23 +139,9 @@ public class StageManager : MonoBehaviour
         }
     }
     private ChoiceItemManager choiceItemManager;
-    public GameObject PlayerPrefab;
 
-    private GameObject playerGO;
-    [HideInInspector] public Player player;
-
-    /// <summary>
-    /// Stage 시작 시 Stage이름 Fade
-    /// </summary>
-    [SerializeField] private GameObject SceneNameFade;
-
-    /// <summary>
-    /// Stage 클리어 시 생성
-    /// </summary>
-    public GameObject EndingCutSceneDirector;
-
-    [HideInInspector] public bool isStageClear = false;
-    [HideInInspector] public CinemachineVirtualCamera CVC;
+    [Header("----Sounds----")]
+    public AudioSource BGM;
 
     private void Awake()
     {
@@ -213,6 +219,11 @@ public class StageManager : MonoBehaviour
 
         if (SpawnPoint == null)
             SpawnPoint = GameObject.Find("SpawnPoint").GetComponent<Transform>();
+
+        if (BGM == null)
+            BGM = GameObject.Find("BGM").GetComponent<AudioSource>();
+
+
         GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, false);
 
         GameManager.Inst.SetSaveData();

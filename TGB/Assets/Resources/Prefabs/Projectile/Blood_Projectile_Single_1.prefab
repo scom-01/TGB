@@ -89,20 +89,24 @@ MonoBehaviour:
     Rot: {x: 1, y: 0, z: 0}
     Speed: 0
     DurationTime: 0
+    AdditionalDmg: 0
+    isFixed: 0
     Radius: 0
     Offset: {x: 0, y: 0}
     GravityScale: 0
     isSingleShoot: 0
     KnockbackAngle: {x: 0, y: 0}
     isCollisionGround: 0
+    EffectScale: {x: 0, y: 0, z: 0}
     isOnHit: 0
     isShakeCam: 0
+    isToTarget: 0
     isHoming: 0
     camDatas:
       Duration: 0
       Range: 0
       RepeatRate: 0
   ProjectileObject: {fileID: 6474526388225454719, guid: 9ae55dcea6f49d846b7d22e4b4ff5bd8, type: 3}
-  ImpactObject: {fileID: 9090052037473767930, guid: 54decf03c13d0a64b9313be299066d7d, type: 3}
+  ImpactObject: {fileID: 7555031585622908223, guid: dbd0a9584b295d04f9d828d2def2dcba, type: 3}
   ProjectileShootClip: {fileID: 0}
   ImpactClip: {fileID: 0}
