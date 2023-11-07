@@ -33,6 +33,11 @@ public class Trap : TouchObject
         {
             damage.TrapDamage(UnitData.statsStats, UnitData.statsStats.DefaultPower);
             Debug.LogWarning(collision.name + "DamageReceiver" + "Trap");
-        }        
+        }
+
+        if (EffectObject)
+            collision.GetComponent<Unit>()?.Core.CoreEffectManager.StartEffects(EffectObject, collision.GetComponent<Unit>().transform.position);
+        if (SfxObject)
+            collision.GetComponent<Unit>()?.Core.CoreSoundEffect.AudioSpawn(SfxObject);
     }
 }
