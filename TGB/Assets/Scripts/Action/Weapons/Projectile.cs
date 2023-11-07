@@ -122,6 +122,7 @@ namespace TGB
                 this.transform.position = unit.transform.position + Vector3.right * ProjectileData.Pos.x * FancingDirection + Vector3.up * ProjectileData.Pos.y;
             }
             this.gameObject.layer = LayerMask.NameToLayer("Projectile");
+            this.transform.rotation = Quaternion.Euler(ProjectileData.Rot);
 
             CC2D.radius = ProjectileData.Radius;
             CC2D.offset = ProjectileData.Offset;
@@ -167,7 +168,23 @@ namespace TGB
                 {
                     RB2D.rotation = 180f;
                 }
-                RB2D.velocity = new Vector2(ProjectileData.Rot.x * unit.Core.CoreMovement.FancingDirection, ProjectileData.Rot.y).normalized * ProjectileData.Speed;
+                if (
+                    ProjectileData.isToTarget && unit.TargetUnit != null &&
+                    ((unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - unit.Core.CoreCollisionSenses.GroundCenterPos).x < -0.001f && FancingDirection < 0) ||
+                    ((unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - unit.Core.CoreCollisionSenses.GroundCenterPos).x > 0.001f && FancingDirection > 0)
+
+                    )
+                {
+                    Vector3 toTargetNormal = (unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - unit.Core.CoreCollisionSenses.GroundCenterPos);
+                    this.transform.rotation = Quaternion.FromToRotation(ProjectileData.Rot, toTargetNormal);
+                    if (Mathf.Abs(this.transform.rotation.z) > 90f)
+                    {
+                        RB2D.velocity = new Vector2(ProjectileData.Rot.x * FancingDirection, ProjectileData.Rot.y).normalized * ProjectileData.Speed;
+                    }
+                    RB2D.velocity = new Vector2(toTargetNormal.x, toTargetNormal.y).normalized * ProjectileData.Speed;
+                }
+                else
+                    RB2D.velocity = new Vector2(ProjectileData.Rot.x * FancingDirection, ProjectileData.Rot.y).normalized * ProjectileData.Speed;
             }
             else
             {
