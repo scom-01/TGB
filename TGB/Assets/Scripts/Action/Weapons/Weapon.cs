@@ -66,14 +66,22 @@ namespace TGB.Weapons
             this.gameObject.tag = this.GetComponentInParent<Unit>().gameObject.tag;
             this.gameObject.layer = this.GetComponentInParent<Unit>().gameObject.layer;
         }
+        private void Start()
+        {
+            WeaponCore.CoreUnitStats.OnChangeStats += ChangeWeaponSpeed;
+        }
 
         private void Update()
         {
             if (WeaponCore == null)
                 return;
 
-            BaseGameObject.GetComponent<Animator>().speed = (WeaponCore.CoreUnitStats.DefaultAttSpeed / 100) * ((100 + WeaponCore.CoreUnitStats.AttackSpeedPer) / 100);
+            
             actionCounterResetTimer.Tick();
+        }
+        private void ChangeWeaponSpeed()
+        {
+            BaseGameObject.GetComponent<Animator>().speed = (WeaponCore.CoreUnitStats.DefaultAttSpeed / 100) * ((100 + WeaponCore.CoreUnitStats.AttackSpeedPer) / 100);
         }
 
         private void FixedUpdate()
