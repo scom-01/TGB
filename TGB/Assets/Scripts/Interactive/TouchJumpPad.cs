@@ -3,10 +3,20 @@ using UnityEngine;
 public class TouchJumpPad : TouchObject
 {
     [SerializeField] private float JumpVelocity;
-    [SerializeField] private GameObject JumpEffectPrefab;
     [SerializeField] private Vector2 angle;
     private BoxCollider2D BC2D;
-    private Animator animator;
+    public Animator animator
+    {
+        get
+        {
+            if (anim == null)
+            {
+                anim = GetComponent<Animator>();
+            }
+            return anim;
+        }
+    }
+    private Animator anim;
     private void Awake()
     {
         if (BC2D == null)
@@ -23,24 +33,18 @@ public class TouchJumpPad : TouchObject
     {
         base.Touch();
         if (animator != null)
-            animator.SetBool("Action", true);
+            animator.Play("Action", -1, 0);
     }
 
     public override void UnTouch()
     {
         base.UnTouch();
         if (animator != null)
-            animator.SetBool("Action", false);
+            animator.Play("UnAction", -1, 0);
     }
 
     private void Collision(Unit unit)
     {
-
-        if (JumpEffectPrefab != null)
-        {
-            if (JumpEffectPrefab != null)
-                Instantiate(JumpEffectPrefab, this.gameObject.transform.position, Quaternion.identity, effectContainer);
-        }
         Touch();
         if (EffectObject)
             unit.Core.CoreEffectManager.StartEffects(EffectObject, unit.transform.position);
