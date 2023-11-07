@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0c6ea7b1ec094043a23d689d061ee6d, type: 3}
+  m_Name: MiddBoss_Pattern_Trap_2
+  m_EditorClassIdentifier: 
+  statsStats:
+    MaxHealth: 0
+    DefaultPower: 10
+    DefaultMoveSpeed: 0
+    DefaultJumpVelocity: 0
+    DefaultAttSpeed: 0
+    MovementVEL_Per: 0
+    JumpVEL_Per: 0
+    AttackSpeedPer: 0
+    PhysicsDefensivePer: 0
+    MagicDefensivePer: 0
+    PhysicsAggressivePer: 0
+    MagicAggressivePer: 0
+    CriticalPer: 0
+    AdditionalCriticalPer: 0
+    DamageAttiribute: 1
+    Elemental: 4
+    ElementalDefensivePer: 0
+    ElementalAggressivePer: 0
+  UnitName: 
+  UnitNameLocal:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  UnitGravity: 0
+  invincibleTime: 1
+  touchDamageinvincibleTime: 1
+  standCC2DOffset: {x: 0, y: 0}
+  standCC2DSize: {x: 0, y: 0}
+  UnitCC2DMaterial: {fileID: 0}
+  groundCheckRadius: 0.1
+  wallCheckDistance: 0.5
+  UnitDetectedDistance: 0.5
+  LayerMaskSO: {fileID: 0}
+  UnitAnimator: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []

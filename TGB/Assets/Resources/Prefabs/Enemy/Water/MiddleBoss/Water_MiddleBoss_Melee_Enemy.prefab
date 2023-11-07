@@ -680,7 +680,7 @@ GameObject:
   - component: {fileID: 3639027602819861585}
   - component: {fileID: 3233904781095598674}
   m_Layer: 18
-  m_Name: Water_MiddleBoss_Melee
+  m_Name: Water_MiddleBoss_Melee_Enemy
   m_TagString: BigEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -869,7 +869,15 @@ MonoBehaviour:
   isFixedMovement: 0
   enemyData: {fileID: 0}
   Test_Distance: 0
-  Pattern_Idx: []
+  Pattern_Idx:
+  - Used: 0
+    Detected_Distance: 0
+    Boundary: 0
+    DetectedType: 0
+  - Used: 0
+    Detected_Distance: 0
+    Boundary: 0
+    DetectedType: 0
 --- !u!1 &3640253522240484911
 GameObject:
   m_ObjectHideFlags: 0
@@ -1541,7 +1549,7 @@ Animator:
   m_GameObject: {fileID: 4242634074962048764}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 79ad252e9ee7d1549b3bf59f314b899b, type: 2}
+  m_Controller: {fileID: 22100000, guid: bf3b7e5a371924941837da1f74be869a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
