@@ -12,4 +12,23 @@ public class Buff
     //Script Object와의 차이점
     public int CurrBuffCount = 0;
     public float startTime;
+
+    public static Buff BuffSystemAddBuff(Unit unit, BuffItemSO data)
+    {
+        if (data == null || unit == null)
+            return null;
+
+        Buff buff = new Buff();
+        var items = data;
+        buff.buffItemSO = items;
+        if (unit.Core.CoreSoundEffect)
+            unit.Core.CoreSoundEffect.AudioSpawn(data.InitEffectData.AcquiredSoundEffect ?? null);
+
+        if (unit.GetComponent<BuffSystem>()?.AddBuff(buff) != null)
+        {
+            return buff;
+        }
+
+        return null;
+    }
 }

@@ -49,11 +49,8 @@ public class TouchItem : TouchObject
     {
         if (Item != null)
         {
-            Buff buff = new Buff();
-            var items = Item as BuffItemSO;
-            buff.buffItemSO = items;
-            gameObject.GetComponent<Unit>().Core.CoreSoundEffect?.AudioSpawn(Item.InitEffectData.AcquiredSoundEffect);
-            gameObject.GetComponent<Unit>().gameObject.GetComponent<BuffSystem>()?.AddBuff(buff);
+
+            Buff.BuffSystemAddBuff(gameObject.GetComponent<Unit>(), Item as BuffItemSO);
 
             //Vfx
             if (Item.InitEffectData.AcquiredEffectPrefab != null)
