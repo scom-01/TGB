@@ -8,6 +8,7 @@ namespace TGB.CoreSystem
     {
         public event Action OnHealthZero;
         public event Action OnChangeHealth;
+        public event Action OnChangeStats;
 
         #region Stats       
 
@@ -403,6 +404,7 @@ namespace TGB.CoreSystem
         {
             m_statsData += statsData;
             OnChangeHealth?.Invoke();
+            OnChangeStats?.Invoke();
         }
     }
 }

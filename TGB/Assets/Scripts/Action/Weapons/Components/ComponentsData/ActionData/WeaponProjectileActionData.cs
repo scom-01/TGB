@@ -68,6 +68,10 @@ public struct ProjectileData
     public bool isOnHit;
     public bool isShakeCam;
     /// <summary>
+    /// 타겟을 향해 발사 여부(직선)
+    /// </summary>
+    public bool isToTarget;
+    /// <summary>
     /// 자동 추적
     /// </summary>
     public bool isHoming;

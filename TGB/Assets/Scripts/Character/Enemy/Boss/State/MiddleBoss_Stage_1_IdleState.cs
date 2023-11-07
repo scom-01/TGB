@@ -57,12 +57,12 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
                     unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.AirCommandList[0].commands[1]);
                     unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
                     var boss_stage = GameManager.Inst?.StageManager as BossStageManager;
-                    boss_stage.PlayPattern(boss_stage.Pattern[0]);
+                    boss_stage.PlayPattern(boss_stage?.Pattern[0]);
                 }
                 Phase[1] = true;
                 return;
             }
-
+            CheckPattern();
             //인식 범위 내 
             if ((MiddleBoss_Stage_1.TargetUnit.transform.position - MiddleBoss_Stage_1.transform.position).magnitude <= MiddleBoss_Stage_1.enemyData.UnitDetectedDistance)
             {
@@ -96,12 +96,12 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
                     unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.AirCommandList[0].commands[1]);
                     unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
                     var boss_stage = GameManager.Inst?.StageManager as BossStageManager;
-                    boss_stage.PlayPattern(boss_stage.Pattern[0]);
+                    boss_stage.PlayPattern(boss_stage?.Pattern[0]);
                 }
                 Phase[2] = true;
                 return;
             }
-
+            CheckPattern();
             if ((MiddleBoss_Stage_1.TargetUnit.transform.position - MiddleBoss_Stage_1.transform.position).magnitude <= MiddleBoss_Stage_1.enemyData.UnitDetectedDistance)
             {
                 if (EnemyCollisionSenses.isUnitInFrontDetectedArea)
@@ -121,6 +121,20 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
         }
     }
 
+    private void CheckPattern()
+    {
+        for (int i = 0; i < MiddleBoss_Stage_1.Pattern_Idx.Count; i++)
+        {
+            if (MiddleBoss_Stage_1.Pattern_Idx[i].Used)
+                continue;
+
+            unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.AirCommandList[0].commands[1]);
+            unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
+            var boss_stage = GameManager.Inst?.StageManager as BossStageManager;
+            boss_stage.PlayPattern(boss_stage?.Pattern[1]);
+            MiddleBoss_Stage_1.Pattern_Idx[i].Used = true;
+        }
+    }
     public override void MoveState()
     {
     }
