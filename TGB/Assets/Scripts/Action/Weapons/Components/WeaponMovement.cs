@@ -162,6 +162,11 @@ namespace TGB.Weapons.Components
                 float t = Mathf.Clamp01(1 - timer / RushDurationTime);
                 core.Unit.RB.MovePosition(Vector2.Lerp(RushStartPoint, RushPoint, t));
                 timer -= Time.fixedDeltaTime;
+                if (t >= 1f)
+                {
+                    core.Unit.transform.position = RushPoint;
+                    HandleRushOff();
+                }
             }            
         }
 
