@@ -1,18 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Canvas Canvas
     {
-        
+        get
+        {
+            if (canvas == null)
+            {
+                canvas = GetComponent<Canvas>();
+            }
+            return canvas;
+        }
     }
+    private Canvas canvas;
 
-    // Update is called once per frame
-    void Update()
+    public Animator animator
     {
-        
+        get
+        {
+            if (anim == null)
+            {
+                anim = GetComponent<Animator>();
+            }
+            return anim;
+        }
     }
+    private Animator anim;
 }

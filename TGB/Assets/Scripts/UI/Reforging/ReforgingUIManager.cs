@@ -5,21 +5,8 @@ using UnityEngine;
 
 namespace TGB.Manager
 {
-    public class ReforgingUIManager : MonoBehaviour
+    public class ReforgingUIManager : UIManager
     {
-        public Canvas Canvas
-        {
-            get
-            {
-                if (canvas == null)
-                {
-                    canvas = GetComponent<Canvas>();
-                }
-                return canvas;
-            }
-        }
-        private Canvas canvas;
-
         public Canvas[] ChildrensCanvas
         {
             get

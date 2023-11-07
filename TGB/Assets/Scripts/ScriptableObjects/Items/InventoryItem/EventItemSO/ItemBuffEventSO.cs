@@ -15,21 +15,11 @@ public class ItemBuffEventSO : ItemEffectSO
     {
         if (buffItem != null)
         {
-            Buff buff = new Buff();
-            var items = buffItem;
-            buff.buffItemSO = items;
-            if (unit.Core.CoreSoundEffect)
-                unit.Core.CoreSoundEffect.AudioSpawn(buffItem.InitEffectData.AcquiredSoundEffect);
-            if (unit.GetComponent<BuffSystem>() == null)
-            {
-                return;
-            }
-
-            if(unit.GetComponent<BuffSystem>().AddBuff(buff))
+            if (Buff.BuffSystemAddBuff(unit, buffItem) != null)
             {
                 if (itemEffectData.VFX != null)
                     unit.Core.CoreEffectManager.StartEffects(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCenterPos);
-            }
+            }            
         }
     }
 

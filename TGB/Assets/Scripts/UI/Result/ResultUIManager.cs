@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace TGB.Manager
 {
-    public class ResultUIManager : MonoBehaviour
+    public class ResultUIManager : UIManager
     {
         public ResultPanelUI resultPanel
         {
@@ -19,18 +19,6 @@ namespace TGB.Manager
             }
         }
         private ResultPanelUI _resultPanel;
-        public Canvas Canvas
-        {
-            get
-            {
-                if (canvas == null)
-                {
-                    canvas = GetComponent<Canvas>();
-                }
-                return canvas;
-            }
-        }
-        private Canvas canvas;
 
         public Button GoTitleBtn
         {

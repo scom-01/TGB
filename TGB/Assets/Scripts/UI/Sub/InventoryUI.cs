@@ -110,7 +110,18 @@ namespace TGB.Manager
             }
         }
         private Canvas canvas;
-
+        public Animator animator
+        {
+            get
+            {
+                if (anim == null)
+                {
+                    anim = GetComponent<Animator>();
+                }
+                return anim;
+            }
+        }
+        private Animator anim;
         private void Update()
         {
             if (!Canvas.enabled)

@@ -290,7 +290,9 @@ public class GameManager : MonoBehaviour
             case UI_State.Inventory:
                 Application.targetFrameRate = 30;
                 PlayTimeUI.Canvas.enabled = true;
+                SubUI.InventorySubUI.animator?.Play("Action", -1, 0f);
                 SubUI.InventorySubUI.Canvas.enabled = true;
+
                 if (SubUI.InventorySubUI.InventoryItems.CurrentSelectItem == null)
                 {
                     EventSystem.current.SetSelectedGameObject(SubUI.InventorySubUI.InventoryItems.Items[0].gameObject);
@@ -317,7 +319,9 @@ public class GameManager : MonoBehaviour
                 {
                     PlayTimeUI.Canvas.enabled = true;
                 }
+
                 CfgUI.Canvas.enabled = true;
+                CfgUI.animator?.Play("Action", -1, 0f);                
                 EventSystem.current.SetSelectedGameObject(CfgUI.ConfigPanelUI.cfgBtns[0].gameObject);
                 break;
             case UI_State.CutScene:
@@ -329,6 +333,7 @@ public class GameManager : MonoBehaviour
             case UI_State.Result:
                 Application.targetFrameRate = 30;
                 ResultUI.Canvas.enabled = true;
+                ResultUI.animator?.Play("Action", -1, 0f);
                 EventSystem.current.SetSelectedGameObject(ResultUI.GoTitleBtn.gameObject);
                 break;
             case UI_State.Loading:

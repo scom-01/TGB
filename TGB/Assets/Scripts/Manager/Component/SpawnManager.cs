@@ -1,10 +1,5 @@
-using TGB.CoreSystem;
 using TGB.Item;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace TGB.Manager
 {

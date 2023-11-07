@@ -19,7 +19,9 @@ public class StatsText : Stats
                 if (unit != null)
                 {
                     Stats.OnChangeHealth -= UpdateStats;
-                    Stats.OnChangeHealth += UpdateStats;
+                    Stats.OnChangeHealth += UpdateStats;                    
+                    Stats.OnChangeStats -= UpdateStats;
+                    Stats.OnChangeStats += UpdateStats;
                     UpdateStats();
                 }
             }

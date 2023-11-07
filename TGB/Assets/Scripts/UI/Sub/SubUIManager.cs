@@ -5,27 +5,10 @@ using UnityEngine;
 
 namespace TGB.Manager
 {
-    public class SubUIManager : MonoBehaviour
+    public class SubUIManager : UIManager
     {        
         public DetailUI DetailSubUI;
         public InventoryUI InventorySubUI;
-        public Canvas Canvas
-        {
-            get
-            {
-                if (canvas == null)
-                {
-                    canvas = GetComponent<Canvas>();
-                }
-                return canvas;
-            }
-        }
-        private Canvas canvas;
-        private void Awake()
-        {
-            //DetailSubUI = this.GetComponentInChildren<DetailUI>();
-            //InventorySubUI = this.GetComponentInChildren<InventoryUI>();
-        }
 
         public void isRight(bool isright)
         {
