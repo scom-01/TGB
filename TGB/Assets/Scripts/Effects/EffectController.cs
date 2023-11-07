@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [DisallowMultipleComponent]
@@ -12,7 +10,11 @@ public class EffectController : MonoBehaviour
 
     [Tooltip("infinity == 999f")]
     [SerializeField] private float isLoopDurationTime;
-    public void Start()
+    /// <summary>
+    /// 세팅 여부 (세팅이 되지않은상태에서 OnDisable()이 호출되는 경우 방지
+    /// </summary>
+    [HideInInspector] public bool isInit;
+    public void Awake()
     {
         particle = this.GetComponent<ParticleSystem>();
         parent = this.GetComponentInParent<EffectPooling>();
@@ -40,17 +42,7 @@ public class EffectController : MonoBehaviour
 
     private void OnDisable()
     {
-        if (particle != null)
-        {
-            if (parent != null)
-            {
-                parent.ReturnObject(this.gameObject);
-            }
-            else
-            {
-                this.gameObject.SetActive(false);
-            }
-        }
+        FinishAnim();
     }
     public void FinishAnim()
     {
@@ -60,7 +52,10 @@ public class EffectController : MonoBehaviour
         }
         else
         {
-            if(parent != null)
+            if (!isInit)
+                return;
+
+            if (parent != null)
             {
                 parent.ReturnObject(this.gameObject);
             }

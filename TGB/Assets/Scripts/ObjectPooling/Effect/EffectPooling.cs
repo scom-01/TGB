@@ -20,6 +20,7 @@ public class EffectPooling : ObjectPooling
             {
                 obj.transform.SetPositionAndRotation(pos, quaternion);
                 obj.transform.localScale = new Vector3(_size, _size, _size);
+                obj.GetComponent<EffectController>().isInit = true;
                 obj.gameObject.SetActive(true);
             }
             return obj;
@@ -28,6 +29,7 @@ public class EffectPooling : ObjectPooling
         {
             var newobj = CreateObject(_size);
             newobj.transform.SetPositionAndRotation(pos, quaternion);
+            newobj.GetComponent<EffectController>().isInit = true;
             newobj.gameObject.SetActive(true);
             return newobj;
         }
