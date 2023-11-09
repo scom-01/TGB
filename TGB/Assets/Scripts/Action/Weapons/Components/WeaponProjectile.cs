@@ -28,7 +28,10 @@ namespace TGB.Weapons.Components
         {
             if (actionData.ProjectileActionData.Length < currentProjectileIndex + 1)
                 return;
-
+            if (actionData.ProjectileActionData[currentProjectileIndex].ProjectileData.homingType == HomingType.isToTarget)
+            {
+                CoreMovement.FlipToTarget();
+            }
             CoreEffectManager.StartProjectileCheck(core.Unit, actionData.ProjectileActionData[currentProjectileIndex]);
         }
 

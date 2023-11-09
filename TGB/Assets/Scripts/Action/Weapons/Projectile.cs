@@ -168,19 +168,23 @@ namespace TGB
                 {
                     RB2D.rotation = 180f;
                 }
-                if (
+                if (ProjectileData.homingType == HomingType.isToTarget_Direct &&
                     ProjectileData.isToTarget && unit.TargetUnit != null &&
                     ((unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - unit.Core.CoreCollisionSenses.GroundCenterPos).x < -0.001f && FancingDirection < 0) ||
                     ((unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - unit.Core.CoreCollisionSenses.GroundCenterPos).x > 0.001f && FancingDirection > 0)
-
                     )
                 {
                     Vector3 toTargetNormal = (unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - unit.Core.CoreCollisionSenses.GroundCenterPos);
                     this.transform.rotation = Quaternion.FromToRotation(ProjectileData.Rot, toTargetNormal);
-                    if (Mathf.Abs(this.transform.rotation.z) > 90f)
-                    {
-                        RB2D.velocity = new Vector2(ProjectileData.Rot.x * FancingDirection, ProjectileData.Rot.y).normalized * ProjectileData.Speed;
-                    }
+                    RB2D.velocity = new Vector2(toTargetNormal.x, toTargetNormal.y).normalized * ProjectileData.Speed;
+                }
+                else if(
+                    ProjectileData.homingType == HomingType.isToTarget_Direct &&
+                    ProjectileData.isToTarget && unit.TargetUnit != null
+                    )
+                {
+                    Vector3 toTargetNormal = (unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - unit.Core.CoreCollisionSenses.GroundCenterPos);
+                    this.transform.rotation = Quaternion.FromToRotation(ProjectileData.Rot, toTargetNormal);
                     RB2D.velocity = new Vector2(toTargetNormal.x, toTargetNormal.y).normalized * ProjectileData.Speed;
                 }
                 else
@@ -197,7 +201,7 @@ namespace TGB
             if (GameManager.Inst == null)
                 return;
 
-            if (target != null && ProjectileData.isHoming)
+            if (target != null && ProjectileData.homingType == HomingType.isHoming)
             {
                 Vector2 dir = transform.right;
                 Vector3 targetDir = (target.gameObject.transform.position - transform.position).normalized;

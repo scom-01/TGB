@@ -71,6 +71,7 @@ public struct ProjectileData
     /// 타겟을 향해 발사 여부(직선)
     /// </summary>
     public bool isToTarget;
+    public HomingType homingType;
     /// <summary>
     /// 자동 추적
     /// </summary>
@@ -79,6 +80,24 @@ public struct ProjectileData
     /// 투사체 발사 시 ShakeCam
     /// </summary>
     public CamData camDatas;
+}
+
+[Serializable]
+public enum HomingType
+{
+    Done = 0,
+    /// <summary>
+    /// 추적 발사
+    /// </summary>
+    isHoming,
+    /// <summary>
+    /// 타겟 방향으로 직선 발사
+    /// </summary>
+    isToTarget,
+    /// <summary>
+    /// 공격 방향에 타겟이 있으면 타겟방향으로 직선 발사
+    /// </summary>
+    isToTarget_Direct,
 }
 
 [System.Serializable]
