@@ -14,6 +14,7 @@ public class EffectController : MonoBehaviour
     /// 세팅 여부 (세팅이 되지않은상태에서 OnDisable()이 호출되는 경우 방지
     /// </summary>
     [HideInInspector] public bool isInit;
+
     public void Awake()
     {
         particle = this.GetComponent<ParticleSystem>();
@@ -40,10 +41,6 @@ public class EffectController : MonoBehaviour
         }
     }
 
-    private void OnDisable()
-    {
-        FinishAnim();
-    }
     public void FinishAnim()
     {
         if(isDestroy)
