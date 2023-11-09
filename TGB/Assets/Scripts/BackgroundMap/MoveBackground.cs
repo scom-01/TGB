@@ -27,19 +27,20 @@ public class MoveBackground : MonoBehaviour
             camTransform = GameManager.Inst.StageManager.Cam.transform;
         }
         lastCamPos = camTransform.position;
-        if(this.GetComponent<SpriteRenderer>().drawMode != SpriteDrawMode.Tiled)
+        if (this.GetComponent<SpriteRenderer>().drawMode != SpriteDrawMode.Tiled)
         {
             this.GetComponent<SpriteRenderer>().drawMode = SpriteDrawMode.Tiled;
-            this.GetComponent<SpriteRenderer>().size = new Vector2(this.GetComponent<SpriteRenderer>().size.x * 3, this.GetComponent<SpriteRenderer>().size.y);
         }
-        Sprite sprite = GetComponent<SpriteRenderer>().sprite;        
+        this.GetComponent<SpriteRenderer>().size = new Vector2(this.GetComponent<SpriteRenderer>().size.x * 3, this.GetComponent<SpriteRenderer>().size.y);
+        Sprite sprite = GetComponent<SpriteRenderer>().sprite;
         Texture2D texture = sprite.texture;
-        textureUnitSizeX = texture.width * transform.localScale.x / sprite.pixelsPerUnit;
-        textureUnitSizeY = texture.height * transform.localScale.y / sprite.pixelsPerUnit;
+        textureUnitSizeX = this.GetComponent<SpriteRenderer>().size.x;
+        textureUnitSizeY = this.GetComponent<SpriteRenderer>().size.y;
+        //textureUnitSizeX = texture.width * transform.localScale.x / sprite.pixelsPerUnit;
+        //textureUnitSizeY = texture.height * transform.localScale.y / sprite.pixelsPerUnit;
     }
 
-    // Update is called once per frame
-    void LateUpdate()
+    private void LateUpdate()
     {
         if (camTransform == null)
             return;
@@ -47,18 +48,21 @@ public class MoveBackground : MonoBehaviour
         Vector3 deltaMovement = camTransform.position - lastCamPos;
         transform.position += new Vector3(deltaMovement.x * Distance.x, deltaMovement.y * Distance.y, 0);
         lastCamPos = camTransform.position;
-
+    }
+    // Update is called once per frame
+    void FixedUpdate()
+    {
         if (infiniteHorizontal)
         {
-            if (Mathf.Abs(camTransform.position.x - transform.position.x) >= textureUnitSizeX)
+            if (Mathf.Abs(camTransform.position.x - transform.position.x) > (textureUnitSizeX / 2))
             {
-                float offsetPosX = (camTransform.position.x - transform.position.x) % textureUnitSizeX;
+                float offsetPosX = (camTransform.position.x - transform.position.x) % (textureUnitSizeX / 2);
                 transform.position = new Vector3(camTransform.position.x + offsetPosX, transform.position.y);
             }
         }
         if (infiniteVertical)
         {
-            if (Mathf.Abs(camTransform.position.y - transform.position.y) >= textureUnitSizeY)
+            if (Mathf.Abs(camTransform.position.y - transform.position.y) > textureUnitSizeY)
             {
                 float offsetPosY = (camTransform.position.y - transform.position.y) % textureUnitSizeY;
                 transform.position = new Vector3(transform.position.x, offsetPosY + camTransform.position.y);
