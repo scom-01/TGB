@@ -17,6 +17,7 @@ public class AnimationEventHandler : MonoBehaviour
     public event Action OnStopFlip;
 
     public event Action OnTeleportToTarget;
+    public event Action OnTeleportToPoint;
     public event Action OnRushToTargetOn;
     public event Action OnRushToTargetOff;
 
@@ -53,6 +54,7 @@ public class AnimationEventHandler : MonoBehaviour
     public void StopFlipTrigger() => OnStopFlip?.Invoke();
 
     public void TeleportToTargetTrigger() => OnTeleportToTarget?.Invoke();
+    public void TeleportToPointTrigger() => OnTeleportToPoint?.Invoke();
     public void StartRushToTargetTrigger() => OnRushToTargetOn?.Invoke();
     public void StopRushToTargetTrigger() => OnRushToTargetOff?.Invoke();
 

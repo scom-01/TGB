@@ -1,9 +1,5 @@
-using TGB.CoreSystem;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using TGB.Weapons.Components;
 using System;
+using UnityEngine;
 
 namespace TGB.Weapons.Components
 {
@@ -117,8 +113,19 @@ namespace TGB.Weapons.Components
             else
             {
                 core.Unit.transform.position = core.Unit.TargetUnit.transform.position + new Vector3(-2, 0);
+            }            
+        }
+
+        private void HandleToPointTeleport()
+        {
+            if ((GameManager.Inst?.StageManager as BossStageManager)?.TeleportPoint.Count > 0)
+            {
+                CoreMovement.SetVelocityZero();
+
+                var temp = UnityEngine.Random.Range(0, (GameManager.Inst.StageManager as BossStageManager).TeleportPoint.Count - 1);
+                core.Unit.transform.position = (GameManager.Inst.StageManager as BossStageManager).TeleportPoint[temp].transform.position;
             }
-            
+
         }
 
         private void HandleRushOn()
@@ -255,6 +262,9 @@ namespace TGB.Weapons.Components
             eventHandler.OnTeleportToTarget -= HandleTeleport;
             eventHandler.OnTeleportToTarget += HandleTeleport;
 
+            eventHandler.OnTeleportToPoint -= HandleToPointTeleport;
+            eventHandler.OnTeleportToPoint += HandleToPointTeleport;
+
             eventHandler.OnRushToTargetOn -= HandleRushOn;
             eventHandler.OnRushToTargetOn += HandleRushOn;
 
@@ -292,6 +302,7 @@ namespace TGB.Weapons.Components
             eventHandler.OnFixedStopMovement -= HandleFixedStopMovement;
             eventHandler.OnMovementAction -= HandleMovementAction;
             eventHandler.OnTeleportToTarget -= HandleTeleport;
+            eventHandler.OnTeleportToPoint -= HandleToPointTeleport;
             eventHandler.OnRushToTargetOn -= HandleRushOn;
             eventHandler.OnRushToTargetOff -= HandleRushOff;
             eventHandler.OnStartMovement -= HandleStartMovement;
