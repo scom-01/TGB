@@ -69,13 +69,13 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
                 //일직선 상
                 if (EnemyCollisionSenses.isUnitInFrontDetectedArea || EnemyCollisionSenses.isUnitInBackDetectedArea)
                 {
-                    FlipToTarget();
+                    unit.Core.CoreMovement.FlipToTarget();
                     unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[1].commands[1]);
                     unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
                 }
                 else
                 {
-                    FlipToTarget();
+                    unit.Core.CoreMovement.FlipToTarget();
                 }
             }
             //인식 범위 밖

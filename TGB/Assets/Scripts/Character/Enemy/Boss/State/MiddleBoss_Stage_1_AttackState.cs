@@ -13,7 +13,7 @@ public class MiddleBoss_Stage_1_AttackState : EnemyAttackState
     public override void Enter()
     {
         base.Enter();
-        FlipToTarget();
+        unit.Core.CoreMovement.FlipToTarget();
     }
     public override void IdleState()
     {

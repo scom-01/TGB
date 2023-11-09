@@ -19,13 +19,13 @@ public class Mushroom_Melee_1 : Melee_Enemy_1
             if ((Core.CoreCollisionSenses as EnemyCollisionSenses).isUnitInFrontDetectedArea || (Core.CoreCollisionSenses as EnemyCollisionSenses).isUnitInBackDetectedArea)
             {
                 //달려듬
-                RunState.FlipToTarget();
+                Core.CoreMovement.FlipToTarget();
                 AttackState.SetWeapon(Inventory.Weapon);
                 FSM.ChangeState(AttackState);
                 return;
             }
         }
-        RunState.FlipToTarget();
+        Core.CoreMovement.FlipToTarget();
         FSM.ChangeState(RunState);
     }
 }

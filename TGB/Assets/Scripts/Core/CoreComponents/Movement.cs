@@ -93,6 +93,18 @@ namespace TGB.CoreSystem
             FancingDirection *= -1;
             RB.transform.Rotate(0.0f, 180.0f, 0.0f);
         }
+
+        public void FlipToTarget()
+        {
+            if (core.Unit.TargetUnit == null)
+                return;
+
+            if ((core.Unit.TargetUnit.transform.position.x - core.Unit.transform.position.x > 0) && (FancingDirection == -1) ||
+                    (core.Unit.TargetUnit.transform.position.x - core.Unit.transform.position.x < 0) && (FancingDirection == 1))
+            {
+                Flip();
+            }
+        }
         #endregion Flip
     }
 }

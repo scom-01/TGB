@@ -23,6 +23,7 @@ namespace TGB.Weapons.Components
         }
         private Weapon weapon;
         protected AnimationEventHandler eventHandler;
+        protected Unit unit => Weapon?.GetComponentInParent<Unit>();
         protected Core core => Weapon.WeaponCore ?? Weapon.GetComponentInParent<Unit>().Core;
         protected bool isAttackActive;
 

@@ -42,7 +42,7 @@ public class Water_Melee_Enemy_2 : Melee_Enemy_1
                                 if (Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[i].commands[0] == null)
                                     break;
                                 AttackState.SetWeapon(Inventory.Weapon);
-                                RunState.FlipToTarget();
+                                Core.CoreMovement.FlipToTarget();
                                 Inventory.Weapon.weaponGenerator.GenerateWeapon(Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[i].commands[0]);
                                 FSM.ChangeState(AttackState);
                                 return;
@@ -60,7 +60,7 @@ public class Water_Melee_Enemy_2 : Melee_Enemy_1
                                 if (Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[i].commands[0] == null)
                                     break;
                                 AttackState.SetWeapon(Inventory.Weapon);
-                                RunState.FlipToTarget();
+                                Core.CoreMovement.FlipToTarget();
                                 Inventory.Weapon.weaponGenerator.GenerateWeapon(Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[i].commands[0]);
                                 FSM.ChangeState(AttackState);
                                 return;

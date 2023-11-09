@@ -15,7 +15,7 @@ public abstract class EnemyHitState : EnemyState
         //enemy.Anim.speed = 0.0f;
         startTime = Time.time;
         Movement.SetVelocityX(0);
-        FlipToTarget();
+        unit.Core.CoreMovement.FlipToTarget();
     }
 
     public override void Exit()

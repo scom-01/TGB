@@ -56,9 +56,9 @@ public abstract class EnemyIdleState : EnemyState
         {
             isDelayCheck = true;
         }
-            
+
         //타겟 방향 회전
-        FlipToTarget();
+        unit.Core.CoreMovement.FlipToTarget();
 
 
         if (!isDelayCheck)

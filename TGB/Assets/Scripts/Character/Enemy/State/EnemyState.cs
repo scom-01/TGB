@@ -52,16 +52,4 @@ public class EnemyState : UnitState
         if (Death.isDead)
             return;
     }
-
-    public void FlipToTarget()
-    {
-        if (enemy.TargetUnit == null)
-            return;
-
-        if ((enemy.TargetUnit.transform.position.x - enemy.transform.position.x > 0) && (Movement.FancingDirection == -1) ||
-                (enemy.TargetUnit.transform.position.x - enemy.transform.position.x < 0) && (Movement.FancingDirection == 1))
-        {
-            Movement.Flip();
-        }
-    }
 }
