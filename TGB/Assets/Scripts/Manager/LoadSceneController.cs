@@ -13,8 +13,16 @@ public class LoadSceneController : MonoBehaviour
 
         if (GameManager.Inst == null)
             return;
-                
-        GameManager.Inst.ChangeUI(UI_State.Loading);        
+
+        //씬 이동할 때마다 게임 Idx 설정 //임의의 수 10
+        DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.SceneDataIdxs.Clear();
+        for (int i = 0; i < 10; i++)
+        {
+            DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.SceneDataIdxs.Add(UnityEngine.Random.Range(0, GlobalValue.MaxSceneIdx));
+        }
+
+        GameManager.Inst.ChangeUI(UI_State.Loading);
+        
         GameManager.Inst.SaveData();
         AsyncOperation operation = SceneManager.LoadSceneAsync("LoadingScene");
         isMoveScene = true;
