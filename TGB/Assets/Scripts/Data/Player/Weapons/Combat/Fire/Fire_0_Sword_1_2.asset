@@ -115,7 +115,31 @@ MonoBehaviour:
         name: WeaponProjectileData
         actionData:
         - name: Action 1
-          ProjectileActionData: []
+          ProjectileActionData:
+          - ProjectileData:
+              Pos: {x: 1, y: -1, z: 0}
+              Rot: {x: 1, y: -1, z: 0}
+              Speed: 5
+              DurationTime: 3
+              AdditionalDmg: 0
+              isFixed: 0
+              Radius: 0.5
+              Offset: {x: 0, y: 0}
+              GravityScale: 0
+              isSingleShoot: 0
+              KnockbackAngle: {x: 0, y: 0}
+              isCollisionGround: 0
+              EffectScale: {x: 0, y: 0, z: 0}
+              isOnHit: 0
+              isShakeCam: 0
+              isToTarget: 0
+              homingType: 0
+              isHoming: 0
+              camDatas:
+                Duration: 0
+                Range: 0
+                RepeatRate: 0
+            Projectile: {fileID: 2222910967692216358, guid: ec259d96c89ebfa42a54fb67dc441e32, type: 3}
     - rid: 2527592717927579851
       type: {class: WeaponSpriteData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
