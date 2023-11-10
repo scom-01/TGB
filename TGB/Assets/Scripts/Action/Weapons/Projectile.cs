@@ -169,14 +169,18 @@ namespace TGB
                     RB2D.rotation = 180f;
                 }
                 if (ProjectileData.homingType == HomingType.isToTarget_Direct &&
-                    ProjectileData.isToTarget && unit.TargetUnit != null &&
-                    ((unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - unit.Core.CoreCollisionSenses.GroundCenterPos).x < -0.001f && FancingDirection < 0) ||
-                    ((unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - unit.Core.CoreCollisionSenses.GroundCenterPos).x > 0.001f && FancingDirection > 0)
-                    )
+                    ProjectileData.isToTarget && unit.TargetUnit != null                    
+                    )                 
                 {
-                    Vector3 toTargetNormal = (unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - unit.Core.CoreCollisionSenses.GroundCenterPos);
-                    this.transform.rotation = Quaternion.FromToRotation(ProjectileData.Rot, toTargetNormal);
-                    RB2D.velocity = new Vector2(toTargetNormal.x, toTargetNormal.y).normalized * ProjectileData.Speed;
+                    if (
+                        ((unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - unit.Core.CoreCollisionSenses.GroundCenterPos).x < -0.001f && FancingDirection < 0) ||
+                        ((unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - unit.Core.CoreCollisionSenses.GroundCenterPos).x > 0.001f && FancingDirection > 0)
+                        )
+                    {
+                        Vector3 toTargetNormal = (unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - unit.Core.CoreCollisionSenses.GroundCenterPos);
+                        this.transform.rotation = Quaternion.FromToRotation(ProjectileData.Rot, toTargetNormal);
+                        RB2D.velocity = new Vector2(toTargetNormal.x, toTargetNormal.y).normalized * ProjectileData.Speed;
+                    }                    
                 }
                 else if(
                     ProjectileData.homingType == HomingType.isToTarget_Direct &&
