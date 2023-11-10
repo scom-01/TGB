@@ -34,8 +34,8 @@ public class MoveBackground : MonoBehaviour
         this.GetComponent<SpriteRenderer>().size = new Vector2(this.GetComponent<SpriteRenderer>().size.x * 3, this.GetComponent<SpriteRenderer>().size.y);
         Sprite sprite = GetComponent<SpriteRenderer>().sprite;
         Texture2D texture = sprite.texture;
-        textureUnitSizeX = this.GetComponent<SpriteRenderer>().size.x;
-        textureUnitSizeY = this.GetComponent<SpriteRenderer>().size.y;
+        textureUnitSizeX = this.GetComponent<SpriteRenderer>().size.x * transform.localScale.x;
+        textureUnitSizeY = this.GetComponent<SpriteRenderer>().size.y * transform.localScale.y;
         //textureUnitSizeX = texture.width * transform.localScale.x / sprite.pixelsPerUnit;
         //textureUnitSizeY = texture.height * transform.localScale.y / sprite.pixelsPerUnit;
     }
@@ -54,9 +54,9 @@ public class MoveBackground : MonoBehaviour
     {
         if (infiniteHorizontal)
         {
-            if (Mathf.Abs(camTransform.position.x - transform.position.x) > (textureUnitSizeX / 2))
+            if (Mathf.Abs(camTransform.position.x - transform.position.x) > (textureUnitSizeX / 3))
             {
-                float offsetPosX = (camTransform.position.x - transform.position.x) % (textureUnitSizeX / 2);
+                float offsetPosX = (camTransform.position.x - transform.position.x) % (textureUnitSizeX / 3);
                 transform.position = new Vector3(camTransform.position.x + offsetPosX, transform.position.y);
             }
         }
