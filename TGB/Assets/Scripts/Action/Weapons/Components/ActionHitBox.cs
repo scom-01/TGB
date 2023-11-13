@@ -1,13 +1,6 @@
-using TGB.CoreSystem;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Localization.SmartFormat.Utilities;
-using UnityEngine.UIElements;
-using static UnityEngine.Rendering.DebugUI;
 
 namespace TGB.Weapons.Components
 {
@@ -108,7 +101,7 @@ namespace TGB.Weapons.Components
                             for (int i = 0; i < currHitBox[currentHitBoxIndex].EffectPrefab.Length; i++)
                             {
                                 if (currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomPosRot)
-                                    damageable.HitEffectRandRot(currHitBox[currentHitBoxIndex].EffectPrefab[i].Object, currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomRange, currHitBox[currentHitBoxIndex].EffectPrefab[i].isFollowing, currHitBox[currentHitBoxIndex].EffectPrefab[i].EffectScale);
+                                    damageable.HitEffectRandRot(currHitBox[currentHitBoxIndex].EffectPrefab[i].Object, currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomRange, currHitBox[currentHitBoxIndex].EffectPrefab[i].EffectScale, currHitBox[currentHitBoxIndex].EffectPrefab[i].isFollowing);
                                 else
                                     damageable.HitEffect(currHitBox[currentHitBoxIndex].EffectPrefab[i].Object, currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomRange, CoreMovement.FancingDirection, currHitBox[currentHitBoxIndex].EffectPrefab[i].EffectScale);
                             }
@@ -224,7 +217,7 @@ namespace TGB.Weapons.Components
                             for (int i = 0; i < hitActions[currentHitBoxIndex].EffectPrefab.Length; i++)
                             {
                                 if (hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomPosRot)
-                                    damageable.HitEffectRandRot(hitActions[currentHitBoxIndex].EffectPrefab[i].Object, hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomRange, hitActions[currentHitBoxIndex].EffectPrefab[i].isFollowing, hitActions[currentHitBoxIndex].EffectPrefab[i].EffectScale);
+                                    damageable.HitEffectRandRot(hitActions[currentHitBoxIndex].EffectPrefab[i].Object, hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomRange, hitActions[currentHitBoxIndex].EffectPrefab[i].EffectScale, hitActions[currentHitBoxIndex].EffectPrefab[i].isFollowing);
                                 else
                                     damageable.HitEffect(hitActions[currentHitBoxIndex].EffectPrefab[i].Object, hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomRange, CoreMovement.FancingDirection, hitActions[currentHitBoxIndex].EffectPrefab[i].EffectScale);
                             }
@@ -354,7 +347,7 @@ namespace TGB.Weapons.Components
                             for (int i = 0; i < hitActions[currentHitBoxIndex].EffectPrefab.Length; i++)
                             {
                                 if (hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomPosRot)
-                                    damageable.HitEffectRandRot(hitActions[currentHitBoxIndex].EffectPrefab[i].Object, hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomRange, hitActions[currentHitBoxIndex].EffectPrefab[i].isFollowing, hitActions[currentHitBoxIndex].EffectPrefab[i].EffectScale);
+                                    damageable.HitEffectRandRot(hitActions[currentHitBoxIndex].EffectPrefab[i].Object, hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomRange, hitActions[currentHitBoxIndex].EffectPrefab[i].EffectScale,hitActions[currentHitBoxIndex].EffectPrefab[i].isFollowing);
                                 else
                                     damageable.HitEffect(hitActions[currentHitBoxIndex].EffectPrefab[i].Object, hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomRange, CoreMovement.FancingDirection, hitActions[currentHitBoxIndex].EffectPrefab[i].EffectScale);
                             }
@@ -460,9 +453,26 @@ namespace TGB.Weapons.Components
             isTriggerOn = true;
         }
 
+        private void AttMessageBox()
+        {
+            if (currentActionData == null)
+                return;
+            #region SpawnAttackMessageBox
+
+            (GameManager.Inst.StageManager.EffectContainer?.CheckObject(ObjectPooling_TYPE.Effect, GlobalValue.Base_AttackMessageBox, currentActionData.ActionHit[currentHitBoxIndex].ActionRect.size, GameManager.Inst.StageManager.EffectContainer.transform) as EffectPooling).
+                GetObejct(
+                new Vector2(
+                    transform.position.x + (currentActionData.ActionHit[currentHitBoxIndex].ActionRect.center.x * CoreMovement.FancingDirection),
+                    transform.position.y + (currentActionData.ActionHit[currentHitBoxIndex].ActionRect.center.y)),
+                Quaternion.identity, currentActionData.ActionHit[currentHitBoxIndex].ActionRect.size);
+            #endregion
+        }
         protected override void Start()
         {
             base.Start();
+            eventHandler.OnAttMessageBox -= AttMessageBox;
+            eventHandler.OnAttMessageBox += AttMessageBox;
+
             eventHandler.OnAttackAction -= HandleAttackAction;
             eventHandler.OnAttackAction += HandleAttackAction;
             eventHandler.OnAttackAction -= HandleAction;
@@ -488,12 +498,12 @@ namespace TGB.Weapons.Components
         protected override void OnDestroy()
         {
             base.OnDestroy();
-            eventHandler.OnAttackAction -= HandleAttackAction;
+            eventHandler.OnAttMessageBox -= AttMessageBox;
 
+            eventHandler.OnAttackAction -= HandleAttackAction;
             eventHandler.OnAttackAction -= HandleAction;
 
             eventHandler.OnActionRectOn -= HandleActionRectOn;
-
             eventHandler.OnActionRectOn -= HandleAction;
 
             eventHandler.OnActionRectOff -= HandleActionRectOff;

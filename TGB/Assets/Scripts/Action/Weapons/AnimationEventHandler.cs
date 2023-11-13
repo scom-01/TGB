@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimationEventHandler : MonoBehaviour
@@ -22,6 +20,7 @@ public class AnimationEventHandler : MonoBehaviour
     public event Action OnRushToTargetOff;
 
     //Action
+    public event Action OnAttMessageBox;
     public event Action OnAttackAction;
     public event Action OnActionRectOn;
     public event Action OnActionRectOff;
@@ -41,6 +40,8 @@ public class AnimationEventHandler : MonoBehaviour
     //State
     public event Action OnStartInvincible;
     public event Action OnStopInvincible;
+    public event Action OnStartCCImmunity;
+    public event Action OnStopCCImmunity;
 
     public void AnimationFinishedTrigger() => OnFinish?.Invoke();
 
@@ -59,6 +60,7 @@ public class AnimationEventHandler : MonoBehaviour
     public void StopRushToTargetTrigger() => OnRushToTargetOff?.Invoke();
 
     //Action
+    public void AttackMessageBoxTrigger() => OnAttMessageBox?.Invoke();
     public void AttackActionTrigger() => OnAttackAction?.Invoke();
     public void StartActionRectTrigger() => OnActionRectOn?.Invoke();
     public void StopActionRectTrigger() => OnActionRectOff?.Invoke();
@@ -78,4 +80,6 @@ public class AnimationEventHandler : MonoBehaviour
     //State
     public void StartInvincibleTrigger() => OnStartInvincible?.Invoke();
     public void StopInvincibleTrigger() => OnStopInvincible?.Invoke();
+    public void StartCCImmunityTrigger() => OnStartCCImmunity?.Invoke();
+    public void StopCCImmunityTrigger() => OnStopCCImmunity?.Invoke();
 }

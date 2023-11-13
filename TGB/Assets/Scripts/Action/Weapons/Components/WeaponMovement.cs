@@ -192,7 +192,7 @@ namespace TGB.Weapons.Components
         }
         #endregion
 
-        #region
+        #region Immunity
 
         private void HandleStartInvincible()
         {
@@ -203,6 +203,14 @@ namespace TGB.Weapons.Components
         private void HandleStopInvincible()
         {
             core.Unit.isFixed_Hit_Immunity = false;
+            core.Unit.isCC_immunity = false;
+        }
+        private void HandleStartCCImmunity()
+        {
+            core.Unit.isCC_immunity = true;
+        }
+        private void HandleStopCCImmunity()
+        {
             core.Unit.isCC_immunity = false;
         }
 
@@ -277,20 +285,28 @@ namespace TGB.Weapons.Components
 
             eventHandler.OnStopMovement -= HandleStopMovement;
             eventHandler.OnStopMovement += HandleStopMovement;
-                        
-            eventHandler.OnStartInvincible += HandleStartInvincible;
-
+            
             eventHandler.OnStartFlip -= HandleStartFlip;
             eventHandler.OnStartFlip += HandleStartFlip;
 
             eventHandler.OnStopFlip -= HandleStopFlip;
             eventHandler.OnStopFlip += HandleStopFlip;
 
+            eventHandler.OnStartInvincible -= HandleStartInvincible;
+            eventHandler.OnStartInvincible += HandleStartInvincible;
+
             eventHandler.OnStopInvincible -= HandleStopInvincible;
             eventHandler.OnStopInvincible += HandleStopInvincible;
 
+            eventHandler.OnStartCCImmunity -= HandleStartCCImmunity;
+            eventHandler.OnStartCCImmunity += HandleStartCCImmunity;
+
+            eventHandler.OnStopCCImmunity -= HandleStopCCImmunity;
+            eventHandler.OnStopCCImmunity += HandleStopCCImmunity;
+
             //애니메이션 종료 시 원래 상태로 돌리기 위함
             eventHandler.OnFinish += HandleStopInvincible;
+            eventHandler.OnFinish += HandleStopCCImmunity;
             eventHandler.OnFinish += FixedGravityOff;
         }
 
@@ -311,9 +327,12 @@ namespace TGB.Weapons.Components
             eventHandler.OnStartFlip -= HandleStartFlip;
             eventHandler.OnStopFlip -= HandleStopFlip;
             eventHandler.OnStopInvincible -= HandleStopInvincible;
+            eventHandler.OnStartCCImmunity -= HandleStartCCImmunity;
+            eventHandler.OnStopCCImmunity -= HandleStopCCImmunity;
 
             //애니메이션 종료 시 원래 상태로 돌리기 위함
             eventHandler.OnFinish -= HandleStopInvincible;
+            eventHandler.OnFinish -= HandleStopCCImmunity;
             eventHandler.OnFinish -= FixedGravityOff;
         }
     }
