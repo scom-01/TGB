@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-
 public class PlayerDeathState : PlayerAbilityState
 {
     public PlayerDeathState(Unit unit, string animBoolName) : base(unit, animBoolName)
@@ -12,6 +7,7 @@ public class PlayerDeathState : PlayerAbilityState
     public override void Enter()
     {
         base.Enter();
+        unit.Core.CoreMovement.SetVelocityX(0);
     }
 
     public override void Exit()

@@ -168,8 +168,7 @@ namespace TGB
                 {
                     RB2D.rotation = 180f;
                 }
-                if (ProjectileData.homingType == HomingType.isToTarget_Direct &&
-                    ProjectileData.isToTarget && unit.TargetUnit != null                    
+                if (ProjectileData.homingType == HomingType.isToTarget_Direct && unit.TargetUnit != null                    
                     )                 
                 {
                     if (
@@ -183,8 +182,7 @@ namespace TGB
                     }                    
                 }
                 else if(
-                    ProjectileData.homingType == HomingType.isToTarget_Direct &&
-                    ProjectileData.isToTarget && unit.TargetUnit != null
+                    ProjectileData.homingType == HomingType.isToTarget_Direct && unit.TargetUnit != null
                     )
                 {
                     Vector3 toTargetNormal = (unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - unit.Core.CoreCollisionSenses.GroundCenterPos);
@@ -246,7 +244,7 @@ namespace TGB
             //Impact            
             if (unit != null)
             {
-                var impact = unit.Core.CoreEffectManager.StartEffects(ImpactObject, this.transform.position);
+                var impact = unit.Core.CoreEffectManager.StartEffectsPos(ImpactObject, this.transform.position, ImpactObject.transform.localScale);
                 foreach (var _renderer in impact.GetComponentsInChildren<ParticleSystemRenderer>())
                 {
                     _renderer.sortingLayerName = "Effect";

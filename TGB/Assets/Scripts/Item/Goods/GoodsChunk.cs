@@ -73,7 +73,7 @@ public class GoodsChunk : MonoBehaviour
             if (EquipSoundClip != null)
                 GameManager.Inst.StageManager.player.Core.CoreSoundEffect.AudioSpawn(EquipSoundClip);
             if (EquipEffect != null)
-                GameManager.Inst.StageManager.player.Core.CoreEffectManager.StartEffects(EquipEffect, this.gameObject.transform.position);
+                GameManager.Inst.StageManager.player.Core.CoreEffectManager.StartEffectsPos(EquipEffect, this.gameObject.transform.position, EquipEffect.transform.localScale);
         }
 
         Destroy(this.gameObject);

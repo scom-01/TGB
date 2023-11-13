@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace TGB.Weapons.Components
@@ -34,7 +32,7 @@ namespace TGB.Weapons.Components
         /// Additional Effect Scale
         /// </summary>
         [field: Tooltip("This Additional float , ex.1) default 1 + additionalScale , ex.2) EffectScale(1) = 2")]
-        public float EffectScale;
+        public Vector3 EffectScale;
         /// <summary>
         /// isFollow Unit
         /// </summary>

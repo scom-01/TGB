@@ -1,26 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 
 public class EffectPooling : ObjectPooling
 {
-    public override GameObject CreateObject(float size = 0)
+    public override GameObject CreateObject(Vector3 size)
     {
         var newobj = Instantiate(Object, transform);
-        newobj.transform.localScale = new Vector3(size, size, size);
-        newobj.GetComponent<EffectController>().isInit = true;
+        newobj.GetComponent<EffectController>().size = size;
         newobj.gameObject.SetActive(false);
         return newobj;
     }
 
-    public override GameObject GetObejct(Vector3 pos, Quaternion quaternion, float size = 0)
+    public override GameObject GetObejct(Vector3 pos, Quaternion quaternion, Vector3 size)
     {
         var _size = size;
-        if(size == 0)
+        if(size == Vector3.zero)
         {
-            _size = 1f;
+            _size = Vector3.one;
         }
         if(ObjectQueue.Count > 0)
         {
@@ -28,7 +24,8 @@ public class EffectPooling : ObjectPooling
             if(obj != null)
             {
                 obj.transform.SetPositionAndRotation(pos, quaternion);
-                obj.transform.localScale = new Vector3(_size, _size, _size);
+                obj.GetComponent<EffectController>().size = size;
+                obj.GetComponent<EffectController>().isInit = true;
                 obj.gameObject.SetActive(true);
             }
             return obj;

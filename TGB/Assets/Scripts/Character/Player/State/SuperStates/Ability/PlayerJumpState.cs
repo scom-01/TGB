@@ -1,7 +1,4 @@
 using TGB.CoreSystem;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerJumpState : PlayerAbilityState
@@ -41,7 +38,7 @@ public class PlayerJumpState : PlayerAbilityState
         SoundEffect.AudioSpawn(Jump_Sfx);
         if (amountOfJumpLeft < player.playerData.amountOfJumps)
         {
-            player.Core.CoreEffectManager.StartEffects(Jump_Effect, CollisionSenses.GroundCenterPos);
+            player.Core.CoreEffectManager.StartEffectsPos(Jump_Effect, CollisionSenses.GroundCenterPos, Jump_Effect.transform.localScale);
             player.Anim.SetBool("JumpFlip", true);
         }
         if (player.PrimaryAttackState.weapon != null)

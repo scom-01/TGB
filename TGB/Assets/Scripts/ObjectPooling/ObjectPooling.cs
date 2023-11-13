@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,20 +8,20 @@ public class ObjectPooling : MonoBehaviour
     public int MaxPoolAmount;
     protected Queue<GameObject> ObjectQueue = new Queue<GameObject>();
 
-    public virtual GameObject CreateObject(float size = 0)
+    public virtual GameObject CreateObject(Vector3 size)
     {
         var newobj = Instantiate(Object, transform);
-        newobj.transform.localScale = new Vector3(size, size, size);
+        newobj.transform.localScale = new Vector3(size.x, size.y, size.z);
         newobj.gameObject.SetActive(false);
         return newobj;
     }
 
-    public virtual void Init(GameObject _obj, int count, float size = 0)
+    public virtual void Init(GameObject _obj, int count, Vector3 size)
     {
         if (_obj == null)
             return;
-        if (size == 0)
-            size = _obj.transform.localScale.x;
+        if (size == Vector3.zero)
+            size = Vector3.one;
 
         Object = _obj;
         MaxPoolAmount = count;
@@ -33,7 +32,7 @@ public class ObjectPooling : MonoBehaviour
         }
     }
 
-    public virtual GameObject GetObejct(Vector3 pos, Quaternion quaternion, float size = 0)
+    public virtual GameObject GetObejct(Vector3 pos, Quaternion quaternion, Vector3 size)
     {
         if (ObjectQueue.Count > 0)
         {
@@ -47,7 +46,7 @@ public class ObjectPooling : MonoBehaviour
         }
         else
         {
-            var newobj = CreateObject();
+            var newobj = CreateObject(size);
             newobj.transform.SetPositionAndRotation(pos, quaternion);
             newobj.gameObject.SetActive(true);
             return newobj;

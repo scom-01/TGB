@@ -1,9 +1,5 @@
-using TGB.CoreSystem;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.Localization;
-using UnityEngine;
 using Cinemachine;
+using UnityEngine;
 
 public class Trap : TouchObject
 {
@@ -36,7 +32,7 @@ public class Trap : TouchObject
         }
 
         if (EffectObject)
-            collision.GetComponent<Unit>()?.Core.CoreEffectManager.StartEffects(EffectObject, collision.GetComponent<Unit>().transform.position);
+            collision.GetComponent<Unit>()?.Core.CoreEffectManager.StartEffectsPos(EffectObject, collision.GetComponent<Unit>().transform.position, EffectObject.transform.localScale);
         if (SfxObject)
             collision.GetComponent<Unit>()?.Core.CoreSoundEffect.AudioSpawn(SfxObject);
     }

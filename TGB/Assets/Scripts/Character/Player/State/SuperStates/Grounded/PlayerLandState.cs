@@ -1,7 +1,4 @@
-using Mono.Cecil;
 using TGB.CoreSystem;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerLandState : PlayerGroundedState
@@ -27,7 +24,7 @@ public class PlayerLandState : PlayerGroundedState
         //착지 시 커맨드 리스트 초기화
         player.Inventory.Weapon.ResetActionCounter();
         SoundEffect.AudioSpawn(Land_SFX);
-        player.Core.CoreEffectManager.StartEffects(Land_Effect, CollisionSenses.GroundCenterPos);
+        player.Core.CoreEffectManager.StartEffectsPos(Land_Effect, CollisionSenses.GroundCenterPos, Land_Effect.transform.localScale);
         Debug.Log("player.InputHandler.ActionInputDelayCheck[i] true");
         //Land 시 
         for (int i = 0; i < player.InputHandler.ActionInputDelayCheck.Length; i++)

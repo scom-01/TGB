@@ -1,8 +1,5 @@
 using TGB.CoreSystem;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 
 public class PlayerDashState : PlayerAbilityState
@@ -133,7 +130,7 @@ public class PlayerDashState : PlayerAbilityState
         player.InputHandler.UseInput(ref player.InputHandler.DashInput);
         if (Dash_Effect != null)
         {
-            EffectManager.StartEffects(Dash_Effect, CollisionSenses.GroundCenterPos);
+            EffectManager.StartEffectsPos(Dash_Effect, CollisionSenses.GroundCenterPos,Dash_Effect.transform.localScale);
         }
         Movement.SetVelocityY(0f);
         player.RB.gravityScale = 0f;

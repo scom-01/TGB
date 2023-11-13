@@ -1,3 +1,4 @@
+using System.Drawing;
 using UnityEngine;
 
 namespace TGB.CoreSystem
@@ -127,7 +128,7 @@ namespace TGB.CoreSystem
             HUD_DmgTxt(1.0f, damage, 50, AttackterCommonData.DamageAttiribute, isCritical);
         }
 
-        public void TypeCalDamage(Unit AttackerUnit, Unit VictimUnit, float AttackerDmg,int RepeatAmount = 1)
+        public void TypeCalDamage(Unit AttackerUnit, Unit VictimUnit, float AttackerDmg, int RepeatAmount = 1)
         {
             if (VictimUnit.gameObject.tag == "Player")
             {
@@ -169,7 +170,7 @@ namespace TGB.CoreSystem
                         break;
                     case ENEMY_Size.Big:
                         Damage
-                        (   
+                        (
                         AttackerUnit.Core.CoreUnitStats.StatsData,
                         VictimUnit.Core.CoreUnitStats.CalculStatsData,
                         (AttackerDmg) * (1.0f - GlobalValue.Enemy_Size_WeakPer),
@@ -203,7 +204,7 @@ namespace TGB.CoreSystem
                 Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
                 var damage = stats.Comp.DecreaseHealth(amount);
                 HUD_DmgTxt(1.0f, damage, 50, DAMAGE_ATT.Fixed, false);
-                if(RepeatAmount > 1)
+                if (RepeatAmount > 1)
                 {
                     var temp = RepeatAmount - 1;
                     FixedDamage(amount, isTrueHit, temp);
@@ -244,31 +245,31 @@ namespace TGB.CoreSystem
 
             HUD_DmgTxt(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
         }
-        public void HitEffect(GameObject EffectPrefab, float Range, int FancingDirection, float size = 0)
+        public void HitEffect(GameObject EffectPrefab, float Range, int FancingDirection, Vector3 size)
         {
             if (EffectPrefab == null)
             {
                 if (DefaultEffectPrefab != null)
                 {
-                    effectManager.Comp.StartEffectsWithRandomPos(DefaultEffectPrefab, Range, FancingDirection);
+                    effectManager.Comp.StartEffectsWithRandomPos(DefaultEffectPrefab, Range, FancingDirection, size);
                 }
                 return;
             }
 
-            effectManager.Comp.StartEffectsWithRandomPos(EffectPrefab, Range, FancingDirection);
+            effectManager.Comp.StartEffectsWithRandomPos(EffectPrefab, Range, FancingDirection, size);
         }
-        public void HitEffectRandRot(GameObject EffectPrefab, float Range, bool isFollow = false, float size = 0)
+        public void HitEffectRandRot(GameObject EffectPrefab, float Range, Vector3 size, bool isFollow = false)
         {
             if (EffectPrefab == null)
             {
                 if (DefaultEffectPrefab != null)
                 {
-                    effectManager.Comp.StartEffectsWithRandomPosRot(DefaultEffectPrefab, Range, isFollow, size);
+                    effectManager.Comp.StartEffectsWithRandomPosRot(DefaultEffectPrefab, Range, size, isFollow);
                 }
                 return;
             }
 
-            effectManager.Comp.StartEffectsWithRandomPosRot(EffectPrefab, Range, isFollow, size);
+            effectManager.Comp.StartEffectsWithRandomPosRot(EffectPrefab, Range, size, isFollow);
         }
 
         /// <summary>
@@ -290,11 +291,11 @@ namespace TGB.CoreSystem
 
             if (isCritical)
             {
-                damageText = (GameManager.Inst.StageManager.EffectContainer.CheckObject(ObjectPooling_TYPE.DmgText, GlobalValue.CriticalDamageTextPrefab) as DmgTxtPooling).GetObejct(new Vector3(pos.x, pos.y), Quaternion.identity, damage, fontSize, damageAttiribute);
+                damageText = (GameManager.Inst.StageManager.EffectContainer.CheckObject(ObjectPooling_TYPE.DmgText, GlobalValue.CriticalDamageTextPrefab, Vector3.one) as DmgTxtPooling).GetObejct(new Vector3(pos.x, pos.y), Quaternion.identity, damage, fontSize, damageAttiribute);
             }
             else
             {
-                damageText = (GameManager.Inst.StageManager.EffectContainer.CheckObject(ObjectPooling_TYPE.DmgText, GlobalValue.DamageTextPrefab) as DmgTxtPooling).GetObejct(new Vector3(pos.x, pos.y), Quaternion.identity, damage, fontSize, damageAttiribute);
+                damageText = (GameManager.Inst.StageManager.EffectContainer.CheckObject(ObjectPooling_TYPE.DmgText, GlobalValue.DamageTextPrefab, Vector3.one) as DmgTxtPooling).GetObejct(new Vector3(pos.x, pos.y), Quaternion.identity, damage, fontSize, damageAttiribute);
             }
             return damageText;
         }
@@ -307,11 +308,11 @@ namespace TGB.CoreSystem
 
             if (isCritical)
             {
-                damageText = (GameManager.Inst.StageManager.EffectContainer.CheckObject(ObjectPooling_TYPE.DmgText, GlobalValue.CriticalDamageTextPrefab) as DmgTxtPooling).GetObejct(new Vector3(pos.x, pos.y), Quaternion.identity, damage, fontSize, damageAttiribute);
+                damageText = (GameManager.Inst.StageManager.EffectContainer.CheckObject(ObjectPooling_TYPE.DmgText, GlobalValue.CriticalDamageTextPrefab, Vector3.one) as DmgTxtPooling).GetObejct(new Vector3(pos.x, pos.y), Quaternion.identity, damage, fontSize, damageAttiribute);
             }
             else
             {
-                damageText = (GameManager.Inst.StageManager.EffectContainer.CheckObject(ObjectPooling_TYPE.DmgText, GlobalValue.DamageTextPrefab) as DmgTxtPooling).GetObejct(new Vector3(pos.x, pos.y), Quaternion.identity, damage, fontSize, damageAttiribute);
+                damageText = (GameManager.Inst.StageManager.EffectContainer.CheckObject(ObjectPooling_TYPE.DmgText, GlobalValue.DamageTextPrefab, Vector3.one) as DmgTxtPooling).GetObejct(new Vector3(pos.x, pos.y), Quaternion.identity, damage, fontSize, damageAttiribute);
             }
             return damageText;
         }
@@ -331,13 +332,13 @@ namespace TGB.CoreSystem
 
             if (isCritical)
             {
-                damageText = (GameManager.Inst.StageManager.EffectContainer.CheckObject(ObjectPooling_TYPE.DmgText, GlobalValue.CriticalDamageTextPrefab) as DmgTxtPooling).GetObejct(new Vector3(pos.x, pos.y), Quaternion.identity, damage, fontSize, damageAttiribute);
+                damageText = (GameManager.Inst.StageManager.EffectContainer.CheckObject(ObjectPooling_TYPE.DmgText, GlobalValue.CriticalDamageTextPrefab, Vector3.one) as DmgTxtPooling).GetObejct(new Vector3(pos.x, pos.y), Quaternion.identity, damage, fontSize, damageAttiribute);
                 if (GlobalValue.CriticalHit_SFX != null)
                     GameManager.Inst.StageManager?.player?.Core.CoreSoundEffect.AudioSpawn(GlobalValue.CriticalHit_SFX);
             }
             else
             {
-                damageText = (GameManager.Inst.StageManager.EffectContainer.CheckObject(ObjectPooling_TYPE.DmgText, GlobalValue.DamageTextPrefab) as DmgTxtPooling).GetObejct(new Vector3(pos.x, pos.y), Quaternion.identity, damage, fontSize, damageAttiribute);
+                damageText = (GameManager.Inst.StageManager.EffectContainer.CheckObject(ObjectPooling_TYPE.DmgText, GlobalValue.DamageTextPrefab, Vector3.one) as DmgTxtPooling).GetObejct(new Vector3(pos.x, pos.y), Quaternion.identity, damage, fontSize, damageAttiribute);
             }
             return damageText;
         }

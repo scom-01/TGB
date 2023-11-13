@@ -1,16 +1,11 @@
 using TGB;
-using TGB.CoreSystem;
-using TGB.Weapons.Components;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Video;
 
 public class ProjectilePooling : ObjectPooling
 {
     public ProjectileData m_ProjectileData;
 
-    public override GameObject CreateObject(float size = 0)
+    public override GameObject CreateObject(Vector3 size)
     {
         Projectile obj = Instantiate(Object, transform).GetComponent<Projectile>();
         var projectile_Data = m_ProjectileData;
@@ -19,15 +14,14 @@ public class ProjectilePooling : ObjectPooling
         return obj.gameObject;
     }
 
-    public void Init(ProjectileData _projectilePrefab, GameObject _obj, int count)
+    public void Init(GameObject _obj, int count)
     {
-        m_ProjectileData = _projectilePrefab;
         Object = _obj;
         MaxPoolAmount = count;
 
         for (int i = 0; i < MaxPoolAmount; i++)
         {
-            ObjectQueue.Enqueue(CreateObject());
+            ObjectQueue.Enqueue(CreateObject(m_ProjectileData.EffectScale));
         }
     }
 
@@ -46,7 +40,7 @@ public class ProjectilePooling : ObjectPooling
         }
         else
         {
-            var newobj = CreateObject();
+            var newobj = CreateObject(Vector3.one);
             newobj.GetComponent<Projectile>().SetUp(unit, _projectilData);
             newobj.gameObject.SetActive(true);
             newobj.GetComponent<Projectile>().Shoot();

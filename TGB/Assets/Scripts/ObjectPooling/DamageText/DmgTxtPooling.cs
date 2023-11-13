@@ -117,7 +117,7 @@ public class DmgTxtPooling : ObjectPooling
         }
         else
         {
-            var newobj = CreateObject();
+            var newobj = CreateObject(Vector3.one);
             newobj.GetComponent<RectTransform>().anchoredPosition = pos;
             switch (damageAttiribute)
             {

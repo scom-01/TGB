@@ -67,15 +67,7 @@ public struct ProjectileData
     /// </summary>
     public bool isOnHit;
     public bool isShakeCam;
-    /// <summary>
-    /// 타겟을 향해 발사 여부(직선)
-    /// </summary>
-    public bool isToTarget;
     public HomingType homingType;
-    /// <summary>
-    /// 자동 추적
-    /// </summary>
-    public bool isHoming;
     /// <summary>
     /// 투사체 발사 시 ShakeCam
     /// </summary>

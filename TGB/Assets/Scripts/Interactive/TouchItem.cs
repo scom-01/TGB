@@ -54,7 +54,7 @@ public class TouchItem : TouchObject
 
             //Vfx
             if (Item.InitEffectData.AcquiredEffectPrefab != null)
-                gameObject.GetComponent<Unit>().Core.CoreEffectManager.StartEffects(Item.InitEffectData.AcquiredEffectPrefab, this.gameObject.transform.position, Quaternion.identity);            
+                gameObject.GetComponent<Unit>().Core.CoreEffectManager.StartEffects(Item.InitEffectData.AcquiredEffectPrefab, this.gameObject.transform.position, Quaternion.identity, Vector3.one);            
 
             //Sfx
             if (Item.InitEffectData.AcquiredSoundEffect != null)

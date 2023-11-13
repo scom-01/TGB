@@ -262,7 +262,7 @@ public class Inventory : MonoBehaviour
 
                         //합성 VFX
                         if (itemObject.CompositeItems[i].EditVFX != null)
-                            unit.Core.CoreEffectManager.StartEffects(itemObject.CompositeItems[i].EditVFX, (Object.GameObject()?.transform == null) ? this.transform.position : Object.GameObject().transform.position, Quaternion.identity);
+                            unit.Core.CoreEffectManager.StartEffects(itemObject.CompositeItems[i].EditVFX, (Object.GameObject()?.transform == null) ? this.transform.position : Object.GameObject().transform.position, Quaternion.identity, Vector3.one);
 
                         //합성 SFX
                         if (itemObject.CompositeItems[i].EditSFX != null)
@@ -292,7 +292,7 @@ public class Inventory : MonoBehaviour
 
         //VFX
         if (itemObject.InitEffectData.AcquiredEffectPrefab != null)
-            unit.Core.CoreEffectManager.StartEffects(itemObject.InitEffectData.AcquiredEffectPrefab, (Object.GameObject()?.transform == null) ? this.transform.position : Object.GameObject().transform.position, Quaternion.identity);
+            unit.Core.CoreEffectManager.StartEffects(itemObject.InitEffectData.AcquiredEffectPrefab, (Object.GameObject()?.transform == null) ? this.transform.position : Object.GameObject().transform.position, Quaternion.identity,Vector3.one);
 
         //InfinityVFX
         if (itemObject.InfinityEffectObjects.Count > 0)
@@ -308,15 +308,13 @@ public class Inventory : MonoBehaviour
                 InfinityEffectObjects.Add(
                     itemObject.InfinityEffectObjects[i].isRandomPosRot ?
                     unit.Core.CoreEffectManager.StartEffectsWithRandomPosRot(
-                        itemObject.InfinityEffectObjects[i].Object, itemObject.InfinityEffectObjects[i].isRandomRange, true,
-                        size)
+                        itemObject.InfinityEffectObjects[i].Object, itemObject.InfinityEffectObjects[i].isRandomRange, size, true)
                     :
-                    unit.Core.CoreEffectManager.StartEffects(
+                    unit.Core.CoreEffectManager.StartEffectsPos(
                         itemObject.InfinityEffectObjects[i].Object,
                         itemObject.InfinityEffectObjects[i].isGround ?
                         unit.Core.CoreCollisionSenses.GroundCenterPos + offset :
-                        this.transform.position + offset, true,
-                        size)
+                        this.transform.position + offset, size, true)
                     );
             }
         }
