@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Localization.Components;
 
@@ -37,6 +36,8 @@ public class ReforgingMaterial : MonoBehaviour
     [SerializeField] private Transform GoodsTransform;
     [SerializeField] private List<GameObject> GoodsList;
     [SerializeField] private GameObject GoodsMaterial;
+    [SerializeField] private LocalizeStringEvent NotEnoughMessage_Local;
+    [SerializeField] private Animator NotEnoughMessage_Anim;
 
     public AudioSource audio;
     private AudioClip ReforgingSuccessClip
@@ -246,6 +247,12 @@ public class ReforgingMaterial : MonoBehaviour
         }
         else
         {
+            //재화 부족
+            if (NotEnoughMessage_Anim != null && NotEnoughMessage_Local != null)
+            {
+                NotEnoughMessage_Local.StringReference.SetReference("Goods_Table", "Goods_NotEnough");
+                NotEnoughMessage_Anim.Play("Action", -1, 0f);
+            }
             Debug.Log("There is not enough goods");
             if (audio != null && ReforgingFailureClip != null)
             {

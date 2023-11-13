@@ -1,10 +1,7 @@
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Localization.Components;
-using UnityEngine.U2D;
 using UnityEngine.UI;
-using TMPro;
-using UnityEngine.Localization;
 
 public class Blessing_Upgrade : MonoBehaviour, IUI_Select
 {
@@ -17,6 +14,10 @@ public class Blessing_Upgrade : MonoBehaviour, IUI_Select
     [SerializeField] private LocalizeStringEvent LocalizeStringEvent_BlessingCost;
     [SerializeField] private int Max_level;
     [SerializeField] private Button Blessing_Btn;
+
+    [SerializeField] private LocalizeStringEvent NotEnoughMessage_Local;
+    [SerializeField] private Animator NotEnoughMessage_Anim;
+
     private int piece;
     //OnClick
     public void Set(Stats _stats)
@@ -48,6 +49,12 @@ public class Blessing_Upgrade : MonoBehaviour, IUI_Select
     {
         if (!CheckUpgrade(piece))
         {
+            //재화 부족
+            if (NotEnoughMessage_Anim != null && NotEnoughMessage_Local != null)
+            {
+                NotEnoughMessage_Local.StringReference.SetReference("Goods_Table", "Goods_NotEnough");
+                NotEnoughMessage_Anim.Play("Action", -1, 0f);
+            }
             return;
         }
         DataManager.Inst.CalculateGoods(GOODS_TPYE.HammerShards, -GlobalValue.Bless_Inflation * (int)(Stats.variable + 1));
