@@ -1,7 +1,3 @@
-using TGB.CoreSystem;
-using TGB.Weapons.Components;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "newProjectileAttackEventData", menuName = "Data/Item Data/ItemProjectileAttackEventSO Data")]
@@ -13,7 +9,7 @@ public class ItemProjectileEventSO : ItemEffectSO
     private void ProjectileShoot(Unit unit, Unit enemy)
     {
         if (itemEffectData.VFX != null)
-            unit.Core.CoreEffectManager.StartEffects(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCenterPos);
+            unit.Core.CoreEffectManager.StartEffectsPos(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCenterPos, itemEffectData.VFX.transform.localScale);
 
         unit.Core.CoreEffectManager.StartProjectileCheck(unit, ProjectileActionData);
     }

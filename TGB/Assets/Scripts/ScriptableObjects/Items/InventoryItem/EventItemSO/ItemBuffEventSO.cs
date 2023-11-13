@@ -1,9 +1,4 @@
-using TGB.CoreSystem;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Timeline;
-using Unity.VisualScripting;
 
 [CreateAssetMenu(fileName = "newItemEffectData", menuName = "Data/Item Data/ItemBuffEvent Data")]
 public class ItemBuffEventSO : ItemEffectSO
@@ -18,7 +13,7 @@ public class ItemBuffEventSO : ItemEffectSO
             if (Buff.BuffSystemAddBuff(unit, buffItem) != null)
             {
                 if (itemEffectData.VFX != null)
-                    unit.Core.CoreEffectManager.StartEffects(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCenterPos);
+                    unit.Core.CoreEffectManager.StartEffectsPos(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCenterPos, itemEffectData.VFX.transform.localScale);
             }            
         }
     }

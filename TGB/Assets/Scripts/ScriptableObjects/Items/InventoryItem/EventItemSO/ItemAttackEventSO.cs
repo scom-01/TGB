@@ -1,6 +1,3 @@
-using TGB.CoreSystem;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "newAttackEventData", menuName = "Data/Item Data/ItemAttackEventSO Data")]
@@ -20,7 +17,7 @@ public class ItemAttackEventSO : ItemEffectSO
         if(isSelf_harm)
         {
             if (itemEffectData.VFX != null)
-                unit.Core.CoreEffectManager.StartEffects(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCenterPos);
+                unit.Core.CoreEffectManager.StartEffectsPos(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCenterPos, itemEffectData.VFX.transform.localScale);
 
             if (isFixed)
             {
@@ -44,7 +41,7 @@ public class ItemAttackEventSO : ItemEffectSO
                 return;
 
             if (itemEffectData.VFX != null)
-                unit.Core.CoreEffectManager.StartEffects(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCenterPos);
+                unit.Core.CoreEffectManager.StartEffectsPos(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCenterPos, itemEffectData.VFX.transform.localScale);
 
 
             if (isFixed)
