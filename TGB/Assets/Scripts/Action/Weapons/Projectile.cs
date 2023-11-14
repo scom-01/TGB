@@ -119,7 +119,7 @@ namespace TGB
             if (unit != null)
             {
                 this.tag = unit.tag;
-                this.transform.position = unit.transform.position + Vector3.right * ProjectileData.Pos.x * FancingDirection + Vector3.up * ProjectileData.Pos.y;
+                this.transform.position = unit.Core.CoreCollisionSenses.GroundCenterPos + Vector3.right * ProjectileData.Pos.x * FancingDirection + Vector3.up * ProjectileData.Pos.y;
             }
             this.gameObject.layer = LayerMask.NameToLayer("Projectile");
             this.transform.rotation = Quaternion.Euler(ProjectileData.Rot);
@@ -172,20 +172,24 @@ namespace TGB
                     )                 
                 {
                     if (
-                        ((unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - unit.Core.CoreCollisionSenses.GroundCenterPos).x < -0.001f && FancingDirection < 0) ||
-                        ((unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - unit.Core.CoreCollisionSenses.GroundCenterPos).x > 0.001f && FancingDirection > 0)
+                        ((unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - this.transform.position).x < -0.001f && FancingDirection < 0) ||
+                        ((unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - this.transform.position).x > 0.001f && FancingDirection > 0)
                         )
                     {
                         Vector3 toTargetNormal = (unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - unit.Core.CoreCollisionSenses.GroundCenterPos);
                         this.transform.rotation = Quaternion.FromToRotation(ProjectileData.Rot, toTargetNormal);
                         RB2D.velocity = new Vector2(toTargetNormal.x, toTargetNormal.y).normalized * ProjectileData.Speed;
-                    }                    
+                    }       
+                    else
+                    {
+                        RB2D.velocity = new Vector2(ProjectileData.Rot.x, ProjectileData.Rot.y).normalized * ProjectileData.Speed;
+                    }
                 }
                 else if(
-                    ProjectileData.homingType == HomingType.isToTarget_Direct && unit.TargetUnit != null
+                    ProjectileData.homingType == HomingType.isToTarget && unit.TargetUnit != null
                     )
                 {
-                    Vector3 toTargetNormal = (unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - unit.Core.CoreCollisionSenses.GroundCenterPos);
+                    Vector3 toTargetNormal = (unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - this.transform.position);
                     this.transform.rotation = Quaternion.FromToRotation(ProjectileData.Rot, toTargetNormal);
                     RB2D.velocity = new Vector2(toTargetNormal.x, toTargetNormal.y).normalized * ProjectileData.Speed;
                 }
