@@ -5,12 +5,12 @@ public class ProjectilePooling : ObjectPooling
 {
     public ProjectileData m_ProjectileData;
 
-    public override GameObject CreateObject(Vector3 size)
+    public override GameObject CreateObject(Vector3 size, bool active = false)
     {
         Projectile obj = Instantiate(Object, transform).GetComponent<Projectile>();
         var projectile_Data = m_ProjectileData;
         obj.Init(projectile_Data);
-        obj.gameObject.SetActive(false);
+        obj.gameObject.SetActive(active);
         return obj.gameObject;
     }
 

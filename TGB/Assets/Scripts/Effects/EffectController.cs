@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 [DisallowMultipleComponent]
@@ -55,7 +56,7 @@ public class EffectController : MonoBehaviour
         parent = this.GetComponentInParent<EffectPooling>();
         if (particle != null)
         {
-            foreach(var childparticles in particle.GetComponentsInChildren<ParticleSystemRenderer>())
+            foreach (var childparticles in particle.GetComponentsInChildren<ParticleSystemRenderer>())
             {
                 childparticles.sortingLayerName = "Effect";
             }
@@ -65,10 +66,15 @@ public class EffectController : MonoBehaviour
                 main.stopAction = ParticleSystemStopAction.Destroy;
             }
             else
-            {                
+            {
                 main.stopAction = ParticleSystemStopAction.Disable;
             }
         }
+        Init();
+    }
+
+    public void Init()
+    {        
         if (isLoopDurationTime > 0.0f && isLoopDurationTime != 999f)
         {
             Invoke("FinishAnim", isLoopDurationTime);

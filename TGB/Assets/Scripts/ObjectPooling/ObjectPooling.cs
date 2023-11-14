@@ -7,12 +7,11 @@ public class ObjectPooling : MonoBehaviour
     public GameObject Object;
     public int MaxPoolAmount;
     protected Queue<GameObject> ObjectQueue = new Queue<GameObject>();
-
-    public virtual GameObject CreateObject(Vector3 size)
+    public virtual GameObject CreateObject(Vector3 size, bool active = false)
     {
         var newobj = Instantiate(Object, transform);
         newobj.transform.localScale = new Vector3(size.x, size.y, size.z);
-        newobj.gameObject.SetActive(false);
+        newobj.gameObject.SetActive(active);
         return newobj;
     }
 

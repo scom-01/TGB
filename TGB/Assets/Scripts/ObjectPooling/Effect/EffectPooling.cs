@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class EffectPooling : ObjectPooling
 {
-    public override GameObject CreateObject(Vector3 size)
+    public override GameObject CreateObject(Vector3 size, bool active = false)
     {
         var newobj = Instantiate(Object, transform);
         newobj.GetComponent<EffectController>().size = size;
-        newobj.gameObject.SetActive(false);
+        newobj.gameObject.SetActive(active);
         return newobj;
     }
 
@@ -32,8 +32,10 @@ public class EffectPooling : ObjectPooling
         }
         else
         {
-            var newobj = CreateObject(_size);
+            var newobj = CreateObject(_size, true);
             newobj.transform.SetPositionAndRotation(pos, quaternion);
+            newobj.GetComponent<EffectController>().size = size;
+            newobj.GetComponent<EffectController>().isInit = true;
             newobj.gameObject.SetActive(true);
             return newobj;
         }
