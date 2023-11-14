@@ -5,9 +5,32 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
     private MiddleBoss_Stage_1 MiddleBoss_Stage_1;
 
     private List<bool> Phase = new List<bool>() { false, false, false };
+
+    public class AnimPattern
+    {
+        public AnimCommand command = new AnimCommand();
+        public bool isSet = false;
+        public AnimPattern(AnimCommand _command,bool _isSet)
+        {
+            command = _command;
+            isSet = _isSet;
+        }
+    }
+    private List<AnimPattern> PatternPair_1 = new List<AnimPattern>();
+    private List<AnimPattern> PatternPair_2 = new List<AnimPattern>();
+    private List<AnimPattern> PatternPair_3 = new List<AnimPattern>();
     public MiddleBoss_Stage_1_IdleState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
         MiddleBoss_Stage_1 = enemy as MiddleBoss_Stage_1;
+
+        MiddleBoss_Stage_1.AttackState.SetWeapon(unit.Inventory.Weapon);
+        unit.Inventory.Weapon.weaponGenerator.Init();
+        PatternPair_1.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[3].commands[0], false));
+        PatternPair_1.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[1].commands[0], false));
+
+        PatternPair_2.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[1].commands[1], false));
+
+        PatternPair_3.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[1].commands[1], false));
     }
 
     private void Teleport()
@@ -15,6 +38,30 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
         MiddleBoss_Stage_1.TeleportState.SetWeapon(unit.Inventory.Weapon);
         unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.AirCommandList[0].commands[0]);
         unit.FSM.ChangeState(MiddleBoss_Stage_1.TeleportState);
+    }
+
+    private void Phase_Pattern(List<AnimPattern> animPatterns)
+    {
+        if (animPatterns.Count == 0)
+            return;
+
+        for (int i = 0; i < animPatterns.Count; i++)
+        {
+            if (animPatterns[i].isSet)
+                continue;
+
+            unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(animPatterns[i].command);
+            unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
+            animPatterns[i].isSet = true;
+            return;
+        }
+
+        for (int i = 0; i < animPatterns.Count; i++)
+        {
+            animPatterns[i].isSet = false;
+        }
+
+        Phase_Pattern(animPatterns);
     }
 
     public override void Pattern()
@@ -31,20 +78,13 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
 
             if ((MiddleBoss_Stage_1.TargetUnit.transform.position - MiddleBoss_Stage_1.transform.position).magnitude <= MiddleBoss_Stage_1.enemyData.UnitDetectedDistance)
             {
-                //투사체
-                if (EnemyCollisionSenses.isUnitInFrontDetectedArea)
-                {
-                    unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[1].commands[0]);
-                    unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
-                }                
+                Phase_Pattern(PatternPair_1);
             }
             else
             {
-                //unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[2].commands[1]);
-                //unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
                 Teleport();
             }
-            
+            return;
         }
         //현재 체력 20% ~ 49%
         else if (unit.Core.CoreUnitStats.CurrentHealth >= unit.Core.CoreUnitStats.MaxHealth / 5f)
@@ -66,17 +106,7 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
             //인식 범위 내 
             if ((MiddleBoss_Stage_1.TargetUnit.transform.position - MiddleBoss_Stage_1.transform.position).magnitude <= MiddleBoss_Stage_1.enemyData.UnitDetectedDistance)
             {
-                //일직선 상
-                if (EnemyCollisionSenses.isUnitInFrontDetectedArea || EnemyCollisionSenses.isUnitInBackDetectedArea)
-                {
-                    unit.Core.CoreMovement.FlipToTarget();
-                    unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[1].commands[1]);
-                    unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
-                }
-                else
-                {
-                    unit.Core.CoreMovement.FlipToTarget();
-                }
+                Phase_Pattern(PatternPair_2);
             }
             //인식 범위 밖
             else
@@ -84,6 +114,7 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
                 unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[2].commands[1]);
                 unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
             }
+            return;
         }
         //현재 체력 0 ~ 19%
         else
@@ -104,20 +135,14 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
             CheckPattern();
             if ((MiddleBoss_Stage_1.TargetUnit.transform.position - MiddleBoss_Stage_1.transform.position).magnitude <= MiddleBoss_Stage_1.enemyData.UnitDetectedDistance)
             {
-                if (EnemyCollisionSenses.isUnitInFrontDetectedArea)
-                {
-                    if (unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[1].commands.Count >= 3)
-                    {
-                        unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[1].commands[2]);
-                        unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
-                    }
-                }
+                Phase_Pattern(PatternPair_3);
             }
             else
             {
                 unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[2].commands[1]);
                 unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
             }
+            return;
         }
     }
 
