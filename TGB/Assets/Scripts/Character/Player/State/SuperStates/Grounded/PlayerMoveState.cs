@@ -28,6 +28,12 @@ public class PlayerMoveState : PlayerGroundedState
     {
         base.LogicUpdate();
 
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+
         Movement.CheckIfShouldFlip(xInput);
 
         if (isExitingState) return;
@@ -38,10 +44,5 @@ public class PlayerMoveState : PlayerGroundedState
         {
             player.FSM.ChangeState(player.IdleState);
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
     }
 }

@@ -36,6 +36,7 @@ public class PlayerJumpState : PlayerAbilityState
         player.InputHandler.UseInput(ref player.InputHandler.JumpInput);
         Movement.SetVelocityY(UnitStats.DefaultJumpVelocity * (100f + UnitStats.JumpVelocity) / 100f);
         SoundEffect.AudioSpawn(Jump_Sfx);
+        Debug.Log("JumpSFX");
         if (amountOfJumpLeft < player.playerData.amountOfJumps)
         {
             player.Core.CoreEffectManager.StartEffectsPos(Jump_Effect, CollisionSenses.GroundCenterPos, Jump_Effect.transform.localScale);
@@ -47,8 +48,8 @@ public class PlayerJumpState : PlayerAbilityState
         }
 
         DecreaseAmountOfJumpsLeft();
+        Debug.Log("DecreaseJump");
         player.InAirState.SetIsJumping();
-
     }
 
     public bool CanJump() => (amountOfJumpLeft > 0);
@@ -61,6 +62,7 @@ public class PlayerJumpState : PlayerAbilityState
 
     public void DecreaseAmountOfJumpsLeft()
     {
+        Debug.Log($"amountOfJumpLeft = {amountOfJumpLeft}");
         amountOfJumpLeft--;
     }
 }

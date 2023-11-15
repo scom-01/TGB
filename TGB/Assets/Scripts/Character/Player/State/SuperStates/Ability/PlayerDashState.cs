@@ -102,6 +102,11 @@ public class PlayerDashState : PlayerAbilityState
             }
         }
     }
+    
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+    }
 
     private void Dash()
     {

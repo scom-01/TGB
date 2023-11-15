@@ -26,6 +26,10 @@ public class PlayerGroundedState : PlayerState
         isGrounded = CollisionSenses.CheckIfGrounded || CollisionSenses.CheckIfPlatform;
         isPlatform = CollisionSenses.CheckIfPlatform;
         isTouchingWall = CollisionSenses.CheckIfTouchingWall;
+        xInput = player.InputHandler.NormInputX;
+        yInput = player.InputHandler.NormInputY;
+        JumpInput = player.InputHandler.JumpInput;
+        dashInput = player.InputHandler.DashInput;
     }
 
     public override void Enter()
@@ -44,18 +48,11 @@ public class PlayerGroundedState : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
-        
     }
 
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        xInput = player.InputHandler.NormInputX;
-        yInput = player.InputHandler.NormInputY;
-        JumpInput = player.InputHandler.JumpInput;
-        dashInput = player.InputHandler.DashInput;
-
         //대쉬카운트 초기화
         if (player.DashState.CheckIfResetDash())
         {

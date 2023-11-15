@@ -35,6 +35,11 @@ public class PlayerInAirState : PlayerState
     {
         base.DoChecks();
 
+
+        xInput = player.InputHandler.NormInputX;
+        JumpInput = player.InputHandler.JumpInput;
+        JumpInputStop = player.InputHandler.JumpInputStop;
+
         oldIsTouchingWall = isTouchingWall;
         oldIsTouchingWallBack = isTouchingWallBack;
 
@@ -42,10 +47,19 @@ public class PlayerInAirState : PlayerState
         isTouchingWall = CollisionSenses.CheckIfTouchingWall;
         isTouchingWallBack = CollisionSenses.CheckIfTouchingWallBack;
 
+        dashInput = player.InputHandler.DashInput;
+        skill1Input = player.InputHandler.Skill1Input;
+        skill2Input = player.InputHandler.Skill2Input;
+
         if (!wallJumpCoyoteTime && !isTouchingWall && !isTouchingWallBack && (oldIsTouchingWall || oldIsTouchingWallBack))
         {
             StartWallJumpCoyoteTime();
         }
+
+        CheckCoyoteTime();
+        CheckWallJumpCoyoteTime();
+
+        CheckJumpMultiplier();
     }
 
     public override void Enter()
@@ -75,18 +89,6 @@ public class PlayerInAirState : PlayerState
     {
         base.PhysicsUpdate();
 
-        CheckCoyoteTime();
-        CheckWallJumpCoyoteTime();
-
-        xInput = player.InputHandler.NormInputX;
-        JumpInput = player.InputHandler.JumpInput;
-        JumpInputStop = player.InputHandler.JumpInputStop;
-
-        CheckJumpMultiplier();
-
-        dashInput = player.InputHandler.DashInput;
-        skill1Input = player.InputHandler.Skill1Input;
-        skill2Input = player.InputHandler.Skill2Input;
 
         if (player.InputHandler.ActionInputs[(int)CombatInputs.primary])
         {

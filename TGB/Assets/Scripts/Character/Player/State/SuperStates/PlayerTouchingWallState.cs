@@ -31,6 +31,9 @@ public class PlayerTouchingWallState : PlayerState
     {
         base.DoChecks();
 
+        xInput = player.InputHandler.NormInputX;
+        yInput = player.InputHandler.NormInputY;
+        jumpInput = player.InputHandler.JumpInput;
         isGrounded = CollisionSenses.CheckIfGrounded || CollisionSenses.CheckIfPlatform ;
         isTouchingWall = CollisionSenses.CheckIfTouchingWall;
     }
@@ -48,12 +51,13 @@ public class PlayerTouchingWallState : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+    }
 
-        xInput = player.InputHandler.NormInputX;
-        yInput = player.InputHandler.NormInputY;
-        jumpInput = player.InputHandler.JumpInput;
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
 
-        if(jumpInput)
+        if (jumpInput)
         {
             player.WallJumpState.DetermineWallJumpDirection(isTouchingWall);
             player.FSM.ChangeState(player.WallJumpState);
@@ -62,14 +66,9 @@ public class PlayerTouchingWallState : PlayerState
         {
             player.FSM.ChangeState(player.IdleState);
         }
-        else if(!isTouchingWall || (xInput != Movement.FancingDirection))
+        else if (!isTouchingWall || (xInput != Movement.FancingDirection))
         {
             player.FSM.ChangeState(player.InAirState);
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
     }
 }

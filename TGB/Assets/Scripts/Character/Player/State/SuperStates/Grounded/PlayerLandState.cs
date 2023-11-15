@@ -36,13 +36,17 @@ public class PlayerLandState : PlayerGroundedState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
+        if (isExitingState)
+        {
+            player.Core.CoreMovement.SetVelocityY(0);
+            return;
+        }
     }
 
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-
-        if (isExitingState) return;
 
         if (xInput != 0f)
         {
