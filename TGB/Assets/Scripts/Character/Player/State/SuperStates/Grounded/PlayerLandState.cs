@@ -21,6 +21,7 @@ public class PlayerLandState : PlayerGroundedState
     public override void Enter()
     {
         base.Enter();
+        player.Core.CoreMovement.SetVelocityY(0);
         //착지 시 커맨드 리스트 초기화
         player.Inventory.Weapon.ResetActionCounter();
         SoundEffect.AudioSpawn(Land_SFX);
