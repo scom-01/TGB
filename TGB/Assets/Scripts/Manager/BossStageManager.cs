@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BossStageManager : StageManager
 {
-    public List<Transform> TeleportPoint = new List<Transform>();
+    public Transform TeleportPoint;
+    [HideInInspector] public List<Transform> TeleportPoints = new List<Transform>();
     public List<GameObject> Pattern = new List<GameObject>();
     public override void Start()
     {
         base.Start();
+        TeleportPoints = TeleportPoint.GetComponentsInChildren<Transform>().ToList();
         GameManager.Inst.ChangeUI(UI_State.GamePlay);
     }
 

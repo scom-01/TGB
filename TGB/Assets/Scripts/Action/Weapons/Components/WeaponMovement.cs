@@ -118,12 +118,12 @@ namespace TGB.Weapons.Components
 
         private void HandleToPointTeleport()
         {
-            if ((GameManager.Inst?.StageManager as BossStageManager)?.TeleportPoint.Count > 0)
+            if ((GameManager.Inst?.StageManager as BossStageManager)?.TeleportPoints.Count > 0)
             {
                 CoreMovement.SetVelocityZero();
 
-                var temp = UnityEngine.Random.Range(0, (GameManager.Inst.StageManager as BossStageManager).TeleportPoint.Count - 1);
-                core.Unit.transform.position = (GameManager.Inst.StageManager as BossStageManager).TeleportPoint[temp].transform.position;
+                var temp = UnityEngine.Random.Range(0, (GameManager.Inst.StageManager as BossStageManager).TeleportPoints.Count - 1);
+                core.Unit.transform.position = (GameManager.Inst.StageManager as BossStageManager).TeleportPoints[temp].transform.position;
             }
 
         }
