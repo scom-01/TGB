@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 public class CameraShake : MonoBehaviour
 {
@@ -22,7 +19,7 @@ public class CameraShake : MonoBehaviour
     public Camera mainCamera;
 
     Vector3 cameraPos;
-
+    float startTime;
     private void Awake()
     {
         mainCamera = Camera.main;
@@ -34,20 +31,24 @@ public class CameraShake : MonoBehaviour
         {
             Shake(repeatRate, shakeRange, duration);
         }
-
     }
 
     public void Shake(float _repeatRate = 0.0f, float _shakeRange = 0.0f, float _duration = 0.1f)
     {
+        startTime = GameManager.Inst.PlayTime;
         cameraPos = mainCamera.transform.position;
         shakeRange = _shakeRange;
+        duration = _duration;
         InvokeRepeating("StartShake", 0f, _repeatRate);
         Invoke("StopShake", _duration);
     }
     void StartShake()
     {
-        float cameraPosX = Random.value + shakeRange * 2 - shakeRange;
-        float cameraPosY = Random.value + shakeRange * 2 - shakeRange;
+        //경과시간
+        float elapsed_time = (GameManager.Inst.PlayTime - startTime);
+        float _Range = Random.value * Mathf.Sin(Mathf.PI * (elapsed_time / duration))+ shakeRange;
+        float cameraPosX = _Range;
+        float cameraPosY = _Range;
         Vector3 cameraPos = mainCamera.transform.position;
         cameraPos.x += cameraPosX;
         cameraPos.y += cameraPosY;
