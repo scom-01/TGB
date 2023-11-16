@@ -48,18 +48,21 @@ namespace TGB.Weapons.Components
             var offset = new Vector3(currParticles[currentEffectSpawnIndex].EffectOffset.x * CoreMovement.FancingDirection, currParticles[currentEffectSpawnIndex].EffectOffset.y);
             var size = currParticles[currentEffectSpawnIndex].EffectScale;
 
-            if (currParticles[currentEffectSpawnIndex].isGround)
+            if(currParticles[currentEffectSpawnIndex].isTransformGlobal)
             {
-                if (currParticles[currentEffectSpawnIndex].isRandomPosRot)
-                {
-                    CoreEffectManager.StartEffectsPos(currParticles[currentEffectSpawnIndex].Object,
-                        CoreCollisionSenses.GroundCenterPos, size, currParticles[currentEffectSpawnIndex].isFollowing);
-                }
-                else
-                {
-                    CoreEffectManager.StartEffectsPos(currParticles[currentEffectSpawnIndex].Object,
-                        CoreCollisionSenses.GroundCenterPos + offset, size, currParticles[currentEffectSpawnIndex].isFollowing);
-                }
+                CoreEffectManager.StartEffectsPos(currParticles[currentEffectSpawnIndex].Object, Vector2.zero, size, false);
+                return;
+            }
+
+            if(currParticles[currentEffectSpawnIndex].isHeader)
+            {
+                CoreEffectManager.StartEffectsPos(currParticles[currentEffectSpawnIndex].Object,
+                    (currParticles[currentEffectSpawnIndex].isRandomPosRot ? CoreCollisionSenses.HeaderCenterPos : CoreCollisionSenses.HeaderCenterPos + offset), size, currParticles[currentEffectSpawnIndex].isFollowing);
+            }
+            else if (currParticles[currentEffectSpawnIndex].isGround)
+            {
+                CoreEffectManager.StartEffectsPos(currParticles[currentEffectSpawnIndex].Object,
+                    (currParticles[currentEffectSpawnIndex].isRandomPosRot ? CoreCollisionSenses.GroundCenterPos : CoreCollisionSenses.GroundCenterPos + offset) , size, currParticles[currentEffectSpawnIndex].isFollowing);
             }
             else
             {
