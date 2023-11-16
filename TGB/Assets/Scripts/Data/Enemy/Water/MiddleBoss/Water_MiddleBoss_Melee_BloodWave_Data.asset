@@ -53,17 +53,30 @@ MonoBehaviour:
         - name: Action 1
           <EffectParticles>k__BackingField:
           - isGround: 0
+            isHeader: 0
+            isTransformGlobal: 0
             isRandomPosRot: 0
             isRandomRange: 0
             EffectOffset: {x: -1, y: 0.6}
-            EffectScale: 0
+            EffectScale: {x: 0, y: 0, z: 0}
             isFollowing: 0
             Object: {fileID: 9156198701906943596, guid: a1266d24971a0994ba51bee910d4ecdc, type: 3}
           - isGround: 1
+            isHeader: 0
+            isTransformGlobal: 1
             isRandomPosRot: 0
             isRandomRange: 0
             EffectOffset: {x: -0.5, y: 0}
-            EffectScale: 0
+            EffectScale: {x: 0, y: 0, z: 0}
+            isFollowing: 0
+            Object: {fileID: 4005545946856723398, guid: f68058d8ff4afc446bb2a47242a592c2, type: 3}
+          - isGround: 1
+            isHeader: 0
+            isTransformGlobal: 0
+            isRandomPosRot: 0
+            isRandomRange: 0
+            EffectOffset: {x: -0.5, y: 0}
+            EffectScale: {x: 0, y: 0, z: 0}
             isFollowing: 0
             Object: {fileID: 5922925741854049604, guid: ddd047f2011b2d94b915cb07b7a808ce, type: 3}
     - rid: 2527592717927579774
@@ -87,7 +100,7 @@ MonoBehaviour:
         actionData:
         - name: Action 1
           <ShakeCamData>k__BackingField:
-          - Duration: 4
+          - Duration: 7
             Range: 0.01
             RepeatRate: 0.001
     - rid: 2527592717927579777
@@ -96,7 +109,10 @@ MonoBehaviour:
         name: SoundClipData
         actionData:
         - name: Action 1
-          audioClips: []
+          audioClips:
+          - {fileID: 8300000, guid: 49009571f5d6c294c8c56da55d46cb80, type: 3}
+          - {fileID: 8300000, guid: 5ae4d298ed547ba4c88587effb75d7e1, type: 3}
+          - {fileID: 8300000, guid: 12a19709fb9e0864cbff568d038a7b00, type: 3}
     - rid: 2527592717927579778
       type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:

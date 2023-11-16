@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SfxObject: {fileID: 0}
-  EffectObject: {fileID: 0}
+  EffectObject: {fileID: 8384031961501519240, guid: 0ee64d175c709ca4ebfbeca5d556bef6, type: 3}
   UnitData: {fileID: 11400000, guid: d9aca8bbbb1942a4a8bc32c35a822f29, type: 2}
   knockbackAngle: {x: 0, y: 0}
   IgnoreTag: BigEnemy
@@ -337,6 +337,8 @@ MonoBehaviour:
   isDestroy: 1
   parent: {fileID: 0}
   isLoopDurationTime: 0
+  isInit: 0
+  isDrawModeTiled: 0
 --- !u!1 &8932149444486934321
 GameObject:
   m_ObjectHideFlags: 0

@@ -110,23 +110,29 @@ public class StageManager : MonoBehaviour
     public Transform EndPoint;
 
     [Header("----Item----")]
+    [Tooltip("아이템 스폰 위치")]
     /// <summary>
     /// Item Spawn Point
     /// </summary>
     public Transform ItemSpawnPoint;
+    [Tooltip("스폰되는 아이템 수")]
     /// <summary>
     /// Item Spawn Amount
     /// </summary>
     public int ItemSpawnAmount;
+    [Tooltip("스폰되는 아이템들의 x좌표 간격")]
     /// <summary>
     /// Item Spawn Interval
     /// </summary>
     public float ItemSpawnInterval;
+    [Tooltip("가져갈 수 있는 아이템 수")]
     /// <summary>
     /// Number of items you can get
     /// 가져갈 수 있는 아이템 수
     /// </summary>
     public int ChoiceItemAmount;
+    [Tooltip("미해금 아이템 스폰 확률")]
+    public float UnlockItemSpawnPer;
     public ChoiceItemManager ChoiceItemManager
     {
         get
@@ -248,12 +254,12 @@ public class StageManager : MonoBehaviour
         if (ChoiceItemManager != null)
             ChoiceItemManager.ChoiceItemAmount = ChoiceItemAmount;
 
-        //아이템 스폰, 임의의 확률 30%
+        //아이템 스폰
         if (ItemSpawnPoint != null)
         {
             if (DataManager.Inst != null)
             {
-                DataManager.Inst.RandomUnLockItemSpawn(ItemSpawnPoint.position, 30f, ItemSpawnAmount, ItemSpawnInterval);
+                DataManager.Inst.RandomUnLockItemSpawn(ItemSpawnPoint.position, UnlockItemSpawnPer, ItemSpawnAmount, ItemSpawnInterval);
             }
         }
 

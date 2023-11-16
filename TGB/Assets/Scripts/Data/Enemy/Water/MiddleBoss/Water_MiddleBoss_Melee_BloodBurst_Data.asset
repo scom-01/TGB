@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 829d099c869488a49a5f24ab18f0f054, type: 3}
+  m_Name: Water_MiddleBoss_Melee_BloodBurst_Data
+  m_EditorClassIdentifier: 
+  <NumberOfActions>k__BackingField: 1
+  <CanJump>k__BackingField: 0
+  <CanAirAttack>k__BackingField: 0
+  <ComponentData>k__BackingField:
+  - rid: 2527592717927579771
+  - rid: 2527592717927579772
+  - rid: 2527592717927579773
+  - rid: 2527592717927579774
+  - rid: 2527592717927579775
+  - rid: 2527592717927579776
+  - rid: 2527592717927579777
+  - rid: 2527592717927579778
+  - rid: 2527592717927579779
+  references:
+    version: 2
+    RefIds:
+    - rid: 2527592717927579771
+      type: {class: ActionHitBoxData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ActionHitBoxData
+        actionData:
+        - name: Action 1
+          ActionHit: []
+        <DetectableLayers>k__BackingField:
+          serializedVersion: 2
+          m_Bits: 2048
+    - rid: 2527592717927579772
+      type: {class: DamageData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: DamageData
+        actionData:
+        - name: Action 1
+          <HitDamage>k__BackingField: []
+    - rid: 2527592717927579773
+      type: {class: EffectSpawnData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: EffectSpawnData
+        actionData:
+        - name: Action 1
+          <EffectParticles>k__BackingField:
+          - isGround: 0
+            isTransformGlobal: 1
+            isRandomPosRot: 0
+            isRandomRange: 0
+            EffectOffset: {x: 0, y: 0}
+            EffectScale: {x: 0, y: 0, z: 0}
+            isFollowing: 0
+            Object: {fileID: 7771240424577072703, guid: f33fe391893e4034898a4483e4d92652, type: 3}
+          - isGround: 1
+            isTransformGlobal: 0
+            isRandomPosRot: 0
+            isRandomRange: 0
+            EffectOffset: {x: -1, y: 0.6}
+            EffectScale: {x: 0, y: 0, z: 0}
+            isFollowing: 0
+            Object: {fileID: 7646353451382147118, guid: 221ae8956a800044db3e2fbd7267a0c7, type: 3}
+    - rid: 2527592717927579774
+      type: {class: KnockbackData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: KnockbackData
+        actionData:
+        - name: Action 1
+          <KnockbackAngle>k__BackingField: []
+    - rid: 2527592717927579775
+      type: {class: MovementData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: MovementData
+        actionData:
+        - name: Action 1
+          <movements>k__BackingField: []
+    - rid: 2527592717927579776
+      type: {class: ShakeCamData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ShakeCamData
+        actionData:
+        - name: Action 1
+          <ShakeCamData>k__BackingField:
+          - Duration: 4
+            Range: 0.01
+            RepeatRate: 0.001
+    - rid: 2527592717927579777
+      type: {class: SoundClipData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: SoundClipData
+        actionData:
+        - name: Action 1
+          audioClips: []
+    - rid: 2527592717927579778
+      type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: WeaponProjectileData
+        actionData:
+        - name: Action 1
+          ProjectileActionData: []
+    - rid: 2527592717927579779
+      type: {class: WeaponSpriteData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: WeaponSpriteData
+        actionData:
+        - name: Action 1
+          <WeaponSprites>k__BackingField: []
