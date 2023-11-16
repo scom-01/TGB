@@ -4,7 +4,9 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class EffectController : MonoBehaviour
 {
+    [Tooltip("이펙트 효과 후 삭제 처리")]
     public bool isDestroy = false;
+
     private ParticleSystem particle;
     [HideInInspector]
     public EffectPooling parent;
@@ -15,11 +17,13 @@ public class EffectController : MonoBehaviour
             return GetComponent<SpriteRenderer>();
         }
     }
-
     public Animator animator
     {
         get => this.GetComponent<Animator>();
     }
+
+    public bool isFixedRotY = false;
+
     [Tooltip("infinity == 999f")]
     [SerializeField] private float isLoopDurationTime;
     public Vector3 size
@@ -41,6 +45,14 @@ public class EffectController : MonoBehaviour
                 _size = value;
                 this.transform.localScale = _size;
             }
+
+            if(isFixedRotY)
+            {
+                Quaternion rot = this.transform.localRotation;
+                rot.y = 0;
+                this.transform.localRotation = rot;
+            }
+
         }
     }
     private Vector3 _size;
