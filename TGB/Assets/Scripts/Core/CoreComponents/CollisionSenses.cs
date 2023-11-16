@@ -27,6 +27,13 @@ namespace TGB.CoreSystem
 
         #region Check Transforms
 
+        public Vector3 HeaderCenterPos
+        {
+            get
+            {
+                return new Vector3(core.Unit.transform.position.x + CC2D.offset.x, core.Unit.transform.position.y + CC2D.offset.y + CC2D.size.y / 2, 0);
+            }
+        }
         public Vector3 GroundCenterPos
         {
             get
