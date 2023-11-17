@@ -27,13 +27,14 @@ public class Trap : TouchObject
         var damage = collision.GetComponent<Unit>().Core.CoreDamageReceiver;
         if (damage != null)
         {
-            damage.TrapDamage(UnitData.statsStats, UnitData.statsStats.DefaultPower);
+            if(damage.TrapDamage(UnitData.statsStats, UnitData.statsStats.DefaultPower))
+            {
+                if (EffectObject)
+                    collision.GetComponent<Unit>()?.Core.CoreEffectManager.StartEffectsPos(EffectObject, collision.GetComponent<Unit>().transform.position, EffectObject.transform.localScale);
+                if (SfxObject)
+                    collision.GetComponent<Unit>()?.Core.CoreSoundEffect.AudioSpawn(SfxObject);
+            }
             Debug.LogWarning(collision.name + "DamageReceiver" + "Trap");
         }
-
-        if (EffectObject)
-            collision.GetComponent<Unit>()?.Core.CoreEffectManager.StartEffectsPos(EffectObject, collision.GetComponent<Unit>().transform.position, EffectObject.transform.localScale);
-        if (SfxObject)
-            collision.GetComponent<Unit>()?.Core.CoreSoundEffect.AudioSpawn(SfxObject);
     }
 }

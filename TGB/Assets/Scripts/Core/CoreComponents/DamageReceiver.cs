@@ -191,12 +191,12 @@ namespace TGB.CoreSystem
         /// <param name="amount">데미지 량</param>
         /// <param name="isTrueHit">피격 후 무적판정 무시공격(true)</param>
         /// <param name="RepeatAmount">반복 횟수(isTrueHit = false 때는 반영되지 않음)</param>
-        public void FixedDamage(int amount, bool isTrueHit = false, int RepeatAmount = 1)
+        public bool FixedDamage(int amount, bool isTrueHit = false, int RepeatAmount = 1)
         {
             if (death.Comp.isDead)
             {
                 Debug.Log(core.Unit.name + "is Dead");
-                return;
+                return false;
             }
 
             if (isTrueHit)
@@ -208,34 +208,36 @@ namespace TGB.CoreSystem
                 {
                     var temp = RepeatAmount - 1;
                     FixedDamage(amount, isTrueHit, temp);
-                    return;
+                    return true;
                 }
                 stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
+                return true;
             }
             else
             {
                 if (isHit)
                 {
                     Debug.Log(core.Unit.name + " isHit = true");
-                    return;
+                    return false;
                 }
                 Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
                 var damage = stats.Comp.DecreaseHealth(amount);
                 HUD_DmgTxt(1.0f, damage, 50, DAMAGE_ATT.Fixed, false);
                 isHit = true;
                 stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
+                return true;
             }
         }
-        public void TrapDamage(StatsData AttackterCommonData, float amount)
+        public bool TrapDamage(StatsData AttackterCommonData, float amount)
         {
             if (death.Comp.isDead)
             {
                 Debug.Log(core.Unit.name + "is Dead");
-                return;
+                return false;
             }
             if (isTouch)
             {
-                return;
+                return false;
             }
 
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
@@ -244,6 +246,7 @@ namespace TGB.CoreSystem
             stats.Comp.TouchinvincibleTime = core.Unit.UnitData.touchDamageinvincibleTime;
 
             HUD_DmgTxt(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
+            return true;
         }
         public void HitEffect(GameObject EffectPrefab, float Range, int FancingDirection, Vector3 size)
         {
