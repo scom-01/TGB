@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 829d099c869488a49a5f24ab18f0f054, type: 3}
-  m_Name: Water_MiddleBoss_Melee_Weapon_Data_1
+  m_Name: Water_MiddleBoss_Melee_Teleport_Data
   m_EditorClassIdentifier: 
   <NumberOfActions>k__BackingField: 1
   <CanJump>k__BackingField: 0
@@ -79,7 +79,9 @@ MonoBehaviour:
         name: SoundClipData
         actionData:
         - name: Action 1
-          audioClips: []
+          audioClips:
+          - {fileID: 8300000, guid: 009c5e1ffd6fe46579f37e3c794e8583, type: 3}
+          - {fileID: 8300000, guid: eaf1a42b42df14ca98549c886399e8cb, type: 3}
     - rid: 2527592717927579787
       type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:

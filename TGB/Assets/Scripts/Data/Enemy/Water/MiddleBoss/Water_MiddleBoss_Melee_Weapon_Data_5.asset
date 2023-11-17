@@ -53,6 +53,8 @@ MonoBehaviour:
         - name: Action 1
           <EffectParticles>k__BackingField:
           - isGround: 1
+            isHeader: 0
+            isTransformGlobal: 0
             isRandomPosRot: 0
             isRandomRange: 0
             EffectOffset: {x: 0, y: 0}
@@ -60,6 +62,8 @@ MonoBehaviour:
             isFollowing: 0
             Object: {fileID: 5922925741854049604, guid: ddd047f2011b2d94b915cb07b7a808ce, type: 3}
           - isGround: 1
+            isHeader: 0
+            isTransformGlobal: 0
             isRandomPosRot: 0
             isRandomRange: 0
             EffectOffset: {x: -10, y: 6}
@@ -67,6 +71,8 @@ MonoBehaviour:
             isFollowing: 0
             Object: {fileID: 7555031585622908223, guid: dbd0a9584b295d04f9d828d2def2dcba, type: 3}
           - isGround: 1
+            isHeader: 0
+            isTransformGlobal: 0
             isRandomPosRot: 0
             isRandomRange: 0
             EffectOffset: {x: -5, y: 8}
@@ -74,6 +80,8 @@ MonoBehaviour:
             isFollowing: 0
             Object: {fileID: 7555031585622908223, guid: dbd0a9584b295d04f9d828d2def2dcba, type: 3}
           - isGround: 1
+            isHeader: 0
+            isTransformGlobal: 0
             isRandomPosRot: 0
             isRandomRange: 0
             EffectOffset: {x: 0, y: 10}
@@ -81,6 +89,8 @@ MonoBehaviour:
             isFollowing: 0
             Object: {fileID: 7555031585622908223, guid: dbd0a9584b295d04f9d828d2def2dcba, type: 3}
           - isGround: 1
+            isHeader: 0
+            isTransformGlobal: 0
             isRandomPosRot: 0
             isRandomRange: 0
             EffectOffset: {x: 5, y: 8}
@@ -88,6 +98,8 @@ MonoBehaviour:
             isFollowing: 0
             Object: {fileID: 7555031585622908223, guid: dbd0a9584b295d04f9d828d2def2dcba, type: 3}
           - isGround: 1
+            isHeader: 0
+            isTransformGlobal: 0
             isRandomPosRot: 0
             isRandomRange: 0
             EffectOffset: {x: 10, y: 6}
@@ -121,7 +133,12 @@ MonoBehaviour:
         name: SoundClipData
         actionData:
         - name: Action 1
-          audioClips: []
+          audioClips:
+          - {fileID: 8300000, guid: b9b37e79db0269841959e5abcaec83fd, type: 3}
+          - {fileID: 8300000, guid: b9b37e79db0269841959e5abcaec83fd, type: 3}
+          - {fileID: 8300000, guid: b9b37e79db0269841959e5abcaec83fd, type: 3}
+          - {fileID: 8300000, guid: b9b37e79db0269841959e5abcaec83fd, type: 3}
+          - {fileID: 8300000, guid: b9b37e79db0269841959e5abcaec83fd, type: 3}
     - rid: 2527592717927579832
       type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
