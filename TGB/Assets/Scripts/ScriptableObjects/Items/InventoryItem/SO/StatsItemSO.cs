@@ -4,6 +4,7 @@ using TGB.Weapons.Components;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
+using static UnityEngine.EventSystems.EventTrigger;
 
 [Serializable]
 public struct StatsData_item
@@ -79,34 +80,15 @@ public class StatsItemSO : ItemDataSO
     public List<EffectPrefab> InfinityEffectObjects = new List<EffectPrefab>();
     [Header("--ItemEffects--")]
     [field: SerializeField] public List<ItemEffectSO> ItemEffects = new List<ItemEffectSO>();
-    private List<ItemEffectSO> clone = new List<ItemEffectSO>();    
-    private List<ItemEffectSO> itemEffects
-    {
-        get
-        {
-            if (clone.Count == ItemEffects.Count)
-            {
-                return clone;
-            }
-            clone.Clear();
-            for (int i = 0; i < ItemEffects.Count; i++)
-            {
-                var str = ItemEffects[i].name;
-                clone.Add(Instantiate(ItemEffects[i]) as ItemEffectSO);
-                clone[clone.Count - 1].name = str;
-            }
-            return clone;
-        }
-    }
 
     #region ExeInit
-    public virtual bool ExeInit(Unit unit, ItemEffectSO _itemEffect, bool isInit)
-    {
-        return ExeInit(unit, null, _itemEffect, isInit);
-    }
     public virtual bool ExeInit(Unit unit, Unit enemy, ItemEffectSO _itemEffect, bool isInit)
     {
         return isInit = _itemEffect.ExecuteOnInit(this, unit, enemy, isInit);
+    }
+    public virtual bool ExeInit(Unit unit, ItemEffectSO _itemEffect, bool isInit)
+    {
+        return ExeInit(unit, null, _itemEffect, isInit);
     }
     #endregion
 
@@ -166,6 +148,7 @@ public class StatsItemSO : ItemDataSO
         return ExeUpdate(unit, null, itemEffect, startTime);
     }
     #endregion
+
     #region ExeDash
     /// <summary>
     /// 대쉬 시 효과 부여
@@ -181,6 +164,24 @@ public class StatsItemSO : ItemDataSO
     public virtual bool ExeDash(Unit unit, ItemEffectSO itemEffect, bool CanDash)
     {
         return ExeDash(unit, null, itemEffect, CanDash);
+    }
+    #endregion
+
+    #region ExeOnChangeScene
+    /// <summary>
+    /// 씬 변경 시 호출
+    /// </summary>
+    /// <param name="unit"></param>
+    /// <param name="itemEffect"></param>
+    /// <param name="startTime"></param>
+    /// <returns></returns>
+    public virtual void ExeOnChangeScene(Unit unit, Unit enemy, ItemEffectSO itemEffect)
+    {
+        itemEffect.ExcuteOnChangeScenen(this, unit, enemy);
+    }
+    public virtual void ExeOnChangeScene(Unit unit, ItemEffectSO itemEffect)
+    {
+        ExeOnChangeScene(unit, null, itemEffect);
     }
     #endregion
 }

@@ -243,6 +243,11 @@ public class StageManager : MonoBehaviour
         //씬 이름 애니메이션 Instantiate
         if (SceneNameFade != null)
             Instantiate(SceneNameFade);
+
+        if (player != null)
+        {
+            player.Inventory?.ItemExeOnChange(player);
+        }
     }
 
     public void OpenGate(bool isClear)

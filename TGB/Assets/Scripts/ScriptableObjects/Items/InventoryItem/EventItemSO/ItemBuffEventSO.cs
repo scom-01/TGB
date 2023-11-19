@@ -8,14 +8,14 @@ public class ItemBuffEventSO : ItemEffectSO
 
     private void BuffEvent(Unit unit)
     {
-        if (buffItem != null)
-        {
-            if (Buff.BuffSystemAddBuff(unit, buffItem) != null)
-            {
-                if (itemEffectData.VFX != null)
-                    unit.Core.CoreEffectManager.StartEffectsPos(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCenterPos, itemEffectData.VFX.transform.localScale);
-            }            
-        }
+        if (buffItem == null)
+            return;
+
+        if (Buff.BuffSystemAddBuff(unit, buffItem) == null)
+            return;
+
+        if (itemEffectData.VFX != null)
+            unit.Core.CoreEffectManager.StartEffectsPos(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCenterPos, itemEffectData.VFX.transform.localScale);
     }
 
     public override int ExecuteOnAction(StatsItemSO parentItem, Unit unit, Unit enemy, int attackCount)
@@ -26,18 +26,19 @@ public class ItemBuffEventSO : ItemEffectSO
         attackCount++;
         Debug.Log("ExcuteEffect Attack!");
 
-        if (attackCount >= itemEffectData.MaxCount)
+        if (attackCount < itemEffectData.MaxCount)
+            return attackCount;
+        
+        if (enemy != null)
         {
-            if (enemy != null)
-            {
-                BuffEvent(enemy);
-            }
-            else
-            {
-                BuffEvent(unit);
-            }
-            attackCount = 0;
+            BuffEvent(enemy);
         }
+        else
+        {
+            BuffEvent(unit);
+        }
+
+        attackCount = 0;
         return attackCount;
     }
     public override int ExecuteOnHit(StatsItemSO parentItem, Unit unit, Unit enemy, int attackCount)
@@ -47,18 +48,18 @@ public class ItemBuffEventSO : ItemEffectSO
 
         attackCount++;
         Debug.Log("ExcuteEffect Attack!");
-        if (attackCount >= itemEffectData.MaxCount)
+        if (attackCount < itemEffectData.MaxCount)
+            return attackCount;
+        
+        if(enemy != null)
         {
-            if(enemy != null)
-            {
-                BuffEvent(enemy);
-            }
-            else
-            {
-                BuffEvent(unit);
-            }
-            attackCount = 0;
+            BuffEvent(enemy);
         }
+        else
+        {
+            BuffEvent(unit);
+        }
+        attackCount = 0;
         return attackCount;
     }
 
@@ -67,18 +68,18 @@ public class ItemBuffEventSO : ItemEffectSO
         if (Item_Type != ITEM_TPYE.OnUpdate || Item_Type == ITEM_TPYE.None)
             return startTime;
 
-        if (GameManager.Inst.PlayTime >= startTime + itemEffectData.CooldownTime) 
+        if (GameManager.Inst.PlayTime < startTime + itemEffectData.CooldownTime) 
+            return startTime;
+
+        if (enemy != null)
         {
-            if (enemy != null)
-            {
-                BuffEvent(enemy);
-            }
-            else
-            {
-                BuffEvent(unit);
-            }
-            startTime = GameManager.Inst.PlayTime;
+            BuffEvent(enemy);
         }
+        else
+        {
+            BuffEvent(unit);
+        }
+        startTime = GameManager.Inst.PlayTime;
         return startTime;
     }
 
@@ -121,5 +122,17 @@ public class ItemBuffEventSO : ItemEffectSO
         }
 
         return isDash;
+    }
+
+    public override void ExcuteOnChangeScenen(StatsItemSO parentItem, Unit unit, Unit enemy)
+    {
+        if (enemy != null)
+        {
+            BuffEvent(enemy);
+        }
+        else
+        {
+            BuffEvent(unit);
+        }
     }
 }
