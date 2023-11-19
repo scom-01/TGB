@@ -35,7 +35,7 @@ public class Shop_Items : InventoryItems, IUI_Select
         }
     }
     /// <summary>
-    /// 아이템 구매
+    /// 아이템 구매 UI Button Event에서 호출
     /// </summary>
     public void Buy()
     {
@@ -88,7 +88,7 @@ public class Shop_Items : InventoryItems, IUI_Select
     /// <summary>
     /// 상점아이템 리롤
     /// </summary>
-    /// <param name="idx">리롤할 상점 Idx</param>
+    /// <param name="idx">리롤할 상점 아이템 Idx</param>
     private bool ChangeItem(int idx)
     {
         if (GameManager.Inst?.StageManager?.player == null)
@@ -107,7 +107,16 @@ public class Shop_Items : InventoryItems, IUI_Select
             }
         }
 
-        if(list.Count == 0)
+        //필드 드랍아이템이 아닐 시 제외
+        for (int j = 0; j < list.Count; j++)
+        {
+            if (DataManager.Inst.All_ItemDB.ItemDBList[list[j]].isFieldSpawn == false)
+            {
+                list.RemoveAt(j);
+            }
+        }
+
+        if (list.Count == 0)
         {
             Items[idx].StatsItemData = null;
             return false;
@@ -145,6 +154,10 @@ public class Shop_Items : InventoryItems, IUI_Select
         return true;
     }
 
+
+    /// <summary>
+    /// UI Button으로 호출되는 함수
+    /// </summary>
     public void ReRoll()
     {
         //보유 재화 체크
