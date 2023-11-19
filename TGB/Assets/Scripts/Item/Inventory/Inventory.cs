@@ -99,6 +99,13 @@ public class Inventory : MonoBehaviour
     {
         ItemExeUpdate(Unit);
     }
+
+    #region 아이템 Event함수
+    /// <summary>
+    /// 아이템의 Init Event 호출
+    /// </summary>
+    /// <param name="unit"></param>
+    /// <returns></returns>
     public bool ItemOnInit(Unit unit)
     {
         for (int i = 0; i < Items.Count; i++)
@@ -118,29 +125,6 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
-    /// <summary>
-    /// 적중 시 효과
-    /// </summary>
-    /// <param name="unit">공격자</param>
-    /// <returns></returns>
-    public bool ItemOnHitExecute(Unit unit)
-    {
-        for (int i = 0; i < Items.Count; i++)
-        {
-            for (int j = 0; j < Items[i].item.ItemEffects.Count; j++)
-            {
-                if (Items[i].item.ItemEffects[j] == null)
-                    continue;
-
-                if (Items[i].OnHitCount.Count < j + 1)
-                {
-                    Items[i].OnHitCount.Add(0);
-                }
-                Items[i].OnHitCount[j] = Items[i].item.ExeOnHit(unit, Items[i].item.ItemEffects[j], Items[i].OnHitCount[j]);
-            }
-        }
-        return true;
-    }
     /// <summary>
     /// 적중 시 효과
     /// </summary>
@@ -189,6 +173,12 @@ public class Inventory : MonoBehaviour
         }
         return true;
     }
+
+    /// <summary>
+    /// 업데이트 시 호출
+    /// </summary>
+    /// <param name="unit"></param>
+    /// <returns></returns>
     public bool ItemExeUpdate(Unit unit)
     {
         for (int i = 0; i < Items.Count; i++)
@@ -207,6 +197,47 @@ public class Inventory : MonoBehaviour
         }
         return true;
     }
+
+    /// <summary>
+    /// 대쉬 시 호출
+    /// </summary>
+    /// <param name="unit"></param>
+    /// <param name="CanDash"></param>
+    public void ItemExeDash(Unit unit, bool CanDash)
+    {
+        for (int i = 0; i < Items.Count; i++)
+        {
+            if (Items[i].item == null)
+                continue;
+            for (int j = 0; j < Items[i].item.ItemEffects.Count; j++)
+            {
+                if (Items[i].item.ItemEffects[j] == null)
+                    continue;
+
+                Items[i].item.ExeDash(unit, Items[i].item.ItemEffects[j], CanDash);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 씬 변경 시 호출
+    /// </summary>
+    /// <param name="unit"></param>
+    public void ItemExeOnChange(Unit unit)
+    {
+        for (int i = 0; i < Items.Count; i++)
+        {
+            for (int j = 0; j < Items[i].item.ItemEffects.Count; j++)
+            {
+                if (Items[i].item.ItemEffects[j] == null)
+                    continue;
+
+                Items[i].item.ExeOnChangeScene(unit, Items[i].item.ItemEffects[j]);
+            }
+        }
+    }
+    #endregion
+
     public bool SetWeapon(WeaponData weaponObject)
     {
         if (this.weaponData.weaponCommandDataSO == weaponObject.weaponCommandDataSO)
@@ -247,37 +278,9 @@ public class Inventory : MonoBehaviour
         }
 
         //조합 아이템 조합 여부
-        if (itemObject.CompositeItems.Count > 0)
+        if(CheckCompositeItem(Object))
         {
-            for (int i = 0; i < itemObject.CompositeItems.Count; i++)
-            {
-                for (int j = 0; j < Items.Count; j++)
-                {
-                    if (itemObject.CompositeItems[i].MaterialItem == Items[j].item)
-                    {
-                        //재료 아이템 제거(인벤토리)
-                        if (unit.GetType() == typeof(Player))
-                            GameManager.Inst.SubUI.InventorySubUI.InventoryItems.RemoveItem(Items[j].item);
-                        Items.RemoveAt(j);
-
-                        //합성 VFX
-                        if (itemObject.CompositeItems[i].EditVFX != null)
-                            unit.Core.CoreEffectManager.StartEffects(itemObject.CompositeItems[i].EditVFX, (Object.GameObject()?.transform == null) ? this.transform.position : Object.GameObject().transform.position, Quaternion.identity, Vector3.one);
-
-                        //합성 SFX
-                        if (itemObject.CompositeItems[i].EditSFX != null)
-                            unit.Core.CoreSoundEffect.AudioSpawn(itemObject.CompositeItems[i].EditSFX);
-
-                        itemObject = itemObject.CompositeItems[i].ResultItem;
-                        if (Object.GameObject() != null)
-                        {
-                            Object.GameObject().GetComponent<SOB_Item>().Item = itemObject;
-                            Object.GameObject().GetComponent<SOB_Item>().Init();
-                        }
-                        return AddInventoryItem(itemObject);
-                    }
-                }
-            }
+            return true;
         }
 
         //인벤토리 초과
@@ -292,7 +295,7 @@ public class Inventory : MonoBehaviour
 
         //VFX
         if (itemObject.InitEffectData.AcquiredEffectPrefab != null)
-            unit.Core.CoreEffectManager.StartEffects(itemObject.InitEffectData.AcquiredEffectPrefab, (Object.GameObject()?.transform == null) ? this.transform.position : Object.GameObject().transform.position, Quaternion.identity,Vector3.one);
+            unit.Core.CoreEffectManager.StartEffects(itemObject.InitEffectData.AcquiredEffectPrefab, (Object.GameObject()?.transform == null) ? this.transform.position : Object.GameObject().transform.position, Quaternion.identity, Vector3.one);
 
         //InfinityVFX
         if (itemObject.InfinityEffectObjects.Count > 0)
@@ -336,6 +339,9 @@ public class Inventory : MonoBehaviour
 
         ItemCount++;
         unit.Core.CoreUnitStats.AddStat(itemObject.StatsData);
+
+        ItemOnInit(unit);
+
         Debug.Log($"Change UnitStats {Unit.Core.CoreUnitStats.CalculStatsData}");
         return true;
     }
@@ -386,32 +392,58 @@ public class Inventory : MonoBehaviour
         }
         return true;
     }
-    public bool RemoveInventoryItem(ItemSet itemData)
+
+    /// <summary>
+    /// 조합 아이템 여부
+    /// true 시 AddInventoryItem(itemObject)을 재호출 해야함
+    /// </summary>
+    /// <param name="Object"></param>
+    /// <returns></returns>
+    private bool CheckCompositeItem(UnityEngine.Object Object)
     {
-        if (itemData.item == null)
+        StatsItemSO itemObject = new StatsItemSO();
+        if (Object.GetType() == typeof(GameObject))
         {
-            Debug.Log("Find not InventoryItem");
+            itemObject = Object.GameObject().GetComponent<SOB_Item>().Item;
+        }
+        else if (Object.GetType() == typeof(StatsItemSO))
+        {
+            itemObject = (StatsItemSO)Object;
+        }
+
+        //조합 아이템 조합 여부
+        if (itemObject.CompositeItems.Count == 0)
             return false;
-        }
 
-        if (Items.Contains(itemData))
+        for (int i = 0; i < itemObject.CompositeItems.Count; i++)
         {
-            Debug.Log($"Remove Item {itemData.item.name}");
-            unit.Core.CoreUnitStats.AddStat(itemData.item.StatsData * -1f);
+            for (int j = 0; j < Items.Count; j++)
+            {
+                if (itemObject.CompositeItems[i].MaterialItem != Items[j].item)
+                    continue;
+                //재료 아이템 제거(인벤토리)
+                if (unit.GetType() == typeof(Player))
+                    GameManager.Inst.SubUI.InventorySubUI.InventoryItems.RemoveItem(Items[j].item);
+                Items.RemoveAt(j);
 
-            Items.Remove(itemData);
+                //합성 VFX
+                if (itemObject.CompositeItems[i].EditVFX != null)
+                    unit.Core.CoreEffectManager.StartEffects(itemObject.CompositeItems[i].EditVFX, (Object.GameObject()?.transform == null) ? this.transform.position : Object.GameObject().transform.position, Quaternion.identity, Vector3.one);
 
-            if (Unit.GetType() == typeof(Player))
-                GameManager.Inst.SubUI.InventorySubUI.InventoryItems.RemoveItem(itemData.item);
+                //합성 SFX
+                if (itemObject.CompositeItems[i].EditSFX != null)
+                    unit.Core.CoreSoundEffect.AudioSpawn(itemObject.CompositeItems[i].EditSFX);
 
-            //spawnItem
-            GameManager.Inst.StageManager.SPM.SpawnItem(GameManager.Inst.StageManager.IM.InventoryItem, Unit.transform.position, GameManager.Inst.StageManager.IM.transform, itemData.item);
+                itemObject = itemObject.CompositeItems[i].ResultItem;
+                if (Object.GameObject() != null)
+                {
+                    Object.GameObject().GetComponent<SOB_Item>().Item = itemObject;
+                    Object.GameObject().GetComponent<SOB_Item>().Init();
+                }
+                return AddInventoryItem(itemObject);
+            }
 
         }
-        else
-        {
-            Debug.Log($"Not Contians {itemData.item.name}, fail remove");
-        }
-        return true;
+        return false;
     }
 }

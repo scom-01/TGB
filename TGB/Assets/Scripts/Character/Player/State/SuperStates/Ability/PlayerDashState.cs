@@ -110,19 +110,7 @@ public class PlayerDashState : PlayerAbilityState
 
     private void Dash()
     {
-        if (player.Inventory.Items.Count >= 0)
-        {
-            for (int i = 0; i < player.Inventory.Items.Count; i++)
-            {
-                for (int j = 0; j < player.Inventory.Items[i].item.ItemEffects.Count; j++)
-                {
-                    if (player.Inventory.Items[i].item.ItemEffects[j] == null)
-                        continue;
-
-                    player.Inventory.Items[i].item.ExeDash(unit, player.Inventory.Items[i].item.ItemEffects[j], CanDash);
-                }
-            }
-        }
+        player.Inventory.ItemExeDash(unit, CanDash);        
 
         Movement.CheckIfShouldFlip(player.InputHandler.NormInputX);
         SoundEffect.AudioSpawn(Dash_SFX);
