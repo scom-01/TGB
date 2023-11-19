@@ -48949,11 +48949,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UnitData_DirectoryPath: /Resources/json/
-  UnitInventoryData_FileName: 
-  UnitGoodsData_FileName: 
   SceneData_FileName: 
   DefaultData_FileName: 
-  lockItemList: 
+  LockItemList: 
 --- !u!114 &1143652532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48968,27 +48966,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IM: {fileID: 1594972038}
   SPM: {fileID: 387809413}
+  StageVolume: {fileID: 0}
   MasterManagerList:
   - {fileID: 1257247272}
+  SceneNameFade: {fileID: 1714188898339614809, guid: 1e0506c931c968e4e82b0fa52cce87cb, type: 3}
   isGotoNext: 1
   StageLevel: 1
   m_NextStageNumber: 8
   Start_UIState: 0
+  isStageClear: 0
+  EndingCutSceneDirector: {fileID: 0}
   Cam: {fileID: 0}
+  CVC: {fileID: 0}
   Cam_Distance: 8.5
   effectContainerTagName: EffectContainer
+  PlayerPrefab: {fileID: 840319699589423306, guid: 842ba7b90e3d58f4baa7c0b00def52ec, type: 3}
+  player: {fileID: 0}
   SpawnPoint: {fileID: 1917196998}
   EndPoint: {fileID: 489737334}
   ItemSpawnPoint: {fileID: 366740510}
   ItemSpawnAmount: 3
   ItemSpawnInterval: 3
   ChoiceItemAmount: 1
-  PlayerPrefab: {fileID: 840319699589423306, guid: 842ba7b90e3d58f4baa7c0b00def52ec, type: 3}
-  player: {fileID: 0}
-  SceneNameFade: {fileID: 1714188898339614809, guid: 1e0506c931c968e4e82b0fa52cce87cb, type: 3}
-  EndingCutSceneDirector: {fileID: 0}
-  isStageClear: 0
-  CVC: {fileID: 0}
+  UnlockItemSpawnPer: 30
+  BGM: {fileID: 0}
 --- !u!4 &1143652533
 Transform:
   m_ObjectHideFlags: 0
@@ -55625,7 +55626,7 @@ Tilemap:
       - {fileID: 1067532178, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: 1922972716, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: -1157763925, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15.000001
+      m_AnimationSpeed: 15
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 148, y: 22, z: 0}
@@ -55681,7 +55682,7 @@ Tilemap:
       - {fileID: 1436631263, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: 1828345550, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: 1105275054, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15
+      m_AnimationSpeed: 15.000001
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 148, y: 24, z: 0}
@@ -56115,7 +56116,7 @@ Tilemap:
       - {fileID: 2019125911, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: -1959271084, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: -398369282, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15.000001
+      m_AnimationSpeed: 15
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 149, y: 39, z: 0}
