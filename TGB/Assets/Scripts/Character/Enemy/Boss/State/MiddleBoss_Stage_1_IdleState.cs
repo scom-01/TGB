@@ -78,7 +78,7 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
                 return;
             }
 
-            if ((MiddleBoss_Stage_1.TargetUnit.transform.position - MiddleBoss_Stage_1.transform.position).magnitude <= MiddleBoss_Stage_1.enemyData.UnitDetectedDistance)
+            if ((MiddleBoss_Stage_1.TargetUnit.Core.CoreCollisionSenses.UnitCenterPos - MiddleBoss_Stage_1.Core.CoreCollisionSenses.UnitCenterPos).magnitude <= MiddleBoss_Stage_1.enemyData.UnitDetectedDistance)
             {
                 Phase_Pattern(PatternPair_1);
             }
@@ -111,7 +111,7 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
                 return;
             }            
             //인식 범위 내 
-            if ((MiddleBoss_Stage_1.TargetUnit.transform.position - MiddleBoss_Stage_1.transform.position).magnitude <= MiddleBoss_Stage_1.enemyData.UnitDetectedDistance)
+            if ((MiddleBoss_Stage_1.TargetUnit.Core.CoreCollisionSenses.UnitCenterPos - MiddleBoss_Stage_1.Core.CoreCollisionSenses.UnitCenterPos).magnitude <= MiddleBoss_Stage_1.enemyData.UnitDetectedDistance)
             {
                 Phase_Pattern(PatternPair_2);
             }
@@ -145,7 +145,7 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
                 PhasePowerless[1] = true;
                 return;
             }
-            if ((MiddleBoss_Stage_1.TargetUnit.transform.position - MiddleBoss_Stage_1.transform.position).magnitude <= MiddleBoss_Stage_1.enemyData.UnitDetectedDistance)
+            if ((MiddleBoss_Stage_1.TargetUnit.Core.CoreCollisionSenses.UnitCenterPos - MiddleBoss_Stage_1.Core.CoreCollisionSenses.UnitCenterPos).magnitude <= MiddleBoss_Stage_1.enemyData.UnitDetectedDistance)
             {
                 Phase_Pattern(PatternPair_3);
             }

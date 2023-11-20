@@ -99,8 +99,8 @@ namespace TGB.CoreSystem
             if (core.Unit.TargetUnit == null)
                 return;
 
-            if ((core.Unit.TargetUnit.transform.position.x - core.Unit.transform.position.x > 0) && (FancingDirection == -1) ||
-                    (core.Unit.TargetUnit.transform.position.x - core.Unit.transform.position.x < 0) && (FancingDirection == 1))
+            if ((core.Unit.TargetUnit.Core.CoreCollisionSenses.UnitCenterPos.x - core.CoreCollisionSenses.UnitCenterPos.x > 0) && (FancingDirection == -1) ||
+                    (core.Unit.TargetUnit.Core.CoreCollisionSenses.UnitCenterPos.x - core.CoreCollisionSenses.UnitCenterPos.x < 0) && (FancingDirection == 1))
             {
                 Flip();
             }

@@ -12,7 +12,7 @@ public class Water_Melee_Enemy_2 : Melee_Enemy_1
             return;
 
         //인식 범위 내 
-        if ((TargetUnit.transform.position - transform.position).magnitude <= enemyData.UnitAttackDistance)
+        if ((TargetUnit.Core.CoreCollisionSenses.UnitCenterPos - Core.CoreCollisionSenses.UnitCenterPos).magnitude <= enemyData.UnitAttackDistance)
         {
             if (Pattern_Idx.Count == 0)
                 return;
@@ -36,7 +36,7 @@ public class Water_Melee_Enemy_2 : Melee_Enemy_1
                         {
                             if (Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList.Count > i)
                             {
-                                if ((TargetUnit.transform.position - transform.position).magnitude > Pattern_Idx[i].Detected_Distance)
+                                if ((TargetUnit.Core.CoreCollisionSenses.UnitCenterPos - Core.CoreCollisionSenses.UnitCenterPos).magnitude > Pattern_Idx[i].Detected_Distance)
                                     continue;
 
                                 if (Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[i].commands[0] == null)
@@ -54,7 +54,7 @@ public class Water_Melee_Enemy_2 : Melee_Enemy_1
                         {
                             if (Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList.Count > i)
                             {
-                                if ((TargetUnit.transform.position - transform.position).magnitude > Pattern_Idx[i].Detected_Distance)
+                                if ((TargetUnit.Core.CoreCollisionSenses.UnitCenterPos - Core.CoreCollisionSenses.UnitCenterPos).magnitude > Pattern_Idx[i].Detected_Distance)
                                     continue;
 
                                 if (Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[i].commands[0] == null)

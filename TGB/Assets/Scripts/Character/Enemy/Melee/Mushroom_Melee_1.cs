@@ -12,7 +12,7 @@ public class Mushroom_Melee_1 : Melee_Enemy_1
             return;
 
         //인식 범위 내 
-        if ((TargetUnit.transform.position - transform.position).magnitude <= enemyData.UnitAttackDistance)
+        if ((TargetUnit.Core.CoreCollisionSenses.UnitCenterPos - Core.CoreCollisionSenses.UnitCenterPos).magnitude <= enemyData.UnitAttackDistance)
         {
             AttackState.SetWeapon(Inventory.Weapon);
             //일직선 상

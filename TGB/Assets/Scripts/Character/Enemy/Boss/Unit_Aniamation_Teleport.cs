@@ -24,7 +24,7 @@ public class Unit_Aniamation_Teleport : MonoBehaviour
         if (TargetUnit == null)
             return;
 
-        unit.transform.position = TargetUnit.transform.position;
+        unit.transform.position = TargetUnit.Core.CoreCollisionSenses.UnitCenterPos;
         Debug.Log($"{unit.name} to {TargetUnit.name} Teleport");
     }
 }

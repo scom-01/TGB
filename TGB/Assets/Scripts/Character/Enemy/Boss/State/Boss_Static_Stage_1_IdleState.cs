@@ -11,7 +11,7 @@ public class Boss_Static_Stage_1_IdleState : EnemyIdleState
     }
     public override void Pattern()
     {
-        if ((boss_Static_Stage_1.TargetUnit.transform.position - boss_Static_Stage_1.transform.position).magnitude < boss_Static_Stage_1.enemyData.UnitDetectedDistance)
+        if ((boss_Static_Stage_1.TargetUnit.Core.CoreCollisionSenses.UnitCenterPos - boss_Static_Stage_1.Core.CoreCollisionSenses.UnitCenterPos).magnitude < boss_Static_Stage_1.enemyData.UnitDetectedDistance)
         {
             Attack();
         }

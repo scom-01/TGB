@@ -1,4 +1,5 @@
 using System;
+using TGB.CoreSystem;
 using UnityEngine;
 
 namespace TGB.Weapons.Components
@@ -106,13 +107,13 @@ namespace TGB.Weapons.Components
             CoreMovement.SetVelocityZero();
 
             //타겟 유닛의 뒤로 이동
-            if( core.Unit.TargetUnit.transform.position.x > core.Unit.transform.position.x)
+            if( core.Unit.TargetUnit.Core.CoreCollisionSenses.UnitCenterPos.x > core.CoreCollisionSenses.UnitCenterPos.x)
             {
-                core.Unit.transform.position = core.Unit.TargetUnit.transform.position + new Vector3(2, 0);
+                core.Unit.transform.position = core.Unit.TargetUnit.Core.CoreCollisionSenses.UnitCenterPos + new Vector3(2, 0);
             }
             else
             {
-                core.Unit.transform.position = core.Unit.TargetUnit.transform.position + new Vector3(-2, 0);
+                core.Unit.transform.position = core.Unit.TargetUnit.Core.CoreCollisionSenses.UnitCenterPos + new Vector3(-2, 0);
             }            
         }
 
@@ -140,14 +141,14 @@ namespace TGB.Weapons.Components
                 RushDurationTime = 0.5f;
                 timer = RushDurationTime;
             }
-            RushStartPoint = core.Unit.transform.position;
-            if (core.Unit.TargetUnit.transform.position.x >= core.Unit.transform.position.x)
+            RushStartPoint = core.CoreCollisionSenses.UnitCenterPos;
+            if (core.Unit.TargetUnit.Core.CoreCollisionSenses.UnitCenterPos.x >= core.CoreCollisionSenses.UnitCenterPos.x)
             {
-                RushPoint = core.Unit.TargetUnit.transform.position + new Vector3(1.25f, 0, 0);
+                RushPoint = core.Unit.TargetUnit.Core.CoreCollisionSenses.UnitCenterPos + new Vector3(1.25f, 0, 0);
             }
             else
             {
-                RushPoint = core.Unit.TargetUnit.transform.position + new Vector3(-1.25f, 0, 0);
+                RushPoint = core.Unit.TargetUnit.Core.CoreCollisionSenses.UnitCenterPos + new Vector3(-1.25f, 0, 0);
             }
             FixedGravityOn();
             currentMovementIndex++;
