@@ -82,7 +82,33 @@ MonoBehaviour:
     variable: 0
     value: 20
     ShowPercent: 1
-  Health: 0
+  - type: 12
+    StatsLocalizeString:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    variable: 0
+    value: 5
+    ShowPercent: 0
+  - type: 12
+    StatsLocalizeString:
+      m_TableReference:
+        m_TableCollectionName: GUID:0d4742437ec6ec541bf0850b60cb729a
+      m_TableEntryReference:
+        m_KeyId: 55752153883893760
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    variable: 0
+    value: 5
+    ShowPercent: 0
+  Health: 5
   buffItems: []
   InitEffectData:
     <AcquiredEffectPrefab>k__BackingField: {fileID: 0}
