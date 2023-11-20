@@ -1,14 +1,8 @@
-using TGB.CoreSystem;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Localization;
 using UnityEngine.Localization.Components;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class CurrItem : MonoBehaviour, IUI_Select
 {
@@ -41,51 +35,52 @@ public class CurrItem : MonoBehaviour, IUI_Select
         if (go == null)
             return;
 
-        if (go.GetComponent<InventoryItem>() != null)
+        if (go.GetComponent<InventoryItem>() == null)
+            return;
+
+        m_itemSO = go.GetComponent<InventoryItem>().StatsItemData;
+
+        if (m_itemSO == null)
         {
-            m_itemSO = go.GetComponent<InventoryItem>().StatsItemData;
+            if (IconImg != null)
+                IconImg.enabled = false;
 
-            if (m_itemSO == null)
+            if (Local_Descript != null)
+                Local_Descript.StringReference.SetReference("Item_Table", "Empty");
+
+            if (Local_Name != null)
+                Local_Name.StringReference.SetReference("Item_Table", "Empty");
+
+            if (Text_Stat != null)
+                Text_Stat.text = "";
+        }
+        else
+        {
+            if (IconImg != null)
             {
-                if (IconImg != null)
-                    IconImg.enabled = false;
+                IconImg.enabled = true;
+                IconImg.sprite = m_itemSO.itemData.ItemSprite;
+            }
 
-                if (Local_Descript != null)
-                    Local_Descript.StringReference.SetReference("Item_Table", "Empty");
+            if (Local_Descript != null)
+                Local_Descript.StringReference.SetReference("Item_Table", m_itemSO.itemData.ItemDescriptionLocal.TableEntryReference);
 
-                if (Local_Name != null)
-                    Local_Name.StringReference.SetReference("Item_Table", "Empty");
+            if (Local_Name != null)
+                Local_Name.StringReference.SetReference("Item_Table", m_itemSO.itemData.ItemNameLocal.TableEntryReference);
 
-                if (Text_Stat != null)
-                    Text_Stat.text = "";
+            if (Text_Stat == null)
+                return;
+                        
+            if (m_itemSO.StatsItems.Count > 0)
+            {
+                Text_Stat.text = m_itemSO.StatsData_Descripts;
             }
             else
             {
-                if (IconImg != null)
-                {
-                    IconImg.enabled = true;
-                    IconImg.sprite = m_itemSO.itemData.ItemSprite;
-                }
-
-                if (Local_Descript != null)
-                    Local_Descript.StringReference.SetReference("Item_Table", m_itemSO.itemData.ItemDescriptionLocal.TableEntryReference);
-
-                if (Local_Name != null)
-                    Local_Name.StringReference.SetReference("Item_Table", m_itemSO.itemData.ItemNameLocal.TableEntryReference);
-
-                if (Text_Stat != null)
-                {
-                    if (m_itemSO.StatsItems.Count > 0)
-                    {
-                        Text_Stat.text = m_itemSO.StatsData_Descripts;
-                    }
-                    else
-                    {
-                        Text_Stat.text = "";
-                    }
-                }
-            }
+                Text_Stat.text = "";
+            }            
         }
+
     }
 
     private void Update()

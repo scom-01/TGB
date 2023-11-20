@@ -12,10 +12,10 @@ public class PlayerDashState : PlayerAbilityState
 
     private GameObject Dash_Effect;
     private AudioClip Dash_SFX;
-    
+
     public PlayerDashState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
-        if(Dash_Effect == null)
+        if (Dash_Effect == null)
         {
             Dash_Effect = Resources.Load<GameObject>("Prefabs/Effects/Dash_Smoke");
         }
@@ -38,7 +38,7 @@ public class PlayerDashState : PlayerAbilityState
         }
         base.Enter();
         Dash();
-        startTime = Time.time;        
+        startTime = Time.time;
     }
 
     public override void Exit()
@@ -52,57 +52,59 @@ public class PlayerDashState : PlayerAbilityState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (!isExitingState)
+
+        if (isExitingState)
+            return;
+
+        Movement.SetVelocityX(player.playerData.dashVelocity * Movement.FancingDirection);
+        Movement.SetVelocityY(0);
+
+        CheckIfShouldPlaceAfterImage();
+
+        if (player.InputHandler.ActionInputs[(int)CombatInputs.primary])
         {
-            Movement.SetVelocityX(player.playerData.dashVelocity * Movement.FancingDirection);
-            Movement.SetVelocityY(0);
-            
-            CheckIfShouldPlaceAfterImage();
-
-            if (player.InputHandler.ActionInputs[(int)CombatInputs.primary])
+            player.PrimaryAttackState.SetWeapon(player.Inventory.Weapon);
+            if (player.PrimaryAttackState.CheckCommand(isGrounded, ref player.Inventory.Weapon.CommandList))
             {
-                player.PrimaryAttackState.SetWeapon(player.Inventory.Weapon);
-                if (player.PrimaryAttackState.CheckCommand(isGrounded, ref player.Inventory.Weapon.CommandList))
-                {
-                    player.FSM.ChangeState(player.PrimaryAttackState);
-                }
-            }
-            else if (player.InputHandler.ActionInputs[(int)CombatInputs.secondary])
-            {
-                player.SecondaryAttackState.SetWeapon(player.Inventory.Weapon);
-                if (player.SecondaryAttackState.CheckCommand(isGrounded, ref player.Inventory.Weapon.CommandList))
-                {
-                    player.FSM.ChangeState(player.SecondaryAttackState);
-                }
-            }
-
-            //대쉬 지속시간 종료
-            if (Time.time >= startTime + player.playerData.dashDuration)
-            {
-                if (DashCount > 0)
-                {
-                    CanDash = true;
-                }
-                if (player.InputHandler.DashInput)
-                {            
-                    lastDashTime = Time.time;
-                    if(player.DashState.CheckIfCanDash())
-                    {
-                        Movement.CheckIfShouldFlip(player.InputHandler.NormInputX);                        
-                        player.FSM.ChangeState(player.DashState);                        
-                    }
-                }
-
-                Movement.SetVelocityZero();
-                if(Time.time >= startTime + player.playerData.dashDuration + player.playerData.dashFlightDuration)
-                {
-                    isAbilityDone = true;
-                    lastDashTime = Time.time;
-                }
+                player.FSM.ChangeState(player.PrimaryAttackState);
             }
         }
+        else if (player.InputHandler.ActionInputs[(int)CombatInputs.secondary])
+        {
+            player.SecondaryAttackState.SetWeapon(player.Inventory.Weapon);
+            if (player.SecondaryAttackState.CheckCommand(isGrounded, ref player.Inventory.Weapon.CommandList))
+            {
+                player.FSM.ChangeState(player.SecondaryAttackState);
+            }
+        }
+
+        //대쉬 지속시간 종료
+        if (Time.time >= startTime + player.playerData.dashDuration)
+        {
+            if (DashCount > 0)
+            {
+                CanDash = true;
+            }
+            if (player.InputHandler.DashInput)
+            {
+                lastDashTime = Time.time;
+                if (player.DashState.CheckIfCanDash())
+                {
+                    Movement.CheckIfShouldFlip(player.InputHandler.NormInputX);
+                    player.FSM.ChangeState(player.DashState);
+                }
+            }
+
+            Movement.SetVelocityZero();
+            if (Time.time >= startTime + player.playerData.dashDuration + player.playerData.dashFlightDuration)
+            {
+                isAbilityDone = true;
+                lastDashTime = Time.time;
+            }
+        }
+
     }
-    
+
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
@@ -110,7 +112,7 @@ public class PlayerDashState : PlayerAbilityState
 
     private void Dash()
     {
-        player.Inventory.ItemExeDash(unit, CanDash);        
+        player.Inventory.ItemExeDash(unit, CanDash);
 
         Movement.CheckIfShouldFlip(player.InputHandler.NormInputX);
         SoundEffect.AudioSpawn(Dash_SFX);
@@ -123,7 +125,7 @@ public class PlayerDashState : PlayerAbilityState
         player.InputHandler.UseInput(ref player.InputHandler.DashInput);
         if (Dash_Effect != null)
         {
-            EffectManager.StartEffectsPos(Dash_Effect, CollisionSenses.GroundCenterPos,Dash_Effect.transform.localScale);
+            EffectManager.StartEffectsPos(Dash_Effect, CollisionSenses.GroundCenterPos, Dash_Effect.transform.localScale);
         }
         Movement.SetVelocityY(0f);
         player.RB.gravityScale = 0f;
@@ -132,7 +134,7 @@ public class PlayerDashState : PlayerAbilityState
 
     private void CheckIfShouldPlaceAfterImage()
     {
-        if(Vector2.Distance(player.transform.position, lastAIPos) >= player.playerData.distBetweenAfterImages)
+        if (Vector2.Distance(player.transform.position, lastAIPos) >= player.playerData.distBetweenAfterImages)
         {
             PlaceAfterImage();
         }
@@ -150,7 +152,7 @@ public class PlayerDashState : PlayerAbilityState
     {
         return Time.time >= lastDashTime + player.playerData.dashResetCooldown;
     }
-    public void ResetCanDash() => CanDash = true;        
+    public void ResetCanDash() => CanDash = true;
 
     public void ResetDash(int count) => DashCount = count;
 
