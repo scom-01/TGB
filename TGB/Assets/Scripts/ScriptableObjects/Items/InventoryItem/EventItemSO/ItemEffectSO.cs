@@ -1,5 +1,5 @@
-using TGB.Manager;
 using System;
+using TGB.Weapons.Components;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "newItemEffectData", menuName = "Data/Item Data/ItemEffect Data")]
@@ -7,6 +7,40 @@ public abstract class ItemEffectSO : ScriptableObject, IExecuteEffect, IExecuteC
 {
     public ITEM_TPYE Item_Type;
     public ItemEffectData itemEffectData;
+
+    /// <summary>
+    /// Effect 효과 시 생성될 VFX
+    /// </summary>
+    /// <param name="unit"></param>
+    /// <returns></returns>
+    public GameObject SpawnVFX(Unit unit)
+    {
+        if (unit == null)
+            return null;
+
+        if (itemEffectData.VFX.Object == null)
+            return null;
+        GameObject go = itemEffectData.VFX.SpawnObject(unit);
+        return go;
+    }
+
+    /// <summary>
+    /// Effect 효과 시 생성될 SFX
+    /// </summary>
+    /// <param name="unit"></param>
+    /// <returns></returns>
+    public bool SpawnSFX(Unit unit)
+    {
+        if (unit == null)
+            return false;
+
+        if (itemEffectData.SFX == null)
+            return false;
+
+        unit.Core.CoreSoundEffect.AudioSpawn(itemEffectData.SFX);
+
+        return true;
+    }
 
     /// <summary>
     /// 아이템 획득 시 호출
@@ -117,5 +151,9 @@ public struct ItemEffectData
     /// <summary>
     /// Effect VFX
     /// </summary>
-    public GameObject VFX;
+    public EffectPrefab VFX;
+    /// <summary>
+    /// Effect SFX
+    /// </summary>
+    public AudioClip SFX;
 }

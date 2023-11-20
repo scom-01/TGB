@@ -14,8 +14,8 @@ public class ItemBuffEventSO : ItemEffectSO
         if (Buff.BuffSystemAddBuff(unit, buffItem) == null)
             return;
 
-        if (itemEffectData.VFX != null)
-            unit.Core.CoreEffectManager.StartEffectsPos(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCenterPos, itemEffectData.VFX.transform.localScale);
+        SpawnVFX(unit);
+        SpawnSFX(unit);
     }
 
     public override int ExecuteOnAction(StatsItemSO parentItem, Unit unit, Unit enemy, int attackCount)

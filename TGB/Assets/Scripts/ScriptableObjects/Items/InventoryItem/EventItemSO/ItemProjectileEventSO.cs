@@ -8,8 +8,8 @@ public class ItemProjectileEventSO : ItemEffectSO
 
     private void ProjectileShoot(Unit unit, Unit enemy)
     {
-        if (itemEffectData.VFX != null)
-            unit.Core.CoreEffectManager.StartEffectsPos(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCenterPos, itemEffectData.VFX.transform.localScale);
+        SpawnVFX(unit);
+        SpawnSFX(unit);
 
         unit.Core.CoreEffectManager.StartProjectileCheck(unit, ProjectileActionData);
     }

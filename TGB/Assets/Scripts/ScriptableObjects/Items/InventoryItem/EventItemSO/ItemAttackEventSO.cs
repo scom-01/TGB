@@ -16,8 +16,8 @@ public class ItemAttackEventSO : ItemEffectSO
         //스스로에게 피해
         if(isSelf_harm)
         {
-            if (itemEffectData.VFX != null)
-                unit.Core.CoreEffectManager.StartEffectsPos(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCenterPos, itemEffectData.VFX.transform.localScale);
+            SpawnVFX(unit);
+            SpawnSFX(unit);
 
             if (isFixed)
             {
@@ -40,9 +40,8 @@ public class ItemAttackEventSO : ItemEffectSO
             if (enemy == null)
                 return;
 
-            if (itemEffectData.VFX != null)
-                unit.Core.CoreEffectManager.StartEffectsPos(itemEffectData.VFX, unit.Core.CoreCollisionSenses.GroundCenterPos, itemEffectData.VFX.transform.localScale);
-
+            SpawnVFX(enemy);
+            SpawnSFX(enemy);
 
             if (isFixed)
             {

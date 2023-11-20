@@ -53,6 +53,44 @@ namespace TGB.Weapons.Components
         /// <summary>
         /// Spawn Object
         /// </summary>
-        public GameObject Object;          
+        public GameObject Object;
+
+        public GameObject SpawnObject(Unit unit)
+        {
+            if (Object == null)
+                return null;
+
+            var offset = new Vector3(EffectOffset.x * unit.Core.CoreMovement.FancingDirection, EffectOffset.y);
+            var size = EffectScale;
+
+            if (isTransformGlobal)
+            {                
+                return unit.Core.CoreEffectManager.StartEffectsPos(Object, Vector2.zero, size, false);
+            }
+
+            if (isHeader)
+            {
+                return unit.Core.CoreEffectManager.StartEffectsPos(Object,
+                    (isRandomPosRot ? unit.Core.CoreCollisionSenses.HeaderCenterPos : unit.Core.CoreCollisionSenses.HeaderCenterPos + offset), size, isFollowing);
+            }
+            else if (isGround)
+            {
+                return unit.Core.CoreEffectManager.StartEffectsPos(Object,
+                    (isRandomPosRot ? unit.Core.CoreCollisionSenses.GroundCenterPos : unit.Core.CoreCollisionSenses.GroundCenterPos + offset), size, isFollowing);
+            }
+            else
+            {
+                if (isRandomPosRot)
+                {
+                    return unit.Core.CoreEffectManager.StartEffectsWithRandomPosRot(
+                            Object,
+                            isRandomRange, size, isFollowing);
+                }
+                else
+                {
+                    return unit.Core.CoreEffectManager.StartEffectsPos(Object, unit.Core.CoreCollisionSenses.UnitCenterPos + offset, size, isFollowing);
+                }
+            }
+        }
     }
 }
