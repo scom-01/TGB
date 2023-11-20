@@ -27,6 +27,20 @@ namespace TGB.CoreSystem
 
         #region Check Transforms
 
+        /// <summary>
+        /// 유닛 정가운데 위치
+        /// </summary>
+        public Vector3 UnitCenterPos
+        {
+            get
+            {
+                return new Vector3(core.Unit.transform.position.x + CC2D.offset.x, core.Unit.transform.position.y + CC2D.offset.y, 0);
+            }
+        }
+
+        /// <summary>
+        /// 머리높이의 가운데 위치
+        /// </summary>
         public Vector3 HeaderCenterPos
         {
             get
@@ -34,6 +48,10 @@ namespace TGB.CoreSystem
                 return new Vector3(core.Unit.transform.position.x + CC2D.offset.x, core.Unit.transform.position.y + CC2D.offset.y + CC2D.size.y / 2, 0);
             }
         }
+
+        /// <summary>
+        /// 바닥높이의 가운데 위치
+        /// </summary>
         public Vector3 GroundCenterPos
         {
             get
@@ -47,9 +65,7 @@ namespace TGB.CoreSystem
             get
             {
                 return new Vector3(core.Unit.transform.position.x + CC2D.offset.x, core.Unit.transform.position.y + CC2D.offset.y - (CC2D.size.y / 2) + 0.7f, 0);
-            }
-            //get => GenericNotImplementedError<Transform>.TryGet(wallCheck, core.transform.parent.name); 
-            //private set => wallCheck = value; 
+            } 
         }
 
         public float GroundCheckRadius { get => core.Unit.UnitData.groundCheckRadius; }

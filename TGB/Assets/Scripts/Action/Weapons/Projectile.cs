@@ -23,6 +23,7 @@ namespace TGB
         public AudioClip ImpactClip;
 
         private ProjectilePooling parent;
+        private GameObject Spawned_ProjectileObject;
 
         public int FancingDirection
         {
@@ -82,7 +83,7 @@ namespace TGB
             if (unit != null)
             {
                 this.tag = unit.tag;
-                this.transform.position = unit.transform.position + Vector3.right * ProjectileData.Pos.x * FancingDirection + Vector3.up * ProjectileData.Pos.y;
+                this.transform.position = unit.Core.CoreCollisionSenses.UnitCenterPos + Vector3.right * ProjectileData.Pos.x * FancingDirection + Vector3.up * ProjectileData.Pos.y;
             }
             this.gameObject.layer = LayerMask.NameToLayer("Projectile");
             this.transform.rotation = Quaternion.Euler(ProjectileData.Rot);
@@ -92,16 +93,18 @@ namespace TGB
             CC2D.offset = ProjectileData.Offset;
             CC2D.enabled = false;
             RB2D.gravityScale = ProjectileData.GravityScale;
-            if (ProjectileData.EffectScale == Vector3.zero)
-                this.gameObject.transform.localScale = Vector3.one;
-            else
-                this.gameObject.transform.localScale = ProjectileData.EffectScale;
 
             //set ProjectilPrefab
-            var _prefab = Instantiate(ProjectileObject, this.transform);
-            var main = _prefab.GetComponent<ParticleSystem>().main;
+            Spawned_ProjectileObject = Instantiate(ProjectileObject, this.transform);
+
+            if (ProjectileData.EffectScale == Vector3.zero)
+                Spawned_ProjectileObject.gameObject.transform.localScale = Vector3.one;
+            else
+                Spawned_ProjectileObject.gameObject.transform.localScale = ProjectileData.EffectScale;
+
+            var main = Spawned_ProjectileObject.GetComponent<ParticleSystem>().main;
             main.stopAction = ParticleSystemStopAction.Disable;
-            foreach (var _renderer in _prefab.GetComponentsInChildren<ParticleSystemRenderer>())
+            foreach (var _renderer in Spawned_ProjectileObject.GetComponentsInChildren<ParticleSystemRenderer>())
             {
                 _renderer.sortingLayerName = "Effect";
             }
@@ -119,7 +122,7 @@ namespace TGB
             if (unit != null)
             {
                 this.tag = unit.tag;
-                this.transform.position = unit.Core.CoreCollisionSenses.GroundCenterPos + Vector3.right * ProjectileData.Pos.x * FancingDirection + Vector3.up * ProjectileData.Pos.y;
+                this.transform.position = unit.Core.CoreCollisionSenses.UnitCenterPos + Vector3.right * ProjectileData.Pos.x * FancingDirection + Vector3.up * ProjectileData.Pos.y;
             }
             this.gameObject.layer = LayerMask.NameToLayer("Projectile");
             this.transform.rotation = Quaternion.Euler(ProjectileData.Rot);
@@ -128,10 +131,14 @@ namespace TGB
             CC2D.offset = ProjectileData.Offset;
             CC2D.enabled = false;
             RB2D.gravityScale = ProjectileData.GravityScale;
-            if (ProjectileData.EffectScale == Vector3.zero)
-                this.gameObject.transform.localScale = Vector3.one;
-            else
-                this.gameObject.transform.localScale = ProjectileData.EffectScale;
+
+            if (Spawned_ProjectileObject != null)
+            {
+                if (ProjectileData.EffectScale == Vector3.zero)
+                    Spawned_ProjectileObject.gameObject.transform.localScale = Vector3.one;
+                else
+                    Spawned_ProjectileObject.gameObject.transform.localScale = ProjectileData.EffectScale;
+            }
         }
 
         public void Init(ProjectileData m_ProjectileData)
@@ -248,7 +255,7 @@ namespace TGB
             //Impact            
             if (unit != null)
             {
-                var impact = unit.Core.CoreEffectManager.StartEffectsPos(ImpactObject, this.transform.position, ImpactObject.transform.localScale);
+                var impact = unit.Core.CoreEffectManager.StartEffectsPos(ImpactObject, this.transform.position, ProjectileData.EffectScale);
                 foreach (var _renderer in impact.GetComponentsInChildren<ParticleSystemRenderer>())
                 {
                     _renderer.sortingLayerName = "Effect";
