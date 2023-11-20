@@ -241,7 +241,7 @@ public class Inventory : MonoBehaviour
     /// 씬 변경 시 호출
     /// </summary>
     /// <param name="unit"></param>
-    public void ItemExeOnChange(Unit unit)
+    public void ItemExeOnMoveMap(Unit unit)
     {
         for (int i = 0; i < Items.Count; i++)
         {
@@ -250,7 +250,7 @@ public class Inventory : MonoBehaviour
                 if (Items[i].item.ItemEffects[j] == null)
                     continue;
 
-                Items[i].item.ExeOnChangeScene(unit, Items[i].item.ItemEffects[j]);
+                Items[i].item.ExeMoveMap(unit, Items[i].item.ItemEffects[j]);
             }
         }
     }

@@ -7,13 +7,18 @@ using UnityEngine.Localization.Settings;
 using static UnityEngine.EventSystems.EventTrigger;
 
 [Serializable]
-public struct StatsData_item
+public struct Write_StatsData_item
 {
     public Stats_TYPE type;
     public LocalizedString StatsLocalizeString;
+    [Tooltip("부가 조건")]
     public float variable;
+    [Tooltip("아이템 효과의 값")]
     public float value;
+    [Tooltip("퍼센트 표기 여부")]
     public bool ShowPercent;
+    [Tooltip("부호 표기 여부(+,-)")]
+    public bool HideMark;
 }
 
 [Serializable]
@@ -38,7 +43,8 @@ public class StatsItemSO : ItemDataSO
     [Tooltip("아이템이 갖는 스탯")]
     public StatsData StatsData = new StatsData();
 
-    public List<StatsData_item> StatsItems = new List<StatsData_item>();
+    [Tooltip("표기되는 아이템 효과")]
+    public List<Write_StatsData_item> StatsItems = new List<Write_StatsData_item>();
     
     /// <summary>
     /// 아이템의 스탯 설명
@@ -53,7 +59,7 @@ public class StatsItemSO : ItemDataSO
                 temp += (LocalizationSettings.StringDatabase.GetTableEntry("Stats_Table", (StatsItems[i].StatsLocalizeString.TableEntryReference.KeyId == 0) ?
                     StatsItems[i].type.ToString() :
                     StatsItems[i].StatsLocalizeString.TableEntryReference).Entry.Value)
-                    + ((StatsItems[i].value >= 0) ? (" +") : " ") + StatsItems[i].value;
+                    + (StatsItems[i].HideMark ? " " : ((StatsItems[i].value >= 0) ? (" +") : " -")) + Mathf.Abs(StatsItems[i].value);
                 string var = "{variable}";
                 if (temp.Contains(var))
                 {
@@ -175,13 +181,13 @@ public class StatsItemSO : ItemDataSO
     /// <param name="itemEffect"></param>
     /// <param name="startTime"></param>
     /// <returns></returns>
-    public virtual void ExeOnChangeScene(Unit unit, Unit enemy, ItemEffectSO itemEffect)
+    public virtual void ExeMoveMap(Unit unit, Unit enemy, ItemEffectSO itemEffect)
     {
-        itemEffect.ExcuteOnChangeScenen(this, unit, enemy);
+        itemEffect.ExcuteOnMoveMap(this, unit, enemy);
     }
-    public virtual void ExeOnChangeScene(Unit unit, ItemEffectSO itemEffect)
+    public virtual void ExeMoveMap(Unit unit, ItemEffectSO itemEffect)
     {
-        ExeOnChangeScene(unit, null, itemEffect);
+        ExeMoveMap(unit, null, itemEffect);
     }
     #endregion
 }

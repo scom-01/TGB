@@ -123,8 +123,11 @@ public class ItemBuffEventSO : ItemEffectSO
         return isDash;
     }
 
-    public override void ExcuteOnChangeScenen(StatsItemSO parentItem, Unit unit, Unit enemy)
+    public override void ExcuteOnMoveMap(StatsItemSO parentItem, Unit unit, Unit enemy)
     {
+        if (Item_Type != ITEM_TPYE.OnMoveMap || Item_Type == ITEM_TPYE.None)
+            return;
+
         if (enemy != null)
         {
             BuffEvent(enemy);

@@ -94,8 +94,10 @@ public abstract class ItemEffectSO : ScriptableObject, IExecuteEffect, IExecuteC
     /// <param name="parentItem"></param>
     /// <param name="unit"></param>
     /// <param name="enemy"></param>
-    public virtual void ExcuteOnChangeScenen(StatsItemSO parentItem, Unit unit, Unit enemy)
+    public virtual void ExcuteOnMoveMap(StatsItemSO parentItem, Unit unit, Unit enemy)
     {
+        if (Item_Type != ITEM_TPYE.OnMoveMap || Item_Type == ITEM_TPYE.None)
+            return;
     }
 }
 

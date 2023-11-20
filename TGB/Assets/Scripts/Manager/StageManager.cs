@@ -246,7 +246,7 @@ public class StageManager : MonoBehaviour
 
         if (player != null)
         {
-            player.Inventory?.ItemExeOnChange(player);
+            player.Inventory?.ItemExeOnMoveMap(player);
         }
     }
 
