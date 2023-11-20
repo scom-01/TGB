@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 namespace TGB.CoreSystem
 {
@@ -55,10 +54,17 @@ namespace TGB.CoreSystem
         public float TouchinvincibleTime;
         public float CurrentHealth
         {
-            get => currentHealth;
+            get
+            {
+                if (currentHealth > (Default_statsData.MaxHealth + m_statsData.MaxHealth))
+                {
+                    currentHealth = Default_statsData.MaxHealth + m_statsData.MaxHealth;
+                }
+                return currentHealth;
+            }
             private set
             {
-                currentHealth = value <= 0 ? 0 : (value >= Default_statsData.MaxHealth + m_statsData.MaxHealth ? Default_statsData.MaxHealth : value);
+                currentHealth = value <= 0 ? 0 : (value >= Default_statsData.MaxHealth + m_statsData.MaxHealth ? Default_statsData.MaxHealth + m_statsData.MaxHealth : value);
                 OnChangeHealth?.Invoke();
             }
         }
@@ -122,7 +128,7 @@ namespace TGB.CoreSystem
         /// 공격속도 (수치만큼 %로 증가)
         /// </summary>
         public float AttackSpeedPer { get => (Default_statsData.AttackSpeedPer + m_statsData.AttackSpeedPer + BlessStats.Bless_Speed_Lv * GlobalValue.BlessingStats_Inflation); }
-        public float MaxHealth { get => Default_statsData.MaxHealth + m_statsData.MaxHealth; set => Default_statsData.MaxHealth = value; }
+        public float MaxHealth { get => Default_statsData.MaxHealth + m_statsData.MaxHealth; }
         /// <summary>
         /// 기본 이동속도
         /// </summary>
