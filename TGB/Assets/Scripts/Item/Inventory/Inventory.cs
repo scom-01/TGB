@@ -64,13 +64,32 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 현재 아이템
+    /// </summary>
     public List<ItemSet> Items = new List<ItemSet>();
+
+    /// <summary>
+    /// 이전 아이템
+    /// </summary>
+    [HideInInspector] public List<ItemSet> Old_Items = new List<ItemSet>();
+
+    /// <summary>
+    /// 초기 보유 아이템
+    /// </summary>
     public List<StatsItemSO> Inititems = new List<StatsItemSO>();
+
+    /// <summary>
+    /// 아이템 패시브 이펙트
+    /// </summary>
     public List<GameObject> InfinityEffectObjects = new List<GameObject>();
+
+    /// <summary>
+    /// UI 현재 선택된 아이템
+    /// </summary>
     public GameObject CheckItem;
 
     private Weapon m_weapon;
-    private int ItemCount;
     private void Start()
     {
         weaponData = Weapon.weaponData;
@@ -91,8 +110,6 @@ public class Inventory : MonoBehaviour
                 }
             }
         }
-
-        ItemCount = Items.Count;
     }
 
     private void Update()
@@ -106,21 +123,22 @@ public class Inventory : MonoBehaviour
     /// </summary>
     /// <param name="unit"></param>
     /// <returns></returns>
-    public bool ItemOnInit(Unit unit)
+    public bool ItemOnInit(ItemSet itemSet)
     {
-        for (int i = 0; i < Items.Count; i++)
+        for (int j = 0; j < itemSet.item.ItemEffects.Count; j++)
         {
-            for (int j = 0; j < Items[i].item.ItemEffects.Count; j++)
-            {
-                if (Items[i].item.ItemEffects[j] == null)
-                    continue;
+            if (itemSet.item.ItemEffects[j] == null)
+                continue;
 
-                if (Items[i].init.Count < j + 1)
-                {
-                    Items[i].init.Add(false);
-                }
-                Items[i].init[j] = Items[i].item.ExeInit(unit, Items[i].item.ItemEffects[j], Items[i].init[j]);
+            if (itemSet.init.Count < j + 1)
+            {
+                itemSet.init.Add(false);
             }
+
+            if (itemSet.init[j])
+                continue;
+
+            itemSet.init[j] = itemSet.item.ExeInit(unit, itemSet.item.ItemEffects[j], itemSet.init[j]);
         }
         return true;
     }
@@ -278,7 +296,7 @@ public class Inventory : MonoBehaviour
         }
 
         //조합 아이템 조합 여부
-        if(CheckCompositeItem(Object))
+        if (CheckCompositeItem(Object))
         {
             return true;
         }
@@ -334,13 +352,18 @@ public class Inventory : MonoBehaviour
         Debug.Log($"Add {itemObject.name}, Success add {itemObject.name}");
         if (Unit.GetType() == typeof(Player))
             GameManager.Inst.SubUI.InventorySubUI.InventoryItems.AddItem(itemObject);
-        ItemSet item = new ItemSet(itemObject, Time.time);
+
+        //Old_Items 리스트에 itemObject이 존재 한다면 return ItemSet;
+        ItemSet item = ContainsItem(Old_Items, itemObject);
+        if (item == null)
+        {
+            item = new ItemSet(itemObject, Time.time);
+        }
+
         Items.Add(item);
+        ItemOnInit(item);
 
-        ItemCount++;
         unit.Core.CoreUnitStats.AddStat(itemObject.StatsData);
-
-        ItemOnInit(unit);
 
         Debug.Log($"Change UnitStats {Unit.Core.CoreUnitStats.CalculStatsData}");
         return true;
@@ -364,6 +387,10 @@ public class Inventory : MonoBehaviour
             {
                 Debug.Log($"Remove Item {itemData.name}");
                 unit.Core.CoreUnitStats.AddStat(itemData.StatsData * -1f);
+
+                //한 번 획득 한 아이템의 정보를 저장 후 재 획득 시 정보를 덮어씌움
+                if (!Old_Items.Contains(Items[i]))
+                    Old_Items.Add(Items[i]);
 
                 Items.RemoveAt(i);
 
@@ -391,6 +418,16 @@ public class Inventory : MonoBehaviour
             }
         }
         return true;
+    }
+
+    private ItemSet ContainsItem(List<ItemSet> itemSets, StatsItemSO item)
+    {
+        for (int i = 0; i < itemSets.Count; i++)
+        {
+            if (itemSets[i].item == item)
+                return itemSets[i];
+        }
+        return null;
     }
 
     /// <summary>
@@ -424,6 +461,11 @@ public class Inventory : MonoBehaviour
                 //재료 아이템 제거(인벤토리)
                 if (unit.GetType() == typeof(Player))
                     GameManager.Inst.SubUI.InventorySubUI.InventoryItems.RemoveItem(Items[j].item);
+
+                //한 번 획득 한 아이템의 정보를 저장 후 재 획득 시 정보를 덮어씌움
+                if (!Old_Items.Contains(Items[i]))
+                    Old_Items.Add(Items[i]);
+
                 Items.RemoveAt(j);
 
                 //합성 VFX

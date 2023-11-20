@@ -89,7 +89,7 @@ public class ItemBuffEventSO : ItemEffectSO
             return isInit;
 
         if (isInit)
-            return isInit;
+            return true;
 
         if (enemy != null)
         {
@@ -99,8 +99,7 @@ public class ItemBuffEventSO : ItemEffectSO
         {
             BuffEvent(unit);
         }
-        isInit = false;
-
+        isInit = true;
         return isInit;
     }
 
