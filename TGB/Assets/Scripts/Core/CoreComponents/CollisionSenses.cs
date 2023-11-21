@@ -24,6 +24,23 @@ namespace TGB.CoreSystem
         }
 
         private CapsuleCollider2D cc2d;
+        public Rigidbody2D RB
+        {
+            get
+            {
+                if (rb == null)
+                {
+                    rb = GetComponentInParent<Rigidbody2D>();
+                }
+                return rb;
+            }
+            private set
+            {
+                rb = value;
+            }
+        }
+
+        private Rigidbody2D rb;
 
         #region Check Transforms
 
@@ -75,18 +92,43 @@ namespace TGB.CoreSystem
         public LayerMask WhatIsWall { get => core.Unit.UnitData.LayerMaskSO.WhatIsWall; }
         public LayerMask WhatIsPlatform { get => core.Unit.UnitData.LayerMaskSO.WhatIsPlatform; }
 
+        protected ContactFilter2D contactFilter_Ground;
+        protected ContactFilter2D contactFilter_Platform;
+        protected RaycastHit2D[] hitBuffer = new RaycastHit2D[16];
         #endregion
         protected override void Awake()
         {
             base.Awake();
+            contactFilter_Ground.SetLayerMask(WhatIsGround);
+            contactFilter_Platform.SetLayerMask(WhatIsPlatform);
+            contactFilter_Ground.useLayerMask = true;
+            contactFilter_Platform.useLayerMask = true;
         }
 
         public bool CheckIfPlatform
         {
             get
             {
-                return Physics2D.Raycast(GroundCenterPos + Vector3.down * (GroundCheckRadius) * 1 / 2, Vector3.up, (GroundCheckRadius) * 1 / 2, WhatIsPlatform);
-                //return Physics2D.OverlapBox(GroundCenterPos + Vector3.down * (GroundCheckRadius) * 1 / 2, new Vector2(CC2D.bounds.size.x * 0.65f, CC2D.bounds.size.y * GroundCheckRadius), 0f, WhatIsPlatform);
+                var count = Physics2D.Raycast(GroundCenterPos, Vector2.down, contactFilter_Platform, hitBuffer, GroundCheckRadius);
+                if (count > 0)
+                {
+                    foreach (var hit in hitBuffer)
+                    {
+                        if (hit.rigidbody == null)
+                            continue;
+
+                        //hit의 기울기(양수면 hit의 y가 더 낮은 위치, 즉 GroundCenterPos가 hit.point보다 위에 있으면 양수)
+                        if (hit.normal.y < 0.9f)
+                            continue;
+
+                        //hit의 포인트(Ray가 부딪힌 지점)
+                        if (GroundCenterPos.y > hit.point.y)
+                        {
+                            return true;
+                        }
+                    }
+                }
+                return false;
             }
         }
 
@@ -94,39 +136,36 @@ namespace TGB.CoreSystem
         {
             get
             {
-                return Physics2D.Raycast(GroundCenterPos + Vector3.down * (GroundCheckRadius) * 1 / 2, Vector3.up, (GroundCheckRadius) * 1 / 2, WhatIsGround);
-                //return Physics2D.OverlapBox(GroundCenterPos + Vector3.down * (GroundCheckRadius) * 1 / 2, new Vector2(CC2D.bounds.size.x * 0.65f, CC2D.bounds.size.y * GroundCheckRadius), 0f, WhatIsGround);
+                var count = Physics2D.Raycast(GroundCenterPos, Vector2.down, contactFilter_Ground, hitBuffer, GroundCheckRadius);
+                if (count > 0)
+                {
+                    foreach(var hit in hitBuffer)
+                    {                        
+                        if (hit.rigidbody == null)
+                            continue;
+
+                        //hit의 기울기(양수면 hit의 y가 더 낮은 위치, 즉 GroundCenterPos가 hit.point보다 위에 있으면 양수)
+                        if (hit.normal.y < 0.9f)
+                            continue;
+
+                        //hit의 포인트(Ray가 부딪힌 지점)
+                        if (GroundCenterPos.y > hit.point.y)
+                        {
+                            return true;
+                        }
+                    }
+                }
+                return false;
             }
-            //get => Physics2D.OverlapCircle(GroundCenterPos, groundCheckRadius, whatIsGround);
-        }
-        public bool CheckIfAirGrounded
-        {
-            get
-            {
-                return Physics2D.Raycast(GroundCenterPos + Vector3.down * (GroundCheckRadius), Vector3.up, (GroundCheckRadius) * 1 / 2, WhatIsGround);
-                //return Physics2D.OverlapBox(GroundCenterPos + Vector3.down * (GroundCheckRadius), new Vector2(CC2D.bounds.size.x * 0.65f, CC2D.bounds.size.y * GroundCheckRadius), 0f, WhatIsGround);
-            }
-            //get => Physics2D.OverlapCircle(GroundCenterPos, groundCheckRadius, whatIsGround);
-        }
-        public bool CheckIfPlatformGrounded
-        {
-            get
-            {
-                return Physics2D.Raycast(GroundCenterPos + Vector3.down * (GroundCheckRadius), Vector3.up, (GroundCheckRadius) * 1 / 2, WhatIsPlatform);
-                //return Physics2D.OverlapBox(GroundCenterPos + Vector3.down * (GroundCheckRadius), new Vector2(CC2D.bounds.size.x * 0.65f, CC2D.bounds.size.y * GroundCheckRadius), 0f, WhatIsPlatform);
-            }
-            //get => Physics2D.OverlapCircle(GroundCenterPos, groundCheckRadius, whatIsGround);
         }
 
         public bool CheckIfTouchingWall
         {
-            //Debug.DrawRay(wallCheck.position, Vector2.right * core.Movement.FancingDirection * wallCheckDistance, Color.green);
             get => Physics2D.Raycast(WallCheck, Vector2.right * Movement.FancingDirection, CC2D.size.x / 2 + WallCheckDistance, WhatIsWall);
         }
 
         public bool CheckIfTouchingWallBack
         {
-            //Debug.DrawRay(wallCheck.position, Vector2.right * -core.Movement.FancingDirection * wallCheckDistance, Color.red);
             get => Physics2D.Raycast(WallCheck, Vector2.right * -Movement.FancingDirection, CC2D.size.x / 2 + WallCheckDistance, WhatIsWall);
         }
 
@@ -167,29 +206,10 @@ namespace TGB.CoreSystem
             Gizmos.color = Color.white;
             if (CC2D == null)
                 return;
-
-            //Gizmos.DrawWireCube(transform.position + new Vector3((CC2D.offset.x) * Movement.FancingDirection, CC2D.offset.y - (CAPC2D.radius/2)), new Vector2(CC2D.bounds.size.x, (CC2D.bounds.size.y + CAPC2D.radius) * 0.95f));
-
+            
+            //checkGround,Platform
             Gizmos.color = Color.blue;
             Gizmos.DrawLine(GroundCenterPos, GroundCenterPos + Vector3.down * (GroundCheckRadius));
-            //CheckIfPlatformGrounded
-            //Gizmos.DrawWireCube(GroundCenterPos + Vector3.down * (GroundCheckRadius),new Vector2(CC2D.bounds.size.x * 0.65f, GroundCheckRadius));
-            Gizmos.color = Color.red;
-            //CheckIfPlatform
-            Gizmos.DrawLine(GroundCenterPos + Vector3.down * (GroundCheckRadius) / 2, GroundCenterPos + Vector3.down * (GroundCheckRadius));
-            //Gizmos.DrawWireCube(GroundCenterPos + Vector3.down * (GroundCheckRadius) * 1 / 2,
-            //    new Vector2(CC2D.bounds.size.x * 0.65f, GroundCheckRadius));
-
-
-            //Gizmos.DrawLine(GroundCenterPos, GroundCenterPos + Vector3.down);
-
-            //Gizmos.color = Color.blue;
-            ////CheckIfTouchingWallBack
-            //Gizmos.DrawLine(WallCheck, WallCheck + Vector3.right * -Movement.FancingDirection * (WallCheckDistance + CC2D.bounds.size.x / 2)); ;
-
-            //Gizmos.color = Color.red;
-            ////CheckIfTouchingWall
-            //Gizmos.DrawLine(WallCheck, WallCheck + Vector3.right * Movement.FancingDirection * (WallCheckDistance + CC2D.bounds.size.x / 2));
         }
     }
 }
