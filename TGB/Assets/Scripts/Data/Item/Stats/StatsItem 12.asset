@@ -42,7 +42,7 @@ MonoBehaviour:
     DefaultMoveSpeed: 0
     DefaultJumpVelocity: 0
     DefaultAttSpeed: 0
-    MovementVEL_Per: 0
+    MovementVEL_Per: -5
     JumpVEL_Per: 0
     AttackSpeedPer: 0
     PhysicsDefensivePer: 10
@@ -69,6 +69,7 @@ MonoBehaviour:
     variable: 0
     value: 20
     ShowPercent: 0
+    HideMark: 0
   - type: 2
     StatsLocalizeString:
       m_TableReference:
@@ -82,6 +83,7 @@ MonoBehaviour:
     variable: 0
     value: 10
     ShowPercent: 1
+    HideMark: 0
   - type: 3
     StatsLocalizeString:
       m_TableReference:
@@ -95,6 +97,7 @@ MonoBehaviour:
     variable: 0
     value: 10
     ShowPercent: 1
+    HideMark: 0
   - type: 5
     StatsLocalizeString:
       m_TableReference:
@@ -108,6 +111,7 @@ MonoBehaviour:
     variable: 0
     value: 10
     ShowPercent: 1
+    HideMark: 0
   - type: 10
     StatsLocalizeString:
       m_TableReference:
@@ -121,19 +125,7 @@ MonoBehaviour:
     variable: 0
     value: -5
     ShowPercent: 1
-  - type: 11
-    StatsLocalizeString:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    variable: 0
-    value: -5
-    ShowPercent: 1
+    HideMark: 0
   Health: 0
   buffItems: []
   InitEffectData:

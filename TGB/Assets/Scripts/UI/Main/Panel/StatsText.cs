@@ -97,6 +97,7 @@ public class StatsText : Stats
     [SerializeField] private TextMeshProUGUI StatsPowerTxt;
     [SerializeField] private bool Showcolon;
     [SerializeField] private bool isLeftcolon;
+    [SerializeField] private bool HidePercent;
 
     private float m_TypeStats
     {
@@ -195,7 +196,7 @@ public class StatsText : Stats
 
         if (StatsPowerTxt != null && OldStats != m_TypeStats)
         {
-            StatsPowerTxt.text = isLeftcolon ? ((Showcolon ? " : " : "") + m_TypeStats.ToString("F0") + " %") : m_TypeStats.ToString("F0") + " %" + (Showcolon ? " : " : "");
+            StatsPowerTxt.text = isLeftcolon ? ((Showcolon ? " : " : "") + m_TypeStats.ToString("F0") + (HidePercent ? "" : " %")) : m_TypeStats.ToString("F0") + (HidePercent ? "" : " %") + (Showcolon ? " : " : "");
             OldStats = m_TypeStats;
         }
 
