@@ -6,21 +6,8 @@ using UnityEngine.Localization.Components;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
-public class EffectTextUI : MonoBehaviour
+public class EffectTextUI : UIManager
 {
-    public Canvas Canvas
-    {
-        get
-        {
-            if (canvas == null)
-            {
-                canvas = GetComponent<Canvas>();
-            }
-            return canvas;
-        }
-    }
-    private Canvas canvas;
-
     private Image BackImg
     { 
         get
@@ -34,18 +21,6 @@ public class EffectTextUI : MonoBehaviour
     }
     private Image backImg = null;
 
-    private Animator Anim
-    {
-        get
-        {
-            if (anim == null) 
-            {
-                anim = this.GetComponent<Animator>();
-            }
-            return anim;
-        }
-    }
-    private Animator anim;
     public LocalizedString ItemNameLocal;
     public LocalizeStringEvent EffectTextStringEvent;
 
@@ -78,7 +53,7 @@ public class EffectTextUI : MonoBehaviour
             
             //Local Variable만 변경되면 Refresh되지않기에 Refresh로 업데이트
             EffectTextStringEvent.RefreshString();
-            Anim.SetBool("Action", true);
+            animator.SetBool("Action", true);
         }
     }public void SetEffectText(Sprite _sprite, string StringTableKey)
     {
@@ -93,13 +68,13 @@ public class EffectTextUI : MonoBehaviour
 
             //Local Variable만 변경되면 Refresh되지않기에 Refresh로 업데이트
             EffectTextStringEvent.RefreshString();
-            Anim.SetBool("Action", true);
+            animator.SetBool("Action", true);
         }
     }
 
     public void SetActionfalse()
     {
-        Anim.SetBool("Action", false);
+        animator.SetBool("Action", false);
         Canvas.enabled = false;
     }
 
@@ -109,7 +84,7 @@ public class EffectTextUI : MonoBehaviour
         {
             Canvas.enabled = true;
             SetEffectText(UnlockitemNames[i]);
-            while(Anim.GetBool("Action"))
+            while(animator.GetBool("Action"))
             {
                 yield return null;
             }            

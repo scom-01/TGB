@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TGB.Manager
 {
-    public class DamageUIManager : MonoBehaviour
+    public class DamageUIManager : UIManager
     {
         
     }

@@ -7,20 +7,8 @@ using UnityEngine.UI;
 
 namespace TGB.Manager
 {
-    public class MainUIManager : MonoBehaviour
+    public class MainUIManager : UIManager
     {
-        public MainPanelUI MainPanel;
-        public Canvas Canvas
-        {
-            get
-            {
-                if (canvas == null)
-                {
-                    canvas = GetComponent<Canvas>();
-                }
-                return canvas;
-            }
-        }
-        private Canvas canvas;
+        public MainPanelUI MainPanel;        
     }
 }

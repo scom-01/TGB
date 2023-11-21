@@ -271,11 +271,11 @@ public class GameManager : MonoBehaviour
             return;
                 
         Curr_UIState = ui;
+        Application.targetFrameRate = 144;
         switch (_ui)
         {            
             case UI_State.GamePlay:
                 InputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, false);
-                Application.targetFrameRate = 144;
                 if (StageManager != null)
                 {
                     PlayTimeUI.Canvas.enabled = true;
@@ -288,7 +288,6 @@ public class GameManager : MonoBehaviour
                     MainUI.Canvas.enabled = false;
                 break;
             case UI_State.Inventory:
-                Application.targetFrameRate = 30;
                 PlayTimeUI.Canvas.enabled = true;
                 SubUI.InventorySubUI.animator?.Play("Action", -1, 0f);
                 SubUI.InventorySubUI.Canvas.enabled = true;
@@ -314,7 +313,6 @@ public class GameManager : MonoBehaviour
                 EventSystem.current.SetSelectedGameObject(ReforgingUI.equipWeapon.gameObject);
                 break;
             case UI_State.Cfg:
-                Application.targetFrameRate = 30;
                 if (StageManager != null)
                 {
                     PlayTimeUI.Canvas.enabled = true;
@@ -326,18 +324,15 @@ public class GameManager : MonoBehaviour
                 break;
             case UI_State.CutScene:
                 InputHandler.ChangeCurrentActionMap(InputEnum.CutScene, false);
-                Application.targetFrameRate = 30;
                 SubUI.InventorySubUI.SetInventoryState(InventoryUI_State.Put);
                 CutSceneUI.Canvas.enabled = true;
                 break;
             case UI_State.Result:
-                Application.targetFrameRate = 30;
                 ResultUI.Canvas.enabled = true;
                 ResultUI.animator?.Play("Action", -1, 0f);
                 EventSystem.current.SetSelectedGameObject(ResultUI.GoTitleBtn.gameObject);
                 break;
             case UI_State.Loading:
-                Application.targetFrameRate = 30;
                 SubUI.InventorySubUI.SetInventoryState(InventoryUI_State.Put);
                 break;
         }
@@ -363,7 +358,6 @@ public class GameManager : MonoBehaviour
         CutSceneUI.Canvas.enabled = false;
         EffectTextUI.Canvas.enabled = false;
         PlayTimeUI.Canvas.enabled = false;
-        //CutSceneUI.Director_SetAsset(CutSceneUI.FadeOut);
     }
 
     /// <summary>
