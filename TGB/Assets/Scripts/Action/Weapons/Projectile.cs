@@ -21,7 +21,7 @@ namespace TGB
         [Space(10)]
         public AudioPrefab ProjectileShootClip;
         public AudioPrefab ImpactClip;
-
+        [SerializeField] private bool isFixedRot;
         private ProjectilePooling parent;
         private GameObject Spawned_ProjectileObject;
 
@@ -112,15 +112,18 @@ namespace TGB
                 Spawned_ProjectileObject.gameObject.transform.localScale = Vector3.one;
             else
                 Spawned_ProjectileObject.gameObject.transform.localScale = ProjectileData.EffectScale;
-            var particle = Spawned_ProjectileObject.GetComponent<ParticleSystem>();
             foreach (var _particle in Spawned_ProjectileObject.GetComponentsInChildren<ParticleSystem>())
             {
                 var _main = _particle.main;
                 _main.scalingMode = ParticleSystemScalingMode.Hierarchy;
             }
-            var main = Spawned_ProjectileObject.GetComponent<ParticleSystem>().main;
-            main.scalingMode = ParticleSystemScalingMode.Hierarchy;
-            main.stopAction = ParticleSystemStopAction.Disable;
+            var particle = Spawned_ProjectileObject.GetComponent<ParticleSystem>();
+            if (particle != null)
+            {
+                var main = particle.main;
+                main.scalingMode = ParticleSystemScalingMode.Hierarchy;
+                main.stopAction = ParticleSystemStopAction.Disable;
+            }            
             foreach (var _renderer in Spawned_ProjectileObject.GetComponentsInChildren<ParticleSystemRenderer>())
             {
                 _renderer.sortingLayerName = "Effect";
@@ -142,7 +145,7 @@ namespace TGB
                 this.transform.position = unit.Core.CoreCollisionSenses.UnitCenterPos + Vector3.right * ProjectileData.Pos.x * FancingDirection + Vector3.up * ProjectileData.Pos.y;
             }
             this.gameObject.layer = LayerMask.NameToLayer("Projectile");
-            this.transform.rotation = Quaternion.Euler(ProjectileData.Rot);
+            //this.transform.rotation = Quaternion.Euler(ProjectileData.Rot);
 
             CC2D.radius = ProjectileData.Radius;
             CC2D.offset = ProjectileData.Offset;
@@ -191,10 +194,12 @@ namespace TGB
 
             if (unit != null)
             {
+                RB2D.rotation = 0f;
                 //Default가 0을 전제
                 if (FancingDirection < 0)
                 {
-                    RB2D.rotation = 180f;
+                    if(!isFixedRot)
+                        RB2D.rotation = 180f;
                 }
                 if (ProjectileData.homingType == HomingType.isToTarget_Direct && unit.TargetUnit != null                    
                     )                 
