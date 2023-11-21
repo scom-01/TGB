@@ -1,10 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using TGB.Weapons;
 using TGB.CoreSystem;
-using TGB.Weapons.Components;
-using System.Linq;
+using TGB.Weapons;
+using UnityEngine;
 
 public class PlayerWeaponState : PlayerAbilityState
 {
@@ -12,9 +9,6 @@ public class PlayerWeaponState : PlayerAbilityState
 
     public Weapon weapon;
 
-    private int xInput;
-    private int yInput;
-    private bool JumpInput;
     private bool isPrimary;
 
     public PlayerWeaponState(Unit unit, string animBoolName, bool primary) : base(unit, animBoolName)

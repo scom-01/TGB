@@ -25,7 +25,6 @@ public class Player : Unit
     public PlayerWallJumpState WallJumpState { get; private set; }
     public PlayerDashState DashState { get; private set; }
     public PlayerDeathState DeathState { get; private set; }
-    public PlayerWeaponState BlockState { get; private set; }
 
     public PlayerWeaponState PrimaryAttackState { get; private set; }
     public PlayerWeaponState SecondaryAttackState { get; private set; }

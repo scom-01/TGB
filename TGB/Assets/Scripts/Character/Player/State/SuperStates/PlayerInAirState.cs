@@ -5,21 +5,8 @@ using UnityEngine;
 
 public class PlayerInAirState : PlayerState
 {
-    //Input
-    private int xInput;                 //좌우 입력값
-    private bool JumpInput;             //점프 입력값
-    private bool JumpInputStop;         //점프 입력 해체 값
-    private bool dashInput;             //Dash 키 입력값
-    private bool skill1Input;           //skill1키 입력값
-    private bool skill2Input;           //skill2키 입력값
-
-    //Checks
-    private bool isGrounded;            //바닥 체크
-    private bool isTouchingWall;        //전방 벽과 붙어있는지 체크
-    private bool isTouchingWallBack;    //후방 벽과 붙어있는지 체크
     private bool oldIsTouchingWall;     //Old 전방 벽과 붙어있는지 체크
     private bool oldIsTouchingWallBack; //Old 후방 벽과 붙어있는지 체크
-    private bool isTouchingLedge;       //LedgeCheck오브젝트가 벽을 체크하는지
 
     private bool coyoteTime;            //코요테 타임 체크
     private bool wallJumpCoyoteTime;    //벽 점프 코요테 타임 체크
@@ -35,21 +22,12 @@ public class PlayerInAirState : PlayerState
     {
         base.DoChecks();
 
-
-        xInput = player.InputHandler.NormInputX;
-        JumpInput = player.InputHandler.JumpInput;
-        JumpInputStop = player.InputHandler.JumpInputStop;
-
         oldIsTouchingWall = isTouchingWall;
         oldIsTouchingWallBack = isTouchingWallBack;
 
-        isGrounded = CollisionSenses.CheckIfGrounded;
         isTouchingWall = CollisionSenses.CheckIfTouchingWall;
         isTouchingWallBack = CollisionSenses.CheckIfTouchingWallBack;
 
-        dashInput = player.InputHandler.DashInput;
-        skill1Input = player.InputHandler.Skill1Input;
-        skill2Input = player.InputHandler.Skill2Input;
 
         if (!wallJumpCoyoteTime && !isTouchingWall && !isTouchingWallBack && (oldIsTouchingWall || oldIsTouchingWallBack))
         {
@@ -108,7 +86,7 @@ public class PlayerInAirState : PlayerState
         }
 
         //Platform 착지
-        else if ((CollisionSenses.CheckIfPlatform && CollisionSenses.CheckIfPlatformGrounded) && Movement.CurrentVelocity.y <= Mathf.Abs(0.01f))
+        else if ((CollisionSenses.CheckIfPlatform) && Movement.CurrentVelocity.y <= Mathf.Abs(0.01f))
         {
             player.FSM.ChangeState(player.LandState);
             return;

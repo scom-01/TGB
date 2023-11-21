@@ -1,7 +1,6 @@
 public class PlayerAbilityState : PlayerState
 {
     protected bool isAbilityDone;
-    protected bool isGrounded;
 
     public PlayerAbilityState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
@@ -10,9 +9,6 @@ public class PlayerAbilityState : PlayerState
     public override void DoChecks()
     {
         base.DoChecks();
-
-        if(CollisionSenses)
-            isGrounded = CollisionSenses.CheckIfGrounded || CollisionSenses.CheckIfPlatform;
     }
 
     public override void Enter()

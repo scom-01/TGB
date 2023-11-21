@@ -40,7 +40,6 @@ public class PlayerLandState : PlayerGroundedState
 
         if (isExitingState)
         {
-            player.Core.CoreMovement.SetVelocityY(0);
             return;
         }
     }
