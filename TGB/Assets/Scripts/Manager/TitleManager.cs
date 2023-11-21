@@ -143,7 +143,7 @@ public class TitleManager : MonoBehaviour
         if (UnlockItem_Canvas != null)
         {
             UnlockItem_Canvas.GetComponent<Canvas>().enabled = true;
-            GameManager.Inst.InputHandler.OnESCInput_Action += HideUnlockItemCanvas;
+            GameManager.Inst.InputHandler.OnESCInput_Action.Add(HideUnlockItemCanvas);
             UnlockItem_Canvas.GetComponentInChildren<UnlockItemList>()?.SetInit();
 
             if(UnlockItem_Canvas.GetComponentInChildren<UnlockItemList>()?.UnlockItems.Count > 0)

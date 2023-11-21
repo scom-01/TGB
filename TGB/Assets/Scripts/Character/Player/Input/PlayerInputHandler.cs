@@ -54,7 +54,7 @@ public class PlayerInputHandler : MonoBehaviour
     private float[] ActionInputsStopTime;
 
 
-    public event Action OnESCInput_Action;
+    public Command OnESCInput_Action = new Command();
     private void Awake()
     {
         Init();
@@ -283,10 +283,9 @@ public class PlayerInputHandler : MonoBehaviour
             if (GameManager.Inst.StageManager == null)
                 return;
 
-            if (OnESCInput_Action != null)
+            if(OnESCInput_Action.Excute())
             {
-                OnESCInput_Action?.Invoke();
-                OnESCInput_Action = null;
+                OnESCInput_Action.Clear();
                 return;
             }
 
@@ -312,12 +311,12 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.started)
         {
-            if (OnESCInput_Action != null)
+            if (OnESCInput_Action.Excute())
             {
-                OnESCInput_Action?.Invoke();
-                OnESCInput_Action = null;
+                OnESCInput_Action.Clear();
                 return;
             }
+
             ESCInput = true;
             escInputStartTime = Time.time;
             Debug.Log("OnESCInput Start");

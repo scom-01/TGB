@@ -53,8 +53,7 @@ public class Blessing : InteractiveObject
         }
         GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.UI, true, true);
         canvas.enabled = true;
-        GameManager.Inst.InputHandler.OnESCInput_Action -= End_Action;
-        GameManager.Inst.InputHandler.OnESCInput_Action += End_Action;
+        GameManager.Inst.InputHandler.OnESCInput_Action.Add(End_Action);
     }
 
     public override void UnInteractive()
