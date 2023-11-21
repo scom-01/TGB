@@ -39,6 +39,9 @@ namespace TGB.Weapons.Components
                 return;
 
             var currSoundClips = actionSoundClip.audioDataList;
+            if (currSoundClips == null)
+                return;
+
             if (currSoundClips.Length <= 0)
                 return;
 
