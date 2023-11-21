@@ -19,8 +19,8 @@ namespace TGB
         public GameObject ProjectileObject;
         public GameObject ImpactObject;
         [Space(10)]
-        public AudioClip ProjectileShootClip;
-        public AudioClip ImpactClip;
+        public AudioPrefab ProjectileShootClip;
+        public AudioPrefab ImpactClip;
 
         private ProjectilePooling parent;
         private GameObject Spawned_ProjectileObject;
@@ -59,7 +59,14 @@ namespace TGB
                 {
                     cc2d = this.GetComponent<CircleCollider2D>();
                     if (cc2d == null)
-                        cc2d = this.AddComponent<CircleCollider2D>();
+                        cc2d = this.AddComponent<CircleCollider2D>();                    
+                }
+                if (ProjectileData.isBound)
+                {
+                    cc2d.isTrigger = false;
+                }
+                else
+                {
                     cc2d.isTrigger = true;
                 }
                 return cc2d;
@@ -93,6 +100,10 @@ namespace TGB
             CC2D.offset = ProjectileData.Offset;
             CC2D.enabled = false;
             RB2D.gravityScale = ProjectileData.GravityScale;
+            if (ProjectileData.isBound && ProjectileData.UnitCC2DMaterial != null)
+            {
+                CC2D.sharedMaterial = ProjectileData.UnitCC2DMaterial;
+            }
 
             //set ProjectilPrefab
             Spawned_ProjectileObject = Instantiate(ProjectileObject, this.transform);
@@ -101,8 +112,14 @@ namespace TGB
                 Spawned_ProjectileObject.gameObject.transform.localScale = Vector3.one;
             else
                 Spawned_ProjectileObject.gameObject.transform.localScale = ProjectileData.EffectScale;
-
+            var particle = Spawned_ProjectileObject.GetComponent<ParticleSystem>();
+            foreach (var _particle in Spawned_ProjectileObject.GetComponentsInChildren<ParticleSystem>())
+            {
+                var _main = _particle.main;
+                _main.scalingMode = ParticleSystemScalingMode.Hierarchy;
+            }
             var main = Spawned_ProjectileObject.GetComponent<ParticleSystem>().main;
+            main.scalingMode = ParticleSystemScalingMode.Hierarchy;
             main.stopAction = ParticleSystemStopAction.Disable;
             foreach (var _renderer in Spawned_ProjectileObject.GetComponentsInChildren<ParticleSystemRenderer>())
             {
@@ -132,6 +149,10 @@ namespace TGB
             CC2D.enabled = false;
             RB2D.gravityScale = ProjectileData.GravityScale;
 
+            if (ProjectileData.isBound && ProjectileData.UnitCC2DMaterial != null)
+            {
+                CC2D.sharedMaterial = ProjectileData.UnitCC2DMaterial;
+            }
             if (Spawned_ProjectileObject != null)
             {
                 if (ProjectileData.EffectScale == Vector3.zero)
@@ -160,7 +181,7 @@ namespace TGB
                 m_startTime = Time.time;
             }
 
-            if (ProjectileShootClip != null)
+            if (ProjectileShootClip.Clip != null)
             {
                 unit.Core.CoreSoundEffect.AudioSpawn(ProjectileShootClip);
             }
@@ -266,7 +287,7 @@ namespace TGB
 
             //Impact AudioClip
             #region AudioClip
-            if (unit != null && ImpactClip != null)
+            if (unit != null && ImpactClip.Clip != null)
             {
                 unit.Core.CoreSoundEffect.AudioSpawn(ImpactClip);
             }
@@ -291,7 +312,25 @@ namespace TGB
             {
                 return;
             }
+            CheckCollision(coll);
+        }
 
+        private void OnCollisionEnter2D(Collision2D coll)
+        {
+            if (!ProjectileData.isBound)
+                return;
+
+            //공격한 주체가 없을 때 무시
+            if (unit == null)
+            {
+                return;
+            }
+            
+            CheckCollision(coll.collider);
+        }
+
+        private void CheckCollision(Collider2D coll)
+        {
             //같은 Tag는 무시
             if (coll.tag == this.tag)
             {
@@ -303,13 +342,17 @@ namespace TGB
                 return;
 
             //피격 대상이 Ground면 이펙트
-            if (ProjectileData.isCollisionGround)
+            if (!ProjectileData.isBound && ProjectileData.isCollisionGround && coll.gameObject.layer == LayerMask.NameToLayer("Ground"))
             {
-                if (coll.gameObject.layer == LayerMask.NameToLayer("Ground"))
-                {
-                    Hit(ProjectileData.isSingleShoot);
-                    return;
-                }
+                Hit(ProjectileData.isSingleShoot);
+                return;
+            }
+
+            //피격 대상이 Platform이면 이펙트
+            if (!ProjectileData.isBound && ProjectileData.isCollisionPlatform && coll.gameObject.layer == LayerMask.NameToLayer("Platform"))
+            {
+                Hit(ProjectileData.isSingleShoot);
+                return;
             }
 
             //Damagable이 아니면 무시
