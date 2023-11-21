@@ -44,16 +44,19 @@ MonoBehaviour:
               height: 4.68
             RepeatAction: 1
             AdditionalDamage: 0
+            isFixed: 0
             KnockbackAngle: {x: 0, y: 15}
             EffectPrefab:
             - isGround: 0
+              isHeader: 0
+              isTransformGlobal: 0
               isRandomPosRot: 0
               isRandomRange: 0
               EffectOffset: {x: 0, y: 0}
-              EffectScale: 0
+              EffectScale: {x: 0, y: 0, z: 0}
               isFollowing: 0
               Object: {fileID: 6265323933180701124, guid: f0a9c8170ba7e6b44b61a4b6c007a047, type: 3}
-            audioClip: []
+            audioClips: []
             camDatas: []
           - Debug: 1
             ActionRect:
@@ -64,16 +67,19 @@ MonoBehaviour:
               height: 6
             RepeatAction: 1
             AdditionalDamage: 0
+            isFixed: 0
             KnockbackAngle: {x: 0, y: 20}
             EffectPrefab:
             - isGround: 0
+              isHeader: 0
+              isTransformGlobal: 0
               isRandomPosRot: 0
               isRandomRange: 0
               EffectOffset: {x: 0, y: 0}
-              EffectScale: 0
+              EffectScale: {x: 0, y: 0, z: 0}
               isFollowing: 0
               Object: {fileID: 6265323933180701124, guid: f0a9c8170ba7e6b44b61a4b6c007a047, type: 3}
-            audioClip: []
+            audioClips: []
             camDatas: []
           - Debug: 1
             ActionRect:
@@ -84,16 +90,19 @@ MonoBehaviour:
               height: 6
             RepeatAction: 1
             AdditionalDamage: 0
+            isFixed: 0
             KnockbackAngle: {x: 0, y: 20}
             EffectPrefab:
             - isGround: 0
+              isHeader: 0
+              isTransformGlobal: 0
               isRandomPosRot: 0
               isRandomRange: 0
               EffectOffset: {x: 0, y: 0}
-              EffectScale: 0
+              EffectScale: {x: 0, y: 0, z: 0}
               isFollowing: 0
               Object: {fileID: 6265323933180701124, guid: f0a9c8170ba7e6b44b61a4b6c007a047, type: 3}
-            audioClip: []
+            audioClips: []
             camDatas: []
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
@@ -113,31 +122,39 @@ MonoBehaviour:
         - name: Action 1
           <EffectParticles>k__BackingField:
           - isGround: 1
+            isHeader: 0
+            isTransformGlobal: 0
             isRandomPosRot: 0
             isRandomRange: 0
             EffectOffset: {x: 0, y: 0}
-            EffectScale: 1.5
+            EffectScale: {x: 0, y: 0, z: 0}
             isFollowing: 1
             Object: {fileID: 5314433521719334783, guid: c6d0fde31cbdc6445a9aae80a371164e, type: 3}
           - isGround: 1
+            isHeader: 0
+            isTransformGlobal: 0
             isRandomPosRot: 0
             isRandomRange: 0
             EffectOffset: {x: 4, y: 0}
-            EffectScale: 1.5
+            EffectScale: {x: 0, y: 0, z: 0}
             isFollowing: 0
             Object: {fileID: 1654740954783398791, guid: a8b0081cf09becc40af31ad4aa0c6173, type: 3}
           - isGround: 1
+            isHeader: 0
+            isTransformGlobal: 0
             isRandomPosRot: 0
             isRandomRange: 0
             EffectOffset: {x: 7, y: 0}
-            EffectScale: 1.5
+            EffectScale: {x: 0, y: 0, z: 0}
             isFollowing: 0
             Object: {fileID: 1654740954783398791, guid: a8b0081cf09becc40af31ad4aa0c6173, type: 3}
           - isGround: 1
+            isHeader: 0
+            isTransformGlobal: 0
             isRandomPosRot: 0
             isRandomRange: 0
             EffectOffset: {x: 10, y: 0}
-            EffectScale: 1.5
+            EffectScale: {x: 0, y: 0, z: 0}
             isFollowing: 0
             Object: {fileID: 1654740954783398791, guid: a8b0081cf09becc40af31ad4aa0c6173, type: 3}
     - rid: 2527592717927579738
@@ -170,10 +187,13 @@ MonoBehaviour:
         name: SoundClipData
         actionData:
         - name: Action 1
-          audioClips:
-          - {fileID: 8300000, guid: 4322976517a5c2f42a68209b86e38ca1, type: 3}
-          - {fileID: 8300000, guid: 4322976517a5c2f42a68209b86e38ca1, type: 3}
-          - {fileID: 8300000, guid: 4322976517a5c2f42a68209b86e38ca1, type: 3}
+          audioDataList:
+          - Clip: {fileID: 8300000, guid: 4322976517a5c2f42a68209b86e38ca1, type: 3}
+            Volume: 1
+          - Clip: {fileID: 8300000, guid: 4322976517a5c2f42a68209b86e38ca1, type: 3}
+            Volume: 1
+          - Clip: {fileID: 8300000, guid: 4322976517a5c2f42a68209b86e38ca1, type: 3}
+            Volume: 1
     - rid: 2527592717927579742
       type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:

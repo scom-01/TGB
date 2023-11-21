@@ -58,6 +58,9 @@ MonoBehaviour:
               Object: {fileID: 8867112169225384458, guid: 1b38d906900cd3244a833dafb0e14af6, type: 3}
             audioClip:
             - {fileID: 8300000, guid: 2375dadc4293d3f4380b59887ce8416b, type: 3}
+            audioClips:
+            - Clip: {fileID: 8300000, guid: 2375dadc4293d3f4380b59887ce8416b, type: 3}
+              Volume: 1
             camDatas: []
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
@@ -121,6 +124,9 @@ MonoBehaviour:
         - name: Action 1
           audioClips:
           - {fileID: 8300000, guid: df6d6e6970d3ebc40a5ecbe1e1f21c1e, type: 3}
+          audioDataList:
+          - Clip: {fileID: 8300000, guid: df6d6e6970d3ebc40a5ecbe1e1f21c1e, type: 3}
+            Volume: 1
     - rid: 2527592717927579670
       type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TGB;
 using TGB.Weapons.Components;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -26,7 +27,7 @@ public struct ItemComposite
 {
     public StatsItemSO MaterialItem;
     public StatsItemSO ResultItem;
-    public AudioClip EditSFX;
+    public AudioPrefab EditSFX;
     public GameObject EditVFX;
 }
 
@@ -199,7 +200,7 @@ public struct EffectData
     [field: Tooltip("획득 시 이펙트")]
     [field: SerializeField] public GameObject AcquiredEffectPrefab { get; private set; }
     [field: Tooltip("획득 시 사운드이펙트")]
-    [field: SerializeField] public AudioClip AcquiredSoundEffect { get; private set; }
+    [field: SerializeField] public AudioPrefab AcquiredSFX { get; private set; }
 
     [field: Tooltip("아이템 소비 여부")]
     [field: SerializeField] public bool isEquipment { get; private set; }

@@ -48,8 +48,8 @@ public class TouchJumpPad : TouchObject
         Touch();
         if (EffectObject)
             unit.Core.CoreEffectManager.StartEffectsPos(EffectObject, unit.transform.position, EffectObject.transform.localScale);
-        if (SfxObject)
-            unit.Core.CoreSoundEffect.AudioSpawn(SfxObject);
+        if (SFX.Clip)
+            unit.Core.CoreSoundEffect.AudioSpawn(SFX);
         //x = 0 인 위로만 올리는 점프패드일 때는 공중 움직임 제한 X
         if (angle.x == 0)
         {

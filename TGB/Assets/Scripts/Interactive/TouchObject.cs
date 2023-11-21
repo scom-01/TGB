@@ -1,12 +1,13 @@
 using System.Drawing;
 using System.Xml.Linq;
+using TGB;
 using UnityEngine;
 
 
 public class TouchObject : MonoBehaviour, ITouch
 {
     protected Transform effectContainer;
-    public AudioClip SfxObject;
+    public AudioPrefab SFX;
     public GameObject EffectObject;
     private void Awake()
     {

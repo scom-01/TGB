@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using TGB;
 
 public class GoodsItem : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class GoodsItem : MonoBehaviour
     /// <summary>
     /// 재화 습득 사운드클립
     /// </summary>
-    [SerializeField]    private AudioClip EquipSoundClip;
+    [SerializeField]    private AudioPrefab EquipSoundClip;
     /// <summary>
     /// 재화 습득 이펙트
     /// </summary>
@@ -75,7 +76,7 @@ public class GoodsItem : MonoBehaviour
             goodsData.CircleSize = CircleSize;
             goodsData.Goods = Goods;
             goodsData.Amount = Amount;
-            goodsData.EquipSoundClip = EquipSoundClip;
+            goodsData.EquipSFX = EquipSoundClip;
             goodsData.EquipEffect = EquipEffect;
             goodsData.InvokeTimeRange = DestroyTimeRange;
             goodsData.InvokeTime = DestroyTime;    //DestroyTime

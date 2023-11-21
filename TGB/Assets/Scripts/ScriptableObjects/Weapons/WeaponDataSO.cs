@@ -1,9 +1,8 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 using TGB.Weapons.Components;
-using System;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "newWeaponData", menuName = "Data/Weapon Data/Weapon Data")]
 public class WeaponDataSO : ScriptableObject

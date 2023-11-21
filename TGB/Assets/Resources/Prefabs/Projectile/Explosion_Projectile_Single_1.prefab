@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4584737888372909562}
   - component: {fileID: 8064462147720095501}
   m_Layer: 13
-  m_Name: Fire_Projectile_Sigle_1
+  m_Name: Explosion_Projectile_Single_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,6 +97,9 @@ MonoBehaviour:
     isSingleShoot: 0
     KnockbackAngle: {x: 0, y: 0}
     isCollisionGround: 0
+    isCollisionPlatform: 0
+    isBound: 0
+    UnitCC2DMaterial: {fileID: 0}
     EffectScale: {x: 0, y: 0, z: 0}
     isOnHit: 0
     isShakeCam: 0
@@ -105,7 +108,11 @@ MonoBehaviour:
       Duration: 0
       Range: 0
       RepeatRate: 0
-  ProjectileObject: {fileID: 2874826061213594122, guid: 925f27ad54223084cbbc894782496472, type: 3}
-  ImpactObject: {fileID: 2972137616953671510, guid: 3b6d31ab622956941a502c2a29929280, type: 3}
-  ProjectileShootClip: {fileID: 0}
-  ImpactClip: {fileID: 0}
+  ProjectileObject: {fileID: 6432162538794660462, guid: 4431403ca0c9c3d45b2b6ef22871d595, type: 3}
+  ImpactObject: {fileID: 2783980465707459881, guid: 46f55cb942f845346a06e4d0562283c2, type: 3}
+  ProjectileShootClip:
+    Clip: {fileID: 0}
+    Volume: 0
+  ImpactClip:
+    Clip: {fileID: 8300000, guid: c7865fd595be8a046a018f3e24771dd6, type: 3}
+    Volume: 0.4

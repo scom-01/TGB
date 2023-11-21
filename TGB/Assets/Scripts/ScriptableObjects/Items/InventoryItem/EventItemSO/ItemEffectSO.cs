@@ -1,4 +1,5 @@
 using System;
+using TGB;
 using TGB.Weapons.Components;
 using UnityEngine;
 
@@ -34,7 +35,7 @@ public abstract class ItemEffectSO : ScriptableObject, IExecuteEffect, IExecuteC
         if (unit == null)
             return false;
 
-        if (itemEffectData.SFX == null)
+        if (itemEffectData.SFX.Clip == null)
             return false;
 
         unit.Core.CoreSoundEffect.AudioSpawn(itemEffectData.SFX);
@@ -155,5 +156,5 @@ public struct ItemEffectData
     /// <summary>
     /// Effect SFX
     /// </summary>
-    public AudioClip SFX;
+    public AudioPrefab SFX;
 }

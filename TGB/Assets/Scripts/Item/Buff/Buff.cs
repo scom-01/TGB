@@ -21,8 +21,8 @@ public class Buff
         Buff buff = new Buff();
         var items = data;
         buff.buffItemSO = items;
-        if (unit.Core.CoreSoundEffect)
-            unit.Core.CoreSoundEffect.AudioSpawn(data.InitEffectData.AcquiredSoundEffect ?? null);
+        if (unit.Core.CoreSoundEffect && data.InitEffectData.AcquiredSFX.Clip != null)
+            unit.Core.CoreSoundEffect.AudioSpawn(data.InitEffectData.AcquiredSFX);
 
         if (unit.GetComponent<BuffSystem>()?.AddBuff(buff) != null)
         {

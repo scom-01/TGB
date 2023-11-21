@@ -48,14 +48,19 @@ MonoBehaviour:
             KnockbackAngle: {x: 0, y: 0}
             EffectPrefab:
             - isGround: 0
+              isHeader: 0
+              isTransformGlobal: 0
               isRandomPosRot: 1
               isRandomRange: 1.5
               EffectOffset: {x: 0, y: 0}
-              EffectScale: 0.5
+              EffectScale: {x: 0, y: 0, z: 0}
               isFollowing: 0
               Object: {fileID: 8867112169225384458, guid: 1b38d906900cd3244a833dafb0e14af6, type: 3}
             audioClip:
             - {fileID: 8300000, guid: 2375dadc4293d3f4380b59887ce8416b, type: 3}
+            audioClips:
+            - Clip: {fileID: 8300000, guid: 2375dadc4293d3f4380b59887ce8416b, type: 3}
+              Volume: 1
             camDatas: []
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
@@ -75,10 +80,12 @@ MonoBehaviour:
         - name: Action 1
           <EffectParticles>k__BackingField:
           - isGround: 0
+            isHeader: 0
+            isTransformGlobal: 0
             isRandomPosRot: 0
             isRandomRange: 0
             EffectOffset: {x: 0.4, y: 0}
-            EffectScale: 0
+            EffectScale: {x: 0, y: 0, z: 0}
             isFollowing: 1
             Object: {fileID: 5314433521719334783, guid: 4ca6be77a935e0b49b6bbd9d1d3a4df4, type: 3}
     - rid: 2527592717927579675
@@ -114,6 +121,9 @@ MonoBehaviour:
         - name: Action 1
           audioClips:
           - {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
+          audioDataList:
+          - Clip: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
+            Volume: 1
     - rid: 2527592717927579679
       type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:

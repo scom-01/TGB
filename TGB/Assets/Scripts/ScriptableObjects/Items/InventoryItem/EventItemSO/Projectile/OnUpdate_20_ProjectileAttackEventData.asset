@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed8ea68a9bdcff84ab444f378220bdab, type: 3}
-  m_Name: OnDash_1_ProjectileAttackEventData
+  m_Name: OnUpdate_20_ProjectileAttackEventData
   m_EditorClassIdentifier: 
-  Item_Type: 5
+  Item_Type: 3
   itemEffectData:
     MaxCount: 3
-    CooldownTime: 0
+    CooldownTime: 1
     isExecute: 0
     VFX:
       isGround: 0
@@ -30,27 +30,27 @@ MonoBehaviour:
     SFX: {fileID: 0}
   ProjectileActionData:
     ProjectileData:
-      Pos: {x: 0, y: 0, z: 0}
-      Rot: {x: 1, y: 0, z: 0}
-      Speed: 10
-      DurationTime: 2
+      Pos: {x: 0.65, y: 0.25, z: 0}
+      Rot: {x: 1, y: 1, z: 0}
+      Speed: 7
+      DurationTime: 1.5
       AdditionalDmg: 5
       isFixed: 1
       Radius: 0.2
       Offset: {x: 0, y: 0}
-      GravityScale: 0
+      GravityScale: 2
       isSingleShoot: 1
       KnockbackAngle: {x: 0, y: 0}
       isCollisionGround: 1
-      isCollisionPlatform: 0
-      isBound: 0
-      UnitCC2DMaterial: {fileID: 0}
+      isCollisionPlatform: 1
+      isBound: 1
+      UnitCC2DMaterial: {fileID: 6200000, guid: c0d066c20b8db264badb7d747b043abb, type: 2}
       EffectScale: {x: 0.2, y: 0.2, z: 0.2}
       isOnHit: 0
       isShakeCam: 0
       homingType: 0
       camDatas:
-        Duration: 0
-        Range: 0
-        RepeatRate: 0
-    Projectile: {fileID: 2222910967692216358, guid: 1af7a89b518ecd141b7b6da807692a50, type: 3}
+        Duration: 0.1
+        Range: 0.01
+        RepeatRate: 0.001
+    Projectile: {fileID: 2222910967692216358, guid: 07c51990f2cec4940a6ef5ef8d49b7b8, type: 3}

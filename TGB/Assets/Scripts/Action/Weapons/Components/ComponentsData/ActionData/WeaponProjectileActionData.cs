@@ -59,6 +59,18 @@ public struct ProjectileData
     /// </summary>
     public bool isCollisionGround;
     /// <summary>
+    /// Platform과 충돌 판별 여부
+    /// </summary>
+    public bool isCollisionPlatform;
+    /// <summary>
+    /// Bound 여부
+    /// </summary>
+    public bool isBound;
+    /// <summary>
+    /// bound 적용할 Materaial
+    /// </summary>
+    public PhysicsMaterial2D UnitCC2DMaterial;
+    /// <summary>
     /// 이펙트 로컬 스케일
     /// </summary>
     public Vector3 EffectScale;

@@ -57,8 +57,8 @@ public class TouchItem : TouchObject
                 gameObject.GetComponent<Unit>().Core.CoreEffectManager.StartEffects(Item.InitEffectData.AcquiredEffectPrefab, this.gameObject.transform.position, Quaternion.identity, Vector3.one);            
 
             //Sfx
-            if (Item.InitEffectData.AcquiredSoundEffect != null)
-                gameObject.GetComponent<Unit>().Core.CoreSoundEffect.AudioSpawn(Item.InitEffectData.AcquiredSoundEffect);
+            if (Item.InitEffectData.AcquiredSFX.Clip != null)
+                gameObject.GetComponent<Unit>().Core.CoreSoundEffect.AudioSpawn(Item.InitEffectData.AcquiredSFX);
 
 
             Destroy(SpriteRenderer.gameObject);

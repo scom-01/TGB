@@ -1,6 +1,3 @@
-using TGB.CoreSystem;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace TGB.Weapons.Components
@@ -41,7 +38,7 @@ namespace TGB.Weapons.Components
             if (actionSoundClip == null)
                 return;
 
-            var currSoundClips = actionSoundClip.audioClips;
+            var currSoundClips = actionSoundClip.audioDataList;
             if (currSoundClips.Length <= 0)
                 return;
 

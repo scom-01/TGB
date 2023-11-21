@@ -31,8 +31,8 @@ public class Trap : TouchObject
             {
                 if (EffectObject)
                     collision.GetComponent<Unit>()?.Core.CoreEffectManager.StartEffectsPos(EffectObject, collision.GetComponent<Unit>().transform.position, EffectObject.transform.localScale);
-                if (SfxObject)
-                    collision.GetComponent<Unit>()?.Core.CoreSoundEffect.AudioSpawn(SfxObject);
+                if (SFX.Clip)
+                    collision.GetComponent<Unit>()?.Core.CoreSoundEffect.AudioSpawn(SFX);
             }
             Debug.LogWarning(collision.name + "DamageReceiver" + "Trap");
         }

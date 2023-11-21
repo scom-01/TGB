@@ -110,11 +110,11 @@ namespace TGB.Weapons.Components
 
                         //AudioClip
                         #region AudioClip
-                        if (currHitBox[currentHitBoxIndex].audioClip != null)
+                        if (currHitBox[currentHitBoxIndex].audioClips != null)
                         {
-                            for (int i = 0; i < currHitBox[currentHitBoxIndex].audioClip.Length; i++)
+                            for (int i = 0; i < currHitBox[currentHitBoxIndex].audioClips.Length; i++)
                             {
-                                CoreSoundEffect.AudioSpawn(currHitBox[currentHitBoxIndex].audioClip[i]);
+                                CoreSoundEffect.AudioSpawn(currHitBox[currentHitBoxIndex].audioClips[i]);
                             }
                         }
                         #endregion
@@ -226,11 +226,11 @@ namespace TGB.Weapons.Components
 
                         //AudioClip
                         #region AudioClip
-                        if (hitActions[currentHitBoxIndex].audioClip != null)
+                        if (hitActions[currentHitBoxIndex].audioClips != null)
                         {
-                            for (int i = 0; i < hitActions[currentHitBoxIndex].audioClip.Length; i++)
+                            for (int i = 0; i < hitActions[currentHitBoxIndex].audioClips.Length; i++)
                             {
-                                CoreSoundEffect.AudioSpawn(hitActions[currentHitBoxIndex].audioClip[i]);
+                                CoreSoundEffect.AudioSpawn(hitActions[currentHitBoxIndex].audioClips[i]);
                             }
                         }
                         #endregion
@@ -356,11 +356,11 @@ namespace TGB.Weapons.Components
 
                         //AudioClip
                         #region AudioClip
-                        if (hitActions[currentHitBoxIndex].audioClip != null)
+                        if (hitActions[currentHitBoxIndex].audioClips != null)
                         {
-                            for (int i = 0; i < hitActions[currentHitBoxIndex].audioClip.Length; i++)
+                            for (int i = 0; i < hitActions[currentHitBoxIndex].audioClips.Length; i++)
                             {
-                                CoreSoundEffect.AudioSpawn(hitActions[currentHitBoxIndex].audioClip[i]);
+                                CoreSoundEffect.AudioSpawn(hitActions[currentHitBoxIndex].audioClips[i]);
                             }
                         }
                         #endregion

@@ -43,7 +43,7 @@ namespace TGB.Weapons.Components
         /// <summary>
         /// 공격 시 사운드
         /// </summary>
-        public AudioClip[] audioClip;
+        public AudioPrefab[] audioClips;
         /// <summary>
         /// 공격 시 ShakeCam
         /// </summary>

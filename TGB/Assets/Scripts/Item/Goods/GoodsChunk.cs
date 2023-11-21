@@ -1,3 +1,4 @@
+using TGB;
 using UnityEngine;
 
 public class GoodsChunk : MonoBehaviour
@@ -5,8 +6,8 @@ public class GoodsChunk : MonoBehaviour
     public SpriteRenderer SR;
     public GOODS_TPYE Goods;
     public int Amount;
-    public AudioClip DropSoundClip;
-    public AudioClip EquipSoundClip;
+    public AudioPrefab DropSFX;
+    public AudioPrefab EquipSFX;
     public GameObject EquipEffect;
     public float InvokeTime
     {
@@ -70,8 +71,8 @@ public class GoodsChunk : MonoBehaviour
         DataManager.Inst.CalculateGoods(Goods, Amount);
         if (GameManager.Inst.StageManager != null)
         {
-            if (EquipSoundClip != null)
-                GameManager.Inst.StageManager.player.Core.CoreSoundEffect.AudioSpawn(EquipSoundClip);
+            if (EquipSFX.Clip != null)
+                GameManager.Inst.StageManager.player.Core.CoreSoundEffect.AudioSpawn(EquipSFX);
             if (EquipEffect != null)
                 GameManager.Inst.StageManager.player.Core.CoreEffectManager.StartEffectsPos(EquipEffect, this.gameObject.transform.position, EquipEffect.transform.localScale);
         }
@@ -86,8 +87,8 @@ public class GoodsChunk : MonoBehaviour
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") || collision.gameObject.layer == LayerMask.NameToLayer("Platform"))
         {
-            if (DropSoundClip != null)
-                GameManager.Inst.StageManager.player.Core.CoreSoundEffect.AudioSpawn(DropSoundClip);
+            if (DropSFX.Clip != null)
+                GameManager.Inst.StageManager.player.Core.CoreSoundEffect.AudioSpawn(DropSFX);
         }
 
         if (collision.tag == "Player")

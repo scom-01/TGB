@@ -47,7 +47,7 @@ MonoBehaviour:
             isFixed: 0
             KnockbackAngle: {x: 0, y: 0}
             EffectPrefab: []
-            audioClip: []
+            audioClips: []
             camDatas: []
           - Debug: 1
             ActionRect:
@@ -61,7 +61,7 @@ MonoBehaviour:
             isFixed: 0
             KnockbackAngle: {x: 0, y: 0}
             EffectPrefab: []
-            audioClip: []
+            audioClips: []
             camDatas: []
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
@@ -107,9 +107,11 @@ MonoBehaviour:
         name: SoundClipData
         actionData:
         - name: Action 1
-          audioClips:
-          - {fileID: 8300000, guid: 6dfdde66f5d9f9548ac309d88341d887, type: 3}
-          - {fileID: 8300000, guid: d773d355b4317e34ea9eb1a4573655f9, type: 3}
+          audioDataList:
+          - Clip: {fileID: 8300000, guid: 6dfdde66f5d9f9548ac309d88341d887, type: 3}
+            Volume: 1
+          - Clip: {fileID: 8300000, guid: d773d355b4317e34ea9eb1a4573655f9, type: 3}
+            Volume: 1
     - rid: 2527592717927579796
       type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -130,6 +132,9 @@ MonoBehaviour:
               isSingleShoot: 1
               KnockbackAngle: {x: 0, y: 0}
               isCollisionGround: 1
+              isCollisionPlatform: 0
+              isBound: 0
+              UnitCC2DMaterial: {fileID: 0}
               EffectScale: {x: 0, y: 0, z: 0}
               isOnHit: 1
               isShakeCam: 0
@@ -152,6 +157,9 @@ MonoBehaviour:
               isSingleShoot: 1
               KnockbackAngle: {x: 0, y: 0}
               isCollisionGround: 1
+              isCollisionPlatform: 0
+              isBound: 0
+              UnitCC2DMaterial: {fileID: 0}
               EffectScale: {x: 0, y: 0, z: 0}
               isOnHit: 1
               isShakeCam: 0

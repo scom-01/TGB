@@ -33,7 +33,7 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
     ItemSprite: {fileID: 21300000, guid: 4099f50198c088a4bb406a8a2bd4243b, type: 3}
-    ItemLevel: 1
+    ItemLevel: 2
   CompositeItems: []
   isFieldSpawn: 1
   StatsData:
@@ -59,6 +59,20 @@ MonoBehaviour:
   - type: 1
     StatsLocalizeString:
       m_TableReference:
+        m_TableCollectionName: GUID:0d4742437ec6ec541bf0850b60cb729a
+      m_TableEntryReference:
+        m_KeyId: 38000898235326464
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    variable: 0
+    value: 10
+    ShowPercent: 0
+    HideMark: 0
+  - type: 1
+    StatsLocalizeString:
+      m_TableReference:
         m_TableCollectionName: 
       m_TableEntryReference:
         m_KeyId: 0
@@ -69,6 +83,7 @@ MonoBehaviour:
     variable: 0
     value: 10
     ShowPercent: 1
+    HideMark: 0
   Health: 0
   buffItems: []
   InitEffectData:
@@ -77,7 +92,9 @@ MonoBehaviour:
     <isEquipment>k__BackingField: 1
     <DetailSubUI>k__BackingField: 0
   InfinityEffectObjects: []
-  ItemEffects: []
+  ItemEffects:
+  - {fileID: 11400000, guid: a1d382a98ff80d74389318b0ab860e06, type: 2}
+  - {fileID: 11400000, guid: 257b2b3173583a349843fdeb7cacafe5, type: 2}
   references:
     version: 2
     RefIds: []

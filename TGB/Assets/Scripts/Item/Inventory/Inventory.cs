@@ -341,8 +341,8 @@ public class Inventory : MonoBehaviour
         }
 
         //SFX
-        if (itemObject.InitEffectData.AcquiredSoundEffect != null)
-            unit.Core.CoreSoundEffect.AudioSpawn(itemObject.InitEffectData.AcquiredSoundEffect);
+        if (itemObject.InitEffectData.AcquiredSFX.Clip != null)
+            unit.Core.CoreSoundEffect.AudioSpawn(itemObject.InitEffectData.AcquiredSFX);
 
         if (DataManager.Inst.JSON_DataParsing.LockItemList.Contains(itemObject.ItemIdx))
         {
@@ -473,7 +473,7 @@ public class Inventory : MonoBehaviour
                     unit.Core.CoreEffectManager.StartEffects(itemObject.CompositeItems[i].EditVFX, (Object.GameObject()?.transform == null) ? this.transform.position : Object.GameObject().transform.position, Quaternion.identity, Vector3.one);
 
                 //합성 SFX
-                if (itemObject.CompositeItems[i].EditSFX != null)
+                if (itemObject.CompositeItems[i].EditSFX.Clip != null)
                     unit.Core.CoreSoundEffect.AudioSpawn(itemObject.CompositeItems[i].EditSFX);
 
                 itemObject = itemObject.CompositeItems[i].ResultItem;

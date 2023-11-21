@@ -48,13 +48,16 @@ MonoBehaviour:
             KnockbackAngle: {x: 0, y: 0}
             EffectPrefab:
             - isGround: 0
+              isHeader: 0
+              isTransformGlobal: 0
               isRandomPosRot: 1
               isRandomRange: 1.5
               EffectOffset: {x: 0, y: 0}
-              EffectScale: 0
+              EffectScale: {x: 0, y: 0, z: 0}
               isFollowing: 0
               Object: {fileID: 8867112169225384458, guid: f7f4dfc73dd2e0944a7dfab9f80538ce, type: 3}
             audioClip: []
+            audioClips: []
             camDatas: []
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
@@ -74,10 +77,12 @@ MonoBehaviour:
         - name: Action 1
           <EffectParticles>k__BackingField:
           - isGround: 0
+            isHeader: 0
+            isTransformGlobal: 0
             isRandomPosRot: 0
             isRandomRange: 0
             EffectOffset: {x: 0.2, y: 0}
-            EffectScale: 0
+            EffectScale: {x: 0, y: 0, z: 0}
             isFollowing: 1
             Object: {fileID: 668831008311998851, guid: ac963cc57d2788d46864a97e88d9d162, type: 3}
     - rid: 2527592717927579846
@@ -109,6 +114,9 @@ MonoBehaviour:
         - name: Action 1
           audioClips:
           - {fileID: 8300000, guid: 7dfd8119742582c47832bf5ec01273db, type: 3}
+          audioDataList:
+          - Clip: {fileID: 8300000, guid: 7dfd8119742582c47832bf5ec01273db, type: 3}
+            Volume: 1
     - rid: 2527592717927579850
       type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -129,12 +137,13 @@ MonoBehaviour:
               isSingleShoot: 0
               KnockbackAngle: {x: 0, y: 0}
               isCollisionGround: 0
+              isCollisionPlatform: 0
+              isBound: 0
+              UnitCC2DMaterial: {fileID: 0}
               EffectScale: {x: 0, y: 0, z: 0}
               isOnHit: 0
               isShakeCam: 0
-              isToTarget: 0
               homingType: 0
-              isHoming: 0
               camDatas:
                 Duration: 0
                 Range: 0

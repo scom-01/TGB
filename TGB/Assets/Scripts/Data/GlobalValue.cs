@@ -12,7 +12,7 @@ public class GlobalValue : MonoBehaviour
     public static float GV_SystemDeltatime = 0.02f;
     public static float GV_CharacterDeltatime = 0.02f;
 
-    public const string SoundContainerTagName = "SoundContainer";
+    public const string SFX_SoundContainerTagName = "SoundContainer";
 
     #region PlayerPrefs Data
     public const string StageName = "StageName";
