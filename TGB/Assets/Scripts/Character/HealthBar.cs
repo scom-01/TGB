@@ -104,7 +104,7 @@ public class HealthBar : MonoBehaviour
 
         UpdateBar();
     }
-    private void Update()
+    private void LateUpdate()
     {
         if (Unit == null)
             return;
