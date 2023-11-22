@@ -17,7 +17,7 @@ public class TitleManager : MonoBehaviour
     /// </summary>
     private bool isDone = false;
 
-    public GameObject UnlockItem_Canvas;
+    public UIManager UnlockItem_Canvas;
 
     private void OnEnable()
     {
@@ -142,7 +142,8 @@ public class TitleManager : MonoBehaviour
     {
         if (UnlockItem_Canvas != null)
         {
-            UnlockItem_Canvas.GetComponent<Canvas>().enabled = true;
+            UnlockItem_Canvas.Canvas.enabled = true;
+            UnlockItem_Canvas.animator?.Play("Action", -1, 0f);
             GameManager.Inst.InputHandler.OnESCInput_Action.Add(HideUnlockItemCanvas);
             UnlockItem_Canvas.GetComponentInChildren<UnlockItemList>()?.SetInit();
 
@@ -157,7 +158,7 @@ public class TitleManager : MonoBehaviour
 
     private void HideUnlockItemCanvas()
     {
-        UnlockItem_Canvas.GetComponent<Canvas>().enabled = false;
+        UnlockItem_Canvas.Canvas.enabled = false;
         EventSystem.current.SetSelectedGameObject(buttons[0].gameObject);
     }
 

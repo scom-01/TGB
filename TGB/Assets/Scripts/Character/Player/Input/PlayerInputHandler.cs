@@ -333,13 +333,13 @@ public class PlayerInputHandler : MonoBehaviour
                 var _TitleManager = FindObjectOfType(typeof(TitleManager)) as TitleManager;
                 if (_TitleManager != null)
                 {
-                    if(_TitleManager.UnlockItem_Canvas.GetComponent<Canvas>()?.enabled == true)
+                    if(_TitleManager.UnlockItem_Canvas.Canvas.enabled == true)
                     {                        
                         if (_TitleManager.buttons.Count > 0)
                         {
                             EventSystem.current.SetSelectedGameObject(_TitleManager.buttons[0].gameObject);
                         }
-                        _TitleManager.UnlockItem_Canvas.GetComponent<Canvas>().enabled = false;
+                        _TitleManager.UnlockItem_Canvas.Canvas.enabled = false;
                         return;
                     }
                 }

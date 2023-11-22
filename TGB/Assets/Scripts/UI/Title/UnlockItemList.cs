@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,6 +34,7 @@ public class UnlockItemList : MonoBehaviour
         }
         #endregion
 
+        //모든 아이템 추가
         for (int i = 0; i < GlobalValue.All_ItemDB.ItemDBList.Count; i++)
         {
             var item = Instantiate(UnlockItemPrefab, this.transform);
