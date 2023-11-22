@@ -344,6 +344,7 @@ public class Inventory : MonoBehaviour
         if (itemObject.InitEffectData.AcquiredSFX.Clip != null)
             unit.Core.CoreSoundEffect.AudioSpawn(itemObject.InitEffectData.AcquiredSFX);
 
+        //미해금 아이템이라면 미해금 아이템 리스트에 추가
         if (DataManager.Inst.JSON_DataParsing.LockItemList.Contains(itemObject.ItemIdx))
         {
             DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.WaitUnlockItemIdxs.Add(itemObject.ItemIdx);

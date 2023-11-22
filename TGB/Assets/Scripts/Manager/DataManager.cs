@@ -359,12 +359,7 @@ public class DataManager : MonoBehaviour
     {
         //WaitUnlockItemIdxs = 해금 대기 아이템 인덱스 리스트
         for (int i = 0; i < JSON_DataParsing.m_JSON_DefaultData.WaitUnlockItemIdxs.Count; i++)
-        {
-            //해금 리스트에 해금 대기 아이템 인덱스 리스트의 아이템이 있으면 continue;
-            if (JSON_DataParsing.m_JSON_DefaultData.UnlockItemIdxs.Contains(JSON_DataParsing.m_JSON_DefaultData.WaitUnlockItemIdxs[i]))
-            {
-                continue;
-            }
+        {   
             //해금 리스트에 해금 대기 아이템 인덱스 리스트의 아이템추가
             JSON_DataParsing.m_JSON_DefaultData.UnlockItemIdxs.Add(JSON_DataParsing.m_JSON_DefaultData.WaitUnlockItemIdxs[i]);
             //Title 해금 이펙트 리스트에 추가
