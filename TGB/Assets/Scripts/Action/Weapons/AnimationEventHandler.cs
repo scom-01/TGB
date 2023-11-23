@@ -1,8 +1,10 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AnimationEventHandler : MonoBehaviour
 {
+    public bool isAction;
     public event Action OnFinish;
 
     //Movement
@@ -43,43 +45,47 @@ public class AnimationEventHandler : MonoBehaviour
     public event Action OnStartCCImmunity;
     public event Action OnStopCCImmunity;
 
-    public void AnimationFinishedTrigger() => OnFinish?.Invoke();
+    public void AnimationFinishedTrigger()
+    {
+        isAction = false;
+        OnFinish?.Invoke();
+    }
 
     //Movement
-    public void FixedStartMovementTrigger() => OnFixedStartMovement?.Invoke();
-    public void FixedStopMovementTrigger() => OnFixedStopMovement?.Invoke();
-    public void MovementAction() => OnMovementAction?.Invoke();
-    public void StartMovementTrigger() => OnStartMovement?.Invoke();
-    public void StopMovementTrigger() => OnStopMovement?.Invoke();
-    public void StartFlipTrigger() => OnStartFlip?.Invoke();
-    public void StopFlipTrigger() => OnStopFlip?.Invoke();
+    public void FixedStartMovementTrigger() { if (isAction) OnFixedStartMovement?.Invoke(); }
+    public void FixedStopMovementTrigger() { if (isAction) OnFixedStopMovement?.Invoke(); }
+    public void MovementAction() { if (isAction) OnMovementAction?.Invoke(); }
+    public void StartMovementTrigger() { if (isAction) OnStartMovement?.Invoke(); }
+    public void StopMovementTrigger() { if (isAction) OnStopMovement?.Invoke(); }
+    public void StartFlipTrigger() { if (isAction) OnStartFlip?.Invoke(); }
+    public void StopFlipTrigger() { if (isAction) OnStopFlip?.Invoke(); }
 
-    public void TeleportToTargetTrigger() => OnTeleportToTarget?.Invoke();
-    public void TeleportToPointTrigger() => OnTeleportToPoint?.Invoke();
-    public void StartRushToTargetTrigger() => OnRushToTargetOn?.Invoke();
-    public void StopRushToTargetTrigger() => OnRushToTargetOff?.Invoke();
+    public void TeleportToTargetTrigger() { if (isAction) OnTeleportToTarget?.Invoke(); }
+    public void TeleportToPointTrigger() { if (isAction) OnTeleportToPoint?.Invoke(); }
+    public void StartRushToTargetTrigger() { if (isAction) OnRushToTargetOn?.Invoke(); }
+    public void StopRushToTargetTrigger() { if (isAction) OnRushToTargetOff?.Invoke(); }
 
     //Action
-    public void AttackMessageBoxTrigger() => OnAttMessageBox?.Invoke();
-    public void AttackActionTrigger() => OnAttackAction?.Invoke();
-    public void StartActionRectTrigger() => OnActionRectOn?.Invoke();
-    public void StopActionRectTrigger() => OnActionRectOff?.Invoke();
-    public void StartRushActionRectTrigger() => OnRushActionRectOn?.Invoke();
-    public void StopRushActionRectTrigger() => OnRushActionRectOff?.Invoke();
-    public void ShootProjectileTrigger() => OnShootProjectile?.Invoke();
+    public void AttackMessageBoxTrigger() { if (isAction) OnAttMessageBox?.Invoke(); }
+    public void AttackActionTrigger() { if (isAction) OnAttackAction?.Invoke(); }
+    public void StartActionRectTrigger() { if (isAction) OnActionRectOn?.Invoke(); }
+    public void StopActionRectTrigger() { if (isAction) OnActionRectOff?.Invoke(); }
+    public void StartRushActionRectTrigger() { if (isAction) OnRushActionRectOn?.Invoke(); }
+    public void StopRushActionRectTrigger() { if (isAction) OnRushActionRectOff?.Invoke(); }
+    public void ShootProjectileTrigger() { if (isAction) OnShootProjectile?.Invoke(); }
 
     //Effect
-    public void SpawnEffectTrigger() => OnEffectSpawn?.Invoke();
+    public void SpawnEffectTrigger() { if (isAction) OnEffectSpawn?.Invoke(); }
 
     //Sound
-    public void SpawnSoundClipTrigger() => OnSoundClip?.Invoke();
+    public void SpawnSoundClipTrigger() { if (isAction) OnSoundClip?.Invoke(); }
 
     //Cam
-    public void ShakeCamTrigger() => OnShakeCam?.Invoke();
+    public void ShakeCamTrigger() { if (isAction) OnShakeCam?.Invoke(); }
 
     //State
-    public void StartInvincibleTrigger() => OnStartInvincible?.Invoke();
-    public void StopInvincibleTrigger() => OnStopInvincible?.Invoke();
-    public void StartCCImmunityTrigger() => OnStartCCImmunity?.Invoke();
-    public void StopCCImmunityTrigger() => OnStopCCImmunity?.Invoke();
+    public void StartInvincibleTrigger() { if (isAction) OnStartInvincible?.Invoke(); }
+    public void StopInvincibleTrigger() { if (isAction) OnStopInvincible?.Invoke(); }
+    public void StartCCImmunityTrigger() { if (isAction) OnStartCCImmunity?.Invoke(); }
+    public void StopCCImmunityTrigger() { if (isAction) OnStopCCImmunity?.Invoke(); }
 }

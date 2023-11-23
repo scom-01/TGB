@@ -120,7 +120,10 @@ namespace TGB.Weapons
                 baseAnimator.runtimeAnimatorController = oc;
             }
             if (GlobalValue.ContainParam(baseAnimator, "action"))
+            {
+                baseAnimator.GetComponent<AnimationEventHandler>().isAction = true;
                 SetBoolName("action", true);
+            }
             if (GlobalValue.ContainParam(baseAnimator, "actionCounter"))
                 SetIntName("actionCounter", CurrentActionCounter);
             OnEnter?.Invoke();
