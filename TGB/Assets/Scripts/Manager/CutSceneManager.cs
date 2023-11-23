@@ -64,7 +64,6 @@ public class CutSceneManager : MonoBehaviour
     {
         if (PlayableDirector != null)
         {
-            PlayableDirector.stopped += OnTriggerSceneEnd;
             if(this.GetComponent<SkipCutSceneIndex>() != null)
             {
                 this.GetComponent<SkipCutSceneIndex>().CheckSkipCutScene();

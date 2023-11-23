@@ -4333,7 +4333,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d9513fef8696d449f5cccb09b8007e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SfxObject: {fileID: 0}
+  SFX:
+    Clip: {fileID: 0}
+    Volume: 0
   EffectObject: {fileID: 0}
 --- !u!1 &408849922
 GameObject:
@@ -74498,6 +74500,7 @@ MonoBehaviour:
   ItemSpawnAmount: 0
   ItemSpawnInterval: 0
   ChoiceItemAmount: 0
+  UnlockItemSpawnPer: 0
   BGM: {fileID: 0}
 --- !u!4 &1143652533
 Transform:
@@ -75128,7 +75131,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 648d7fecd484a93428f79668dd27feaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SfxObject: {fileID: 0}
+  SFX:
+    Clip: {fileID: 0}
+    Volume: 0
   EffectObject: {fileID: 0}
   Ignore_Tag: 
   Item: {fileID: 11400000, guid: 45bf890e301b83740a4dafff7b7b6674, type: 2}
@@ -86457,7 +86462,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1561160550
 Transform:
   m_ObjectHideFlags: 0
@@ -89671,7 +89676,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f30e61af88ba84aaeeb01933203d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SfxObject: {fileID: 0}
+  SFX:
+    Clip: {fileID: 0}
+    Volume: 0
   EffectObject: {fileID: 0}
   UnitData: {fileID: 11400000, guid: 27eaf0c531753bd45891897fd5c4886a, type: 2}
   knockbackAngle: {x: 0, y: 0}

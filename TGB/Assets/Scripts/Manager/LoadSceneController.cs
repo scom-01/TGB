@@ -24,7 +24,7 @@ public class LoadSceneController : MonoBehaviour
         GameManager.Inst.ChangeUI(UI_State.Loading);
         
         GameManager.Inst.SaveData();
-        AsyncOperation operation = SceneManager.LoadSceneAsync("LoadingScene");
+        StartCoroutine(LoadScene("LoadingScene"));
         isMoveScene = true;
     }
 
@@ -34,12 +34,26 @@ public class LoadSceneController : MonoBehaviour
             return;
 
         DataManager.Inst?.NextStage(2);
-        AsyncOperation operation = SceneManager.LoadSceneAsync("LoadingScene");
+        StartCoroutine(LoadScene("LoadingScene"));
     }
 
     private void Start()
     {
         //혹시나 애니메이션이 멈춤이 발생할 경우를 대비
         Invoke("MoveScene", 5f);
+    }
+
+    IEnumerator LoadScene(string sceneName)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+        operation.allowSceneActivation = false;
+        while (operation.progress <= 0.9f)
+        {
+            yield return null;
+            if (operation.progress >= 0.9f)
+            {
+                operation.allowSceneActivation = true;
+            }
+        }
     }
 }

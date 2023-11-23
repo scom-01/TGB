@@ -33,6 +33,9 @@ public class GameManager : MonoBehaviour
     }
     private static GameManager _Inst = null;
 
+    /// <summary>
+    /// true = pause
+    /// </summary>
     [HideInInspector] public bool isPause = false;
     public PlayerInputHandler InputHandler
     {
@@ -453,6 +456,10 @@ public class GameManager : MonoBehaviour
         else
         {
             DataManager.Inst?.NextStage(4);
+        }
+        if (isPause)
+        {
+            InputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, true);
         }
         ClearScene();
     }
