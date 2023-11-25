@@ -11,9 +11,11 @@ public class ItemSet
     public StatsItemSO item;
     public List<bool> init = new List<bool>();
     public List<float> startTime = new List<float>();
-    public List<int> OnActionCount = new List<int>();
-    public List<int> OnHitCount = new List<int>();
-    public ItemSet(StatsItemSO itemSO, float _startTime = 0, int _actionCount = 0, int _hitCount = 0)
+    /// <summary>
+    /// OnAction이면 OnAction의 Count를 OnHit면 OnHit의 Count를 계산
+    /// </summary>
+    public List<int> EffectCount = new List<int>();
+    public ItemSet(StatsItemSO itemSO, float _startTime = 0, int _Count = 0)
     {
         this.item = itemSO;
 
@@ -22,14 +24,9 @@ public class ItemSet
             startTime.Add(_startTime);
         }
 
-        if (this.OnActionCount.Count < 1)
+        if (this.EffectCount.Count < 1)
         {
-            OnActionCount.Add(_actionCount);
-        }
-
-        if (this.OnHitCount.Count < 1)
-        {
-            OnHitCount.Add(_hitCount);
+            EffectCount.Add(_Count);
         }
     }
 }
@@ -158,11 +155,11 @@ public class Inventory : MonoBehaviour
                 if (Items[i].item.ItemEffects[j] == null)
                     continue;
 
-                if (Items[i].OnHitCount.Count < j + 1)
+                if (Items[i].EffectCount.Count < j + 1)
                 {
-                    Items[i].OnHitCount.Add(0);
+                    Items[i].EffectCount.Add(0);
                 }
-                Items[i].OnHitCount[j] = Items[i].item.ExeOnHit(unit, Enemy, Items[i].item.ItemEffects[j], Items[i].OnHitCount[j]);
+                Items[i].EffectCount[j] = Items[i].item.ExeOnHit(unit, Enemy, Items[i].item.ItemEffects[j], Items[i].EffectCount[j]);
             }
         }
         return true;
@@ -177,16 +174,18 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < Items.Count; i++)
         {
+            if (Items[i].item == null)
+                continue;
             for (int j = 0; j < Items[i].item.ItemEffects.Count; j++)
             {
                 if (Items[i].item.ItemEffects[j] == null)
                     continue;
 
-                if (Items[i].OnActionCount.Count < j + 1)
+                if (Items[i].EffectCount.Count < j + 1)
                 {
-                    Items[i].OnActionCount.Add(0);
+                    Items[i].EffectCount.Add(0);
                 }
-                Items[i].OnActionCount[j] = Items[i].item.ExeAction(unit, Items[i].item.ItemEffects[j], Items[i].OnActionCount[j]);
+                Items[i].EffectCount[j] = Items[i].item.ExeAction(unit, Items[i].item.ItemEffects[j], Items[i].EffectCount[j]);
             }
         }
         return true;
@@ -201,6 +200,8 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < Items.Count; i++)
         {
+            if (Items[i].item == null)
+                continue;
             for (int j = 0; j < Items[i].item.ItemEffects.Count; j++)
             {
                 if (Items[i].item.ItemEffects[j] == null)
@@ -245,6 +246,8 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < Items.Count; i++)
         {
+            if (Items[i].item == null)
+                continue;
             for (int j = 0; j < Items[i].item.ItemEffects.Count; j++)
             {
                 if (Items[i].item.ItemEffects[j] == null)
