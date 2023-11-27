@@ -42,34 +42,7 @@ namespace TGB.Weapons
 
                     dataSO.AddData(comp);
                 }
-                    //foreach (var item in dataSO.ComponentData)
-                    //{
-                    //    item.InitializeActionData(dataSO.NumberOfActions);
-                    //}
             }
-
-            //showAddComponentButtons = EditorGUILayout.Foldout(showAddComponentButtons, "Add Components Buttons");            
-
-            //if(showAddComponentButtons)
-            //{
-            //    foreach (var dataCompType in dataCompTypes)
-            //    {
-            //        if (GUILayout.Button(dataCompType.Name))
-            //        {
-            //            var comp = Activator.CreateInstance(dataCompType) as ComponentData;
-
-            //            if (comp == null)
-            //            {
-            //                return;
-            //            }
-
-            //            comp.InitializeActionData(dataSO.NumberOfActions);
-
-            //            dataSO.AddData(comp);
-            //        }
-            //    }
-            //}
-
             showForceUpdateButtons = EditorGUILayout.Foldout(showForceUpdateButtons, "Force Update Buttons");
             if(showForceUpdateButtons)
             {

@@ -88,7 +88,7 @@ namespace TGB.Weapons.Components
 
 
                 //Hit시 효과
-                if (coll.TryGetComponent(out IDamageable damageable))
+                if (coll.TryGetComponent(out IDamageable victim))
                 {
                     for (int j = 0; j < currHitBox[currentHitBoxIndex].RepeatAction; j++)
                     {
@@ -101,9 +101,9 @@ namespace TGB.Weapons.Components
                             for (int i = 0; i < currHitBox[currentHitBoxIndex].EffectPrefab.Length; i++)
                             {
                                 if (currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomPosRot)
-                                    damageable.HitEffectRandRot(currHitBox[currentHitBoxIndex].EffectPrefab[i].Object, currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomRange, currHitBox[currentHitBoxIndex].EffectPrefab[i].EffectScale, currHitBox[currentHitBoxIndex].EffectPrefab[i].isFollowing);
+                                    victim.HitEffectRandRot(currHitBox[currentHitBoxIndex].EffectPrefab[i].Object, currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomRange, currHitBox[currentHitBoxIndex].EffectPrefab[i].EffectScale, currHitBox[currentHitBoxIndex].EffectPrefab[i].isFollowing);
                                 else
-                                    damageable.HitEffect(currHitBox[currentHitBoxIndex].EffectPrefab[i].Object, currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomRange, CoreMovement.FancingDirection, currHitBox[currentHitBoxIndex].EffectPrefab[i].EffectScale);
+                                    victim.HitEffect(currHitBox[currentHitBoxIndex].EffectPrefab[i].Object, currHitBox[currentHitBoxIndex].EffectPrefab[i].isRandomRange, CoreMovement.FancingDirection, currHitBox[currentHitBoxIndex].EffectPrefab[i].EffectScale);
                             }
                         }
                         #endregion
@@ -136,15 +136,15 @@ namespace TGB.Weapons.Components
                 }
 
                 //Damage
-                if (coll.TryGetComponent(out IDamageable _damageable))
+                if (coll.TryGetComponent(out IDamageable _victim))
                 {
                     if (currHitBox[currentHitBoxIndex].isFixed)
                     {
-                        damageable.FixedDamage((int)currHitBox[currentHitBoxIndex].AdditionalDamage, true, currHitBox[currentHitBoxIndex].RepeatAction);
+                        _victim.FixedDamage(core.Unit, (int)currHitBox[currentHitBoxIndex].AdditionalDamage, true, currHitBox[currentHitBoxIndex].RepeatAction);
                     }
                     else
                     {
-                        damageable.TypeCalDamage(core.Unit, coll.GetComponentInParent<Unit>(), CoreUnitStats.DefaultPower + currHitBox[currentHitBoxIndex].AdditionalDamage, currHitBox[currentHitBoxIndex].RepeatAction);
+                        _victim.TypeCalDamage(core.Unit, CoreUnitStats.CalculStatsData.DefaultPower  + currHitBox[currentHitBoxIndex].AdditionalDamage, currHitBox[currentHitBoxIndex].RepeatAction);
                     }
                 }
                 //KnockBack
@@ -204,7 +204,7 @@ namespace TGB.Weapons.Components
                 }
 
                 //Hit시 효과
-                if (coll.TryGetComponent(out IDamageable damageable))
+                if (coll.TryGetComponent(out IDamageable victim))
                 {
                     for (int j = 0; j < hitActions[currentHitBoxIndex].RepeatAction; j++)
                     {
@@ -217,9 +217,9 @@ namespace TGB.Weapons.Components
                             for (int i = 0; i < hitActions[currentHitBoxIndex].EffectPrefab.Length; i++)
                             {
                                 if (hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomPosRot)
-                                    damageable.HitEffectRandRot(hitActions[currentHitBoxIndex].EffectPrefab[i].Object, hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomRange, hitActions[currentHitBoxIndex].EffectPrefab[i].EffectScale, hitActions[currentHitBoxIndex].EffectPrefab[i].isFollowing);
+                                    victim.HitEffectRandRot(hitActions[currentHitBoxIndex].EffectPrefab[i].Object, hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomRange, hitActions[currentHitBoxIndex].EffectPrefab[i].EffectScale, hitActions[currentHitBoxIndex].EffectPrefab[i].isFollowing);
                                 else
-                                    damageable.HitEffect(hitActions[currentHitBoxIndex].EffectPrefab[i].Object, hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomRange, CoreMovement.FancingDirection, hitActions[currentHitBoxIndex].EffectPrefab[i].EffectScale);
+                                    victim.HitEffect(hitActions[currentHitBoxIndex].EffectPrefab[i].Object, hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomRange, CoreMovement.FancingDirection, hitActions[currentHitBoxIndex].EffectPrefab[i].EffectScale);
                             }
                         }
                         #endregion
@@ -252,15 +252,15 @@ namespace TGB.Weapons.Components
                 }
 
                 //Damage
-                if (coll.TryGetComponent(out IDamageable _damageable))
+                if (coll.TryGetComponent(out IDamageable _victim))
                 {
                     if (hitActions[currentHitBoxIndex].isFixed)
                     {
-                        damageable.FixedDamage((int)hitActions[currentHitBoxIndex].AdditionalDamage, true, hitActions[currentHitBoxIndex].RepeatAction);
+                        _victim.FixedDamage(core.Unit, (int)hitActions[currentHitBoxIndex].AdditionalDamage, true, hitActions[currentHitBoxIndex].RepeatAction);
                     }
                     else
                     {
-                        damageable.TypeCalDamage(core.Unit, coll.GetComponentInParent<Unit>(), CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage, hitActions[currentHitBoxIndex].RepeatAction);
+                        _victim.TypeCalDamage(core.Unit, CoreUnitStats.CalculStatsData.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage, hitActions[currentHitBoxIndex].RepeatAction);
                     }
                 }
 
@@ -334,7 +334,7 @@ namespace TGB.Weapons.Components
                 }
 
                 //Hit시 효과
-                if (coll.TryGetComponent(out IDamageable damageable))
+                if (coll.TryGetComponent(out IDamageable victim))
                 {
                     for (int j = 0; j < hitActions[currentHitBoxIndex].RepeatAction; j++)
                     {
@@ -347,9 +347,9 @@ namespace TGB.Weapons.Components
                             for (int i = 0; i < hitActions[currentHitBoxIndex].EffectPrefab.Length; i++)
                             {
                                 if (hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomPosRot)
-                                    damageable.HitEffectRandRot(hitActions[currentHitBoxIndex].EffectPrefab[i].Object, hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomRange, hitActions[currentHitBoxIndex].EffectPrefab[i].EffectScale,hitActions[currentHitBoxIndex].EffectPrefab[i].isFollowing);
+                                    victim.HitEffectRandRot(hitActions[currentHitBoxIndex].EffectPrefab[i].Object, hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomRange, hitActions[currentHitBoxIndex].EffectPrefab[i].EffectScale,hitActions[currentHitBoxIndex].EffectPrefab[i].isFollowing);
                                 else
-                                    damageable.HitEffect(hitActions[currentHitBoxIndex].EffectPrefab[i].Object, hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomRange, CoreMovement.FancingDirection, hitActions[currentHitBoxIndex].EffectPrefab[i].EffectScale);
+                                    victim.HitEffect(hitActions[currentHitBoxIndex].EffectPrefab[i].Object, hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomRange, CoreMovement.FancingDirection, hitActions[currentHitBoxIndex].EffectPrefab[i].EffectScale);
                             }
                         }
                         #endregion
@@ -382,15 +382,15 @@ namespace TGB.Weapons.Components
                 }
 
                 //Damage
-                if (coll.TryGetComponent(out IDamageable _damageable))
+                if (coll.TryGetComponent(out IDamageable _victim))
                 {
                     if (hitActions[currentHitBoxIndex].isFixed)
                     {
-                        damageable.FixedDamage((int)hitActions[currentHitBoxIndex].AdditionalDamage, true, hitActions[currentHitBoxIndex].RepeatAction);
+                        _victim.FixedDamage(core.Unit, (int)hitActions[currentHitBoxIndex].AdditionalDamage, true, hitActions[currentHitBoxIndex].RepeatAction);
                     }
                     else
                     {
-                        damageable.TypeCalDamage(core.Unit, coll.GetComponentInParent<Unit>(), CoreUnitStats.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage, hitActions[currentHitBoxIndex].RepeatAction);
+                        _victim.TypeCalDamage(core.Unit, CoreUnitStats.CalculStatsData.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage, hitActions[currentHitBoxIndex].RepeatAction);
                     }
                 }
 

@@ -413,11 +413,11 @@ namespace TGB
 
                 if (ProjectileData.isFixed)
                 {
-                    damageable.FixedDamage((int)ProjectileData.AdditionalDmg, true);
+                    damageable.FixedDamage(unit, (int)ProjectileData.AdditionalDmg, true);
                 }
                 else
                 {
-                    damageable.TypeCalDamage(unit, coll.GetComponentInParent<Unit>(), unit.Core.CoreUnitStats.DefaultPower + ProjectileData.AdditionalDmg);
+                    damageable.TypeCalDamage(unit, unit.Core.CoreUnitStats.CalculStatsData.DefaultPower + ProjectileData.AdditionalDmg);
                 }
                 #endregion
             }

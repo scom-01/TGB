@@ -47,15 +47,15 @@ namespace TGB.Weapons.Components
                 if (coll.gameObject.tag == this.gameObject.tag)
                     continue;
 
-                if (coll.TryGetComponent(out IDamageable damageable))
+                if (coll.TryGetComponent(out IDamageable victim))
                 {
                     if (currDamage[hitBox.currentHitBoxIndex].isFixed)
                     {
-                        damageable.FixedDamage((int)currDamage[hitBox.currentHitBoxIndex].AdditionalDamage, true, currDamage[hitBox.currentHitBoxIndex].RepeatAmount);
+                        victim.FixedDamage((int)currDamage[hitBox.currentHitBoxIndex].AdditionalDamage, true, currDamage[hitBox.currentHitBoxIndex].RepeatAmount);
                     }
                     else
                     {
-                        damageable.TypeCalDamage(core.Unit, coll.GetComponentInParent<Unit>(), CoreUnitStats.DefaultPower + currDamage[hitBox.currentHitBoxIndex].AdditionalDamage, currDamage[hitBox.currentHitBoxIndex].RepeatAmount);
+                        victim.TypeCalDamage(core.Unit, CoreUnitStats.CalculStatsData.DefaultPower + currDamage[hitBox.currentHitBoxIndex].AdditionalDamage, currDamage[hitBox.currentHitBoxIndex].RepeatAmount);
                     }
                 }
             }
