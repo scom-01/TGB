@@ -24,7 +24,7 @@ namespace TGB.Weapons.Components
             base.HandleEnter();
             currentHitBoxIndex = 0;
         }
-        
+
         private void HandleAction()
         {
             if (currentActionData == null)
@@ -59,7 +59,7 @@ namespace TGB.Weapons.Components
                     );
 
             detected = Physics2D.OverlapBoxAll(offset, currHitBox[currentHitBoxIndex].ActionRect.size, 0f, data.DetectableLayers);
-                        
+
             if (detected.Length == 0)
             {
                 Debug.Log("detected.Length == 0");
@@ -144,7 +144,7 @@ namespace TGB.Weapons.Components
                     }
                     else
                     {
-                        _victim.TypeCalDamage(core.Unit, CoreUnitStats.CalculStatsData.DefaultPower  + currHitBox[currentHitBoxIndex].AdditionalDamage, currHitBox[currentHitBoxIndex].RepeatAction);
+                        _victim.TypeCalDamage(core.Unit, CoreUnitStats.CalculStatsData.DefaultPower + currHitBox[currentHitBoxIndex].AdditionalDamage, currHitBox[currentHitBoxIndex].RepeatAction);
                     }
                 }
                 //KnockBack
@@ -308,7 +308,7 @@ namespace TGB.Weapons.Components
                     transform.position.y + (hitActions[currentHitBoxIndex].ActionRect.center.y)
                     );
 
-            float angle = Quaternion.Angle(Quaternion.Euler(PosOffset),Quaternion.Euler(oldPos));
+            float angle = Quaternion.Angle(Quaternion.Euler(PosOffset), Quaternion.Euler(oldPos));
             RayCastdetected = Physics2D.BoxCastAll(offset, hitActions[currentHitBoxIndex].ActionRect.size, angle, temp, temp.magnitude, data.DetectableLayers);
 
             #region HitAction Effect Spawn
@@ -347,7 +347,7 @@ namespace TGB.Weapons.Components
                             for (int i = 0; i < hitActions[currentHitBoxIndex].EffectPrefab.Length; i++)
                             {
                                 if (hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomPosRot)
-                                    victim.HitEffectRandRot(hitActions[currentHitBoxIndex].EffectPrefab[i].Object, hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomRange, hitActions[currentHitBoxIndex].EffectPrefab[i].EffectScale,hitActions[currentHitBoxIndex].EffectPrefab[i].isFollowing);
+                                    victim.HitEffectRandRot(hitActions[currentHitBoxIndex].EffectPrefab[i].Object, hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomRange, hitActions[currentHitBoxIndex].EffectPrefab[i].EffectScale, hitActions[currentHitBoxIndex].EffectPrefab[i].isFollowing);
                                 else
                                     victim.HitEffect(hitActions[currentHitBoxIndex].EffectPrefab[i].Object, hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomRange, CoreMovement.FancingDirection, hitActions[currentHitBoxIndex].EffectPrefab[i].EffectScale);
                             }

@@ -1,9 +1,3 @@
-using TGB.Weapons.Components;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-
 public class Water_Melee_Enemy_2 : Melee_Enemy_1
 {
     public override void EnemyPattern()
@@ -17,13 +11,13 @@ public class Water_Melee_Enemy_2 : Melee_Enemy_1
             if (Pattern_Idx.Count == 0)
                 return;
             int patternCount = Pattern_Idx.Count;
-            for(int i = 0; i < patternCount; i++)
+            for (int i = 0; i < patternCount; i++)
             {
                 //패턴 스킵 여부
                 if (Pattern_Idx[i].Used)
                     continue;
 
-                if(Pattern_Idx[i].Boundary != 0 && (Core.CoreUnitStats.CurrentHealth / Core.CoreUnitStats.CalculStatsData.MaxHealth) < Pattern_Idx[i].Boundary)
+                if (Pattern_Idx[i].Boundary != 0 && (Core.CoreUnitStats.CurrentHealth / Core.CoreUnitStats.CalculStatsData.MaxHealth) < Pattern_Idx[i].Boundary)
                 {
                     Pattern_Idx[i].Used = true;
                     continue;
@@ -70,7 +64,7 @@ public class Water_Melee_Enemy_2 : Melee_Enemy_1
                 }
             }
         }
-        
+
         //RunState.FlipToTarget();
         if ((!(Core.CoreCollisionSenses as EnemyCollisionSenses).CheckIfCliff && !(Core.CoreCollisionSenses as EnemyCollisionSenses).CheckIfCliffBack) || ((Core.CoreCollisionSenses as EnemyCollisionSenses).CheckIfTouchingWall && (Core.CoreCollisionSenses as EnemyCollisionSenses).CheckIfTouchingWallBack))
         {

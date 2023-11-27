@@ -1,9 +1,4 @@
-using TGB.CoreSystem;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 namespace TGB.Weapons.Components
 {
@@ -51,7 +46,7 @@ namespace TGB.Weapons.Components
                 {
                     if (currDamage[hitBox.currentHitBoxIndex].isFixed)
                     {
-                        victim.FixedDamage((int)currDamage[hitBox.currentHitBoxIndex].AdditionalDamage, true, currDamage[hitBox.currentHitBoxIndex].RepeatAmount);
+                        victim.FixedDamage(core.Unit, (int)currDamage[hitBox.currentHitBoxIndex].AdditionalDamage, true, currDamage[hitBox.currentHitBoxIndex].RepeatAmount);
                     }
                     else
                     {

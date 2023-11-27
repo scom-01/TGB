@@ -1,4 +1,3 @@
-using System.Drawing;
 using UnityEngine;
 
 namespace TGB.CoreSystem
@@ -122,7 +121,7 @@ namespace TGB.CoreSystem
                 temp += TrueDamage(attacker, amount);
             }
             isHit = true;
-            return temp; 
+            return temp;
         }
         /// <summary>
         /// 히트 무적 무시
@@ -130,7 +129,7 @@ namespace TGB.CoreSystem
         /// <param name="AttackterCommonData"></param>
         /// <param name="VictimCommonData"></param>
         /// <param name="amount"></param>
-        public float TrueDamage(Unit attacker , float amount)
+        public float TrueDamage(Unit attacker, float amount)
         {
             return TrueDamage(attacker, attacker.Core.CoreUnitStats.CalculStatsData.Elemental, attacker.Core.CoreUnitStats.CalculStatsData.DamageAttiribute, amount);
         }
@@ -193,7 +192,7 @@ namespace TGB.CoreSystem
                         );
                     case ENEMY_Size.Big:
                         Debug.Log("Projectile Enemy Type Big, Normal Dam = " + AttackerDmg +
-                            " Enemy_Size_WeakPer Additional Dam = " +(AttackerDmg) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
+                            " Enemy_Size_WeakPer Additional Dam = " + (AttackerDmg) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
 
                         return Damage
                         (
@@ -256,7 +255,7 @@ namespace TGB.CoreSystem
         /// <param name="RepeatAmount">반복 횟수(isTrueHit = false 때는 반영되지 않음)</param>
         public float FixedDamage(int amount, bool isTrueHit = false, int RepeatAmount = 1)
         {
-            return FixedDamage(null, amount ,isTrueHit,RepeatAmount);
+            return FixedDamage(null, amount, isTrueHit, RepeatAmount);
         }
         public float TrapDamage(StatsData AttackterCommonData, float amount)
         {

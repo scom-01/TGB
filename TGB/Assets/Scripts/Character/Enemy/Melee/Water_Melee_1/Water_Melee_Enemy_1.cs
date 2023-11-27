@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-
 public class Water_Melee_Enemy_1 : Melee_Enemy_1
 {
     public override void EnemyPattern()

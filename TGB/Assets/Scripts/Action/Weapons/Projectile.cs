@@ -1,10 +1,5 @@
-using TGB.CoreSystem;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.U2D.IK;
-using static UnityEditor.PlayerSettings;
 
 namespace TGB
 {
@@ -59,7 +54,7 @@ namespace TGB
                 {
                     cc2d = this.GetComponent<CircleCollider2D>();
                     if (cc2d == null)
-                        cc2d = this.AddComponent<CircleCollider2D>();                    
+                        cc2d = this.AddComponent<CircleCollider2D>();
                 }
                 if (ProjectileData.isBound)
                 {
@@ -123,7 +118,7 @@ namespace TGB
                 var main = particle.main;
                 main.scalingMode = ParticleSystemScalingMode.Hierarchy;
                 main.stopAction = ParticleSystemStopAction.Disable;
-            }            
+            }
             foreach (var _renderer in Spawned_ProjectileObject.GetComponentsInChildren<ParticleSystemRenderer>())
             {
                 _renderer.sortingLayerName = "Effect";
@@ -198,11 +193,11 @@ namespace TGB
                 //Default가 0을 전제
                 if (FancingDirection < 0)
                 {
-                    if(!isFixedRot)
+                    if (!isFixedRot)
                         RB2D.rotation = 180f;
                 }
-                if (ProjectileData.homingType == HomingType.isToTarget_Direct && unit.TargetUnit != null                    
-                    )                 
+                if (ProjectileData.homingType == HomingType.isToTarget_Direct && unit.TargetUnit != null
+                    )
                 {
                     if (
                         ((unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - this.transform.position).x < -0.001f && FancingDirection < 0) ||
@@ -212,13 +207,13 @@ namespace TGB
                         Vector3 toTargetNormal = (unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - unit.Core.CoreCollisionSenses.GroundCenterPos);
                         this.transform.rotation = Quaternion.FromToRotation(ProjectileData.Rot, toTargetNormal);
                         RB2D.velocity = new Vector2(toTargetNormal.x, toTargetNormal.y).normalized * ProjectileData.Speed;
-                    }       
+                    }
                     else
                     {
                         RB2D.velocity = new Vector2(ProjectileData.Rot.x, ProjectileData.Rot.y).normalized * ProjectileData.Speed;
                     }
                 }
-                else if(
+                else if (
                     ProjectileData.homingType == HomingType.isToTarget && unit.TargetUnit != null
                     )
                 {
@@ -330,7 +325,7 @@ namespace TGB
             {
                 return;
             }
-            
+
             CheckCollision(coll.collider);
         }
 

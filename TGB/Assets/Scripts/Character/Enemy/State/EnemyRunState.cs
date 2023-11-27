@@ -1,6 +1,4 @@
 using TGB.CoreSystem;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class EnemyRunState : EnemyState
@@ -24,20 +22,20 @@ public abstract class EnemyRunState : EnemyState
         checkifTouchingWall = EnemyCollisionSenses.CheckIfTouchingWall;
         checkifTouchingWallBack = EnemyCollisionSenses.CheckIfTouchingWallBack;
         checkifTouchingGrounded = EnemyCollisionSenses.CheckIfStayGrounded;
-                
-        if(!isGrounded)
+
+        if (!isGrounded)
         {
             IdleState();
             return;
         }
 
-        if((!checkifCliff && !checkifCliffBack ) || (checkifTouchingWall && checkifTouchingWallBack))
+        if ((!checkifCliff && !checkifCliffBack) || (checkifTouchingWall && checkifTouchingWallBack))
         {
             enemy.SetTarget(null);
             IdleState();
             return;
         }
-        else if(!checkifCliff || checkifTouchingWall)
+        else if (!checkifCliff || checkifTouchingWall)
         {
             Movement.SetVelocityX(0);
             Movement.Flip();
@@ -67,7 +65,7 @@ public abstract class EnemyRunState : EnemyState
             Pattern();
             return;
         }
-        
+
         //패턴 딜레이
         if (Time.time >= startTime + enemy.enemyData.maxIdleTime)
         {

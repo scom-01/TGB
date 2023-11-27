@@ -1,6 +1,4 @@
 using System;
-using System.Xml.XPath;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace TGB.CoreSystem
@@ -217,7 +215,7 @@ namespace TGB.CoreSystem
         public float DecreaseHealth(Unit attacker, float amount)
         {
             var result = DecreaseHealth(amount);
-            if(result > 0)
+            if (result > 0)
             {
                 core.Unit.Inventory.ItemExeOnDamage(core.Unit, attacker);
             }
@@ -236,7 +234,7 @@ namespace TGB.CoreSystem
             return amount;
         }
 
-        public float CalculateDamage(Unit attacker , float amount)
+        public float CalculateDamage(Unit attacker, float amount)
         {
             #region 원소속성 계산
             float amount1 = CalculateElementDamage(attacker, attacker.Core.CoreUnitStats.CalculStatsData.Elemental, amount);

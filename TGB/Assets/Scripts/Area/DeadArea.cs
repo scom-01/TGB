@@ -1,6 +1,3 @@
-using TGB.CoreSystem;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -28,6 +25,6 @@ public class DeadArea : TouchObject
 
     public override void OnTriggerExit2D(Collider2D collision)
     {
-        
+
     }
 }

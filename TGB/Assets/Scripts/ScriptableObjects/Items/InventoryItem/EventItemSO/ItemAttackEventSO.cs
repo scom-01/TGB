@@ -29,7 +29,7 @@ public class ItemAttackEventSO : ItemEffectSO
     private void AttackAction(StatsItemSO parentItem, Unit unit, Unit enemy = null)
     {
         //스스로에게 피해
-        if(isSelf_harm)
+        if (isSelf_harm)
         {
             SpawnVFX(unit);
             SpawnSFX(unit);
@@ -61,7 +61,7 @@ public class ItemAttackEventSO : ItemEffectSO
             {
                 //고정데미지
                 enemy.Core.CoreDamageReceiver.FixedDamage(AdditionalDamage, true);
-                if(isBloodsucking)
+                if (isBloodsucking)
                     unit.Core.CoreUnitStats.IncreaseHealth(AdditionalDamage);
             }
             else
