@@ -81,7 +81,7 @@ namespace TGB.Weapons
         }
         private void ChangeWeaponSpeed()
         {
-            BaseGameObject.GetComponent<Animator>().speed = (WeaponCore.CoreUnitStats.DefaultAttSpeed / 100) * ((100 + WeaponCore.CoreUnitStats.AttackSpeedPer) / 100);
+            BaseGameObject.GetComponent<Animator>().speed = (WeaponCore.CoreUnitStats.CalculStatsData.DefaultAttSpeed/ 100) * ((100 + WeaponCore.CoreUnitStats.CalculStatsData.AttackSpeedPer) / 100);
         }
 
         private void FixedUpdate()

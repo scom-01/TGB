@@ -137,7 +137,7 @@ public class HealthBar : MonoBehaviour
             return;
 
         // 슬라이더의 목표 값을 계산합니다.
-        float targetValue = Stats.CurrentHealth / Stats.MaxHealth;
+        float targetValue = Stats.CurrentHealth / Stats.CalculStatsData.MaxHealth;
         if (m_Slider != null)
             m_Slider.value = targetValue;
         //if (runningCoroutine != null)
@@ -150,7 +150,7 @@ public class HealthBar : MonoBehaviour
             if (m_IsShowTxt)
             {
                 Txt.gameObject.SetActive(true);
-                Txt.text = string.Format($"{(int)Stats.CurrentHealth} / {Stats.MaxHealth}");
+                Txt.text = string.Format($"{(int)Stats.CurrentHealth} / {Stats.CalculStatsData.MaxHealth}");
             }
             else
             {

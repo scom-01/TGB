@@ -34,7 +34,7 @@ public class PlayerJumpState : PlayerAbilityState
         Debug.Log("Jump");
         player.isFixedMovement = false;
         player.InputHandler.UseInput(ref player.InputHandler.JumpInput);
-        Movement.SetVelocityY(UnitStats.DefaultJumpVelocity * (100f + UnitStats.JumpVelocity) / 100f);
+        Movement.SetVelocityY(UnitStats.CalculStatsData.DefaultJumpVelocity * (100f + UnitStats.CalculStatsData.JumpVEL_Per) / 100f);
         SoundEffect.AudioSpawn(Jump_Sfx);
         Debug.Log("JumpSFX");
         if (amountOfJumpLeft < player.playerData.amountOfJumps)

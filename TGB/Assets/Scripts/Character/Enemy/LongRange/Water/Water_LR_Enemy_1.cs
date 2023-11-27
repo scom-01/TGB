@@ -22,7 +22,7 @@ public class Water_LR_Enemy_1 : LR_Enemy_1
                 if (Pattern_Idx[i].Used)
                     continue;
 
-                if (Pattern_Idx[i].Boundary != 0 && (Core.CoreUnitStats.CurrentHealth / Core.CoreUnitStats.MaxHealth) < Pattern_Idx[i].Boundary)
+                if (Pattern_Idx[i].Boundary != 0 && (Core.CoreUnitStats.CurrentHealth / Core.CoreUnitStats.CalculStatsData.MaxHealth) < Pattern_Idx[i].Boundary)
                 {
                     Pattern_Idx[i].Used = true;
                     continue;

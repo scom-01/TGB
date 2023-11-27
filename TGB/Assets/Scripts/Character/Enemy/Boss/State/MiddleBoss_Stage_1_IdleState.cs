@@ -70,7 +70,7 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
     {
         MiddleBoss_Stage_1.AttackState.SetWeapon(unit.Inventory.Weapon);
         //현재 체력 50% ~ 100%
-        if (unit.Core.CoreUnitStats.CurrentHealth >= unit.Core.CoreUnitStats.MaxHealth / 2f)
+        if (unit.Core.CoreUnitStats.CurrentHealth >= unit.Core.CoreUnitStats.CalculStatsData.MaxHealth / 2f)
         {
             if (!Phase[0])
             {
@@ -89,7 +89,7 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
             return;
         }
         //현재 체력 20% ~ 49%
-        else if (unit.Core.CoreUnitStats.CurrentHealth >= unit.Core.CoreUnitStats.MaxHealth / 5f)
+        else if (unit.Core.CoreUnitStats.CurrentHealth >= unit.Core.CoreUnitStats.CalculStatsData.MaxHealth / 5f)
         {            
             //페이즈당 한 번 실행 BloodWave            
             if (!Phase[1])

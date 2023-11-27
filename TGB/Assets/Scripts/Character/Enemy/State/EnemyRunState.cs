@@ -42,7 +42,7 @@ public abstract class EnemyRunState : EnemyState
             Movement.SetVelocityX(0);
             Movement.Flip();
         }
-        Movement.SetVelocityX(UnitStats.DefaultMoveSpeed * ((100f + UnitStats.MoveSpeed) / 100f) * Movement.FancingDirection);
+        Movement.SetVelocityX(UnitStats.CalculStatsData.DefaultMoveSpeed * ((100f + UnitStats.CalculStatsData.MovementVEL_Per) / 100f) * Movement.FancingDirection);
     }
 
     public override void Enter()

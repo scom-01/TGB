@@ -23,7 +23,7 @@ public class Water_Melee_Enemy_2 : Melee_Enemy_1
                 if (Pattern_Idx[i].Used)
                     continue;
 
-                if(Pattern_Idx[i].Boundary != 0 && (Core.CoreUnitStats.CurrentHealth / Core.CoreUnitStats.MaxHealth) < Pattern_Idx[i].Boundary)
+                if(Pattern_Idx[i].Boundary != 0 && (Core.CoreUnitStats.CurrentHealth / Core.CoreUnitStats.CalculStatsData.MaxHealth) < Pattern_Idx[i].Boundary)
                 {
                     Pattern_Idx[i].Used = true;
                     continue;
