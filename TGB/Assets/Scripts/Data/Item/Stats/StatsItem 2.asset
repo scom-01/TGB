@@ -69,17 +69,20 @@ MonoBehaviour:
     variable: 3
     value: 3
     ShowPercent: 0
+    HideMark: 0
   Health: 0
   buffItems: []
   InitEffectData:
     <AcquiredEffectPrefab>k__BackingField: {fileID: 0}
-    <AcquiredSoundEffect>k__BackingField: {fileID: 0}
+    <AcquiredSFX>k__BackingField:
+      Clip: {fileID: 0}
+      Volume: 0
     <isEquipment>k__BackingField: 1
     <DetailSubUI>k__BackingField: 0
   InfinityEffectObjects: []
   ItemEffects:
-  - {fileID: 11400000, guid: 01409fbc76d0cd34495b523ccf1b4df0, type: 2}
-  - {fileID: 11400000, guid: 818501aa7d1bc8d4b852e308e5f4e43e, type: 2}
+  - {fileID: 11400000, guid: c2d10a5769cce524c861193193a42464, type: 2}
+  - {fileID: 11400000, guid: 709bce33398ee4642ae6ad1d2527fdaa, type: 2}
   references:
     version: 2
     RefIds: []

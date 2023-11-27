@@ -93,13 +93,6 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.083333336
-    functionName: SpawnEffectTrigger
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.083333336
     functionName: StopFlipTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -107,7 +100,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.083333336
-    functionName: StartActionRectTrigger
+    functionName: AttackActionTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -134,15 +127,15 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.16666667
-    functionName: FixedStopMovementTrigger
+  - time: 0.083333336
+    functionName: SpawnEffectTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.16666667
-    functionName: StopActionRectTrigger
+    functionName: FixedStopMovementTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
