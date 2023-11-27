@@ -276,7 +276,7 @@ public class DataManager : MonoBehaviour
 
     #endregion
 
-    public void SetEnemyCount(ENEMY_Level enemyLevel,int amount)
+    public void SetEnemyCount(ENEMY_Level enemyLevel, int amount)
     {
         switch (enemyLevel)
         {
@@ -359,11 +359,18 @@ public class DataManager : MonoBehaviour
     {
         //WaitUnlockItemIdxs = 해금 대기 아이템 인덱스 리스트
         for (int i = 0; i < JSON_DataParsing.m_JSON_DefaultData.WaitUnlockItemIdxs.Count; i++)
-        {   
-            //해금 리스트에 해금 대기 아이템 인덱스 리스트의 아이템추가
-            JSON_DataParsing.m_JSON_DefaultData.UnlockItemIdxs.Add(JSON_DataParsing.m_JSON_DefaultData.WaitUnlockItemIdxs[i]);
-            //Title 해금 이펙트 리스트에 추가
-            GameManager.Inst.EffectTextUI.UnlockitemNames.Add(All_ItemDB.ItemDBList[JSON_DataParsing.m_JSON_DefaultData.WaitUnlockItemIdxs[i]].itemData.ItemNameLocal);
+        {
+            if (!JSON_DataParsing.m_JSON_DefaultData.UnlockItemIdxs.Contains(JSON_DataParsing.m_JSON_DefaultData.WaitUnlockItemIdxs[i]))
+            {
+                //해금 리스트에 해금 대기 아이템 인덱스 리스트의 아이템추가
+                JSON_DataParsing.m_JSON_DefaultData.UnlockItemIdxs.Add(JSON_DataParsing.m_JSON_DefaultData.WaitUnlockItemIdxs[i]);
+            }
+
+            if (!GameManager.Inst.EffectTextUI.UnlockitemNames.Contains(All_ItemDB.ItemDBList[JSON_DataParsing.m_JSON_DefaultData.WaitUnlockItemIdxs[i]].itemData.ItemNameLocal))
+            {
+                //Title 해금 이펙트 리스트에 추가
+                GameManager.Inst.EffectTextUI.UnlockitemNames.Add(All_ItemDB.ItemDBList[JSON_DataParsing.m_JSON_DefaultData.WaitUnlockItemIdxs[i]].itemData.ItemNameLocal);
+            }
         }
     }
 
@@ -553,7 +560,7 @@ public class DataManager : MonoBehaviour
                     }
                 }
 
-                if(All_LockItemIdxs.Count != 0)
+                if (All_LockItemIdxs.Count != 0)
                 {
                     idx = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.SceneDataIdxs[i] % ((All_LockItemIdxs.Count > 0) ? All_LockItemIdxs.Count : 1);
                     //itemData = 전체 해금 아이템 중 보유하고 있지 않은 아이템 리스트 중 일부
@@ -574,7 +581,7 @@ public class DataManager : MonoBehaviour
                         Debug.Log($"SpawnItem {itemData.name}");
                         continue;
                     }
-                }                
+                }
             }
             //기존 해금 아이템 중 스폰
 
@@ -638,7 +645,7 @@ public class DataManager : MonoBehaviour
                 //스폰한 아이템 리스트에 추가
                 SpawnItemList.Add(All_UnlockItemIdxs[idx]);
                 Debug.Log($"SpawnItem {itemData_1.name}");
-            }            
+            }
         }
     }
     #endregion
