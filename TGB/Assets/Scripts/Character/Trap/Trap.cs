@@ -27,7 +27,7 @@ public class Trap : TouchObject
         var damage = collision.GetComponent<Unit>().Core.CoreDamageReceiver;
         if (damage != null)
         {
-            if(damage.TrapDamage(UnitData.statsStats, UnitData.statsStats.DefaultPower))
+            if (damage.TrapDamage(UnitData.statsStats, UnitData.statsStats.DefaultPower) > 0f)
             {
                 if (EffectObject)
                     collision.GetComponent<Unit>()?.Core.CoreEffectManager.StartEffectsPos(EffectObject, collision.GetComponent<Unit>().transform.position, EffectObject.transform.localScale);
