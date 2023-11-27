@@ -91,6 +91,7 @@ public class CutSceneManager : MonoBehaviour
                 {
                     DataManager.Inst?.JSON_DataParsing.JSON_DefaultDataSave();
                     PlayableDirector.Stop();
+                    OnTriggerSceneEnd();
                 }
                 isDone = true;
             }
