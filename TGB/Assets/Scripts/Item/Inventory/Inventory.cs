@@ -4,29 +4,30 @@ using TGB.Item;
 using TGB.Weapons;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 [Serializable]
 public class ItemSet
 {
     public StatsItemSO item;
+    public List<ItemEffectSet> itemEffectSets = new List<ItemEffectSet>();
     public List<bool> init = new List<bool>();
     public List<float> startTime = new List<float>();
     /// <summary>
     /// OnAction이면 OnAction의 Count를 OnHit면 OnHit의 Count를 계산
     /// </summary>
     public List<int> EffectCount = new List<int>();
-    public ItemSet(StatsItemSO itemSO, float _startTime = 0, int _Count = 0)
+    public ItemSet(StatsItemSO itemSO, ItemEffectSet _itemEffectSets = null)//  float _startTime = 0, int _Count = 0)
     {
         this.item = itemSO;
 
-        if (this.startTime.Count < 1)
+        if (_itemEffectSets == null)
         {
-            startTime.Add(_startTime);
-        }
-
-        if (this.EffectCount.Count < 1)
-        {
-            EffectCount.Add(_Count);
+            itemEffectSets = new List<ItemEffectSet>();
+            for (int i = 0; i < item.ItemEffects.Count; i++)
+            {
+                itemEffectSets.Add(new ItemEffectSet());
+            }
         }
     }
 }
@@ -100,7 +101,7 @@ public class Inventory : MonoBehaviour
         {
             foreach (var item in Inititems)
             {
-                ItemSet _item = new ItemSet(item, Time.time);
+                ItemSet _item = new ItemSet(item);
                 if (!Items.Contains(_item))
                 {
                     Items.Add(_item);
@@ -115,6 +116,19 @@ public class Inventory : MonoBehaviour
     }
 
     #region 아이템 Event함수
+
+    public bool ExeItemEffect(ITEM_TPYE type, Unit unit, Unit enemy = null)
+    {
+        for (int i = 0; i < Items.Count; i++)
+        {
+            for (int j = 0; j < Items[i].itemEffectSets.Count; j++)
+            {
+                Items[i].itemEffectSets[j] = Items[i].item.ExeEffect(type, unit, enemy, Items[i].item.ItemEffects[j], Items[i].itemEffectSets[j]);
+            }
+        }
+        return true;
+    }
+
     /// <summary>
     /// 아이템의 Init Event 호출
     /// </summary>
@@ -122,20 +136,9 @@ public class Inventory : MonoBehaviour
     /// <returns></returns>
     public bool ItemOnInit(ItemSet itemSet)
     {
-        for (int j = 0; j < itemSet.item.ItemEffects.Count; j++)
+        for (int i = 0; i < itemSet.itemEffectSets.Count; i++)
         {
-            if (itemSet.item.ItemEffects[j] == null)
-                continue;
-
-            if (itemSet.init.Count < j + 1)
-            {
-                itemSet.init.Add(false);
-            }
-
-            if (itemSet.init[j])
-                continue;
-
-            itemSet.init[j] = itemSet.item.ExeInit(unit, itemSet.item.ItemEffects[j], itemSet.init[j]);
+            itemSet.itemEffectSets[i] = itemSet.item.ExeEffect(ITEM_TPYE.OnInit, unit, unit.TargetUnit, itemSet.item.ItemEffects[i], itemSet.itemEffectSets[i]);
         }
         return true;
     }
@@ -148,20 +151,7 @@ public class Inventory : MonoBehaviour
     /// <returns></returns>
     public bool ItemOnHitExecute(Unit unit, Unit Enemy)
     {
-        for (int i = 0; i < Items.Count; i++)
-        {
-            for (int j = 0; j < Items[i].item.ItemEffects.Count; j++)
-            {
-                if (Items[i].item.ItemEffects[j] == null)
-                    continue;
-
-                if (Items[i].EffectCount.Count < j + 1)
-                {
-                    Items[i].EffectCount.Add(0);
-                }
-                Items[i].EffectCount[j] = Items[i].item.ExeOnHit(unit, Enemy, Items[i].item.ItemEffects[j], Items[i].EffectCount[j]);
-            }
-        }
+        ExeItemEffect(ITEM_TPYE.OnHit, unit, Enemy);
         return true;
     }
 
@@ -172,22 +162,7 @@ public class Inventory : MonoBehaviour
     /// <returns></returns>
     public bool ItemActionExecute(Unit unit)
     {
-        for (int i = 0; i < Items.Count; i++)
-        {
-            if (Items[i].item == null)
-                continue;
-            for (int j = 0; j < Items[i].item.ItemEffects.Count; j++)
-            {
-                if (Items[i].item.ItemEffects[j] == null)
-                    continue;
-
-                if (Items[i].EffectCount.Count < j + 1)
-                {
-                    Items[i].EffectCount.Add(0);
-                }
-                Items[i].EffectCount[j] = Items[i].item.ExeAction(unit, Items[i].item.ItemEffects[j], Items[i].EffectCount[j]);
-            }
-        }
+        ExeItemEffect(ITEM_TPYE.OnAction, unit, unit.TargetUnit);        
         return true;
     }
 
@@ -198,22 +173,7 @@ public class Inventory : MonoBehaviour
     /// <returns></returns>
     public bool ItemExeUpdate(Unit unit)
     {
-        for (int i = 0; i < Items.Count; i++)
-        {
-            if (Items[i].item == null)
-                continue;
-            for (int j = 0; j < Items[i].item.ItemEffects.Count; j++)
-            {
-                if (Items[i].item.ItemEffects[j] == null)
-                    continue;
-                if (Items[i].startTime.Count < j + 1)
-                {
-                    Items[i].startTime.Add(0);
-
-                }
-                Items[i].startTime[j] = Items[i].item.ExeUpdate(unit, Items[i].item.ItemEffects[j], Items[i].startTime[j]);
-            }
-        }
+        ExeItemEffect(ITEM_TPYE.OnUpdate, unit, unit.TargetUnit);
         return true;
     }
 
@@ -224,18 +184,9 @@ public class Inventory : MonoBehaviour
     /// <param name="CanDash"></param>
     public void ItemExeDash(Unit unit, bool CanDash)
     {
-        for (int i = 0; i < Items.Count; i++)
-        {
-            if (Items[i].item == null)
-                continue;
-            for (int j = 0; j < Items[i].item.ItemEffects.Count; j++)
-            {
-                if (Items[i].item.ItemEffects[j] == null)
-                    continue;
-
-                Items[i].item.ExeDash(unit, Items[i].item.ItemEffects[j], CanDash);
-            }
-        }
+        if(!CanDash)
+            return;
+        ExeItemEffect(ITEM_TPYE.OnDash,unit, unit.TargetUnit);
     }
 
     /// <summary>
@@ -244,18 +195,12 @@ public class Inventory : MonoBehaviour
     /// <param name="unit"></param>
     public void ItemExeOnMoveMap(Unit unit)
     {
-        for (int i = 0; i < Items.Count; i++)
-        {
-            if (Items[i].item == null)
-                continue;
-            for (int j = 0; j < Items[i].item.ItemEffects.Count; j++)
-            {
-                if (Items[i].item.ItemEffects[j] == null)
-                    continue;
+        ExeItemEffect(ITEM_TPYE.OnMoveMap, unit, unit.TargetUnit);
+    }
 
-                Items[i].item.ExeMoveMap(unit, Items[i].item.ItemEffects[j]);
-            }
-        }
+    public void ItemExeOnDamage(Unit unit, Unit enemy)
+    {
+        ExeItemEffect(ITEM_TPYE.OnDamaged, unit, enemy);
     }
     #endregion
 
@@ -361,7 +306,7 @@ public class Inventory : MonoBehaviour
         ItemSet item = ContainsItem(Old_Items, itemObject);
         if (item == null)
         {
-            item = new ItemSet(itemObject, Time.time);
+            item = new ItemSet(itemObject);
         }
 
         Items.Add(item);

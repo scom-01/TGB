@@ -5,7 +5,6 @@ using TGB.Weapons.Components;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
-using static UnityEngine.EventSystems.EventTrigger;
 
 [Serializable]
 public struct Write_StatsData_item
@@ -88,109 +87,10 @@ public class StatsItemSO : ItemDataSO
     [Header("--ItemEffects--")]
     [field: SerializeField] public List<ItemEffectSO> ItemEffects = new List<ItemEffectSO>();
 
-    #region ExeInit
-    public virtual bool ExeInit(Unit unit, Unit enemy, ItemEffectSO _itemEffect, bool isInit)
+    public virtual ItemEffectSet ExeEffect(ITEM_TPYE type, Unit unit,Unit enemy,ItemEffectSO _itemEffect, ItemEffectSet itemEffectSet)
     {
-        return isInit = _itemEffect.ExecuteOnInit(this, unit, enemy, isInit);
+        return _itemEffect.ExcuteEffect(type, this, unit, enemy, itemEffectSet);
     }
-    public virtual bool ExeInit(Unit unit, ItemEffectSO _itemEffect, bool isInit)
-    {
-        return ExeInit(unit, null, _itemEffect, isInit);
-    }
-    #endregion
-
-    #region ExeAction
-    
-    /// <summary>
-    /// Action 시 효과
-    /// </summary>
-    /// <param name="unit"></param>
-    /// <param name="_itemEffect"></param>
-    /// <param name="attackCount"></param>
-    /// <returns></returns>
-    public virtual int ExeAction(Unit unit, Unit enemy, ItemEffectSO _itemEffect, int attackCount = 0)
-    {
-        return attackCount = _itemEffect.ExecuteOnAction(this, unit, enemy, attackCount);
-    }
-
-    public virtual int ExeAction(Unit unit, ItemEffectSO _itemEffect, int attackCount = 0)
-    {
-        return ExeAction(unit, null, _itemEffect, attackCount);
-    }
-    #endregion
-
-    #region ExeOnHit
-    /// <summary>
-    /// 적중 시 효과
-    /// </summary>
-    /// <param name="unit"></param>
-    /// <param name="enemy">적중당한 적</param>
-    /// <param name="itemEffect"></param>
-    /// <param name="attackCount">적중 횟수</param>
-    /// <returns></returns>
-    public virtual int ExeOnHit(Unit unit, Unit enemy, ItemEffectSO itemEffect, int attackCount = 0)
-    {
-        return attackCount = itemEffect.ExecuteOnHit(this, unit, enemy, attackCount);
-    }
-    public virtual int ExeOnHit(Unit unit, ItemEffectSO itemEffect ,int attackCount = 0)
-    {
-        return ExeOnHit(unit, null, itemEffect, attackCount);
-    }
-    #endregion
-
-    #region ExeUpdate
-    /// <summary>
-    /// 특정 시간마다 효과 부여
-    /// </summary>
-    /// <param name="unit"></param>
-    /// <param name="itemEffect"></param>
-    /// <param name="startTime"></param>
-    /// <returns></returns>
-    public virtual float ExeUpdate(Unit unit, Unit enemy, ItemEffectSO itemEffect, float startTime = 0)
-    {
-        return startTime = itemEffect.ContinouseEffectExcute(this, unit, enemy, startTime);
-    }
-    public virtual float ExeUpdate(Unit unit, ItemEffectSO itemEffect, float startTime = 0)
-    {
-        return ExeUpdate(unit, null, itemEffect, startTime);
-    }
-    #endregion
-
-    #region ExeDash
-    /// <summary>
-    /// 대쉬 시 효과 부여
-    /// </summary>
-    /// <param name="unit"></param>
-    /// <param name="itemEffect"></param>
-    /// <param name="startTime"></param>
-    /// <returns></returns>
-    public virtual bool ExeDash(Unit unit, Unit enemy, ItemEffectSO itemEffect, bool CanDash)
-    {
-        return CanDash = itemEffect.ExcuteOnDash(this, unit, enemy, CanDash);
-    }
-    public virtual bool ExeDash(Unit unit, ItemEffectSO itemEffect, bool CanDash)
-    {
-        return ExeDash(unit, null, itemEffect, CanDash);
-    }
-    #endregion
-
-    #region ExeOnChangeScene
-    /// <summary>
-    /// 씬 변경 시 호출
-    /// </summary>
-    /// <param name="unit"></param>
-    /// <param name="itemEffect"></param>
-    /// <param name="startTime"></param>
-    /// <returns></returns>
-    public virtual void ExeMoveMap(Unit unit, Unit enemy, ItemEffectSO itemEffect)
-    {
-        itemEffect.ExcuteOnMoveMap(this, unit, enemy);
-    }
-    public virtual void ExeMoveMap(Unit unit, ItemEffectSO itemEffect)
-    {
-        ExeMoveMap(unit, null, itemEffect);
-    }
-    #endregion
 }
 
 [Serializable]

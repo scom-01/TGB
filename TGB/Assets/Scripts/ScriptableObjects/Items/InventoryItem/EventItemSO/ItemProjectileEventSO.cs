@@ -14,59 +14,30 @@ public class ItemProjectileEventSO : ItemEffectSO
         unit.Core.CoreEffectManager.StartProjectileCheck(unit, ProjectileActionData);
     }
 
-    public override int ExecuteOnAction(StatsItemSO parentItem, Unit unit, Unit enemy, int attackCount)
+    public override ItemEffectSet ExcuteEffect(ITEM_TPYE type, StatsItemSO parentItem, Unit unit, Unit enemy, ItemEffectSet itemEffectSet)
     {
-        if (Item_Type != ITEM_TPYE.OnAction || Item_Type == ITEM_TPYE.None)
-            return attackCount;
+        if (Item_Type != type || Item_Type == ITEM_TPYE.None || itemEffectSet == null)
+            return itemEffectSet;
 
-        attackCount++;
-        Debug.Log("ExcuteEffect Attack!");
+        if (!itemEffectSet.init)
+        {
+            itemEffectSet.init = true;
+        }
 
-        if (attackCount >= itemEffectData.MaxCount)
+        if (GameManager.Inst.PlayTime < itemEffectSet.startTime + itemEffectData.CooldownTime)
+        {
+            Debug.Log($"itemEffectSet.CoolTime = {GameManager.Inst.PlayTime - itemEffectSet.startTime}");
+            return itemEffectSet;
+        }
+
+        itemEffectSet.Count++;
+        if (itemEffectSet.Count >= itemEffectData.MaxCount)
         {
             ProjectileShoot(unit, enemy);
-            attackCount = 0;
+            itemEffectSet.Count = 0;
+            itemEffectSet.startTime = GameManager.Inst.PlayTime;
         }
-        return attackCount;
-    }
-    public override int ExecuteOnHit(StatsItemSO parentItem, Unit unit, Unit enemy, int attackCount)
-    {
-        if (Item_Type != ITEM_TPYE.OnHit || Item_Type == ITEM_TPYE.None)
-            return attackCount;
 
-        attackCount++;
-        Debug.Log("ExcuteEffect Attack!");
-        if (attackCount >= itemEffectData.MaxCount)
-        {
-            ProjectileShoot(unit, enemy);
-            attackCount = 0;
-        }
-        return attackCount;
-    }
-
-    public override float ContinouseEffectExcute(StatsItemSO parentItem, Unit unit, Unit enemy, float startTime)
-    {
-        if (Item_Type != ITEM_TPYE.OnUpdate || Item_Type == ITEM_TPYE.None)
-            return startTime;
-
-        if (GameManager.Inst.PlayTime >= startTime + itemEffectData.CooldownTime)
-        {
-            ProjectileShoot(unit, enemy);
-            startTime = GameManager.Inst.PlayTime;
-        }
-        return startTime;
-    }
-
-    public override bool ExcuteOnDash(StatsItemSO parentItem, Unit unit, Unit enemy, bool isDash)
-    {
-        if (Item_Type != ITEM_TPYE.OnDash || Item_Type == ITEM_TPYE.None)
-            return isDash;
-
-        if (!isDash)
-            return isDash;
-
-        ProjectileShoot(unit, enemy);
-
-        return isDash;
+        return itemEffectSet;
     }
 }

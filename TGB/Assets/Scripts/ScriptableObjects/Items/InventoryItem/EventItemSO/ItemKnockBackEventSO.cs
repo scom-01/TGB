@@ -18,47 +18,30 @@ public class ItemKnockBackEventSO : ItemEffectSO
         enemy.Core.CoreKnockBackReceiver.KnockBack(angle, strength, unit.Core.CoreMovement.FancingDirection);
     }
 
-    public override int ExecuteOnAction(StatsItemSO parentItem, Unit unit, Unit enemy, int attackCount)
+    public override ItemEffectSet ExcuteEffect(ITEM_TPYE type, StatsItemSO parentItem, Unit unit, Unit enemy, ItemEffectSet itemEffectSet)
     {
-        if (Item_Type != ITEM_TPYE.OnAction || Item_Type == ITEM_TPYE.None)
-            return attackCount;
+        if (Item_Type != type || Item_Type == ITEM_TPYE.None || itemEffectSet == null)
+            return itemEffectSet;
 
-        attackCount++;
-        Debug.Log("ExcuteEffect Attack!");
+        if (!itemEffectSet.init)
+        {
+            itemEffectSet.init = true;
+        }
 
-        if (attackCount >= itemEffectData.MaxCount)
+        if (GameManager.Inst.PlayTime < itemEffectSet.startTime + itemEffectData.CooldownTime)
+        {
+            Debug.Log($"itemEffectSet.CoolTime = {GameManager.Inst.PlayTime - itemEffectSet.startTime}");
+            return itemEffectSet;
+        }
+
+        itemEffectSet.Count++;
+        if (itemEffectSet.Count >= itemEffectData.MaxCount)
         {
             KnockBackAction(unit, enemy);
-            attackCount = 0;
+            itemEffectSet.Count = 0;
+            itemEffectSet.startTime = GameManager.Inst.PlayTime;
         }
-        return attackCount;
-    }
 
-    public override int ExecuteOnHit(StatsItemSO parentItem, Unit unit, Unit enemy, int attackCount)
-    {
-        if (Item_Type != ITEM_TPYE.OnHit || Item_Type == ITEM_TPYE.None)
-            return attackCount;
-
-        attackCount++;
-        Debug.Log("ExcuteEffect Attack!");
-        if (attackCount >= itemEffectData.MaxCount)
-        {
-            KnockBackAction(unit,enemy);
-            attackCount = 0;
-        }
-        return attackCount;
-    }
-
-    public override float ContinouseEffectExcute(StatsItemSO parentItem, Unit unit, Unit enemy, float startTime)
-    {
-        if (Item_Type != ITEM_TPYE.OnUpdate || Item_Type == ITEM_TPYE.None)
-            return startTime;
-
-        if (GameManager.Inst.PlayTime >= startTime + itemEffectData.CooldownTime)
-        {
-            KnockBackAction(unit, enemy);
-            startTime = GameManager.Inst.PlayTime;
-        }
-        return startTime;
-    }
+        return itemEffectSet;
+    }    
 }

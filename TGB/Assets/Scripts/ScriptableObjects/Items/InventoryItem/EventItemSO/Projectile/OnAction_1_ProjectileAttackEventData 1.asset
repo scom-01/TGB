@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed8ea68a9bdcff84ab444f378220bdab, type: 3}
-  m_Name: OnAction_1_ProjectileAttackEventData
+  m_Name: OnAction_1_ProjectileAttackEventData 1
   m_EditorClassIdentifier: 
-  Item_Type: 2
+  Item_Type: 1
   itemEffectData:
-    MaxCount: 2
+    MaxCount: 4
     CooldownTime: 0
     isExecute: 0
     VFX:
@@ -32,13 +32,13 @@ MonoBehaviour:
       Volume: 0
   ProjectileActionData:
     ProjectileData:
-      Pos: {x: 0, y: 0, z: 0}
+      Pos: {x: 0, y: 1, z: 0}
       Rot: {x: 1, y: 0, z: 0}
       Speed: 10
       DurationTime: 2
       AdditionalDmg: 5
       isFixed: 1
-      Radius: 0.3
+      Radius: 0.5
       Offset: {x: 0, y: 0}
       GravityScale: 0
       isSingleShoot: 1
@@ -47,7 +47,7 @@ MonoBehaviour:
       isCollisionPlatform: 0
       isBound: 0
       UnitCC2DMaterial: {fileID: 0}
-      EffectScale: {x: 0.3, y: 0.3, z: 0.3}
+      EffectScale: {x: 0.5, y: 0.5, z: 0.5}
       isOnHit: 0
       isShakeCam: 0
       homingType: 0

@@ -58,6 +58,7 @@ public enum ITEM_TPYE
     OnInit = 4,
     OnDash = 5,
     OnMoveMap = 6,
+    OnDamaged = 7,
 }
 
 public enum ITEM_Level

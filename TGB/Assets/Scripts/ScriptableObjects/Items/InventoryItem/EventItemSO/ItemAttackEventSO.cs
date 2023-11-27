@@ -9,8 +9,23 @@ public class ItemAttackEventSO : ItemEffectSO
     /// 고정 데미지 or 스탯 반영 데미지
     /// </summary>
     public bool isFixed;
+
+    /// <summary>
+    /// 스스로에게 피해
+    /// </summary>
     public bool isSelf_harm;
+
+    /// <summary>
+    /// 피해량 흡혈
+    /// </summary>
     public bool isBloodsucking;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="parentItem"></param>
+    /// <param name="unit">피해자</param>
+    /// <param name="enemy">가해자</param>
     private void AttackAction(StatsItemSO parentItem, Unit unit, Unit enemy = null)
     {
         //스스로에게 피해
@@ -27,11 +42,10 @@ public class ItemAttackEventSO : ItemEffectSO
             else
             {
                 unit.Core.CoreDamageReceiver.TrueDamage(
-                    unit.Core.CoreUnitStats.StatsData,
-                    unit.Core.CoreUnitStats.StatsData,
+                    unit,
                     parentItem.StatsData.Elemental,
                     parentItem.StatsData.DamageAttiribute,
-                    unit.Core.CoreUnitStats.DefaultPower + AdditionalDamage
+                    unit.Core.CoreUnitStats.CalculStatsData.DefaultPower + AdditionalDamage
                     );
             }
         }
@@ -53,59 +67,41 @@ public class ItemAttackEventSO : ItemEffectSO
             else
             {
                 enemy.Core.CoreDamageReceiver.TrueDamage(
-                    unit.Core.CoreUnitStats.StatsData,
-                    enemy.Core.CoreUnitStats.StatsData,
+                    unit,
                     parentItem.StatsData.Elemental,
                     parentItem.StatsData.DamageAttiribute,
-                    unit.Core.CoreUnitStats.DefaultPower + AdditionalDamage
+                    unit.Core.CoreUnitStats.CalculStatsData.DefaultPower + AdditionalDamage
                     );
                 if (isBloodsucking)
-                    unit.Core.CoreUnitStats.IncreaseHealth(unit.Core.CoreUnitStats.DefaultPower + AdditionalDamage);
+                    unit.Core.CoreUnitStats.IncreaseHealth(unit.Core.CoreUnitStats.CalculStatsData.DefaultPower + AdditionalDamage);
             }
         }
     }
 
-    public override int ExecuteOnAction(StatsItemSO parentItem, Unit unit, Unit enemy, int attackCount)
+    public override ItemEffectSet ExcuteEffect(ITEM_TPYE type, StatsItemSO parentItem, Unit unit, Unit enemy, ItemEffectSet itemEffectSet)
     {
-        if (Item_Type != ITEM_TPYE.OnAction || Item_Type == ITEM_TPYE.None)
-            return attackCount;
+        if (Item_Type != type || Item_Type == ITEM_TPYE.None || itemEffectSet == null)
+            return itemEffectSet;
 
-        attackCount++;
-        Debug.Log("ExcuteEffect Attack!");
+        if (!itemEffectSet.init)
+        {
+            itemEffectSet.init = true;
+        }
 
-        if (attackCount >= itemEffectData.MaxCount)
+        if (GameManager.Inst.PlayTime < itemEffectSet.startTime + itemEffectData.CooldownTime)
+        {
+            Debug.Log($"itemEffectSet.CoolTime = {GameManager.Inst.PlayTime - itemEffectSet.startTime}");
+            return itemEffectSet;
+        }
+
+        itemEffectSet.Count++;
+        if (itemEffectSet.Count >= itemEffectData.MaxCount)
         {
             AttackAction(parentItem, unit, enemy);
-            attackCount = 0;
+            itemEffectSet.Count = 0;
+            itemEffectSet.startTime = GameManager.Inst.PlayTime;
         }
-        return attackCount;
-    }
 
-    public override int ExecuteOnHit(StatsItemSO parentItem, Unit unit, Unit enemy, int attackCount)
-    {
-        if (Item_Type != ITEM_TPYE.OnHit || Item_Type == ITEM_TPYE.None)
-            return attackCount;
-
-        attackCount++;
-        Debug.Log("ExcuteEffect Attack!");
-        if (attackCount >= itemEffectData.MaxCount)
-        {
-            AttackAction(parentItem,unit,enemy);
-            attackCount = 0;
-        }
-        return attackCount;
-    }
-
-    public override float ContinouseEffectExcute(StatsItemSO parentItem, Unit unit, Unit enemy, float startTime)
-    {
-        if (Item_Type != ITEM_TPYE.OnUpdate || Item_Type == ITEM_TPYE.None)
-            return startTime;
-
-        if (GameManager.Inst.PlayTime >= startTime + itemEffectData.CooldownTime)
-        {
-            AttackAction(parentItem, unit, enemy);
-            startTime = GameManager.Inst.PlayTime;
-        }
-        return startTime;
+        return itemEffectSet;
     }
 }

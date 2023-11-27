@@ -19,44 +19,30 @@ public class ItemSpawnEventSO : ItemEffectSO
 
         return true;
     }
-
-    public override float ContinouseEffectExcute(StatsItemSO parentItem, Unit unit, Unit enemy, float startTime)
+    public override ItemEffectSet ExcuteEffect(ITEM_TPYE type, StatsItemSO parentItem, Unit unit, Unit enemy, ItemEffectSet itemEffectSet)
     {
-        if (Item_Type != ITEM_TPYE.OnUpdate || Item_Type == ITEM_TPYE.None)
-            return startTime;
+        if (Item_Type != type || Item_Type == ITEM_TPYE.None || itemEffectSet == null)
+            return itemEffectSet;
 
-        SpawnObject(unit);
+        if (!itemEffectSet.init)
+        {
+            itemEffectSet.init = true;
+        }
 
-        return startTime;
-    }
+        if (GameManager.Inst.PlayTime < itemEffectSet.startTime + itemEffectData.CooldownTime)
+        {
+            Debug.Log($"itemEffectSet.CoolTime = {GameManager.Inst.PlayTime - itemEffectSet.startTime}");
+            return itemEffectSet;
+        }
 
-    public override int ExecuteOnAction(StatsItemSO parentItem, Unit unit, Unit enemy, int attackCount)
-    {
-        if (Item_Type != ITEM_TPYE.OnAction || Item_Type == ITEM_TPYE.None)
-            return attackCount;
+        itemEffectSet.Count++;
+        if (itemEffectSet.Count >= itemEffectData.MaxCount)
+        {
+            SpawnObject(unit);
+            itemEffectSet.Count = 0;
+            itemEffectSet.startTime = GameManager.Inst.PlayTime;
+        }
 
-        SpawnObject(unit);
-
-        return attackCount;
-    }
-
-    public override int ExecuteOnHit(StatsItemSO parentItem, Unit unit, Unit Enemy, int attackCount)
-    {
-        if (Item_Type != ITEM_TPYE.OnHit || Item_Type == ITEM_TPYE.None)
-            return attackCount;
-
-        SpawnObject(unit);
-
-        return attackCount;
-    }
-
-    public override bool ExecuteOnInit(StatsItemSO parentItem, Unit unit, Unit enemy, bool isInit)
-    {
-        if (Item_Type != ITEM_TPYE.OnInit || Item_Type == ITEM_TPYE.None)
-            return isInit;
-
-        SpawnObject(unit);
-
-        return isInit;
-    }
+        return itemEffectSet;
+    }    
 }
