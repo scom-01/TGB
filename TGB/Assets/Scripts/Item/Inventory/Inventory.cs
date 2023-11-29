@@ -149,9 +149,9 @@ public class Inventory : MonoBehaviour
     /// <param name="unit">공격 주체</param>
     /// <param name="Enemy">적중 당한 적</param>
     /// <returns></returns>
-    public bool ItemOnHitExecute(Unit unit, Unit Enemy)
+    public bool ItemOnHitExecute(Unit unit, Unit enemy = null)
     {
-        ExeItemEffect(ITEM_TPYE.OnHit, unit, Enemy);
+        ExeItemEffect(ITEM_TPYE.OnHit, unit, enemy);
         return true;
     }
 
@@ -198,10 +198,31 @@ public class Inventory : MonoBehaviour
         ExeItemEffect(ITEM_TPYE.OnMoveMap, unit, unit.TargetUnit);
     }
 
-    public void ItemExeOnDamage(Unit unit, Unit enemy)
+    public void ItemExeOnDamage(Unit unit, Unit enemy = null)
     {
         ExeItemEffect(ITEM_TPYE.OnDamaged, unit, enemy);
     }
+
+    public void ItemExeOnCritical(Unit unit, Unit enemy = null)
+    {
+        ExeItemEffect(ITEM_TPYE.OnCritical, unit, enemy);
+    }
+
+    public void ItemExeOnJump(Unit unit, Unit enemy = null)
+    {
+        ExeItemEffect(ITEM_TPYE.OnJump, unit, enemy);
+    }
+
+    public void ItemExeOnLand(Unit unit, Unit enemy = null)
+    {
+        ExeItemEffect(ITEM_TPYE.OnLand, unit, enemy);
+    }
+
+    public void ItemExeOnHealing(Unit unit, Unit enemy =null)
+    {
+        ExeItemEffect(ITEM_TPYE.OnHealing, unit, enemy);
+    }
+
     #endregion
 
     public bool SetWeapon(WeaponData weaponObject)

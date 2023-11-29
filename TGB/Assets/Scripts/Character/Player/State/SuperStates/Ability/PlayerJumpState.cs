@@ -33,6 +33,7 @@ public class PlayerJumpState : PlayerAbilityState
     {
         Debug.Log("Jump");
         player.isFixedMovement = false;
+        player.Inventory?.ItemExeOnJump(player, player.TargetUnit);
         player.InputHandler.UseInput(ref player.InputHandler.JumpInput);
         Movement.SetVelocityY(UnitStats.CalculStatsData.DefaultJumpVelocity * (100f + UnitStats.CalculStatsData.JumpVEL_Per) / 100f);
         SoundEffect.AudioSpawn(Jump_Sfx);

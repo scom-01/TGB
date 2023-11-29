@@ -59,6 +59,11 @@ public enum ITEM_TPYE
     OnDash = 5,
     OnMoveMap = 6,
     OnDamaged = 7,
+    OnCritical = 8,
+    OnJump = 9,
+    OnLand = 10,
+    OnDodge = 11,
+    OnHealing = 12,
 }
 
 public enum ITEM_Level

@@ -63,7 +63,7 @@ namespace TGB.CoreSystem
 
             bool isCritical = false;
             //크리티컬 계산
-            if (attacker.Core.CoreUnitStats.CalculStatsData.CriticalPer >= Random.Range(0, 100.0f))
+            if (CheckCritical(attacker))
             {
                 isCritical = true;
                 amount *= 1f + (attacker.Core.CoreUnitStats.CalculStatsData.AdditionalCriticalPer / 100.0f);
@@ -92,7 +92,7 @@ namespace TGB.CoreSystem
 
             bool isCritical = false;
             //크리티컬 계산
-            if (attacker.Core.CoreUnitStats.CalculStatsData.CriticalPer >= Random.Range(0, 100.0f))
+            if (CheckCritical(attacker))
             {
                 isCritical = true;
                 amount *= 1f + (attacker.Core.CoreUnitStats.CalculStatsData.AdditionalCriticalPer / 100.0f);
@@ -143,7 +143,7 @@ namespace TGB.CoreSystem
 
             bool isCritical = false;
             //크리티컬 계산
-            if (attacker.Core.CoreUnitStats.CalculStatsData.CriticalPer >= Random.Range(0, 100.0f))
+            if (CheckCritical(attacker))
             {
                 isCritical = true;
                 amount *= 1f + (attacker.Core.CoreUnitStats.CalculStatsData.AdditionalCriticalPer / 100.0f);
@@ -373,6 +373,16 @@ namespace TGB.CoreSystem
                 damageText = (GameManager.Inst.StageManager.EffectContainer.CheckObject(ObjectPooling_TYPE.DmgText, GlobalValue.DamageTextPrefab, Vector3.one) as DmgTxtPooling).GetObejct(new Vector3(pos.x, pos.y), Quaternion.identity, damage, fontSize, damageAttiribute);
             }
             return damageText;
+        }
+
+        private bool CheckCritical(Unit attacker)
+        {
+            if(attacker.Core.CoreUnitStats.CalculStatsData.CriticalPer >= Random.Range(0, 100.0f))
+            {
+                core.Unit.Inventory?.ItemExeOnCritical(core.Unit, attacker);
+                return true;
+            }
+            return false;   
         }
 
         protected override void Awake()

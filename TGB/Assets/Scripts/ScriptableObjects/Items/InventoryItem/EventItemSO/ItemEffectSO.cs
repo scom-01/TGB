@@ -3,6 +3,7 @@ using System.Net.Http.Headers;
 using TGB;
 using TGB.Weapons.Components;
 using UnityEngine;
+using UnityEngine.Localization;
 
 [Serializable]
 public class ItemEffectSet
@@ -32,7 +33,10 @@ public abstract class ItemEffectSO : ScriptableObject, IExecuteEffect
 {
     public ITEM_TPYE Item_Type;
     public ItemEffectData itemEffectData;
-
+    [field: Header("Effect")]
+    public Sprite EffectSprite;
+    [field: Tooltip("아이템 효과 설명")]
+    [field: SerializeField] public LocalizedString EffectDescriptionLocal { get; private set; }
     /// <summary>
     /// Effect 효과 시 생성될 VFX
     /// </summary>

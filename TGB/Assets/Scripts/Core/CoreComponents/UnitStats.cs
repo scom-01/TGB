@@ -175,7 +175,10 @@ namespace TGB.CoreSystem
         {
             var oldHealth = CurrentHealth;
             CurrentHealth += amount;
-
+            if(amount > 0)
+            {
+                core.Unit.Inventory?.ItemExeOnHealing(core.Unit, core.Unit.TargetUnit);
+            }
             core.CoreDamageReceiver.HUD_DmgTxt(1.0f, CurrentHealth - oldHealth, 30, DAMAGE_ATT.Heal, false);
 
             //증가한 체력량
