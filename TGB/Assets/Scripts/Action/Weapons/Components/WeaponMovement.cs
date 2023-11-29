@@ -197,13 +197,13 @@ namespace TGB.Weapons.Components
 
         private void HandleStartInvincible()
         {
-            core.Unit.isFixed_Hit_Immunity = true;
+            core.Unit.Set_Fixed_Hit_Immunity(true);
             core.Unit.isCC_immunity = true;
         }
 
         private void HandleStopInvincible()
         {
-            core.Unit.isFixed_Hit_Immunity = false;
+            core.Unit.Set_Fixed_Hit_Immunity(false);
             core.Unit.isCC_immunity = false;
         }
         private void HandleStartCCImmunity()

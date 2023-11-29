@@ -1,6 +1,7 @@
 using System.Collections;
 using TGB.CoreSystem;
 using Unity.VisualScripting;
+using UnityEditor.Build.Pipeline;
 using UnityEngine;
 
 public class Unit : MonoBehaviour
@@ -63,11 +64,11 @@ public class Unit : MonoBehaviour
     /// <summary>
     /// 절대 CC 면역값
     /// </summary>
-    public bool isFixed_CC_Immunity = false;
+    private bool isFixed_CC_Immunity = false;
     /// <summary>
     /// 절대 피격 면역값
     /// </summary>
-    public bool isFixed_Hit_Immunity = false;
+    private bool isFixed_Hit_Immunity = false;
 
     /// <summary>
     /// KnockBack, JumpPad 등 외부요인으로 움직이는지 판별하는 요소
@@ -104,8 +105,15 @@ public class Unit : MonoBehaviour
     /// </summary>
     [HideInInspector]
 
-    public Unit TargetUnit { get; private set; }
+    public virtual Unit TargetUnit { get; private set; }
 
+    #endregion
+
+    #region Set variable Func
+    public void Set_Fixed_CC_Immunity(bool value) => isFixed_CC_Immunity = value;
+    public void Set_Fixed_Hit_Immunity(bool value) => isFixed_Hit_Immunity = value;
+    public bool Get_Fixed_CC_Immunity { get => isFixed_CC_Immunity; } 
+    public bool Get_Fixed_Hit_Immunity { get => isFixed_Hit_Immunity; }
     #endregion
 
     #region Unity Callback Func

@@ -16,7 +16,7 @@ namespace TGB.CoreSystem
         {
             get
             {
-                if (core.Unit.isFixed_Hit_Immunity)
+                if (core.Unit.Get_Fixed_Hit_Immunity)
                 {
                     return true;
                 }
@@ -25,7 +25,7 @@ namespace TGB.CoreSystem
             }
             set
             {
-                if (core.Unit.isFixed_Hit_Immunity)
+                if (core.Unit.Get_Fixed_Hit_Immunity)
                 {
                     ishit = true;
                 }
@@ -54,7 +54,7 @@ namespace TGB.CoreSystem
                 return 0f;
             }
 
-            if (isHit)
+            if (CheckHit(attacker))
             {
                 Debug.Log(core.Unit.name + " isHit = true");
                 return 0f;
@@ -83,7 +83,7 @@ namespace TGB.CoreSystem
                 return 0f;
             }
 
-            if (isHit)
+            if (CheckHit(attacker))
             {
                 Debug.Log(core.Unit.name + " isHit = true");
                 return 0f;
@@ -112,7 +112,7 @@ namespace TGB.CoreSystem
                 return 0f;
             }
 
-            if (isHit)
+            if (CheckHit(attacker))
                 return 0f;
 
             float temp = 0f;
@@ -234,7 +234,7 @@ namespace TGB.CoreSystem
             }
             else
             {
-                if (isHit)
+                if (CheckHit(attacker))
                 {
                     Debug.Log(core.Unit.name + " isHit = true");
                     return 0f;
@@ -375,15 +375,31 @@ namespace TGB.CoreSystem
             return damageText;
         }
 
+        #region Check Func
+
+        private bool CheckHit(Unit attacker)
+        {
+            if (isHit)
+            {
+                if (core.Unit.Get_Fixed_Hit_Immunity)
+                {
+                    core.Unit.Inventory?.ItemExeOnDodge(core.Unit, attacker);
+                }
+                return true;
+            }
+            return false;
+        }
+
         private bool CheckCritical(Unit attacker)
         {
-            if(attacker.Core.CoreUnitStats.CalculStatsData.CriticalPer >= Random.Range(0, 100.0f))
+            if (attacker.Core.CoreUnitStats.CalculStatsData.CriticalPer >= Random.Range(0, 100.0f))
             {
                 core.Unit.Inventory?.ItemExeOnCritical(core.Unit, attacker);
                 return true;
             }
-            return false;   
+            return false;
         }
+        #endregion
 
         protected override void Awake()
         {

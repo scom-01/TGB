@@ -4,7 +4,6 @@ using TGB.Item;
 using TGB.Weapons;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Localization.Settings;
 
 [Serializable]
 public class ItemSet
@@ -162,7 +161,7 @@ public class Inventory : MonoBehaviour
     /// <returns></returns>
     public bool ItemActionExecute(Unit unit)
     {
-        ExeItemEffect(ITEM_TPYE.OnAction, unit, unit.TargetUnit);        
+        ExeItemEffect(ITEM_TPYE.OnAction, unit, unit.TargetUnit);
         return true;
     }
 
@@ -184,9 +183,9 @@ public class Inventory : MonoBehaviour
     /// <param name="CanDash"></param>
     public void ItemExeDash(Unit unit, bool CanDash)
     {
-        if(!CanDash)
+        if (!CanDash)
             return;
-        ExeItemEffect(ITEM_TPYE.OnDash,unit, unit.TargetUnit);
+        ExeItemEffect(ITEM_TPYE.OnDash, unit, unit.TargetUnit);
     }
 
     /// <summary>
@@ -218,9 +217,14 @@ public class Inventory : MonoBehaviour
         ExeItemEffect(ITEM_TPYE.OnLand, unit, enemy);
     }
 
-    public void ItemExeOnHealing(Unit unit, Unit enemy =null)
+    public void ItemExeOnHealing(Unit unit, Unit enemy = null)
     {
         ExeItemEffect(ITEM_TPYE.OnHealing, unit, enemy);
+    }
+
+    public void ItemExeOnDodge(Unit unit, Unit enemy = null)
+    {
+        ExeItemEffect(ITEM_TPYE.OnDodge, unit, enemy);
     }
 
     #endregion

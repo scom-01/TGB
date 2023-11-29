@@ -1,11 +1,5 @@
 using TGB.CoreSystem;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.U2D.IK;
-using static UnityEngine.UI.CanvasScaler;
 
 namespace TGB.Item
 {
@@ -43,7 +37,7 @@ namespace TGB.Item
         {
             if (Item == null)
                 return false;
-            SR.sprite = Item.itemData.ItemSprite;
+            //SR.sprite = Item.itemData.ItemSprite;
             CC2D = GetComponentInChildren<CircleCollider2D>();
             if (CC2D != null)
             {

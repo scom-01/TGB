@@ -45,7 +45,7 @@ public class PlayerDashState : PlayerAbilityState
     {
         base.Exit();
         player.RB.gravityScale = unit.UnitData.UnitGravity;
-        player.isFixed_Hit_Immunity = false;
+        player.Set_Fixed_Hit_Immunity(false);
         player.isCC_immunity = false;
     }
 
@@ -117,7 +117,7 @@ public class PlayerDashState : PlayerAbilityState
         Movement.CheckIfShouldFlip(player.InputHandler.NormInputX);
         SoundEffect.AudioSpawn(Dash_SFX);
 
-        player.isFixed_Hit_Immunity = true;
+        player.Set_Fixed_Hit_Immunity(true);
         player.isCC_immunity = true;
 
         CanDash = false;
