@@ -1995,6 +1995,68 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1001 &17839641
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1594972037}
+    m_Modifications:
+    - target: {fileID: 8962217813712015482, guid: 17a68fdb6963ec84695ea330b4d9d2be, type: 3}
+      propertyPath: m_Name
+      value: Consumption_Item_Health_10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962217813712015483, guid: 17a68fdb6963ec84695ea330b4d9d2be, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962217813712015483, guid: 17a68fdb6963ec84695ea330b4d9d2be, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 92.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962217813712015483, guid: 17a68fdb6963ec84695ea330b4d9d2be, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962217813712015483, guid: 17a68fdb6963ec84695ea330b4d9d2be, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962217813712015483, guid: 17a68fdb6963ec84695ea330b4d9d2be, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962217813712015483, guid: 17a68fdb6963ec84695ea330b4d9d2be, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962217813712015483, guid: 17a68fdb6963ec84695ea330b4d9d2be, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962217813712015483, guid: 17a68fdb6963ec84695ea330b4d9d2be, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962217813712015483, guid: 17a68fdb6963ec84695ea330b4d9d2be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962217813712015483, guid: 17a68fdb6963ec84695ea330b4d9d2be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962217813712015483, guid: 17a68fdb6963ec84695ea330b4d9d2be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 17a68fdb6963ec84695ea330b4d9d2be, type: 3}
+--- !u!4 &17839642 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8962217813712015483, guid: 17a68fdb6963ec84695ea330b4d9d2be, type: 3}
+  m_PrefabInstance: {fileID: 17839641}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &43341850
 GameObject:
   m_ObjectHideFlags: 0
@@ -2804,7 +2866,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d9513fef8696d449f5cccb09b8007e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SfxObject: {fileID: 0}
+  SFX:
+    Clip: {fileID: 0}
+    Volume: 0
   EffectObject: {fileID: 0}
 --- !u!1 &424574387
 GameObject:
@@ -64790,7 +64854,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4740e750107f34e95592ad2fa3fa36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SfxObject: {fileID: 0}
+  SFX:
+    Clip: {fileID: 0}
+    Volume: 0
   EffectObject: {fileID: 0}
 --- !u!483693784 &1522330972
 TilemapRenderer:
@@ -68793,7 +68859,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 17839642}
   m_Father: {fileID: 1257247272}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -70522,7 +70589,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f30e61af88ba84aaeeb01933203d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SfxObject: {fileID: 0}
+  SFX:
+    Clip: {fileID: 0}
+    Volume: 0
   EffectObject: {fileID: 0}
   UnitData: {fileID: 11400000, guid: 27eaf0c531753bd45891897fd5c4886a, type: 2}
   knockbackAngle: {x: 0, y: 0}
