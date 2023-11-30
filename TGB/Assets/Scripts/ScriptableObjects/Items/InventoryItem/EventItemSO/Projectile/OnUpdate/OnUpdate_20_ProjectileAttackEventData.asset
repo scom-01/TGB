@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8ea68a9bdcff84ab444f378220bdab, type: 3}
+  m_Name: OnUpdate_20_ProjectileAttackEventData
+  m_EditorClassIdentifier: 
+  Item_Type: 3
+  itemEffectData:
+    MaxCount: 3
+    CooldownTime: 1
+    Percent: 100
+    VFX:
+      isGround: 0
+      isHeader: 0
+      isTransformGlobal: 0
+      isRandomPosRot: 0
+      isRandomRange: 0
+      EffectOffset: {x: 0, y: 0}
+      EffectScale: {x: 0, y: 0, z: 0}
+      isFollowing: 0
+      Object: {fileID: 0}
+    SFX:
+      Clip: {fileID: 0}
+      Volume: 0
+  EffectSprite: {fileID: 0}
+  <EffectDescriptionLocal>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  ProjectileActionData:
+    ProjectileData:
+      Pos: {x: 0.65, y: 0.25, z: 0}
+      Rot: {x: 1, y: 1, z: 0}
+      Speed: 7
+      DurationTime: 1.5
+      AdditionalDmg: 5
+      isFixed: 1
+      Radius: 0.15
+      Offset: {x: 0.07, y: -0.07}
+      GravityScale: 2
+      isSingleShoot: 1
+      KnockbackAngle: {x: 0, y: 0}
+      isCollisionGround: 1
+      isCollisionPlatform: 1
+      isBound: 1
+      UnitCC2DMaterial: {fileID: 6200000, guid: c0d066c20b8db264badb7d747b043abb, type: 2}
+      EffectScale: {x: 0.5, y: 0.5, z: 0.5}
+      isOnHit: 0
+      isShakeCam: 0
+      homingType: 0
+      camDatas:
+        Duration: 0.1
+        Range: 0.01
+        RepeatRate: 0.001
+    Projectile: {fileID: 2222910967692216358, guid: 07c51990f2cec4940a6ef5ef8d49b7b8, type: 3}
+  references:
+    version: 2
+    RefIds: []
