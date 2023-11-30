@@ -133,7 +133,7 @@ namespace TGB.CoreSystem
         {
             return TrueDamage(attacker, attacker.Core.CoreUnitStats.CalculStatsData.Elemental, attacker.Core.CoreUnitStats.CalculStatsData.DamageAttiribute, amount);
         }
-        public float TrueDamage(Unit attacker, E_Power _Elemental, DAMAGE_ATT attribute, float amount)
+        public float TrueDamage(Unit attacker, E_Power _elemental, DAMAGE_ATT attribute, float amount, bool CanCritical = true)
         {
             if (death.Comp.isDead)
             {
@@ -142,15 +142,19 @@ namespace TGB.CoreSystem
             }
 
             bool isCritical = false;
-            //크리티컬 계산
-            if (CheckCritical(attacker))
+
+            if (CanCritical)
             {
-                isCritical = true;
-                amount *= 1f + (attacker.Core.CoreUnitStats.CalculStatsData.AdditionalCriticalPer / 100.0f);
+                //크리티컬 계산
+                if (CheckCritical(attacker))
+                {
+                    isCritical = true;
+                    amount *= 1f + (attacker.Core.CoreUnitStats.CalculStatsData.AdditionalCriticalPer / 100.0f);
+                }
             }
 
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
-            var damage = stats.Comp.DecreaseHealth(attacker, _Elemental, attribute, amount);
+            var damage = stats.Comp.DecreaseHealth(attacker, _elemental, attribute, amount);
             stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
             HUD_DmgTxt(1.0f, damage, 50, attacker.Core.CoreUnitStats.CalculStatsData.DamageAttiribute, isCritical);
             return damage;
@@ -158,57 +162,32 @@ namespace TGB.CoreSystem
 
         public float TypeCalDamage(Unit AttackerUnit, float AttackerDmg, int RepeatAmount = 1)
         {
-            if (core.Unit.gameObject.tag == "Player")
-            {
-                return Damage
-                    (
-                    AttackerUnit,
-                    AttackerDmg,
-                    RepeatAmount
-                    );
-            }
-            else
+            float temp = AttackerDmg;
+            if (core.Unit.gameObject.tag != "Player")
             {
                 //Damage
-                switch ((core.Unit as Enemy).enemyData.enemy_size)
+                switch ((core.Unit as Enemy)?.enemyData.enemy_size)
                 {
                     case ENEMY_Size.Small:
+                        temp *= (1.0f + GlobalValue.Enemy_Size_WeakPer);
                         Debug.Log("Projectile Enemy Type Small, Normal Dam = " + AttackerDmg +
-                            " Enemy_Size_WeakPer Additional Dam = " + (AttackerDmg) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
-
-                        return Damage
-                        (
-                        AttackerUnit,
-                        (AttackerDmg) * (1.0f + GlobalValue.Enemy_Size_WeakPer),
-                        RepeatAmount
-                        );
+                            " Enemy_Size_WeakPer Additional Dam = " + (AttackerDmg) * (1.0f + GlobalValue.Enemy_Size_WeakPer));
+                        break;
                     case ENEMY_Size.Medium:
                         Debug.Log("Projectile Enemy Type Medium, Normal Dam = " + AttackerUnit.Core.CoreUnitStats.CalculStatsData.DefaultPower);
-
-                        return Damage
-                        (
-                        AttackerUnit,
-                        (AttackerDmg), RepeatAmount
-                        );
+                        break;
                     case ENEMY_Size.Big:
+                        temp *= (1.0f - GlobalValue.Enemy_Size_WeakPer);
                         Debug.Log("Projectile Enemy Type Big, Normal Dam = " + AttackerDmg +
                             " Enemy_Size_WeakPer Additional Dam = " + (AttackerDmg) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
-
-                        return Damage
-                        (
-                        AttackerUnit,
-                        (AttackerDmg) * (1.0f - GlobalValue.Enemy_Size_WeakPer),
-                        RepeatAmount);
+                        break;
                     default:
                         Debug.Log("Projectile Enemy Type Medium, Normal Dam = " + AttackerUnit.Core.CoreUnitStats.CalculStatsData.DefaultPower);
-
-                        return Damage
-                        (
-                        AttackerUnit,
-                        (AttackerDmg), RepeatAmount
-                        );
+                        break;
                 }
             }
+
+            return Damage(AttackerUnit, temp, RepeatAmount);
         }
 
         public float FixedDamage(Unit attacker, int amount, bool isTrueHit = false, int RepeatAmount = 1)
@@ -317,36 +296,12 @@ namespace TGB.CoreSystem
         {
             var effect = effectManager.Comp?.StartEffectsWithRandomPos(effectPrefab, range);
 
-            var pos = new Vector2((Camera.main.WorldToViewportPoint(transform.position).x * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x * 0.5f),
-                                    (Camera.main.WorldToViewportPoint(transform.position).y * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y * 0.5f));
-            GameObject damageText;
-
-            if (isCritical)
-            {
-                damageText = (GameManager.Inst.StageManager.EffectContainer.CheckObject(ObjectPooling_TYPE.DmgText, GlobalValue.CriticalDamageTextPrefab, Vector3.one) as DmgTxtPooling).GetObejct(new Vector3(pos.x, pos.y), Quaternion.identity, damage, fontSize, damageAttiribute);
-            }
-            else
-            {
-                damageText = (GameManager.Inst.StageManager.EffectContainer.CheckObject(ObjectPooling_TYPE.DmgText, GlobalValue.DamageTextPrefab, Vector3.one) as DmgTxtPooling).GetObejct(new Vector3(pos.x, pos.y), Quaternion.identity, damage, fontSize, damageAttiribute);
-            }
-            return damageText;
+            return HUD_DmgTxt(range, damage, fontSize, damageAttiribute, isCritical);
         }
 
         public GameObject HUD_DmgTxt(float damage, float fontSize, DAMAGE_ATT damageAttiribute, bool isCritical = false)
         {
-            var pos = new Vector2((Camera.main.WorldToViewportPoint(transform.position).x * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x * 0.5f),
-                                    (Camera.main.WorldToViewportPoint(transform.position).y * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.y * 0.5f));
-            GameObject damageText;
-
-            if (isCritical)
-            {
-                damageText = (GameManager.Inst.StageManager.EffectContainer.CheckObject(ObjectPooling_TYPE.DmgText, GlobalValue.CriticalDamageTextPrefab, Vector3.one) as DmgTxtPooling).GetObejct(new Vector3(pos.x, pos.y), Quaternion.identity, damage, fontSize, damageAttiribute);
-            }
-            else
-            {
-                damageText = (GameManager.Inst.StageManager.EffectContainer.CheckObject(ObjectPooling_TYPE.DmgText, GlobalValue.DamageTextPrefab, Vector3.one) as DmgTxtPooling).GetObejct(new Vector3(pos.x, pos.y), Quaternion.identity, damage, fontSize, damageAttiribute);
-            }
-            return damageText;
+            return HUD_DmgTxt(0, damage, fontSize, damageAttiribute, isCritical);
         }
 
         public GameObject HUD_DmgTxt(float range, float damage, float fontSize, DAMAGE_ATT damageAttiribute)

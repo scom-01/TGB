@@ -5,10 +5,26 @@ public class ItemAttackEventSO : ItemEffectSO
 {
     [Header("Attack Event")]
     public int AdditionalDamage;
+
     /// <summary>
-    /// 고정 데미지 or 스탯 반영 데미지
+    /// 고정 데미지량 계산여부(true 시 AddtionalDamage, false 시 Critical 및 원소속성 계산하여 데미지)
     /// </summary>
-    public bool isFixed;
+    public bool isCalFixedDamage;
+
+    /// <summary>
+    /// 공격 속성
+    /// </summary>
+    public DAMAGE_ATT DAMAGE_ATT;
+
+    /// <summary>
+    /// 온힛 여부
+    /// </summary>
+    public bool isOnHit;
+
+    /// <summary>
+    /// 크리티컬 가능 여부(크리티컬 확률 100%일 경우 무한히 공격하는 버그 방지)
+    /// </summary>
+    public bool CanCritical;
 
     /// <summary>
     /// 스스로에게 피해
@@ -28,13 +44,14 @@ public class ItemAttackEventSO : ItemEffectSO
     /// <param name="enemy">가해자</param>
     private void AttackAction(StatsItemSO parentItem, Unit unit, Unit enemy = null)
     {
+
         //스스로에게 피해
         if (isSelf_harm)
         {
             SpawnVFX(unit);
             SpawnSFX(unit);
 
-            if (isFixed)
+            if(DAMAGE_ATT == DAMAGE_ATT.Fixed)
             {
                 //고정데미지
                 unit.Core.CoreDamageReceiver.FixedDamage(AdditionalDamage, true);
@@ -44,7 +61,7 @@ public class ItemAttackEventSO : ItemEffectSO
                 unit.Core.CoreDamageReceiver.TrueDamage(
                     unit,
                     parentItem.StatsData.Elemental,
-                    parentItem.StatsData.DamageAttiribute,
+                    DAMAGE_ATT,
                     unit.Core.CoreUnitStats.CalculStatsData.DefaultPower + AdditionalDamage
                     );
             }
@@ -57,23 +74,44 @@ public class ItemAttackEventSO : ItemEffectSO
             SpawnVFX(enemy);
             SpawnSFX(enemy);
 
-            if (isFixed)
+            //온힛
+            if (isOnHit)
+                unit.Inventory.ItemOnHitExecute(unit, enemy);
+
+            if (DAMAGE_ATT == DAMAGE_ATT.Fixed)
             {
-                //고정데미지
-                enemy.Core.CoreDamageReceiver.FixedDamage(AdditionalDamage, true);
+                float temp = 0f;
+                //치명타 확률 및 원소 속성 계산
+                if(isCalFixedDamage)
+                {
+                    temp = enemy.Core.CoreDamageReceiver.TrueDamage(
+                    unit,
+                    parentItem.StatsData.Elemental,
+                    DAMAGE_ATT,
+                    unit.Core.CoreUnitStats.CalculStatsData.DefaultPower + AdditionalDamage,
+                    CanCritical
+                    );
+                }
+                else
+                {
+                    //고정데미지
+                    temp = enemy.Core.CoreDamageReceiver.FixedDamage(unit, AdditionalDamage, true);
+                }
                 if (isBloodsucking)
-                    unit.Core.CoreUnitStats.IncreaseHealth(AdditionalDamage);
+                    unit.Core.CoreUnitStats.IncreaseHealth(temp);
             }
             else
             {
+                float temp = 
                 enemy.Core.CoreDamageReceiver.TrueDamage(
                     unit,
                     parentItem.StatsData.Elemental,
-                    parentItem.StatsData.DamageAttiribute,
-                    unit.Core.CoreUnitStats.CalculStatsData.DefaultPower + AdditionalDamage
+                    DAMAGE_ATT,
+                    unit.Core.CoreUnitStats.CalculStatsData.DefaultPower + AdditionalDamage,
+                    CanCritical
                     );
                 if (isBloodsucking)
-                    unit.Core.CoreUnitStats.IncreaseHealth(unit.Core.CoreUnitStats.CalculStatsData.DefaultPower + AdditionalDamage);
+                    unit.Core.CoreUnitStats.IncreaseHealth(temp);
             }
         }
     }
@@ -95,7 +133,7 @@ public class ItemAttackEventSO : ItemEffectSO
         }
 
         itemEffectSet.Count++;
-        if (itemEffectSet.Count >= itemEffectData.MaxCount)
+        if (itemEffectSet.Count >= itemEffectData.MaxCount && itemEffectData.Percent >= Random.Range(0f, 100f))
         {
             AttackAction(parentItem, unit, enemy);
             itemEffectSet.Count = 0;
