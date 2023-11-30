@@ -1,11 +1,4 @@
-using TGB.CoreSystem;
-using TGB.Item;
-using TGB.Weapons.Components;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 public class Player : Unit
@@ -109,7 +102,7 @@ public class Player : Unit
     public override void HitEffect()
     {
         base.HitEffect();
-
+        GameManager.Inst.MainUI.animator?.Play("Action", -1, 0f);
     }
     #endregion
 }
