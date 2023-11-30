@@ -1,18 +1,27 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "newItemEffectData", menuName = "Data/Item Data/ItemBuffEvent Data")]
 public class ItemBuffEventSO : ItemEffectSO
 {
     [Header("Buff Event")]
-    public BuffItemSO buffItem;
+    public List<BuffItemSO> buffItems = new List<BuffItemSO>();
+    [SerializeField]
+    private bool isSelf;
 
     private void BuffEvent(Unit unit)
     {
-        if (buffItem == null)
+        if (unit == null)
             return;
 
-        if (Buff.BuffSystemAddBuff(unit, buffItem) == null)
+        if (buffItems == null)
             return;
+
+        for (int i = 0; i < buffItems.Count; i++)
+        {
+            if (Buff.BuffSystemAddBuff(unit, buffItems[i]) == null)
+                return;
+        }
 
         SpawnVFX(unit);
         SpawnSFX(unit);
@@ -35,15 +44,15 @@ public class ItemBuffEventSO : ItemEffectSO
         }
 
         itemEffectSet.Count++;
-        if (itemEffectSet.Count >= itemEffectData.MaxCount)
+        if (itemEffectSet.Count >= itemEffectData.MaxCount && itemEffectData.Percent >= Random.Range(0f, 100f))
         {
-            if (enemy != null)
+            if (isSelf)
             {
-                BuffEvent(enemy);
+                BuffEvent(unit);
             }
             else
             {
-                BuffEvent(unit);
+                BuffEvent(enemy);
             }
             itemEffectSet.Count = 0;
             itemEffectSet.startTime = GameManager.Inst.PlayTime;
