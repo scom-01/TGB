@@ -31,7 +31,7 @@ public class ItemProjectileEventSO : ItemEffectSO
         }
 
         itemEffectSet.Count++;
-        if (itemEffectSet.Count >= itemEffectData.MaxCount)
+        if (itemEffectSet.Count >= itemEffectData.MaxCount && itemEffectData.Percent >= Random.Range(0f, 100f))
         {
             ProjectileShoot(unit, enemy);
             itemEffectSet.Count = 0;

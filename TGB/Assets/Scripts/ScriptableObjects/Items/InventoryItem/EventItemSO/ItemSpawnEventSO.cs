@@ -36,7 +36,7 @@ public class ItemSpawnEventSO : ItemEffectSO
         }
 
         itemEffectSet.Count++;
-        if (itemEffectSet.Count >= itemEffectData.MaxCount)
+        if (itemEffectSet.Count >= itemEffectData.MaxCount && itemEffectData.Percent >= Random.Range(0f, 100f))
         {
             SpawnObject(unit);
             itemEffectSet.Count = 0;
@@ -44,5 +44,5 @@ public class ItemSpawnEventSO : ItemEffectSO
         }
 
         return itemEffectSet;
-    }    
+    }
 }

@@ -1,5 +1,4 @@
 using System;
-using System.Net.Http.Headers;
 using TGB;
 using TGB.Weapons.Components;
 using UnityEngine;
@@ -92,7 +91,13 @@ public struct ItemEffectData
     /// 재사용 대기시간
     /// </summary>
     public float CooldownTime;
-    [HideInInspector] public bool isExecute;
+
+    /// <summary>
+    /// 발동 확률
+    /// </summary>
+    [Range(0f, 100f)]
+    public float Percent;
+
     /// <summary>
     /// Effect VFX
     /// </summary>
