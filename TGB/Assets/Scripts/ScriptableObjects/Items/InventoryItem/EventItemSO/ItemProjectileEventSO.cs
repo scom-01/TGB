@@ -14,30 +14,30 @@ public class ItemProjectileEventSO : ItemEventSO
         unit.Core.CoreEffectManager.StartProjectileCheck(unit, ProjectileActionData);
     }
 
-    public override ItemEventSet ExcuteEvent(ITEM_TPYE type, StatsItemSO parentItem, Unit unit, Unit enemy, ItemEventSet itemEffectSet)
+    public override ItemEventSet ExcuteEvent(ITEM_TPYE type, StatsItemSO parentItem, Unit unit, Unit enemy, ItemEventSet itemEventSet)
     {
-        if (Item_Type != type || Item_Type == ITEM_TPYE.None || itemEffectSet == null)
-            return itemEffectSet;
+        if (Item_Type != type || Item_Type == ITEM_TPYE.None || itemEventSet == null)
+            return itemEventSet;
 
-        if (!itemEffectSet.init)
+        if (!itemEventSet.init)
         {
-            itemEffectSet.init = true;
+            itemEventSet.init = true;
         }
 
-        if (GameManager.Inst.PlayTime < itemEffectSet.startTime + itemEventData.CooldownTime)
+        if (GameManager.Inst.PlayTime < itemEventSet.startTime + itemEventData.CooldownTime)
         {
-            Debug.Log($"itemEffectSet.CoolTime = {GameManager.Inst.PlayTime - itemEffectSet.startTime}");
-            return itemEffectSet;
+            Debug.Log($"itemEffectSet.CoolTime = {GameManager.Inst.PlayTime - itemEventSet.startTime}");
+            return itemEventSet;
         }
 
-        itemEffectSet.Count++;
-        if (itemEffectSet.Count >= itemEventData.MaxCount && itemEventData.Percent >= Random.Range(0f, 100f))
+        itemEventSet.Count++;
+        if (itemEventSet.Count >= itemEventData.MaxCount && itemEventData.Percent >= Random.Range(0f, 100f))
         {
             ProjectileShoot(unit, enemy);
-            itemEffectSet.Count = 0;
-            itemEffectSet.startTime = GameManager.Inst.PlayTime;
+            itemEventSet.Count = 0;
+            itemEventSet.startTime = GameManager.Inst.PlayTime;
         }
 
-        return itemEffectSet;
+        return itemEventSet;
     }
 }

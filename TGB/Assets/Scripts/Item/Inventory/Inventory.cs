@@ -23,7 +23,7 @@ public class ItemSet
         if (_itemEffectSets == null)
         {
             itemEffectSets = new List<ItemEventSet>();
-            for (int i = 0; i < item.ItemEffects.Count; i++)
+            for (int i = 0; i < item.ItemEvents.Count; i++)
             {
                 itemEffectSets.Add(new ItemEventSet());
             }
@@ -116,13 +116,13 @@ public class Inventory : MonoBehaviour
 
     #region 아이템 Event함수
 
-    public bool ExeItemEffect(ITEM_TPYE type, Unit unit, Unit enemy = null)
+    public bool ExeItemEvent(ITEM_TPYE type, Unit unit, Unit enemy = null)
     {
         for (int i = 0; i < Items.Count; i++)
         {
             for (int j = 0; j < Items[i].itemEffectSets.Count; j++)
             {
-                Items[i].itemEffectSets[j] = Items[i].item.ExeEffect(type, unit, enemy, Items[i].item.ItemEffects[j], Items[i].itemEffectSets[j]);
+                Items[i].itemEffectSets[j] = Items[i].item.ExeEvent(type, unit, enemy, Items[i].item.ItemEvents[j], Items[i].itemEffectSets[j]);
             }
         }
         return true;
@@ -137,7 +137,7 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < itemSet.itemEffectSets.Count; i++)
         {
-            itemSet.itemEffectSets[i] = itemSet.item.ExeEffect(ITEM_TPYE.OnInit, unit, unit.TargetUnit, itemSet.item.ItemEffects[i], itemSet.itemEffectSets[i]);
+            itemSet.itemEffectSets[i] = itemSet.item.ExeEvent(ITEM_TPYE.OnInit, unit, unit.TargetUnit, itemSet.item.ItemEvents[i], itemSet.itemEffectSets[i]);
         }
         return true;
     }
@@ -150,7 +150,7 @@ public class Inventory : MonoBehaviour
     /// <returns></returns>
     public bool ItemOnHitExecute(Unit unit, Unit enemy = null)
     {
-        ExeItemEffect(ITEM_TPYE.OnHit, unit, enemy);
+        ExeItemEvent(ITEM_TPYE.OnHit, unit, enemy);
         return true;
     }
 
@@ -161,7 +161,7 @@ public class Inventory : MonoBehaviour
     /// <returns></returns>
     public bool ItemActionExecute(Unit unit)
     {
-        ExeItemEffect(ITEM_TPYE.OnAction, unit, unit.TargetUnit);
+        ExeItemEvent(ITEM_TPYE.OnAction, unit, unit.TargetUnit);
         return true;
     }
 
@@ -172,7 +172,7 @@ public class Inventory : MonoBehaviour
     /// <returns></returns>
     public bool ItemExeUpdate(Unit unit)
     {
-        ExeItemEffect(ITEM_TPYE.OnUpdate, unit, unit.TargetUnit);
+        ExeItemEvent(ITEM_TPYE.OnUpdate, unit, unit.TargetUnit);
         return true;
     }
 
@@ -185,7 +185,7 @@ public class Inventory : MonoBehaviour
     {
         if (!CanDash)
             return;
-        ExeItemEffect(ITEM_TPYE.OnDash, unit, unit.TargetUnit);
+        ExeItemEvent(ITEM_TPYE.OnDash, unit, unit.TargetUnit);
     }
 
     /// <summary>
@@ -194,41 +194,41 @@ public class Inventory : MonoBehaviour
     /// <param name="unit"></param>
     public void ItemExeOnMoveMap(Unit unit)
     {
-        ExeItemEffect(ITEM_TPYE.OnMoveMap, unit, unit.TargetUnit);
+        ExeItemEvent(ITEM_TPYE.OnMoveMap, unit, unit.TargetUnit);
     }
 
     public void ItemExeOnDamage(Unit unit, Unit enemy = null)
     {
-        ExeItemEffect(ITEM_TPYE.OnDamaged, unit, enemy);
+        ExeItemEvent(ITEM_TPYE.OnDamaged, unit, enemy);
     }
 
     public void ItemExeOnCritical(Unit unit, Unit enemy = null)
     {
-        ExeItemEffect(ITEM_TPYE.OnCritical, unit, enemy);
+        ExeItemEvent(ITEM_TPYE.OnCritical, unit, enemy);
     }
 
     public void ItemExeOnJump(Unit unit, Unit enemy = null)
     {
-        ExeItemEffect(ITEM_TPYE.OnJump, unit, enemy);
+        ExeItemEvent(ITEM_TPYE.OnJump, unit, enemy);
     }
 
     public void ItemExeOnLand(Unit unit, Unit enemy = null)
     {
-        ExeItemEffect(ITEM_TPYE.OnLand, unit, enemy);
+        ExeItemEvent(ITEM_TPYE.OnLand, unit, enemy);
     }
 
     public void ItemExeOnHealing(Unit unit, Unit enemy = null)
     {
-        ExeItemEffect(ITEM_TPYE.OnHealing, unit, enemy);
+        ExeItemEvent(ITEM_TPYE.OnHealing, unit, enemy);
     }
 
     public void ItemExeOnDodge(Unit unit, Unit enemy = null)
     {
-        ExeItemEffect(ITEM_TPYE.OnDodge, unit, enemy);
+        ExeItemEvent(ITEM_TPYE.OnDodge, unit, enemy);
     }
     public void ItemExeOnKilled(Unit unit, Unit enemy = null)
     {
-        ExeItemEffect(ITEM_TPYE.OnKilled, unit, enemy);
+        ExeItemEvent(ITEM_TPYE.OnKilled, unit, enemy);
     }
 
     #endregion

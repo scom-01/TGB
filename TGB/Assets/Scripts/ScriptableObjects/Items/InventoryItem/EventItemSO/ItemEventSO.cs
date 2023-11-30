@@ -32,10 +32,6 @@ public abstract class ItemEventSO : ScriptableObject, IExecuteEvent
 {
     public ITEM_TPYE Item_Type;
     public ItemEventData itemEventData;
-    [field: Header("Event")]
-    public Sprite EventSprite;
-    [field: Tooltip("아이템 효과 설명")]
-    [field: SerializeField] public LocalizedString EventDescriptionLocal { get; private set; }
     /// <summary>
     /// Effect 효과 시 생성될 VFX
     /// </summary>
@@ -70,12 +66,12 @@ public abstract class ItemEventSO : ScriptableObject, IExecuteEvent
         return true;
     }
 
-    public virtual ItemEventSet ExcuteEvent(ITEM_TPYE type, StatsItemSO parentItem, Unit unit, Unit enemy, ItemEventSet itemEffectSet)
+    public virtual ItemEventSet ExcuteEvent(ITEM_TPYE type, StatsItemSO parentItem, Unit unit, Unit enemy, ItemEventSet itemEventSet)
     {
-        if (Item_Type != type || Item_Type == ITEM_TPYE.None || itemEffectSet == null)
-            return itemEffectSet;
+        if (Item_Type != type || Item_Type == ITEM_TPYE.None || itemEventSet == null)
+            return itemEventSet;
 
-        return itemEffectSet;
+        return itemEventSet;
     }
 }
 
