@@ -45,7 +45,7 @@ MonoBehaviour:
     AttackSpeedPer: 0
     PhysicsDefensivePer: 0
     MagicDefensivePer: 0
-    PhysicsAggressivePer: 10
+    PhysicsAggressivePer: 120
     MagicAggressivePer: 0
     CriticalPer: 0
     AdditionalCriticalPer: 0
@@ -53,16 +53,15 @@ MonoBehaviour:
     Elemental: 0
     ElementalDefensivePer: 0
     ElementalAggressivePer: 0
-  StatsItems: []
   Health: 0
-  effectData:
+  InitEffectData:
     <AcquiredEffectPrefab>k__BackingField: {fileID: 0}
-    <AcquiredSoundEffect>k__BackingField: {fileID: 0}
+    <AcquiredSFX>k__BackingField:
+      Clip: {fileID: 0}
+      Volume: 0
     <isEquipment>k__BackingField: 0
-    <DetailSubUI>k__BackingField: 0
-  ItemEffects: []
   BuffData:
-    DurationTime: 5
+    DurationTime: 3
     BuffType: 0
     isOverlap: 1
     BuffCountMax: 1
