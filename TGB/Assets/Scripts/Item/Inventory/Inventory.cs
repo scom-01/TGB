@@ -9,23 +9,23 @@ using UnityEngine;
 public class ItemSet
 {
     public StatsItemSO item;
-    public List<ItemEffectSet> itemEffectSets = new List<ItemEffectSet>();
+    public List<ItemEventSet> itemEffectSets = new List<ItemEventSet>();
     public List<bool> init = new List<bool>();
     public List<float> startTime = new List<float>();
     /// <summary>
     /// OnAction이면 OnAction의 Count를 OnHit면 OnHit의 Count를 계산
     /// </summary>
     public List<int> EffectCount = new List<int>();
-    public ItemSet(StatsItemSO itemSO, ItemEffectSet _itemEffectSets = null)//  float _startTime = 0, int _Count = 0)
+    public ItemSet(StatsItemSO itemSO, ItemEventSet _itemEffectSets = null)//  float _startTime = 0, int _Count = 0)
     {
         this.item = itemSO;
 
         if (_itemEffectSets == null)
         {
-            itemEffectSets = new List<ItemEffectSet>();
+            itemEffectSets = new List<ItemEventSet>();
             for (int i = 0; i < item.ItemEffects.Count; i++)
             {
-                itemEffectSets.Add(new ItemEffectSet());
+                itemEffectSets.Add(new ItemEventSet());
             }
         }
     }

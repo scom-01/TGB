@@ -85,11 +85,11 @@ public class StatsItemSO : ItemDataSO
     public EffectData InitEffectData;
     public List<EffectPrefab> InfinityEffectObjects = new List<EffectPrefab>();
     [Header("--ItemEffects--")]
-    [field: SerializeField] public List<ItemEffectSO> ItemEffects = new List<ItemEffectSO>();
+    [field: SerializeField] public List<ItemEventSO> ItemEffects = new List<ItemEventSO>();
 
-    public virtual ItemEffectSet ExeEffect(ITEM_TPYE type, Unit unit,Unit enemy,ItemEffectSO _itemEffect, ItemEffectSet itemEffectSet)
+    public virtual ItemEventSet ExeEffect(ITEM_TPYE type, Unit unit,Unit enemy,ItemEventSO _itemEffect, ItemEventSet itemEffectSet)
     {
-        return _itemEffect.ExcuteEffect(type, this, unit, enemy, itemEffectSet);
+        return _itemEffect.ExcuteEvent(type, this, unit, enemy, itemEffectSet);
     }
 }
 

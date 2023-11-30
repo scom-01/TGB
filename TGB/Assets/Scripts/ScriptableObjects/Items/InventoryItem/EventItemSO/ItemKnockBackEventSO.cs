@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "newKnockBackEvent", menuName = "Data/Item Data/ItemKnockBackEventSO Data")]
-public class ItemKnockBackEventSO : ItemEffectSO
+public class ItemKnockBackEventSO : ItemEventSO
 {
     [Header("KnockBack Event")]
     public Vector2 angle;
@@ -18,7 +18,7 @@ public class ItemKnockBackEventSO : ItemEffectSO
         enemy.Core.CoreKnockBackReceiver.KnockBack(angle, strength, unit.Core.CoreMovement.FancingDirection);
     }
 
-    public override ItemEffectSet ExcuteEffect(ITEM_TPYE type, StatsItemSO parentItem, Unit unit, Unit enemy, ItemEffectSet itemEffectSet)
+    public override ItemEventSet ExcuteEvent(ITEM_TPYE type, StatsItemSO parentItem, Unit unit, Unit enemy, ItemEventSet itemEffectSet)
     {
         if (Item_Type != type || Item_Type == ITEM_TPYE.None || itemEffectSet == null)
             return itemEffectSet;
@@ -28,14 +28,14 @@ public class ItemKnockBackEventSO : ItemEffectSO
             itemEffectSet.init = true;
         }
 
-        if (GameManager.Inst.PlayTime < itemEffectSet.startTime + itemEffectData.CooldownTime)
+        if (GameManager.Inst.PlayTime < itemEffectSet.startTime + itemEventData.CooldownTime)
         {
             Debug.Log($"itemEffectSet.CoolTime = {GameManager.Inst.PlayTime - itemEffectSet.startTime}");
             return itemEffectSet;
         }
 
         itemEffectSet.Count++;
-        if (itemEffectSet.Count >= itemEffectData.MaxCount && itemEffectData.Percent >= Random.Range(0f, 100f))
+        if (itemEffectSet.Count >= itemEventData.MaxCount && itemEventData.Percent >= Random.Range(0f, 100f))
         {
             KnockBackAction(unit, enemy);
             itemEffectSet.Count = 0;

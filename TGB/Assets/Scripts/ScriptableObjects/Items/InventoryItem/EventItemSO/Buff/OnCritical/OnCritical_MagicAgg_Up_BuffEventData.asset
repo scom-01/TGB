@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: OnCritical_MagicAgg_Up_BuffEventData
   m_EditorClassIdentifier: 
   Item_Type: 8
-  itemEffectData:
+  itemEventData:
     MaxCount: 1
     CooldownTime: 0
     Percent: 100
@@ -30,8 +30,8 @@ MonoBehaviour:
     SFX:
       Clip: {fileID: 0}
       Volume: 0
-  EffectSprite: {fileID: 0}
-  <EffectDescriptionLocal>k__BackingField:
+  EventSprite: {fileID: 0}
+  <EventDescriptionLocal>k__BackingField:
     m_TableReference:
       m_TableCollectionName: 
     m_TableEntryReference:

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: OnAction_1_ProjectileAttackEventData 1
   m_EditorClassIdentifier: 
   Item_Type: 8
-  itemEffectData:
-    MaxCount: 1
-    CooldownTime: 2
+  itemEventData:
+    MaxCount: 0
+    CooldownTime: 0
     Percent: 100
     VFX:
       isGround: 0
@@ -30,8 +30,8 @@ MonoBehaviour:
     SFX:
       Clip: {fileID: 0}
       Volume: 0
-  EffectSprite: {fileID: 0}
-  <EffectDescriptionLocal>k__BackingField:
+  EventSprite: {fileID: 0}
+  <EventDescriptionLocal>k__BackingField:
     m_TableReference:
       m_TableCollectionName: 
     m_TableEntryReference:

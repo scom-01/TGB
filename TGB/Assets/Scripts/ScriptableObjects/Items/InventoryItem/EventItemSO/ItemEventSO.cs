@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Localization;
 
 [Serializable]
-public class ItemEffectSet
+public class ItemEventSet
 {
     /// <summary>
     /// 아이템 획득 시 초기 1회
@@ -19,7 +19,7 @@ public class ItemEffectSet
     /// 횟수 계산용 변수(OnAction or OnHit etc.)
     /// </summary>
     public int Count = 0;
-    public ItemEffectSet(bool init = false, float startTime = 0, int count = 0)
+    public ItemEventSet(bool init = false, float startTime = 0, int count = 0)
     {
         this.init = init;
         this.startTime = startTime;
@@ -27,15 +27,15 @@ public class ItemEffectSet
     }
 }
 
-[CreateAssetMenu(fileName = "newItemEffectData", menuName = "Data/Item Data/ItemEffect Data")]
-public abstract class ItemEffectSO : ScriptableObject, IExecuteEffect
+[CreateAssetMenu(fileName = "newItemEventData", menuName = "Data/Item Data/ItemEvent Data")]
+public abstract class ItemEventSO : ScriptableObject, IExecuteEvent
 {
     public ITEM_TPYE Item_Type;
-    public ItemEffectData itemEffectData;
-    [field: Header("Effect")]
-    public Sprite EffectSprite;
+    public ItemEventData itemEventData;
+    [field: Header("Event")]
+    public Sprite EventSprite;
     [field: Tooltip("아이템 효과 설명")]
-    [field: SerializeField] public LocalizedString EffectDescriptionLocal { get; private set; }
+    [field: SerializeField] public LocalizedString EventDescriptionLocal { get; private set; }
     /// <summary>
     /// Effect 효과 시 생성될 VFX
     /// </summary>
@@ -46,9 +46,9 @@ public abstract class ItemEffectSO : ScriptableObject, IExecuteEffect
         if (unit == null)
             return null;
 
-        if (itemEffectData.VFX.Object == null)
+        if (itemEventData.VFX.Object == null)
             return null;
-        GameObject go = itemEffectData.VFX.SpawnObject(unit);
+        GameObject go = itemEventData.VFX.SpawnObject(unit);
         return go;
     }
 
@@ -62,15 +62,15 @@ public abstract class ItemEffectSO : ScriptableObject, IExecuteEffect
         if (unit == null)
             return false;
 
-        if (itemEffectData.SFX.Clip == null)
+        if (itemEventData.SFX.Clip == null)
             return false;
 
-        unit.Core.CoreSoundEffect.AudioSpawn(itemEffectData.SFX);
+        unit.Core.CoreSoundEffect.AudioSpawn(itemEventData.SFX);
 
         return true;
     }
 
-    public virtual ItemEffectSet ExcuteEffect(ITEM_TPYE type, StatsItemSO parentItem, Unit unit, Unit enemy, ItemEffectSet itemEffectSet)
+    public virtual ItemEventSet ExcuteEvent(ITEM_TPYE type, StatsItemSO parentItem, Unit unit, Unit enemy, ItemEventSet itemEffectSet)
     {
         if (Item_Type != type || Item_Type == ITEM_TPYE.None || itemEffectSet == null)
             return itemEffectSet;
@@ -80,7 +80,7 @@ public abstract class ItemEffectSO : ScriptableObject, IExecuteEffect
 }
 
 [Serializable]
-public struct ItemEffectData
+public struct ItemEventData
 {
     /// <summary>
     /// 필요 호출 회수
