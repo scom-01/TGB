@@ -37,7 +37,8 @@ namespace TGB.Item
         {
             if (Item == null)
                 return false;
-            //SR.sprite = Item.itemData.ItemSprite;
+
+            SR.sprite = Item.itemData.ItemSprite;
             CC2D = GetComponentInChildren<CircleCollider2D>();
             if (CC2D != null)
             {
@@ -65,7 +66,7 @@ namespace TGB.Item
             }
 
             GameManager.Inst.SubUI.isRight(isright);
-            GameManager.Inst.SubUI.DetailSubUI.SetInit(Item.itemData.ItemNameLocal, Item.itemData.ItemDescriptionLocal, Item.itemData.ItemSprite, Item.StatsData_Descripts);
+            GameManager.Inst.SubUI.DetailSubUI.SetInit(Item);
 
             if (GameManager.Inst.SubUI.DetailSubUI.Canvas.enabled)
             {

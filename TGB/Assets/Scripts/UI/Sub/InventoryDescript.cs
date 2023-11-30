@@ -8,8 +8,10 @@ using UnityEngine.Localization.Settings;
 
 public class InventoryDescript : MonoBehaviour
 {
-    [SerializeField] private LocalizeStringEvent ItemNameStringEvent;
-    [SerializeField] private LocalizeStringEvent ItemDescriptStringEvent;
+    [SerializeField] private LocalizeStringEvent ItemName_StringEvent;
+    [SerializeField] private LocalizeStringEvent ItemDescript_StringEvent;
+    [SerializeField] private LocalizeStringEvent ItemEventName_StringEvent;
+    [SerializeField] private LocalizeStringEvent ItemEventDescript_StringEvent;
     [SerializeField] private TextMeshProUGUI ItemStatsTMP;
     public GameObject DropButton;
     public GameObject DropKeyButton;
@@ -24,14 +26,26 @@ public class InventoryDescript : MonoBehaviour
         var item = GameManager.Inst.SubUI.InventorySubUI.InventoryItems.CurrentSelectItem;
         if (item != null && item.StatsItemData != null)
         {
-            if (ItemNameStringEvent != null)
+            if (ItemName_StringEvent != null && item.StatsItemData.itemData.ItemNameLocal.TableEntryReference.KeyId != 0)
             {
-                ItemNameStringEvent.StringReference.SetReference("Item_Table", item.StatsItemData.itemData.ItemNameLocal.TableEntryReference);                
+                ItemName_StringEvent.StringReference.SetReference("Item_Table", item.StatsItemData.itemData.ItemNameLocal.TableEntryReference);                
             }
             
-            if (ItemDescriptStringEvent != null)
+            if (ItemDescript_StringEvent != null && item.StatsItemData.itemData.ItemDescriptionLocal.TableEntryReference.KeyId != 0)
             {
-                ItemDescriptStringEvent.StringReference.SetReference("Item_Table", item.StatsItemData.itemData.ItemDescriptionLocal.TableEntryReference);
+                ItemDescript_StringEvent.StringReference.SetReference("Item_Table", item.StatsItemData.itemData.ItemDescriptionLocal.TableEntryReference);
+            }
+
+            if (ItemEventName_StringEvent != null)
+            {
+                if (item.StatsItemData.EventNameLocal.TableEntryReference.KeyId != 0) ItemEventName_StringEvent.StringReference.SetReference("ItemEvent_Table", item.StatsItemData.EventNameLocal.TableEntryReference);
+                else ItemEventName_StringEvent.StringReference.SetReference("Item_Table", "Empty");
+            }
+            
+            if (ItemEventDescript_StringEvent != null)
+            {
+                if (item.StatsItemData.EventDescriptionLocal.TableEntryReference.KeyId != 0) ItemEventDescript_StringEvent.StringReference.SetReference("ItemEvent_Table", item.StatsItemData.EventDescriptionLocal.TableEntryReference);
+                else ItemEventDescript_StringEvent.StringReference.SetReference("Item_Table", "Empty");
             }
 
             if (ItemStatsTMP != null)
@@ -52,13 +66,21 @@ public class InventoryDescript : MonoBehaviour
                 DropKeyButton.SetActive(true);
             return;
         }
-        if (ItemNameStringEvent != null)
+        if (ItemName_StringEvent != null)
         {
-            ItemNameStringEvent.StringReference.SetReference("Item_Table", "Empty");
+            ItemName_StringEvent.StringReference.SetReference("Item_Table", "Empty");
         }
-        if (ItemDescriptStringEvent != null)
+        if (ItemDescript_StringEvent != null)
         {
-            ItemDescriptStringEvent.StringReference.SetReference("Item_Table", "Empty");
+            ItemDescript_StringEvent.StringReference.SetReference("Item_Table", "Empty");
+        }
+        if (ItemEventName_StringEvent != null)
+        {
+            ItemEventName_StringEvent.StringReference.SetReference("Item_Table", "Empty");
+        }
+        if (ItemEventDescript_StringEvent != null)
+        {
+            ItemEventDescript_StringEvent.StringReference.SetReference("Item_Table", "Empty");
         }
         if (ItemStatsTMP != null)
         {

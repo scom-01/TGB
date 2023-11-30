@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Localization;
 using UnityEngine.Localization.Components;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class DetailUI : MonoBehaviour
@@ -28,34 +24,50 @@ public class DetailUI : MonoBehaviour
 
     [SerializeField] private Image Icon;
 
-    [Header("---Sub---")]    
+    [Header("---Sub---")]
     [SerializeField]
     private GameObject subUI;
     [SerializeField] private LocalizeStringEvent SubStringEvent;
     [SerializeField] private TextMeshProUGUI StatsDescript;
+
+    [Header("---Event---")]
+    [SerializeField] private LocalizeStringEvent Event_Name;
+    [SerializeField] private LocalizeStringEvent Event_Descript;
     [Tooltip("하위 컴포넌트 중 'SubText' Text String")]
 
-    public void SetInit(LocalizedString _ItemNameLocal, LocalizedString _ItemDescriptLocal, Sprite _sprite, string _StatsDescripts)
+    public void SetInit(StatsItemSO item)
     {
-        if (MainStringEvent != null && _ItemNameLocal != null)
+        if (MainStringEvent != null && item.itemData.ItemNameLocal != null)
         {
-            MainStringEvent.StringReference.SetReference("Item_Table", _ItemNameLocal.TableEntryReference);
+            MainStringEvent.StringReference.SetReference("Item_Table", item.itemData.ItemNameLocal.TableEntryReference);
         }
 
-        if (SubStringEvent != null && _ItemDescriptLocal != null)
+        if (SubStringEvent != null && item.itemData.ItemDescriptionLocal != null)
         {
-            SubStringEvent.StringReference.SetReference("Item_Table", _ItemDescriptLocal.TableEntryReference);
+            SubStringEvent.StringReference.SetReference("Item_Table", item.itemData.ItemDescriptionLocal.TableEntryReference);
+        }
+
+        if (Event_Name != null && item.EventNameLocal != null)
+        {
+            if (item.EventNameLocal.TableEntryReference.KeyId != 0) Event_Name.StringReference.SetReference("ItemEvent_Table", item.EventNameLocal.TableEntryReference);
+            else Event_Name.StringReference.SetReference("Item_Table", "Empty");
+        }
+
+        if (Event_Descript != null && item.EventDescriptionLocal != null)
+        {
+            if (item.EventDescriptionLocal.TableEntryReference.KeyId != 0) Event_Descript.StringReference.SetReference("ItemEvent_Table", item.EventDescriptionLocal.TableEntryReference);
+            else Event_Descript.StringReference.SetReference("Item_Table", "Empty");
         }
 
         if (StatsDescript != null)
         {
             StatsDescript.text = "";
-            StatsDescript.text = _StatsDescripts;
+            StatsDescript.text = item.StatsData_Descripts;
         }
 
-        if (Icon!=null)
+        if (Icon != null)
         {
-            Icon.sprite = _sprite;
+            Icon.sprite = item.itemData.ItemSprite;
         }
     }
 }
