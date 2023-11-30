@@ -7,7 +7,7 @@ public class TouchItem : TouchObject
     [TagField]
     public string Ignore_Tag;
 
-    [SerializeField] private StatsItemSO Item;
+    [SerializeField] private BuffItemSO Item;
     [SerializeField] private SpriteRenderer SpriteRenderer;
     private void Awake()
     {
@@ -50,7 +50,7 @@ public class TouchItem : TouchObject
         if (Item != null)
         {
 
-            Buff.BuffSystemAddBuff(gameObject.GetComponent<Unit>(), Item as BuffItemSO);
+            Buff.BuffSystemAddBuff(gameObject.GetComponent<Unit>(), Item);
 
             //Vfx
             if (Item.InitEffectData.AcquiredEffectPrefab != null)

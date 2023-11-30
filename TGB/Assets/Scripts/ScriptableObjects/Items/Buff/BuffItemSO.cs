@@ -4,8 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "newItemData", menuName = "Data/Item Data/Buff Data")]
-public class BuffItemSO : StatsItemSO
+public class BuffItemSO : ItemDataSO
 {
+    [Header("--StatsData--")]
+    [Tooltip("아이템이 갖는 스탯")]
+    public StatsData StatsData = new StatsData();
+    [Tooltip("최대체력이 아닌 현재 체력 증가값")]
+    public int Health;
+
+    [Header("--Effects--")]
+    public EffectData InitEffectData;
+
     public BuffItem_Data BuffData;
 }
 

@@ -104,9 +104,4 @@ public struct EffectData
 
     [field: Tooltip("아이템 소비 여부")]
     [field: SerializeField] public bool isEquipment { get; private set; }
-
-    //--Detect--
-    [field: Header("Detect Use")]
-    [field: Tooltip("Detect 시 SubUI 표시 여부")]
-    [field: SerializeField] public bool DetailSubUI { get; private set; }
 }
