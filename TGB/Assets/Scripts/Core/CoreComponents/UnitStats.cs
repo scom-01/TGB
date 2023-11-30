@@ -175,7 +175,7 @@ namespace TGB.CoreSystem
         {
             var oldHealth = CurrentHealth;
             CurrentHealth += amount;
-            if(amount > 0)
+            if (amount > 0)
             {
                 core.Unit.Inventory?.ItemExeOnHealing(core.Unit, core.Unit.TargetUnit);
             }
@@ -193,14 +193,14 @@ namespace TGB.CoreSystem
         /// <param name="amount"></param>
         public float DecreaseHealth(E_Power elemental, DAMAGE_ATT attiribute, float amount)
         {
-            core.Unit.HitEffect();
-            //CriticalPer
-            float amount1 = CalculateElementDamage(elemental, amount);
-            float amount2 = CalculateDamageAtt(attiribute, amount1);
-
-            if (amount2 > 0)
+            return DecreaseHealth(null, elemental, attiribute, amount);
+        }
+        public float DecreaseHealth(Unit attacker, DAMAGE_ATT attiribute, float amount)
+        {
+            float amount1 = CalculateDamageAtt(attacker, attiribute, amount);
+            if (amount1 > 0)
             {
-                return DecreaseHealth(null, amount2);
+                return DecreaseHealth(attacker, amount1);
             }
             return 0f;
         }
@@ -220,6 +220,10 @@ namespace TGB.CoreSystem
             var result = DecreaseHealth(amount);
             if (result > 0)
             {
+                if (CurrentHealth == 0)
+                {
+                    attacker.Inventory?.ItemExeOnKilled(attacker, core.Unit);
+                }
                 core.Unit.Inventory.ItemExeOnDamage(core.Unit, attacker);
             }
             return result;

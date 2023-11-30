@@ -64,6 +64,7 @@ public enum ITEM_TPYE
     OnLand = 10,
     OnDodge = 11,
     OnHealing = 12,
+    OnKilled = 13,
 }
 
 public enum ITEM_Level

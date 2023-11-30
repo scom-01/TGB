@@ -226,6 +226,10 @@ public class Inventory : MonoBehaviour
     {
         ExeItemEffect(ITEM_TPYE.OnDodge, unit, enemy);
     }
+    public void ItemExeOnKilled(Unit unit, Unit enemy = null)
+    {
+        ExeItemEffect(ITEM_TPYE.OnKilled, unit, enemy);
+    }
 
     #endregion
 
