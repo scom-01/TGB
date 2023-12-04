@@ -31,7 +31,7 @@ public class Blessing : InteractiveObject
     {
         if (BlessingStats.Count > 0)
         {
-            EventSystem.current.SetSelectedGameObject(BlessingStats[0].gameObject);
+            GameManager.Inst.SetSelectedObject(BlessingStats[0].gameObject);
         }
     }
 

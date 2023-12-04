@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TGB.Weapons.Components;
 using UnityEditor;
 using UnityEditor.Callbacks;
-using UnityEditor.Compilation;
 using UnityEngine;
-using TGB.Weapons.Components;
 
 namespace TGB.Weapons
 {

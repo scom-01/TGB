@@ -337,7 +337,7 @@ public class PlayerInputHandler : MonoBehaviour
                     {                        
                         if (_TitleManager.buttons.Count > 0)
                         {
-                            EventSystem.current.SetSelectedGameObject(_TitleManager.buttons[0].gameObject);
+                            GameManager.Inst.SetSelectedObject(_TitleManager.buttons[0].gameObject);
                         }
                         _TitleManager.UnlockItem_Canvas.Canvas.enabled = false;
                         return;

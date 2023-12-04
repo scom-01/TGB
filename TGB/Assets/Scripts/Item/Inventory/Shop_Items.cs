@@ -76,6 +76,7 @@ public class Shop_Items : InventoryItems, IUI_Select
             {
                 Items[SelectedIdx].StatsItemData = null;
             }
+            GameManager.Inst.SetSelectedObject(Items[SelectedIdx].gameObject);
             EventSystem.current.SetSelectedGameObject(Items[SelectedIdx].gameObject);
             //아이템 리롤
         }

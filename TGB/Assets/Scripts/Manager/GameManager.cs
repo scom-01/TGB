@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour
     public UI_State Old_UIState, Curr_UIState = UI_State.GamePlay;
     public float PlayTime;
 
+    public GameObject LastSelectedObject;
     /// <summary>
     /// Scene 이름으로 Scene Number를 알아내기 위한 Scene List
     /// </summary>
@@ -106,7 +107,7 @@ public class GameManager : MonoBehaviour
     public event Action SaveAction;
     
     private void Awake()
-    {
+    {        
         if (_Inst)
         {
             var managers = Resources.FindObjectsOfTypeAll(typeof(GameManager));
@@ -167,7 +168,15 @@ public class GameManager : MonoBehaviour
         if (InputHandler.ESCInput)
         {
             //사망 시엔 ResultUI의 Title누르는 것 외엔 작동하지않도록
-           
+        }
+        if (EventSystem.current.currentSelectedGameObject != null)
+        {
+            LastSelectedObject = EventSystem.current.currentSelectedGameObject;
+            Debug.Log("currentSelectedGameObject = " + EventSystem.current.currentSelectedGameObject.name);
+        }
+        else
+        {
+            Debug.Log("CurrentSelectedGameObject = null");
         }
     }
     private void Start()
@@ -233,7 +242,7 @@ public class GameManager : MonoBehaviour
         if (_TitleManager != null)
         {
             if (_TitleManager.buttons.Count > 0)
-                EventSystem.current.SetSelectedGameObject(_TitleManager.buttons[0].gameObject);
+                GameManager.Inst.SetSelectedObject(_TitleManager.buttons[0].gameObject);
         }
         isPause = false;
     }
@@ -249,7 +258,7 @@ public class GameManager : MonoBehaviour
         if (_TitleManager != null)
         {
             if(_TitleManager.buttons.Count > 0)
-                EventSystem.current.SetSelectedGameObject(_TitleManager.buttons[0].gameObject);
+                GameManager.Inst.SetSelectedObject(_TitleManager.buttons[0].gameObject);
         }
         if (StageManager != null)
             InputHandler.playerInput.currentActionMap = InputHandler.playerInput.actions.FindActionMap(InputEnum.GamePlay.ToString());
@@ -275,16 +284,18 @@ public class GameManager : MonoBehaviour
                 
         Curr_UIState = ui;
         Application.targetFrameRate = 144;
+        CursorUnLock();
         switch (_ui)
         {            
             case UI_State.GamePlay:
+                CursorLock();
                 InputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, false);
                 if (StageManager != null)
                 {
                     PlayTimeUI.Canvas.enabled = true;
                 }
                 SubUI.InventorySubUI.SetInventoryState(InventoryUI_State.Put);
-                EventSystem.current.SetSelectedGameObject(null);
+                EventSystemSetSelectedNull();
                 if (StageManager != null)
                     MainUI.Canvas.enabled = true;
                 else
@@ -297,11 +308,11 @@ public class GameManager : MonoBehaviour
 
                 if (SubUI.InventorySubUI.InventoryItems.CurrentSelectItem == null)
                 {
-                    EventSystem.current.SetSelectedGameObject(SubUI.InventorySubUI.InventoryItems.Items[0].gameObject);
+                    GameManager.Inst.SetSelectedObject(SubUI.InventorySubUI.InventoryItems.Items[0].gameObject);
                 }
                 else
                 {
-                    EventSystem.current.SetSelectedGameObject(SubUI.InventorySubUI.InventoryItems.CurrentSelectItem.gameObject);
+                    GameManager.Inst.SetSelectedObject(SubUI.InventorySubUI.InventoryItems.CurrentSelectItem.gameObject);
                 }
                 if (StageManager != null)
                 {
@@ -313,7 +324,7 @@ public class GameManager : MonoBehaviour
                 SubUI.InventorySubUI.SetInventoryState(InventoryUI_State.Put);
                 ReforgingUI.EnabledChildrensCanvas(true);
                 ReforgingUI.Canvas.enabled = true;
-                EventSystem.current.SetSelectedGameObject(ReforgingUI.equipWeapon.gameObject);
+                GameManager.Inst.SetSelectedObject(ReforgingUI.equipWeapon.gameObject);
                 break;
             case UI_State.Cfg:
                 if (StageManager != null)
@@ -322,10 +333,11 @@ public class GameManager : MonoBehaviour
                 }
 
                 CfgUI.Canvas.enabled = true;
-                CfgUI.animator?.Play("Action", -1, 0f);                
-                EventSystem.current.SetSelectedGameObject(CfgUI.ConfigPanelUI.cfgBtns[0].gameObject);
+                CfgUI.animator?.Play("Action", -1, 0f);
+                GameManager.Inst.SetSelectedObject(CfgUI.ConfigPanelUI.cfgBtns[0].gameObject);
                 break;
             case UI_State.CutScene:
+                CursorLock();
                 InputHandler.ChangeCurrentActionMap(InputEnum.CutScene, false);
                 SubUI.InventorySubUI.SetInventoryState(InventoryUI_State.Put);
                 CutSceneUI.Canvas.enabled = true;
@@ -333,9 +345,10 @@ public class GameManager : MonoBehaviour
             case UI_State.Result:
                 ResultUI.Canvas.enabled = true;
                 ResultUI.animator?.Play("Action", -1, 0f);
-                EventSystem.current.SetSelectedGameObject(ResultUI.GoTitleBtn.gameObject);
+                GameManager.Inst.SetSelectedObject(ResultUI.GoTitleBtn.gameObject);
                 break;
             case UI_State.Loading:
+                CursorLock();
                 SubUI.InventorySubUI.SetInventoryState(InventoryUI_State.Put);
                 break;
         }
@@ -375,9 +388,29 @@ public class GameManager : MonoBehaviour
         ChangeUI(panel.UI_State);
     }
 
+    public void EventSystemLastSelected()
+    {
+        if (LastSelectedObject != null)
+        {
+            Debug.Log($"Set LastSelectedObject = {LastSelectedObject?.name}");
+        }
+        EventSystem.current.SetSelectedGameObject(LastSelectedObject);
+    }
     public void EventSystemSetSelectedNull()
     {
         EventSystem.current.SetSelectedGameObject(null);
+    }
+    public void SetSelectedObject(GameObject obj)
+    {
+        if (obj != null)
+        {
+            LastSelectedObject = EventSystem.current.currentSelectedGameObject;
+            EventSystem.current.SetSelectedGameObject(obj);            
+        }
+        else
+        {
+            EventSystemLastSelected();
+        }
     }
     #endregion
 
@@ -425,6 +458,20 @@ public class GameManager : MonoBehaviour
 
         DataManager.Inst?.JSON_DataParsing.JSON_SceneDataSave();
         DataManager.Inst?.JSON_DataParsing.JSON_DefaultDataSave();
+    }
+
+    private void CursorLock()
+    {
+        //Debug.Log("Cursor Lock");
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+    }
+
+    private void CursorUnLock()
+    {
+        //Debug.Log("Cursor UnLock");
+        //Cursor.lockState = CursorLockMode.None;
+        //Cursor.visible = true;
     }
 
     public void SetSaveData()

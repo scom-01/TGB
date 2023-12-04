@@ -27,7 +27,7 @@ public class Merchant : InteractiveObject
     {
         if (Inventoryitems != null)
         {
-            EventSystem.current.SetSelectedGameObject(Inventoryitems?.Items[0].gameObject);            
+            GameManager.Inst.SetSelectedObject(Inventoryitems?.Items[0].gameObject);            
         }
     }
 

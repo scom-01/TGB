@@ -74,7 +74,7 @@ public class TitleManager : MonoBehaviour
             }
         }
 
-        EventSystem.current.SetSelectedGameObject(buttons[0].gameObject);
+        GameManager.Inst.SetSelectedObject(buttons[0].gameObject);
     }
 
     private void OnButtonCallBack(ChangeEvent<string> evt)
@@ -109,7 +109,7 @@ public class TitleManager : MonoBehaviour
                 if (go.GetComponentsInChildren<UnityEngine.UI.Button>() != null)
                 {
                     var btns = go.GetComponentsInChildren<UnityEngine.UI.Button>();
-                    EventSystem.current.SetSelectedGameObject(btns[btns.Length - 1].gameObject);
+                    GameManager.Inst.SetSelectedObject(btns[btns.Length - 1].gameObject);
                 }
             }
         }
@@ -149,7 +149,7 @@ public class TitleManager : MonoBehaviour
 
             if(UnlockItem_Canvas.GetComponentInChildren<UnlockItemList>()?.UnlockItems.Count > 0)
             {
-                EventSystem.current.SetSelectedGameObject(UnlockItem_Canvas.GetComponentInChildren<UnlockItemList>()?.UnlockItems[0].gameObject);
+                GameManager.Inst.SetSelectedObject(UnlockItem_Canvas.GetComponentInChildren<UnlockItemList>()?.UnlockItems[0].gameObject);
             }
         }
 
@@ -159,7 +159,7 @@ public class TitleManager : MonoBehaviour
     private void HideUnlockItemCanvas()
     {
         UnlockItem_Canvas.Canvas.enabled = false;
-        EventSystem.current.SetSelectedGameObject(buttons[0].gameObject);
+        GameManager.Inst.SetSelectedObject(buttons[0].gameObject);
     }
 
     public void OnOptionBtnClicked()
@@ -181,6 +181,6 @@ public class TitleManager : MonoBehaviour
 
     public void EventSystemSetSelectedNull()
     {
-        EventSystem.current.SetSelectedGameObject(null);
+        GameManager.Inst.SetSelectedObject(null);
     }
 }
