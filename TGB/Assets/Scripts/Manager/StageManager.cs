@@ -1,5 +1,6 @@
 using Cinemachine;
 using System.Collections.Generic;
+using TGB;
 using TGB.Manager;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -93,7 +94,7 @@ public class StageManager : MonoBehaviour
     }
     private EffectContainer effectContainer;
     private Transform effectContainerTransform;
-    
+
     [Header("----Player----")]
 
     public GameObject PlayerPrefab;
@@ -148,6 +149,7 @@ public class StageManager : MonoBehaviour
 
     [Header("----Sounds----")]
     public AudioSource BGM;
+    public AudioPrefab BGM_source;
 
     private void Awake()
     {
@@ -219,7 +221,7 @@ public class StageManager : MonoBehaviour
             if (SPM == null)
                 SPM = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         }
-        
+
         if (StageVolume == null)
             StageVolume = this.GetComponentInChildren<Volume>();
 
@@ -228,7 +230,12 @@ public class StageManager : MonoBehaviour
 
         if (BGM == null)
             BGM = GameObject.Find("BGM").GetComponent<AudioSource>();
-
+        if (BGM_source.Clip != null)
+        {
+            BGM.clip = BGM_source.Clip;
+            BGM.volume = BGM_source.Volume;
+            BGM.loop = true;
+        }
 
         GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, false);
 
