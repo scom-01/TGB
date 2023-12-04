@@ -24960,7 +24960,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23101ca398c5f484291b344f41f6ebda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SfxObject: {fileID: 0}
+  SFX:
+    Clip: {fileID: 0}
+    Volume: 0
   EffectObject: {fileID: 0}
   RespawnPoint: {fileID: 18369583}
 --- !u!60 &308611200
@@ -56023,7 +56025,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -3819941863319329255, guid: 627eeb06f17324d4691ad4d62526af6c, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 14a1cf915de1c2448b200ab123c01445, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c091f82a317088547b1e89353eb32e51, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -57416,6 +57418,9 @@ MonoBehaviour:
   ChoiceItemAmount: 1
   UnlockItemSpawnPer: 30
   BGM: {fileID: 1428434311}
+  BGM_source:
+    Clip: {fileID: 8300000, guid: c091f82a317088547b1e89353eb32e51, type: 3}
+    Volume: 0.3
   TeleportPoint: {fileID: 1859339619}
   TeleportPoints: []
   Pattern:
@@ -57830,7 +57835,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d9513fef8696d449f5cccb09b8007e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SfxObject: {fileID: 0}
+  SFX:
+    Clip: {fileID: 0}
+    Volume: 0
   EffectObject: {fileID: 0}
 --- !u!1 &1954046830
 GameObject:

@@ -51589,7 +51589,10 @@ MonoBehaviour:
   ItemSpawnInterval: 2
   ChoiceItemAmount: 1
   UnlockItemSpawnPer: 30
-  BGM: {fileID: 0}
+  BGM: {fileID: 8259596952036267520}
+  BGM_source:
+    Clip: {fileID: 8300000, guid: bebb0c0f89b825545a43564714dc000d, type: 3}
+    Volume: 0.4
 --- !u!4 &1679714830
 Transform:
   m_ObjectHideFlags: 0
@@ -56395,6 +56398,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8259596953464174712, guid: d0cb4c15b75113a45bc9231d11949ab6, type: 3}
   m_PrefabInstance: {fileID: 8259596952036267518}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &8259596952036267520 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8259596953464174713, guid: d0cb4c15b75113a45bc9231d11949ab6, type: 3}
+  m_PrefabInstance: {fileID: 8259596952036267518}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8504941693289987286
 GameObject:
   m_ObjectHideFlags: 0
@@ -56439,9 +56447,17 @@ PrefabInstance:
       value: Wind_JumpPad
       objectReference: {fileID: 0}
     - target: {fileID: 8956074066647696591, guid: f8e15cc9130771f47adfeb42845a56a8, type: 3}
+      propertyPath: SFX.Clip
+      value: 
+      objectReference: {fileID: 8300000, guid: fde6657a0220afa40903c69178572c11, type: 3}
+    - target: {fileID: 8956074066647696591, guid: f8e15cc9130771f47adfeb42845a56a8, type: 3}
       propertyPath: SfxObject
       value: 
       objectReference: {fileID: 8300000, guid: fde6657a0220afa40903c69178572c11, type: 3}
+    - target: {fileID: 8956074066647696591, guid: f8e15cc9130771f47adfeb42845a56a8, type: 3}
+      propertyPath: SFX.Volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8956074066647696591, guid: f8e15cc9130771f47adfeb42845a56a8, type: 3}
       propertyPath: JumpVelocity
       value: 45

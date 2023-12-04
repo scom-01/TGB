@@ -1578,7 +1578,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f30e61af88ba84aaeeb01933203d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SfxObject: {fileID: 0}
+  SFX:
+    Clip: {fileID: 0}
+    Volume: 0
   EffectObject: {fileID: 0}
   UnitData: {fileID: 11400000, guid: 27eaf0c531753bd45891897fd5c4886a, type: 2}
   knockbackAngle: {x: -10, y: 10}
@@ -3094,7 +3096,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d9513fef8696d449f5cccb09b8007e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SfxObject: {fileID: 0}
+  SFX:
+    Clip: {fileID: 0}
+    Volume: 0
   EffectObject: {fileID: 0}
 --- !u!1 &408849922
 GameObject:
@@ -47181,6 +47185,7 @@ Transform:
   - {fileID: 920538721}
   - {fileID: 1463428535}
   - {fileID: 712984860}
+  - {fileID: 1167781750}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -48918,6 +48923,134 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1101935476
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1101935477}
+  - component: {fileID: 1101935478}
+  m_Layer: 0
+  m_Name: WaterFall_SFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1101935477
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101935476}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 148.79, y: 22.39, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1167781750}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1101935478
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101935476}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 5162785712843760549, guid: 627eeb06f17324d4691ad4d62526af6c, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 89b16bfd82038a546af1843006e3cfc0, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 11.567841
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1143652530
 GameObject:
   m_ObjectHideFlags: 0
@@ -48989,7 +49122,10 @@ MonoBehaviour:
   ItemSpawnInterval: 3
   ChoiceItemAmount: 1
   UnlockItemSpawnPer: 30
-  BGM: {fileID: 0}
+  BGM: {fileID: 1411990352}
+  BGM_source:
+    Clip: {fileID: 8300000, guid: 14a1cf915de1c2448b200ab123c01445, type: 3}
+    Volume: 0.4
 --- !u!4 &1143652533
 Transform:
   m_ObjectHideFlags: 0
@@ -49015,6 +49151,38 @@ Transform:
   - {fileID: 1411990351}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1167781749
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1167781750}
+  m_Layer: 0
+  m_Name: Asset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1167781750
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167781749}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1101935477}
+  m_Father: {fileID: 728437906}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1199552010
 GameObject:
@@ -55682,7 +55850,7 @@ Tilemap:
       - {fileID: 1436631263, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: 1828345550, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: 1105275054, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15.000001
+      m_AnimationSpeed: 15
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 148, y: 24, z: 0}
@@ -55780,7 +55948,7 @@ Tilemap:
       - {fileID: -825848517, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: 994713661, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: 962365732, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15
+      m_AnimationSpeed: 15.000001
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 149, y: 27, z: 0}
@@ -55878,7 +56046,7 @@ Tilemap:
       - {fileID: 1396469913, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: 1235773790, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: 1451730261, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15
+      m_AnimationSpeed: 15.000001
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 148, y: 31, z: 0}
@@ -56158,7 +56326,7 @@ Tilemap:
       - {fileID: -1839117802, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: -1333801810, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: -445940520, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15
+      m_AnimationSpeed: 15.000001
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 148, y: 41, z: 0}
@@ -56242,7 +56410,7 @@ Tilemap:
       - {fileID: -899165220, guid: 382d6d14b563e0e4b8397f79a7e8dfed, type: 3}
       - {fileID: 860956903, guid: ee0efc165fde9c74485cddf167842e05, type: 3}
       - {fileID: 1610324957, guid: 67add3f32af06ea48afa184ba5105f7e, type: 3}
-      m_AnimationSpeed: 15
+      m_AnimationSpeed: 15.000001
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   m_TileAssetArray:
@@ -94487,7 +94655,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f30e61af88ba84aaeeb01933203d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SfxObject: {fileID: 0}
+  SFX:
+    Clip: {fileID: 0}
+    Volume: 0
   EffectObject: {fileID: 0}
   UnitData: {fileID: 11400000, guid: 27eaf0c531753bd45891897fd5c4886a, type: 2}
   knockbackAngle: {x: -10, y: 10}
@@ -100502,7 +100672,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4740e750107f34e95592ad2fa3fa36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SfxObject: {fileID: 0}
+  SFX:
+    Clip: {fileID: 0}
+    Volume: 0
   EffectObject: {fileID: 0}
 --- !u!66 &2102022777
 CompositeCollider2D:
