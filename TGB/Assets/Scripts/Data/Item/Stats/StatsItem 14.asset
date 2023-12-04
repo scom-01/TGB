@@ -37,7 +37,9 @@ MonoBehaviour:
   CompositeItems:
   - MaterialItem: {fileID: 11400000, guid: 1c5c421e7b5e658448c20a2c657c7c59, type: 2}
     ResultItem: {fileID: 11400000, guid: 4a41af9f64dae3d49b93ad4522bab4de, type: 2}
-    EditSFX: {fileID: 0}
+    EditSFX:
+      Clip: {fileID: 0}
+      Volume: 0
     EditVFX: {fileID: 0}
   isFieldSpawn: 1
   StatsData:
@@ -50,15 +52,15 @@ MonoBehaviour:
     JumpVEL_Per: 0
     AttackSpeedPer: 0
     PhysicsDefensivePer: 0
-    MagicDefensivePer: 20
+    MagicDefensivePer: 0
     PhysicsAggressivePer: 0
     MagicAggressivePer: 20
     CriticalPer: 0
     AdditionalCriticalPer: 0
     DamageAttiribute: 1
-    Elemental: 0
+    Elemental: 3
     ElementalDefensivePer: 0
-    ElementalAggressivePer: 0
+    ElementalAggressivePer: 20
   StatsItems:
   - type: 9
     StatsLocalizeString:
@@ -73,19 +75,7 @@ MonoBehaviour:
     variable: 0
     value: 10
     ShowPercent: 0
-  - type: 3
-    StatsLocalizeString:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    variable: 0
-    value: 20
-    ShowPercent: 1
+    HideMark: 0
   - type: 1
     StatsLocalizeString:
       m_TableReference:
@@ -99,15 +89,49 @@ MonoBehaviour:
     variable: 0
     value: 20
     ShowPercent: 1
+    HideMark: 0
+  - type: 4
+    StatsLocalizeString:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    variable: 0
+    value: 20
+    ShowPercent: 1
+    HideMark: 0
   Health: 0
   buffItems: []
   InitEffectData:
     <AcquiredEffectPrefab>k__BackingField: {fileID: 0}
-    <AcquiredSoundEffect>k__BackingField: {fileID: 0}
+    <AcquiredSFX>k__BackingField:
+      Clip: {fileID: 0}
+      Volume: 0
     <isEquipment>k__BackingField: 1
-    <DetailSubUI>k__BackingField: 0
   InfinityEffectObjects: []
-  ItemEffects: []
+  ItemEvents: []
+  <EventNameLocal>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <EventDescriptionLocal>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   references:
     version: 2
     RefIds: []

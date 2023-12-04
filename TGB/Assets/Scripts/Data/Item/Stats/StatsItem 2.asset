@@ -44,7 +44,7 @@ MonoBehaviour:
     DefaultAttSpeed: 0
     MovementVEL_Per: 0
     JumpVEL_Per: 0
-    AttackSpeedPer: 0
+    AttackSpeedPer: 20
     PhysicsDefensivePer: 0
     MagicDefensivePer: 0
     PhysicsAggressivePer: 0
@@ -52,23 +52,23 @@ MonoBehaviour:
     CriticalPer: 0
     AdditionalCriticalPer: 0
     DamageAttiribute: 0
-    Elemental: 0
+    Elemental: 3
     ElementalDefensivePer: 0
     ElementalAggressivePer: 0
   StatsItems:
-  - type: 0
+  - type: 6
     StatsLocalizeString:
       m_TableReference:
-        m_TableCollectionName: GUID:0d4742437ec6ec541bf0850b60cb729a
+        m_TableCollectionName: 
       m_TableEntryReference:
-        m_KeyId: 36353607015489536
+        m_KeyId: 0
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    variable: 3
-    value: 3
-    ShowPercent: 0
+    variable: 0
+    value: 20
+    ShowPercent: 1
     HideMark: 0
   Health: 0
   buffItems: []

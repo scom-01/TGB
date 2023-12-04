@@ -38,7 +38,7 @@ MonoBehaviour:
   isFieldSpawn: 1
   StatsData:
     MaxHealth: 0
-    DefaultPower: 5
+    DefaultPower: 0
     DefaultMoveSpeed: 0
     DefaultJumpVelocity: 0
     DefaultAttSpeed: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
     AttackSpeedPer: 0
     PhysicsDefensivePer: 0
     MagicDefensivePer: 0
-    PhysicsAggressivePer: 15
+    PhysicsAggressivePer: 40
     MagicAggressivePer: 0
     CriticalPer: 0
     AdditionalCriticalPer: 0
@@ -59,20 +59,6 @@ MonoBehaviour:
   - type: 0
     StatsLocalizeString:
       m_TableReference:
-        m_TableCollectionName: GUID:0d4742437ec6ec541bf0850b60cb729a
-      m_TableEntryReference:
-        m_KeyId: 38000898235326464
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    variable: 0
-    value: -5
-    ShowPercent: 0
-    HideMark: 0
-  - type: 0
-    StatsLocalizeString:
-      m_TableReference:
         m_TableCollectionName: 
       m_TableEntryReference:
         m_KeyId: 0
@@ -81,7 +67,7 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
     variable: 0
-    value: 15
+    value: 40
     ShowPercent: 1
     HideMark: 0
   Health: 0
@@ -92,7 +78,6 @@ MonoBehaviour:
       Clip: {fileID: 0}
       Volume: 0
     <isEquipment>k__BackingField: 1
-    <DetailSubUI>k__BackingField: 0
   InfinityEffectObjects:
   - isGround: 1
     isHeader: 0
@@ -103,7 +88,25 @@ MonoBehaviour:
     EffectScale: {x: 0, y: 0, z: 0}
     isFollowing: 1
     Object: {fileID: 5290317658131821638, guid: 1a634444d49bbbb43832abc5e8e2eece, type: 3}
-  ItemEffects: []
+  ItemEvents: []
+  <EventNameLocal>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <EventDescriptionLocal>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   references:
     version: 2
     RefIds: []

@@ -38,38 +38,25 @@ MonoBehaviour:
   isFieldSpawn: 1
   StatsData:
     MaxHealth: 0
-    DefaultPower: 5
+    DefaultPower: 0
     DefaultMoveSpeed: 0
     DefaultJumpVelocity: 0
     DefaultAttSpeed: 0
     MovementVEL_Per: 0
     JumpVEL_Per: 0
-    AttackSpeedPer: 15
+    AttackSpeedPer: 0
     PhysicsDefensivePer: 0
     MagicDefensivePer: 0
     PhysicsAggressivePer: 0
     MagicAggressivePer: 0
-    CriticalPer: 0
+    CriticalPer: 15
     AdditionalCriticalPer: 0
     DamageAttiribute: 0
     Elemental: 4
     ElementalDefensivePer: 0
     ElementalAggressivePer: 20
   StatsItems:
-  - type: 0
-    StatsLocalizeString:
-      m_TableReference:
-        m_TableCollectionName: GUID:0d4742437ec6ec541bf0850b60cb729a
-      m_TableEntryReference:
-        m_KeyId: 38000898235326464
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    variable: 0
-    value: 5
-    ShowPercent: 0
-  - type: 6
+  - type: 7
     StatsLocalizeString:
       m_TableReference:
         m_TableCollectionName: 
@@ -82,6 +69,7 @@ MonoBehaviour:
     variable: 0
     value: 15
     ShowPercent: 1
+    HideMark: 0
   - type: 4
     StatsLocalizeString:
       m_TableReference:
@@ -95,15 +83,35 @@ MonoBehaviour:
     variable: 0
     value: 20
     ShowPercent: 1
+    HideMark: 0
   Health: 0
   buffItems: []
   InitEffectData:
     <AcquiredEffectPrefab>k__BackingField: {fileID: 0}
-    <AcquiredSoundEffect>k__BackingField: {fileID: 0}
+    <AcquiredSFX>k__BackingField:
+      Clip: {fileID: 0}
+      Volume: 0
     <isEquipment>k__BackingField: 1
-    <DetailSubUI>k__BackingField: 0
   InfinityEffectObjects: []
-  ItemEffects: []
+  ItemEvents: []
+  <EventNameLocal>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <EventDescriptionLocal>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   references:
     version: 2
     RefIds: []
