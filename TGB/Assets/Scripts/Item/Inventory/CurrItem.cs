@@ -9,6 +9,8 @@ public class CurrItem : MonoBehaviour, IUI_Select
     [SerializeField] private Image IconImg;
     [SerializeField] private LocalizeStringEvent Local_Name;
     [SerializeField] private LocalizeStringEvent Local_Descript;
+    [SerializeField] private LocalizeStringEvent Local_Event_Name;
+    [SerializeField] private LocalizeStringEvent Local_Event_Descript;
     [SerializeField] private TMP_Text Text_Stat;
     private StatsItemSO m_itemSO;
 
@@ -16,17 +18,7 @@ public class CurrItem : MonoBehaviour, IUI_Select
     {
         if (m_itemSO == null)
         {
-            if (IconImg != null)
-                IconImg.enabled = false;
-
-            if (Local_Descript != null)
-                Local_Descript.StringReference.SetReference("Item_Table", "Empty");
-
-            if (Local_Name != null)
-                Local_Name.StringReference.SetReference("Item_Table", "Empty");
-
-            if (Text_Stat != null)
-                Text_Stat.text = "";
+            ClearText();
         }
     }
 
@@ -42,17 +34,7 @@ public class CurrItem : MonoBehaviour, IUI_Select
 
         if (m_itemSO == null)
         {
-            if (IconImg != null)
-                IconImg.enabled = false;
-
-            if (Local_Descript != null)
-                Local_Descript.StringReference.SetReference("Item_Table", "Empty");
-
-            if (Local_Name != null)
-                Local_Name.StringReference.SetReference("Item_Table", "Empty");
-
-            if (Text_Stat != null)
-                Text_Stat.text = "";
+            ClearText();
         }
         else
         {
@@ -68,9 +50,21 @@ public class CurrItem : MonoBehaviour, IUI_Select
             if (Local_Name != null)
                 Local_Name.StringReference.SetReference("Item_Table", m_itemSO.itemData.ItemNameLocal.TableEntryReference);
 
+            if (Local_Event_Name != null)
+            {
+                if (m_itemSO.EventNameLocal.TableEntryReference.KeyId != 0) Local_Event_Name.StringReference.SetReference("ItemEvent_Table", m_itemSO.EventNameLocal.TableEntryReference);
+                else Local_Event_Name.StringReference.SetReference("Item_Table", "Empty");
+            }
+
+            if (Local_Event_Descript != null)
+            {
+                if (m_itemSO.EventDescriptionLocal.TableEntryReference.KeyId != 0) Local_Event_Descript.StringReference.SetReference("ItemEvent_Table", m_itemSO.EventDescriptionLocal.TableEntryReference);
+                else Local_Event_Descript.StringReference.SetReference("Item_Table", "Empty");
+            }
+
             if (Text_Stat == null)
                 return;
-                        
+
             if (m_itemSO.StatsItems.Count > 0)
             {
                 Text_Stat.text = m_itemSO.StatsData_Descripts;
@@ -78,9 +72,30 @@ public class CurrItem : MonoBehaviour, IUI_Select
             else
             {
                 Text_Stat.text = "";
-            }            
+            }
         }
 
+    }
+
+    private void ClearText()
+    {
+        if (IconImg != null)
+            IconImg.enabled = false;
+
+        if (Local_Descript != null)
+            Local_Descript.StringReference.SetReference("Item_Table", "Empty");
+
+        if (Local_Name != null)
+            Local_Name.StringReference.SetReference("Item_Table", "Empty");
+
+        if (Local_Event_Name != null)
+            Local_Event_Name.StringReference.SetReference("Item_Table", "Empty");
+
+        if (Local_Event_Descript != null)
+            Local_Event_Descript.StringReference.SetReference("Item_Table", "Empty");
+
+        if (Text_Stat != null)
+            Text_Stat.text = "";
     }
 
     private void Update()
