@@ -72,14 +72,14 @@ namespace TGB.CoreSystem
 
 
         /// <summary>
-        /// 물리 방어력 최대 100%의 피해 흡수
+        /// 물리 방어력 %
         /// </summary>
-        private float Cal_PhysicsDefensivePer { get => Mathf.Clamp((Default_statsData.PhysicsDefensivePer + m_statsData.PhysicsDefensivePer + BlessStats.Bless_Def_Lv * GlobalValue.BlessingStats_Inflation), 0, 100.0f); }
+        private float Cal_PhysicsDefensivePer { get => (Default_statsData.PhysicsDefensivePer + m_statsData.PhysicsDefensivePer + BlessStats.Bless_Def_Lv * GlobalValue.BlessingStats_Inflation); }
 
         /// <summary>
-        /// 마법 방어력 최대 100%의 피해 흡수
+        /// 마법 방어력 %
         /// </summary>
-        private float Cal_MagicDefensivePer { get => Mathf.Clamp((Default_statsData.MagicDefensivePer + m_statsData.MagicDefensivePer + BlessStats.Bless_Def_Lv * GlobalValue.BlessingStats_Inflation), 0, 100.0f); }
+        private float Cal_MagicDefensivePer { get => (Default_statsData.MagicDefensivePer + m_statsData.MagicDefensivePer + BlessStats.Bless_Def_Lv * GlobalValue.BlessingStats_Inflation); }
 
         /// <summary>
         /// 공격력
@@ -112,12 +112,12 @@ namespace TGB.CoreSystem
         private E_Power Cal_Elemental { get => Default_statsData.Elemental; }
 
         /// <summary>
-        /// 원소 저항력 (수치만큼 %로 감소)
+        /// 원소 저항력 %
         /// </summary>
-        private float Cal_ElementalDefensivePer { get => Mathf.Clamp((Default_statsData.ElementalDefensivePer + m_statsData.ElementalDefensivePer + BlessStats.Bless_Elemental_Lv * GlobalValue.BlessingStats_Inflation), 0, 100.0f); }
+        private float Cal_ElementalDefensivePer { get => (Default_statsData.ElementalDefensivePer + m_statsData.ElementalDefensivePer + BlessStats.Bless_Elemental_Lv * GlobalValue.BlessingStats_Inflation); }
 
         /// <summary>
-        /// 원소 공격력 (수치만큼 %로 증가)
+        /// 원소 공격력 %
         /// </summary>
         private float Cal_ElementalAggressivePer { get => (Default_statsData.ElementalAggressivePer + m_statsData.ElementalAggressivePer + BlessStats.Bless_Elemental_Lv * GlobalValue.BlessingStats_Inflation); }
         /// <summary>
@@ -264,6 +264,7 @@ namespace TGB.CoreSystem
                 amount *= (1.0f + attacker.Core.CoreUnitStats.CalculStatsData.ElementalAggressivePer / 100f);
             }
             //Water(4) > Earth(3) > Wind(2) > Fire(1) > Water
+            //ex) DefensivePer = 400% => dmg /= (1+ (400f / 100f)) /= 5, 10(dmg) -> 2(dmg)
             if ((int)attacker.Core.CoreUnitStats.CalculStatsData.Elemental == (int)e_Power)
             {
                 Debug.Log($"ElementalPower is the  same {CalculStatsData.Elemental}! Not Increase and Not Decrease");
@@ -272,24 +273,25 @@ namespace TGB.CoreSystem
             {
                 if ((int)attacker.Core.CoreUnitStats.CalculStatsData.Elemental > (int)e_Power)
                 {
+                    //ex) DefensivePer = 400% => dmg /= (1+ (400f / 100f - GlobalValue.E_WeakPer(30f)) /= 6.7142.., 10(dmg) -> 1.48..(dmg)
                     if ((int)attacker.Core.CoreUnitStats.CalculStatsData.Elemental == 4 && (int)e_Power == 1)
                     {
-                        amount *= (1.0f - GlobalValue.E_WeakPer * (1.0f - CalculStatsData.ElementalDefensivePer / 100));
+                        amount /= (1.0f + (CalculStatsData.ElementalDefensivePer / (100f - (GlobalValue.E_WeakPer * 100f))));
                     }
                     else
                     {
-                        amount *= (1.0f + GlobalValue.E_WeakPer * (1.0f - CalculStatsData.ElementalDefensivePer / 100));
+                        amount /= (1.0f + (CalculStatsData.ElementalDefensivePer / (100f + (GlobalValue.E_WeakPer * 100f))));
                     }
                 }
                 else if ((int)attacker.Core.CoreUnitStats.CalculStatsData.Elemental < (int)e_Power)
                 {
                     if ((int)attacker.Core.CoreUnitStats.CalculStatsData.Elemental == 1 && (int)e_Power == 4)
                     {
-                        amount *= (1.0f - GlobalValue.E_WeakPer * (1.0f - CalculStatsData.ElementalDefensivePer / 100));
+                        amount /= (1.0f + (CalculStatsData.ElementalDefensivePer / (100f + (GlobalValue.E_WeakPer * 100f))));
                     }
                     else
                     {
-                        amount *= (1.0f + GlobalValue.E_WeakPer * (1.0f - CalculStatsData.ElementalDefensivePer / 100));
+                        amount /= (1.0f + (CalculStatsData.ElementalDefensivePer / (100f - (GlobalValue.E_WeakPer * 100f))));
                     }
                 }
                 //elemental == MyElemental 같거나 Normal일때
