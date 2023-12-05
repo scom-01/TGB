@@ -6,7 +6,6 @@ public class PlayerJumpState : PlayerAbilityState
     private int amountOfJumpLeft;
     private GameObject Jump_Effect;
     private AudioClip Jump_Sfx;
-
     public PlayerJumpState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
         amountOfJumpLeft = player.playerData.amountOfJumps;
@@ -58,6 +57,7 @@ public class PlayerJumpState : PlayerAbilityState
     public void ResetAmountOfJumpsLeft()
     {
         amountOfJumpLeft = player.playerData.amountOfJumps;
+        Debug.Log($"Reset amountOfJumpLeft = {amountOfJumpLeft}");
         player.Anim.SetBool("JumpFlip", false);
     }
 

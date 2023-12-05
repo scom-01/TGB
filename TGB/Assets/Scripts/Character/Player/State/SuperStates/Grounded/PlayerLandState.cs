@@ -22,6 +22,7 @@ public class PlayerLandState : PlayerGroundedState
     {
         base.Enter();
         player.Core.CoreMovement.SetVelocityY(0);
+        player.JumpState.ResetAmountOfJumpsLeft();
         //착지 시 커맨드 리스트 초기화
         player.Inventory.Weapon.ResetActionCounter();
         SoundEffect.AudioSpawn(Land_SFX);
@@ -43,17 +44,18 @@ public class PlayerLandState : PlayerGroundedState
         {
             return;
         }
+
+        if (xInput != 0f && isGrounded)
+        {
+            player.FSM.ChangeState(player.MoveState);
+        }
     }
 
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
 
-        if (xInput != 0f)
-        {
-            player.FSM.ChangeState(player.MoveState);
-        }
-        else if (isAnimationFinished)
+        if (isAnimationFinished)
         {
             player.FSM.ChangeState(player.IdleState);
         }

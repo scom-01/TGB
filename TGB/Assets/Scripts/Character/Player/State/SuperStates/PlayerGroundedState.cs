@@ -13,7 +13,6 @@ public class PlayerGroundedState : PlayerState
     {
         base.Enter();
         unit.isFixedMovement = false;
-        player.JumpState.ResetAmountOfJumpsLeft();
         player.DashState.ResetCanDash();
     }
 
@@ -80,11 +79,13 @@ public class PlayerGroundedState : PlayerState
         {
             player.InAirState.StartCoyoteTime();
             player.FSM.ChangeState(player.InAirState);
+            return;
         }
         //대쉬
         else if (dashInput && player.DashState.CheckIfCanDash())
         {
             player.FSM.ChangeState(player.DashState);
+            return;
         }
     }
 }
