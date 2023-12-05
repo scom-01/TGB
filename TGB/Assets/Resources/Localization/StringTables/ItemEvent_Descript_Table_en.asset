@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: ItemEvent_Descript_Table_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: baf31d4bcfd8017499a70ef24bd18d5c, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 121231532032
+    m_Localized: 'When hitting a target, reduce the target''s attack speed and movement
+      speed by 20% for 3 seconds
+
+      (Cooldown Time: 6 s)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 119444758528
+    m_Localized: 'When struck, decrease the physical defense of the attacker by 30%
+      for 5 seconds
+
+      (Cooldown Time: 15 s)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 117553127424
+    m_Localized: 'Throw a special gift
+
+      (Cooldown Time: 2 s)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85164711936
+    m_Localized: When hitting a target, deal an additional fixed damage of 3
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
