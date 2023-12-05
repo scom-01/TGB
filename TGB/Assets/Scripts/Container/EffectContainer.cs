@@ -3,10 +3,6 @@ using UnityEngine;
 
 public class EffectContainer : MonoBehaviour
 {
-    public List<GameObject> EffectList = new List<GameObject>();
-    public List<RuntimeAnimatorController> EffectControllerList = new List<RuntimeAnimatorController>();
-
-
     public List<ProjectilePooling> ProjectilePoolingList = new List<ProjectilePooling>();
     public List<EffectPooling> EffectPoolingList = new List<EffectPooling>();
     public List<DmgTxtPooling> DmgTxtPoolingList = new List<DmgTxtPooling>();

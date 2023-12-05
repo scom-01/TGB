@@ -59958,7 +59958,7 @@ MonoBehaviour:
   Cam: {fileID: 0}
   CVC: {fileID: 0}
   Cam_Distance: 8.5
-  effectContainerTagName: EffectContainer
+  SFXContainerTagName: SoundContainer
   PlayerPrefab: {fileID: 840319699589423306, guid: 842ba7b90e3d58f4baa7c0b00def52ec, type: 3}
   player: {fileID: 0}
   SpawnPoint: {fileID: 1917196998}
@@ -68812,6 +68812,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1573280733}
+  - component: {fileID: 1573280734}
   m_Layer: 0
   m_Name: SoundClips
   m_TagString: SoundContainer
@@ -68834,6 +68835,20 @@ Transform:
   m_Father: {fileID: 1143652533}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1573280734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573280732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da0bc23c183f558468e1f4fd2a6e4f02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Base_SoundPooling: {fileID: 1918944719012779434, guid: 7978bb598bdd1ee4d935d46c26755126, type: 3}
+  SoundPoolingList: []
 --- !u!1 &1594972036
 GameObject:
   m_ObjectHideFlags: 0

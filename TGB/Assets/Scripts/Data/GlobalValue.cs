@@ -12,7 +12,8 @@ public class GlobalValue : MonoBehaviour
     public static float GV_SystemDeltatime = 0.02f;
     public static float GV_CharacterDeltatime = 0.02f;
 
-    public const string SFX_SoundContainerTagName = "SoundContainer";
+    public const string SFX_ContainerTagName = "SoundContainer";
+    public const string VFX_ContainerTagName = "EffectContainer";
 
     #region PlayerPrefs Data
     public const string StageName = "StageName";
@@ -24,6 +25,7 @@ public class GlobalValue : MonoBehaviour
     public static GameObject Base_ProjectilePooling = Resources.Load<GameObject>("Prefabs/Effects/Base_ProjectilePooling");
     public static GameObject Base_DmgTxtPooling = Resources.Load<GameObject>("Prefabs/Effects/Base_DmgTxtPooling");
     public static GameObject Base_AttackMessageBox= Resources.Load<GameObject>("Prefabs/Effects/AttackMessageBox");
+    public static GameObject Base_SoundPooling = Resources.Load<GameObject>("Prefabs/Sounds/Base_SoundPooling");
     /// <summary>
     /// AudioMixer의 SFX Parameter값과 일치해야함
     /// </summary>

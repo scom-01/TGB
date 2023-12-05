@@ -69,31 +69,39 @@ public class StageManager : MonoBehaviour
     public Camera Cam;
     [HideInInspector] public CinemachineVirtualCamera CVC;
     public float Cam_Distance;
-    [TagField]
-    [field: SerializeField] private string effectContainerTagName = "EffectContainer";
     public EffectContainer EffectContainer
     {
         get
         {
             if (effectContainer == null)
             {
-                if (effectContainerTagName == "")
-                {
-                    effectContainerTagName = "EffectContainer";
-                }
-
-                effectContainer = GameObject.FindGameObjectWithTag(effectContainerTagName).GetComponent<EffectContainer>();
-                effectContainerTransform = GameObject.FindGameObjectWithTag(effectContainerTagName).transform;
+                effectContainer = GameObject.FindGameObjectWithTag(GlobalValue.VFX_ContainerTagName).GetComponent<EffectContainer>();
                 if (effectContainer == null)
                 {
-                    effectContainer = effectContainerTransform.gameObject.AddComponent<EffectContainer>();
+                    effectContainer = GameObject.FindGameObjectWithTag(GlobalValue.VFX_ContainerTagName).AddComponent<EffectContainer>();
                 }
             }
             return effectContainer;
         }
     }
     private EffectContainer effectContainer;
-    private Transform effectContainerTransform;
+    [field: SerializeField] private string SFXContainerTagName = "SoundContainer";
+    public SoundContainer SFXContainer
+    {
+        get
+        {
+            if (_sfxContainer == null)
+            {
+                _sfxContainer = GameObject.FindGameObjectWithTag(GlobalValue.SFX_ContainerTagName).GetComponent<SoundContainer>();
+                if (_sfxContainer == null)
+                {
+                    _sfxContainer = GameObject.FindGameObjectWithTag(GlobalValue.SFX_ContainerTagName).AddComponent<SoundContainer>();
+                }
+            }
+            return _sfxContainer;
+        }
+    }
+    private SoundContainer _sfxContainer;
 
     [Header("----Player----")]
 
