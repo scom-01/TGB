@@ -45,9 +45,9 @@ MonoBehaviour:
     MovementVEL_Per: 0
     JumpVEL_Per: 0
     AttackSpeedPer: -10
-    PhysicsDefensivePer: 5
+    PhysicsDefensivePer: 20
     MagicDefensivePer: 0
-    PhysicsAggressivePer: 20
+    PhysicsAggressivePer: 50
     MagicAggressivePer: 0
     CriticalPer: 0
     AdditionalCriticalPer: 0
@@ -81,7 +81,7 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
     variable: 0
-    value: 20
+    value: 50
     ShowPercent: 1
     HideMark: 0
   - type: 2
@@ -95,7 +95,7 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
     variable: 0
-    value: 5
+    value: 20
     ShowPercent: 1
     HideMark: 0
   Health: 0
@@ -107,21 +107,22 @@ MonoBehaviour:
       Volume: 0
     <isEquipment>k__BackingField: 1
   InfinityEffectObjects: []
-  ItemEvents: []
+  ItemEvents:
+  - {fileID: 11400000, guid: 7a0f8f091f5755f49843803e226a1ed6, type: 2}
   <EventNameLocal>k__BackingField:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:643ce2f3e1db9b84aaaec0446e30fdb0
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 2034475256406016
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
   <EventDescriptionLocal>k__BackingField:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:643ce2f3e1db9b84aaaec0446e30fdb0
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 2034529434230784
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0

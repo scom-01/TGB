@@ -97,17 +97,4 @@ public class CurrItem : MonoBehaviour, IUI_Select
         if (Text_Stat != null)
             Text_Stat.text = "";
     }
-
-    private void Update()
-    {
-        if (EventSystem.current.currentSelectedGameObject != null)
-        {
-            Debug.Log("currentSelectedGameObject = " + EventSystem.current.currentSelectedGameObject.name);
-        }
-        else
-        {
-
-            Debug.Log("CurrentSelectedGameObject = null");
-        }
-    }
 }

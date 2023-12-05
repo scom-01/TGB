@@ -48,15 +48,29 @@ MonoBehaviour:
     PhysicsDefensivePer: 0
     MagicDefensivePer: 0
     PhysicsAggressivePer: 0
-    MagicAggressivePer: 40
+    MagicAggressivePer: 30
     CriticalPer: 0
     AdditionalCriticalPer: 0
     DamageAttiribute: 1
     Elemental: 1
     ElementalDefensivePer: 0
-    ElementalAggressivePer: 5
+    ElementalAggressivePer: 40
   StatsItems:
   - type: 1
+    StatsLocalizeString:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    variable: 0
+    value: 30
+    ShowPercent: 1
+    HideMark: 0
+  - type: 4
     StatsLocalizeString:
       m_TableReference:
         m_TableCollectionName: 
@@ -79,7 +93,8 @@ MonoBehaviour:
       Volume: 0
     <isEquipment>k__BackingField: 1
   InfinityEffectObjects: []
-  ItemEvents: []
+  ItemEvents:
+  - {fileID: 11400000, guid: a1d382a98ff80d74389318b0ab860e06, type: 2}
   <EventNameLocal>k__BackingField:
     m_TableReference:
       m_TableCollectionName: 

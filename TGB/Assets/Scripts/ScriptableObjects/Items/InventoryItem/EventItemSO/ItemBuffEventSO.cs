@@ -52,6 +52,11 @@ public class ItemBuffEventSO : ItemEventSO
             }
             else
             {
+                if (enemy == null)
+                {
+                    itemEventSet.Count--;
+                    return itemEventSet;
+                }
                 BuffEvent(enemy);
             }
             itemEventSet.Count = 0;
