@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7774ae76107dc54e8991bca2af96082, type: 3}
+  m_Name: BuffData_MagicDef_Down_30_4_1
+  m_EditorClassIdentifier: 
+  ItemIdx: 1
+  itemData:
+    <ItemNameLocal>k__BackingField:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    <ItemDescriptionLocal>k__BackingField:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    ItemSprite: {fileID: 21300000, guid: 660bae6102a049d478fedf7d44711e9d, type: 3}
+    ItemLevel: 1
+  StatsData:
+    MaxHealth: 0
+    DefaultPower: 0
+    DefaultMoveSpeed: 0
+    DefaultJumpVelocity: 0
+    DefaultAttSpeed: 0
+    MovementVEL_Per: 0
+    JumpVEL_Per: 0
+    AttackSpeedPer: 0
+    PhysicsDefensivePer: 0
+    MagicDefensivePer: -30
+    PhysicsAggressivePer: 0
+    MagicAggressivePer: 0
+    CriticalPer: 0
+    AdditionalCriticalPer: 0
+    DamageAttiribute: 0
+    Elemental: 0
+    ElementalDefensivePer: 0
+    ElementalAggressivePer: 0
+  Health: 0
+  InitEffectData:
+    <AcquiredEffectPrefab>k__BackingField: {fileID: 0}
+    <AcquiredSFX>k__BackingField:
+      Clip: {fileID: 0}
+      Volume: 0
+    <isEquipment>k__BackingField: 0
+  BuffData:
+    DurationTime: 4
+    BuffType: 1
+    isOverlap: 1
+    BuffCountMax: 1
+    isBuffInit: 1
+  references:
+    version: 2
+    RefIds: []

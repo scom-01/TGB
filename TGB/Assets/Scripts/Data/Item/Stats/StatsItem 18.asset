@@ -69,6 +69,7 @@ MonoBehaviour:
     variable: 0
     value: 20
     ShowPercent: 1
+    HideMark: 0
   - type: 7
     StatsLocalizeString:
       m_TableReference:
@@ -82,6 +83,7 @@ MonoBehaviour:
     variable: 0
     value: 5
     ShowPercent: 1
+    HideMark: 0
   - type: 8
     StatsLocalizeString:
       m_TableReference:
@@ -95,15 +97,36 @@ MonoBehaviour:
     variable: 0
     value: 10
     ShowPercent: 1
+    HideMark: 0
   Health: 0
   buffItems: []
   InitEffectData:
     <AcquiredEffectPrefab>k__BackingField: {fileID: 0}
-    <AcquiredSoundEffect>k__BackingField: {fileID: 0}
+    <AcquiredSFX>k__BackingField:
+      Clip: {fileID: 0}
+      Volume: 0
     <isEquipment>k__BackingField: 1
-    <DetailSubUI>k__BackingField: 0
   InfinityEffectObjects: []
-  ItemEffects: []
+  ItemEvents:
+  - {fileID: 11400000, guid: c1511976bce0d1e40aa54adee621ef90, type: 2}
+  <EventNameLocal>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:643ce2f3e1db9b84aaaec0446e30fdb0
+    m_TableEntryReference:
+      m_KeyId: 2260786117763072
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <EventDescriptionLocal>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: GUID:baf31d4bcfd8017499a70ef24bd18d5c
+    m_TableEntryReference:
+      m_KeyId: 213269448384512
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   references:
     version: 2
     RefIds: []

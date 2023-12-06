@@ -66,7 +66,7 @@ namespace TGB.CoreSystem
             if (CheckCritical(attacker))
             {
                 isCritical = true;
-                amount *= 1f + (attacker.Core.CoreUnitStats.CalculStatsData.AdditionalCriticalPer / 100.0f);
+                amount *= 1f + (attacker.Core.CoreUnitStats.CalculStatsData.CriticalDmgPer / 100.0f);
             }
 
             var damage = stats.Comp.DecreaseHealth(attacker, attacker.Core.CoreUnitStats.CalculStatsData.Elemental, attacker.Core.CoreUnitStats.CalculStatsData.DamageAttiribute, attacker.Core.CoreUnitStats.CalculStatsData.DefaultPower + amount);
@@ -95,7 +95,7 @@ namespace TGB.CoreSystem
             if (CheckCritical(attacker))
             {
                 isCritical = true;
-                amount *= 1f + (attacker.Core.CoreUnitStats.CalculStatsData.AdditionalCriticalPer / 100.0f);
+                amount *= 1f + (attacker.Core.CoreUnitStats.CalculStatsData.CriticalDmgPer / 100.0f);
             }
 
             var damage = stats.Comp.DecreaseHealth(attacker, _elemental, attacker.Core.CoreUnitStats.CalculStatsData.DamageAttiribute, attacker.Core.CoreUnitStats.CalculStatsData.DefaultPower + amount);
@@ -149,7 +149,7 @@ namespace TGB.CoreSystem
                 if (CheckCritical(attacker))
                 {
                     isCritical = true;
-                    amount *= 1f + (attacker.Core.CoreUnitStats.CalculStatsData.AdditionalCriticalPer / 100.0f);
+                    amount *= 1f + (attacker.Core.CoreUnitStats.CalculStatsData.CriticalDmgPer / 100.0f);
                 }
             }
 

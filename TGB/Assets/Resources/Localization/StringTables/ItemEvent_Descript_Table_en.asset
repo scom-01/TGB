@@ -19,14 +19,14 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 121231532032
-    m_Localized: 'When hitting a target, reduce the target''s attack speed and movement
-      speed by 20% for 3 seconds
+    m_Localized: 'When hitting a target, decrease the target''s attack speed and
+      movement speed by 20% for 3 seconds
 
       (Cooldown Time: 6 s)'
     m_Metadata:
       m_Items: []
   - m_Id: 119444758528
-    m_Localized: 'When struck, decrease the physical defense of the attacker by 30%
+    m_Localized: 'When struck, decrease the physical defense of the attacker by 40%
       for 5 seconds
 
       (Cooldown Time: 15 s)'
@@ -40,6 +40,31 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 85164711936
     m_Localized: When hitting a target, deal an additional fixed damage of 3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180313950412800
+    m_Localized: 'When struck, increase physical and magical defense by 20% for 5
+      seconds
+
+      (Cooldown Time: 12 s)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 189372728500224
+    m_Localized: When a critical hit, deal additional magic damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 203278578507776
+    m_Localized: 'When struck, decrease the magic defense of the attacker by 30%
+      for 4 seconds
+
+      (Cooldown Time: 15 s)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 213269448384512
+    m_Localized: 'When hitting three times, increase attack speed by 20% for 3 seconds
+
+      (Cooldown
+      Time: 1.5 s)'
     m_Metadata:
       m_Items: []
   references:

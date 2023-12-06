@@ -23,6 +23,7 @@ public class DetailUI : MonoBehaviour
     private Canvas canvas;
 
     [SerializeField] private Image Icon;
+    [SerializeField] private LocalizeStringEvent ItemLevel_StringEvent;
 
     [Header("---Sub---")]
     [SerializeField]
@@ -45,6 +46,11 @@ public class DetailUI : MonoBehaviour
         if (SubStringEvent != null && item.itemData.ItemDescriptionLocal != null)
         {
             SubStringEvent.StringReference.SetReference("Item_Table", item.itemData.ItemDescriptionLocal.TableEntryReference);
+        }
+
+        if (ItemLevel_StringEvent != null)
+        {
+            ItemLevel_StringEvent.StringReference.SetReference("UI_Table", item.itemData.ItemLevel.ToString());
         }
 
         if (Event_Name != null && item.EventNameLocal != null)

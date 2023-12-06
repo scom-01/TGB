@@ -11,6 +11,7 @@ public class CurrItem : MonoBehaviour, IUI_Select
     [SerializeField] private LocalizeStringEvent Local_Descript;
     [SerializeField] private LocalizeStringEvent Local_Event_Name;
     [SerializeField] private LocalizeStringEvent Local_Event_Descript;
+    [SerializeField] private LocalizeStringEvent Local_ItemLevel;
     [SerializeField] private TMP_Text Text_Stat;
     private StatsItemSO m_itemSO;
 
@@ -62,6 +63,11 @@ public class CurrItem : MonoBehaviour, IUI_Select
                 else Local_Event_Descript.StringReference.SetReference("Item_Table", "Empty");
             }
 
+            if (Local_ItemLevel != null)
+            {
+                Local_ItemLevel.StringReference.SetReference("UI_Table", m_itemSO.itemData.ItemLevel.ToString());
+            }
+
             if (Text_Stat == null)
                 return;
 
@@ -93,6 +99,9 @@ public class CurrItem : MonoBehaviour, IUI_Select
 
         if (Local_Event_Descript != null)
             Local_Event_Descript.StringReference.SetReference("Item_Table", "Empty");
+
+        if (Local_ItemLevel != null)
+            Local_ItemLevel.StringReference.SetReference("Item_Table", "Empty");
 
         if (Text_Stat != null)
             Text_Stat.text = "";

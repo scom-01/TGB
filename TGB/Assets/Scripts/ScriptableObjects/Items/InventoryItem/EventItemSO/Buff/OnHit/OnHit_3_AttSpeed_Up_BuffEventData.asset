@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12c7189b5730eb047911b8d6ef4727da, type: 3}
+  m_Name: OnHit_3_AttSpeed_Up_BuffEventData
+  m_EditorClassIdentifier: 
+  Item_Type: 2
+  itemEventData:
+    MaxCount: 3
+    CooldownTime: 1.5
+    Percent: 100
+    VFX:
+      isGround: 0
+      isHeader: 0
+      isTransformGlobal: 0
+      isRandomPosRot: 0
+      isRandomRange: 0
+      EffectOffset: {x: 0, y: 0}
+      EffectScale: {x: 0, y: 0, z: 0}
+      isFollowing: 0
+      Object: {fileID: 0}
+    SFX:
+      Clip: {fileID: 0}
+      Volume: 0
+  buffItems:
+  - {fileID: 11400000, guid: ff69e9e3f95dea444a635bc59861fed9, type: 2}
+  isSelf: 1

@@ -50,7 +50,7 @@ MonoBehaviour:
     PhysicsAggressivePer: 0
     MagicAggressivePer: 0
     CriticalPer: 15
-    AdditionalCriticalPer: 0
+    AdditionalCriticalPer: 20
     DamageAttiribute: 0
     Elemental: 4
     ElementalDefensivePer: 0
@@ -68,6 +68,20 @@ MonoBehaviour:
       m_LocalVariables: []
     variable: 0
     value: 15
+    ShowPercent: 1
+    HideMark: 0
+  - type: 8
+    StatsLocalizeString:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    variable: 0
+    value: 20
     ShowPercent: 1
     HideMark: 0
   - type: 4

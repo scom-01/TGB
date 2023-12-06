@@ -72,7 +72,7 @@ public enum ITEM_Level
     Common = 1,
     Elete = 2,
     Special = 3,
-    Legend = 4,
+    Legendary = 4,
 }
 
 public enum GOODS_TPYE
@@ -119,7 +119,7 @@ public enum Stats_TYPE
     ElementalDef,
     AttackSpeed,
     CriticalPer,
-    AdditionalCritical,
+    CriticalDmg,
     MaxHealth,
     MoveSpeed,
     JumpVelocity,

@@ -132,8 +132,8 @@ public class StatsText : Stats
                 case Stats_TYPE.CriticalPer:
                     stats = GameManager.Inst.StageManager.player.Core.CoreUnitStats.CalculStatsData.CriticalPer;
                     break;
-                case Stats_TYPE.AdditionalCritical:
-                    stats = 100f + GameManager.Inst.StageManager.player.Core.CoreUnitStats.CalculStatsData.AdditionalCriticalPer;
+                case Stats_TYPE.CriticalDmg:
+                    stats = 100f + GameManager.Inst.StageManager.player.Core.CoreUnitStats.CalculStatsData.CriticalDmgPer;
                     break;
                 case Stats_TYPE.MaxHealth:
                     stats = GameManager.Inst.StageManager.player.Core.CoreUnitStats.CalculStatsData.MaxHealth;

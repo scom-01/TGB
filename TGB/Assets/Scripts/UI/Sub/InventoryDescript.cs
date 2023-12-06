@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Localization.Components;
@@ -12,6 +13,7 @@ public class InventoryDescript : MonoBehaviour
     [SerializeField] private LocalizeStringEvent ItemDescript_StringEvent;
     [SerializeField] private LocalizeStringEvent ItemEventName_StringEvent;
     [SerializeField] private LocalizeStringEvent ItemEventDescript_StringEvent;
+    [SerializeField] private LocalizeStringEvent ItemLevel_StringEvent;
     [SerializeField] private TextMeshProUGUI ItemStatsTMP;
     public GameObject DropButton;
     public GameObject DropKeyButton;
@@ -48,6 +50,11 @@ public class InventoryDescript : MonoBehaviour
                 else ItemEventDescript_StringEvent.StringReference.SetReference("Item_Table", "Empty");
             }
 
+            if (ItemLevel_StringEvent != null)
+            {
+                ItemLevel_StringEvent.StringReference.SetReference("UI_Table", item.StatsItemData.itemData.ItemLevel.ToString());
+            }
+
             if (ItemStatsTMP != null)
             {
                 if(item.StatsItemData.StatsItems.Count > 0)
@@ -81,6 +88,10 @@ public class InventoryDescript : MonoBehaviour
         if (ItemEventDescript_StringEvent != null)
         {
             ItemEventDescript_StringEvent.StringReference.SetReference("Item_Table", "Empty");
+        }
+        if (ItemLevel_StringEvent != null)
+        {
+            ItemLevel_StringEvent.StringReference.SetReference("Item_Table", "Empty");
         }
         if (ItemStatsTMP != null)
         {

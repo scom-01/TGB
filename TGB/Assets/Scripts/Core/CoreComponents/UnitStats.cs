@@ -33,7 +33,7 @@ namespace TGB.CoreSystem
                     PhysicsAggressivePer = Cal_PhysicsAggressivePer,
                     MagicAggressivePer = Cal_MagicAggressivePer,
                     CriticalPer = Cal_CriticalPer,
-                    AdditionalCriticalPer = Cal_AdditionalCriticalPer,
+                    CriticalDmgPer = Cal_CriticalDmgPer,
                     DamageAttiribute = Cal_DamageAttiribute,
                     Elemental = Cal_Elemental,
                     ElementalDefensivePer = Cal_ElementalDefensivePer,
@@ -104,7 +104,7 @@ namespace TGB.CoreSystem
         /// <summary>
         /// 추가 크리티컬 데미지
         /// </summary>
-        private float Cal_AdditionalCriticalPer { get => (Default_statsData.AdditionalCriticalPer + m_statsData.AdditionalCriticalPer + BlessStats.Bless_Critical_Lv * GlobalValue.BlessingStats_Inflation); }
+        private float Cal_CriticalDmgPer { get => (Default_statsData.CriticalDmgPer + m_statsData.CriticalDmgPer + BlessStats.Bless_Critical_Lv * GlobalValue.BlessingStats_Inflation); }
 
         /// <summary>
         /// 원소 속성 (공격과 방어 모두에 적용)
