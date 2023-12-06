@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4584737888372909562}
   - component: {fileID: 8064462147720095501}
   m_Layer: 13
-  m_Name: Water_Projectile_Single_1
+  m_Name: Slash_Projectile_Single_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,12 +108,12 @@ MonoBehaviour:
       Duration: 0
       Range: 0
       RepeatRate: 0
-  ProjectileObject: {fileID: 6432162538794660462, guid: 4431403ca0c9c3d45b2b6ef22871d595, type: 3}
-  ImpactObject: {fileID: 8996803645777174969, guid: f68cc08d428971d419e7217e98698079, type: 3}
+  ProjectileObject: {fileID: 1694483361078003942, guid: 691dfb29ecc6fe3449ac7da33ea74216, type: 3}
+  ImpactObject: {fileID: 8867112169225384458, guid: c7192044afa1e474698d2bc7a0ee4011, type: 3}
   ProjectileShootClip:
-    Clip: {fileID: 0}
-    Volume: 0
+    Clip: {fileID: 8300000, guid: 057ecc2e820a78e408f0bc368e89f27c, type: 3}
+    Volume: 0.3
   ImpactClip:
-    Clip: {fileID: 0}
-    Volume: 0
+    Clip: {fileID: 8300000, guid: 180f35aef2ea2654086bcbb52d58ec0b, type: 3}
+    Volume: 0.2
   isFixedRot: 0

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b57ec8d921dcf648921c41da219a6e1, type: 3}
-  m_Name: OnHit_3_AttackEventData
+  m_Name: 15_OnCritical_Calculate_Magic_AttackEventData
   m_EditorClassIdentifier: 
-  Item_Type: 2
+  Item_Type: 8
   itemEventData:
     MaxCount: 1
     CooldownTime: 0
@@ -30,10 +30,10 @@ MonoBehaviour:
     SFX:
       Clip: {fileID: 0}
       Volume: 0
-  AdditionalDamage: 3
-  isCalFixedDamage: 0
-  DAMAGE_ATT: 2
-  isOnHit: 1
+  AdditionalDamage: 0
+  isCalFixedDamage: 1
+  DAMAGE_ATT: 1
+  isOnHit: 0
   CanCritical: 0
   isSelf_harm: 0
   isBloodsucking: 0

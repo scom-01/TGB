@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b57ec8d921dcf648921c41da219a6e1, type: 3}
-  m_Name: OnCritical_Calculate_Magic_AttackEventData
+  m_Name: 23_OnHit_AddtionalAttack_AttackEventData
   m_EditorClassIdentifier: 
-  Item_Type: 8
+  Item_Type: 2
   itemEventData:
     MaxCount: 1
     CooldownTime: 0
-    Percent: 100
+    Percent: 30
     VFX:
       isGround: 0
       isHeader: 0
@@ -30,23 +30,10 @@ MonoBehaviour:
     SFX:
       Clip: {fileID: 0}
       Volume: 0
-  EventSprite: {fileID: 0}
-  <EventDescriptionLocal>k__BackingField:
-    m_TableReference:
-      m_TableCollectionName: 
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
   AdditionalDamage: 0
   isCalFixedDamage: 1
-  DAMAGE_ATT: 1
-  isOnHit: 1
-  CanCritical: 0
+  DAMAGE_ATT: 0
+  isOnHit: 0
+  CanCritical: 1
   isSelf_harm: 0
   isBloodsucking: 0
-  references:
-    version: 2
-    RefIds: []

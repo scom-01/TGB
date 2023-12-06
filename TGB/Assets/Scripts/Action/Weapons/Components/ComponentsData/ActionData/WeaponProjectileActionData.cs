@@ -75,6 +75,10 @@ public struct ProjectileData
     /// </summary>
     public Vector3 EffectScale;
     /// <summary>
+    /// 임팩트 이펙트 로컬 스케일
+    /// </summary>
+    public Vector3 ImpactScale;
+    /// <summary>
     /// 온힛효과 발동여부
     /// </summary>
     public bool isOnHit;

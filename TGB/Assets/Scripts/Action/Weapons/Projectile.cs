@@ -276,7 +276,7 @@ namespace TGB
             //Impact            
             if (unit != null)
             {
-                var impact = unit.Core.CoreEffectManager.StartEffectsPos(ImpactObject, this.transform.position, ProjectileData.EffectScale);
+                var impact = unit.Core.CoreEffectManager.StartEffectsPos(ImpactObject, this.transform.position, ProjectileData.ImpactScale);
                 foreach (var _renderer in impact.GetComponentsInChildren<ParticleSystemRenderer>())
                 {
                     _renderer.sortingLayerName = "Effect";

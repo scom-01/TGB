@@ -43,8 +43,12 @@ public class ItemBuffEventSO : ItemEventSO
             return itemEventSet;
         }
 
+        if(itemEventData.Percent < Random.Range(0f, 100f))
+        {
+            return itemEventSet;
+        }
         itemEventSet.Count++;
-        if (itemEventSet.Count >= itemEventData.MaxCount && itemEventData.Percent >= Random.Range(0f, 100f))
+        if (itemEventSet.Count >= itemEventData.MaxCount)
         {
             if (isSelf)
             {

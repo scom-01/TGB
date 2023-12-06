@@ -50,7 +50,7 @@ MonoBehaviour:
     PhysicsAggressivePer: 0
     MagicAggressivePer: 0
     CriticalPer: 10
-    AdditionalCriticalPer: 10
+    CriticalDmgPer: 10
     DamageAttiribute: 1
     Elemental: 4
     ElementalDefensivePer: 0
@@ -69,6 +69,7 @@ MonoBehaviour:
     variable: 0
     value: 10
     ShowPercent: 1
+    HideMark: 0
   - type: 7
     StatsLocalizeString:
       m_TableReference:
@@ -82,6 +83,7 @@ MonoBehaviour:
     variable: 0
     value: 10
     ShowPercent: 1
+    HideMark: 0
   - type: 8
     StatsLocalizeString:
       m_TableReference:
@@ -95,15 +97,35 @@ MonoBehaviour:
     variable: 0
     value: 10
     ShowPercent: 1
+    HideMark: 0
   Health: 0
   buffItems: []
   InitEffectData:
     <AcquiredEffectPrefab>k__BackingField: {fileID: 0}
-    <AcquiredSoundEffect>k__BackingField: {fileID: 0}
+    <AcquiredSFX>k__BackingField:
+      Clip: {fileID: 0}
+      Volume: 0
     <isEquipment>k__BackingField: 1
-    <DetailSubUI>k__BackingField: 0
   InfinityEffectObjects: []
-  ItemEffects: []
+  ItemEvents: []
+  <EventNameLocal>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <EventDescriptionLocal>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   references:
     version: 2
     RefIds: []
