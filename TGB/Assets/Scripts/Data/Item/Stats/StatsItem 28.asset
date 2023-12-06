@@ -27,7 +27,7 @@ MonoBehaviour:
       m_TableReference:
         m_TableCollectionName: GUID:0e85b71e0680fc942b5295e72ff4ba37
       m_TableEntryReference:
-        m_KeyId: 58624634214834176
+        m_KeyId: 73566878134853632
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -98,20 +98,6 @@ MonoBehaviour:
     value: 5
     ShowPercent: 0
     HideMark: 0
-  - type: 12
-    StatsLocalizeString:
-      m_TableReference:
-        m_TableCollectionName: GUID:0d4742437ec6ec541bf0850b60cb729a
-      m_TableEntryReference:
-        m_KeyId: 55752153883893760
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    variable: 0
-    value: 5
-    ShowPercent: 0
-    HideMark: 0
   Health: 5
   buffItems: []
   InitEffectData:
@@ -121,21 +107,22 @@ MonoBehaviour:
       Volume: 0
     <isEquipment>k__BackingField: 1
   InfinityEffectObjects: []
-  ItemEvents: []
+  ItemEvents:
+  - {fileID: 11400000, guid: e0f33fb3c64b2cc46997b0989d33c8cb, type: 2}
   <EventNameLocal>k__BackingField:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:643ce2f3e1db9b84aaaec0446e30fdb0
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 2608633392553984
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
   <EventDescriptionLocal>k__BackingField:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:baf31d4bcfd8017499a70ef24bd18d5c
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 560987773493248
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0

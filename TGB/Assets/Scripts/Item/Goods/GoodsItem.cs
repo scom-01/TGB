@@ -1,18 +1,17 @@
-using TGB.CoreSystem;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
 using TGB;
+using UnityEngine;
 
-public class GoodsItem : MonoBehaviour
+public class GoodsItem : MonoBehaviour,ISpawn
 {
     [Tooltip("Goods Type")]
     [SerializeField]    private GOODS_TPYE Goods;
+    [Tooltip("개당 재화량, 총 재화 = Amount * DropCount")]
     /// <summary>
     /// 개당 재화량
     /// </summary>
     [SerializeField]    private int Amount;
+    [Tooltip("드랍될 재화아이템 갯수")]
     /// <summary>
     /// 드랍될 재화아이템 갯수
     /// </summary>
@@ -49,7 +48,7 @@ public class GoodsItem : MonoBehaviour
     private GameObject Core; 
     private void Start()
     {
-        Core = gameObject.GetComponentInParent<Unit>().Core.gameObject;
+        Core = gameObject.GetComponentInParent<Unit>()?.Core.gameObject;
     }
     public void DropGoods()
     {
@@ -59,7 +58,14 @@ public class GoodsItem : MonoBehaviour
         if (GameManager.Inst.StageManager == null)
             return;
 
-        spawnPos = Core.transform.position;
+        if (Core != null)
+        {
+            spawnPos = Core.transform.position;
+        }
+        else
+        {
+            spawnPos = GameManager.Inst.StageManager.SpawnPoint.position;
+        }
         StartCoroutine(SpawnGoods());
     }
 
@@ -89,5 +95,11 @@ public class GoodsItem : MonoBehaviour
             goodsData.isInit = true;
         }
         yield return null;
+    }
+
+    public bool Spawn()
+    {
+        DropGoods();
+        return true;
     }
 }

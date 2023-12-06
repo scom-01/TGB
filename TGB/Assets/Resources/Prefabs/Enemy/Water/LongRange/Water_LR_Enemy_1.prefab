@@ -902,8 +902,6 @@ MonoBehaviour:
   RespawnPoint: {fileID: 0}
   UnitData: {fileID: 11400000, guid: 2410b7866e725e84297f57155f51b018, type: 2}
   IsAlive: 1
-  isFixed_CC_Immunity: 0
-  isFixed_Hit_Immunity: 0
   isFixedMovement: 0
   enemyData: {fileID: 0}
   Test_Distance: 1.5
@@ -1212,7 +1210,7 @@ MonoBehaviour:
     PhysicsAggressivePer: 0
     MagicAggressivePer: 0
     CriticalPer: 0
-    AdditionalCriticalPer: 0
+    CriticalDmgPer: 0
     DamageAttiribute: 0
     Elemental: 0
     ElementalDefensivePer: 0
@@ -1231,7 +1229,7 @@ MonoBehaviour:
     PhysicsAggressivePer: 0
     MagicAggressivePer: 0
     CriticalPer: 0
-    AdditionalCriticalPer: 0
+    CriticalDmgPer: 0
     DamageAttiribute: 0
     Elemental: 0
     ElementalDefensivePer: 0
@@ -1554,6 +1552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8495350aff46ed942865ff716f8ec660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAction: 0
 --- !u!114 &7275522553182905371
 MonoBehaviour:
   m_ObjectHideFlags: 0

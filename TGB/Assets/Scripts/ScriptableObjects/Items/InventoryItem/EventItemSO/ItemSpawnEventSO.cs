@@ -17,6 +17,11 @@ public class ItemSpawnEventSO : ItemEventSO
         SpawnVFX(unit);
         SpawnSFX(unit);
 
+        var obj = Instantiate(Object);
+        if(obj.TryGetComponent(out ISpawn _SpawnObj))
+        {
+            _SpawnObj.Spawn();
+        }
         return true;
     }
     public override ItemEventSet ExcuteEvent(ITEM_TPYE type, StatsItemSO parentItem, Unit unit, Unit enemy, ItemEventSet itemEventSet)

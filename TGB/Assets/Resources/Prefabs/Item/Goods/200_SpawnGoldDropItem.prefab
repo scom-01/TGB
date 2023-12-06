@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2854767203050020874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1007774340455227497}
+  - component: {fileID: 3938448744592134015}
+  m_Layer: 18
+  m_Name: 200_SpawnGoldDropItem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1007774340455227497
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2854767203050020874}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3938448744592134015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2854767203050020874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f407318490b5cc49a551f5fa2d4c024, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Goods: 0
+  Amount: 40
+  DropCount: 5
+  GoodsPrefab: {fileID: 1952279293685994997, guid: cb4cccd4b8f68bc48a25aac822abd0d2, type: 3}
+  GoodsSprite: {fileID: 218339756, guid: f7bf72b4be9086e4c9eef46270d4a8f3, type: 3}
+  EquipSoundClip:
+    Clip: {fileID: 8300000, guid: 0e89b476d4715fd42935e9900eedb033, type: 3}
+    Volume: 0.6
+  EquipEffect: {fileID: 1380205584940949931, guid: 07623d638bfe48c4bbf7a6dc202419de, type: 3}
+  CircleSize: 0.3125
+  DestroyTime: 2.5
+  DestroyTimeRange: 0
