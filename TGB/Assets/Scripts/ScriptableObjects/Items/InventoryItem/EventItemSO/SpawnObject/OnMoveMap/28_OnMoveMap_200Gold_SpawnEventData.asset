@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39af52f161290fe458c39a604479cbf9, type: 3}
+  m_Name: 28_OnMoveMap_200Gold_SpawnEventData
+  m_EditorClassIdentifier: 
+  Item_Type: 6
+  itemEventData:
+    MaxCount: 1
+    CooldownTime: 0
+    Percent: 100
+    VFX:
+      isGround: 0
+      isHeader: 0
+      isTransformGlobal: 0
+      isRandomPosRot: 0
+      isRandomRange: 0
+      EffectOffset: {x: 0, y: 0}
+      EffectScale: {x: 0, y: 0, z: 0}
+      isFollowing: 0
+      Object: {fileID: 0}
+    SFX:
+      Clip: {fileID: 0}
+      Volume: 0
+  Object: {fileID: 2854767203050020874, guid: 901940214345bde439ee82862c5ce2cd, type: 3}

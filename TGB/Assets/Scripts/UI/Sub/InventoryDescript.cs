@@ -46,7 +46,7 @@ public class InventoryDescript : MonoBehaviour
             
             if (ItemEventDescript_StringEvent != null)
             {
-                if (item.StatsItemData.EventDescriptionLocal.TableEntryReference.KeyId != 0) ItemEventDescript_StringEvent.StringReference.SetReference("ItemEvent_Table", item.StatsItemData.EventDescriptionLocal.TableEntryReference);
+                if (item.StatsItemData.EventDescriptionLocal.TableEntryReference.KeyId != 0) ItemEventDescript_StringEvent.StringReference.SetReference("ItemEvent_Descript_Table", item.StatsItemData.EventDescriptionLocal.TableEntryReference);
                 else ItemEventDescript_StringEvent.StringReference.SetReference("Item_Table", "Empty");
             }
 

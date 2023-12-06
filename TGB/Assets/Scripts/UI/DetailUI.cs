@@ -61,7 +61,7 @@ public class DetailUI : MonoBehaviour
 
         if (Event_Descript != null && item.EventDescriptionLocal != null)
         {
-            if (item.EventDescriptionLocal.TableEntryReference.KeyId != 0) Event_Descript.StringReference.SetReference("ItemEvent_Table", item.EventDescriptionLocal.TableEntryReference);
+            if (item.EventDescriptionLocal.TableEntryReference.KeyId != 0) Event_Descript.StringReference.SetReference("ItemEvent_Descript_Table", item.EventDescriptionLocal.TableEntryReference);
             else Event_Descript.StringReference.SetReference("Item_Table", "Empty");
         }
 

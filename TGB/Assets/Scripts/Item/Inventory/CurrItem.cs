@@ -59,7 +59,7 @@ public class CurrItem : MonoBehaviour, IUI_Select
 
             if (Local_Event_Descript != null)
             {
-                if (m_itemSO.EventDescriptionLocal.TableEntryReference.KeyId != 0) Local_Event_Descript.StringReference.SetReference("ItemEvent_Table", m_itemSO.EventDescriptionLocal.TableEntryReference);
+                if (m_itemSO.EventDescriptionLocal.TableEntryReference.KeyId != 0) Local_Event_Descript.StringReference.SetReference("ItemEvent_Descript_Table", m_itemSO.EventDescriptionLocal.TableEntryReference);
                 else Local_Event_Descript.StringReference.SetReference("Item_Table", "Empty");
             }
 
