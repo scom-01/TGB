@@ -324,6 +324,7 @@ public class GameManager : MonoBehaviour
                 SubUI.InventorySubUI.SetInventoryState(InventoryUI_State.Put);
                 ReforgingUI.EnabledChildrensCanvas(true);
                 ReforgingUI.Canvas.enabled = true;
+                ReforgingUI.animator?.Play("Action", -1, 0f);
                 GameManager.Inst.SetSelectedObject(ReforgingUI.equipWeapon.gameObject);
                 break;
             case UI_State.Cfg:
@@ -343,8 +344,9 @@ public class GameManager : MonoBehaviour
                 CutSceneUI.Canvas.enabled = true;
                 break;
             case UI_State.Result:
-                ResultUI.Canvas.enabled = true;
+                ResultUI.animator?.GetCurrentAnimatorClipInfo(0)[0].clip.SampleAnimation(ResultUI.animator.gameObject, 0);
                 ResultUI.animator?.Play("Action", -1, 0f);
+                ResultUI.Canvas.enabled = true;
                 GameManager.Inst.SetSelectedObject(ResultUI.GoTitleBtn.gameObject);
                 break;
             case UI_State.Loading:
