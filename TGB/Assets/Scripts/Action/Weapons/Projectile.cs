@@ -258,7 +258,7 @@ namespace TGB
 
             if (GameManager.Inst.PlayTime >= m_startTime + ProjectileData.DurationTime)
             {
-                Hit();
+                Impact();
             }
         }
 
@@ -271,7 +271,7 @@ namespace TGB
 
         }
 
-        private void Hit(bool _isSingleShoot = true)
+        private void Impact(bool _isSingleShoot = true)
         {
             //Impact            
             if (unit != null)
@@ -344,14 +344,14 @@ namespace TGB
             //피격 대상이 Ground면 이펙트
             if (!ProjectileData.isBound && ProjectileData.isCollisionGround && coll.gameObject.layer == LayerMask.NameToLayer("Ground"))
             {
-                Hit(ProjectileData.isSingleShoot);
+                Impact(ProjectileData.isSingleShoot);
                 return;
             }
 
             //피격 대상이 Platform이면 이펙트
             if (!ProjectileData.isBound && ProjectileData.isCollisionPlatform && coll.gameObject.layer == LayerMask.NameToLayer("Platform"))
             {
-                Hit(ProjectileData.isSingleShoot);
+                Impact(ProjectileData.isSingleShoot);
                 return;
             }
 
@@ -388,7 +388,7 @@ namespace TGB
                 #region EffectPrefab
                 if (ImpactObject != null)
                 {
-                    Hit(ProjectileData.isSingleShoot);
+                    Impact(ProjectileData.isSingleShoot);
                 }
                 #endregion
 
