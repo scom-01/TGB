@@ -26,7 +26,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 119444758528
-    m_Localized: 'When struck, decrease the physical defense of the attacker by 40%
+    m_Localized: 'When hit, decrease the physical defense of the attacker by 40%
       for 5 seconds
 
       (Cooldown Time: 15 s)'
@@ -43,19 +43,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 180313950412800
-    m_Localized: 'When struck, increase physical and magical defense by 20% for 5
-      seconds
+    m_Localized: 'When hit, increase physical and magical defense by 20% for 5 seconds
 
-      (Cooldown Time: 12 s)'
+      (Cooldown
+      Time: 12 s)'
     m_Metadata:
       m_Items: []
   - m_Id: 189372728500224
-    m_Localized: When a critical hit, deal additional magic damage.
+    m_Localized: When a critical hitting a target, deal additional magic damage.
     m_Metadata:
       m_Items: []
   - m_Id: 203278578507776
-    m_Localized: 'When struck, decrease the magic defense of the attacker by 30%
-      for 4 seconds
+    m_Localized: 'When hit, decrease the magic defense of the attacker by 30% for
+      4 seconds
 
       (Cooldown Time: 15 s)'
     m_Metadata:
@@ -68,7 +68,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 499772367986688
-    m_Localized: 'When struck, increase critical hit chance by 30% for 5 seconds
+    m_Localized: 'When hit, increase critical hit chance by 30% for 5 seconds
 
       (Cooldown
       Time: 10 s)'
@@ -100,6 +100,31 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 560987773493248
     m_Localized: Gain 200 gold when moving through the map.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 874876331515904
+    m_Localized: 'When hit 5 times, restores 10 health.
+
+      (Cooldown Time: 15
+      s)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 877742471405568
+    m_Localized: 'When hit 5 times, gain 100 gold.
+
+      (Cooldown Time: 10 s)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 883159998029824
+    m_Localized: When dashing, increases movement speed by 100% for 0.75 seconds
+      and releases an energy ball forward, dealing 5 fixed damage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 918786416205824
+    m_Localized: 'When defeating enemies 10 times, increases physical attack power
+      by 10%
+
+      (Maximum of 50%)'
     m_Metadata:
       m_Items: []
   references:

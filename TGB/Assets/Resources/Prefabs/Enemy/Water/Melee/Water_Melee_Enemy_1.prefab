@@ -872,7 +872,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4865ea70498b9774f9a584b1c8ea7ae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffs: []
+  ActiveBuffList: []
+  PassiveBuffList: []
+  Old_PassiveBuffList: []
 --- !u!114 &3639027602819861585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -902,8 +904,6 @@ MonoBehaviour:
   RespawnPoint: {fileID: 0}
   UnitData: {fileID: 11400000, guid: d580fe4e3495bc649b2e71bee623dabd, type: 2}
   IsAlive: 1
-  isFixed_CC_Immunity: 0
-  isFixed_Hit_Immunity: 0
   isFixedMovement: 0
   enemyData: {fileID: 0}
   Test_Distance: 3.5
@@ -1212,7 +1212,7 @@ MonoBehaviour:
     PhysicsAggressivePer: 0
     MagicAggressivePer: 0
     CriticalPer: 0
-    AdditionalCriticalPer: 0
+    CriticalDmgPer: 0
     DamageAttiribute: 0
     Elemental: 0
     ElementalDefensivePer: 0
@@ -1231,7 +1231,7 @@ MonoBehaviour:
     PhysicsAggressivePer: 0
     MagicAggressivePer: 0
     CriticalPer: 0
-    AdditionalCriticalPer: 0
+    CriticalDmgPer: 0
     DamageAttiribute: 0
     Elemental: 0
     ElementalDefensivePer: 0
@@ -1554,6 +1554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8495350aff46ed942865ff716f8ec660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAction: 0
 --- !u!114 &7275522553182905371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1620,7 +1621,7 @@ MonoBehaviour:
   GoodsSprite: {fileID: 218339756, guid: f7bf72b4be9086e4c9eef46270d4a8f3, type: 3}
   EquipSoundClip:
     Clip: {fileID: 8300000, guid: 0e89b476d4715fd42935e9900eedb033, type: 3}
-    Volume: 0.6
+    Volume: 0.3
   EquipEffect: {fileID: 1380205584940949931, guid: 07623d638bfe48c4bbf7a6dc202419de, type: 3}
   CircleSize: 0.3125
   DestroyTime: 2.5
@@ -1644,7 +1645,7 @@ MonoBehaviour:
   GoodsSprite: {fileID: -613753843, guid: f7bf72b4be9086e4c9eef46270d4a8f3, type: 3}
   EquipSoundClip:
     Clip: {fileID: 8300000, guid: 0e89b476d4715fd42935e9900eedb033, type: 3}
-    Volume: 0.6
+    Volume: 0.3
   EquipEffect: {fileID: 1380205584940949931, guid: 07623d638bfe48c4bbf7a6dc202419de, type: 3}
   CircleSize: 0.3125
   DestroyTime: 2.5

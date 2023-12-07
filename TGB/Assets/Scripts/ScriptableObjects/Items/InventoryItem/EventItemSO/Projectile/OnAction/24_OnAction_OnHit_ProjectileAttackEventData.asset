@@ -32,28 +32,28 @@ MonoBehaviour:
       Volume: 0
   ProjectileActionData:
     ProjectileData:
-      Pos: {x: 0, y: 1, z: 0}
+      Pos: {x: 0, y: 0, z: 0}
       Rot: {x: 1, y: 0, z: 0}
       Speed: 10
       DurationTime: 2
       AdditionalDmg: 5
       isFixed: 1
-      Radius: 0.5
+      KnockbackAngle: {x: 0, y: 0}
+      isOnHit: 1
+      Radius: 0.3
       Offset: {x: 0, y: 0}
       GravityScale: 0
       isSingleShoot: 1
-      KnockbackAngle: {x: 0, y: 0}
       isCollisionGround: 1
       isCollisionPlatform: 0
       isBound: 0
       UnitCC2DMaterial: {fileID: 0}
-      EffectScale: {x: 0.5, y: 0.5, z: 0.5}
+      EffectScale: {x: 0.1, y: 0.1, z: 0.1}
       ImpactScale: {x: 0.3, y: 0.3, z: 0.3}
-      isOnHit: 1
       isShakeCam: 0
-      homingType: 0
       camDatas:
         Duration: 0
         Range: 0
         RepeatRate: 0
+      homingType: 0
     Projectile: {fileID: 2222910967692216358, guid: ed31d3e0176929e46bd7228821b77cd9, type: 3}
