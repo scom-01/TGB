@@ -1,9 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TouchJumpPad : TouchObject
 {
     [SerializeField] private float JumpVelocity;
     [SerializeField] private Vector2 angle;
+    private List<Unit> _unitList = new List<Unit>();
     private BoxCollider2D BC2D;
     public Animator animator
     {
@@ -22,7 +24,7 @@ public class TouchJumpPad : TouchObject
         if (BC2D == null)
             BC2D = this.GetComponent<BoxCollider2D>();
     }
-    public override void OnTriggerStay2D(Collider2D collision)
+    public override void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerStay2D(collision);
 
@@ -45,6 +47,9 @@ public class TouchJumpPad : TouchObject
 
     private void Collision(Unit unit)
     {
+        if (unit == null)
+            return;
+        
         Touch();
         if (EffectObject)
             unit.Core.CoreEffectManager.StartEffectsPos(EffectObject, unit.transform.position, EffectObject.transform.localScale);
