@@ -66,10 +66,10 @@ public class DataManager : MonoBehaviour
     }
     private List<int> all_ItemDB_Idxs = new List<int>();
     public WeaponDB All_WeaponDB;
-    public BuffDB All_BuffDB;
+    [HideInInspector] public BuffItemSO[] All_BuffDB;
 
-    [HideInInspector] public List<StatsItemSO> UnlockItemList;
-    [HideInInspector] public List<int> UnlockItemListidx;
+    [HideInInspector] public List<StatsItemSO> UnlockItemList = new List<StatsItemSO>();
+    [HideInInspector] public List<int> UnlockItemListidx = new List<int>();
 
     #endregion
 
@@ -85,6 +85,7 @@ public class DataManager : MonoBehaviour
 
     private void Awake()
     {
+        All_BuffDB = Resources.LoadAll<BuffItemSO>("DB/Buff");
         if (_Inst)
         {
             var managers = Resources.FindObjectsOfTypeAll(typeof(DataManager));
@@ -403,44 +404,108 @@ public class DataManager : MonoBehaviour
 
         Debug.LogWarning("Success SceneName Save");
     }
-    public void SaveBuffs(List<Buff> _buffs)
+    public void SaveBuffs(BuffSystem _buffsystem)
     {
-        if (_buffs == null)
+        if (_buffsystem == null)
             return;
+        var _activeBuffList = _buffsystem.ActiveBuffList.ToList();
+        var _passiveBuffList = _buffsystem.PassiveBuffList.ToList();
+        var _old_passiveBuffList = _buffsystem.Old_PassiveBuffList.ToList();
 
-        var _buffDatas = new List<BuffData>();
-        for (int i = 0; i < _buffs.Count; i++)
+        var _activebuffDataList = new List<BuffData>();
+        var _passivebuffDataList = new List<BuffData>();
+        var _old_passivebuffDataList = new List<BuffData>();
+
+        foreach (var buff in _activeBuffList)
         {
-            var buff = new BuffData() { ButtItemIdx = _buffs[i].buffItemSO.ItemIdx, startTime = _buffs[i].startTime, CurrBuffCount = _buffs[i].CurrBuffCount };
-            _buffDatas.Add(buff);
+            var _buff = new BuffData() { BuffItemIdx = buff.buffItemSO.GetInstanceID(), startTime = buff.startTime, CurrBuffCount = buff.CurrBuffCount };
+            _activebuffDataList.Add(_buff);
         }
-        JSON_DataParsing.m_JSON_SceneData.BuffDatas = _buffDatas;
+        foreach (var buff in _passiveBuffList)
+        {
+            var _buff = new BuffData() { BuffItemIdx = buff.buffItemSO.GetInstanceID(), startTime = buff.startTime, CurrBuffCount = buff.CurrBuffCount };
+            _passivebuffDataList.Add(_buff);
+        }
+        foreach (var buff in _old_passiveBuffList)
+        {
+            var _buff = new BuffData() { BuffItemIdx = buff.buffItemSO.GetInstanceID(), startTime = buff.startTime, CurrBuffCount = buff.CurrBuffCount };
+            _old_passivebuffDataList.Add(_buff);
+        }
+        JSON_DataParsing.m_JSON_SceneData.ActiveBuffDataList = _activebuffDataList.ToList();
+        JSON_DataParsing.m_JSON_SceneData.PassiveBuffDataList = _passivebuffDataList.ToList();
+        JSON_DataParsing.m_JSON_SceneData.Old_PassiveBuffDataList = _old_passivebuffDataList.ToList();
 
+        _activebuffDataList = null;
+        _passivebuffDataList = null;
+        _old_passivebuffDataList = null;
     }
-
     public void LoadBuffs(BuffSystem buffSystem)
     {
-        var buffDatas = JSON_DataParsing.m_JSON_SceneData.BuffDatas;
+        //ScencData에 저장된 BuffDatas
+        var activebuffDatalist = JSON_DataParsing.m_JSON_SceneData.ActiveBuffDataList.ToList();
+        var passivebuffDatalist = JSON_DataParsing.m_JSON_SceneData.PassiveBuffDataList.ToList();
+        var old_passivebuffDatalist = JSON_DataParsing.m_JSON_SceneData.Old_PassiveBuffDataList.ToList();
 
-        if (buffDatas == null)
-            return;
+        var ActivebuffList = new List<Buff>();
+        var PassivebuffList = new List<Buff>();
+        var old_PassivebuffList = new List<Buff>();
 
-        var buff = new List<Buff>();
-
-        for (int i = 0; i < buffDatas.Count; i++)
+        //저장된 BuffDataList 수만큼 BuffList에 저장
+        foreach (var data in activebuffDatalist)
         {
-            var item = new Buff();
-            item.buffItemSO = All_BuffDB.BuffDBList[buffDatas[i].ButtItemIdx];
-            item.CurrBuffCount = buffDatas[i].CurrBuffCount;
-            item.startTime = buffDatas[i].startTime;
-            buff.Add(item);
+            int temp = 0;
+            for (int i = 0; i < All_BuffDB.Length; i++)
+            {
+                if(All_BuffDB[i].GetInstanceID() == data.BuffItemIdx)
+                {
+                    temp = i;
+                    break;
+                }
+            }
+            var item = new Buff(All_BuffDB[temp], data.CurrBuffCount, data.startTime);
+            ActivebuffList.Add(item);
         }
-
-        buffSystem.buffs = buff;
-        if (buffSystem.buffs != null)
+        //저장된 BuffDataList 수만큼 BuffList에 저장
+        foreach (var data in passivebuffDatalist)
         {
-            buffSystem.SetBuff();
+            int temp = 0;
+            for (int i = 0; i < All_BuffDB.Length; i++)
+            {
+                if (All_BuffDB[i].GetInstanceID() == data.BuffItemIdx)
+                {
+                    temp = i;
+                    break;
+                }
+            }
+            var item = new Buff(All_BuffDB[temp], data.CurrBuffCount, data.startTime);
+            PassivebuffList.Add(item);
         }
+        //저장된 BuffDataList 수만큼 BuffList에 저장
+        foreach (var data in old_passivebuffDatalist)
+        {
+            int temp = 0;
+            for (int i = 0; i < All_BuffDB.Length; i++)
+            {
+                if (All_BuffDB[i].GetInstanceID() == data.BuffItemIdx)
+                {
+                    temp = i;
+                    break;
+                }
+            }
+            var item = new Buff(All_BuffDB[temp], data.CurrBuffCount, data.startTime);
+            old_PassivebuffList.Add(item);
+        }
+        
+        //Buff시스템의 Buff리스트에 적용
+        buffSystem.ActiveBuffList = ActivebuffList.ToList();
+        buffSystem.PassiveBuffList = PassivebuffList.ToList();
+        buffSystem.Old_PassiveBuffList = old_PassivebuffList.ToList();
+        //적용한 버프 세팅
+        buffSystem.SetBuff();
+
+        ActivebuffList = null;
+        PassivebuffList = null;
+        old_PassivebuffList = null;
     }
 
     public List<int> LoadSceneDataIdx()

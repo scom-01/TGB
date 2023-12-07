@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 836f02ead74e6a24db24927dd939c743, type: 3}
-  m_Name: StatsItem 27
+  m_Name: StatsItem 23
   m_EditorClassIdentifier: 
-  ItemIdx: 26
+  ItemIdx: 22
   itemData:
     <ItemNameLocal>k__BackingField:
       m_TableReference:
         m_TableCollectionName: GUID:0e85b71e0680fc942b5295e72ff4ba37
       m_TableEntryReference:
-        m_KeyId: 72078372879360000
+        m_KeyId: 72077588590649344
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -27,12 +27,12 @@ MonoBehaviour:
       m_TableReference:
         m_TableCollectionName: GUID:0e85b71e0680fc942b5295e72ff4ba37
       m_TableEntryReference:
-        m_KeyId: 73564054835585024
+        m_KeyId: 73509958908796928
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    ItemSprite: {fileID: 21300000, guid: d2805cec60e43a74b9e7062770d24818, type: 3}
+    ItemSprite: {fileID: 21300000, guid: 7d1ccc59fb83b484c863a1f274217755, type: 3}
     ItemLevel: 2
   CompositeItems: []
   isFieldSpawn: 1
@@ -84,35 +84,7 @@ MonoBehaviour:
     value: 20
     ShowPercent: 1
     HideMark: 0
-  - type: 12
-    StatsLocalizeString:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    variable: 0
-    value: 5
-    ShowPercent: 0
-    HideMark: 0
-  - type: 12
-    StatsLocalizeString:
-      m_TableReference:
-        m_TableCollectionName: GUID:0d4742437ec6ec541bf0850b60cb729a
-      m_TableEntryReference:
-        m_KeyId: 55752153883893760
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    variable: 0
-    value: 5
-    ShowPercent: 0
-    HideMark: 0
-  Health: 5
+  Health: 0
   buffItems: []
   InitEffectData:
     <AcquiredEffectPrefab>k__BackingField: {fileID: 0}
@@ -122,12 +94,12 @@ MonoBehaviour:
     <isEquipment>k__BackingField: 1
   InfinityEffectObjects: []
   ItemEvents:
-  - {fileID: 11400000, guid: 4fadbaa004053c347973ce625c800832, type: 2}
+  - {fileID: 11400000, guid: fcc04c609fef3ac4dae5e6c5857a76e6, type: 2}
   <EventNameLocal>k__BackingField:
     m_TableReference:
       m_TableCollectionName: GUID:643ce2f3e1db9b84aaaec0446e30fdb0
     m_TableEntryReference:
-      m_KeyId: 2606192752222208
+      m_KeyId: 2552383497723904
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -136,7 +108,7 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:baf31d4bcfd8017499a70ef24bd18d5c
     m_TableEntryReference:
-      m_KeyId: 558594381996032
+      m_KeyId: 504785303658496
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0

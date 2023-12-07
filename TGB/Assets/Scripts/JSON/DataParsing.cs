@@ -140,7 +140,7 @@ public struct Goods_Data
 [Serializable]
 public struct BuffData
 {
-    public int ButtItemIdx;
+    public int BuffItemIdx;
 
     public int CurrBuffCount;
     public float startTime;
@@ -206,11 +206,28 @@ public class DataParsing : MonoBehaviour
         /// </summary>
         public List<int> SceneDataIdxs = new List<int>();
         public int PlayerHealth;
+        /// <summary>
+        /// 플레이 타임
+        /// </summary>
         public float PlayTime;
         public Enemy_Count EnemyCount;
-        public List<BuffData> BuffDatas = new List<BuffData>();
+        /// <summary>
+        /// 적용중이던 버프데이터
+        /// </summary>
+        public List<BuffData> ActiveBuffDataList = new List<BuffData>();
+        public List<BuffData> PassiveBuffDataList = new List<BuffData>();
+        public List<BuffData> Old_PassiveBuffDataList = new List<BuffData>();
+        /// <summary>
+        /// 보유 재화
+        /// </summary>
         public Goods_Data Goods;
+        /// <summary>
+        /// 보유 아이템 리스트
+        /// </summary>
         public List<int> Items = new List<int>();
+        /// <summary>
+        /// 보유 무기 리스트
+        /// </summary>
         public List<int> Weapons = new List<int>() { 0 };
         public JSON_SceneData()
         {
@@ -219,7 +236,9 @@ public class DataParsing : MonoBehaviour
             PlayerHealth = -1;
             PlayTime = 0;
             EnemyCount = new Enemy_Count();
-            BuffDatas = new List<BuffData>();
+            ActiveBuffDataList = new List<BuffData>();
+            PassiveBuffDataList = new List<BuffData>();
+            Old_PassiveBuffDataList = new List<BuffData>();
             Goods = new Goods_Data();
             Items = new List<int>();
             Weapons = new List<int>() { 0 };

@@ -27,8 +27,8 @@ public enum UI_State
 #region Item
 public enum EVENT_BUFF_TYPE
 {
-    E_Buff = 0,
-    E_DeBuff = 1,
+    Active = 0,
+    Passive = 1,
 }
 
 public enum EVENT_BUFF_STATS

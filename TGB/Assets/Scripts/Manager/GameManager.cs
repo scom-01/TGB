@@ -431,9 +431,9 @@ public class GameManager : MonoBehaviour
         {             
             DataManager.Inst?.SetLockItemList();
             DataManager.Inst?.LoadPlayTime();
+            DataManager.Inst?.LoadBuffs(StageManager.player.GetComponent<BuffSystem>());
             DataManager.Inst?.PlayerInventoryDataLoad(StageManager.player.Inventory);
             DataManager.Inst?.PlayerCurrHealthLoad(StageManager.player.Core.CoreUnitStats);
-            DataManager.Inst?.LoadBuffs(StageManager.player.GetComponent<BuffSystem>());
         }        
     }
     public void SaveData()
@@ -454,7 +454,7 @@ public class GameManager : MonoBehaviour
         DataManager.Inst.PlayerInventoryDataSave(
             GameManager.Inst.StageManager.player.Inventory.Weapon,
             GameManager.Inst.StageManager.player.Inventory.Items);
-        DataManager.Inst?.SaveBuffs(GameManager.Inst.StageManager.player.GetComponent<BuffSystem>().buffs);
+        DataManager.Inst?.SaveBuffs(GameManager.Inst.StageManager.player.GetComponent<BuffSystem>());
         DataManager.Inst?.PlayerCurrHealthSave(
             (int)GameManager.Inst.StageManager.player.Core.CoreUnitStats.CurrentHealth);
 

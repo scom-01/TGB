@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7774ae76107dc54e8991bca2af96082, type: 3}
-  m_Name: BuffData_MagicDef_Down_30_4_1
+  m_Name: 22_BuffData_CriticalPer_Up_30_5_1
   m_EditorClassIdentifier: 
   ItemIdx: 1
   itemData:
@@ -32,7 +32,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    ItemSprite: {fileID: 21300000, guid: 933ab9a1a5a4a6b488b054a4b9400622, type: 3}
+    ItemSprite: {fileID: 21300000, guid: 7f6553a5d48b201429c50dee089b20f0, type: 3}
     ItemLevel: 1
   StatsData:
     MaxHealth: 0
@@ -44,10 +44,10 @@ MonoBehaviour:
     JumpVEL_Per: 0
     AttackSpeedPer: 0
     PhysicsDefensivePer: 0
-    MagicDefensivePer: -30
+    MagicDefensivePer: 0
     PhysicsAggressivePer: 0
     MagicAggressivePer: 0
-    CriticalPer: 0
+    CriticalPer: 30
     CriticalDmgPer: 0
     DamageAttiribute: 0
     Elemental: 0
@@ -61,9 +61,9 @@ MonoBehaviour:
       Volume: 0
     <isEquipment>k__BackingField: 0
   BuffData:
-    DurationTime: 4
-    BuffType: 1
-    isOverlap: 1
+    DurationTime: 5
+    BuffType: 0
+    isOverlap: 0
     BuffCountMax: 1
     isBuffInit: 1
   references:

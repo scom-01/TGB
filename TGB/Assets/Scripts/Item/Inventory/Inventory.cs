@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TGB.Item;
 using TGB.Weapons;
 using Unity.VisualScripting;
@@ -10,8 +11,6 @@ public class ItemSet
 {
     public StatsItemSO item;
     public List<ItemEventSet> itemEffectSets = new List<ItemEventSet>();
-    public List<bool> init = new List<bool>();
-    public List<float> startTime = new List<float>();
     /// <summary>
     /// OnAction이면 OnAction의 Count를 OnHit면 OnHit의 Count를 계산
     /// </summary>
@@ -116,13 +115,13 @@ public class Inventory : MonoBehaviour
 
     #region 아이템 Event함수
 
-    public bool ExeItemEvent(ITEM_TPYE type, Unit unit, Unit enemy = null)
+    public bool ExeItemEvent(ITEM_TPYE type, Unit _unit, Unit enemy = null)
     {
         for (int i = 0; i < Items.Count; i++)
         {
             for (int j = 0; j < Items[i].itemEffectSets.Count; j++)
             {
-                Items[i].itemEffectSets[j] = Items[i].item.ExeEvent(type, unit, enemy, Items[i].item.ItemEvents[j], Items[i].itemEffectSets[j]);
+                Items[i].itemEffectSets[j] = Items[i].item.ExeEvent(type, _unit, enemy, Items[i].item.ItemEvents[j], Items[i].itemEffectSets[j]);
             }
         }
         return true;
@@ -137,7 +136,7 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < itemSet.itemEffectSets.Count; i++)
         {
-            itemSet.itemEffectSets[i] = itemSet.item.ExeEvent(ITEM_TPYE.OnInit, unit, unit.TargetUnit, itemSet.item.ItemEvents[i], itemSet.itemEffectSets[i]);
+            itemSet.itemEffectSets[i] = itemSet.item.ExeEvent(ITEM_TPYE.OnInit, Unit, Unit.TargetUnit, itemSet.item.ItemEvents[i], itemSet.itemEffectSets[i]);
         }
         return true;
     }
@@ -145,90 +144,90 @@ public class Inventory : MonoBehaviour
     /// <summary>
     /// 적중 시 효과
     /// </summary>
-    /// <param name="unit">공격 주체</param>
+    /// <param name="_unit">공격 주체</param>
     /// <param name="Enemy">적중 당한 적</param>
     /// <returns></returns>
-    public bool ItemOnHitExecute(Unit unit, Unit enemy = null)
+    public bool ItemOnHitExecute(Unit _unit, Unit enemy = null)
     {
-        ExeItemEvent(ITEM_TPYE.OnHit, unit, enemy);
+        ExeItemEvent(ITEM_TPYE.OnHit, _unit, enemy);
         return true;
     }
 
     /// <summary>
     /// 액션 시 효과
     /// </summary>
-    /// <param name="unit"></param>
+    /// <param name="_unit"></param>
     /// <returns></returns>
-    public bool ItemActionExecute(Unit unit)
+    public bool ItemActionExecute(Unit _unit)
     {
-        ExeItemEvent(ITEM_TPYE.OnAction, unit, unit.TargetUnit);
+        ExeItemEvent(ITEM_TPYE.OnAction, _unit, _unit.TargetUnit);
         return true;
     }
 
     /// <summary>
     /// 업데이트 시 호출
     /// </summary>
-    /// <param name="unit"></param>
+    /// <param name="_unit"></param>
     /// <returns></returns>
-    public bool ItemExeUpdate(Unit unit)
+    public bool ItemExeUpdate(Unit _unit)
     {
-        ExeItemEvent(ITEM_TPYE.OnUpdate, unit, unit.TargetUnit);
+        ExeItemEvent(ITEM_TPYE.OnUpdate, _unit, _unit.TargetUnit);
         return true;
     }
 
     /// <summary>
     /// 대쉬 시 호출
     /// </summary>
-    /// <param name="unit"></param>
+    /// <param name="_unit"></param>
     /// <param name="CanDash"></param>
-    public void ItemExeDash(Unit unit, bool CanDash)
+    public void ItemExeDash(Unit _unit, bool CanDash)
     {
         if (!CanDash)
             return;
-        ExeItemEvent(ITEM_TPYE.OnDash, unit, unit.TargetUnit);
+        ExeItemEvent(ITEM_TPYE.OnDash, _unit, _unit.TargetUnit);
     }
 
     /// <summary>
     /// 씬 변경 시 호출
     /// </summary>
-    /// <param name="unit"></param>
-    public void ItemExeOnMoveMap(Unit unit)
+    /// <param name="_unit"></param>
+    public void ItemExeOnMoveMap(Unit _unit)
     {
-        ExeItemEvent(ITEM_TPYE.OnMoveMap, unit, unit.TargetUnit);
+        ExeItemEvent(ITEM_TPYE.OnMoveMap, _unit, _unit.TargetUnit);
     }
 
-    public void ItemExeOnDamage(Unit unit, Unit enemy = null)
+    public void ItemExeOnDamage(Unit _unit, Unit enemy = null)
     {
-        ExeItemEvent(ITEM_TPYE.OnDamaged, unit, enemy);
+        ExeItemEvent(ITEM_TPYE.OnDamaged, _unit, enemy);
     }
 
-    public void ItemExeOnCritical(Unit unit, Unit enemy = null)
+    public void ItemExeOnCritical(Unit _unit, Unit enemy = null)
     {
-        ExeItemEvent(ITEM_TPYE.OnCritical, unit, enemy);
+        ExeItemEvent(ITEM_TPYE.OnCritical, _unit, enemy);
     }
 
-    public void ItemExeOnJump(Unit unit, Unit enemy = null)
+    public void ItemExeOnJump(Unit _unit, Unit enemy = null)
     {
-        ExeItemEvent(ITEM_TPYE.OnJump, unit, enemy);
+        ExeItemEvent(ITEM_TPYE.OnJump, _unit, enemy);
     }
 
-    public void ItemExeOnLand(Unit unit, Unit enemy = null)
+    public void ItemExeOnLand(Unit _unit, Unit enemy = null)
     {
-        ExeItemEvent(ITEM_TPYE.OnLand, unit, enemy);
+        ExeItemEvent(ITEM_TPYE.OnLand, _unit, enemy);
     }
 
-    public void ItemExeOnHealing(Unit unit, Unit enemy = null)
+    public void ItemExeOnHealing(Unit _unit, Unit enemy = null)
     {
-        ExeItemEvent(ITEM_TPYE.OnHealing, unit, enemy);
+        ExeItemEvent(ITEM_TPYE.OnHealing, _unit, enemy);
     }
 
-    public void ItemExeOnDodge(Unit unit, Unit enemy = null)
+    public void ItemExeOnDodge(Unit _unit, Unit enemy = null)
     {
-        ExeItemEvent(ITEM_TPYE.OnDodge, unit, enemy);
+        ExeItemEvent(ITEM_TPYE.OnDodge, _unit, enemy);
     }
-    public void ItemExeOnKilled(Unit unit, Unit enemy = null)
+    public void ItemExeOnKilled(Unit _unit, Unit enemy = null)
     {
-        ExeItemEvent(ITEM_TPYE.OnKilled, unit, enemy);
+        ExeItemEvent(ITEM_TPYE.OnKilled, _unit, enemy);
     }
 
     #endregion
@@ -259,16 +258,9 @@ public class Inventory : MonoBehaviour
             itemObject = (StatsItemSO)Object;
         }
 
-        if (Items.Count >= 8)
+        //최대 보유 개수 체크
+        if (!CheckItemCount(Object))
         {
-            CheckItem = Object.GameObject();
-            Debug.LogWarning("Inventory is full");
-
-            if (Unit.GetType() == typeof(Player))
-                GameManager.Inst.SubUI.InventorySubUI.SetInventoryState(InventoryUI_State.Change);
-            if (Unit.GetType() == typeof(Player))
-                GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.UI, true);
-            //아이템 교체하는 코드
             return false;
         }
 
@@ -278,7 +270,6 @@ public class Inventory : MonoBehaviour
             return true;
         }
 
-        //인벤토리 초과
         for (int i = 0; i < Items.Count; i++)
         {
             if (Items[i].item == itemObject)
@@ -290,14 +281,14 @@ public class Inventory : MonoBehaviour
 
         //VFX
         if (itemObject.InitEffectData.AcquiredEffectPrefab != null)
-            unit.Core.CoreEffectManager.StartEffects(itemObject.InitEffectData.AcquiredEffectPrefab, (Object.GameObject()?.transform == null) ? this.transform.position : Object.GameObject().transform.position, Quaternion.identity, Vector3.one);
+            Unit.Core.CoreEffectManager.StartEffects(itemObject.InitEffectData.AcquiredEffectPrefab, (Object.GameObject()?.transform == null) ? this.transform.position : Object.GameObject().transform.position, Quaternion.identity, Vector3.one);
 
         //InfinityVFX
         if (itemObject.InfinityEffectObjects.Count > 0)
         {
             for (int i = 0; i < itemObject.InfinityEffectObjects.Count; i++)
             {
-                var offset = new Vector3(itemObject.InfinityEffectObjects[i].EffectOffset.x * unit.Core.CoreMovement.FancingDirection, itemObject.InfinityEffectObjects[i].EffectOffset.y);
+                var offset = new Vector3(itemObject.InfinityEffectObjects[i].EffectOffset.x * Unit.Core.CoreMovement.FancingDirection, itemObject.InfinityEffectObjects[i].EffectOffset.y);
                 var size = itemObject.InfinityEffectObjects[i].EffectScale;
 
                 if (itemObject.InfinityEffectObjects[i].Object == null)
@@ -305,13 +296,13 @@ public class Inventory : MonoBehaviour
 
                 InfinityEffectObjects.Add(
                     itemObject.InfinityEffectObjects[i].isRandomPosRot ?
-                    unit.Core.CoreEffectManager.StartEffectsWithRandomPosRot(
+                    Unit.Core.CoreEffectManager.StartEffectsWithRandomPosRot(
                         itemObject.InfinityEffectObjects[i].Object, itemObject.InfinityEffectObjects[i].isRandomRange, size, true)
                     :
-                    unit.Core.CoreEffectManager.StartEffectsPos(
+                    Unit.Core.CoreEffectManager.StartEffectsPos(
                         itemObject.InfinityEffectObjects[i].Object,
                         itemObject.InfinityEffectObjects[i].isGround ?
-                        unit.Core.CoreCollisionSenses.GroundCenterPos + offset :
+                        Unit.Core.CoreCollisionSenses.GroundCenterPos + offset :
                         this.transform.position + offset, size, true)
                     );
             }
@@ -319,7 +310,7 @@ public class Inventory : MonoBehaviour
 
         //SFX
         if (itemObject.InitEffectData.AcquiredSFX.Clip != null)
-            unit.Core.CoreSoundEffect.AudioSpawn(itemObject.InitEffectData.AcquiredSFX);
+            Unit.Core.CoreSoundEffect.AudioSpawn(itemObject.InitEffectData.AcquiredSFX);
 
         //미해금 아이템이라면 미해금 아이템 리스트에 추가
         if (DataManager.Inst.JSON_DataParsing.LockItemList.Contains(itemObject.ItemIdx))
@@ -335,13 +326,43 @@ public class Inventory : MonoBehaviour
         ItemSet item = ContainsItem(Old_Items, itemObject);
         if (item == null)
         {
+            //Old_Items 리스트에 존재하지 않는다면 new ItemSet()적용
             item = new ItemSet(itemObject);
         }
 
         Items.Add(item);
         ItemOnInit(item);
 
-        unit.Core.CoreUnitStats.AddStat(itemObject.StatsData);
+        //아이템 스탯 적용
+        Unit.Core.CoreUnitStats.AddStat(itemObject.StatsData);
+
+        //아이템의 이벤트가 있을 때
+        for (int j = 0; j < itemObject.ItemEvents.Count; j++)
+        {
+            //아이템 이벤트가 버프이벤트 일 때
+            if (itemObject.ItemEvents[j].GetType() != typeof(ItemBuffEventSO))
+                continue;
+
+            var buffItems = (itemObject.ItemEvents[j] as ItemBuffEventSO).buffItems;
+
+            //아이템 버프이벤트의 버프 수만큼
+            for (int k = 0; k < buffItems.Count; k++)
+            {
+                if (buffItems[k].BuffData.BuffType == EVENT_BUFF_TYPE.Active)
+                {
+                    continue;
+                }
+
+                //버프시스템에서 과거 BuffItemSO가 같은 버프를 찾음
+                var tempBuff = Unit.GetComponent<BuffSystem>()?.FindOldBuff(buffItems[k]);
+                if (tempBuff == null)
+                    continue;
+
+                //버프 추가
+                Unit.GetComponent<BuffSystem>()?.AddBuff(tempBuff);
+                Unit.GetComponent<BuffSystem>()?.AddBuffStats(tempBuff, tempBuff.CurrBuffCount);
+            }
+        }
 
         Debug.Log($"Change UnitStats {Unit.Core.CoreUnitStats.CalculStatsData}");
         return true;
@@ -364,12 +385,36 @@ public class Inventory : MonoBehaviour
             if (Items[i].item == itemData)
             {
                 Debug.Log($"Remove Item {itemData.name}");
-                unit.Core.CoreUnitStats.AddStat(itemData.StatsData * -1f);
+                //아이템의 보유 스탯 제거
+                Unit.Core.CoreUnitStats.RemoveStat(itemData.StatsData);
 
-                //한 번 획득 한 아이템의 정보를 저장 후 재 획득 시 정보를 덮어씌움
+                //아이템의 이벤트가 있을 때
+                for (int j = 0; j < itemData.ItemEvents.Count; j++)
+                {
+                    //아이템 이벤트가 버프이벤트 일 때
+                    if (itemData.ItemEvents[j].GetType() != typeof(ItemBuffEventSO))
+                        continue;
+
+                    var buffItems = (itemData.ItemEvents[j] as ItemBuffEventSO).buffItems;
+
+                    //아이템 버프이벤트의 버프 수만큼
+                    for (int k = 0; k < buffItems.Count; k++)
+                    {
+                        //버프시스템에서 BuffItemSO가 같은 버프를 찾음
+                        var tempBuff = Unit.GetComponent<BuffSystem>()?.FindCurrentBuff(buffItems[k]);
+                        if (tempBuff == null)
+                            continue;
+
+                        //버프 제거
+                        Unit.GetComponent<BuffSystem>()?.RemoveBuff(tempBuff);
+                    }
+                }
+
+                //한 번 획득 한 아이템의 정보를 저장 후 재획득 시 정보를 덮어씌움
                 if (!Old_Items.Contains(Items[i]))
                     Old_Items.Add(Items[i]);
 
+                //인벤토리 아이템리스트에서 아이템 제거
                 Items.RemoveAt(i);
 
                 //Destroy InfinityVFX
@@ -377,23 +422,40 @@ public class Inventory : MonoBehaviour
                 {
                     for (int j = 0; j < InfinityEffectObjects.Count; j++)
                     {
-                        if (unit.Core.CoreEffectManager.ObjectPoolList.Contains(InfinityEffectObjects[j].GetComponent<EffectController>().parent))
+                        if (Unit.Core.CoreEffectManager.ObjectPoolList.Contains(InfinityEffectObjects[j].GetComponent<EffectController>().parent))
                         {
                             var obj = InfinityEffectObjects[j];
                             InfinityEffectObjects.RemoveAt(j);
-                            unit.Core.CoreEffectManager.ObjectPoolList.Remove(obj.GetComponent<EffectController>().parent);
+                            Unit.Core.CoreEffectManager.ObjectPoolList.Remove(obj.GetComponent<EffectController>().parent);
                             Destroy(obj.GetComponent<EffectController>().parent.gameObject);
                         }
                     }
                 }
 
-                if (unit.GetType() == typeof(Player))
+                if (Unit.GetType() == typeof(Player))
                     GameManager.Inst.SubUI.InventorySubUI.InventoryItems.RemoveItem(itemData);
 
                 //spawnItem
                 GameManager.Inst.StageManager.SPM.SpawnItem(GameManager.Inst.StageManager.IM.InventoryItem, Unit.Core.CoreCollisionSenses.UnitCenterPos, GameManager.Inst.StageManager.IM.transform, itemData);
                 break;
             }
+        }
+        return true;
+    }
+    private bool CheckItemCount(UnityEngine.Object Object)
+    {
+        //인벤토리 초과
+        if (Items.Count >= 8)
+        {
+            CheckItem = Object.GameObject();
+            Debug.LogWarning("Inventory is full");
+
+            if (Unit.GetType() == typeof(Player))
+                GameManager.Inst.SubUI.InventorySubUI.SetInventoryState(InventoryUI_State.Change);
+            if (Unit.GetType() == typeof(Player))
+                GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.UI, true);
+            //아이템 교체하는 코드
+            return false;
         }
         return true;
     }
@@ -437,10 +499,10 @@ public class Inventory : MonoBehaviour
                 if (itemObject.CompositeItems[i].MaterialItem != Items[j].item)
                     continue;
                 //재료 아이템 제거(인벤토리)
-                if (unit.GetType() == typeof(Player))
+                if (Unit.GetType() == typeof(Player))
                     GameManager.Inst.SubUI.InventorySubUI.InventoryItems.RemoveItem(Items[j].item);
 
-                //한 번 획득 한 아이템의 정보를 저장 후 재 획득 시 정보를 덮어씌움
+                //한 번 획득 한 아이템의 정보를 저장 후 재획득 시 정보를 덮어씌움
                 if (!Old_Items.Contains(Items[i]))
                     Old_Items.Add(Items[i]);
 
@@ -448,11 +510,11 @@ public class Inventory : MonoBehaviour
 
                 //합성 VFX
                 if (itemObject.CompositeItems[i].EditVFX != null)
-                    unit.Core.CoreEffectManager.StartEffects(itemObject.CompositeItems[i].EditVFX, (Object.GameObject()?.transform == null) ? this.transform.position : Object.GameObject().transform.position, Quaternion.identity, Vector3.one);
+                    Unit.Core.CoreEffectManager.StartEffects(itemObject.CompositeItems[i].EditVFX, (Object.GameObject()?.transform == null) ? this.transform.position : Object.GameObject().transform.position, Quaternion.identity, Vector3.one);
 
                 //합성 SFX
                 if (itemObject.CompositeItems[i].EditSFX.Clip != null)
-                    unit.Core.CoreSoundEffect.AudioSpawn(itemObject.CompositeItems[i].EditSFX);
+                    Unit.Core.CoreSoundEffect.AudioSpawn(itemObject.CompositeItems[i].EditSFX);
 
                 itemObject = itemObject.CompositeItems[i].ResultItem;
                 if (Object.GameObject() != null)

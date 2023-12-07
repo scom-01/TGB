@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,11 +27,18 @@ public class BuffPanelItem : MonoBehaviour
             return;
         if (GameManager.Inst == null)
             return;
-                
-        if(buff.CurrBuffCount > 0)
+
+        if (buff.CurrBuffCount > 0)
         {
             CountText.text = buff.CurrBuffCount == 1 ? "" : buff.CurrBuffCount.ToString();
-            BuffCurrentTime = ((GameManager.Inst.PlayTime - buff.startTime) / buff.buffItemSO.BuffData.DurationTime);
+            if (buff.buffItemSO.BuffData.BuffType == EVENT_BUFF_TYPE.Passive)
+            {
+                BuffCurrentTime = 0f;
+            }
+            else
+            {
+                BuffCurrentTime = ((GameManager.Inst.PlayTime - buff.startTime) / buff.buffItemSO.BuffData.DurationTime);
+            }
             FilledImg.fillAmount = BuffCurrentTime;
         }
         else

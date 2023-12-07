@@ -178,8 +178,8 @@ namespace TGB.CoreSystem
             if (amount > 0)
             {
                 core.Unit.Inventory?.ItemExeOnHealing(core.Unit, core.Unit.TargetUnit);
+                core.CoreDamageReceiver.HUD_DmgTxt(1.0f, CurrentHealth - oldHealth, 30, DAMAGE_ATT.Heal, false);
             }
-            core.CoreDamageReceiver.HUD_DmgTxt(1.0f, CurrentHealth - oldHealth, 30, DAMAGE_ATT.Heal, false);
 
             //증가한 체력량
             return CurrentHealth - oldHealth;
@@ -256,6 +256,9 @@ namespace TGB.CoreSystem
 
         public float CalculateElementDamage(Unit attacker, E_Power e_Power, float amount)
         {
+            if (attacker == null)
+                return amount;
+
             Debug.Log($"Before Calculator ElementalPower = {amount}");
 
             //Normal이 아닌 속성을 보유하고있을 때
@@ -356,6 +359,9 @@ namespace TGB.CoreSystem
         /// <returns></returns>
         public float CalculateDamageAtt(Unit attacker, DAMAGE_ATT Damage_att, float amount)
         {
+            if (attacker == null)
+                return amount; 
+
             Debug.Log($"Before Calculator DamageAttribute = {amount}");
             switch (Damage_att)
             {
@@ -406,9 +412,24 @@ namespace TGB.CoreSystem
             CurrentHealth = _currentHealth;
             isSetup = true;
         }
+        /// <summary>
+        /// 버프 스탯 적용
+        /// </summary>
+        /// <param name="statsData"></param>
         public void AddStat(StatsData statsData)
         {
             m_statsData += statsData;
+            OnChangeHealth?.Invoke();
+            OnChangeStats?.Invoke();
+        }
+
+        /// <summary>
+        /// 버프 스탯 제거
+        /// </summary>
+        /// <param name="statsData"></param>
+        public void RemoveStat(StatsData statsData)
+        {
+            m_statsData += statsData * -1f;
             OnChangeHealth?.Invoke();
             OnChangeStats?.Invoke();
         }

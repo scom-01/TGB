@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "newItemData", menuName = "Data/Item Data/Buff Data")]
@@ -21,9 +19,9 @@ public class BuffItemSO : ItemDataSO
 [Serializable]
 public struct BuffItem_Data
 {
-    [Tooltip("버프 지속시간")]
+    [Tooltip("버프 지속시간, 999f = Infinity")]
     public float DurationTime;
-    [Tooltip("버프 타입")]
+    [Tooltip("버프 타입, Active = 지속 시간 유한, Passive = 지속 시간 무한")]
     public EVENT_BUFF_TYPE BuffType;
     [Tooltip("중복여부")]
     public bool isOverlap;

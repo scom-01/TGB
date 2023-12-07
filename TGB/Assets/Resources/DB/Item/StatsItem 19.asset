@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 836f02ead74e6a24db24927dd939c743, type: 3}
-  m_Name: StatsItem 3
+  m_Name: StatsItem 19
   m_EditorClassIdentifier: 
-  ItemIdx: 2
+  ItemIdx: 18
   itemData:
     <ItemNameLocal>k__BackingField:
       m_TableReference:
         m_TableCollectionName: GUID:0e85b71e0680fc942b5295e72ff4ba37
       m_TableEntryReference:
-        m_KeyId: 24967173599813632
+        m_KeyId: 58615636359012352
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -27,13 +27,13 @@ MonoBehaviour:
       m_TableReference:
         m_TableCollectionName: GUID:0e85b71e0680fc942b5295e72ff4ba37
       m_TableEntryReference:
-        m_KeyId: 24967419939676160
+        m_KeyId: 58615640679145472
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    ItemSprite: {fileID: 21300000, guid: 186c4e33f07efd244b1dd8807116f392, type: 3}
-    ItemLevel: 1
+    ItemSprite: {fileID: 21300000, guid: 62dfe2028d644804c9fb0937b8ea1cae, type: 3}
+    ItemLevel: 3
   CompositeItems: []
   isFieldSpawn: 1
   StatsData:
@@ -42,21 +42,21 @@ MonoBehaviour:
     DefaultMoveSpeed: 0
     DefaultJumpVelocity: 0
     DefaultAttSpeed: 0
-    MovementVEL_Per: 0
-    JumpVEL_Per: 0
+    MovementVEL_Per: 10
+    JumpVEL_Per: 10
     AttackSpeedPer: 0
     PhysicsDefensivePer: 0
     MagicDefensivePer: 0
-    PhysicsAggressivePer: 40
-    MagicAggressivePer: 0
+    PhysicsAggressivePer: 0
+    MagicAggressivePer: 10
     CriticalPer: 0
-    AdditionalCriticalPer: 0
-    DamageAttiribute: 0
-    Elemental: 0
+    CriticalDmgPer: 0
+    DamageAttiribute: 1
+    Elemental: 3
     ElementalDefensivePer: 0
     ElementalAggressivePer: 0
   StatsItems:
-  - type: 0
+  - type: 10
     StatsLocalizeString:
       m_TableReference:
         m_TableCollectionName: 
@@ -67,7 +67,35 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
     variable: 0
-    value: 40
+    value: 10
+    ShowPercent: 1
+    HideMark: 0
+  - type: 11
+    StatsLocalizeString:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    variable: 0
+    value: 10
+    ShowPercent: 1
+    HideMark: 0
+  - type: 1
+    StatsLocalizeString:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    variable: 0
+    value: 10
     ShowPercent: 1
     HideMark: 0
   Health: 0
@@ -78,31 +106,24 @@ MonoBehaviour:
       Clip: {fileID: 0}
       Volume: 0
     <isEquipment>k__BackingField: 1
-  InfinityEffectObjects:
-  - isGround: 1
-    isHeader: 0
-    isTransformGlobal: 0
-    isRandomPosRot: 0
-    isRandomRange: 0
-    EffectOffset: {x: 0, y: 0}
-    EffectScale: {x: 0, y: 0, z: 0}
-    isFollowing: 1
-    Object: {fileID: 5290317658131821638, guid: 1a634444d49bbbb43832abc5e8e2eece, type: 3}
-  ItemEvents: []
+  InfinityEffectObjects: []
+  ItemEvents:
+  - {fileID: 11400000, guid: a683cb65fcd5bb34eb01d26e777161fe, type: 2}
+  - {fileID: 11400000, guid: 257b2b3173583a349843fdeb7cacafe5, type: 2}
   <EventNameLocal>k__BackingField:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:643ce2f3e1db9b84aaaec0446e30fdb0
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 2930832955564032
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
   <EventDescriptionLocal>k__BackingField:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:baf31d4bcfd8017499a70ef24bd18d5c
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 883159998029824
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
