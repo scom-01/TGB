@@ -44,9 +44,10 @@ MonoBehaviour:
               height: 1.69
             RepeatAction: 0
             AdditionalDamage: 0
+            isFixed: 0
             KnockbackAngle: {x: 0, y: 0}
             EffectPrefab: []
-            audioClip: []
+            audioClips: []
             camDatas: []
           - Debug: 1
             ActionRect:
@@ -57,9 +58,10 @@ MonoBehaviour:
               height: 1.69
             RepeatAction: 0
             AdditionalDamage: 0
+            isFixed: 0
             KnockbackAngle: {x: 0, y: 0}
             EffectPrefab: []
-            audioClip: []
+            audioClips: []
             camDatas: []
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
@@ -105,7 +107,11 @@ MonoBehaviour:
         name: SoundClipData
         actionData:
         - name: Action 1
-          audioClips: []
+          audioDataList:
+          - Clip: {fileID: 8300000, guid: 6dfdde66f5d9f9548ac309d88341d887, type: 3}
+            Volume: 0.4
+          - Clip: {fileID: 8300000, guid: d773d355b4317e34ea9eb1a4573655f9, type: 3}
+            Volume: 0.4
     - rid: 2527592717927579805
       type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -118,38 +124,52 @@ MonoBehaviour:
               Rot: {x: 1, y: 0, z: 0}
               Speed: 10
               DurationTime: 3
+              AdditionalDmg: 0
+              isFixed: 0
+              KnockbackAngle: {x: 0, y: 0}
+              isOnHit: 0
               Radius: 0.5
               Offset: {x: 0, y: 0}
               GravityScale: 0
               isSingleShoot: 1
-              KnockbackAngle: {x: 0, y: 0}
               isCollisionGround: 0
-              isOnHit: 0
+              isCollisionPlatform: 0
+              isBound: 0
+              UnitCC2DMaterial: {fileID: 0}
+              EffectScale: {x: 0, y: 0, z: 0}
+              ImpactScale: {x: 0, y: 0, z: 0}
               isShakeCam: 0
-              isHoming: 1
               camDatas:
                 Duration: 0
                 Range: 0
                 RepeatRate: 0
+              homingType: 0
             Projectile: {fileID: 2222910967692216358, guid: bcd213c059f473648b43d9bc112eae8f, type: 3}
           - ProjectileData:
               Pos: {x: 1, y: 1, z: 0}
               Rot: {x: 1, y: 0, z: 0}
               Speed: 10
               DurationTime: 3
+              AdditionalDmg: 0
+              isFixed: 0
+              KnockbackAngle: {x: 0, y: 0}
+              isOnHit: 0
               Radius: 0.5
               Offset: {x: 0, y: 0}
               GravityScale: 0
               isSingleShoot: 1
-              KnockbackAngle: {x: 0, y: 0}
               isCollisionGround: 0
-              isOnHit: 0
+              isCollisionPlatform: 0
+              isBound: 0
+              UnitCC2DMaterial: {fileID: 0}
+              EffectScale: {x: 0, y: 0, z: 0}
+              ImpactScale: {x: 0, y: 0, z: 0}
               isShakeCam: 0
-              isHoming: 1
               camDatas:
                 Duration: 0
                 Range: 0
                 RepeatRate: 0
+              homingType: 0
             Projectile: {fileID: 2222910967692216358, guid: bcd213c059f473648b43d9bc112eae8f, type: 3}
     - rid: 2527592717927579806
       type: {class: WeaponSpriteData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}

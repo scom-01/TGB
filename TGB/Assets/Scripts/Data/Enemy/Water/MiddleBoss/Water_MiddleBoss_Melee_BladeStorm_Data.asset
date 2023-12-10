@@ -53,6 +53,7 @@ MonoBehaviour:
         - name: Action 1
           <EffectParticles>k__BackingField:
           - isGround: 0
+            isHeader: 0
             isTransformGlobal: 1
             isRandomPosRot: 0
             isRandomRange: 0
@@ -61,6 +62,7 @@ MonoBehaviour:
             isFollowing: 0
             Object: {fileID: 7120800202091106739, guid: 3900f1a49dee0d1418847b0bd2697858, type: 3}
           - isGround: 1
+            isHeader: 0
             isTransformGlobal: 0
             isRandomPosRot: 0
             isRandomRange: 0
@@ -98,7 +100,9 @@ MonoBehaviour:
         name: SoundClipData
         actionData:
         - name: Action 1
-          audioClips: []
+          audioDataList:
+          - Clip: {fileID: 8300000, guid: fcf00a5a117e6ce4998b5f26923eee00, type: 3}
+            Volume: 0.5
     - rid: 2527592717927579778
       type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:

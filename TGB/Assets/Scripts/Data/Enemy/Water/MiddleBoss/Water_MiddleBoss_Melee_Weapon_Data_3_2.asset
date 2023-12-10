@@ -35,7 +35,7 @@ MonoBehaviour:
         actionData:
         - name: Action 1
           ActionHit:
-          - Debug: 0
+          - Debug: 1
             ActionRect:
               serializedVersion: 2
               x: -1.4
@@ -47,7 +47,7 @@ MonoBehaviour:
             isFixed: 0
             KnockbackAngle: {x: 0, y: 0}
             EffectPrefab: []
-            audioClip: []
+            audioClips: []
             camDatas: []
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
@@ -67,10 +67,12 @@ MonoBehaviour:
         - name: Action 1
           <EffectParticles>k__BackingField:
           - isGround: 0
+            isHeader: 0
+            isTransformGlobal: 0
             isRandomPosRot: 0
             isRandomRange: 0
             EffectOffset: {x: 0, y: 0}
-            EffectScale: 0
+            EffectScale: {x: 0, y: 0, z: 0}
             isFollowing: 1
             Object: {fileID: 410757784950249136, guid: a1b71b8a85af36c4bb4b5dae72682653, type: 3}
     - rid: 2527592717927579819
@@ -90,7 +92,7 @@ MonoBehaviour:
           - CanFlip: 0
             CanMoveCtrl: 0
             Direction: {x: 1, y: 0}
-            Velocity: 0.25
+            Velocity: 30
     - rid: 2527592717927579821
       type: {class: ShakeCamData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -104,7 +106,11 @@ MonoBehaviour:
         name: SoundClipData
         actionData:
         - name: Action 1
-          audioClips: []
+          audioDataList:
+          - Clip: {fileID: 8300000, guid: d5a2457a6ba7bc446897cca3a9f80769, type: 3}
+            Volume: 0.5
+          - Clip: {fileID: 8300000, guid: 088ef780a852393419f0e364fd92eb31, type: 3}
+            Volume: 0.45
     - rid: 2527592717927579823
       type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:

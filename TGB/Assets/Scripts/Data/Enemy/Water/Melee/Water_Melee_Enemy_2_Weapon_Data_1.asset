@@ -188,12 +188,14 @@ MonoBehaviour:
         actionData:
         - name: Action 1
           audioDataList:
+          - Clip: {fileID: 8300000, guid: e3c800e48d5aae24dbd61d414b77f2ba, type: 3}
+            Volume: 0.4
           - Clip: {fileID: 8300000, guid: 4322976517a5c2f42a68209b86e38ca1, type: 3}
-            Volume: 1
+            Volume: 0.5
           - Clip: {fileID: 8300000, guid: 4322976517a5c2f42a68209b86e38ca1, type: 3}
-            Volume: 1
+            Volume: 0.5
           - Clip: {fileID: 8300000, guid: 4322976517a5c2f42a68209b86e38ca1, type: 3}
-            Volume: 1
+            Volume: 0.5
     - rid: 2527592717927579742
       type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:

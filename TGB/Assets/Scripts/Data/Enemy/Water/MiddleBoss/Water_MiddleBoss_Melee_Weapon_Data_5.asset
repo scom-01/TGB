@@ -134,16 +134,18 @@ MonoBehaviour:
         actionData:
         - name: Action 1
           audioDataList:
+          - Clip: {fileID: 8300000, guid: fcf00a5a117e6ce4998b5f26923eee00, type: 3}
+            Volume: 0.4
           - Clip: {fileID: 8300000, guid: b9b37e79db0269841959e5abcaec83fd, type: 3}
-            Volume: 1
+            Volume: 0.4
           - Clip: {fileID: 8300000, guid: b9b37e79db0269841959e5abcaec83fd, type: 3}
-            Volume: 1
+            Volume: 0.4
           - Clip: {fileID: 8300000, guid: b9b37e79db0269841959e5abcaec83fd, type: 3}
-            Volume: 1
+            Volume: 0.4
           - Clip: {fileID: 8300000, guid: b9b37e79db0269841959e5abcaec83fd, type: 3}
-            Volume: 1
+            Volume: 0.4
           - Clip: {fileID: 8300000, guid: b9b37e79db0269841959e5abcaec83fd, type: 3}
-            Volume: 1
+            Volume: 0.4
     - rid: 2527592717927579832
       type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -158,23 +160,24 @@ MonoBehaviour:
               DurationTime: 3
               AdditionalDmg: 0
               isFixed: 0
+              KnockbackAngle: {x: 0, y: 0}
+              isOnHit: 0
               Radius: 0.5
               Offset: {x: -0.5, y: 0}
               GravityScale: 0
               isSingleShoot: 0
-              KnockbackAngle: {x: 0, y: 0}
               isCollisionGround: 0
               isCollisionPlatform: 0
               isBound: 0
               UnitCC2DMaterial: {fileID: 0}
-              EffectScale: {x: 0, y: 0, z: 0}
-              isOnHit: 0
+              EffectScale: {x: 0.5, y: 0.5, z: 0.5}
+              ImpactScale: {x: 0.5, y: 0.5, z: 0.5}
               isShakeCam: 0
-              homingType: 2
               camDatas:
                 Duration: 0
                 Range: 0
                 RepeatRate: 0
+              homingType: 2
             Projectile: {fileID: 2222910967692216358, guid: bcd213c059f473648b43d9bc112eae8f, type: 3}
           - ProjectileData:
               Pos: {x: -5, y: 8, z: 0}
@@ -183,23 +186,24 @@ MonoBehaviour:
               DurationTime: 3
               AdditionalDmg: 0
               isFixed: 0
+              KnockbackAngle: {x: 0, y: 0}
+              isOnHit: 0
               Radius: 0.5
               Offset: {x: -0.5, y: 0}
               GravityScale: 0
               isSingleShoot: 0
-              KnockbackAngle: {x: 0, y: 0}
               isCollisionGround: 0
               isCollisionPlatform: 0
               isBound: 0
               UnitCC2DMaterial: {fileID: 0}
-              EffectScale: {x: 0, y: 0, z: 0}
-              isOnHit: 0
+              EffectScale: {x: 0.5, y: 0.5, z: 0.5}
+              ImpactScale: {x: 0.5, y: 0.5, z: 0.5}
               isShakeCam: 0
-              homingType: 2
               camDatas:
                 Duration: 0
                 Range: 0
                 RepeatRate: 0
+              homingType: 2
             Projectile: {fileID: 2222910967692216358, guid: bcd213c059f473648b43d9bc112eae8f, type: 3}
           - ProjectileData:
               Pos: {x: 0, y: 10, z: 0}
@@ -208,23 +212,24 @@ MonoBehaviour:
               DurationTime: 3
               AdditionalDmg: 0
               isFixed: 0
+              KnockbackAngle: {x: 0, y: 0}
+              isOnHit: 0
               Radius: 0.5
               Offset: {x: -0.5, y: 0}
               GravityScale: 0
               isSingleShoot: 0
-              KnockbackAngle: {x: 0, y: 0}
               isCollisionGround: 0
               isCollisionPlatform: 0
               isBound: 0
               UnitCC2DMaterial: {fileID: 0}
-              EffectScale: {x: 0, y: 0, z: 0}
-              isOnHit: 0
+              EffectScale: {x: 0.5, y: 0.5, z: 0.5}
+              ImpactScale: {x: 0.5, y: 0.5, z: 0.5}
               isShakeCam: 0
-              homingType: 2
               camDatas:
                 Duration: 0
                 Range: 0
                 RepeatRate: 0
+              homingType: 2
             Projectile: {fileID: 2222910967692216358, guid: bcd213c059f473648b43d9bc112eae8f, type: 3}
           - ProjectileData:
               Pos: {x: 5, y: 8, z: 0}
@@ -233,23 +238,24 @@ MonoBehaviour:
               DurationTime: 3
               AdditionalDmg: 0
               isFixed: 0
+              KnockbackAngle: {x: 0, y: 0}
+              isOnHit: 0
               Radius: 0.5
               Offset: {x: -0.5, y: 0}
               GravityScale: 0
               isSingleShoot: 0
-              KnockbackAngle: {x: 0, y: 0}
               isCollisionGround: 0
               isCollisionPlatform: 0
               isBound: 0
               UnitCC2DMaterial: {fileID: 0}
-              EffectScale: {x: 0, y: 0, z: 0}
-              isOnHit: 0
+              EffectScale: {x: 0.5, y: 0.5, z: 0.5}
+              ImpactScale: {x: 0.5, y: 0.5, z: 0.5}
               isShakeCam: 0
-              homingType: 2
               camDatas:
                 Duration: 0
                 Range: 0
                 RepeatRate: 0
+              homingType: 2
             Projectile: {fileID: 2222910967692216358, guid: bcd213c059f473648b43d9bc112eae8f, type: 3}
           - ProjectileData:
               Pos: {x: 10, y: 6, z: 0}
@@ -258,23 +264,24 @@ MonoBehaviour:
               DurationTime: 3
               AdditionalDmg: 0
               isFixed: 0
+              KnockbackAngle: {x: 0, y: 0}
+              isOnHit: 0
               Radius: 0.5
               Offset: {x: -0.5, y: 0}
               GravityScale: 0
               isSingleShoot: 0
-              KnockbackAngle: {x: 0, y: 0}
               isCollisionGround: 0
               isCollisionPlatform: 0
               isBound: 0
               UnitCC2DMaterial: {fileID: 0}
-              EffectScale: {x: 0, y: 0, z: 0}
-              isOnHit: 0
+              EffectScale: {x: 0.5, y: 0.5, z: 0.5}
+              ImpactScale: {x: 0.5, y: 0.5, z: 0.5}
               isShakeCam: 0
-              homingType: 2
               camDatas:
                 Duration: 0
                 Range: 0
                 RepeatRate: 0
+              homingType: 2
             Projectile: {fileID: 2222910967692216358, guid: bcd213c059f473648b43d9bc112eae8f, type: 3}
     - rid: 2527592717927579833
       type: {class: WeaponSpriteData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
