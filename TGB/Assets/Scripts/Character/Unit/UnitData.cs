@@ -30,7 +30,7 @@ public class UnitData : ScriptableObject
 
     [Header("Check Variables")]
     [Tooltip("지면 감지 거리")]
-    public float groundCheckRadius = 0.1f;
+    public float groundCheckDistance = 0.1f;
     [Tooltip("벽면 감지 거리")]
     public float wallCheckDistance = 0.5f;
     [Tooltip("유닛 감지 거리")]

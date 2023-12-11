@@ -85,7 +85,7 @@ namespace TGB.CoreSystem
             } 
         }
 
-        public float GroundCheckRadius { get => core.Unit.UnitData.groundCheckRadius; }
+        public float GroundCheckDistance { get => core.Unit.UnitData.groundCheckDistance; }
         public float WallCheckDistance { get => core.Unit.UnitData.wallCheckDistance; }
 
         public LayerMask WhatIsGround { get => core.Unit.UnitData.LayerMaskSO.WhatIsGround; }
@@ -109,7 +109,7 @@ namespace TGB.CoreSystem
         {
             get
             {
-                var count = Physics2D.Raycast(GroundCenterPos, Vector2.down, contactFilter_Platform, hitBuffer, GroundCheckRadius);
+                var count = Physics2D.Raycast(GroundCenterPos, Vector2.down, contactFilter_Platform, hitBuffer, GroundCheckDistance);
                 if (count > 0)
                 {
                     foreach (var hit in hitBuffer)
@@ -136,7 +136,7 @@ namespace TGB.CoreSystem
         {
             get
             {
-                var count = Physics2D.Raycast(GroundCenterPos, Vector2.down, contactFilter_Ground, hitBuffer, GroundCheckRadius);
+                var count = Physics2D.Raycast(GroundCenterPos, Vector2.down, contactFilter_Ground, hitBuffer, GroundCheckDistance);
                 if (count > 0)
                 {
                     foreach(var hit in hitBuffer)
@@ -209,7 +209,7 @@ namespace TGB.CoreSystem
             
             //checkGround,Platform
             Gizmos.color = Color.blue;
-            Gizmos.DrawLine(GroundCenterPos, GroundCenterPos + Vector3.down * (GroundCheckRadius));
+            Gizmos.DrawLine(GroundCenterPos, GroundCenterPos + Vector3.down * (GroundCheckDistance));
         }
     }
 }
