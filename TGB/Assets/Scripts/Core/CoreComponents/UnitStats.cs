@@ -222,7 +222,7 @@ namespace TGB.CoreSystem
             {
                 if (CurrentHealth == 0)
                 {
-                    attacker.Inventory?.ItemExeOnKilled(attacker, core.Unit);
+                    attacker?.Inventory?.ItemExeOnKilled(attacker, core.Unit);
                 }
                 core.Unit.Inventory.ItemExeOnDamage(core.Unit, attacker);
             }
