@@ -11,7 +11,7 @@ namespace TGB.Item
 
         [SerializeField] private float DetectedRadius;
 
-        private SpriteRenderer SR;
+        [SerializeField] private SpriteRenderer SR;
         private CircleCollider2D CC2D;
         private Transform effectContainer;
         private void Awake()
@@ -20,8 +20,6 @@ namespace TGB.Item
         }
         private void OnEnable()
         {
-            SR = this.GetComponent<SpriteRenderer>();
-
             if(Init())
             {
                 Debug.Log("Item Init");
