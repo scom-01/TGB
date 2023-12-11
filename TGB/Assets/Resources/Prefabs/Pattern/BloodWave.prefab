@@ -297,7 +297,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f30e61af88ba84aaeeb01933203d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SfxObject: {fileID: 0}
+  SFX:
+    Clip: {fileID: 8300000, guid: 4322976517a5c2f42a68209b86e38ca1, type: 3}
+    Volume: 0.1
   EffectObject: {fileID: 8384031961501519240, guid: 0ee64d175c709ca4ebfbeca5d556bef6, type: 3}
   UnitData: {fileID: 11400000, guid: d9aca8bbbb1942a4a8bc32c35a822f29, type: 2}
   knockbackAngle: {x: 0, y: 0}
@@ -336,6 +338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDestroy: 1
   parent: {fileID: 0}
+  isFixedRotY: 0
   isLoopDurationTime: 0
   isInit: 0
   isDrawModeTiled: 0

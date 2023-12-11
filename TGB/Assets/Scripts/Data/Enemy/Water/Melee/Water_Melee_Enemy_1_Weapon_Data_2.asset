@@ -53,10 +53,14 @@ MonoBehaviour:
               isRandomPosRot: 0
               isRandomRange: 0
               EffectOffset: {x: 0, y: 0}
-              EffectScale: {x: 0, y: 0, z: 0}
+              EffectScale: {x: 0.5, y: 0.5, z: 0.5}
               isFollowing: 0
               Object: {fileID: 6265323933180701124, guid: f0a9c8170ba7e6b44b61a4b6c007a047, type: 3}
-            audioClips: []
+            audioClips:
+            - Clip: {fileID: 8300000, guid: 088ef780a852393419f0e364fd92eb31, type: 3}
+              Volume: 0.1
+            - Clip: {fileID: 8300000, guid: e56ab4479a5f2784b805554b0d88aa7a, type: 3}
+              Volume: 0.15
             camDatas: []
         <DetectableLayers>k__BackingField:
           serializedVersion: 2

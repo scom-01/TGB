@@ -39,7 +39,7 @@ MonoBehaviour:
             ActionRect:
               serializedVersion: 2
               x: -1.47
-              y: -1.09
+              y: -0.29
               width: 3.6
               height: 2.07
             RepeatAction: 1
@@ -56,7 +56,6 @@ MonoBehaviour:
               EffectScale: {x: 0, y: 0, z: 0}
               isFollowing: 0
               Object: {fileID: 8867112169225384458, guid: 1b38d906900cd3244a833dafb0e14af6, type: 3}
-            audioClip: []
             audioClips:
             - Clip: {fileID: 8300000, guid: 2375dadc4293d3f4380b59887ce8416b, type: 3}
               Volume: 0
@@ -105,8 +104,6 @@ MonoBehaviour:
         name: SoundClipData
         actionData:
         - name: Action 1
-          audioClips:
-          - {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
           audioDataList:
           - Clip: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
             Volume: 1

@@ -79,7 +79,9 @@ MonoBehaviour:
         name: SoundClipData
         actionData:
         - name: Action 1
-          audioDataList: []
+          audioDataList:
+          - Clip: {fileID: 8300000, guid: b9b37e79db0269841959e5abcaec83fd, type: 3}
+            Volume: 0.2
     - rid: 2527592717927579697
       type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -94,23 +96,24 @@ MonoBehaviour:
               DurationTime: 4
               AdditionalDmg: 0
               isFixed: 0
-              Radius: 0.5
+              KnockbackAngle: {x: 0, y: 0}
+              isOnHit: 0
+              Radius: 0.65
               Offset: {x: 0, y: 0}
               GravityScale: 0
               isSingleShoot: 1
-              KnockbackAngle: {x: 0, y: 0}
               isCollisionGround: 0
               isCollisionPlatform: 0
               isBound: 0
               UnitCC2DMaterial: {fileID: 0}
-              EffectScale: {x: 0, y: 0, z: 0}
-              isOnHit: 0
-              isShakeCam: 0
-              homingType: 1
+              EffectScale: {x: 0.5, y: 0.5, z: 0.5}
+              ImpactScale: {x: 0.5, y: 0.5, z: 0.5}
+              isShakeCam: 1
               camDatas:
-                Duration: 0
-                Range: 0
-                RepeatRate: 0
+                Duration: 0.2
+                Range: 0.01
+                RepeatRate: 0.01
+              homingType: 1
             Projectile: {fileID: 2222910967692216358, guid: ab1a26bd3910e604f961eab15b868b98, type: 3}
     - rid: 2527592717927579698
       type: {class: WeaponSpriteData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}

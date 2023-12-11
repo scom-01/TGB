@@ -46,9 +46,23 @@ MonoBehaviour:
             AdditionalDamage: 0
             isFixed: 0
             KnockbackAngle: {x: 10, y: 5}
-            EffectPrefab: []
-            audioClips: []
-            camDatas: []
+            EffectPrefab:
+            - isGround: 0
+              isHeader: 0
+              isTransformGlobal: 0
+              isRandomPosRot: 0
+              isRandomRange: 0
+              EffectOffset: {x: 0, y: 0}
+              EffectScale: {x: 0.5, y: 0.5, z: 0.5}
+              isFollowing: 0
+              Object: {fileID: 6265323933180701124, guid: f0a9c8170ba7e6b44b61a4b6c007a047, type: 3}
+            audioClips:
+            - Clip: {fileID: 8300000, guid: e56ab4479a5f2784b805554b0d88aa7a, type: 3}
+              Volume: 0.15
+            camDatas:
+            - Duration: 0.1
+              Range: 0.01
+              RepeatRate: 0.005
           - Debug: 1
             ActionRect:
               serializedVersion: 2
@@ -60,9 +74,23 @@ MonoBehaviour:
             AdditionalDamage: 0
             isFixed: 0
             KnockbackAngle: {x: 0, y: 10}
-            EffectPrefab: []
-            audioClips: []
-            camDatas: []
+            EffectPrefab:
+            - isGround: 0
+              isHeader: 0
+              isTransformGlobal: 0
+              isRandomPosRot: 0
+              isRandomRange: 0
+              EffectOffset: {x: 0, y: 0}
+              EffectScale: {x: 0.5, y: 0.5, z: 0.5}
+              isFollowing: 0
+              Object: {fileID: 6265323933180701124, guid: f0a9c8170ba7e6b44b61a4b6c007a047, type: 3}
+            audioClips:
+            - Clip: {fileID: 8300000, guid: 3ce82012aed48904cbeb196232f1d272, type: 3}
+              Volume: 0.15
+            camDatas:
+            - Duration: 0.2
+              Range: 0.01
+              RepeatRate: 0.001
           - Debug: 1
             ActionRect:
               serializedVersion: 2
@@ -74,9 +102,23 @@ MonoBehaviour:
             AdditionalDamage: 0
             isFixed: 0
             KnockbackAngle: {x: 0, y: 10}
-            EffectPrefab: []
-            audioClips: []
-            camDatas: []
+            EffectPrefab:
+            - isGround: 0
+              isHeader: 0
+              isTransformGlobal: 0
+              isRandomPosRot: 0
+              isRandomRange: 0
+              EffectOffset: {x: 0, y: 0}
+              EffectScale: {x: 0.5, y: 0.5, z: 0.5}
+              isFollowing: 0
+              Object: {fileID: 6265323933180701124, guid: f0a9c8170ba7e6b44b61a4b6c007a047, type: 3}
+            audioClips:
+            - Clip: {fileID: 8300000, guid: 3ce82012aed48904cbeb196232f1d272, type: 3}
+              Volume: 0.15
+            camDatas:
+            - Duration: 0.2
+              Range: 0.01
+              RepeatRate: 0.001
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
           m_Bits: 2048
