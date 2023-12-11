@@ -5,6 +5,6 @@ using UnityEngine;
 public interface ITouch
 {
 
-    public void Touch();
-    public void UnTouch();
+    public void Touch(GameObject obj);
+    public void UnTouch(GameObject obj);
 }

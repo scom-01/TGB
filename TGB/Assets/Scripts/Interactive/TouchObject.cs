@@ -12,15 +12,15 @@ public class TouchObject : MonoBehaviour, ITouch
     private void Awake()
     {
         effectContainer = GameObject.FindGameObjectWithTag("EffectContainer").transform;
-        this.gameObject.layer = LayerMask.NameToLayer("Area");
+        //this.gameObject.layer = LayerMask.NameToLayer("Area");
     }
-    public virtual void Touch()
+    public virtual void Touch(GameObject obj)
     {
-        
+        Debug.Log($"Touch = {obj.name}");
     }
-    public virtual void UnTouch()
+    public virtual void UnTouch(GameObject obj)
     {
-
+        Debug.Log($"UnTouch = {obj.name}");
     }
     public virtual void OnTriggerStay2D(Collider2D collision)
     {        

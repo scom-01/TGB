@@ -23,13 +23,14 @@ public class TouchItem : TouchObject
         if (Item != null)
             SpriteRenderer.sprite = Item.itemData.ItemSprite;
     }
-    public override void Touch()
+    public override void Touch(GameObject obj)
     {
+        base.Touch(obj);
     }
 
-    public override void UnTouch()
+    public override void UnTouch(GameObject obj)
     {
-        base.UnTouch();
+        base.UnTouch(obj);
     }
 
     public override void OnTriggerStay2D(Collider2D collision)

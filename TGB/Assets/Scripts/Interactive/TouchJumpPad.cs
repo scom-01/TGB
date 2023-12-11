@@ -31,16 +31,16 @@ public class TouchJumpPad : TouchObject
         Collision(collision.GetComponent<Unit>());
     }
 
-    public override void Touch()
+    public override void Touch(GameObject obj)
     {
-        base.Touch();
+        base.Touch(obj);
         if (animator != null)
             animator.Play("Action", -1, 0);
     }
 
-    public override void UnTouch()
+    public override void UnTouch(GameObject obj)
     {
-        base.UnTouch();
+        base.UnTouch(obj);  
         if (animator != null)
             animator.Play("UnAction", -1, 0);
     }
@@ -50,7 +50,7 @@ public class TouchJumpPad : TouchObject
         if (unit == null)
             return;
         
-        Touch();
+        Touch(unit.gameObject);
         if (EffectObject)
             unit.Core.CoreEffectManager.StartEffectsPos(EffectObject, unit.transform.position, EffectObject.transform.localScale);
         if (SFX.Clip)
