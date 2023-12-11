@@ -54,8 +54,8 @@ namespace TGB.Weapons.Components
                 return;
 
             offset.Set(
-                    transform.position.x + (currHitBox[currentHitBoxIndex].ActionRect.center.x * CoreMovement.FancingDirection),
-                    transform.position.y + (currHitBox[currentHitBoxIndex].ActionRect.center.y)
+                    CoreCollisionSenses.GroundCenterPos.x + (currHitBox[currentHitBoxIndex].ActionRect.center.x * CoreMovement.FancingDirection),
+                    CoreCollisionSenses.GroundCenterPos.y + (currHitBox[currentHitBoxIndex].ActionRect.center.y)
                     );
 
             detected = Physics2D.OverlapBoxAll(offset, currHitBox[currentHitBoxIndex].ActionRect.size, 0f, data.DetectableLayers);
@@ -175,8 +175,8 @@ namespace TGB.Weapons.Components
             var temp = (PosOffset - oldPos);
             Debug.Log($"Temp = {temp}");
             offset.Set(
-                    transform.position.x + (hitActions[currentHitBoxIndex].ActionRect.center.x * CoreMovement.FancingDirection),
-                    transform.position.y + (hitActions[currentHitBoxIndex].ActionRect.center.y)
+                    CoreCollisionSenses.GroundCenterPos.x + (hitActions[currentHitBoxIndex].ActionRect.center.x * CoreMovement.FancingDirection),
+                    CoreCollisionSenses.GroundCenterPos.y + (hitActions[currentHitBoxIndex].ActionRect.center.y)
                     );
 
             RayCastdetected = Physics2D.BoxCastAll(offset, hitActions[currentHitBoxIndex].ActionRect.size, 0f, temp, temp.magnitude, data.DetectableLayers);
@@ -304,8 +304,8 @@ namespace TGB.Weapons.Components
             var temp = (PosOffset - oldPos);
             Debug.Log($"Temp = {temp}");
             offset.Set(
-                    transform.position.x + (hitActions[currentHitBoxIndex].ActionRect.center.x * CoreMovement.FancingDirection),
-                    transform.position.y + (hitActions[currentHitBoxIndex].ActionRect.center.y)
+                    CoreCollisionSenses.GroundCenterPos.x + (hitActions[currentHitBoxIndex].ActionRect.center.x * CoreMovement.FancingDirection),
+                    CoreCollisionSenses.GroundCenterPos.y + (hitActions[currentHitBoxIndex].ActionRect.center.y)
                     );
 
             float angle = Quaternion.Angle(Quaternion.Euler(PosOffset), Quaternion.Euler(oldPos));
@@ -528,7 +528,7 @@ namespace TGB.Weapons.Components
                     if (!action.Debug)
                         continue;
                     Gizmos.color = Color.white;
-                    Gizmos.DrawWireCube(transform.position + new Vector3(action.ActionRect.center.x * CoreMovement.FancingDirection, action.ActionRect.center.y, 0), action.ActionRect.size);
+                    Gizmos.DrawWireCube(CoreCollisionSenses.GroundCenterPos + new Vector3(action.ActionRect.center.x * CoreMovement.FancingDirection, action.ActionRect.center.y, 0), action.ActionRect.size);
                 }
             }
         }
