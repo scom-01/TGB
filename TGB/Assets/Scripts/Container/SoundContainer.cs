@@ -10,7 +10,7 @@ public class SoundContainer : MonoBehaviour
     {
         if(SoundPoolingList.Count == 0)
         {
-            var obj = AddObject(_Sfx, 5).GetComponent<SoundPooling>();
+            var obj = AddObject(_Sfx).GetComponent<SoundPooling>();
             return obj;
         }
         for (int i = 0; i < SoundPoolingList.Count; i++)
@@ -20,18 +20,18 @@ public class SoundContainer : MonoBehaviour
                 return SoundPoolingList[i];
             }
         }
-        var newObj = AddObject(_Sfx, 5).GetComponent<SoundPooling>();
+        var newObj = AddObject(_Sfx).GetComponent<SoundPooling>();
         return newObj;
     }
 
-    public GameObject AddObject(AudioPrefab _Sfx, int amount)
+    public GameObject AddObject(AudioPrefab _Sfx)
     {
         if (Base_SoundPooling == null)
         {
             Base_SoundPooling = GlobalValue.Base_SoundPooling;
         }
         var SoundPool = Instantiate(Base_SoundPooling, this.transform);
-        SoundPool.GetComponent<SoundPooling>().Init(_Sfx, amount);
+        SoundPool.GetComponent<SoundPooling>().Init(_Sfx);
         SoundPoolingList.Add(SoundPool.GetComponent<SoundPooling>());
         return SoundPool;
     }

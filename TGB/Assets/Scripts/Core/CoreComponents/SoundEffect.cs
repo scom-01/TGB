@@ -20,7 +20,7 @@ namespace TGB.CoreSystem
                 Debug.LogWarning("Clip is Null");
                 return;
             }
-            SFX_soundContainer.CheckObject(audioData).GetObejct();
+            SFX_soundContainer.CheckObject(audioData).GetObejct(audioData.Volume);
         }
         public void AudioSpawn(AudioClip audioClip, float volume = 1f)
         {
@@ -29,7 +29,7 @@ namespace TGB.CoreSystem
                 Debug.LogWarning("Clip is Null");
                 return;
             }
-            SFX_soundContainer.CheckObject(new AudioPrefab(audioClip, volume)).GetObejct();
+            SFX_soundContainer.CheckObject(new AudioPrefab(audioClip, volume)).GetObejct(volume);
         }
     }
 }
