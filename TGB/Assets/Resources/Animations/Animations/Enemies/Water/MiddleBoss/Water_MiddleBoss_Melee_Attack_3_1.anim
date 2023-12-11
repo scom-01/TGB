@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Water_MiddleBoss_Melee_Attack_3_2
+  m_Name: Water_MiddleBoss_Melee_Attack_3_1
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -126,6 +126,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.375
+    functionName: SpawnSoundClipTrigger
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.5
     functionName: FixedStopMovementTrigger
     data: 
@@ -156,6 +163,13 @@ AnimationClip:
     messageOptions: 0
   - time: 0.875
     functionName: ShootProjectileTrigger
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.875
+    functionName: SpawnSoundClipTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

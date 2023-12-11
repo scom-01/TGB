@@ -91,22 +91,30 @@ MonoBehaviour:
     DurationTime: 0
     AdditionalDmg: 0
     isFixed: 0
+    KnockbackAngle: {x: 0, y: 0}
+    isOnHit: 0
     Radius: 0
     Offset: {x: 0, y: 0}
     GravityScale: 0
     isSingleShoot: 0
-    KnockbackAngle: {x: 0, y: 0}
     isCollisionGround: 0
+    isCollisionPlatform: 0
+    isBound: 0
+    UnitCC2DMaterial: {fileID: 0}
     EffectScale: {x: 0, y: 0, z: 0}
-    isOnHit: 0
+    ImpactScale: {x: 0, y: 0, z: 0}
     isShakeCam: 0
-    isToTarget: 0
-    isHoming: 0
     camDatas:
       Duration: 0
       Range: 0
       RepeatRate: 0
+    homingType: 0
   ProjectileObject: {fileID: 6474526388225454719, guid: 9ae55dcea6f49d846b7d22e4b4ff5bd8, type: 3}
   ImpactObject: {fileID: 7555031585622908223, guid: dbd0a9584b295d04f9d828d2def2dcba, type: 3}
-  ProjectileShootClip: {fileID: 0}
-  ImpactClip: {fileID: 0}
+  ProjectileShootClip:
+    Clip: {fileID: 0}
+    Volume: 0
+  ImpactClip:
+    Clip: {fileID: 8300000, guid: e56ab4479a5f2784b805554b0d88aa7a, type: 3}
+    Volume: 0.1
+  isFixedRot: 0

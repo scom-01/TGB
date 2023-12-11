@@ -35,13 +35,6 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
         PatternPair_3.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[1].commands[1], false));
     }
 
-    private void Teleport()
-    {
-        MiddleBoss_Stage_1.TeleportState.SetWeapon(unit.Inventory.Weapon);
-        unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.AirCommandList[0].commands[0]);
-        unit.FSM.ChangeState(MiddleBoss_Stage_1.TeleportState);
-    }
-
     private void Phase_Pattern(List<AnimPattern> animPatterns)
     {
         if (animPatterns.Count == 0)
@@ -84,7 +77,9 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
             }
             else
             {
-                Teleport();
+                MiddleBoss_Stage_1.TeleportState.SetWeapon(unit.Inventory.Weapon);
+                unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.AirCommandList[0].commands[0]);
+                unit.FSM.ChangeState(MiddleBoss_Stage_1.TeleportState);
             }
             return;
         }
@@ -96,6 +91,7 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
             {
                 if (GameManager.Inst?.StageManager.GetType() == typeof(BossStageManager))
                 {
+                    //BloodWave
                     unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.AirCommandList[0].commands[1]);
                     unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
                     var boss_stage = GameManager.Inst?.StageManager as BossStageManager;
@@ -118,7 +114,8 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
             //인식 범위 밖
             else
             {
-                unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[2].commands[1]);
+                //돌진기
+                unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[2].commands[0]);
                 unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
             }
             return;
@@ -131,6 +128,7 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
             {
                 if (GameManager.Inst?.StageManager.GetType() == typeof(BossStageManager))
                 {
+                    //BloodWave
                     unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.AirCommandList[0].commands[1]);
                     unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
                     var boss_stage = GameManager.Inst?.StageManager as BossStageManager;
@@ -151,7 +149,8 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
             }
             else
             {
-                unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[2].commands[1]);
+                //돌진기
+                unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[2].commands[0]);
                 unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
             }
             return;

@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 5805843557550537864}
   - component: {fileID: 4413869702830004163}
   m_Layer: 18
-  m_Name: Attack1
+  m_Name: Weapon
   m_TagString: SmallEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -242,15 +242,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1649730510779115559}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3027203238880253435}
   - {fileID: 4154571279345452185}
-  m_Father: {fileID: 704250589099577448}
-  m_RootOrder: 0
+  m_Father: {fileID: 3640253521839122301}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8016165242470822881
 MonoBehaviour:
@@ -726,7 +726,7 @@ Transform:
   - {fileID: 3640253523092253583}
   - {fileID: 3640253523737029721}
   - {fileID: 3640253523614428214}
-  - {fileID: 704250589099577448}
+  - {fileID: 6845263046501251454}
   - {fileID: 5014059752026800173}
   - {fileID: 7219168016213950639}
   m_Father: {fileID: 0}
@@ -1133,6 +1133,7 @@ Transform:
   - {fileID: 3640253523228242009}
   - {fileID: 3640253523265248515}
   - {fileID: 3640253522650953881}
+  - {fileID: 8515375974990752073}
   m_Father: {fileID: 3640253521839122301}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1594,7 +1595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _flashColor: {r: 1, g: 1, b: 1, a: 1}
   _flashTime: 0.25
---- !u!1 &4894590047337453508
+--- !u!1 &4981839490258420192
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1602,30 +1603,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 704250589099577448}
-  m_Layer: 18
-  m_Name: Weapons
+  - component: {fileID: 8515375974990752073}
+  - component: {fileID: 7755934016142217904}
+  m_Layer: 0
+  m_Name: SoundEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &704250589099577448
+--- !u!4 &8515375974990752073
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4894590047337453508}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 4981839490258420192}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6845263046501251454}
-  m_Father: {fileID: 3640253521839122301}
-  m_RootOrder: 3
+  m_Children: []
+  m_Father: {fileID: 3640253523092253583}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7755934016142217904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4981839490258420192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d951751a5143a7548893b8be23de17fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8068192197180719182
 GameObject:
   m_ObjectHideFlags: 0
@@ -1678,7 +1691,7 @@ MonoBehaviour:
   GoodsSprite: {fileID: 218339756, guid: f7bf72b4be9086e4c9eef46270d4a8f3, type: 3}
   EquipSoundClip:
     Clip: {fileID: 8300000, guid: 0e89b476d4715fd42935e9900eedb033, type: 3}
-    Volume: 0.3
+    Volume: 0.15
   EquipEffect: {fileID: 1380205584940949931, guid: 07623d638bfe48c4bbf7a6dc202419de, type: 3}
   CircleSize: 0.3125
   DestroyTime: 2.5
@@ -1702,7 +1715,7 @@ MonoBehaviour:
   GoodsSprite: {fileID: -613753843, guid: f7bf72b4be9086e4c9eef46270d4a8f3, type: 3}
   EquipSoundClip:
     Clip: {fileID: 8300000, guid: 0e89b476d4715fd42935e9900eedb033, type: 3}
-    Volume: 0.3
+    Volume: 0.15
   EquipEffect: {fileID: 1380205584940949931, guid: 07623d638bfe48c4bbf7a6dc202419de, type: 3}
   CircleSize: 0.3125
   DestroyTime: 2.5

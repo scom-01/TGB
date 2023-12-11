@@ -247,8 +247,6 @@ MonoBehaviour:
   RespawnPoint: {fileID: 0}
   UnitData: {fileID: 11400000, guid: ae3d62f76bc500849819fd1f7f2f1900, type: 2}
   IsAlive: 1
-  isFixed_CC_Immunity: 0
-  isFixed_Hit_Immunity: 0
   isFixedMovement: 0
   playerData: {fileID: 11400000, guid: ae3d62f76bc500849819fd1f7f2f1900, type: 2}
 --- !u!114 &840319699589423351
@@ -279,7 +277,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4865ea70498b9774f9a584b1c8ea7ae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffs: []
+  ActiveBuffList: []
+  PassiveBuffList: []
+  Old_PassiveBuffList: []
 --- !u!95 &3939928440848757511
 Animator:
   serializedVersion: 4
@@ -340,7 +340,7 @@ MonoBehaviour:
   - {x: 0.3382533, y: -0.31089497, z: -3.5175539e-12}
   m_ShapePathHash: 1392743763
   m_Mesh: {fileID: 0}
-  m_InstanceId: 484898
+  m_InstanceId: 123310
 --- !u!1 &840319699985489545
 GameObject:
   m_ObjectHideFlags: 0
@@ -631,7 +631,7 @@ MonoBehaviour:
     PhysicsAggressivePer: 0
     MagicAggressivePer: 0
     CriticalPer: 0
-    AdditionalCriticalPer: 0
+    CriticalDmgPer: 0
     DamageAttiribute: 0
     Elemental: 0
     ElementalDefensivePer: 0
@@ -650,7 +650,7 @@ MonoBehaviour:
     PhysicsAggressivePer: 0
     MagicAggressivePer: 0
     CriticalPer: 0
-    AdditionalCriticalPer: 0
+    CriticalDmgPer: 0
     DamageAttiribute: 0
     Elemental: 0
     ElementalDefensivePer: 0
@@ -870,15 +870,15 @@ PrefabInstance:
     - target: {fileID: 3288319468661193168, guid: caaa93eb4d0c9654c81148506d463b68, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 22100000, guid: 32b0e0da2187b6c4b89b9229321ed9d1, type: 2}
+      objectReference: {fileID: 22100000, guid: 04eab6d4a9ea7ae438c9f044dedcf9cd, type: 2}
     - target: {fileID: 3288319468710893353, guid: caaa93eb4d0c9654c81148506d463b68, type: 3}
       propertyPath: weaponData.weaponDataSO
       value: 
-      objectReference: {fileID: 11400000, guid: bc1266aae26a22040b7c62ec0e566fcf, type: 2}
+      objectReference: {fileID: 11400000, guid: 82f1b918dd54cf74fa6db1a5c386a914, type: 2}
     - target: {fileID: 3288319468710893354, guid: caaa93eb4d0c9654c81148506d463b68, type: 3}
       propertyPath: weaponData.weaponDataSO
       value: 
-      objectReference: {fileID: 11400000, guid: 229f584e937b8a24293299782a16272b, type: 2}
+      objectReference: {fileID: 11400000, guid: bc1266aae26a22040b7c62ec0e566fcf, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: caaa93eb4d0c9654c81148506d463b68, type: 3}
 --- !u!4 &3038567696293431248 stripped
