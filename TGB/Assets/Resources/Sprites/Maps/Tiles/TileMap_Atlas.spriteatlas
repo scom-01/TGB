@@ -47,11 +47,13 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 98818f90fd31a6e448f07b4a6a6f49db, type: 3}
     - {fileID: 102900000, guid: 7272abd3079fab046afe8a0bae6a3632, type: 3}
     - {fileID: 102900000, guid: 5ac5f0be510743e4497dd98c1e431667, type: 3}
+    - {fileID: 102900000, guid: 21e5b39c0db71eb439b09764c6b32103, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: dec27400ee063674f9eb9edaf17d42c4, type: 3}
   - {fileID: -1182978481, guid: ee0bfc70a254dd841bd3064fd657237d, type: 3}
   - {fileID: -1490307955, guid: ee0bfc70a254dd841bd3064fd657237d, type: 3}
   - {fileID: 1462887449, guid: ee0bfc70a254dd841bd3064fd657237d, type: 3}
@@ -1132,6 +1134,9 @@ SpriteAtlas:
   - {fileID: 1849551560, guid: ee0bfc70a254dd841bd3064fd657237d, type: 3}
   - {fileID: -1114158711, guid: ee0bfc70a254dd841bd3064fd657237d, type: 3}
   - {fileID: 1410323475, guid: ee0bfc70a254dd841bd3064fd657237d, type: 3}
+  - {fileID: 21300000, guid: 4e0fd121f43744947856558dcb46ee83, type: 3}
+  - {fileID: 21300000, guid: 3413a3b106da00a48a5741c8e117eee3, type: 3}
+  - {fileID: 21300000, guid: ff80b3338d501bd46afbfd3b4596bf20, type: 3}
   - {fileID: -661994182, guid: db39ae64628748f4ab99a2e60f2c9e8f, type: 3}
   - {fileID: 11993225, guid: db39ae64628748f4ab99a2e60f2c9e8f, type: 3}
   - {fileID: 409849281, guid: db39ae64628748f4ab99a2e60f2c9e8f, type: 3}
@@ -5083,6 +5088,7 @@ SpriteAtlas:
   - {fileID: -1937179778, guid: 28b339156d5912c4ea4c581e8a9492f9, type: 3}
   - {fileID: 533939415, guid: 28b339156d5912c4ea4c581e8a9492f9, type: 3}
   - {fileID: -207902395, guid: 28b339156d5912c4ea4c581e8a9492f9, type: 3}
+  - {fileID: 21300000, guid: b6af9756c4ab5ea4385ec301bff23657, type: 3}
   - {fileID: 122825620, guid: eda04477c45973c46864a777622421d8, type: 3}
   - {fileID: 1040332, guid: eda04477c45973c46864a777622421d8, type: 3}
   - {fileID: 361290793, guid: eda04477c45973c46864a777622421d8, type: 3}
@@ -5549,6 +5555,8 @@ SpriteAtlas:
   - {fileID: -958996174, guid: eda04477c45973c46864a777622421d8, type: 3}
   - {fileID: 65537665, guid: eda04477c45973c46864a777622421d8, type: 3}
   - {fileID: 1363600838, guid: eda04477c45973c46864a777622421d8, type: 3}
+  - {fileID: 21300000, guid: 8653fab913f123d4290216656eb3fee6, type: 3}
+  - {fileID: 21300000, guid: 9f2640eadbd0d9549afbdc63821f6022, type: 3}
   - {fileID: -1499969967, guid: e881444c7506f6f4c9b008800b7b28d8, type: 3}
   - {fileID: 1776150667, guid: e881444c7506f6f4c9b008800b7b28d8, type: 3}
   - {fileID: -1308872170, guid: e881444c7506f6f4c9b008800b7b28d8, type: 3}
@@ -5916,6 +5924,7 @@ SpriteAtlas:
   - {fileID: -826268100, guid: e881444c7506f6f4c9b008800b7b28d8, type: 3}
   - {fileID: 19054986, guid: e881444c7506f6f4c9b008800b7b28d8, type: 3}
   - {fileID: 60946604, guid: e881444c7506f6f4c9b008800b7b28d8, type: 3}
+  - {fileID: 21300000, guid: 967e247c778394541b32547dbf2b9754, type: 3}
   - {fileID: -2018994020, guid: 535b71ccd7f786b478164b1da7bff131, type: 3}
   - {fileID: -2074184334, guid: 535b71ccd7f786b478164b1da7bff131, type: 3}
   - {fileID: 1636897875, guid: 535b71ccd7f786b478164b1da7bff131, type: 3}
@@ -7284,6 +7293,7 @@ SpriteAtlas:
   - {fileID: 573789646, guid: cb91d0aed34b0ec448a4adb19a1bb13c, type: 3}
   - {fileID: 1272318276, guid: cb91d0aed34b0ec448a4adb19a1bb13c, type: 3}
   m_PackedSpriteNamesToIndex:
+  - TileMap_Platform_Transparent
   - mainlevbuild1_918
   - mainlevbuild1_392
   - mainlevbuild1_913
@@ -8364,6 +8374,9 @@ SpriteAtlas:
   - mainlevbuild1_919
   - mainlevbuild1_323
   - mainlevbuild1_393
+  - TileMap_Box_Transparent
+  - TileMap_Box
+  - TileMap_Platform
   - Tavern_2060
   - Tavern_1162
   - Tavern_1174
@@ -12315,6 +12328,7 @@ SpriteAtlas:
   - mainlevbuild2_445
   - mainlevbuild2_459
   - mainlevbuild2_961
+  - TileMap_Wall_Right_Transparent
   - Tiles_206
   - Tiles_270
   - Tiles_266
@@ -12781,6 +12795,8 @@ SpriteAtlas:
   - Tiles_267
   - Tiles_297
   - Tiles_361
+  - TileMap_Wall_Right
+  - TileMap_Wall_Left_Transparent
   - Terrain_and_Props_6
   - Terrain_and_Props_7
   - Terrain_and_Props_4
@@ -13148,6 +13164,7 @@ SpriteAtlas:
   - Terrain_and_Props_230
   - Terrain_and_Props_233
   - Terrain_and_Props_232
+  - TileMap_Wall_Left
   - VP2_Main_306
   - VP2_Main_370
   - VP2_Main_394
