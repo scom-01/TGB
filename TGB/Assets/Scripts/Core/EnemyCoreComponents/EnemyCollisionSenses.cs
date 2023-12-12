@@ -1,8 +1,4 @@
 using TGB.CoreSystem;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class EnemyCollisionSenses : CollisionSenses
@@ -194,15 +190,6 @@ public class EnemyCollisionSenses : CollisionSenses
         Gizmos.DrawWireCube(
             new Vector3(GroundCenterPos.x + ((CC2D.size.x / 2 + (core.Unit.UnitData as EnemyData).UnitDetectedDistance / 2) * -1f * Movement.FancingDirection), GroundCenterPos.y + CC2D.size.y * 0.5f, 0),
             new Vector2((core.Unit.UnitData as EnemyData).UnitDetectedDistance, CC2D.bounds.size.y));
-
-        //CheckIfCliff
-        Debug.DrawRay(GroundCenterPos + new Vector3((CC2D.offset.x + 1) + CC2D.size.x / 2, 0, 0) * Movement.FancingDirection, Vector2.down * 0.5f, Color.blue);
-
-        //CheckIfTouchingWallBack
-        Debug.DrawRay(WallCheck, Vector2.right * -Movement.FancingDirection * (WallCheckDistance + CC2D.bounds.size.x / 2), Color.red);
-
-        //CheckIfTouchingWall
-        Debug.DrawRay(WallCheck, Vector2.right * Movement.FancingDirection * (WallCheckDistance + CC2D.bounds.size.x / 2), Color.green);
     }
 
     protected override void Awake()

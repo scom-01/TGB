@@ -2,13 +2,7 @@ using TGB.CoreSystem;
 using UnityEngine;
 
 public abstract class EnemyRunState : EnemyState
-{
-    private bool checkifCliff;
-    private bool checkifCliffBack;
-    private bool checkifTouchingGrounded;
-    private bool checkifTouchingWall;
-    private bool checkifTouchingWallBack;
-
+{  
     public EnemyRunState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
     }
@@ -16,26 +10,19 @@ public abstract class EnemyRunState : EnemyState
     public override void DoChecks()
     {
         base.DoChecks();
-
-        checkifCliff = EnemyCollisionSenses.CheckIfCliff;
-        checkifCliffBack = EnemyCollisionSenses.CheckIfCliffBack;
-        checkifTouchingWall = EnemyCollisionSenses.CheckIfTouchingWall;
-        checkifTouchingWallBack = EnemyCollisionSenses.CheckIfTouchingWallBack;
-        checkifTouchingGrounded = EnemyCollisionSenses.CheckIfStayGrounded;
-
         if (!isGrounded)
         {
             IdleState();
             return;
         }
 
-        if ((!checkifCliff && !checkifCliffBack) || (checkifTouchingWall && checkifTouchingWallBack))
+        if ((!isCliff && !isCliffBack) || (isTouchingWall && isTouchingWallBack))
         {
             enemy.SetTarget(null);
             IdleState();
             return;
         }
-        else if (!checkifCliff || checkifTouchingWall)
+        else if (!isCliff || isTouchingWall)
         {
             Movement.SetVelocityX(0);
             Movement.Flip();

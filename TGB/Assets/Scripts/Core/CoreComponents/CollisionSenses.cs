@@ -77,12 +77,35 @@ namespace TGB.CoreSystem
             }
         }
 
-        public Vector3 WallCheck
+        public Vector3 WallFrontPos
         {
             get
             {
-                return new Vector3(core.Unit.transform.position.x + CC2D.offset.x, core.Unit.transform.position.y + CC2D.offset.y - (CC2D.size.y / 2) + 0.7f, 0);
-            } 
+                return new Vector3(UnitCenterPos.x + CC2D.offset.x + (CC2D.size.x / 2) * Movement.FancingDirection, core.Unit.transform.position.y + CC2D.offset.y - (CC2D.size.y / 2) + 0.7f, 0);
+            }
+        }
+        public Vector3 WallkBackPos
+        {
+            get
+            {
+                return new Vector3(UnitCenterPos.x + (CC2D.size.x / 2) * -Movement.FancingDirection, core.Unit.transform.position.y + CC2D.offset.y - (CC2D.size.y / 2) + 0.7f, 0);
+            }
+        }
+
+        public Vector3 CliffFront
+        {
+            get
+            {
+                return GroundCenterPos + new Vector3((CC2D.offset.x + WallCheckDistance) + CC2D.size.x / 2, 0, 0) * Movement.FancingDirection;
+            }
+        }
+
+        public Vector3 CliffBack
+        {
+            get
+            {
+                return GroundCenterPos + new Vector3((CC2D.offset.x + WallCheckDistance) + CC2D.size.x / 2, 0, 0) * -Movement.FancingDirection;
+            }
         }
 
         public float GroundCheckDistance { get => core.Unit.UnitData.groundCheckDistance; }
@@ -139,8 +162,8 @@ namespace TGB.CoreSystem
                 var count = Physics2D.Raycast(GroundCenterPos, Vector2.down, contactFilter_Ground, hitBuffer, GroundCheckDistance);
                 if (count > 0)
                 {
-                    foreach(var hit in hitBuffer)
-                    {                        
+                    foreach (var hit in hitBuffer)
+                    {
                         if (hit.rigidbody == null)
                             continue;
 
@@ -161,33 +184,24 @@ namespace TGB.CoreSystem
 
         public bool CheckIfTouchingWall
         {
-            get => Physics2D.Raycast(WallCheck, Vector2.right * Movement.FancingDirection, CC2D.size.x / 2 + WallCheckDistance, WhatIsWall);
+            get => Physics2D.Raycast(WallFrontPos, Vector2.right * Movement.FancingDirection, WallCheckDistance, WhatIsWall);
         }
 
         public bool CheckIfTouchingWallBack
         {
-            get => Physics2D.Raycast(WallCheck, Vector2.right * -Movement.FancingDirection, CC2D.size.x / 2 + WallCheckDistance, WhatIsWall);
-        }
-
-        public bool CheckIfStayGrounded
-        {
-            get
-            {
-                return Physics2D.OverlapBox(transform.position + new Vector3((CC2D.offset.x + 0.1f) * Movement.FancingDirection, CC2D.offset.y), new Vector2(CC2D.bounds.size.x, CC2D.bounds.size.y * 0.65f), 0f, WhatIsGround) ||
-                    Physics2D.OverlapBox(transform.position + new Vector3((CC2D.offset.x + 0.1f) * Movement.FancingDirection, CC2D.offset.y), new Vector2(CC2D.bounds.size.x, CC2D.bounds.size.y * 0.65f), 0f, WhatIsPlatform);
-            }
+            get => Physics2D.Raycast(WallkBackPos, Vector2.right * -Movement.FancingDirection, WallCheckDistance, WhatIsWall);
         }
 
         public bool CheckIfCliff
         {
-            get => Physics2D.Raycast(GroundCenterPos + new Vector3((CC2D.offset.x + 1) + CC2D.size.x / 2, 0, 0) * Movement.FancingDirection, Vector2.down, 0.5f, WhatIsGround) ||
-                Physics2D.Raycast(GroundCenterPos + new Vector3((CC2D.offset.x + 1) + CC2D.size.x / 2, 0, 0) * Movement.FancingDirection, Vector2.down, 0.5f, WhatIsPlatform);
+            get => Physics2D.Raycast(CliffFront, Vector2.down, 0.5f, WhatIsGround) ||
+                Physics2D.Raycast(CliffFront, Vector2.down, 0.5f, WhatIsPlatform);
         }
 
         public bool CheckIfCliffBack
         {
-            get => Physics2D.Raycast(GroundCenterPos + new Vector3((CC2D.offset.x + 1) + CC2D.size.x / 2, 0, 0) * -Movement.FancingDirection, Vector2.down, 0.5f, WhatIsGround) ||
-                Physics2D.Raycast(GroundCenterPos + new Vector3((CC2D.offset.x + 1) + CC2D.size.x / 2, 0, 0) * -Movement.FancingDirection, Vector2.down, 0.5f, WhatIsPlatform);
+            get => Physics2D.Raycast(CliffBack, Vector2.down, 0.5f, WhatIsGround) ||
+                Physics2D.Raycast(CliffBack, Vector2.down, 0.5f, WhatIsPlatform);
         }
 
         public bool UnitDectected
@@ -206,10 +220,29 @@ namespace TGB.CoreSystem
             Gizmos.color = Color.white;
             if (CC2D == null)
                 return;
-            
+
+            //CheckCeiling
+            Gizmos.DrawLine(HeaderCenterPos, HeaderCenterPos + Vector3.up * (GroundCheckDistance));
+
             //checkGround,Platform
             Gizmos.color = Color.blue;
             Gizmos.DrawLine(GroundCenterPos, GroundCenterPos + Vector3.down * (GroundCheckDistance));
+
+            Gizmos.color = Color.yellow;
+            //CheckIfCliff
+            Gizmos.DrawLine(CliffFront, CliffFront + Vector3.down * WallCheckDistance);
+
+            Gizmos.color = Color.magenta;
+            //CheckIfCliffBack
+            Gizmos.DrawLine(CliffBack, CliffBack + Vector3.down * WallCheckDistance);
+
+            Gizmos.color = Color.blue;
+            //CheckIfTouchingWall
+            Gizmos.DrawLine(WallFrontPos, WallFrontPos + Vector3.right * Movement.FancingDirection * (WallCheckDistance));
+
+            Gizmos.color = Color.red;
+            //CheckIfTouchingWallBack
+            Gizmos.DrawLine(WallkBackPos, WallkBackPos + Vector3.right * -Movement.FancingDirection * (WallCheckDistance));
         }
     }
 }

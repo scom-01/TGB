@@ -5,13 +5,6 @@ public abstract class EnemyIdleState : EnemyState
 {
     protected float idleTime;
     protected bool isIdleTimeOver;
-    protected bool checkifCliff;
-    
-    private bool checkifCliffBack;
-    private bool checkifTouchingGrounded;
-    private bool checkifTouchingWall;
-    private bool checkifTouchingWallBack;
-
 
     public EnemyIdleState(Unit unit, string animBoolName) : base(unit, animBoolName)
     {
@@ -20,12 +13,6 @@ public abstract class EnemyIdleState : EnemyState
     public override void DoChecks()
     {
         base.DoChecks();
-
-        checkifCliff = EnemyCollisionSenses.CheckIfCliff;
-        checkifCliffBack = EnemyCollisionSenses.CheckIfCliffBack;
-        checkifTouchingWall = EnemyCollisionSenses.CheckIfTouchingWall;
-        checkifTouchingWallBack = EnemyCollisionSenses.CheckIfTouchingWallBack;
-        checkifTouchingGrounded = EnemyCollisionSenses.CheckIfStayGrounded;
     }
 
     public override void Enter()

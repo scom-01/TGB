@@ -1,14 +1,15 @@
 using TGB.CoreSystem;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class EnemyState : UnitState
 {
     protected bool isAbilityDone;
     protected bool isGrounded;
     protected Enemy enemy;
+    protected bool isCliff;
+    protected bool isCliffBack;
+    protected bool CheckifTouchingGrounded;
+    protected bool isTouchingWall;
+    protected bool isTouchingWallBack;
 
     protected bool isDelayCheck = false;
     protected EnemyCollisionSenses EnemyCollisionSenses
@@ -27,7 +28,13 @@ public class EnemyState : UnitState
         base.DoChecks();
 
         if (EnemyCollisionSenses)
+        {
             isGrounded = (EnemyCollisionSenses.CheckIfGrounded || EnemyCollisionSenses.CheckIfPlatform);
+            isCliff = EnemyCollisionSenses.CheckIfCliff;
+            isCliffBack = EnemyCollisionSenses.CheckIfCliffBack;
+            isTouchingWall = EnemyCollisionSenses.CheckIfTouchingWall;
+            isTouchingWallBack = EnemyCollisionSenses.CheckIfTouchingWallBack;
+        }
     }
 
 
