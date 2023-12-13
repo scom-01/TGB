@@ -83,7 +83,7 @@ public class Shop_Items : InventoryItems, IUI_Select
         else
         {
             //spawnItem
-            GameManager.Inst.StageManager.SPM.SpawnItem(GameManager.Inst.StageManager.IM.InventoryItem, GameManager.Inst.StageManager.player.transform.position, GameManager.Inst.StageManager.IM.transform, SelectedItem);
+            GameManager.Inst.StageManager.IM.SpawnItem(GameManager.Inst.StageManager.IM.InventoryItem, GameManager.Inst.StageManager.player.transform.position, GameManager.Inst.StageManager.IM.transform, SelectedItem);
         }
     }
     /// <summary>

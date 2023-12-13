@@ -5,22 +5,50 @@ namespace TGB.Item
 {
     public class SOB_Item : MonoBehaviour
     {
+        /// <summary>
+        /// 아이템 Data
+        /// </summary>
         [field: SerializeField] public StatsItemSO Item;
         public Core ItemCore { get; private set; }
         [HideInInspector] public Unit unit;
 
+        public EffectPrefab EffectObject;
+
+        /// <summary>
+        /// Player의 Item 감지 범위
+        /// </summary>
         [SerializeField] private float DetectedRadius;
 
+        /// <summary>
+        /// Item SpriteRenderer
+        /// </summary>
         [SerializeField] private SpriteRenderer SR;
+
+        /// <summary>
+        /// Unit과 접촉하는 Collider2D
+        /// </summary>
         private CircleCollider2D CC2D;
+
+        /// <summary>
+        /// Ground와 접촉하는 Collider2D
+        /// </summary>
+        private BoxCollider2D BC2D;
         private Transform effectContainer;
+
+        /// <summary>
+        /// 바닥 포지션
+        /// </summary>
+        private Vector3 GroundPos;
+
         private void Awake()
         {
+            BC2D = this.GetComponent<BoxCollider2D>();
             effectContainer = GameObject.FindGameObjectWithTag("EffectContainer").transform;
+            GroundPos = new Vector2(transform.position.x + BC2D.offset.x, transform.position.y + BC2D.offset.y - (BC2D.size.y / 2));
         }
         private void OnEnable()
         {
-            if(Init())
+            if (Init())
             {
                 Debug.Log("Item Init");
             }
@@ -43,6 +71,9 @@ namespace TGB.Item
                 CC2D.isTrigger = true;
                 CC2D.radius = DetectedRadius;
             }
+
+            EffectObject.SpawnObject(GroundPos);
+
             return true;
         }
 
@@ -80,7 +111,7 @@ namespace TGB.Item
         }
 
         public void UnDetected()
-        {            
+        {
             GameManager.Inst.SubUI.SetSubUI(false);
         }
 
@@ -89,7 +120,7 @@ namespace TGB.Item
             Gizmos.color = Color.white;
             if (DetectedRadius != 0)
             {
-                Gizmos.DrawWireSphere(transform.position, DetectedRadius/2);
+                Gizmos.DrawWireSphere(transform.position, DetectedRadius / 2);
             }
         }
     }

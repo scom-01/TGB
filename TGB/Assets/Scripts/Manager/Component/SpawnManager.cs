@@ -45,6 +45,9 @@ namespace TGB.Manager
 
         private int _uiEnemyCount = 0;
 
+        /// <summary>
+        /// 현재 스폰할 SpawnCtrl 인덱스
+        /// </summary>
         public int CurrentSpawnIndex
         {
             get
@@ -110,18 +113,6 @@ namespace TGB.Manager
             {
                 Instantiate(StageManager.EndingCutSceneDirector);
             }
-        }
-
-        public GameObject SpawnItem(GameObject SpawnPrefab, Vector3 pos, Transform transform, StatsItemSO itemData)
-        {
-            if (SpawnPrefab == null)
-                return null;
-
-            var item = Instantiate(SpawnPrefab, pos, Quaternion.identity, transform);
-            item.GetComponent<SOB_Item>().Item = itemData;
-            item.GetComponent<SOB_Item>().Init();
-
-            return item;
         }
     }
 }
