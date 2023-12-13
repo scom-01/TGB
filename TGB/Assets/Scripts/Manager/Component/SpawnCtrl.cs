@@ -5,6 +5,10 @@ using UnityEngine;
 public class SpawnCtrl : MonoBehaviour
 {
     [HideInInspector] public RespawnPoint[] respawnPoints;
+    /// <summary>
+    /// 플레이어 감지 지역
+    /// </summary>
+    private BoxCollider2D DetectedArea;
 
     /// <summary>
     /// 스폰 여부
@@ -29,6 +33,9 @@ public class SpawnCtrl : MonoBehaviour
     {
         isSpawn = false;
         isClear = false;
+        DetectedArea = this.GetComponent<BoxCollider2D>();
+        DetectedArea.isTrigger = true;
+        DetectedArea.enabled = false;
     }
     private void Update()
     {
@@ -51,13 +58,20 @@ public class SpawnCtrl : MonoBehaviour
         if (!isSpawn || CurrentEnemyCount != 0)
             return;
 
+        //현재 SpawnCtrl의 Enemy가 모두 처치되었을 때 다음 SpawnCtrl.Spawn()
         GameManager.Inst.StageManager.SPM.CurrentSpawnIndex++;
     }
 
     public void Spawn()
     {
         respawnPoints = GetComponentsInChildren<RespawnPoint>();
+        DetectedArea.enabled = true;
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.GetComponent<Player>() == null)
+            return;
         //Test
         for (int i = 0; i < respawnPoints.Length; i++)
         {

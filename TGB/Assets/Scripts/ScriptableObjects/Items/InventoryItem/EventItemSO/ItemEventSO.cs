@@ -32,6 +32,7 @@ public abstract class ItemEventSO : ScriptableObject, IExecuteEvent
 {
     public ITEM_TPYE Item_Type;
     public ItemEventData itemEventData;
+
     /// <summary>
     /// Effect 효과 시 생성될 VFX
     /// </summary>
