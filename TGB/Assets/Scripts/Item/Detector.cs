@@ -156,6 +156,9 @@ public class Detector : MonoBehaviour
             if (item == null)
                 return;
 
+            if (item.Item == null)
+                return;
+
             //EquipmentItem
             if (item.Item.InitEffectData.isEquipment)
             {
@@ -189,6 +192,9 @@ public class Detector : MonoBehaviour
         {
             var item = collision.GetComponentInParent<SOB_Item>();
             if (item == null)
+                return;
+
+            if (item.Item == null)
                 return;
             //Item
             if (item.Item.InitEffectData.isEquipment)

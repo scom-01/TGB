@@ -7,11 +7,12 @@ using static UnityEditor.PlayerSettings;
 public class ChoiceItemManager : MonoBehaviour
 {
     public List<GameObject> ItemList = new List<GameObject>();
+    public Dictionary<StatsItemSO, Vector3> ItemDataList = new Dictionary<StatsItemSO, Vector3>();
     [HideInInspector]
     public int ChoiceItemAmount;
     private int CurrChoiceItemAmount = 0;
 
-    public float Iteminterval = 0f;
+    [HideInInspector] public float Iteminterval = 0f;
 
     public bool isTriggerOn
     {
@@ -26,18 +27,29 @@ public class ChoiceItemManager : MonoBehaviour
         }
     }
     private bool _isTriggerOn = false;
+    /// <summary>
+    /// 아이템 스폰 여부
+    /// </summary>
+    private bool isSpawn = false;
     private BoxCollider2D DetectedArea;
-
     private void Awake()
     {
         CurrChoiceItemAmount = 0;
+
         DetectedArea = this.GetComponent<BoxCollider2D>();
-        DetectedArea.isTrigger = true;
-        DetectedArea.enabled = false;
+        if (DetectedArea != null)
+        {
+            DetectedArea.isTrigger = true;
+            DetectedArea.enabled = false;
+            this.gameObject.layer = LayerMask.NameToLayer("Area");
+        }
     }
     // Update is called once per frame
     void Update()
     {
+        if (!isSpawn)
+            return;
+
         if (ItemList.Count == 0)
             return;
 
@@ -56,29 +68,22 @@ public class ChoiceItemManager : MonoBehaviour
         }
     }
 
-    public bool AddSpawnItem(GameObject obj, Vector3 pos, Transform transform, StatsItemSO itemData)
+    public bool AddSpawnItem(StatsItemSO itemData,Vector3 pos)
     {
-        if (obj = null)
+        if (GameManager.Inst.StageManager.IM?.InventoryItem == null)
             return false;
-
-        var item = GameManager.Inst.StageManager.IM.SpawnItem(obj, pos, transform, itemData);
-        if (item == null)
-        {
-            return false;
-        }
-
-        item.SetActive(false);
-        ItemList.Add(item);
-
+        ItemDataList.Add(itemData, pos);
         return true;
     }
 
     private void ItemSpawn()
     {
-        for (int i = 0; i < ItemList.Count; i++)
+        foreach (var itemData in ItemDataList)
         {
-            ItemList[i].SetActive(true);
+            var item = GameManager.Inst.StageManager.IM.SpawnItem(GameManager.Inst.StageManager.IM?.InventoryItem, itemData.Value, GameManager.Inst.StageManager?.IM?.transform, itemData.Key);
+            ItemList.Add(item);
         }
+        isSpawn = true;
     }
 
     private void DestroyChoiceItemList()

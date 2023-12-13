@@ -84,7 +84,8 @@ public class DataManager : MonoBehaviour
     #endregion
 
     private void Awake()
-    {        
+    {
+        All_BuffDB = Resources.LoadAll<BuffItemSO>("DB/Buff");
         if (_Inst)
         {
             var managers = Resources.FindObjectsOfTypeAll(typeof(DataManager));
@@ -645,7 +646,7 @@ public class DataManager : MonoBehaviour
                         return;
 
                     //아이템 스폰리스트 추가
-                    if(GameManager.Inst.StageManager.ChoiceItemManager.AddSpawnItem(GameManager.Inst.StageManager.IM?.InventoryItem, pos, GameManager.Inst.StageManager.IM?.transform, itemData))
+                    if (GameManager.Inst.StageManager.ChoiceItemManager.AddSpawnItem(itemData, pos))
                     {
                         //이미 스폰한 아이템 리스트에 추가
                         SpawnItemList.Add(All_LockItemIdxs[idx]);
@@ -707,7 +708,7 @@ public class DataManager : MonoBehaviour
                 return;
 
             //아이템 스폰리스트 추가
-            if (GameManager.Inst.StageManager.ChoiceItemManager.AddSpawnItem(GameManager.Inst.StageManager.IM?.InventoryItem, pos, GameManager.Inst.StageManager?.IM?.transform, itemData_1))
+            if (GameManager.Inst.StageManager.ChoiceItemManager.AddSpawnItem(itemData_1, pos))
             {
                 //이미 스폰한 아이템 리스트에 추가
                 SpawnItemList.Add(All_UnlockItemIdxs[idx]);

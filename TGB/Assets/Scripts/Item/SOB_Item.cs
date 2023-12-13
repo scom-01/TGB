@@ -94,6 +94,9 @@ namespace TGB.Item
                 return;
             }
 
+            if (Item == null)
+                return;
+
             GameManager.Inst.SubUI.isRight(isright);
             GameManager.Inst.SubUI.DetailSubUI.SetInit(Item);
 
