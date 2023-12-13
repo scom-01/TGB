@@ -18,7 +18,7 @@ public class TitleManager : MonoBehaviour
     private bool isDone = false;
 
     public UIManager UnlockItem_Canvas;
-
+    private Canvas _CurrCanvas;
     private void OnEnable()
     {
         if (DataManager.Inst != null)
@@ -102,7 +102,9 @@ public class TitleManager : MonoBehaviour
         }
         //New Game
         else
-        {
+        {            
+            _CurrCanvas = go.GetComponent<Canvas>();
+            GameManager.Inst.InputHandler.OnESCInput_Action.Add(HideUI);
             if (go != null && go.GetComponent<Canvas>() != null)
             {
                 go.GetComponent<Canvas>().enabled = true;
@@ -159,6 +161,15 @@ public class TitleManager : MonoBehaviour
     private void HideUnlockItemCanvas()
     {
         UnlockItem_Canvas.Canvas.enabled = false;
+        GameManager.Inst.SetSelectedObject(buttons[0].gameObject);
+    }
+    private void HideUI()
+    {
+        if (_CurrCanvas == null)
+            return;
+        _CurrCanvas.enabled = false;
+        if (buttons == null)
+            return;
         GameManager.Inst.SetSelectedObject(buttons[0].gameObject);
     }
 
