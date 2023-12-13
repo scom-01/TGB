@@ -84,8 +84,7 @@ public class DataManager : MonoBehaviour
     #endregion
 
     private void Awake()
-    {
-        All_BuffDB = Resources.LoadAll<BuffItemSO>("DB/Buff");
+    {        
         if (_Inst)
         {
             var managers = Resources.FindObjectsOfTypeAll(typeof(DataManager));
@@ -404,6 +403,16 @@ public class DataManager : MonoBehaviour
 
         Debug.LogWarning("Success SceneName Save");
     }
+
+    [ContextMenu("Set BuffData Idx")]
+    private void SetBuffDataIdx()
+    {
+        All_BuffDB = Resources.LoadAll<BuffItemSO>("DB/Buff");
+        for (int i = 0; i < All_BuffDB.Length; i++)
+        {
+            All_BuffDB[i].ItemIdx = i;
+        }
+    }
     public void SaveBuffs(BuffSystem _buffsystem)
     {
         if (_buffsystem == null)
@@ -418,17 +427,17 @@ public class DataManager : MonoBehaviour
 
         foreach (var buff in _activeBuffList)
         {
-            var _buff = new BuffData() { BuffItemIdx = buff.buffItemSO.GetInstanceID(), startTime = buff.startTime, CurrBuffCount = buff.CurrBuffCount };
+            var _buff = new BuffData() { BuffItemIdx = buff.buffItemSO.ItemIdx, startTime = buff.startTime, CurrBuffCount = buff.CurrBuffCount };
             _activebuffDataList.Add(_buff);
         }
         foreach (var buff in _passiveBuffList)
         {
-            var _buff = new BuffData() { BuffItemIdx = buff.buffItemSO.GetInstanceID(), startTime = buff.startTime, CurrBuffCount = buff.CurrBuffCount };
+            var _buff = new BuffData() { BuffItemIdx = buff.buffItemSO.ItemIdx, startTime = buff.startTime, CurrBuffCount = buff.CurrBuffCount };
             _passivebuffDataList.Add(_buff);
         }
         foreach (var buff in _old_passiveBuffList)
         {
-            var _buff = new BuffData() { BuffItemIdx = buff.buffItemSO.GetInstanceID(), startTime = buff.startTime, CurrBuffCount = buff.CurrBuffCount };
+            var _buff = new BuffData() { BuffItemIdx = buff.buffItemSO.ItemIdx, startTime = buff.startTime, CurrBuffCount = buff.CurrBuffCount };
             _old_passivebuffDataList.Add(_buff);
         }
         JSON_DataParsing.m_JSON_SceneData.ActiveBuffDataList = _activebuffDataList.ToList();
@@ -456,7 +465,7 @@ public class DataManager : MonoBehaviour
             int temp = 0;
             for (int i = 0; i < All_BuffDB.Length; i++)
             {
-                if(All_BuffDB[i].GetInstanceID() == data.BuffItemIdx)
+                if(All_BuffDB[i].ItemIdx == data.BuffItemIdx)
                 {
                     temp = i;
                     break;
@@ -471,7 +480,7 @@ public class DataManager : MonoBehaviour
             int temp = 0;
             for (int i = 0; i < All_BuffDB.Length; i++)
             {
-                if (All_BuffDB[i].GetInstanceID() == data.BuffItemIdx)
+                if (All_BuffDB[i].ItemIdx == data.BuffItemIdx)
                 {
                     temp = i;
                     break;
@@ -486,7 +495,7 @@ public class DataManager : MonoBehaviour
             int temp = 0;
             for (int i = 0; i < All_BuffDB.Length; i++)
             {
-                if (All_BuffDB[i].GetInstanceID() == data.BuffItemIdx)
+                if (All_BuffDB[i].ItemIdx == data.BuffItemIdx)
                 {
                     temp = i;
                     break;
@@ -578,6 +587,7 @@ public class DataManager : MonoBehaviour
             JSON_DataParsing.LockItemList.Add(All_ItemDB.ItemDBList[i].ItemIdx);
         }
     }
+
     /// <summary>
     /// 일정확률로 미해금 아이템 스폰
     /// </summary>
@@ -634,14 +644,10 @@ public class DataManager : MonoBehaviour
                     if (itemData == null)
                         return;
 
-                    //아이템 스폰
-                    var item = GameManager.Inst.StageManager.SPM.SpawnItem(GameManager.Inst.StageManager.IM?.InventoryItem, pos, GameManager.Inst.StageManager.IM?.transform, itemData);
-                    if (item)
+                    //아이템 스폰리스트 추가
+                    if(GameManager.Inst.StageManager.ChoiceItemManager.AddSpawnItem(GameManager.Inst.StageManager.IM?.InventoryItem, pos, GameManager.Inst.StageManager.IM?.transform, itemData))
                     {
-                        //아이템 선택 매니저 아이템 리스트에 추가
-                        if (GameManager.Inst.StageManager.ChoiceItemManager != null)
-                            GameManager.Inst.StageManager.ChoiceItemManager.ItemList.Add(item);
-                        //스폰한 아이템 리스트에 추가
+                        //이미 스폰한 아이템 리스트에 추가
                         SpawnItemList.Add(All_LockItemIdxs[idx]);
                         Debug.Log($"SpawnItem {itemData.name}");
                         continue;
@@ -700,17 +706,20 @@ public class DataManager : MonoBehaviour
             if (itemData_1 == null)
                 return;
 
-            //아이템 스폰
-            var item_1 = GameManager.Inst.StageManager.SPM.SpawnItem(GameManager.Inst.StageManager?.IM?.InventoryItem, pos, GameManager.Inst.StageManager?.IM?.transform, itemData_1);
-            if (item_1 != null)
+            //아이템 스폰리스트 추가
+            if (GameManager.Inst.StageManager.ChoiceItemManager.AddSpawnItem(GameManager.Inst.StageManager.IM?.InventoryItem, pos, GameManager.Inst.StageManager?.IM?.transform, itemData_1))
             {
-                //아이템 선택 매니저 아이템 리스트에 추가
-                if (GameManager.Inst.StageManager.ChoiceItemManager != null)
-                    GameManager.Inst.StageManager.ChoiceItemManager.ItemList.Add(item_1);
-                //스폰한 아이템 리스트에 추가
+                //이미 스폰한 아이템 리스트에 추가
                 SpawnItemList.Add(All_UnlockItemIdxs[idx]);
                 Debug.Log($"SpawnItem {itemData_1.name}");
-            }
+                continue;
+            }   
+        }
+
+        //아이템 감지 범위 On
+        if (GameManager.Inst.StageManager?.ChoiceItemManager != null)
+        {
+            GameManager.Inst.StageManager.ChoiceItemManager.isTriggerOn = true;
         }
     }
     #endregion
