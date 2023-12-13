@@ -1,11 +1,12 @@
 using Cinemachine;
+using System.Linq;
 using UnityEngine;
 
 
 public class TouchItem : TouchObject
 {
     [TagField]
-    public string Ignore_Tag;
+    public string[] Ignore_Tag;
 
     [SerializeField] private BuffItemSO Item;
     [SerializeField] private SpriteRenderer SpriteRenderer;
@@ -35,7 +36,7 @@ public class TouchItem : TouchObject
 
     public override void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == Ignore_Tag)
+        if (Ignore_Tag.Contains(collision.tag))
             return;
 
         base.OnTriggerStay2D(collision);

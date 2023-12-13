@@ -18,9 +18,9 @@ public class SpawnCtrl : MonoBehaviour
 
     public int CurrentEnemyCount
     {
-        get 
-        { 
-            return currentCount; 
+        get
+        {
+            return currentCount;
         }
         set
         {
@@ -34,8 +34,12 @@ public class SpawnCtrl : MonoBehaviour
         isSpawn = false;
         isClear = false;
         DetectedArea = this.GetComponent<BoxCollider2D>();
-        DetectedArea.isTrigger = true;
-        DetectedArea.enabled = false;
+        if (DetectedArea != null)
+        {
+            DetectedArea.isTrigger = true;
+            DetectedArea.enabled = false;
+            this.gameObject.layer = LayerMask.NameToLayer("Area");
+        }
     }
     private void Update()
     {
@@ -81,12 +85,16 @@ public class SpawnCtrl : MonoBehaviour
             //SpawnEnemy(respawnPoints[i].SpawnPrefab, respawnPoints[i].transform.position, respawnPoints[i].transform);
         }
         isSpawn = true;
+        if (DetectedArea != null)
+        {
+            DetectedArea.enabled = false;
+        }
     }
 
     public void SpawnEnemy(GameObject EnemyPrefab, Vector3 pos, Transform transform)
     {
         var enemy = Instantiate(EnemyPrefab, pos, Quaternion.identity, transform);
-        if(enemy)
+        if (enemy)
             GameManager.Inst.StageManager.SPM.UIEnemyCount++;
     }
 
