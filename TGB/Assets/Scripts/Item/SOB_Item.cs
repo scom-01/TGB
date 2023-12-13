@@ -12,7 +12,15 @@ namespace TGB.Item
         public Core ItemCore { get; private set; }
         [HideInInspector] public Unit unit;
 
-        public EffectPrefab EffectObject;
+        /// <summary>
+        /// 스폰 Effect
+        /// </summary>
+        public EffectPrefab SpawnEffectObject;
+
+        /// <summary>
+        /// 삭제 Effect
+        /// </summary>
+        public EffectPrefab DestroyEffectObject;
 
         /// <summary>
         /// Player의 Item 감지 범위
@@ -56,6 +64,7 @@ namespace TGB.Item
 
         private void OnDisable()
         {
+            DestroyEffectObject.SpawnObject(GroundPos);
             Destroy(this.gameObject, 5f);
         }
 
@@ -72,7 +81,7 @@ namespace TGB.Item
                 CC2D.radius = DetectedRadius;
             }
 
-            EffectObject.SpawnObject(GroundPos);
+            SpawnEffectObject.SpawnObject(GroundPos);
 
             return true;
         }
