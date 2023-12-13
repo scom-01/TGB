@@ -44,109 +44,21 @@ namespace TGB.CoreSystem
         }
         public GameObject StartEffectsPos(GameObject effectPrefab, Vector2 pos, Vector3 size, bool _isFollow = false)
         {
-            if (effectPrefab.GetComponent<EffectController>() == null)
-            {
-                effectPrefab.AddComponent<EffectController>();
-            }
-
-            if (size == Vector3.zero)
-                size = effectPrefab.gameObject.transform.localScale;
-
-            if (effectPrefab.GetComponent<EffectController>().isDestroy)
-            {
-                if (core.CoreMovement.FancingDirection > 0)
-                {
-                    GameObject gameObject = Instantiate(effectPrefab, pos, Quaternion.Euler(effectPrefab.transform.eulerAngles), _isFollow ? this.transform : GameManager.Inst.StageManager.EffectContainer.transform);
-                    gameObject.GetComponent<EffectController>().size = size;
-                    return gameObject;
-                }
-                GameObject gameObject1 = Instantiate(effectPrefab, pos, Quaternion.Euler(effectPrefab.transform.eulerAngles.x, effectPrefab.transform.eulerAngles.y + 180.0f, effectPrefab.transform.eulerAngles.z), _isFollow ? this.transform : GameManager.Inst.StageManager.EffectContainer.transform);
-                gameObject1.GetComponent<EffectController>().size = size;
-                return gameObject1;
-            }
-            else
-            {
-                if (core.CoreMovement.FancingDirection > 0)
-                {
-                    if (_isFollow)
-                        return (CheckObject(ObjectPooling_TYPE.Effect, effectPrefab, size) as EffectPooling).GetObejct(pos, Quaternion.Euler(effectPrefab.transform.eulerAngles), size);
-                    else
-                        return (GameManager.Inst.StageManager.EffectContainer?.CheckObject(ObjectPooling_TYPE.Effect, effectPrefab, size, _isFollow ? this.transform : GameManager.Inst.StageManager.EffectContainer.transform) as EffectPooling).GetObejct(pos, Quaternion.Euler(effectPrefab.transform.eulerAngles), size);
-                }
-                if (_isFollow)
-                    return (CheckObject(ObjectPooling_TYPE.Effect, effectPrefab, size) as EffectPooling).GetObejct(pos, Quaternion.Euler(effectPrefab.transform.eulerAngles.x, effectPrefab.transform.eulerAngles.y + 180.0f, effectPrefab.transform.eulerAngles.z), size);
-                else
-                    return (GameManager.Inst.StageManager.EffectContainer?.CheckObject(ObjectPooling_TYPE.Effect, effectPrefab, size, _isFollow ? this.transform : GameManager.Inst.StageManager.EffectContainer.transform) as EffectPooling).GetObejct(pos, Quaternion.Euler(effectPrefab.transform.eulerAngles.x, effectPrefab.transform.eulerAngles.y + 180.0f, effectPrefab.transform.eulerAngles.z), size);
-            }
+            return StartEffects(effectPrefab, pos, effectPrefab.transform.eulerAngles, size, _isFollow);            
         }
         public GameObject StartEffects(GameObject effectPrefab, Vector2 pos, Vector3 euler, Vector3 size, bool _isFollow = false)
         {
-            if (effectPrefab.GetComponent<EffectController>() == null)
+            var temp = euler;
+            if(core.CoreMovement.FancingDirection < 0)
             {
-                effectPrefab.AddComponent<EffectController>();
+                temp = new Vector3(euler.x, euler.y + 180f, euler.z);
             }
-
-            if (size == Vector3.zero)
-                size = effectPrefab.gameObject.transform.localScale;
-
-            if (effectPrefab.GetComponent<EffectController>().isDestroy)
-            {
-                if (core.CoreMovement.FancingDirection > 0)
-                {
-                    GameObject go = Instantiate(effectPrefab, pos, Quaternion.Euler(euler), _isFollow ? this.transform : GameManager.Inst.StageManager.EffectContainer.transform);
-                    go.GetComponent<EffectController>().size = size;
-                    return go;
-                }
-                GameObject go1 = Instantiate(effectPrefab, pos, Quaternion.Euler(euler.x, euler.y + 180f, euler.z), GameManager.Inst.StageManager.EffectContainer.transform);
-                go1.GetComponent<EffectController>().size = size;
-                return go1;
-            }
-            else
-            {
-                if (core.CoreMovement.FancingDirection > 0)
-                {
-                    if (_isFollow)
-                        return (CheckObject(ObjectPooling_TYPE.Effect, effectPrefab, size) as EffectPooling).GetObejct(pos, Quaternion.Euler(euler), size);
-                    else
-                        return (GameManager.Inst.StageManager.EffectContainer?.CheckObject(ObjectPooling_TYPE.Effect, effectPrefab, size, _isFollow ? this.transform : GameManager.Inst.StageManager.EffectContainer.transform) as EffectPooling).GetObejct(pos, Quaternion.Euler(euler), size);
-                }
-                if (_isFollow)
-                    return (CheckObject(ObjectPooling_TYPE.Effect, effectPrefab, size) as EffectPooling).GetObejct(pos, Quaternion.Euler(euler.x, euler.y + 180f, euler.z), size);
-                else
-                    return (GameManager.Inst.StageManager.EffectContainer?.CheckObject(ObjectPooling_TYPE.Effect, effectPrefab, size, _isFollow ? this.transform : GameManager.Inst.StageManager.EffectContainer.transform) as EffectPooling).GetObejct(pos, Quaternion.Euler(euler.x, euler.y + 180f, euler.z), size);
-            }
+            return StartEffects(effectPrefab, pos, Quaternion.Euler(temp), size, _isFollow);            
         }
 
         public GameObject StartEffects(GameObject effectPrefab, Vector3 size)
         {
-            if (effectPrefab.GetComponent<EffectController>() == null)
-            {
-                effectPrefab.AddComponent<EffectController>();
-            }
-
-            if (size == Vector3.zero)
-                size = effectPrefab.gameObject.transform.localScale;
-
-            if (effectPrefab.GetComponent<EffectController>().isDestroy)
-            {
-                if (core.CoreMovement.FancingDirection > 0)
-                {
-                    GameObject go = Instantiate(effectPrefab, transform.position, Quaternion.Euler(effectPrefab.transform.eulerAngles), GameManager.Inst.StageManager.EffectContainer.transform);
-                    go.GetComponent<EffectController>().size = size;
-                    return go;
-                }
-                GameObject go1 = Instantiate(effectPrefab, transform.position, Quaternion.Euler(effectPrefab.transform.eulerAngles.x, effectPrefab.transform.eulerAngles.y + 180.0f, effectPrefab.transform.eulerAngles.z), GameManager.Inst.StageManager.EffectContainer.transform);
-                go1.GetComponent<EffectController>().size = size;
-                return go1;
-            }
-            else
-            {
-                if (core.CoreMovement.FancingDirection > 0)
-                {
-                    return (GameManager.Inst.StageManager?.EffectContainer.CheckObject(ObjectPooling_TYPE.Effect, effectPrefab, size) as EffectPooling).GetObejct(transform.position, Quaternion.Euler(effectPrefab.transform.eulerAngles), size);
-                }
-                return (GameManager.Inst.StageManager?.EffectContainer.CheckObject(ObjectPooling_TYPE.Effect, effectPrefab, size) as EffectPooling).GetObejct(transform.position, Quaternion.Euler(effectPrefab.transform.eulerAngles.x, effectPrefab.transform.eulerAngles.y + 180.0f, effectPrefab.transform.eulerAngles.z), size);
-            }
+            return StartEffects(effectPrefab, transform.position, effectPrefab.transform.eulerAngles, size, GameManager.Inst.StageManager.EffectContainer.transform);            
         }
 
         public GameObject StartEffectsWithRandomRot(GameObject effectPrefab)
@@ -157,39 +69,20 @@ namespace TGB.CoreSystem
 
         public GameObject StartEffectsWithRandomPos(GameObject effectPrefab, float Range)
         {
-            if (effectPrefab.GetComponent<EffectController>() == null)
+            if (core.CoreMovement.FancingDirection > 0)
             {
-                effectPrefab.AddComponent<EffectController>();
-            }
-
-            if (effectPrefab.GetComponent<EffectController>().isDestroy)
-            {
-                if (core.CoreMovement.FancingDirection > 0)
-                {
-                    return StartEffects(effectPrefab, new Vector2(
-                                                        transform.position.x + Random.Range(-Range, Range),
-                                                        transform.position.y + Random.Range(-Range, Range)),
-                                                        Quaternion.Euler(effectPrefab.transform.eulerAngles),
-                                                        Vector3.zero);
-                }
-
                 return StartEffects(effectPrefab, new Vector2(
-                                                        transform.position.x + Random.Range(-Range, Range),
-                                                        transform.position.y + Random.Range(-Range, Range)),
-                                                        Quaternion.Euler(effectPrefab.transform.eulerAngles.x, effectPrefab.transform.eulerAngles.y + 180.0f, effectPrefab.transform.eulerAngles.z),
-                                                        Vector3.zero);
+                                                    transform.position.x + Random.Range(-Range, Range),
+                                                    transform.position.y + Random.Range(-Range, Range)),
+                                                    Quaternion.Euler(effectPrefab.transform.eulerAngles),
+                                                    Vector3.zero);
             }
-            else
-            {
-                if (core.CoreMovement.FancingDirection > 0)
-                {
-                    return (GameManager.Inst.StageManager?.EffectContainer.CheckObject(ObjectPooling_TYPE.Effect, effectPrefab, Vector3.zero, null) as EffectPooling).GetObejct(transform.position, Quaternion.Euler(effectPrefab.transform.eulerAngles), Vector3.zero);
-                }
-                else
-                {
-                    return (GameManager.Inst.StageManager?.EffectContainer.CheckObject(ObjectPooling_TYPE.Effect, effectPrefab, Vector3.zero, null) as EffectPooling).GetObejct(transform.position, Quaternion.Euler(effectPrefab.transform.eulerAngles.x, effectPrefab.transform.eulerAngles.y + 180.0f, effectPrefab.transform.eulerAngles.z), Vector3.zero);
-                }
-            }
+
+            return StartEffects(effectPrefab, new Vector2(
+                                                    transform.position.x + Random.Range(-Range, Range),
+                                                    transform.position.y + Random.Range(-Range, Range)),
+                                                    Quaternion.Euler(effectPrefab.transform.eulerAngles.x, effectPrefab.transform.eulerAngles.y + 180.0f, effectPrefab.transform.eulerAngles.z),
+                                                    Vector3.zero);            
         }
         public GameObject StartEffectsWithRandomPos(GameObject effectPrefab, float Range, int FancingDirection, Vector3 size, bool _isFollow = false)
         {
