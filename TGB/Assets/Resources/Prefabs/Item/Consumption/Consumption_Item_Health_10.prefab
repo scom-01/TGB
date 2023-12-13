@@ -186,9 +186,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc03701987cf2845a833e6cc2324cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Item: {fileID: 11400000, guid: fdc0a2b31390650409bd7f7caed3c134, type: 2}
+  Item: {fileID: 0}
   unit: {fileID: 0}
+  EffectObject:
+    isGround: 0
+    isHeader: 0
+    isTransformGlobal: 0
+    isRandomPosRot: 0
+    isRandomRange: 0
+    EffectOffset: {x: 0, y: 0}
+    EffectScale: {x: 0, y: 0, z: 0}
+    isFollowing: 0
+    Object: {fileID: 0}
   DetectedRadius: 1
+  SR: {fileID: 0}
 --- !u!61 &8962217813712015485
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -252,8 +263,11 @@ MonoBehaviour:
     Clip: {fileID: 0}
     Volume: 0
   EffectObject: {fileID: 0}
-  Ignore_Tag: 
-  Item: {fileID: 11400000, guid: 45bf890e301b83740a4dafff7b7b6674, type: 2}
+  Ignore_Tag:
+  - SmallEnemy
+  - NormEnemy
+  - BigEnemy
+  Item: {fileID: 11400000, guid: 80ae909fd85e5c44fad4928bed78ef63, type: 2}
   SpriteRenderer: {fileID: 0}
 --- !u!1 &8962217815196950770
 GameObject:

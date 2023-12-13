@@ -23978,7 +23978,8 @@ GameObject:
   m_Component:
   - component: {fileID: 53452125}
   - component: {fileID: 53452126}
-  m_Layer: 0
+  - component: {fileID: 53452127}
+  m_Layer: 30
   m_Name: SpawnCtrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24015,6 +24016,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   respawnPoints: []
   isClear: 0
+--- !u!61 &53452127
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53452124}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -17.445564, y: -1.2114978}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 42.43322, y: 9.722783}
+  m_EdgeRadius: 0
 --- !u!1001 &57811978
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24597,7 +24624,8 @@ GameObject:
   m_Component:
   - component: {fileID: 231677204}
   - component: {fileID: 231677205}
-  m_Layer: 0
+  - component: {fileID: 231677206}
+  m_Layer: 30
   m_Name: ItemSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24633,6 +24661,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemList: []
   ChoiceItemAmount: 0
+  Iteminterval: 0
+--- !u!61 &231677206
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231677203}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.8706503, y: 1.9107463}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 18.990911, y: 7.1853023}
+  m_EdgeRadius: 0
 --- !u!1 &253869237
 GameObject:
   m_ObjectHideFlags: 0
@@ -25123,8 +25178,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb43d862fe2b37346823b397b057a3e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EffectList: []
-  EffectControllerList: []
   ProjectilePoolingList: []
   EffectPoolingList: []
   DmgTxtPoolingList: []
@@ -27428,7 +27481,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &959307418
 Transform:
   m_ObjectHideFlags: 0
@@ -57407,7 +57460,7 @@ MonoBehaviour:
   Cam: {fileID: 0}
   CVC: {fileID: 0}
   Cam_Distance: 8.5
-  effectContainerTagName: EffectContainer
+  SFXContainerTagName: SoundContainer
   PlayerPrefab: {fileID: 840319699589423306, guid: 842ba7b90e3d58f4baa7c0b00def52ec, type: 3}
   player: {fileID: 0}
   SpawnPoint: {fileID: 1814375134}
