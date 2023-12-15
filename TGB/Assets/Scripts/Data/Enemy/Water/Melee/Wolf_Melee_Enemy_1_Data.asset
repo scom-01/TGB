@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statsStats:
     MaxHealth: 30
-    DefaultPower: 20
+    DefaultPower: 10
     DefaultMoveSpeed: 7
     DefaultJumpVelocity: 5
     DefaultAttSpeed: 100
@@ -31,7 +31,7 @@ MonoBehaviour:
     Elemental: 4
     ElementalDefensivePer: 0
     ElementalAggressivePer: 0
-  UnitName: 
+  UnitName: Wolf
   UnitNameLocal:
     m_TableReference:
       m_TableCollectionName: 
@@ -50,10 +50,11 @@ MonoBehaviour:
   groundCheckDistance: 0.15
   wallCheckDistance: 0.4
   UnitDetectedDistance: 4
+  unit_size: 0
   LayerMaskSO: {fileID: 11400000, guid: cf54109d9cea214498d740045d9d3ff9, type: 2}
   UnitAnimator: {fileID: 22100000, guid: 487909955f307f0438a85ffa651e49d5, type: 2}
   enemy_form: 0
-  enemy_size: 0
+  enemy_tag: Water
   enemy_level: 0
   UnitAttackDistance: 3
   minIdleTime: 0.5

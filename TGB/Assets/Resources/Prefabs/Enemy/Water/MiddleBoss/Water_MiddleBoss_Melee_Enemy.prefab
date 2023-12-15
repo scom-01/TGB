@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 3104442148126663337}
   m_Layer: 18
   m_Name: Weapons
-  m_TagString: BigEnemy
+  m_TagString: SmallEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -654,7 +654,7 @@ GameObject:
   - component: {fileID: 3233904781095598674}
   m_Layer: 18
   m_Name: Water_MiddleBoss_Melee_Enemy
-  m_TagString: BigEnemy
+  m_TagString: SmallEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -835,6 +835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3ae8f23380c1bd48a6db59dc06b9ffe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MapSR: {fileID: 3640253523737029720}
   RespawnPoint: {fileID: 0}
   UnitData: {fileID: 11400000, guid: 356091147e584bf4fab2a05579c164d1, type: 2}
   IsAlive: 1
@@ -951,10 +952,9 @@ GameObject:
   - component: {fileID: 3640253523003701945}
   - component: {fileID: 3640253523003701895}
   - component: {fileID: 3640253523003701946}
-  - component: {fileID: 3640253523003701944}
   m_Layer: 11
   m_Name: E_Receiver
-  m_TagString: BigEnemy
+  m_TagString: SmallEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1026,18 +1026,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.88060236, y: 1.2961342}
   m_EdgeRadius: 0
---- !u!114 &3640253523003701944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3640253523003701948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c01c623c80a38e45856cc1c2442b8b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3640253523092253568
 GameObject:
   m_ObjectHideFlags: 0

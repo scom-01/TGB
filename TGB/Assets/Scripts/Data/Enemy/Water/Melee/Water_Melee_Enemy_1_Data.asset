@@ -18,15 +18,15 @@ MonoBehaviour:
     DefaultMoveSpeed: 7
     DefaultJumpVelocity: 5
     DefaultAttSpeed: 100
-    MovementVelocity: 5
-    JumpVelocity: 10
+    MovementVEL_Per: 0
+    JumpVEL_Per: 0
     AttackSpeedPer: 0
     PhysicsDefensivePer: 0
     MagicDefensivePer: 0
     PhysicsAggressivePer: 0
     MagicAggressivePer: 0
     CriticalPer: 35
-    AdditionalCriticalPer: 0
+    CriticalDmgPer: 0
     DamageAttiribute: 0
     Elemental: 4
     ElementalDefensivePer: 0
@@ -47,13 +47,14 @@ MonoBehaviour:
   standCC2DOffset: {x: 0, y: 0.6}
   standCC2DSize: {x: 0.74, y: 1.2}
   UnitCC2DMaterial: {fileID: 6200000, guid: 5cc90d2fd1f3c2d4ba56287afb0442d4, type: 2}
-  groundCheckRadius: 0.1
+  groundCheckDistance: 0.1
   wallCheckDistance: 0.5
   UnitDetectedDistance: 10
+  unit_size: 0
   LayerMaskSO: {fileID: 11400000, guid: cf54109d9cea214498d740045d9d3ff9, type: 2}
   UnitAnimator: {fileID: 22100000, guid: 487909955f307f0438a85ffa651e49d5, type: 2}
   enemy_form: 0
-  enemy_size: 0
+  enemy_tag: Water
   enemy_level: 0
   UnitAttackDistance: 5
   minIdleTime: 0.5

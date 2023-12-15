@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 840319699523841666}
   - component: {fileID: 840319699523841671}
   - component: {fileID: 840319699523841664}
-  - component: {fileID: 840319699523841665}
   m_Layer: 11
   m_Name: Receiver
   m_TagString: Player
@@ -87,18 +86,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.625, y: 1.3225}
   m_EdgeRadius: 0
---- !u!114 &840319699523841665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 840319699523841692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c01c623c80a38e45856cc1c2442b8b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &840319699589423306
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,6 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea4697895990f0d409243616bbf1f4c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MapSR: {fileID: 840319700143600039}
   RespawnPoint: {fileID: 0}
   UnitData: {fileID: 11400000, guid: ae3d62f76bc500849819fd1f7f2f1900, type: 2}
   IsAlive: 1
@@ -340,7 +328,7 @@ MonoBehaviour:
   - {x: 0.3382533, y: -0.31089497, z: -3.5175539e-12}
   m_ShapePathHash: 1392743763
   m_Mesh: {fileID: 0}
-  m_InstanceId: 104578
+  m_InstanceId: 316648
 --- !u!1 &840319699985489545
 GameObject:
   m_ObjectHideFlags: 0

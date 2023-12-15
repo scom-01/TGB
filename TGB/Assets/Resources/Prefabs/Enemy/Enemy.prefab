@@ -466,7 +466,6 @@ GameObject:
   - component: {fileID: 5562365451077781080}
   - component: {fileID: 5562365451077781094}
   - component: {fileID: 5562365451077781083}
-  - component: {fileID: 5562365451077781081}
   m_Layer: 11
   m_Name: E_Receiver
   m_TagString: NormEnemy
@@ -541,18 +540,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &5562365451077781081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5562365451077781085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c01c623c80a38e45856cc1c2442b8b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5562365451186296673
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,6 +852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2cf2922a9d38540a5cb4565608d154, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MapSR: {fileID: 0}
   RespawnPoint: {fileID: 0}
   UnitData: {fileID: 11400000, guid: 18e5526c4f9924a4e9be2f0de80b92a9, type: 2}
   IsAlive: 1
