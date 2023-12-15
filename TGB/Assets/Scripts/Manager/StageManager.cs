@@ -201,8 +201,15 @@ public class StageManager : MonoBehaviour
     {
         if (DataManager.Inst != null)
         {
-            if (MasterManagerList.Count > 0)
+            for (int i = 0; i < MasterManagerList.Count; i++)
             {
+                if (MasterManagerList[i] == null)
+                {
+                    MasterManagerList.RemoveAt(i);
+                }
+            }
+            if (MasterManagerList.Count > 0)
+            {                
                 int idx = 0;
                 if (DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.SceneDataIdxs.Count != 0)
                 {
