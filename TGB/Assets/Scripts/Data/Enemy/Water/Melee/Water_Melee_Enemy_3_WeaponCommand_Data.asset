@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab28b1b28bebb3d418384ac1ecb8b7fd, type: 3}
+  m_Name: Water_Melee_Enemy_3_WeaponCommand_Data
+  m_EditorClassIdentifier: 
+  WeaponIdx: 0
+  <NumberOfActions>k__BackingField: 0
+  <WeaponImg>k__BackingField: {fileID: 0}
+  <WeaponName>k__BackingField: 
+  <WeaponNameLocal>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <Elelemental_Power>k__BackingField: 0
+  <WeaponClassLevel>k__BackingField: 0
+  DefaultAnimator: {fileID: 22100000, guid: c183dfaea95393c469ffa09fece3712b, type: 2}
+  DefaultWeaponDataSO: {fileID: 11400000, guid: 10f3c261301851d48947ea9d60230de7, type: 2}
+  GoodsCost:
+    Gold: 0
+    FireGoods: 0
+    WaterGoods: 0
+    EarthGoods: 0
+    WindGoods: 0
+  UpgradeWeaponCommandDataSO: []
+  GroundedCommandList:
+  - commands:
+    - command: 0
+      animOC: {fileID: 22100000, guid: c183dfaea95393c469ffa09fece3712b, type: 2}
+      data: {fileID: 11400000, guid: 10f3c261301851d48947ea9d60230de7, type: 2}
+  - commands:
+    - command: 0
+      animOC: {fileID: 22100000, guid: 13c55c5b3c00a444c92f4af0115c7037, type: 2}
+      data: {fileID: 11400000, guid: 3016fe3524ff1da458177d88710bc8cf, type: 2}
+  AirCommandList: []
+  references:
+    version: 2
+    RefIds: []
