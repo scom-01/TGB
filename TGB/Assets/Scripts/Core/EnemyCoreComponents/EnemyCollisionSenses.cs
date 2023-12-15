@@ -20,7 +20,7 @@ public class EnemyCollisionSenses : CollisionSenses
         {
             var RayHit = Physics2D.BoxCastAll
                 (
-                    new Vector2(GroundCenterPos.x, GroundCenterPos.y + CC2D.bounds.size.y * 0.5f),
+                    new Vector2(UnitCenterFront.x, UnitCenterFront.y),
                     CC2D.bounds.size,
                     0f,
                     Vector2.right * Movement.FancingDirection,
@@ -36,7 +36,7 @@ public class EnemyCollisionSenses : CollisionSenses
         {
             var RayHit = Physics2D.BoxCastAll
                 (
-                    new Vector2(GroundCenterPos.x, GroundCenterPos.y + CC2D.bounds.size.y * 0.5f),
+                    new Vector2(UnitCenterBack.x, UnitCenterBack.y),
                     CC2D.bounds.size,
                     0f,
                     Vector2.right * -Movement.FancingDirection,
@@ -182,13 +182,13 @@ public class EnemyCollisionSenses : CollisionSenses
         Gizmos.color = Color.red;
         //front
         Gizmos.DrawWireCube(
-            new Vector3(GroundCenterPos.x + ((CC2D.size.x / 2 + (core.Unit.UnitData as EnemyData).UnitDetectedDistance / 2) * Movement.FancingDirection), GroundCenterPos.y + CC2D.size.y * 0.5f, 0),
+            new Vector3(UnitCenterPos.x + (((core.Unit.UnitData as EnemyData).UnitDetectedDistance / 2) * Movement.FancingDirection), UnitCenterPos.y, 0),
             new Vector2((core.Unit.UnitData as EnemyData).UnitDetectedDistance, CC2D.bounds.size.y));
 
         Gizmos.color = Color.blue;
         //back
         Gizmos.DrawWireCube(
-            new Vector3(GroundCenterPos.x + ((CC2D.size.x / 2 + (core.Unit.UnitData as EnemyData).UnitDetectedDistance / 2) * -1f * Movement.FancingDirection), GroundCenterPos.y + CC2D.size.y * 0.5f, 0),
+            new Vector3(UnitCenterPos.x + (((core.Unit.UnitData as EnemyData).UnitDetectedDistance / 2) * -1f * Movement.FancingDirection), UnitCenterPos.y, 0),
             new Vector2((core.Unit.UnitData as EnemyData).UnitDetectedDistance, CC2D.bounds.size.y));
     }
 

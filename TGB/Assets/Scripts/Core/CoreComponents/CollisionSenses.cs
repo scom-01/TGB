@@ -55,6 +55,9 @@ namespace TGB.CoreSystem
             }
         }
 
+        public Vector3 UnitCenterFront => new Vector3(UnitCenterPos.x + (CC2D.size.x * 0.5f * Movement.FancingDirection), UnitCenterPos.y);
+        public Vector3 UnitCenterBack => new Vector3(UnitCenterPos.x + (CC2D.size.x * 0.5f * -Movement.FancingDirection), UnitCenterPos.y);
+
         /// <summary>
         /// 머리높이의 가운데 위치
         /// </summary>
@@ -77,36 +80,30 @@ namespace TGB.CoreSystem
             }
         }
 
+        public Vector3 GroundFront => new Vector3(GroundCenterPos.x + (CC2D.size.x / 2 * Movement.FancingDirection), GroundCenterPos.y, 0);
+        public Vector3 GroundBack => new Vector3(GroundCenterPos.x + (CC2D.size.x / 2 * -Movement.FancingDirection), GroundCenterPos.y, 0);
+
+        /// <summary>
+        /// 신체높이의 70% 지점
+        /// </summary>
         public Vector3 WallFrontPos
         {
             get
             {
-                return new Vector3(UnitCenterPos.x + CC2D.offset.x + (CC2D.size.x / 2) * Movement.FancingDirection, core.Unit.transform.position.y + CC2D.offset.y - (CC2D.size.y / 2) + 0.7f, 0);
+                return new Vector3(UnitCenterPos.x + (CC2D.size.x / 2) * Movement.FancingDirection, UnitCenterPos.y + ((CC2D.size.y / 2) * 0.7f), 0);
             }
         }
         public Vector3 WallkBackPos
         {
             get
             {
-                return new Vector3(UnitCenterPos.x + (CC2D.size.x / 2) * -Movement.FancingDirection, core.Unit.transform.position.y + CC2D.offset.y - (CC2D.size.y / 2) + 0.7f, 0);
+                return new Vector3(UnitCenterPos.x + (CC2D.size.x / 2) * -Movement.FancingDirection, UnitCenterPos.y + ((CC2D.size.y / 2) * 0.7f), 0);
             }
         }
 
-        public Vector3 CliffFront
-        {
-            get
-            {
-                return GroundCenterPos + new Vector3((CC2D.offset.x + WallCheckDistance) + CC2D.size.x / 2, 0, 0) * Movement.FancingDirection;
-            }
-        }
+        public Vector3 CliffFront => GroundFront + (Vector3.right * WallCheckDistance * Movement.FancingDirection);
 
-        public Vector3 CliffBack
-        {
-            get
-            {
-                return GroundCenterPos + new Vector3((CC2D.offset.x + WallCheckDistance) + CC2D.size.x / 2, 0, 0) * -Movement.FancingDirection;
-            }
-        }
+        public Vector3 CliffBack => GroundBack + (Vector3.right * WallCheckDistance * -Movement.FancingDirection);
 
         public float GroundCheckDistance { get => core.Unit.UnitData.groundCheckDistance; }
         public float WallCheckDistance { get => core.Unit.UnitData.wallCheckDistance; }
