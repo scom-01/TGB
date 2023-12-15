@@ -150,7 +150,7 @@ public enum ENEMY_Form
     Fly = 1,
 }
 
-public enum ENEMY_Size
+public enum Unit_Size
 {
     Small = 0,
     Medium = 1,

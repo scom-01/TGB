@@ -36,6 +36,8 @@ public class UnitData : ScriptableObject
     [Tooltip("유닛 감지 거리")]
     public float UnitDetectedDistance = 0.5f;
 
+    public Unit_Size unit_size = Unit_Size.Small;
+
     public LayerMaskSO LayerMaskSO;
 
     [Header("Animator")]

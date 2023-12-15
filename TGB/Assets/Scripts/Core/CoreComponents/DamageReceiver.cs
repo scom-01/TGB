@@ -160,34 +160,25 @@ namespace TGB.CoreSystem
             return damage;
         }
 
-        public float TypeCalDamage(Unit AttackerUnit, float AttackerDmg, int RepeatAmount = 1)
+        public float TypeCalDamage(Unit attacker, float attackerDmg, int RepeatAmount = 1)
         {
-            float temp = AttackerDmg;
-            if (core.Unit.gameObject.tag != "Player")
+            float temp = attackerDmg;
+            if ((int)attacker.UnitData.unit_size > (int)core.Unit.UnitData.unit_size)
             {
-                //Damage
-                switch ((core.Unit as Enemy)?.enemyData.enemy_size)
-                {
-                    case ENEMY_Size.Small:
-                        temp *= (1.0f + GlobalValue.Enemy_Size_WeakPer);
-                        Debug.Log("Projectile Enemy Type Small, Normal Dam = " + AttackerDmg +
-                            " Enemy_Size_WeakPer Additional Dam = " + (AttackerDmg) * (1.0f + GlobalValue.Enemy_Size_WeakPer));
-                        break;
-                    case ENEMY_Size.Medium:
-                        Debug.Log("Projectile Enemy Type Medium, Normal Dam = " + AttackerUnit.Core.CoreUnitStats.CalculStatsData.DefaultPower);
-                        break;
-                    case ENEMY_Size.Big:
-                        temp *= (1.0f - GlobalValue.Enemy_Size_WeakPer);
-                        Debug.Log("Projectile Enemy Type Big, Normal Dam = " + AttackerDmg +
-                            " Enemy_Size_WeakPer Additional Dam = " + (AttackerDmg) * (1.0f - GlobalValue.Enemy_Size_WeakPer));
-                        break;
-                    default:
-                        Debug.Log("Projectile Enemy Type Medium, Normal Dam = " + AttackerUnit.Core.CoreUnitStats.CalculStatsData.DefaultPower);
-                        break;
-                }
+                temp *= (1.0f + GlobalValue.Enemy_Size_WeakPer);
+                Debug.Log($"Attacker Unit Size Bigger than {core.Unit.name}, Calculate Befor Dmg = {attackerDmg}, after Dmg = {temp}");
+            }
+            else if((int)attacker.UnitData.unit_size == (int)core.Unit.UnitData.unit_size)
+            {
+                Debug.Log($"Attacker Unit Size equal to {core.Unit.name}");
+            }
+            else if((int)attacker.UnitData.unit_size < (int)core.Unit.UnitData.unit_size)
+            {
+                temp *= (1.0f - GlobalValue.Enemy_Size_WeakPer);
+                Debug.Log($"Attacker Unit Size smaller than {core.Unit.name}, Calculate Befor Dmg = {attackerDmg}, after Dmg = {temp}");
             }
 
-            return Damage(AttackerUnit, temp, RepeatAmount);
+            return Damage(attacker, temp, RepeatAmount);
         }
 
         public float FixedDamage(Unit attacker, int amount, bool isTrueHit = false, int RepeatAmount = 1)
@@ -360,6 +351,8 @@ namespace TGB.CoreSystem
         {
             base.Awake();
             BC2D = GetComponent<BoxCollider2D>();
+            BC2D.offset = core.Unit.CC2D.offset;
+            BC2D.size = core.Unit.CC2D.size;
             stats = new CoreComp<UnitStats>(core);
             effectManager = new CoreComp<EffectManager>(core);
             death = new CoreComp<Death>(core);
