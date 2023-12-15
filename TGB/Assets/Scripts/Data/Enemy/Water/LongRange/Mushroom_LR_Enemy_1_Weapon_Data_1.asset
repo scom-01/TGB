@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 829d099c869488a49a5f24ab18f0f054, type: 3}
+  m_Name: Mushroom_LR_Enemy_1_Weapon_Data_1
+  m_EditorClassIdentifier: 
+  <NumberOfActions>k__BackingField: 1
+  <CanJump>k__BackingField: 0
+  <CanAirAttack>k__BackingField: 0
+  <ComponentData>k__BackingField:
+  - rid: 2527592717927579690
+  - rid: 2527592717927579691
+  - rid: 2527592717927579692
+  - rid: 2527592717927579693
+  - rid: 2527592717927579694
+  - rid: 2527592717927579695
+  - rid: 2527592717927579696
+  - rid: 2527592717927579697
+  - rid: 2527592717927579698
+  references:
+    version: 2
+    RefIds:
+    - rid: 2527592717927579690
+      type: {class: ActionHitBoxData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ActionHitBoxData
+        actionData:
+        - name: 
+          ActionHit: []
+        <DetectableLayers>k__BackingField:
+          serializedVersion: 2
+          m_Bits: 2048
+    - rid: 2527592717927579691
+      type: {class: DamageData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: DamageData
+        actionData:
+        - name: Action 1
+          <HitDamage>k__BackingField: []
+    - rid: 2527592717927579692
+      type: {class: EffectSpawnData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: EffectSpawnData
+        actionData:
+        - name: Action 1
+          <EffectParticles>k__BackingField: []
+    - rid: 2527592717927579693
+      type: {class: KnockbackData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: KnockbackData
+        actionData:
+        - name: Action 1
+          <KnockbackAngle>k__BackingField: []
+    - rid: 2527592717927579694
+      type: {class: MovementData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: MovementData
+        actionData:
+        - name: Action 1
+          <movements>k__BackingField: []
+    - rid: 2527592717927579695
+      type: {class: ShakeCamData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ShakeCamData
+        actionData:
+        - name: Action 1
+          <ShakeCamData>k__BackingField: []
+    - rid: 2527592717927579696
+      type: {class: SoundClipData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: SoundClipData
+        actionData:
+        - name: Action 1
+          audioDataList:
+          - Clip: {fileID: 8300000, guid: b9b37e79db0269841959e5abcaec83fd, type: 3}
+            Volume: 0.2
+    - rid: 2527592717927579697
+      type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: WeaponProjectileData
+        actionData:
+        - name: Action 1
+          ProjectileActionData:
+          - ProjectileData:
+              Pos: {x: 1, y: 1, z: 0}
+              Rot: {x: 1, y: 0, z: 0}
+              Speed: 5
+              DurationTime: 2.5
+              AdditionalDmg: 0
+              isFixed: 0
+              KnockbackAngle: {x: 0, y: 0}
+              isOnHit: 0
+              Radius: 0.2
+              Offset: {x: 0, y: 0}
+              GravityScale: 0
+              isSingleShoot: 1
+              isCollisionGround: 0
+              isCollisionPlatform: 0
+              isBound: 0
+              UnitCC2DMaterial: {fileID: 0}
+              EffectScale: {x: 1, y: 1, z: 1}
+              ImpactScale: {x: 1, y: 1, z: 1}
+              isShakeCam: 0
+              camDatas:
+                Duration: 0.2
+                Range: 0.01
+                RepeatRate: 0.01
+              homingType: 2
+            Projectile: {fileID: 2222910967692216358, guid: 1a9ff9db1a954bd46b450a1aec904f95, type: 3}
+    - rid: 2527592717927579698
+      type: {class: WeaponSpriteData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: WeaponSpriteData
+        actionData:
+        - name: Action 1
+          <WeaponSprites>k__BackingField: []

@@ -266,7 +266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CommandList: 
   weaponData:
-    weaponCommandDataSO: {fileID: 0}
+    weaponCommandDataSO: {fileID: 11400000, guid: fe8332d0cee8f0a4b8f09ad9d50f4a3d, type: 2}
     weaponDataSO: {fileID: 11400000, guid: 740c9585bdc604c459184db5537dc31e, type: 2}
   Command: 0
   oc: {fileID: 0}
@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponData:
-    weaponCommandDataSO: {fileID: 0}
+    weaponCommandDataSO: {fileID: 11400000, guid: fe8332d0cee8f0a4b8f09ad9d50f4a3d, type: 2}
     weaponDataSO: {fileID: 11400000, guid: 740c9585bdc604c459184db5537dc31e, type: 2}
 --- !u!114 &4350111290765543826
 MonoBehaviour:
@@ -705,7 +705,7 @@ GameObject:
   - component: {fileID: 8530842778410030304}
   - component: {fileID: 3770291432719512204}
   m_Layer: 18
-  m_Name: MushroomEnemy 1
+  m_Name: Mushroom_Melee_Enemy
   m_TagString: SmallEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -719,12 +719,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3640253521839122302}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.46, y: 2.44, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3640253523092253583}
-  - {fileID: 3640253523737029721}
+  - {fileID: 1817078659869756212}
   - {fileID: 3640253523614428214}
   - {fileID: 6845263046501251454}
   - {fileID: 5014059752026800173}
@@ -909,8 +909,12 @@ MonoBehaviour:
   IsAlive: 1
   isFixedMovement: 0
   enemyData: {fileID: 0}
-  Test_Distance: 0
-  Pattern_Idx: []
+  Test_Distance: 2.5
+  Pattern_Idx:
+  - Used: 0
+    Detected_Distance: 2.5
+    Boundary: 0
+    DetectedType: 0
 --- !u!1 &3640253522240484911
 GameObject:
   m_ObjectHideFlags: 0
@@ -1368,7 +1372,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3640253523737029721}
+  - component: {fileID: 1817078659869756212}
   - component: {fileID: 3640253523737029720}
   m_Layer: 6
   m_Name: MiniMap Obj
@@ -1377,26 +1381,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &3640253523737029721
-RectTransform:
+--- !u!4 &1817078659869756212
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3640253523737029722}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.464375, y: 2.315625, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.37509203, w: 0.9269876}
+  m_LocalPosition: {x: 0.023, y: -0.4728, z: 0}
+  m_LocalScale: {x: 1.64, y: 1.97, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3640253521839122301}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.023, y: -0.4728}
-  m_SizeDelta: {x: 1, y: 1}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 44.06}
 --- !u!212 &3640253523737029720
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1442,7 +1441,7 @@ SpriteRenderer:
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
+  m_DrawMode: 1
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -1546,7 +1545,7 @@ Animator:
   m_GameObject: {fileID: 4242634074962048764}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0a07deddbe058d24b80579b96e497b04, type: 2}
+  m_Controller: {fileID: 22100000, guid: cc06c393996206f4ca46420cd330951a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

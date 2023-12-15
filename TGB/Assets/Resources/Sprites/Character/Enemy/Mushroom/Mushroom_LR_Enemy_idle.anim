@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Wolf_Melee_Enemy_move
+  m_Name: Mushroom_LR_Enemy_idle
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,15 +20,13 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -7420035040333845750, guid: 61cccb95cdae10c4cb2e015c5a9d43c6, type: 3}
+      value: {fileID: 8766025703166197572, guid: d9da68544b472f8459f6226a3917d035, type: 3}
     - time: 0.1
-      value: {fileID: -2512949726900254729, guid: 61cccb95cdae10c4cb2e015c5a9d43c6, type: 3}
+      value: {fileID: -7388349845505264695, guid: d9da68544b472f8459f6226a3917d035, type: 3}
     - time: 0.2
-      value: {fileID: 6230503220969141616, guid: 61cccb95cdae10c4cb2e015c5a9d43c6, type: 3}
+      value: {fileID: 5760665385591918719, guid: d9da68544b472f8459f6226a3917d035, type: 3}
     - time: 0.3
-      value: {fileID: 3743403897614466716, guid: 61cccb95cdae10c4cb2e015c5a9d43c6, type: 3}
-    - time: 0.4
-      value: {fileID: 6430779626774986828, guid: 61cccb95cdae10c4cb2e015c5a9d43c6, type: 3}
+      value: {fileID: 5547767851907728245, guid: d9da68544b472f8459f6226a3917d035, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -39,26 +37,14 @@ AnimationClip:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
-    genericBindings:
-    - serializedVersion: 2
-      path: 0
-      attribute: 0
-      script: {fileID: 0}
-      typeID: 212
-      customType: 23
-      isPPtrCurve: 1
-    pptrCurveMapping:
-    - {fileID: -7420035040333845750, guid: 61cccb95cdae10c4cb2e015c5a9d43c6, type: 3}
-    - {fileID: -2512949726900254729, guid: 61cccb95cdae10c4cb2e015c5a9d43c6, type: 3}
-    - {fileID: 6230503220969141616, guid: 61cccb95cdae10c4cb2e015c5a9d43c6, type: 3}
-    - {fileID: 3743403897614466716, guid: 61cccb95cdae10c4cb2e015c5a9d43c6, type: 3}
-    - {fileID: 6430779626774986828, guid: 61cccb95cdae10c4cb2e015c5a9d43c6, type: 3}
+    genericBindings: []
+    pptrCurveMapping: []
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.5
+    m_StopTime: 0.4
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

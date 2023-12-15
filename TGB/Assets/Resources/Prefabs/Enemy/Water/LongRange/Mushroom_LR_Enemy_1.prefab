@@ -187,7 +187,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.656
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -219,18 +219,18 @@ GameObject:
   - component: {fileID: 6845263046501251454}
   - component: {fileID: 8016165242470822881}
   - component: {fileID: 7465565771582179943}
-  - component: {fileID: 6364849679373265801}
-  - component: {fileID: 7560185435578167021}
-  - component: {fileID: 6949147209196759605}
-  - component: {fileID: 2427320670310088980}
-  - component: {fileID: 7493367323095652200}
-  - component: {fileID: 2687029351795562537}
-  - component: {fileID: 8604668986692365512}
-  - component: {fileID: 7878859085048613579}
-  - component: {fileID: 4582898434617076431}
+  - component: {fileID: 5180941045346581415}
+  - component: {fileID: 4960730965085991716}
+  - component: {fileID: 7789788488751624188}
+  - component: {fileID: 5178907727098578159}
+  - component: {fileID: 4433705083081977675}
+  - component: {fileID: 9041367828929744031}
+  - component: {fileID: 2305172138874282715}
+  - component: {fileID: 7301633465482182834}
+  - component: {fileID: 994101390229964522}
   m_Layer: 18
   m_Name: Weapons
-  m_TagString: BigEnemy
+  m_TagString: SmallEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -266,8 +266,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CommandList: 
   weaponData:
-    weaponCommandDataSO: {fileID: 11400000, guid: 456dc57136deabe4d84ff2fdd5c46fee, type: 2}
-    weaponDataSO: {fileID: 11400000, guid: 582ac6f66c616db43985e561bd442ebc, type: 2}
+    weaponCommandDataSO: {fileID: 11400000, guid: f6eeadff3d0bdd94d9c47115a4b99c45, type: 2}
+    weaponDataSO: {fileID: 11400000, guid: a133923afc775534fa8091c0f1e63b85, type: 2}
   Command: 0
   oc: {fileID: 0}
   InAir: 0
@@ -285,9 +285,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponData:
-    weaponCommandDataSO: {fileID: 11400000, guid: 456dc57136deabe4d84ff2fdd5c46fee, type: 2}
-    weaponDataSO: {fileID: 11400000, guid: 35dc616869901f5418479da0aaab87f9, type: 2}
---- !u!114 &6364849679373265801
+    weaponCommandDataSO: {fileID: 11400000, guid: f6eeadff3d0bdd94d9c47115a4b99c45, type: 2}
+    weaponDataSO: {fileID: 11400000, guid: a133923afc775534fa8091c0f1e63b85, type: 2}
+--- !u!114 &5180941045346581415
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHitBoxIndex: 0
---- !u!114 &7560185435578167021
+--- !u!114 &4960730965085991716
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -312,7 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 945032430a0219b46b0d150691d8adaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6949147209196759605
+--- !u!114 &7789788488751624188
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32abb354863e76d48a3cf03cd8e6af02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2427320670310088980
+--- !u!114 &5178907727098578159
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -336,7 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88eea7f2c8c690b4fbd1f16a12d84ef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7493367323095652200
+--- !u!114 &4433705083081977675
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -348,7 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 481d28c0d4b469b4f90c059f1af12659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2687029351795562537
+--- !u!114 &9041367828929744031
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -360,7 +360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803dcd68e185c9b42841e594fd2e6b35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8604668986692365512
+--- !u!114 &2305172138874282715
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -372,7 +372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39609bc48c72eaf4f8bcb5ea805462db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7878859085048613579
+--- !u!114 &7301633465482182834
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentProjectileIndex: 0
---- !u!114 &4582898434617076431
+--- !u!114 &994101390229964522
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -673,7 +673,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 0
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -703,10 +703,10 @@ GameObject:
   - component: {fileID: 3640253521839122247}
   - component: {fileID: 8530842778410030304}
   - component: {fileID: 3639027602819861585}
-  - component: {fileID: 3933243332376236246}
+  - component: {fileID: 527933265053156335}
   m_Layer: 18
-  m_Name: Water_Melee_Enemy_2
-  m_TagString: BigEnemy
+  m_Name: Mushroom_LR_Enemy_1
+  m_TagString: SmallEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -772,7 +772,7 @@ SpriteRenderer:
   m_SortingLayerID: 1968435467
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 541814237, guid: b417477a1daabe74cbf58f555e6fbc5b, type: 3}
+  m_Sprite: {fileID: -5460969183248752185, guid: d9da68544b472f8459f6226a3917d035, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -793,7 +793,7 @@ Animator:
   m_GameObject: {fileID: 3640253521839122302}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: b2737ca40f03dca4f8e13705a4548068, type: 2}
+  m_Controller: {fileID: 22100000, guid: bd0e0222a6508a6408793bf9e04b5935, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -837,8 +837,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.5}
-  m_Size: {x: 1.8, y: 3}
+  m_Offset: {x: 0, y: 1.15}
+  m_Size: {x: 1.3, y: 2.3}
   m_Direction: 0
 --- !u!114 &3640253521839122247
 MonoBehaviour:
@@ -889,7 +889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _flashColor: {r: 1, g: 1, b: 1, a: 1}
   _flashTime: 0.25
---- !u!114 &3933243332376236246
+--- !u!114 &527933265053156335
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -898,27 +898,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 3640253521839122302}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b30f3fa435cb2c499494832d6d49475, type: 3}
+  m_Script: {fileID: 11500000, guid: cd20e8d00687aaa438fc2f37757ac17f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MapSR: {fileID: 3640253523737029720}
   RespawnPoint: {fileID: 0}
-  UnitData: {fileID: 11400000, guid: d0fee12abeea76641beca73ff9289dd7, type: 2}
+  UnitData: {fileID: 11400000, guid: 9804c14226b76ac41baa18b882c8ba8f, type: 2}
   IsAlive: 1
   isFixedMovement: 0
   enemyData: {fileID: 0}
-  Test_Distance: 4
+  Test_Distance: 10
   Pattern_Idx:
   - Used: 0
-    Detected_Distance: 3
-    Boundary: 0
-    DetectedType: 0
-  - Used: 0
-    Detected_Distance: 4
-    Boundary: 0
-    DetectedType: 0
-  - Used: 0
-    Detected_Distance: 6
+    Detected_Distance: 10
     Boundary: 0
     DetectedType: 0
 --- !u!1 &3640253522240484911
@@ -1024,7 +1016,7 @@ GameObject:
   - component: {fileID: 3640253523003701946}
   m_Layer: 11
   m_Name: E_Receiver
-  m_TagString: BigEnemy
+  m_TagString: SmallEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1131,7 +1123,7 @@ Transform:
   - {fileID: 3640253523228242009}
   - {fileID: 3640253523265248515}
   - {fileID: 3640253522650953881}
-  - {fileID: 1543431852716702688}
+  - {fileID: 4002131092873543506}
   m_Father: {fileID: 3640253521839122301}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1365,7 +1357,7 @@ RectTransform:
   m_GameObject: {fileID: 3640253523737029722}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7378048, y: 1.2023708, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3640253521839122301}
@@ -1373,7 +1365,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.6}
+  m_AnchoredPosition: {x: 0, y: 0.9}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &3640253523737029720
@@ -1421,14 +1413,14 @@ SpriteRenderer:
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 2
+  m_Size: {x: 1, y: 1.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &3944958041250560533
+--- !u!1 &4210865481480613776
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1436,8 +1428,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1543431852716702688}
-  - component: {fileID: 8661362440450725374}
+  - component: {fileID: 4002131092873543506}
+  - component: {fileID: 1301922223070314784}
   m_Layer: 0
   m_Name: SoundEffect
   m_TagString: Untagged
@@ -1445,13 +1437,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1543431852716702688
+--- !u!4 &4002131092873543506
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3944958041250560533}
+  m_GameObject: {fileID: 4210865481480613776}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -1460,13 +1452,13 @@ Transform:
   m_Father: {fileID: 3640253523092253583}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8661362440450725374
+--- !u!114 &1301922223070314784
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3944958041250560533}
+  m_GameObject: {fileID: 4210865481480613776}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d951751a5143a7548893b8be23de17fd, type: 3}
@@ -1569,7 +1561,7 @@ Animator:
   m_GameObject: {fileID: 4242634074962048764}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 195f13f6548ce86439c024a3717ceef8, type: 2}
+  m_Controller: {fileID: 22100000, guid: 7d42d82064bb33b44ada1cee99e2590d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1662,7 +1654,7 @@ MonoBehaviour:
   EquipEffect: {fileID: 1380205584940949931, guid: 07623d638bfe48c4bbf7a6dc202419de, type: 3}
   CircleSize: 0.3125
   DestroyTime: 2.5
-  DestroyTimeRange: 0.5
+  DestroyTimeRange: 0
 --- !u!114 &4029409388226351098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1675,7 +1667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f407318490b5cc49a551f5fa2d4c024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Goods: 2
+  Goods: 1
   Amount: 5
   DropCount: 5
   GoodsPrefab: {fileID: 1952279293685994997, guid: cb4cccd4b8f68bc48a25aac822abd0d2, type: 3}
@@ -1686,7 +1678,7 @@ MonoBehaviour:
   EquipEffect: {fileID: 1380205584940949931, guid: 07623d638bfe48c4bbf7a6dc202419de, type: 3}
   CircleSize: 0.3125
   DestroyTime: 2.5
-  DestroyTimeRange: 0.5
+  DestroyTimeRange: 0
 --- !u!1001 &6386328288435780554
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 829d099c869488a49a5f24ab18f0f054, type: 3}
-  m_Name: Enemy_Attack_1
+  m_Name: Mushroom_Enemy_Weapon_Data
   m_EditorClassIdentifier: 
   <NumberOfActions>k__BackingField: 1
   <CanJump>k__BackingField: 0
@@ -38,17 +38,29 @@ MonoBehaviour:
           - Debug: 1
             ActionRect:
               serializedVersion: 2
-              x: -0.44
-              y: -1.65
-              width: 2.53
+              x: -0.74
+              y: 0
+              width: 2.71
               height: 2.58
             RepeatAction: 1
             AdditionalDamage: 0
             isFixed: 0
-            KnockbackAngle: {x: 0, y: 0}
-            EffectPrefab: []
+            KnockbackAngle: {x: 10, y: 5}
+            EffectPrefab:
+            - isGround: 0
+              isHeader: 0
+              isTransformGlobal: 0
+              isRandomPosRot: 0
+              isRandomRange: 0
+              EffectOffset: {x: 0, y: 0}
+              EffectScale: {x: 1, y: 1, z: 1}
+              isFollowing: 0
+              Object: {fileID: 134407622609432275, guid: 900c6149c7efc95428bed00f405b4f25, type: 3}
             audioClips: []
-            camDatas: []
+            camDatas:
+            - Duration: 0.2
+              Range: 0.01
+              RepeatRate: 0.001
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
           m_Bits: 2048

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab28b1b28bebb3d418384ac1ecb8b7fd, type: 3}
-  m_Name: Wolf_Melee_Enemy_1_WeaponCommand_Data
+  m_Name: Mushroom_LR_Enemy_1_WeaponCommand_Data
   m_EditorClassIdentifier: 
   WeaponIdx: 0
   <NumberOfActions>k__BackingField: 0
@@ -27,8 +27,8 @@ MonoBehaviour:
     m_LocalVariables: []
   <Elelemental_Power>k__BackingField: 0
   <WeaponClassLevel>k__BackingField: 0
-  DefaultAnimator: {fileID: 22100000, guid: 381fa970078d97b4e9e9a3923347d09b, type: 2}
-  DefaultWeaponDataSO: {fileID: 11400000, guid: 3c9f679e7a9aabc4a8451a22854fc6a0, type: 2}
+  DefaultAnimator: {fileID: 22100000, guid: 7d42d82064bb33b44ada1cee99e2590d, type: 2}
+  DefaultWeaponDataSO: {fileID: 11400000, guid: a133923afc775534fa8091c0f1e63b85, type: 2}
   GoodsCost:
     Gold: 0
     FireGoods: 0
@@ -39,8 +39,8 @@ MonoBehaviour:
   GroundedCommandList:
   - commands:
     - command: 0
-      animOC: {fileID: 22100000, guid: 381fa970078d97b4e9e9a3923347d09b, type: 2}
-      data: {fileID: 11400000, guid: 3c9f679e7a9aabc4a8451a22854fc6a0, type: 2}
+      animOC: {fileID: 22100000, guid: 7d42d82064bb33b44ada1cee99e2590d, type: 2}
+      data: {fileID: 11400000, guid: a133923afc775534fa8091c0f1e63b85, type: 2}
   AirCommandList: []
   references:
     version: 2
