@@ -47,13 +47,7 @@ namespace TGB.CoreSystem
         /// <summary>
         /// 유닛 정가운데 위치
         /// </summary>
-        public Vector3 UnitCenterPos
-        {
-            get
-            {
-                return new Vector3(core.Unit.transform.position.x + CC2D.offset.x, core.Unit.transform.position.y + CC2D.offset.y, 0);
-            }
-        }
+        public Vector3 UnitCenterPos => new Vector3(core.Unit.transform.position.x + CC2D.offset.x, core.Unit.transform.position.y + CC2D.offset.y, 0);
 
         public Vector3 UnitCenterFront => new Vector3(UnitCenterPos.x + (CC2D.size.x * 0.5f * Movement.FancingDirection), UnitCenterPos.y);
         public Vector3 UnitCenterBack => new Vector3(UnitCenterPos.x + (CC2D.size.x * 0.5f * -Movement.FancingDirection), UnitCenterPos.y);
@@ -61,45 +55,18 @@ namespace TGB.CoreSystem
         /// <summary>
         /// 머리높이의 가운데 위치
         /// </summary>
-        public Vector3 HeaderCenterPos
-        {
-            get
-            {
-                return new Vector3(core.Unit.transform.position.x + CC2D.offset.x, core.Unit.transform.position.y + CC2D.offset.y + CC2D.size.y / 2, 0);
-            }
-        }
+        public Vector3 HeaderCenterPos => new Vector3(core.Unit.transform.position.x + CC2D.offset.x, core.Unit.transform.position.y + CC2D.offset.y + CC2D.size.y / 2, 0);
 
         /// <summary>
         /// 바닥높이의 가운데 위치
         /// </summary>
-        public Vector3 GroundCenterPos
-        {
-            get
-            {
-                return new Vector3(core.Unit.transform.position.x + CC2D.offset.x, core.Unit.transform.position.y + CC2D.offset.y - CC2D.size.y / 2, 0);
-            }
-        }
+        public Vector3 GroundCenterPos => new Vector3(core.Unit.transform.position.x + CC2D.offset.x, core.Unit.transform.position.y + CC2D.offset.y - CC2D.size.y / 2, 0);
 
         public Vector3 GroundFront => new Vector3(GroundCenterPos.x + (CC2D.size.x / 2 * Movement.FancingDirection), GroundCenterPos.y, 0);
         public Vector3 GroundBack => new Vector3(GroundCenterPos.x + (CC2D.size.x / 2 * -Movement.FancingDirection), GroundCenterPos.y, 0);
 
-        /// <summary>
-        /// 신체높이의 70% 지점
-        /// </summary>
-        public Vector3 WallFrontPos
-        {
-            get
-            {
-                return new Vector3(UnitCenterPos.x + (CC2D.size.x / 2) * Movement.FancingDirection, UnitCenterPos.y + ((CC2D.size.y / 2) * 0.7f), 0);
-            }
-        }
-        public Vector3 WallkBackPos
-        {
-            get
-            {
-                return new Vector3(UnitCenterPos.x + (CC2D.size.x / 2) * -Movement.FancingDirection, UnitCenterPos.y + ((CC2D.size.y / 2) * 0.7f), 0);
-            }
-        }
+        public Vector3 WallFrontPos => new Vector3(GroundCenterPos.x + (CC2D.size.x / 2) * Movement.FancingDirection, GroundCenterPos.y + 0.7f, 0);
+        public Vector3 WallkBackPos => new Vector3(GroundCenterPos.x + (CC2D.size.x / 2) * -Movement.FancingDirection, GroundCenterPos.y + 0.7f, 0);
 
         public Vector3 CliffFront => GroundFront + (Vector3.right * WallCheckDistance * Movement.FancingDirection);
 
