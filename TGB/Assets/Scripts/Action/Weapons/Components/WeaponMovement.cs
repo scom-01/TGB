@@ -77,7 +77,7 @@ namespace TGB.Weapons.Components
             {
                 return;
             }
-            if(!CoreMovement.CanMovement)
+            if (!CoreMovement.CanMovement)
             {
                 CoreMovement.SetVelocityX(0f);
             }
@@ -107,14 +107,7 @@ namespace TGB.Weapons.Components
             CoreMovement.SetVelocityZero();
 
             //타겟 유닛의 뒤로 이동
-            if( core.Unit.TargetUnit.Core.CoreCollisionSenses.UnitCenterPos.x > core.CoreCollisionSenses.UnitCenterPos.x)
-            {
-                core.Unit.transform.position = core.Unit.TargetUnit.Core.CoreCollisionSenses.UnitCenterPos + new Vector3(2, 0);
-            }
-            else
-            {
-                core.Unit.transform.position = core.Unit.TargetUnit.Core.CoreCollisionSenses.UnitCenterPos + new Vector3(-2, 0);
-            }            
+            core.Unit.transform.position = core.Unit.TargetUnit.Core.CoreCollisionSenses.UnitCenterBack + Vector3.right * 2 * -core.Unit.TargetUnit.Core.CoreMovement.FancingDirection;
         }
 
         private void HandleToPointTeleport()
@@ -165,7 +158,7 @@ namespace TGB.Weapons.Components
             if (!isFixedRush)
                 return;
 
-            if(timer > 0f)
+            if (timer > 0f)
             {
                 float t = Mathf.Clamp01(1 - timer / RushDurationTime);
                 core.Unit.RB.MovePosition(Vector2.Lerp(RushStartPoint, RushPoint, t));
@@ -175,7 +168,7 @@ namespace TGB.Weapons.Components
                     core.Unit.transform.position = RushPoint;
                     HandleRushOff();
                 }
-            }            
+            }
         }
 
         private void CheckRushAction(ActionMovement actionData)
@@ -233,11 +226,11 @@ namespace TGB.Weapons.Components
             if (actionData == null)
                 return;
             var currMovement = actionData.movements;
-            if(currMovement.Length < currentMovementIndex)
+            if (currMovement.Length < currentMovementIndex)
             {
                 return;
             }
-            if(currMovement[currentMovementIndex].Direction.magnitude == 0)
+            if (currMovement[currentMovementIndex].Direction.magnitude == 0)
             {
                 return;
             }
@@ -245,7 +238,7 @@ namespace TGB.Weapons.Components
             {
                 CoreMovement.SetVelocityX(currMovement[currentMovementIndex].Velocity * CoreMovement.FancingDirection);
             }
-            else if(currMovement[currentMovementIndex].Direction.x == 0 && currMovement[currentMovementIndex].Direction.y != 0)
+            else if (currMovement[currentMovementIndex].Direction.x == 0 && currMovement[currentMovementIndex].Direction.y != 0)
             {
                 CoreMovement.SetVelocityY(currMovement[currentMovementIndex].Velocity);
             }
@@ -261,7 +254,7 @@ namespace TGB.Weapons.Components
 
             eventHandler.OnFixedStartMovement -= HandleFixedStartMovement;
             eventHandler.OnFixedStartMovement += HandleFixedStartMovement;
-            
+
             eventHandler.OnFixedStopMovement -= HandleFixedStopMovement;
             eventHandler.OnFixedStopMovement += HandleFixedStopMovement;
 
@@ -280,13 +273,13 @@ namespace TGB.Weapons.Components
             eventHandler.OnRushToTargetOff -= HandleRushOff;
             eventHandler.OnRushToTargetOff += HandleRushOff;
 
-            
+
             eventHandler.OnStartMovement -= HandleStartMovement;
             eventHandler.OnStartMovement += HandleStartMovement;
 
             eventHandler.OnStopMovement -= HandleStopMovement;
             eventHandler.OnStopMovement += HandleStopMovement;
-            
+
             eventHandler.OnStartFlip -= HandleStartFlip;
             eventHandler.OnStartFlip += HandleStartFlip;
 
