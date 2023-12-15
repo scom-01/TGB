@@ -3,17 +3,6 @@ using UnityEngine;
 
 public class EnemyCollisionSenses : CollisionSenses
 {
-    public bool isUnitInAttackArea
-    {
-        get
-        {
-            RaycastHit2D ray1 = Physics2D.Raycast(new Vector2(GroundCenterPos.x, GroundCenterPos.y + CC2D.bounds.size.y * 0.5f), Vector2.right * Movement.FancingDirection, (core.Unit.UnitData as EnemyData).UnitAttackDistance, core.Unit.UnitData.LayerMaskSO.WhatIsEnemyUnit);
-            RaycastHit2D ray2 = Physics2D.Raycast(new Vector2(GroundCenterPos.x, GroundCenterPos.y + CC2D.bounds.size.y), Vector2.right * Movement.FancingDirection, (core.Unit.UnitData as EnemyData).UnitAttackDistance, core.Unit.UnitData.LayerMaskSO.WhatIsEnemyUnit);
-            RaycastHit2D ray3 = Physics2D.Raycast(GroundCenterPos, Vector2.right * Movement.FancingDirection, (core.Unit.UnitData as EnemyData).UnitAttackDistance, core.Unit.UnitData.LayerMaskSO.WhatIsEnemyUnit);
-            return (ray1 || ray2 || ray3);
-        }
-    }
-
     public bool isUnitInFrontDetectedArea
     {
         get
@@ -52,7 +41,7 @@ public class EnemyCollisionSenses : CollisionSenses
         {
             var RayHit = Physics2D.CircleCastAll
                 (
-                    new Vector2(GroundCenterPos.x, GroundCenterPos.y + CC2D.bounds.size.y * 0.5f),
+                    new Vector2(UnitCenterPos.x, UnitCenterPos.y),
                     (core.Unit.UnitData as EnemyData).UnitDetectedDistance,
                     Vector2.right * Movement.FancingDirection,
                     0,
@@ -67,11 +56,11 @@ public class EnemyCollisionSenses : CollisionSenses
         {
             var RayHit = Physics2D.BoxCastAll
                 (
-                    new Vector2(GroundCenterPos.x, GroundCenterPos.y + CC2D.bounds.size.y * 0.5f),
+                    new Vector2(UnitCenterFront.x, UnitCenterFront.y),
                     CC2D.bounds.size,
                     0f,
                     Vector2.right * Movement.FancingDirection,
-                    (core.Unit.UnitData as EnemyData).UnitDetectedDistance,
+                    ((core.Unit.UnitData as EnemyData).UnitDetectedDistance - CC2D.size.x < 0) ? 0 : (core.Unit.UnitData as EnemyData).UnitDetectedDistance - CC2D.size.x,
                     core.Unit.UnitData.LayerMaskSO.WhatIsEnemyUnit
                 );
             foreach (var coll in RayHit)
@@ -82,61 +71,26 @@ public class EnemyCollisionSenses : CollisionSenses
                 }
             }
             return null;
-
-            //Vector2 offset = Vector2.zero;
-            //Vector2 size = new Vector2(CC2D.size.x + (core.Unit.UnitData as EnemyData).UnitDetectedDistance, CC2D.bounds.size.y);
-            //offset.Set(GroundCenterPos.x + (CC2D.size.x * Movement.FancingDirection), GroundCenterPos.y);
-            //var detected = Physics2D.OverlapBoxAll(offset, size, 0f, core.Unit.UnitData.LayerMaskSO.WhatIsEnemyUnit);
-
-            //foreach (Collider2D coll in detected)
-            //{
-            //    if (coll.GetComponent<Unit>())
-            //    {
-            //        return coll.gameObject;
-            //    }
-            //}
-            //return null;
-            //var RayHit = Physics2D.BoxCastAll
-            //    (
-            //        new Vector2(GroundCenterPos.x + (CC2D.size.x / 2 * Movement.FancingDirection), GroundCenterPos.y + CC2D.bounds.size.y * 0.5f),
-            //        CC2D.bounds.size,
-            //        0f,
-            //        Vector2.right * Movement.FancingDirection,
-            //        Mathf.Abs((core.Unit.UnitData as EnemyData).UnitDetectedDistance - CC2D.bounds.size.x),
-            //        core.Unit.UnitData.LayerMaskSO.WhatIsEnemyUnit
-            //    );
-            //if (RayHit.Length > 0)
-            //{
-            //    foreach (var obj in RayHit)
-            //    {
-            //        if (obj.transform.tag == this.tag)
-            //        {
-            //            continue;
-            //        }
-
-            //        if (obj.transform.gameObject.GetComponent<Unit>())
-            //        {
-            //            return obj.transform.gameObject;
-            //        }
-            //    }
-            //}
-            //return null;
         }
     }
     public GameObject UnitBackDetectArea
     {
         get
         {
-            Vector2 offset = Vector2.zero;
-            Vector2 size = new Vector2(CC2D.size.x + (core.Unit.UnitData as EnemyData).UnitDetectedDistance, CC2D.bounds.size.y);
-            offset.Set(GroundCenterPos.x + (-CC2D.size.x * Movement.FancingDirection), GroundCenterPos.y);
-            var detected = Physics2D.OverlapBoxAll(offset, size, 0f, core.Unit.UnitData.LayerMaskSO.WhatIsEnemyUnit);
-
-            foreach (Collider2D coll in detected)
+            var RayHit = Physics2D.BoxCastAll
+                (
+                    new Vector2(UnitCenterBack.x, UnitCenterBack.y),
+                    CC2D.bounds.size,
+                    0f,
+                    Vector2.right * -Movement.FancingDirection,
+                     ((core.Unit.UnitData as EnemyData).UnitDetectedDistance - CC2D.size.x < 0) ? 0 : (core.Unit.UnitData as EnemyData).UnitDetectedDistance - CC2D.size.x,
+                    core.Unit.UnitData.LayerMaskSO.WhatIsEnemyUnit
+                );
+            foreach (var coll in RayHit)
             {
-                if (coll.GetComponent<Unit>())
+                if (coll.collider.GetComponent<Unit>())
                 {
-                    return coll.gameObject;
+                    return coll.collider.gameObject;
                 }
             }
             return null;
@@ -173,10 +127,10 @@ public class EnemyCollisionSenses : CollisionSenses
         Gizmos.color = Color.cyan;
         //AttackArea
         Gizmos.DrawWireCube(
-            new Vector3(GroundCenterPos.x + ((CC2D.size.x / 2 + (core.Unit.UnitData as EnemyData).UnitAttackDistance / 2) * Movement.FancingDirection), GroundCenterPos.y + CC2D.size.y * 0.5f, 0),
+            new Vector3(UnitCenterPos.x + ((core.Unit.UnitData as EnemyData).UnitAttackDistance / 2 * Movement.FancingDirection), UnitCenterPos.y, 0),
             new Vector2((core.Unit.UnitData as EnemyData).UnitAttackDistance, CC2D.bounds.size.y));
         Gizmos.DrawWireCube(
-            new Vector3(GroundCenterPos.x + ((CC2D.size.x / 2 + (core.Unit.UnitData as EnemyData).UnitAttackDistance / 2) * -1f * Movement.FancingDirection), GroundCenterPos.y + CC2D.size.y * 0.5f, 0),
+            new Vector3(UnitCenterPos.x + ((core.Unit.UnitData as EnemyData).UnitAttackDistance / 2 * -Movement.FancingDirection), UnitCenterPos.y, 0),
             new Vector2((core.Unit.UnitData as EnemyData).UnitAttackDistance, CC2D.bounds.size.y));
 
         Gizmos.color = Color.red;
