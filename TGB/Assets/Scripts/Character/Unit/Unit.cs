@@ -1,7 +1,6 @@
 using System.Collections;
 using TGB.CoreSystem;
 using Unity.VisualScripting;
-using UnityEditor.Build.Pipeline;
 using UnityEngine;
 
 public class Unit : MonoBehaviour
@@ -51,10 +50,12 @@ public class Unit : MonoBehaviour
     private CapsuleCollider2D cc2d;
 
     public SpriteRenderer SR { get; private set; }
+    [Tooltip("Map에 표시될 SpriteRenderer")]
+    public SpriteRenderer MapSR;
 
     public Inventory Inventory { get; private set; }
 
-    public Transform RespawnPoint;
+    [HideInInspector] public Transform RespawnPoint;
 
     public UnitData UnitData;
 
@@ -149,6 +150,17 @@ public class Unit : MonoBehaviour
 
         SR = GetComponent<SpriteRenderer>();
         if (SR == null) SR = this.GameObject().AddComponent<SpriteRenderer>();
+
+        if (MapSR != null)
+        {
+            MapSR.gameObject.layer = LayerMask.NameToLayer("Map");
+            MapSR.sortingLayerName = "Map";
+            MapSR.drawMode = SpriteDrawMode.Sliced;
+            MapSR.gameObject.transform.position = Vector3.zero;
+            MapSR.transform.position = new Vector3(CC2D.offset.x, CC2D.offset.y, 0);
+            MapSR.size = new Vector2(CC2D.size.x,CC2D.size.y);
+            MapSR.gameObject.SetActive(true);
+        }
 
         Inventory = GetComponent<Inventory>();
         if (Inventory == null) Inventory = this.GameObject().AddComponent<Inventory>();
