@@ -156,8 +156,10 @@ public class Unit : MonoBehaviour
             MapSR.gameObject.layer = LayerMask.NameToLayer("Map");
             MapSR.sortingLayerName = "Map";
             MapSR.drawMode = SpriteDrawMode.Sliced;
-            MapSR.gameObject.transform.position = Vector3.zero;
-            MapSR.transform.position = new Vector3(CC2D.offset.x, CC2D.offset.y, 0);
+            MapSR.transform.localScale = Vector3.one;
+            MapSR.transform.localRotation = Quaternion.Euler(Vector3.zero);
+            MapSR.gameObject.transform.localPosition = Vector3.zero;
+            MapSR.transform.localPosition = new Vector3(CC2D.offset.x, CC2D.offset.y, 0);
             MapSR.size = new Vector2(CC2D.size.x,CC2D.size.y);
             MapSR.gameObject.SetActive(true);
         }
