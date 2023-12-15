@@ -41,6 +41,7 @@ public class Enemy : Unit
     {
         base.Awake();
         enemyData = UnitData as EnemyData;
+        gameObject.tag = enemyData.enemy_tag;
     }
 
     // Start is called before the first frame update
@@ -53,7 +54,7 @@ public class Enemy : Unit
 
     protected virtual void Init()
     {
-
+        
     }
     public virtual void EnemyPattern() { }
     public override void DieEffect()

@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using Cinemachine;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "newEnemyData", menuName = "Data/Enemy Data/Base Data")]
@@ -8,7 +6,9 @@ public class EnemyData : UnitData
 {
     [Header("Type")]
     public ENEMY_Form enemy_form = ENEMY_Form.Grounded;
-    public ENEMY_Size enemy_size = ENEMY_Size.Small;
+    [Tooltip("Enemy의 소속")]
+    [TagField]
+    public string enemy_tag;
     public ENEMY_Level enemy_level = ENEMY_Level.NormalEnemy;
 
     /// <summary>
