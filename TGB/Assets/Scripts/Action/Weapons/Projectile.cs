@@ -281,8 +281,11 @@ namespace TGB
                 {
                     _renderer.sortingLayerName = "Effect";
                 }
-                var main = impact.GetComponent<ParticleSystem>().main;
-                main.stopAction = ParticleSystemStopAction.Disable;
+                if (impact.GetComponent<ParticleSystem>() != null)
+                {
+                    var main = impact.GetComponent<ParticleSystem>().main;
+                    main.stopAction = ParticleSystemStopAction.Disable;
+                }
             }
 
             //Impact AudioClip
