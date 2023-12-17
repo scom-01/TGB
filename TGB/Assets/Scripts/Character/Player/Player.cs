@@ -21,6 +21,8 @@ public class Player : Unit
 
     public PlayerWeaponState PrimaryAttackState { get; private set; }
     public PlayerWeaponState SecondaryAttackState { get; private set; }
+    public PlayerWeaponState PrimarySkillState { get; private set; }
+    public PlayerWeaponState SecondarySkillState { get; private set; }
 
     //PlayerTouchingWallState
     public PlayerWallSlideState WallSlideState { get; private set; }
@@ -50,6 +52,8 @@ public class Player : Unit
         DeathState = new PlayerDeathState(this, "death");
         PrimaryAttackState = new PlayerWeaponState(this, "action", ((int)CombatInputs.primary == (int)CombatInputs.primary)); //, Inventory.weapon);
         SecondaryAttackState = new PlayerWeaponState(this, "action", ((int)CombatInputs.primary == (int)CombatInputs.secondary));//, Inventory.weapons[(int)CombatInputs.secondary]);        
+        PrimarySkillState = new PlayerWeaponState(this, "action", ((int)CombatInputs.primary == (int)CombatInputs.primary));//, Inventory.weapons[(int)CombatInputs.secondary]);        
+        SecondarySkillState = new PlayerWeaponState(this, "action", ((int)CombatInputs.primary == (int)CombatInputs.secondary));//, Inventory.weapons[(int)CombatInputs.secondary]);        
         Inventory.Weapon.SetCore(Core);
     }
 

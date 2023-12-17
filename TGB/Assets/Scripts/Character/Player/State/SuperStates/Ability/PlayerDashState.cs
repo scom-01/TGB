@@ -61,22 +61,8 @@ public class PlayerDashState : PlayerAbilityState
 
         CheckIfShouldPlaceAfterImage();
 
-        if (player.InputHandler.ActionInputs[(int)CombatInputs.primary])
-        {
-            player.PrimaryAttackState.SetWeapon(player.Inventory.Weapon);
-            if (player.PrimaryAttackState.CheckCommand(isGrounded, ref player.Inventory.Weapon.CommandList))
-            {
-                player.FSM.ChangeState(player.PrimaryAttackState);
-            }
-        }
-        else if (player.InputHandler.ActionInputs[(int)CombatInputs.secondary])
-        {
-            player.SecondaryAttackState.SetWeapon(player.Inventory.Weapon);
-            if (player.SecondaryAttackState.CheckCommand(isGrounded, ref player.Inventory.Weapon.CommandList))
-            {
-                player.FSM.ChangeState(player.SecondaryAttackState);
-            }
-        }
+        if (CheckActionInput())
+            return;
 
         //대쉬 지속시간 종료
         if (Time.time >= startTime + player.playerData.dashDuration)

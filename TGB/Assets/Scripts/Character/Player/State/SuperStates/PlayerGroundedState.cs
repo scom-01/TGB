@@ -35,32 +35,9 @@ public class PlayerGroundedState : PlayerState
             player.DashState.ResetDash(player.playerData.dashCount);
         }
 
-        //Primary 키로 공격 시
-        if (player.InputHandler.ActionInputs[(int)CombatInputs.primary])
-        {
-            player.PrimaryAttackState.SetWeapon(player.Inventory.Weapon);
-            if (player.PrimaryAttackState.CheckCommand(isGrounded, ref player.Inventory.Weapon.CommandList))
-            {
-                player.FSM.ChangeState(player.PrimaryAttackState);
-            }
-        }
-        //Secondary 키로 공격 시
-        else if (player.InputHandler.ActionInputs[(int)CombatInputs.secondary])
-        {
-            player.SecondaryAttackState.SetWeapon(player.Inventory.Weapon);
-            if (player.SecondaryAttackState.CheckCommand(isGrounded, ref player.Inventory.Weapon.CommandList))
-            {
-                player.FSM.ChangeState(player.SecondaryAttackState);
-            }
-        }
-        else if (player.InputHandler.Skill1Input)
-        {
-            //FSM.ChangeState(player.PrimaryAttackState);
-        }
-        else if (player.InputHandler.Skill2Input)
-        {
-            //FSM.ChangeState(player.SecondaryAttackState);
-        }
+        if (CheckActionInput())
+            return;
+
         //아래로 점프
         else if (JumpInput && isPlatform && yInput < 0)
         {

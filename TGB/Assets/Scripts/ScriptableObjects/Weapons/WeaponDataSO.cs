@@ -7,6 +7,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "newWeaponData", menuName = "Data/Weapon Data/Weapon Data")]
 public class WeaponDataSO : ScriptableObject
 {
+    [Tooltip("UI 표시될 Sprite")]
+    [field: SerializeField] public Sprite WeaponSprite;
     [field: SerializeField] public int NumberOfActions { get; private set; }
     [field: SerializeField] public bool CanJump { get; private set; }
     [field: SerializeField] public bool CanAirAttack { get; private set; }

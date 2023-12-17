@@ -1,6 +1,6 @@
 using TGB.CoreSystem;
 using UnityEngine;
-
+using TGB;
 namespace TGB.Item
 {
     public class SOB_Item : MonoBehaviour
@@ -53,6 +53,10 @@ namespace TGB.Item
             BC2D = this.GetComponent<BoxCollider2D>();
             effectContainer = GameObject.FindGameObjectWithTag("EffectContainer").transform;
             GroundPos = new Vector2(transform.position.x + BC2D.offset.x, transform.position.y + BC2D.offset.y - (BC2D.size.y / 2));
+            if (SR == null)
+            {
+                SR = this.GetComponent<SpriteRenderer>();
+            }
         }
         private void OnEnable()
         {

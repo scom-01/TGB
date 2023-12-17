@@ -1,7 +1,5 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
+using TGB;
 using UnityEngine;
 using UnityEngine.Localization;
 
@@ -34,4 +32,7 @@ public class WeaponCommandDataSO : ScriptableObject
 
     [field: SerializeField] public List<CommandList> GroundedCommandList;
     [field: SerializeField] public List<CommandList> AirCommandList;
+
+    public WeaponData PrimarySkillData;
+    public WeaponData SecondarySkillData;
 }

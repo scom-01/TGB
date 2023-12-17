@@ -68,22 +68,8 @@ public class PlayerInAirState : PlayerState
         base.PhysicsUpdate();
 
 
-        if (player.InputHandler.ActionInputs[(int)CombatInputs.primary])
-        {
-            player.PrimaryAttackState.SetWeapon(player.Inventory.Weapon);
-            if (player.PrimaryAttackState.CheckCommand(isGrounded, ref player.Inventory.Weapon.CommandList))
-            {
-                player.FSM.ChangeState(player.PrimaryAttackState);
-            }
-        }
-        else if (player.InputHandler.ActionInputs[(int)CombatInputs.secondary])
-        {
-            player.SecondaryAttackState.SetWeapon(player.Inventory.Weapon);
-            if (player.SecondaryAttackState.CheckCommand(isGrounded, ref player.Inventory.Weapon.CommandList))
-            {
-                player.FSM.ChangeState(player.SecondaryAttackState);
-            }
-        }
+        if (CheckActionInput())
+            return;
 
         //Platform 착지
         else if ((CollisionSenses.CheckIfPlatform) && Movement.CurrentVelocity.y <= Mathf.Abs(0.01f))
@@ -92,7 +78,7 @@ public class PlayerInAirState : PlayerState
             return;
         }
         //Ground 착지
-        else if ((isGrounded ) && Movement.CurrentVelocity.y <= Mathf.Abs(0.01f))
+        else if ((isGrounded) && Movement.CurrentVelocity.y <= Mathf.Abs(0.01f))
         {
             player.FSM.ChangeState(player.LandState);
             return;

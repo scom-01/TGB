@@ -23,8 +23,8 @@ public class PlayerInputHandler : MonoBehaviour
     [HideInInspector]
     public bool JumpInput
                     , DashInput
-                    , Skill1Input
-                    , Skill2Input
+                    , PrimarySkillInput
+                    , SecondarySkillInput
                     , PrimaryInput
                     , ESCInput
                     , InteractionInput = false;
@@ -32,8 +32,8 @@ public class PlayerInputHandler : MonoBehaviour
     public bool PrimaryInputStop
                     , JumpInputStop
                     , DashInputStop
-                    , Skill1InputStop
-                    , Skill2InputStop
+                    , PrimarySkillInputStop
+                    , SecondarySkillInputStop
                     , InteractionInputStop = true;
     [HideInInspector]
     public bool[] ActionInputs;
@@ -70,8 +70,8 @@ public class PlayerInputHandler : MonoBehaviour
 
         JumpInput = false;
         DashInput = false;
-        Skill1Input = false;
-        Skill2Input = false;
+        PrimarySkillInput = false;
+        SecondarySkillInput = false;
         PrimaryInput = false;
         ESCInput = false;
         InteractionInput = false;
@@ -79,8 +79,8 @@ public class PlayerInputHandler : MonoBehaviour
         PrimaryInputStop = true;
         JumpInputStop = true;
         DashInputStop = true;
-        Skill1InputStop = true;
-        Skill2InputStop = true;
+        PrimarySkillInputStop = true;
+        SecondarySkillInputStop = true;
         InteractionInputStop = true;
 
         ActionInputs = new bool[count];
@@ -126,8 +126,8 @@ public class PlayerInputHandler : MonoBehaviour
     {
         bool jumpInput = JumpInput;
         bool dashInput = DashInput;
-        bool skill1Input = Skill1Input;
-        bool skill2Input = Skill2Input;
+        bool skill1Input = PrimarySkillInput;
+        bool skill2Input = SecondarySkillInput;
         bool interacInput = InteractionInput;
         bool[] attackInputs = ActionInputs;
 
@@ -140,8 +140,8 @@ public class PlayerInputHandler : MonoBehaviour
 
         JumpInput = jumpInput;
         DashInput = dashInput;
-        Skill1Input = skill1Input;
-        Skill2Input = skill2Input;
+        PrimarySkillInput = skill1Input;
+        SecondarySkillInput = skill2Input;
         //ActionInputs = attackInputs;
         InteractionInput = interacInput;
     }
@@ -197,13 +197,13 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.started)
         {
             Debug.Log("OnSkill 1 Input");
-            Skill1Input = true;
-            Skill1InputStop = false;
+            PrimarySkillInput = true;
+            PrimarySkillInputStop = false;
         }
 
         if (context.canceled)
         {
-            Skill1InputStop = true;
+            PrimarySkillInputStop = true;
         }
     }
 
@@ -212,13 +212,13 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.started)
         {
             Debug.Log("OnSkill 2 Input");
-            Skill2Input = true;
-            Skill2InputStop = false;
+            SecondarySkillInput = true;
+            SecondarySkillInputStop = false;
         }
 
         if (context.canceled)
         {
-            Skill2InputStop = true;
+            SecondarySkillInputStop = true;
         }
     }
 

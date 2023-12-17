@@ -54,9 +54,50 @@ public class PlayerState : UnitState
         JumpInputStop = player.InputHandler.JumpInputStop;
         dashInput = player.InputHandler.DashInput;
 
-        skill1Input = player.InputHandler.Skill1Input;
-        skill2Input = player.InputHandler.Skill2Input;
+        skill1Input = player.InputHandler.PrimarySkillInput;
+        skill2Input = player.InputHandler.SecondarySkillInput;
 
         dashInput = player.InputHandler.DashInput;
+    }
+
+    /// <summary>
+    /// true => 입력이 있고 상태 전환
+    /// </summary>
+    /// <returns></returns>
+    protected bool CheckActionInput()
+    {
+        if (player.InputHandler.ActionInputs[(int)CombatInputs.primary])
+        {
+            player.PrimaryAttackState.SetWeapon(player.Inventory.Weapon);
+            if (player.PrimaryAttackState.CheckCommand(isGrounded, ref player.Inventory.Weapon.CommandList))
+            {
+                player.FSM.ChangeState(player.PrimaryAttackState);
+                return true;
+            }
+        }
+        else if (player.InputHandler.ActionInputs[(int)CombatInputs.secondary])
+        {
+            player.SecondaryAttackState.SetWeapon(player.Inventory.Weapon);
+            if (player.SecondaryAttackState.CheckCommand(isGrounded, ref player.Inventory.Weapon.CommandList))
+            {
+                player.FSM.ChangeState(player.SecondaryAttackState);
+                return true;
+            }
+        }
+
+        if (player.InputHandler.PrimarySkillInput)
+        {
+            player.PrimarySkillState.SetWeapon(player.Inventory.Weapon);
+            player.FSM.ChangeState(player.PrimarySkillState);
+            return true;
+        }
+        else if (player.InputHandler.SecondarySkillInput)
+        {
+            player.SecondarySkillState.SetWeapon(player.Inventory.Weapon);
+            player.FSM.ChangeState(player.SecondarySkillState);
+            return true;
+        }
+
+        return false;
     }
 }

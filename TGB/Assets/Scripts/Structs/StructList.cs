@@ -5,6 +5,13 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 namespace TGB
 {
     [Serializable]
+    public struct WeaponData
+    {
+        public WeaponCommandDataSO weaponCommandDataSO;
+        public WeaponDataSO weaponDataSO;
+    }
+
+    [Serializable]
     public struct AudioPrefab
     {
         public AudioClip Clip;
