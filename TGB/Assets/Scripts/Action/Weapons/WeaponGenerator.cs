@@ -1,20 +1,11 @@
-using TGB.Weapons.Components;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
+using TGB.Weapons.Components;
 using UnityEngine;
 
 namespace TGB.Weapons
 {
-    [Serializable]
-    public struct WeaponData
-    {
-        public WeaponCommandDataSO weaponCommandDataSO;
-        public WeaponDataSO weaponDataSO;
-    }
-
     public class WeaponGenerator : MonoBehaviour
     {
         protected Weapon Weapon
