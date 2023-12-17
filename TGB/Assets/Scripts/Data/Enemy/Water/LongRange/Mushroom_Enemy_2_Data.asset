@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Mushroom_Enemy_2_Data
   m_EditorClassIdentifier: 
   statsStats:
-    MaxHealth: 30
-    DefaultPower: 5
+    MaxHealth: 40
+    DefaultPower: 12
     DefaultMoveSpeed: 2.5
     DefaultJumpVelocity: 5
     DefaultAttSpeed: 100
@@ -27,7 +27,7 @@ MonoBehaviour:
     MagicAggressivePer: 0
     CriticalPer: 0
     CriticalDmgPer: 0
-    DamageAttiribute: 0
+    DamageAttiribute: 1
     Elemental: 0
     ElementalDefensivePer: 0
     ElementalAggressivePer: 0
@@ -36,7 +36,7 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:624403414fdcaad4497611155e8721fa
     m_TableEntryReference:
-      m_KeyId: 7792386048
+      m_KeyId: 75043733610323968
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
   enemy_form: 0
   enemy_tag: Water
   enemy_level: 0
-  UnitAttackDistance: 10
+  UnitAttackDistance: 12.96
   minIdleTime: 0.5
   maxIdleTime: 3
   references:
