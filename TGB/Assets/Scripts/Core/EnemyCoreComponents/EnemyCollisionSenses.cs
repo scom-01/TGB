@@ -133,6 +133,10 @@ public class EnemyCollisionSenses : CollisionSenses
             new Vector3(UnitCenterPos.x + ((core.Unit.UnitData as EnemyData).UnitAttackDistance / 2 * -Movement.FancingDirection), UnitCenterPos.y, 0),
             new Vector2((core.Unit.UnitData as EnemyData).UnitAttackDistance, CC2D.bounds.size.y));
 
+        //UnitDetectedDistance
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(UnitCenterPos, (core.Unit.UnitData as EnemyData).UnitDetectedDistance);
+
         Gizmos.color = Color.red;
         //front
         Gizmos.DrawWireCube(
