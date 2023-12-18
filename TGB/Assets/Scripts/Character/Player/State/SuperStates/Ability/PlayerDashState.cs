@@ -11,6 +11,7 @@ public class PlayerDashState : PlayerAbilityState
     private Vector2 lastAIPos;
 
     private GameObject Dash_Effect;
+    private GameObject AirDash_Effect;
     private AudioClip Dash_SFX;
 
     public PlayerDashState(Unit unit, string animBoolName) : base(unit, animBoolName)
@@ -18,6 +19,10 @@ public class PlayerDashState : PlayerAbilityState
         if (Dash_Effect == null)
         {
             Dash_Effect = Resources.Load<GameObject>("Prefabs/Effects/Dash_Smoke");
+        }
+        if (AirDash_Effect == null)
+        {
+            AirDash_Effect = Resources.Load<GameObject>("Prefabs/Effects/Dash_Smoke");
         }
         if (Dash_SFX == null)
         {
@@ -109,10 +114,21 @@ public class PlayerDashState : PlayerAbilityState
         CanDash = false;
 
         player.InputHandler.UseInput(ref player.InputHandler.DashInput);
-        if (Dash_Effect != null)
+        if(isGrounded)
         {
-            EffectManager.StartEffectsPos(Dash_Effect, CollisionSenses.GroundCenterPos, Dash_Effect.transform.localScale);
+            if (Dash_Effect != null)
+            {
+                EffectManager.StartEffectsPos(Dash_Effect, CollisionSenses.GroundCenterPos, Dash_Effect.transform.localScale);
+            }
         }
+        else
+        {
+            if (AirDash_Effect != null)
+            {
+                EffectManager.StartEffectsPos(AirDash_Effect, CollisionSenses.GroundCenterPos, AirDash_Effect.transform.localScale);
+            }
+        }
+        
         Movement.SetVelocityY(0f);
         player.RB.gravityScale = 0f;
         DecreaseDashCount();
