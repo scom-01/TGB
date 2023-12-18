@@ -1,7 +1,4 @@
 using TGB.CoreSystem;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class PlayerState : UnitState
 {
@@ -87,13 +84,40 @@ public class PlayerState : UnitState
 
         if (player.InputHandler.PrimarySkillInput)
         {
+            if(GameManager.Inst.PlayTime < unit.Inventory.Weapon.PrimarySkillStartTime + unit.Inventory.Weapon.weaponData.weaponCommandDataSO.PrimarySkillData.SkillCoolTime)
+                return false;
             player.PrimarySkillState.SetWeapon(player.Inventory.Weapon);
+
+            if (isGrounded)
+            {
+                if (!player.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.PrimarySkillData.GroundweaponData))
+                    return false;
+            }
+            else
+            {
+                if (!player.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.PrimarySkillData.AirweaponData))
+                    return false;
+            }
+            unit.Inventory.Weapon.PrimarySkillStartTime = GameManager.Inst.PlayTime;
             player.FSM.ChangeState(player.PrimarySkillState);
             return true;
         }
         else if (player.InputHandler.SecondarySkillInput)
         {
-            player.SecondarySkillState.SetWeapon(player.Inventory.Weapon);
+            if (GameManager.Inst.PlayTime < unit.Inventory.Weapon.SecondarySkillStartTime + unit.Inventory.Weapon.weaponData.weaponCommandDataSO.SecondarySkillData.SkillCoolTime)
+                return false;
+            player.SecondarySkillState.SetWeapon(player.Inventory.Weapon); 
+            if (isGrounded)
+            {
+                if (!player.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.SecondarySkillData.GroundweaponData))
+                    return false;
+            }
+            else
+            {
+                if (!player.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.SecondarySkillData.AirweaponData))
+                    return false;
+            }
+            unit.Inventory.Weapon.SecondarySkillStartTime = GameManager.Inst.PlayTime;
             player.FSM.ChangeState(player.SecondarySkillState);
             return true;
         }
