@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using TGB.CoreSystem;
 
 namespace TGB.CoreSystem
 {
@@ -35,6 +33,18 @@ namespace TGB.CoreSystem
             }
         }
         private DamageReceiver damageReceiver;
+        public DamageTransmitter CoreDamageTransmitter
+        {
+            get
+            {
+                if (damageTransmitter == null)
+                {
+                    damageTransmitter = GetCoreComponent<DamageTransmitter>();
+                }
+                return damageTransmitter;
+            }
+        }
+        private DamageTransmitter damageTransmitter;
 
         public Death CoreDeath
         {

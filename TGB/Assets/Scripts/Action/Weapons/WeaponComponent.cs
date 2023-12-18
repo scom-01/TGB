@@ -58,6 +58,11 @@ namespace TGB.Weapons.Components
         {
             get => coreDamageReceiver ? coreDamageReceiver : core.GetCoreComponent(ref coreDamageReceiver);
         }
+        private CoreSystem.DamageTransmitter coreDamageTransmitter;
+        protected CoreSystem.DamageTransmitter CoreDamageTransmitter
+        {
+            get => coreDamageTransmitter ? coreDamageTransmitter : core.GetCoreComponent(ref coreDamageTransmitter);
+        }
         private CoreSystem.KnockBackReceiver coreKnockBackReceiver;
         protected CoreSystem.KnockBackReceiver CoreKnockBackReceiver
         {

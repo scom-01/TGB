@@ -170,119 +170,27 @@ namespace TGB.Weapons.Components
 
         private void HandleActionRectOff()
         {
-            Vector2 oldPos = core.Unit.transform.position;
-            Debug.Log($"CurrPos = {oldPos}");
-            var temp = (PosOffset - oldPos);
-            Debug.Log($"Temp = {temp}");
-            offset.Set(
-                    CoreCollisionSenses.GroundCenterPos.x + (hitActions[currentHitBoxIndex].ActionRect.center.x * CoreMovement.FancingDirection),
-                    CoreCollisionSenses.GroundCenterPos.y + (hitActions[currentHitBoxIndex].ActionRect.center.y)
-                    );
+            if (core.CoreDamageTransmitter != null)
+                core.CoreDamageTransmitter.isTransmitter = false;
+           
+            currentHitBoxIndex++;
+        }
 
-            RayCastdetected = Physics2D.BoxCastAll(offset, hitActions[currentHitBoxIndex].ActionRect.size, 0f, temp, temp.magnitude, data.DetectableLayers);
-
-            #region HitAction Effect Spawn
-            for (int k = 0; k < RayCastdetected.Length; k++)
+        private void HandleMultipleActionRectOn()
+        {
+            PosOffset = core.Unit.transform.position;
+            Debug.Log($"PosOffset = {PosOffset}");
+            if (currentActionData != null)
             {
-                var coll = RayCastdetected[k].collider;
-
-                if (coll.gameObject.tag == this.gameObject.tag)
-                    continue;
-
-                if (coll.gameObject.tag == "Trap")
-                    continue;
-
-                //객체 사망 시 무시
-                if (coll.gameObject.GetComponentInParent<Unit>().Core.CoreDeath.isDead)
-                {
-                    continue;
-                }
-
-                if (coll.gameObject.GetComponentInParent<Enemy>() != null)
-                {
-                    coll.gameObject.GetComponentInParent<Enemy>().SetTarget(core.Unit);
-                }
-
-                //Hit시 효과
-                if (coll.TryGetComponent(out IDamageable victim))
-                {
-                    for (int j = 0; j < hitActions[currentHitBoxIndex].RepeatAction; j++)
-                    {
-                        core.Unit.Inventory.ItemOnHitExecute(core.Unit, coll.GetComponentInParent<Unit>());
-
-                        //EffectPrefab
-                        #region EffectPrefab
-                        if (hitActions[currentHitBoxIndex].EffectPrefab != null)
-                        {
-                            for (int i = 0; i < hitActions[currentHitBoxIndex].EffectPrefab.Length; i++)
-                            {
-                                if (hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomPosRot)
-                                    victim.HitEffectRandRot(hitActions[currentHitBoxIndex].EffectPrefab[i].Object, hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomRange, hitActions[currentHitBoxIndex].EffectPrefab[i].EffectScale, hitActions[currentHitBoxIndex].EffectPrefab[i].isFollowing);
-                                else
-                                    victim.HitEffect(hitActions[currentHitBoxIndex].EffectPrefab[i].Object, hitActions[currentHitBoxIndex].EffectPrefab[i].isRandomRange, CoreMovement.FancingDirection, hitActions[currentHitBoxIndex].EffectPrefab[i].EffectScale);
-                            }
-                        }
-                        #endregion
-
-                        //AudioClip
-                        #region AudioClip
-                        if (hitActions[currentHitBoxIndex].audioClips != null)
-                        {
-                            for (int i = 0; i < hitActions[currentHitBoxIndex].audioClips.Length; i++)
-                            {
-                                CoreSoundEffect.AudioSpawn(hitActions[currentHitBoxIndex].audioClips[i]);
-                            }
-                        }
-                        #endregion
-
-                    }//ShakeCam
-                    #region ShakeCam
-                    if (hitActions[currentHitBoxIndex].camDatas != null)
-                    {
-                        for (int i = 0; i < hitActions[currentHitBoxIndex].camDatas.Length; i++)
-                        {
-                            Camera.main.GetComponent<CameraShake>().Shake(
-                                hitActions[currentHitBoxIndex].camDatas[i].RepeatRate,
-                                hitActions[currentHitBoxIndex].camDatas[i].Range,
-                                hitActions[currentHitBoxIndex].camDatas[i].Duration
-                                );
-                        }
-                    }
-                    #endregion
-                }
-
-                //Damage
-                if (coll.TryGetComponent(out IDamageable _victim))
-                {
-                    if (hitActions[currentHitBoxIndex].isFixed)
-                    {
-                        _victim.FixedDamage(core.Unit, (int)hitActions[currentHitBoxIndex].AdditionalDamage, true, hitActions[currentHitBoxIndex].RepeatAction);
-                    }
-                    else
-                    {
-                        _victim.TypeCalDamage(core.Unit, CoreUnitStats.CalculStatsData.DefaultPower + hitActions[currentHitBoxIndex].AdditionalDamage, hitActions[currentHitBoxIndex].RepeatAction);
-                    }
-                }
-
-                //KnockBack
-                #region KnockBack
-                if (coll.TryGetComponent(out IKnockBackable knockbackables))
-                {
-                    knockbackables.KnockBack(hitActions[currentHitBoxIndex].KnockbackAngle, hitActions[currentHitBoxIndex].KnockbackAngle.magnitude, CoreMovement.FancingDirection);
-                }
-                #endregion
-
+                CheckActionRect(currentActionData, false);
             }
-            #endregion
+        }
 
-            foreach (var obj in actionHitObjects)
-            {
-                Debug.Log($"공격 받았던 오브젝트 {obj.name}");
-            }
-            actionHitObjects.Clear();
-            hitActions = null;
-            isTriggerOn = false;
-
+        private void HandleMultipleActionRectOff()
+        {
+            if (core.CoreDamageTransmitter != null)
+                core.CoreDamageTransmitter.isTransmitter = false;
+           
             currentHitBoxIndex++;
         }
 
@@ -416,7 +324,7 @@ namespace TGB.Weapons.Components
             currentHitBoxIndex++;
         }
 
-        private void CheckActionRect(AttackActionHitBox actionData)
+        private void CheckActionRect(AttackActionHitBox actionData, bool isSingle = true)
         {
             if (actionData == null)
                 return;
@@ -424,15 +332,11 @@ namespace TGB.Weapons.Components
             var currHitBox = actionData.ActionHit;
             if (currHitBox.Length <= 0)
                 return;
-
-            hitActions = currHitBox;
-            offset.Set(
-                    (currHitBox[currentHitBoxIndex].ActionRect.center.x),
-                    (currHitBox[currentHitBoxIndex].ActionRect.center.y)
-                    );
-
-
-            isTriggerOn = true;
+            if (core.CoreDamageTransmitter != null)
+            {
+                core.CoreDamageTransmitter.SetCollider2D(currHitBox[currentHitBoxIndex], true, isSingle);
+                core.CoreDamageTransmitter.isTransmitter = true;
+            }
         }
         private void CheckRushActionRect(AttackActionHitBox actionData)
         {
@@ -483,6 +387,11 @@ namespace TGB.Weapons.Components
             eventHandler.OnActionRectOn -= HandleAction;
             eventHandler.OnActionRectOn += HandleAction;
 
+            eventHandler.OnMultipleActionRectOn -= HandleMultipleActionRectOn;
+            eventHandler.OnMultipleActionRectOff += HandleMultipleActionRectOff;
+            eventHandler.OnActionRectOn -= HandleAction;
+            eventHandler.OnActionRectOn += HandleAction;
+
             eventHandler.OnActionRectOff -= HandleActionRectOff;
             eventHandler.OnActionRectOff += HandleActionRectOff;
 
@@ -493,6 +402,9 @@ namespace TGB.Weapons.Components
 
             eventHandler.OnRushActionRectOff -= HandleRushActionRectOff;
             eventHandler.OnRushActionRectOff += HandleRushActionRectOff;
+
+            //만약 DamageTransmitter의 Collider2D가 enable = true인 상태로 종료되는 오류 방지
+            eventHandler.OnFinish += HandleActionRectOff;
         }
 
         protected override void OnDestroy()
@@ -506,11 +418,18 @@ namespace TGB.Weapons.Components
             eventHandler.OnActionRectOn -= HandleActionRectOn;
             eventHandler.OnActionRectOn -= HandleAction;
 
+            eventHandler.OnMultipleActionRectOn -= HandleMultipleActionRectOn;
+            eventHandler.OnMultipleActionRectOn -= HandleAction;
+
             eventHandler.OnActionRectOff -= HandleActionRectOff;
+            
+            eventHandler.OnMultipleActionRectOff -= HandleMultipleActionRectOff;
 
             eventHandler.OnRushActionRectOn -= HandleRushActionRectOn;
 
             eventHandler.OnRushActionRectOff -= HandleRushActionRectOff;
+
+            eventHandler.OnFinish -= HandleActionRectOff;
         }
 
         private void OnDrawGizmos()

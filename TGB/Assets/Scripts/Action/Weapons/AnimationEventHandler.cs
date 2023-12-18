@@ -26,6 +26,8 @@ public class AnimationEventHandler : MonoBehaviour
     public event Action OnAttackAction;
     public event Action OnActionRectOn;
     public event Action OnActionRectOff;
+    public event Action OnMultipleActionRectOn;
+    public event Action OnMultipleActionRectOff;
     public event Action OnRushActionRectOn;
     public event Action OnRushActionRectOff;
     public event Action OnShootProjectile;
@@ -70,6 +72,8 @@ public class AnimationEventHandler : MonoBehaviour
     public void AttackActionTrigger() { if (isAction) OnAttackAction?.Invoke(); }
     public void StartActionRectTrigger() { if (isAction) OnActionRectOn?.Invoke(); }
     public void StopActionRectTrigger() { if (isAction) OnActionRectOff?.Invoke(); }
+    public void StartMultipleActionRectTrigger() { if (isAction) OnMultipleActionRectOn?.Invoke(); }
+    public void StopMultipleActionRectTrigger() { if (isAction) OnMultipleActionRectOff?.Invoke(); }
     public void StartRushActionRectTrigger() { if (isAction) OnRushActionRectOn?.Invoke(); }
     public void StopRushActionRectTrigger() { if (isAction) OnRushActionRectOff?.Invoke(); }
     public void ShootProjectileTrigger() { if (isAction) OnShootProjectile?.Invoke(); }
