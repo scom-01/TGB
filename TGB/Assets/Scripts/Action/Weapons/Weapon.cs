@@ -52,6 +52,15 @@ namespace TGB.Weapons
 
         private int currentActionCounter;
 
+        /// <summary>
+        /// Primary Skill StartTime
+        /// </summary>
+        public float PrimarySkillStartTime;
+        /// <summary>
+        /// Secondary Skill StartTime
+        /// </summary>
+        public float SecondarySkillStartTime;
+
         protected virtual void Awake()
         {
             BaseGameObject = transform.GetComponentInChildren<Animator>().gameObject;
@@ -161,6 +170,11 @@ namespace TGB.Weapons
         public void SetCommandData(WeaponCommandDataSO data)
         {
             this.weaponData.weaponCommandDataSO = data;
+
+            //Weapon Command 변경 시 Primary, Secondary Start Time 초기화
+            PrimarySkillStartTime = 0f;
+            SecondarySkillStartTime = 0f;
+
             weaponGenerator.weaponData.weaponCommandDataSO = data;
             weaponGenerator.GenerateWeapon(data.DefaultWeaponDataSO);
         }

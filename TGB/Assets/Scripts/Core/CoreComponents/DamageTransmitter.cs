@@ -234,6 +234,7 @@ namespace TGB.CoreSystem
             {
                 knockbackables.KnockBack(HitAction.KnockbackAngle, HitAction.KnockbackAngle.magnitude, core.CoreMovement.FancingDirection);
             }
+            #endregion
         }
 
         private void OnTriggerStay2D(Collider2D coll)

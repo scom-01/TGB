@@ -83,6 +83,9 @@ public class GameManager : MonoBehaviour
     public PlayableDirector PlayerDieCutScene;
 
     public UI_State Old_UIState, Curr_UIState = UI_State.GamePlay;
+    /// <summary>
+    /// 플레이타임
+    /// </summary>
     public float PlayTime;
 
     public GameObject LastSelectedObject;

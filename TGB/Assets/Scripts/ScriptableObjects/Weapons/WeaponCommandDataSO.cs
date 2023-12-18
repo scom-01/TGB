@@ -33,6 +33,7 @@ public class WeaponCommandDataSO : ScriptableObject
     [field: SerializeField] public List<CommandList> GroundedCommandList;
     [field: SerializeField] public List<CommandList> AirCommandList;
 
-    public WeaponData PrimarySkillData;
-    public WeaponData SecondarySkillData;
+    [Header("Skill Data")]
+    public WeaponSkillData PrimarySkillData;
+    public WeaponSkillData SecondarySkillData;
 }

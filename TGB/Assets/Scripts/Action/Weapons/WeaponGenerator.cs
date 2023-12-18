@@ -37,7 +37,7 @@ namespace TGB.Weapons
         {
             if (weaponData.weaponCommandDataSO != null)
             {
-                Weapon.SetCommandData(weaponData.weaponCommandDataSO);
+                this.Weapon.SetCommandData(weaponData.weaponCommandDataSO);
             }
             else
             {
@@ -49,6 +49,7 @@ namespace TGB.Weapons
         [ContextMenu("Set Weapon Generate")]
         private void TestGeneration()
         {
+            this.Weapon.weaponData = weaponData;
             GenerateWeapon(weaponData.weaponDataSO);
         }
 
@@ -65,9 +66,11 @@ namespace TGB.Weapons
             }
         }
 
-        public void GenerateWeapon(WeaponDataSO data)
+        public bool GenerateWeapon(WeaponDataSO data)
         {
-            Weapon.SetData(data);
+            if (data == null)
+                return false;
+            this.Weapon.SetData(data);
             componentsAllreadyOnWeapon.Clear();
             componentsAddedToWeapon.Clear();
             componentsDependencies.Clear();
@@ -102,13 +105,25 @@ namespace TGB.Weapons
             {
                 Destroy(weaponComponent);
             }
+            return true;
         }
         public bool GenerateWeapon(AnimCommand CommandData)
         {
             if (CommandData.animOC == null || CommandData.data == null)
                 return false;
-            Weapon.oc = CommandData.animOC;
+            this.Weapon.oc = CommandData.animOC;
             GenerateWeapon(CommandData.data);
+            return true;
+        }
+
+        public bool GenerateWeapon(WeaponAnimData weaponAnimData)
+        {
+            if (weaponAnimData.AnimOC == null)
+                return false;
+            if (weaponAnimData.WeaponDataSO == null)
+                return false;
+            this.weapon.oc = weaponAnimData.AnimOC;
+            GenerateWeapon(weaponAnimData.WeaponDataSO);
             return true;
         }
     }

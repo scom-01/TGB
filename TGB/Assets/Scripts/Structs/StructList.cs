@@ -5,6 +5,21 @@ using UnityEngine;
 namespace TGB
 {
     [Serializable]
+    public struct WeaponSkillData
+    {
+        public WeaponAnimData GroundweaponData;
+        public WeaponAnimData AirweaponData;
+        [Min(0f)]
+        public float SkillCoolTime;
+    }
+    [Serializable]
+    public struct WeaponAnimData
+    {
+        public AnimatorOverrideController AnimOC;
+        public WeaponDataSO WeaponDataSO;
+    }
+    
+    [Serializable]
     public struct WeaponData
     {
         public WeaponCommandDataSO weaponCommandDataSO;

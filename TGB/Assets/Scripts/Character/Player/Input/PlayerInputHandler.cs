@@ -46,8 +46,8 @@ public class PlayerInputHandler : MonoBehaviour
     [HideInInspector]
     public float jumpInputStartTime,
                     dashInputStartTime,
-                    skill1InputStartTime,
-                    skill2InputStartTime,
+                    PrimarySkillInputStartTime,
+                    SecondarySkillInputStartTime,
                     escInputStartTime,
                     interactionInputStartTime = -1;
     private float[] ActionInputsStartTime;
@@ -94,8 +94,8 @@ public class PlayerInputHandler : MonoBehaviour
 
         jumpInputStartTime = -1;
         dashInputStartTime = -1;
-        skill1InputStartTime = -1;
-        skill2InputStartTime = -1;
+        PrimarySkillInputStartTime = -1;
+        SecondarySkillInputStartTime = -1;
         escInputStartTime = -1;
         interactionInputStartTime = -1;
 
@@ -133,8 +133,8 @@ public class PlayerInputHandler : MonoBehaviour
 
         CheckHoldTime(ref jumpInput, ref jumpInputStartTime);
         CheckHoldTime(ref dashInput, ref dashInputStartTime);
-        CheckHoldTime(ref skill1Input, ref skill1InputStartTime);
-        CheckHoldTime(ref skill2Input, ref skill2InputStartTime);
+        CheckHoldTime(ref skill1Input, ref PrimarySkillInputStartTime);
+        CheckHoldTime(ref skill2Input, ref SecondarySkillInputStartTime);
         //CheckHoldTime(ref attackInputs, ref ActionInputsStartTime);
         CheckHoldTime(ref interacInput, ref interactionInputStartTime);
 
@@ -198,6 +198,7 @@ public class PlayerInputHandler : MonoBehaviour
         {
             Debug.Log("OnSkill 1 Input");
             PrimarySkillInput = true;
+            PrimarySkillInputStartTime =Time.time;
             PrimarySkillInputStop = false;
         }
 
@@ -213,6 +214,7 @@ public class PlayerInputHandler : MonoBehaviour
         {
             Debug.Log("OnSkill 2 Input");
             SecondarySkillInput = true;
+            SecondarySkillInputStartTime = Time.time;
             SecondarySkillInputStop = false;
         }
 
