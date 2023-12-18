@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 829d099c869488a49a5f24ab18f0f054, type: 3}
   m_Name: Wolf_Melee_Enemy_1_Weapon_Data_1
   m_EditorClassIdentifier: 
+  WeaponSprite: {fileID: 0}
   <NumberOfActions>k__BackingField: 1
   <CanJump>k__BackingField: 0
   <CanAirAttack>k__BackingField: 0
@@ -38,10 +39,10 @@ MonoBehaviour:
           - Debug: 1
             ActionRect:
               serializedVersion: 2
-              x: -0.36
-              y: 0
-              width: 0.8
-              height: 0.74
+              x: -0.69
+              y: 0.42
+              width: 1.56
+              height: 0.88
             RepeatAction: 1
             AdditionalDamage: 0
             isFixed: 0

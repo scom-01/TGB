@@ -127,6 +127,7 @@ namespace TGB.Weapons
             if (GlobalValue.ContainParam(baseAnimator, "actionCounter"))
                 SetIntName("actionCounter", CurrentActionCounter);
             OnEnter?.Invoke();
+            ChangeWeaponSpeed();
         }
 
         /// <summary>
