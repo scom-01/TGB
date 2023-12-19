@@ -44,16 +44,16 @@ public abstract class EnemyAttackState : EnemyState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (isAnimationFinished)
-        {
-            IdleState();            
-        }
     }
     public abstract void IdleState();
 
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+        if (isExitingState || isAnimationFinished)
+        {
+            IdleState();
+        }
     }
 
     public void SetWeapon(Weapon weapon)

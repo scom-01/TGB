@@ -26,16 +26,15 @@ public abstract class EnemyHitState : EnemyState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
-        if (isAnimationFinished)
-        {
-            IdleState();
-        }
     }
     public abstract void IdleState();
 
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+        if (isExitingState || isAnimationFinished)
+        {
+            IdleState();
+        }
     }
 }

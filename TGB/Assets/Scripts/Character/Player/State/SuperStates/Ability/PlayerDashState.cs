@@ -60,6 +60,11 @@ public class PlayerDashState : PlayerAbilityState
 
         if (isExitingState)
             return;
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
 
         Movement.SetVelocityX(player.playerData.dashVelocity * Movement.FancingDirection);
         Movement.SetVelocityY(0);
@@ -93,12 +98,6 @@ public class PlayerDashState : PlayerAbilityState
                 lastDashTime = Time.time;
             }
         }
-
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
     }
 
     private void Dash()
