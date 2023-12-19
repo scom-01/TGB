@@ -327,7 +327,7 @@ MonoBehaviour:
   - {x: 0.3382533, y: -0.31089497, z: -3.5175539e-12}
   m_ShapePathHash: 1392743763
   m_Mesh: {fileID: 0}
-  m_InstanceId: 304592
+  m_InstanceId: 227546
 --- !u!1 &840319699985489545
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,13 +740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36c7d8aa4e90af849950f4a2c64e7c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathChunk:
-  - {fileID: 8440674159513887227, guid: ea44d35b9ec31d145b8bc1d7eb93f4da, type: 3}
-  - {fileID: 8440674159513887227, guid: ea44d35b9ec31d145b8bc1d7eb93f4da, type: 3}
-  - {fileID: 8440674159513887227, guid: ea44d35b9ec31d145b8bc1d7eb93f4da, type: 3}
-  - {fileID: 8440674159513887227, guid: ea44d35b9ec31d145b8bc1d7eb93f4da, type: 3}
-  - {fileID: 8440674159513887227, guid: ea44d35b9ec31d145b8bc1d7eb93f4da, type: 3}
-  - {fileID: 8440674159513887227, guid: ea44d35b9ec31d145b8bc1d7eb93f4da, type: 3}
+  deathChunk: []
   isDead: 0
 --- !u!1 &840319701408790962
 GameObject:
@@ -864,6 +858,8 @@ MonoBehaviour:
   oc: {fileID: 0}
   InAir: 0
   actionCounterResetCooldown: 0.125
+  PrimarySkillStartTime: 0
+  SecondarySkillStartTime: 0
 --- !u!114 &3038567697416465502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1310,3 +1306,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c77bf8185137f1e43ab47a537100ddc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSingle: 0
