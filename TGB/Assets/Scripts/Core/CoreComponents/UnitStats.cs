@@ -360,20 +360,20 @@ namespace TGB.CoreSystem
         public float CalculateDamageAtt(Unit attacker, DAMAGE_ATT Damage_att, float amount)
         {
             if (attacker == null)
-                return amount; 
+                return amount;
 
             Debug.Log($"Before Calculator DamageAttribute = {amount}");
             switch (Damage_att)
             {
                 case DAMAGE_ATT.Physics:
                     amount *= (1.0f + attacker.Core.CoreUnitStats.CalculStatsData.PhysicsAggressivePer / 100);
-                    amount *= (1.0f - CalculStatsData.PhysicsDefensivePer / 100);
+                    amount /= (1.0f + (CalculStatsData.PhysicsDefensivePer / 100f));
                     if (amount <= 0.0f)
                         return 0;
                     break;
                 case DAMAGE_ATT.Magic:
                     amount *= (1.0f + attacker.Core.CoreUnitStats.CalculStatsData.MagicAggressivePer / 100);
-                    amount *= (1.0f - CalculStatsData.MagicDefensivePer / 100);
+                    amount /= (1.0f + (CalculStatsData.MagicDefensivePer / 100f));
                     if (amount <= 0.0f)
                         return 0;
                     break;
@@ -390,12 +390,12 @@ namespace TGB.CoreSystem
             switch (Damage_att)
             {
                 case DAMAGE_ATT.Physics:
-                    amount *= (1.0f - Cal_PhysicsDefensivePer / 100);
+                    amount /= (1.0f + (CalculStatsData.PhysicsDefensivePer / 100));
                     if (amount <= 0.0f)
                         return 0;
                     break;
                 case DAMAGE_ATT.Magic:
-                    amount *= (1.0f - Cal_MagicDefensivePer / 100);
+                    amount /= (1.0f + (CalculStatsData.MagicDefensivePer / 100));
                     if (amount <= 0.0f)
                         return 0;
                     break;
