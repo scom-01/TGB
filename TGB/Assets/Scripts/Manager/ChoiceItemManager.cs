@@ -100,7 +100,8 @@ public class ChoiceItemManager : MonoBehaviour
     {
         if (collision.GetComponent<Player>() == null)
             return;
-
+        if (isSpawn)
+            return;
         ItemSpawn();
     }
 }
