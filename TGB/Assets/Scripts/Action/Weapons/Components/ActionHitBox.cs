@@ -38,9 +38,7 @@ namespace TGB.Weapons.Components
             if (currentActionData != null)
             {
                 CheckAttackAction(currentActionData);
-            }
-
-            OnDetectedCollider2D?.Invoke(detected);
+            };
             currentHitBoxIndex++;
         }
 
