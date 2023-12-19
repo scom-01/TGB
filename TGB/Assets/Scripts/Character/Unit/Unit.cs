@@ -65,11 +65,11 @@ public class Unit : MonoBehaviour
     /// <summary>
     /// 절대 CC 면역값
     /// </summary>
-    private bool isFixed_CC_Immunity = false;
+    [SerializeField] private bool isFixed_CC_Immunity = false;
     /// <summary>
     /// 절대 피격 면역값
     /// </summary>
-    private bool isFixed_Hit_Immunity = false;
+    [SerializeField] private bool isFixed_Hit_Immunity = false;
 
     /// <summary>
     /// KnockBack, JumpPad 등 외부요인으로 움직이는지 판별하는 요소
