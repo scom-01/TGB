@@ -46,64 +46,6 @@ namespace TGB.CoreSystem
         }
         private bool istouch = false;
 
-        public float Damage(Unit attacker, float amount)
-        {
-            if (death.Comp.isDead)
-            {
-                Debug.Log(core.Unit.name + "is Dead");
-                return 0f;
-            }
-
-            if (CheckHit(attacker))
-            {
-                Debug.Log(core.Unit.name + " isHit = true");
-                return 0f;
-            }
-            Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
-
-            bool isCritical = false;
-            //크리티컬 계산
-            if (CheckCritical(attacker))
-            {
-                isCritical = true;
-                amount *= 1f + (attacker.Core.CoreUnitStats.CalculStatsData.CriticalDmgPer / 100.0f);
-            }
-
-            var damage = stats.Comp.DecreaseHealth(attacker, attacker.Core.CoreUnitStats.CalculStatsData.Elemental, attacker.Core.CoreUnitStats.CalculStatsData.DamageAttiribute, attacker.Core.CoreUnitStats.CalculStatsData.DefaultPower + amount);
-            isHit = true;
-            stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
-            HUD_DmgTxt(1.0f, damage, 50, attacker.Core.CoreUnitStats.CalculStatsData.DamageAttiribute, isCritical);
-            return damage;
-        }
-        public float Damage(Unit attacker, E_Power _elemental, float amount)
-        {
-            if (death.Comp.isDead)
-            {
-                Debug.Log(core.Unit.name + "is Dead");
-                return 0f;
-            }
-
-            if (CheckHit(attacker))
-            {
-                Debug.Log(core.Unit.name + " isHit = true");
-                return 0f;
-            }
-            Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
-
-            bool isCritical = false;
-            //크리티컬 계산
-            if (CheckCritical(attacker))
-            {
-                isCritical = true;
-                amount *= 1f + (attacker.Core.CoreUnitStats.CalculStatsData.CriticalDmgPer / 100.0f);
-            }
-
-            var damage = stats.Comp.DecreaseHealth(attacker, _elemental, attacker.Core.CoreUnitStats.CalculStatsData.DamageAttiribute, attacker.Core.CoreUnitStats.CalculStatsData.DefaultPower + amount);
-            isHit = true;
-            stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
-            HUD_DmgTxt(1.0f, damage, 50, attacker.Core.CoreUnitStats.CalculStatsData.DamageAttiribute, isCritical);
-            return damage;
-        }
         public float Damage(Unit attacker, float amount, int repeat)
         {
             if (death.Comp.isDead)
@@ -111,9 +53,6 @@ namespace TGB.CoreSystem
                 Debug.Log(core.Unit.name + "is Dead");
                 return 0f;
             }
-
-            if (CheckHit(attacker))
-                return 0f;
 
             float temp = 0f;
             for (int i = 0; i < repeat; i++)
@@ -138,6 +77,11 @@ namespace TGB.CoreSystem
             if (death.Comp.isDead)
             {
                 Debug.Log(core.Unit.name + "is Dead");
+                return 0f;
+            }
+            
+            if (CheckHitImmunity(attacker))
+            {
                 return 0f;
             }
 
@@ -189,18 +133,21 @@ namespace TGB.CoreSystem
                 return 0f;
             }
 
+            if (CheckHitImmunity(attacker))
+            {                
+                return 0f;
+            }
+
+            float damage = 0;
             if (isTrueHit)
             {
-                Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
-                var damage = stats.Comp.DecreaseHealth(attacker, amount);
+                damage = stats.Comp.DecreaseHealth(attacker, DAMAGE_ATT.Fixed, amount);
                 HUD_DmgTxt(1.0f, damage, 50, DAMAGE_ATT.Fixed, false);
                 if (RepeatAmount > 1)
                 {
                     var temp = RepeatAmount - 1;
                     return FixedDamage(attacker, amount, isTrueHit, temp) + damage;
                 }
-                stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
-                return damage;
             }
             else
             {
@@ -209,13 +156,19 @@ namespace TGB.CoreSystem
                     Debug.Log(core.Unit.name + " isHit = true");
                     return 0f;
                 }
-                Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
-                var damage = stats.Comp.DecreaseHealth(attacker, amount);
+                damage = stats.Comp.DecreaseHealth(attacker, DAMAGE_ATT.Fixed, amount);
                 HUD_DmgTxt(1.0f, damage, 50, DAMAGE_ATT.Fixed, false);
-                isHit = true;
-                stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
-                return damage;
+                if (damage > 0)
+                {
+                    isHit = true;
+                }
             }
+            if (damage > 0)
+            {
+                Debug.Log(core.transform.parent.name + " " + damage + " Damaged!");
+                stats.Comp.invincibleTime = core.Unit.UnitData.invincibleTime;
+            }
+            return damage;
         }
         /// <summary>
         /// 고정 데미지
@@ -234,6 +187,10 @@ namespace TGB.CoreSystem
                 Debug.Log(core.Unit.name + "is Dead");
                 return 0f;
             }
+            if (CheckHitImmunity(null))
+            {
+                return 0f;
+            }
             if (isTouch)
             {
                 return 0f;
@@ -242,8 +199,10 @@ namespace TGB.CoreSystem
             Debug.Log(core.transform.parent.name + " " + amount + " Damaged!");
             isTouch = true;
             var damage = stats.Comp.DecreaseHealth(AttackterCommonData.Elemental, AttackterCommonData.DamageAttiribute, amount);
-            stats.Comp.TouchinvincibleTime = core.Unit.UnitData.touchDamageinvincibleTime;
-
+            if(damage > 0)
+            {
+                stats.Comp.TouchinvincibleTime = core.Unit.UnitData.touchDamageinvincibleTime;
+            }
             HUD_DmgTxt(1.0f, damage, 50, AttackterCommonData.DamageAttiribute);
             return damage;
         }
@@ -274,6 +233,7 @@ namespace TGB.CoreSystem
             effectManager.Comp.StartEffectsWithRandomPosRot(EffectPrefab, Range, size, isFollow);
         }
 
+        #region DmgTxt
         /// <summary>
         /// Random위치에 파티클을 생성하고 UI상으로 같은 위치에 DamageText를 생성하는 로직
         /// </summary>
@@ -301,6 +261,8 @@ namespace TGB.CoreSystem
         }
         public GameObject HUD_DmgTxt(float range, float damage, float fontSize, DAMAGE_ATT damageAttiribute, bool isCritical = false)
         {
+            if (damage <= 0)
+                return null;
             var randomPos = new Vector2(transform.position.x + Random.Range(-range, range), transform.position.y + Random.Range(-range, range));
 
             var pos = new Vector2((Camera.main.WorldToViewportPoint(randomPos).x * GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x) - (GameManager.Inst.DamageUI.GetComponent<RectTransform>().sizeDelta.x * 0.5f),
@@ -320,17 +282,23 @@ namespace TGB.CoreSystem
             }
             return damageText;
         }
+        #endregion
 
         #region Check Func
 
+        private bool CheckHitImmunity(Unit attacker)
+        {
+            if (core.Unit.Get_Fixed_Hit_Immunity)
+            {
+                core.Unit.Inventory?.ItemExeOnDodge(core.Unit, attacker);
+                return true;
+            }
+            return false;
+        }
         private bool CheckHit(Unit attacker)
         {
             if (isHit)
             {
-                if (core.Unit.Get_Fixed_Hit_Immunity)
-                {
-                    core.Unit.Inventory?.ItemExeOnDodge(core.Unit, attacker);
-                }
                 return true;
             }
             return false;
@@ -351,6 +319,7 @@ namespace TGB.CoreSystem
         {
             base.Awake();
             BC2D = GetComponent<BoxCollider2D>();
+            BC2D.isTrigger = true;
             BC2D.offset = core.Unit.CC2D.offset;
             BC2D.size = core.Unit.CC2D.size;
             stats = new CoreComp<UnitStats>(core);
