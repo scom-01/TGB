@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -52,6 +53,9 @@ namespace TGB.CoreSystem
         /// </summary>
         private Collider2D CurrentCD;
         private HitAction HitAction;
+
+        private List<Unit> HitUnits = new List<Unit>();
+
         /// <summary>
         /// OnTriggerOn;
         /// </summary>
@@ -112,6 +116,7 @@ namespace TGB.CoreSystem
 
         public void SetCollider2D(HitAction hitAction, bool _isBox = true, bool _isSingle = true)
         {
+            HitUnits.Clear();
             HitAction = hitAction;
             isSingle = _isSingle;
             SetC2D(HitAction.ActionRect.center, HitAction.ActionRect.size, _isBox);
@@ -146,18 +151,22 @@ namespace TGB.CoreSystem
             if (coll.tag == this.tag)
                 return;
 
-            if (coll.tag == this.tag)
-                return;
-
             var DmgReceiver = coll.GetComponent<DamageReceiver>();
             if (DmgReceiver == null)
                 return;
+
 
             //객체 사망 시 무시
             if (coll.gameObject.GetComponentInParent<Unit>().Core.CoreDeath.isDead)
             {
                 return;
             }
+
+            if (HitUnits.Contains(coll.gameObject.GetComponentInParent<Unit>()))
+            {
+                return;
+            }
+            HitUnits.Add(coll.gameObject.GetComponentInParent<Unit>());
 
             if (coll.gameObject.GetComponentInParent<Enemy>() != null)
             {
@@ -248,6 +257,7 @@ namespace TGB.CoreSystem
 
             if (coll.tag == this.tag)
                 return;
+
 
             var DmgReceiver = coll.GetComponent<DamageReceiver>();
             if (DmgReceiver == null)
