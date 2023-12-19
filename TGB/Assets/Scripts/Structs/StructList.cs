@@ -11,6 +11,7 @@ namespace TGB
         public WeaponAnimData AirweaponData;
         [Min(0f)]
         public float SkillCoolTime;
+        public Sprite SkillSprite;
     }
     [Serializable]
     public struct WeaponAnimData

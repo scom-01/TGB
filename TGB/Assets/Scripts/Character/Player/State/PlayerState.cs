@@ -100,6 +100,9 @@ public class PlayerState : UnitState
             }
             unit.Inventory.Weapon.PrimarySkillStartTime = GameManager.Inst.PlayTime;
             player.FSM.ChangeState(player.PrimarySkillState);
+            GameManager.Inst?.MainUI?.MainPanel?.SkillPanelSystem?.PrimarySkillPanel?.UpdateSkillPanel(
+                unit.Inventory.Weapon.PrimarySkillStartTime,
+                unit.Inventory.Weapon.weaponData.weaponCommandDataSO.PrimarySkillData.SkillCoolTime);
             player.Inventory.ItemExeOnSKill(unit);
             return true;
         }
@@ -120,6 +123,9 @@ public class PlayerState : UnitState
             }
             unit.Inventory.Weapon.SecondarySkillStartTime = GameManager.Inst.PlayTime;
             player.FSM.ChangeState(player.SecondarySkillState);
+            GameManager.Inst?.MainUI?.MainPanel?.SkillPanelSystem?.SecondarySkillPanel?.UpdateSkillPanel(
+                unit.Inventory.Weapon.PrimarySkillStartTime,
+                unit.Inventory.Weapon.weaponData.weaponCommandDataSO.PrimarySkillData.SkillCoolTime);
             player.Inventory.ItemExeOnSKill(unit);
             return true;
         }

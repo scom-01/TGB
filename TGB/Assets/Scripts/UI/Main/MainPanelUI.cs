@@ -10,6 +10,7 @@ namespace TGB.Manager
         [HideInInspector] public EnemyPanel EnemyPanelSystem;
         [HideInInspector] public StatsPanel StatsPanelSystem;
         [HideInInspector] public MinimapPanel MinimapPanelSystem;
+        [HideInInspector] public SkillPanelSystem SkillPanelSystem;
 
         // Start is called before the first frame update
         protected override void Awake()
@@ -23,6 +24,8 @@ namespace TGB.Manager
                 StatsPanelSystem = this.GetComponentInChildren<StatsPanel>();
             if (MinimapPanelSystem == null)
                 MinimapPanelSystem = this.GetComponentInChildren<MinimapPanel>();
+            if (SkillPanelSystem == null)
+                SkillPanelSystem = this.GetComponentInChildren<SkillPanelSystem>();
         }
 
         protected override void Update()

@@ -1,11 +1,5 @@
 using TGB.CoreSystem;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class StatsPanel : MonoBehaviour
 {

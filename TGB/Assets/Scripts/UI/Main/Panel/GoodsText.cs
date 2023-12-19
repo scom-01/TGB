@@ -222,7 +222,6 @@ public class GoodsText : MonoBehaviour
             DataManager.Inst.JSON_DataParsing.OnChangeGoodsData -= UpdateGoodsTesxt;
         }
     }
-    // Update is called once per frame
     private void UpdateGoodsTesxt()
     {
         if (IconImg != null && TypeIcon != null)

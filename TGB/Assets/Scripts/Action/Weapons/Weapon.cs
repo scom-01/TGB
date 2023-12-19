@@ -174,8 +174,13 @@ namespace TGB.Weapons
             //Weapon Command 변경 시 Primary, Secondary Start Time 초기화
             PrimarySkillStartTime = 0f;
             SecondarySkillStartTime = 0f;
-
             weaponGenerator.weaponData.weaponCommandDataSO = data;
+            if(WeaponCore.Unit.GetType() == typeof(Player))
+            {
+                //Weapon Skill Sprite Panel Setting
+                GameManager.Inst?.MainUI?.MainPanel?.SkillPanelSystem?.PrimarySkillPanel?.Init(weaponGenerator.weaponData.weaponCommandDataSO.PrimarySkillData.SkillSprite);
+                GameManager.Inst?.MainUI?.MainPanel?.SkillPanelSystem?.SecondarySkillPanel?.Init(weaponGenerator.weaponData.weaponCommandDataSO.SecondarySkillData.SkillSprite);
+            }
             weaponGenerator.GenerateWeapon(data.DefaultWeaponDataSO);
         }
 
