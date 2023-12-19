@@ -142,7 +142,7 @@ public class Inventory : MonoBehaviour
     }
 
     /// <summary>
-    /// 적중 시 효과
+    /// 공격 적중 시 효과
     /// </summary>
     /// <param name="_unit">공격 주체</param>
     /// <param name="Enemy">적중 당한 적</param>
@@ -196,38 +196,85 @@ public class Inventory : MonoBehaviour
         ExeItemEvent(ITEM_TPYE.OnMoveMap, _unit, _unit.TargetUnit);
     }
 
-    public void ItemExeOnDamage(Unit _unit, Unit enemy = null)
+    /// <summary>
+    /// 데미지 입을 시 호출
+    /// </summary>
+    /// <param name="_unit"></param>
+    /// <param name="enemy"></param>
+    public void ItemExeOnDamaged(Unit _unit, Unit enemy = null)
     {
         ExeItemEvent(ITEM_TPYE.OnDamaged, _unit, enemy);
     }
 
+    /// <summary>
+    /// 크리티컬 공격 시 호출
+    /// </summary>
+    /// <param name="_unit"></param>
+    /// <param name="enemy"></param>
     public void ItemExeOnCritical(Unit _unit, Unit enemy = null)
     {
         ExeItemEvent(ITEM_TPYE.OnCritical, _unit, enemy);
     }
 
+    /// <summary>
+    /// 점프 시 호출
+    /// </summary>
+    /// <param name="_unit"></param>
+    /// <param name="enemy"></param>
     public void ItemExeOnJump(Unit _unit, Unit enemy = null)
     {
         ExeItemEvent(ITEM_TPYE.OnJump, _unit, enemy);
     }
 
+    /// <summary>
+    /// 착지 시 호출
+    /// </summary>
+    /// <param name="_unit"></param>
+    /// <param name="enemy"></param>
     public void ItemExeOnLand(Unit _unit, Unit enemy = null)
     {
         ExeItemEvent(ITEM_TPYE.OnLand, _unit, enemy);
     }
 
+    /// <summary>
+    /// 체력 회복 시 호출
+    /// </summary>
+    /// <param name="_unit"></param>
+    /// <param name="enemy"></param>
     public void ItemExeOnHealing(Unit _unit, Unit enemy = null)
     {
         ExeItemEvent(ITEM_TPYE.OnHealing, _unit, enemy);
     }
 
+
+    /// <summary>
+    /// 회피 시 호출
+    /// </summary>
+    /// <param name="_unit"></param>
+    /// <param name="enemy"></param>
     public void ItemExeOnDodge(Unit _unit, Unit enemy = null)
     {
         ExeItemEvent(ITEM_TPYE.OnDodge, _unit, enemy);
     }
+
+    /// <summary>
+    /// 적 처치 시 호출
+    /// </summary>
+    /// <param name="_unit"></param>
+    /// <param name="enemy"></param>
     public void ItemExeOnKilled(Unit _unit, Unit enemy = null)
     {
         ExeItemEvent(ITEM_TPYE.OnKilled, _unit, enemy);
+    }
+    
+    /// <summary>
+    /// 스킬 사용 시 호출
+    /// </summary>
+    /// <param name="_unit"></param>
+    /// <param name="enemy"></param>
+    public void ItemExeOnSKill(Unit _unit, Unit enemy = null)
+    {
+        ExeItemEvent(ITEM_TPYE.OnSkill, _unit, enemy);
     }
 
     #endregion

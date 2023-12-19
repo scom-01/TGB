@@ -224,7 +224,7 @@ namespace TGB.CoreSystem
                 {
                     attacker?.Inventory?.ItemExeOnKilled(attacker, core.Unit);
                 }
-                core.Unit.Inventory.ItemExeOnDamage(core.Unit, attacker);
+                core.Unit.Inventory.ItemExeOnDamaged(core.Unit, attacker);
             }
             return result;
         }

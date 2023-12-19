@@ -100,6 +100,7 @@ public class PlayerState : UnitState
             }
             unit.Inventory.Weapon.PrimarySkillStartTime = GameManager.Inst.PlayTime;
             player.FSM.ChangeState(player.PrimarySkillState);
+            player.Inventory.ItemExeOnSKill(unit);
             return true;
         }
         else if (player.InputHandler.SecondarySkillInput)
@@ -119,6 +120,7 @@ public class PlayerState : UnitState
             }
             unit.Inventory.Weapon.SecondarySkillStartTime = GameManager.Inst.PlayTime;
             player.FSM.ChangeState(player.SecondarySkillState);
+            player.Inventory.ItemExeOnSKill(unit);
             return true;
         }
 
