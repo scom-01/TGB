@@ -13,6 +13,8 @@ public class Trap : TouchObject
         {
             return;
         }
+        if (collision.GetComponent<Unit>() == null)
+            return;
 
         if (knockbackAngle.x != 0 || knockbackAngle.y != 0)
         {
