@@ -40,7 +40,7 @@ public class EndingCredits : MonoBehaviour
 
         if (Scrollbar.value > 0f)
         {
-            isSkip = GameManager.Inst.InputHandler.InteractionInput ? true : false;
+            isSkip = !GameManager.Inst.InputHandler.InteractionInputStop ? true : false;
             if(isSkip)
             {
                 Debug.Log("Skip");
@@ -55,17 +55,17 @@ public class EndingCredits : MonoBehaviour
     }
     void Init()
     {
-        GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.CutScene, true);
+        GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.CutScene, false);
+        GameManager.Inst.ResultUI.resultPanel.UpdateResultPanel();
     }
 
     IEnumerator GoTitle()
     {
         yield return new WaitForSecondsRealtime(2.0f);
-        //GameManager.Inst.GoTitleScene();
         GameManager.Inst.ChangeUI(UI_State.Result);
-        GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.Cfg, false);
+        GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.Cfg, false);        
+        GameManager.Inst.SaveData();
         GameManager.Inst.ResetData();
-        GameManager.Inst.ResultUI.resultPanel.UpdateResultPanel();
         yield return null;
     }
 }
