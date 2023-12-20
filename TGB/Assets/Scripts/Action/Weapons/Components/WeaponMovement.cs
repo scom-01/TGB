@@ -55,6 +55,9 @@ namespace TGB.Weapons.Components
         #region 고정 Movement
         private void HandleFixedStartMovement()
         {
+            if (currentActionData?.movements == null)
+                return;
+
             Debug.Log("HandleFixedStart");
             if (currentActionData.movements.Length == 0)
             {
@@ -63,7 +66,7 @@ namespace TGB.Weapons.Components
             }
 
             CoreMovement.CanMovement = currentActionData.movements[currentMovementIndex].CanMoveCtrl;
-            if (currentActionData != null)
+            if (currentActionData?.movements != null)
             {
                 CheckMovementAction(currentActionData);
             }
@@ -72,6 +75,9 @@ namespace TGB.Weapons.Components
         }
         private void HandleFixedStopMovement()
         {
+            if (currentActionData?.movements == null)
+                return;
+
             Debug.Log("HandleFixedStop");
             if (currentActionData.movements.Length == 0)
             {
@@ -84,7 +90,6 @@ namespace TGB.Weapons.Components
             CoreMovement.CanMovement = false;
             FixedGravityOff();
         }
-
         private void FixedGravityOn()
         {
             core.Unit.RB.gravityScale = 0f;

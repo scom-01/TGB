@@ -56,8 +56,15 @@ public class PlayerWeaponState : PlayerAbilityState
         xInput = player.InputHandler.NormInputX;
         yInput = player.InputHandler.NormInputY;
         JumpInput = player.InputHandler.JumpInput;
-                
-        if (JumpInput && player.JumpState.CanJump() && CollisionSenses.CheckIfPlatform && yInput < 0)
+
+        //아래로 점프
+        if (JumpInput && isPlatform && yInput < 0)
+        {
+            player.InputHandler.JumpInput = false;
+            player.StartCoroutine(player.DisableCollision());
+            return;
+        }
+        else if (JumpInput && player.JumpState.CanJump() && CollisionSenses.CheckIfPlatform && yInput < 0)
         {
             player.StartCoroutine(player.DisableCollision());
             return;

@@ -36,8 +36,9 @@ public class PlayerGroundedState : PlayerState
         }
 
         if (CheckActionInput())
+        {
             return;
-
+        }
         //아래로 점프
         else if (JumpInput && isPlatform && yInput < 0)
         {
