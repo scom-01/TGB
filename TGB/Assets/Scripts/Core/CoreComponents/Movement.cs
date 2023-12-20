@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace TGB.CoreSystem
@@ -56,6 +54,11 @@ namespace TGB.CoreSystem
         {
             angle.Normalize();
             workspace.Set(angle.x * velocity * direction, angle.y * velocity);
+            SetFinalVelocity();
+        }
+        public void AddVelocity(Vector2 velocity)
+        {
+            workspace.Set(CurrentVelocity.x + velocity.x * FancingDirection, CurrentVelocity.y + velocity.y);
             SetFinalVelocity();
         }
         public void SetVelocityX(float velocity)
