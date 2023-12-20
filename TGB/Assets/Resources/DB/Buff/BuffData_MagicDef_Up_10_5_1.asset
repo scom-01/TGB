@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7774ae76107dc54e8991bca2af96082, type: 3}
   m_Name: BuffData_MagicDef_Up_10_5_1
   m_EditorClassIdentifier: 
-  ItemIdx: 1
+  ItemIdx: 20
   itemData:
     <ItemNameLocal>k__BackingField:
       m_TableReference:
@@ -48,19 +48,18 @@ MonoBehaviour:
     PhysicsAggressivePer: 0
     MagicAggressivePer: 0
     CriticalPer: 0
-    AdditionalCriticalPer: 0
+    CriticalDmgPer: 0
     DamageAttiribute: 0
     Elemental: 0
     ElementalDefensivePer: 0
     ElementalAggressivePer: 0
-  StatsItems: []
   Health: 0
-  effectData:
+  InitEffectData:
     <AcquiredEffectPrefab>k__BackingField: {fileID: 0}
-    <AcquiredSoundEffect>k__BackingField: {fileID: 0}
+    <AcquiredSFX>k__BackingField:
+      Clip: {fileID: 0}
+      Volume: 0
     <isEquipment>k__BackingField: 0
-    <DetailSubUI>k__BackingField: 0
-  ItemEffects: []
   BuffData:
     DurationTime: 5
     BuffType: 0

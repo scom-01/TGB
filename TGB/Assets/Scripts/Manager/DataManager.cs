@@ -6,6 +6,7 @@ using System.Linq;
 using TGB.CoreSystem;
 using TGB.Weapons;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
@@ -412,7 +413,14 @@ public class DataManager : MonoBehaviour
         for (int i = 0; i < All_BuffDB.Length; i++)
         {
             All_BuffDB[i].ItemIdx = i;
+#if UNITY_EDITOR
+            EditorUtility.SetDirty(All_BuffDB[i]);
+#endif
         }
+#if UNITY_EDITOR
+        AssetDatabase.SaveAssets();            
+        AssetDatabase.Refresh();            
+#endif
     }
     public void SaveBuffs(BuffSystem _buffsystem)
     {
