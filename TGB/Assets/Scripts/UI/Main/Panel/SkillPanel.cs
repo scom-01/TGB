@@ -86,6 +86,8 @@ public class SkillPanel : MonoBehaviour
             return;
         }
         SkillSprite = _SkillSprite;
+        Skill_Img.sprite = SkillSprite;
+        Skill_Img_Filled.sprite = SkillSprite;
         this.gameObject.SetActive(true);
     }
 }
