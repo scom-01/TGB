@@ -23,6 +23,7 @@ public class InstantCutScene : InteractiveObject
 
         if (CutScene != null)
         {
+            GameManager.Inst?.StageManager.BGM?.Stop();
             Debug.LogWarning("CutScene");
             Instantiate(CutScene);
         }

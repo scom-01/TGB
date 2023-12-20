@@ -250,6 +250,7 @@ public class StageManager : MonoBehaviour
             BGM.clip = BGM_source.Clip;
             BGM.volume = BGM_source.Volume;
             BGM.loop = true;
+            BGM.Play();
         }
 
         GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, false);
