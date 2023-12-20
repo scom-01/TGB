@@ -234,6 +234,8 @@ MonoBehaviour:
   RespawnPoint: {fileID: 0}
   UnitData: {fileID: 11400000, guid: ae3d62f76bc500849819fd1f7f2f1900, type: 2}
   IsAlive: 1
+  isFixed_CC_Immunity: 0
+  isFixed_Hit_Immunity: 0
   isFixedMovement: 0
   playerData: {fileID: 11400000, guid: ae3d62f76bc500849819fd1f7f2f1900, type: 2}
 --- !u!114 &840319699589423351
@@ -327,7 +329,7 @@ MonoBehaviour:
   - {x: 0.3382533, y: -0.31089497, z: -3.5175539e-12}
   m_ShapePathHash: 1392743763
   m_Mesh: {fileID: 0}
-  m_InstanceId: 227546
+  m_InstanceId: 209176
 --- !u!1 &840319699985489545
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,7 +855,7 @@ MonoBehaviour:
   CommandList: 
   weaponData:
     weaponCommandDataSO: {fileID: 11400000, guid: 666144be098a62045a45586d8c899704, type: 2}
-    weaponDataSO: {fileID: 11400000, guid: bc1266aae26a22040b7c62ec0e566fcf, type: 2}
+    weaponDataSO: {fileID: 11400000, guid: 4a9df80a4a5d6a84daed63a106d5cbfc, type: 2}
   Command: 0
   oc: {fileID: 0}
   InAir: 0
@@ -874,7 +876,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData:
     weaponCommandDataSO: {fileID: 11400000, guid: 666144be098a62045a45586d8c899704, type: 2}
-    weaponDataSO: {fileID: 11400000, guid: 82f1b918dd54cf74fa6db1a5c386a914, type: 2}
+    weaponDataSO: {fileID: 11400000, guid: 4a9df80a4a5d6a84daed63a106d5cbfc, type: 2}
 --- !u!114 &1297183946839624397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1181,7 +1183,7 @@ Animator:
   m_GameObject: {fileID: 3038567697768153765}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: c141b9f774c3649488ccfbe327b96f47, type: 2}
+  m_Controller: {fileID: 22100000, guid: e7dcefaa13e09884484a424bc11848f5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

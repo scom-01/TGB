@@ -1,0 +1,473 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 829d099c869488a49a5f24ab18f0f054, type: 3}
+  m_Name: Skill_Sword_0_1
+  m_EditorClassIdentifier: 
+  WeaponSprite: {fileID: 0}
+  <NumberOfActions>k__BackingField: 1
+  <CanJump>k__BackingField: 1
+  <CanAirAttack>k__BackingField: 1
+  <ComponentData>k__BackingField:
+  - rid: 2527592717927579663
+  - rid: 2527592717927579664
+  - rid: 2527592717927579665
+  - rid: 2527592717927579666
+  - rid: 2527592717927579667
+  - rid: 2527592717927579668
+  - rid: 2527592717927579669
+  - rid: 2527592717927579670
+  - rid: 2527592717927579671
+  references:
+    version: 2
+    RefIds:
+    - rid: 2527592717927579663
+      type: {class: ActionHitBoxData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ActionHitBoxData
+        actionData:
+        - name: Action 1
+          ActionHit:
+          - Debug: 1
+            ActionRect:
+              serializedVersion: 2
+              x: -0.67
+              y: 0
+              width: 3.64
+              height: 1.34
+            RepeatAction: 1
+            AdditionalDamage: 0
+            isFixed: 0
+            KnockbackAngle: {x: 0, y: 0}
+            EffectPrefab:
+            - isGround: 0
+              isHeader: 0
+              isTransformGlobal: 0
+              isRandomPosRot: 1
+              isRandomRange: 1.5
+              EffectOffset: {x: 0, y: 0}
+              EffectScale: {x: 0, y: 0, z: 0}
+              isFollowing: 0
+              Object: {fileID: 8867112169225384458, guid: 1b38d906900cd3244a833dafb0e14af6, type: 3}
+            audioClips:
+            - Clip: {fileID: 8300000, guid: 2375dadc4293d3f4380b59887ce8416b, type: 3}
+              Volume: 1
+            camDatas: []
+          - Debug: 1
+            ActionRect:
+              serializedVersion: 2
+              x: -0.35
+              y: 0
+              width: 3.37
+              height: 1.47
+            RepeatAction: 1
+            AdditionalDamage: 0
+            isFixed: 0
+            KnockbackAngle: {x: 0, y: 0}
+            EffectPrefab:
+            - isGround: 0
+              isHeader: 0
+              isTransformGlobal: 0
+              isRandomPosRot: 1
+              isRandomRange: 1.5
+              EffectOffset: {x: 0, y: 0}
+              EffectScale: {x: 0, y: 0, z: 0}
+              isFollowing: 0
+              Object: {fileID: 8867112169225384458, guid: 1b38d906900cd3244a833dafb0e14af6, type: 3}
+            audioClips:
+            - Clip: {fileID: 8300000, guid: 2375dadc4293d3f4380b59887ce8416b, type: 3}
+              Volume: 1
+            camDatas: []
+          - Debug: 1
+            ActionRect:
+              serializedVersion: 2
+              x: -0.8
+              y: 0
+              width: 3.5
+              height: 1.86
+            RepeatAction: 1
+            AdditionalDamage: 0
+            isFixed: 0
+            KnockbackAngle: {x: 0, y: 0}
+            EffectPrefab:
+            - isGround: 0
+              isHeader: 0
+              isTransformGlobal: 0
+              isRandomPosRot: 1
+              isRandomRange: 1.5
+              EffectOffset: {x: 0, y: 0}
+              EffectScale: {x: 0, y: 0, z: 0}
+              isFollowing: 0
+              Object: {fileID: 8867112169225384458, guid: 1b38d906900cd3244a833dafb0e14af6, type: 3}
+            audioClips:
+            - Clip: {fileID: 8300000, guid: 2375dadc4293d3f4380b59887ce8416b, type: 3}
+              Volume: 1
+            camDatas: []
+          - Debug: 1
+            ActionRect:
+              serializedVersion: 2
+              x: -0.67
+              y: 0
+              width: 3.64
+              height: 1.34
+            RepeatAction: 1
+            AdditionalDamage: 0
+            isFixed: 0
+            KnockbackAngle: {x: 0, y: 0}
+            EffectPrefab:
+            - isGround: 0
+              isHeader: 0
+              isTransformGlobal: 0
+              isRandomPosRot: 1
+              isRandomRange: 1.5
+              EffectOffset: {x: 0, y: 0}
+              EffectScale: {x: 0, y: 0, z: 0}
+              isFollowing: 0
+              Object: {fileID: 8867112169225384458, guid: 1b38d906900cd3244a833dafb0e14af6, type: 3}
+            audioClips:
+            - Clip: {fileID: 8300000, guid: 2375dadc4293d3f4380b59887ce8416b, type: 3}
+              Volume: 1
+            camDatas: []
+          - Debug: 1
+            ActionRect:
+              serializedVersion: 2
+              x: -0.35
+              y: 0
+              width: 3.37
+              height: 1.47
+            RepeatAction: 1
+            AdditionalDamage: 0
+            isFixed: 0
+            KnockbackAngle: {x: 0, y: 0}
+            EffectPrefab:
+            - isGround: 0
+              isHeader: 0
+              isTransformGlobal: 0
+              isRandomPosRot: 1
+              isRandomRange: 1.5
+              EffectOffset: {x: 0, y: 0}
+              EffectScale: {x: 0, y: 0, z: 0}
+              isFollowing: 0
+              Object: {fileID: 8867112169225384458, guid: 1b38d906900cd3244a833dafb0e14af6, type: 3}
+            audioClips:
+            - Clip: {fileID: 8300000, guid: 2375dadc4293d3f4380b59887ce8416b, type: 3}
+              Volume: 1
+            camDatas: []
+          - Debug: 1
+            ActionRect:
+              serializedVersion: 2
+              x: -0.8
+              y: 0
+              width: 3.5
+              height: 1.86
+            RepeatAction: 1
+            AdditionalDamage: 0
+            isFixed: 0
+            KnockbackAngle: {x: 0, y: 0}
+            EffectPrefab:
+            - isGround: 0
+              isHeader: 0
+              isTransformGlobal: 0
+              isRandomPosRot: 1
+              isRandomRange: 1.5
+              EffectOffset: {x: 0, y: 0}
+              EffectScale: {x: 0, y: 0, z: 0}
+              isFollowing: 0
+              Object: {fileID: 8867112169225384458, guid: 1b38d906900cd3244a833dafb0e14af6, type: 3}
+            audioClips:
+            - Clip: {fileID: 8300000, guid: 2375dadc4293d3f4380b59887ce8416b, type: 3}
+              Volume: 1
+            camDatas: []
+          - Debug: 1
+            ActionRect:
+              serializedVersion: 2
+              x: -0.67
+              y: 0
+              width: 3.64
+              height: 1.34
+            RepeatAction: 1
+            AdditionalDamage: 0
+            isFixed: 0
+            KnockbackAngle: {x: 0, y: 0}
+            EffectPrefab:
+            - isGround: 0
+              isHeader: 0
+              isTransformGlobal: 0
+              isRandomPosRot: 1
+              isRandomRange: 1.5
+              EffectOffset: {x: 0, y: 0}
+              EffectScale: {x: 0, y: 0, z: 0}
+              isFollowing: 0
+              Object: {fileID: 8867112169225384458, guid: 1b38d906900cd3244a833dafb0e14af6, type: 3}
+            audioClips:
+            - Clip: {fileID: 8300000, guid: 2375dadc4293d3f4380b59887ce8416b, type: 3}
+              Volume: 1
+            camDatas: []
+          - Debug: 1
+            ActionRect:
+              serializedVersion: 2
+              x: -0.35
+              y: 0
+              width: 3.37
+              height: 1.47
+            RepeatAction: 1
+            AdditionalDamage: 0
+            isFixed: 0
+            KnockbackAngle: {x: 0, y: 0}
+            EffectPrefab:
+            - isGround: 0
+              isHeader: 0
+              isTransformGlobal: 0
+              isRandomPosRot: 1
+              isRandomRange: 1.5
+              EffectOffset: {x: 0, y: 0}
+              EffectScale: {x: 0, y: 0, z: 0}
+              isFollowing: 0
+              Object: {fileID: 8867112169225384458, guid: 1b38d906900cd3244a833dafb0e14af6, type: 3}
+            audioClips:
+            - Clip: {fileID: 8300000, guid: 2375dadc4293d3f4380b59887ce8416b, type: 3}
+              Volume: 1
+            camDatas: []
+          - Debug: 1
+            ActionRect:
+              serializedVersion: 2
+              x: -0.8
+              y: 0
+              width: 3.5
+              height: 1.86
+            RepeatAction: 1
+            AdditionalDamage: 0
+            isFixed: 0
+            KnockbackAngle: {x: 0, y: 0}
+            EffectPrefab:
+            - isGround: 0
+              isHeader: 0
+              isTransformGlobal: 0
+              isRandomPosRot: 1
+              isRandomRange: 1.5
+              EffectOffset: {x: 0, y: 0}
+              EffectScale: {x: 0, y: 0, z: 0}
+              isFollowing: 0
+              Object: {fileID: 8867112169225384458, guid: 1b38d906900cd3244a833dafb0e14af6, type: 3}
+            audioClips:
+            - Clip: {fileID: 8300000, guid: 2375dadc4293d3f4380b59887ce8416b, type: 3}
+              Volume: 1
+            camDatas: []
+        <DetectableLayers>k__BackingField:
+          serializedVersion: 2
+          m_Bits: 2048
+    - rid: 2527592717927579664
+      type: {class: DamageData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: DamageData
+        actionData:
+        - name: 
+          <HitDamage>k__BackingField:
+          - AdditionalDamage: 1
+            RepeatAmount: 1
+            isFixed: 0
+    - rid: 2527592717927579665
+      type: {class: EffectSpawnData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: EffectSpawnData
+        actionData:
+        - name: Action 1
+          <EffectParticles>k__BackingField:
+          - isGround: 0
+            isHeader: 0
+            isTransformGlobal: 0
+            isRandomPosRot: 0
+            isRandomRange: 0
+            EffectOffset: {x: 0.4, y: 0}
+            EffectScale: {x: 0, y: 0, z: 0}
+            isFollowing: 1
+            Object: {fileID: 5314433521719334783, guid: 4ca6be77a935e0b49b6bbd9d1d3a4df4, type: 3}
+          - isGround: 0
+            isHeader: 0
+            isTransformGlobal: 0
+            isRandomPosRot: 0
+            isRandomRange: 0
+            EffectOffset: {x: 0.4, y: 0}
+            EffectScale: {x: 0, y: 0, z: 0}
+            isFollowing: 1
+            Object: {fileID: 5314433521719334783, guid: 4ca6be77a935e0b49b6bbd9d1d3a4df4, type: 3}
+          - isGround: 1
+            isHeader: 0
+            isTransformGlobal: 0
+            isRandomPosRot: 0
+            isRandomRange: 0
+            EffectOffset: {x: -0.1, y: 0.3}
+            EffectScale: {x: 0, y: 0, z: 0}
+            isFollowing: 1
+            Object: {fileID: 5314433521719334783, guid: c6d0fde31cbdc6445a9aae80a371164e, type: 3}
+          - isGround: 0
+            isHeader: 0
+            isTransformGlobal: 0
+            isRandomPosRot: 0
+            isRandomRange: 0
+            EffectOffset: {x: 0.4, y: 0}
+            EffectScale: {x: 0, y: 0, z: 0}
+            isFollowing: 1
+            Object: {fileID: 5314433521719334783, guid: 4ca6be77a935e0b49b6bbd9d1d3a4df4, type: 3}
+          - isGround: 0
+            isHeader: 0
+            isTransformGlobal: 0
+            isRandomPosRot: 0
+            isRandomRange: 0
+            EffectOffset: {x: 0.4, y: 0}
+            EffectScale: {x: 0, y: 0, z: 0}
+            isFollowing: 1
+            Object: {fileID: 5314433521719334783, guid: 4ca6be77a935e0b49b6bbd9d1d3a4df4, type: 3}
+          - isGround: 1
+            isHeader: 0
+            isTransformGlobal: 0
+            isRandomPosRot: 0
+            isRandomRange: 0
+            EffectOffset: {x: -0.1, y: 0.3}
+            EffectScale: {x: 0, y: 0, z: 0}
+            isFollowing: 1
+            Object: {fileID: 5314433521719334783, guid: c6d0fde31cbdc6445a9aae80a371164e, type: 3}
+          - isGround: 0
+            isHeader: 0
+            isTransformGlobal: 0
+            isRandomPosRot: 0
+            isRandomRange: 0
+            EffectOffset: {x: 0.4, y: 0}
+            EffectScale: {x: 0, y: 0, z: 0}
+            isFollowing: 1
+            Object: {fileID: 5314433521719334783, guid: 4ca6be77a935e0b49b6bbd9d1d3a4df4, type: 3}
+          - isGround: 0
+            isHeader: 0
+            isTransformGlobal: 0
+            isRandomPosRot: 0
+            isRandomRange: 0
+            EffectOffset: {x: 0.4, y: 0}
+            EffectScale: {x: 0, y: 0, z: 0}
+            isFollowing: 1
+            Object: {fileID: 5314433521719334783, guid: 4ca6be77a935e0b49b6bbd9d1d3a4df4, type: 3}
+          - isGround: 1
+            isHeader: 0
+            isTransformGlobal: 0
+            isRandomPosRot: 0
+            isRandomRange: 0
+            EffectOffset: {x: -0.1, y: 0.3}
+            EffectScale: {x: 0, y: 0, z: 0}
+            isFollowing: 1
+            Object: {fileID: 5314433521719334783, guid: c6d0fde31cbdc6445a9aae80a371164e, type: 3}
+    - rid: 2527592717927579666
+      type: {class: KnockbackData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: KnockbackData
+        actionData:
+        - name: Action 1
+          <KnockbackAngle>k__BackingField: []
+    - rid: 2527592717927579667
+      type: {class: MovementData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: MovementData
+        actionData:
+        - name: Action 1
+          <movements>k__BackingField:
+          - CanFlip: 0
+            CanMoveCtrl: 0
+            Direction: {x: 1, y: 0}
+            Velocity: 1
+    - rid: 2527592717927579668
+      type: {class: ShakeCamData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ShakeCamData
+        actionData:
+        - name: Action 1
+          <ShakeCamData>k__BackingField: []
+    - rid: 2527592717927579669
+      type: {class: SoundClipData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: SoundClipData
+        actionData:
+        - name: Action 1
+          audioDataList:
+          - Clip: {fileID: 8300000, guid: a90b7184fb02659469901edc3ceb6a19, type: 3}
+            Volume: 0.7
+          - Clip: {fileID: 8300000, guid: 7dfd8119742582c47832bf5ec01273db, type: 3}
+            Volume: 0.7
+          - Clip: {fileID: 8300000, guid: a43b3ed7a42c242489f8b5351bf08f67, type: 3}
+            Volume: 0.7
+          - Clip: {fileID: 8300000, guid: a90b7184fb02659469901edc3ceb6a19, type: 3}
+            Volume: 0.7
+          - Clip: {fileID: 8300000, guid: 7dfd8119742582c47832bf5ec01273db, type: 3}
+            Volume: 0.7
+          - Clip: {fileID: 8300000, guid: a43b3ed7a42c242489f8b5351bf08f67, type: 3}
+            Volume: 0.7
+          - Clip: {fileID: 8300000, guid: a90b7184fb02659469901edc3ceb6a19, type: 3}
+            Volume: 0.7
+          - Clip: {fileID: 8300000, guid: 7dfd8119742582c47832bf5ec01273db, type: 3}
+            Volume: 0.7
+          - Clip: {fileID: 8300000, guid: a43b3ed7a42c242489f8b5351bf08f67, type: 3}
+            Volume: 0.7
+    - rid: 2527592717927579670
+      type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: WeaponProjectileData
+        actionData:
+        - name: Action 1
+          ProjectileActionData: []
+    - rid: 2527592717927579671
+      type: {class: WeaponSpriteData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: WeaponSpriteData
+        actionData:
+        - name: Action 1
+          <WeaponSprites>k__BackingField:
+          - {fileID: 51041346, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: -1188008882, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: 140725285, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: 301393240, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: -737698732, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: 675924838, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: -1128788728, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: -1554525141, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: 783210583, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: 100916829, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: 577480298, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: 653481542, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: -1284737267, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: 1848349252, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: -1175468386, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: 51041346, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: -1188008882, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: 140725285, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: 301393240, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: -737698732, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: 675924838, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: -1128788728, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: -1554525141, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: 783210583, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: 100916829, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: 577480298, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: 653481542, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: -1284737267, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: 1848349252, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: -1175468386, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: 51041346, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: -1188008882, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: 140725285, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: 301393240, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: -737698732, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: 675924838, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: -1128788728, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: -1554525141, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: 783210583, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: 100916829, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: 577480298, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: 653481542, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: -1284737267, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: 1848349252, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}
+          - {fileID: -1175468386, guid: 40575ae3c9edb354292b46163ae813cb, type: 3}

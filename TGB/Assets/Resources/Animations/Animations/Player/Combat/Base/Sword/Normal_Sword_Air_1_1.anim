@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Normal_Sword_1_2
+  m_Name: Normal_Sword_Air_1_1
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,20 +20,22 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -645319399, guid: 84cd5f9f9f615484a8f1999b90a32894, type: 3}
-    - time: 0.055555556
-      value: {fileID: 880032422, guid: 84cd5f9f9f615484a8f1999b90a32894, type: 3}
-    - time: 0.11111111
-      value: {fileID: 1850236028, guid: 84cd5f9f9f615484a8f1999b90a32894, type: 3}
+      value: {fileID: -1640218136, guid: 5638a5f4071333b4ca34f7fb6dd8771d, type: 3}
+    - time: 0.083333336
+      value: {fileID: 1974516013, guid: 5638a5f4071333b4ca34f7fb6dd8771d, type: 3}
     - time: 0.16666667
-      value: {fileID: 1275000982, guid: 84cd5f9f9f615484a8f1999b90a32894, type: 3}
-    - time: 0.22222222
-      value: {fileID: -193188327, guid: 84cd5f9f9f615484a8f1999b90a32894, type: 3}
+      value: {fileID: 249292654, guid: 5638a5f4071333b4ca34f7fb6dd8771d, type: 3}
+    - time: 0.25
+      value: {fileID: -1897368599, guid: 5638a5f4071333b4ca34f7fb6dd8771d, type: 3}
+    - time: 0.33333334
+      value: {fileID: -792999962, guid: 5638a5f4071333b4ca34f7fb6dd8771d, type: 3}
+    - time: 0.41666666
+      value: {fileID: 1677354051, guid: 5638a5f4071333b4ca34f7fb6dd8771d, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 18
+  m_SampleRate: 12
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -48,17 +50,18 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -645319399, guid: 84cd5f9f9f615484a8f1999b90a32894, type: 3}
-    - {fileID: 880032422, guid: 84cd5f9f9f615484a8f1999b90a32894, type: 3}
-    - {fileID: 1850236028, guid: 84cd5f9f9f615484a8f1999b90a32894, type: 3}
-    - {fileID: 1275000982, guid: 84cd5f9f9f615484a8f1999b90a32894, type: 3}
-    - {fileID: -193188327, guid: 84cd5f9f9f615484a8f1999b90a32894, type: 3}
+    - {fileID: -1640218136, guid: 5638a5f4071333b4ca34f7fb6dd8771d, type: 3}
+    - {fileID: 1974516013, guid: 5638a5f4071333b4ca34f7fb6dd8771d, type: 3}
+    - {fileID: 249292654, guid: 5638a5f4071333b4ca34f7fb6dd8771d, type: 3}
+    - {fileID: -1897368599, guid: 5638a5f4071333b4ca34f7fb6dd8771d, type: 3}
+    - {fileID: -792999962, guid: 5638a5f4071333b4ca34f7fb6dd8771d, type: 3}
+    - {fileID: 1677354051, guid: 5638a5f4071333b4ca34f7fb6dd8771d, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.2777778
+    m_StopTime: 0.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -79,62 +82,48 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: FixedStartMovementTrigger
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0
     functionName: StartFlipTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.055555556
-    functionName: SpawnEffectTrigger
+  - time: 0
+    functionName: MovementAction
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.055555556
-    functionName: SpawnSoundClipTrigger
+  - time: 0.083333336
+    functionName: AttackActionTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.055555556
+  - time: 0.083333336
     functionName: StopFlipTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.055555556
-    functionName: StartActionRectTrigger
+  - time: 0.083333336
+    functionName: SpawnSoundClipTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.055555556
-    functionName: FixedStopMovementTrigger
+  - time: 0.083333336
+    functionName: SpawnEffectTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.11111111
-    functionName: StopActionRectTrigger
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.2777778
+  - time: 0.5
     functionName: AnimationFinishedTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
