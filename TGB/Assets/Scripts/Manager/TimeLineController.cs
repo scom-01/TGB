@@ -27,6 +27,34 @@ public class TimeLineController : MonoBehaviour
         PlayableDirector.Play(timeline);
     }
 
+    public void BGMSetPlay(bool isPlay)
+    {
+        if (GameManager.Inst?.StageManager?.BGM == null)
+            return;
+        if(isPlay)
+        {
+            GameManager.Inst.StageManager.BGM.Play();
+        }
+        else
+        {
+            GameManager.Inst.StageManager.BGM.Stop();
+        }
+    }
+
+    public void BGMChangeClop(AudioClip clip)
+    {
+        if (GameManager.Inst?.StageManager?.BGM == null)
+            return;
+        GameManager.Inst.StageManager.BGM.clip = clip;
+    }
+        
+    public void BGMChangeVolume(float volume)
+    {
+        if (GameManager.Inst?.StageManager?.BGM == null)
+            return;
+        GameManager.Inst.StageManager.BGM.volume = volume;
+    }
+
     public void DestroyDirector()
     {
         GameManager.Inst.StageManager.Cam.gameObject.SetActive(true);
