@@ -1,10 +1,7 @@
 using System;
 using Unity.VisualScripting;
-using UnityEngine.Localization;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
-using TGB.Item;
 
 public enum InventoryUI_State
 {
@@ -13,7 +10,7 @@ public enum InventoryUI_State
 }
 
 namespace TGB.Manager
-{   
+{
     public class InventoryUI : MonoBehaviour
     {
         private Player Player
