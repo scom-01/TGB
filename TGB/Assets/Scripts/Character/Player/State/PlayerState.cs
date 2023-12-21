@@ -84,7 +84,10 @@ public class PlayerState : UnitState
 
         if (player.InputHandler.PrimarySkillInput)
         {
-            if(GameManager.Inst.PlayTime < unit.Inventory.Weapon.PrimarySkillStartTime + unit.Inventory.Weapon.weaponData.weaponCommandDataSO.PrimarySkillData.SkillCoolTime)
+            if (
+                unit.Inventory.Weapon.PrimarySkillStartTime != 0f &&
+                GameManager.Inst.PlayTime < (unit.Inventory.Weapon.PrimarySkillStartTime + unit.Inventory.Weapon.weaponData.weaponCommandDataSO.PrimarySkillData.SkillCoolTime)
+                )
                 return false;
             player.PrimarySkillState.SetWeapon(player.Inventory.Weapon);
 
@@ -108,9 +111,12 @@ public class PlayerState : UnitState
         }
         else if (player.InputHandler.SecondarySkillInput)
         {
-            if (GameManager.Inst.PlayTime < unit.Inventory.Weapon.SecondarySkillStartTime + unit.Inventory.Weapon.weaponData.weaponCommandDataSO.SecondarySkillData.SkillCoolTime)
+            if (
+                unit.Inventory.Weapon.SecondarySkillStartTime != 0f &&
+                GameManager.Inst.PlayTime < (unit.Inventory.Weapon.SecondarySkillStartTime + unit.Inventory.Weapon.weaponData.weaponCommandDataSO.SecondarySkillData.SkillCoolTime)
+                )
                 return false;
-            player.SecondarySkillState.SetWeapon(player.Inventory.Weapon); 
+            player.SecondarySkillState.SetWeapon(player.Inventory.Weapon);
             if (isGrounded)
             {
                 if (!player.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.SecondarySkillData.GroundweaponData))

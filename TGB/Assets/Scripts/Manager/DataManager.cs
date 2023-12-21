@@ -317,6 +317,8 @@ public class DataManager : MonoBehaviour
             if (inventory.Weapon != null)
             {
                 inventory.Weapon.SetCommandData(All_WeaponDB.WeaponDBList[inventory_Weaponlist[0]]);
+                inventory.Weapon.PrimarySkillStartTime = JSON_DataParsing.m_JSON_SceneData.PrimarySkillStartTime;
+                inventory.Weapon.SecondarySkillStartTime = JSON_DataParsing.m_JSON_SceneData.SecondarySkillStartTime;
             }
             else
             {

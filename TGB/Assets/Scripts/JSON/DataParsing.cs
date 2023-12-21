@@ -217,6 +217,9 @@ public class DataParsing : MonoBehaviour
         public List<BuffData> ActiveBuffDataList = new List<BuffData>();
         public List<BuffData> PassiveBuffDataList = new List<BuffData>();
         public List<BuffData> Old_PassiveBuffDataList = new List<BuffData>();
+
+        public float PrimarySkillStartTime = 0f;
+        public float SecondarySkillStartTime = 0f;
         /// <summary>
         /// 보유 재화
         /// </summary>
