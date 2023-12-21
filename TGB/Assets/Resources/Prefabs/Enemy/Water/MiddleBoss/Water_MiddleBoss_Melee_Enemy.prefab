@@ -491,7 +491,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4766022077924346795}
   - component: {fileID: 3199264626626922114}
-  - component: {fileID: 6676784546541889734}
   m_Layer: 18
   m_Name: DropItem
   m_TagString: Untagged
@@ -526,42 +525,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f407318490b5cc49a551f5fa2d4c024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Goods: 0
-  Amount: 100
-  DropCount: 4
-  GoodsPrefab: {fileID: 1952279293685994997, guid: cb4cccd4b8f68bc48a25aac822abd0d2, type: 3}
-  GoodsSprite: {fileID: 218339756, guid: f7bf72b4be9086e4c9eef46270d4a8f3, type: 3}
-  EquipSoundClip:
-    Clip: {fileID: 8300000, guid: 0e89b476d4715fd42935e9900eedb033, type: 3}
-    Volume: 0.15
-  EquipEffect: {fileID: 1380205584940949931, guid: 07623d638bfe48c4bbf7a6dc202419de, type: 3}
-  CircleSize: 0.3125
-  DestroyTime: 2.5
-  DestroyTimeRange: 0.5
---- !u!114 &6676784546541889734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2509519018235985345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f407318490b5cc49a551f5fa2d4c024, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Goods: 1
-  Amount: 20
-  DropCount: 3
-  GoodsPrefab: {fileID: 1952279293685994997, guid: cb4cccd4b8f68bc48a25aac822abd0d2, type: 3}
-  GoodsSprite: {fileID: -613753843, guid: f7bf72b4be9086e4c9eef46270d4a8f3, type: 3}
-  EquipSoundClip:
-    Clip: {fileID: 8300000, guid: 0e89b476d4715fd42935e9900eedb033, type: 3}
-    Volume: 0.15
-  EquipEffect: {fileID: 1380205584940949931, guid: 07623d638bfe48c4bbf7a6dc202419de, type: 3}
-  CircleSize: 0.3125
-  DestroyTime: 2.5
-  DestroyTimeRange: 0.5
+  DataList:
+  - Goods: 0
+    Amount: 40
+    DropCount: 8
+    GoodsPrefab: {fileID: 1952279293685994997, guid: cb4cccd4b8f68bc48a25aac822abd0d2, type: 3}
+    GoodsSprite: {fileID: 218339756, guid: f7bf72b4be9086e4c9eef46270d4a8f3, type: 3}
+    EquipSoundClip:
+      Clip: {fileID: 8300000, guid: 0e89b476d4715fd42935e9900eedb033, type: 3}
+      Volume: 0.2
+    EquipEffect: {fileID: 1380205584940949931, guid: 07623d638bfe48c4bbf7a6dc202419de, type: 3}
+    CircleSize: 0.3125
+    DestroyTime: 2.5
+    DestroyTimeRange: 0.5
+  - Goods: 1
+    Amount: 20
+    DropCount: 4
+    GoodsPrefab: {fileID: 1952279293685994997, guid: cb4cccd4b8f68bc48a25aac822abd0d2, type: 3}
+    GoodsSprite: {fileID: 218339756, guid: f7bf72b4be9086e4c9eef46270d4a8f3, type: 3}
+    EquipSoundClip:
+      Clip: {fileID: 8300000, guid: 0e89b476d4715fd42935e9900eedb033, type: 3}
+      Volume: 0.2
+    EquipEffect: {fileID: 1380205584940949931, guid: 07623d638bfe48c4bbf7a6dc202419de, type: 3}
+    CircleSize: 0.3125
+    DestroyTime: 2.5
+    DestroyTimeRange: 0.5
 --- !u!1 &2564525058774943149
 GameObject:
   m_ObjectHideFlags: 0
