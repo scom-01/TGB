@@ -1,13 +1,8 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
-using Unity.VisualScripting;
-using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using TMPro;
-using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.Interactions;
 
 public class PlayerInputHandler : MonoBehaviour
 {
@@ -50,6 +45,13 @@ public class PlayerInputHandler : MonoBehaviour
                     SecondarySkillInputStartTime,
                     escInputStartTime,
                     interactionInputStartTime = -1;
+
+    [HideInInspector]
+    public float interactionMaxHoldDuration = -1;
+    public float interactionMaxTapDuration = -1;
+
+    public bool interactionperformed = false;
+
     private float[] ActionInputsStartTime;
     private float[] ActionInputsStopTime;
 
@@ -98,7 +100,6 @@ public class PlayerInputHandler : MonoBehaviour
         SecondarySkillInputStartTime = -1;
         escInputStartTime = -1;
         interactionInputStartTime = -1;
-
         if (cam == null)
             cam = Camera.main;
     }
@@ -128,7 +129,7 @@ public class PlayerInputHandler : MonoBehaviour
         bool dashInput = DashInput;
         bool skill1Input = PrimarySkillInput;
         bool skill2Input = SecondarySkillInput;
-        bool interacInput = InteractionInput;
+        //bool interacInput = InteractionInput;
         bool[] attackInputs = ActionInputs;
 
         CheckHoldTime(ref jumpInput, ref jumpInputStartTime);
@@ -136,14 +137,14 @@ public class PlayerInputHandler : MonoBehaviour
         CheckHoldTime(ref skill1Input, ref PrimarySkillInputStartTime);
         CheckHoldTime(ref skill2Input, ref SecondarySkillInputStartTime);
         //CheckHoldTime(ref attackInputs, ref ActionInputsStartTime);
-        CheckHoldTime(ref interacInput, ref interactionInputStartTime);
+        //CheckHoldTime(ref interacInput, ref interactionInputStartTime);
 
         JumpInput = jumpInput;
         DashInput = dashInput;
         PrimarySkillInput = skill1Input;
         SecondarySkillInput = skill2Input;
         //ActionInputs = attackInputs;
-        InteractionInput = interacInput;
+        //InteractionInput = interacInput;
     }
 
     #region GamePlay
@@ -198,7 +199,7 @@ public class PlayerInputHandler : MonoBehaviour
         {
             Debug.Log("OnSkill 1 Input");
             PrimarySkillInput = true;
-            PrimarySkillInputStartTime =Time.time;
+            PrimarySkillInputStartTime = Time.time;
             PrimarySkillInputStop = false;
         }
 
@@ -264,15 +265,34 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.started)
         {
+            var tap = context.interaction as TapInteraction;
+            if (tap != null)
+            {
+                interactionMaxTapDuration = tap.duration;
+            }
+
+            var hold = context.interaction as HoldInteraction;
+            if (hold != null)
+            {
+                interactionMaxHoldDuration = hold.duration;
+            }
             InteractionInput = true;
             InteractionInputStop = false;
             interactionInputStartTime = Time.time;
         }
 
+        if (context.performed)
+        {
+            interactionperformed = true;
+        }
+
         if (context.canceled)
         {
-            InteractionInput = false;
             InteractionInputStop = true;
+            InteractionInput = false;
+            interactionperformed = false;
+            interactionMaxHoldDuration = -1f;
+            interactionMaxTapDuration = -1f;
         }
     }
     #endregion
@@ -285,7 +305,7 @@ public class PlayerInputHandler : MonoBehaviour
             if (GameManager.Inst.StageManager == null)
                 return;
 
-            if(OnESCInput_Action.Excute())
+            if (OnESCInput_Action.Excute())
             {
                 OnESCInput_Action.Clear();
                 return;
@@ -335,8 +355,8 @@ public class PlayerInputHandler : MonoBehaviour
                 var _TitleManager = FindObjectOfType(typeof(TitleManager)) as TitleManager;
                 if (_TitleManager != null)
                 {
-                    if(_TitleManager.UnlockItem_Canvas.Canvas.enabled == true)
-                    {                        
+                    if (_TitleManager.UnlockItem_Canvas.Canvas.enabled == true)
+                    {
                         if (_TitleManager.buttons.Count > 0)
                         {
                             GameManager.Inst.SetSelectedObject(_TitleManager.buttons[0].gameObject);
@@ -468,7 +488,7 @@ public class PlayerInputHandler : MonoBehaviour
             ActionInputs[i] = false;
         }
         StartCoroutine(DelayWait(seconds));
-        
+
     }
     IEnumerator DelayWait(float seconds)
     {

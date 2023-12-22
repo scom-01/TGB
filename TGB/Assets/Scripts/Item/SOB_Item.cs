@@ -111,7 +111,7 @@ namespace TGB.Item
                 return;
 
             GameManager.Inst.SubUI.isRight(isright);
-            GameManager.Inst.SubUI.DetailSubUI.SetInit(Item);
+            GameManager.Inst.SubUI.DetailSubUI.SetInit(Item, this.gameObject);
 
             if (GameManager.Inst.SubUI.DetailSubUI.Canvas.enabled)
             {

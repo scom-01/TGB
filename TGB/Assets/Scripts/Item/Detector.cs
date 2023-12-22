@@ -32,20 +32,15 @@ public class Detector : MonoBehaviour
             if (currentGO.tag == "Item")
             {
                 var item = currentGO.GetComponentInParent<SOB_Item>();
-                if (player.InputHandler.InteractionInput)
-                {
-                    player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
-                    Debug.Log($"{item.name} is Add Inventory");
-                    if (player.Inventory.AddInventoryItem(item.gameObject))
-                    {                        
-                        Destroy(currentGO.transform.parent.gameObject);
-                        currentGO = null;
-                    }
-                    else
-                    {
-
-                    }
-                }
+                //if (player.InputHandler.InteractionInput && player.InputHandler.interactionInputDuration > player.InputHandler.interactionMaxHoldItme)
+                //{
+                //    Debug.Log($"{item.name} is Add Inventory");
+                //    if (player.Inventory.AddInventoryItem(item.gameObject))
+                //    {
+                //        Destroy(currentGO.transform.parent.gameObject);
+                //        currentGO = null;
+                //    }
+                //}
             }
             else if (currentGO.tag == "Interaction")
             {

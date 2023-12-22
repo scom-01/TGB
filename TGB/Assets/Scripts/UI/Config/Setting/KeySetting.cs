@@ -45,6 +45,7 @@ public class KeySetting : MonoBehaviour
     }
     private int m_BindingIndex;
     private SettingUI settingUI;
+    [SerializeField] private bool isHold;
     private void OnEnable()
     {
         Debug.Log(keyName + " Enable");
@@ -97,6 +98,7 @@ public class KeySetting : MonoBehaviour
             {
                 CurrentKeyBtnNameTxt.text = "→";
             }
+            if (isHold) CurrentKeyBtnNameTxt.text += "(Hold)";
         }
 
         if (CurrentKeyBtnNameTxt_3D != null)
@@ -104,6 +106,23 @@ public class KeySetting : MonoBehaviour
             CurrentKeyBtnNameTxt_3D.text = InputControlPath.ToHumanReadableString(
             m_Action.action.bindings[m_BindingIndex].effectivePath,
             InputControlPath.HumanReadableStringOptions.OmitDevice);
+            if (CurrentKeyBtnNameTxt_3D.text == "Up Arrow")
+            {
+                CurrentKeyBtnNameTxt_3D.text = "↑";
+            }
+            else if (CurrentKeyBtnNameTxt_3D.text == "Down Arrow")
+            {
+                CurrentKeyBtnNameTxt_3D.text = "↓";
+            }
+            else if (CurrentKeyBtnNameTxt_3D.text == "Left Arrow")
+            {
+                CurrentKeyBtnNameTxt_3D.text = "←";
+            }
+            else if (CurrentKeyBtnNameTxt_3D.text == "Right Arrow")
+            {
+                CurrentKeyBtnNameTxt_3D.text = "→";
+            }
+            if (isHold) CurrentKeyBtnNameTxt_3D.text += "(Hold)";
         }
     }
 

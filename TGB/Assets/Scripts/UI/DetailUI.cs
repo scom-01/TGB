@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 
@@ -34,46 +35,132 @@ public class DetailUI : MonoBehaviour
     [Header("---Event---")]
     [SerializeField] private LocalizeStringEvent Event_Name;
     [SerializeField] private LocalizeStringEvent Event_Descript;
-    [Tooltip("하위 컴포넌트 중 'SubText' Text String")]
 
-    public void SetInit(StatsItemSO item)
+    [Header("---Button---")]
+    [SerializeField] private Image HoldFilledImg;
+
+    [Header("---Item---")]
+    /// <summary>
+    /// 표기 아이템
+    /// </summary>
+    public StatsItemSO item;
+    /// <summary>
+    /// 맵 화면상에 드랍되어있는 아이템.게임오브젝트(줍거나 팔기시 사라져야 하기에)
+    /// </summary>
+    [HideInInspector] public GameObject GO;
+
+
+    public Player player => GameManager.Inst?.StageManager?.player;
+
+    public void SetInit(StatsItemSO _item, GameObject gameObject)
     {
-        if (MainStringEvent != null && item.itemData.ItemNameLocal != null)
+        this.item = _item;
+        if (SetUI(item))
         {
-            MainStringEvent.StringReference.SetReference("Item_Table", item.itemData.ItemNameLocal.TableEntryReference);
+            this.GO = gameObject;
+        }
+    }
+
+    private bool SetUI(StatsItemSO _item)
+    {
+        if (_item == null)
+            return false;
+
+        if (MainStringEvent != null && _item.itemData.ItemNameLocal != null)
+        {
+            MainStringEvent.StringReference.SetReference("Item_Table", _item.itemData.ItemNameLocal.TableEntryReference);
         }
 
-        if (SubStringEvent != null && item.itemData.ItemDescriptionLocal != null)
+        if (SubStringEvent != null && _item.itemData.ItemDescriptionLocal != null)
         {
-            SubStringEvent.StringReference.SetReference("Item_Table", item.itemData.ItemDescriptionLocal.TableEntryReference);
+            SubStringEvent.StringReference.SetReference("Item_Table", _item.itemData.ItemDescriptionLocal.TableEntryReference);
         }
 
         if (ItemLevel_StringEvent != null)
         {
-            ItemLevel_StringEvent.StringReference.SetReference("UI_Table", item.itemData.ItemLevel.ToString());
+            ItemLevel_StringEvent.StringReference.SetReference("UI_Table", _item.itemData.ItemLevel.ToString());
         }
 
-        if (Event_Name != null && item.EventNameLocal != null)
+        if (Event_Name != null && _item.EventNameLocal != null)
         {
-            if (item.EventNameLocal.TableEntryReference.KeyId != 0) Event_Name.StringReference.SetReference("ItemEvent_Table", item.EventNameLocal.TableEntryReference);
+            if (_item.EventNameLocal.TableEntryReference.KeyId != 0) Event_Name.StringReference.SetReference("ItemEvent_Table", _item.EventNameLocal.TableEntryReference);
             else Event_Name.StringReference.SetReference("Item_Table", "Empty");
         }
 
-        if (Event_Descript != null && item.EventDescriptionLocal != null)
+        if (Event_Descript != null && _item.EventDescriptionLocal != null)
         {
-            if (item.EventDescriptionLocal.TableEntryReference.KeyId != 0) Event_Descript.StringReference.SetReference("ItemEvent_Descript_Table", item.EventDescriptionLocal.TableEntryReference);
+            if (_item.EventDescriptionLocal.TableEntryReference.KeyId != 0) Event_Descript.StringReference.SetReference("ItemEvent_Descript_Table", _item.EventDescriptionLocal.TableEntryReference);
             else Event_Descript.StringReference.SetReference("Item_Table", "Empty");
         }
 
         if (StatsDescript != null)
         {
             StatsDescript.text = "";
-            StatsDescript.text = item.StatsData_Descripts;
+            StatsDescript.text = _item.StatsData_Descripts;
         }
 
         if (Icon != null)
         {
-            Icon.sprite = item.itemData.ItemSprite;
+            Icon.sprite = _item.itemData.ItemSprite;
+        }
+
+        if (HoldFilledImg != null)
+        {
+            HoldFilledImg.fillAmount = 0;
+        }
+
+        return true;
+    }
+
+    public void LateUpdate()
+    {
+        if (player == null)
+            return;
+
+        if (GO == null)
+            return;
+
+        if (player.InputHandler.InteractionInput)
+        {
+            Debug.Log($"interactionMaxTapDuration = {player.InputHandler.interactionMaxTapDuration},  " +
+                $"interactionMaxHoldDuration = {player.InputHandler.interactionMaxHoldDuration},  " +
+                $"filledImg = {(Time.time - player.InputHandler.interactionInputStartTime) / (player.InputHandler.interactionMaxHoldDuration - InputSystem.settings.defaultTapTime)}");
+            //Tap Duration보단 길게
+            if (player.InputHandler.interactionMaxHoldDuration > 0f)
+            {
+                if (HoldFilledImg != null)
+                {
+                    HoldFilledImg.fillAmount = (Time.time - player.InputHandler.interactionInputStartTime) / (player.InputHandler.interactionMaxHoldDuration - InputSystem.settings.defaultTapTime);
+                }
+                if (player.InputHandler.interactionperformed)
+                {
+                    Debug.Log("Sell Item");
+                    player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
+                    player.InputHandler.UseInput(ref player.InputHandler.interactionperformed);
+                    return;
+                }
+            }            
+            if (player.InputHandler.interactionperformed)
+            {
+                player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
+                player.InputHandler.UseInput(ref player.InputHandler.interactionperformed);
+                if (HoldFilledImg != null)
+                {
+                    HoldFilledImg.fillAmount = 0f;
+                }
+                if (player.Inventory.AddInventoryItem(GO))
+                {
+                    Destroy(GO);
+                    return;
+                }
+            }
+        }
+        else
+        {
+            if (HoldFilledImg != null)
+            {
+                HoldFilledImg.fillAmount = 0f;
+            }
         }
     }
 }
