@@ -26,6 +26,13 @@ public class GlobalValue : MonoBehaviour
     public static GameObject Base_DmgTxtPooling = Resources.Load<GameObject>("Prefabs/Effects/Base_DmgTxtPooling");
     public static GameObject Base_AttackMessageBox= Resources.Load<GameObject>("Prefabs/Effects/AttackMessageBox");
     public static GameObject Base_SoundPooling = Resources.Load<GameObject>("Prefabs/Sounds/Base_SoundPooling");
+    public static GameObject Base_SpawnGoodsItem = Resources.Load<GameObject>("Prefabs/Item/Goods/GoodsItem");
+    public static GameObject Base_GoodsChunk = Resources.Load<GameObject>("Prefabs/Item/Goods/GoodsChunk");
+    public static GoodsSO Goods_Gold = Resources.Load<GoodsSO>("Prefabs/Item/Goods/Gold");
+    public static GoodsSO Goods_Fire = Resources.Load<GoodsSO>("Prefabs/Item/Goods/FireGoods");
+    public static GoodsSO Goods_Water = Resources.Load<GoodsSO>("Prefabs/Item/Goods/WaterGoods");
+    public static GoodsSO Goods_Wind = Resources.Load<GoodsSO>("Prefabs/Item/Goods/WindGoods");
+    public static GoodsSO Goods_Earth = Resources.Load<GoodsSO>("Prefabs/Item/Goods/EarthGoods");
     /// <summary>
     /// AudioMixer의 SFX Parameter값과 일치해야함
     /// </summary>

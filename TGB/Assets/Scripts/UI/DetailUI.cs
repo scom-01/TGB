@@ -1,3 +1,4 @@
+using TGB;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -38,6 +39,7 @@ public class DetailUI : MonoBehaviour
 
     [Header("---Button---")]
     [SerializeField] private Image HoldFilledImg;
+    [SerializeField] private TMP_Text ItemCost_Txt;
 
     [Header("---Item---")]
     /// <summary>
@@ -109,6 +111,10 @@ public class DetailUI : MonoBehaviour
             HoldFilledImg.fillAmount = 0;
         }
 
+        if (ItemCost_Txt != null)
+        {
+            ItemCost_Txt.text = string.Format("{0:#,##0}", ((int)this.item.itemData.ItemLevel * GlobalValue.Gold_Inflation * GameManager.Inst.StageManager.StageLevel) * 3 / 5);
+        }
         return true;
     }
 
@@ -135,8 +141,12 @@ public class DetailUI : MonoBehaviour
                 if (player.InputHandler.interactionperformed)
                 {
                     Debug.Log("Sell Item");
+                    var item = Instantiate(GlobalValue.Base_SpawnGoodsItem);
+                    GoodsData goodsData = new GoodsData(GOODS_TPYE.Gold, 50, ((int)this.item.itemData.ItemLevel * GlobalValue.Gold_Inflation * GameManager.Inst.StageManager.StageLevel) * 3 / 250, 2.5f, 0.5f);
+                    item.GetComponent<GoodsItem>().Set(goodsData, GO.transform.position);
                     player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
                     player.InputHandler.UseInput(ref player.InputHandler.interactionperformed);
+                    Destroy(GO);
                     return;
                 }
             }            

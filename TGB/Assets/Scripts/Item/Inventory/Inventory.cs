@@ -84,7 +84,6 @@ public class Inventory : MonoBehaviour
     /// UI 현재 선택된 아이템
     /// </summary>
     public GameObject CheckItem;
-
     private Weapon m_weapon;
     private void Start()
     {

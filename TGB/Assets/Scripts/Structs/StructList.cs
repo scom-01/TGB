@@ -5,6 +5,40 @@ using UnityEngine;
 namespace TGB
 {
     [Serializable]
+    public class GoodsData
+    {
+        [Tooltip("Goods Type")]
+        [SerializeField] public GOODS_TPYE Goods;
+        [Tooltip("개당 재화량, 총 재화 = Amount * DropCount")]
+        /// <summary>
+        /// 개당 재화량
+        /// </summary>
+        [SerializeField] public int Amount;
+        [Tooltip("드랍될 재화아이템 갯수")]
+        /// <summary>
+        /// 드랍될 재화아이템 갯수
+        /// </summary>
+        [SerializeField] public int DropCount;
+        [HideInInspector] public GoodsSO SOdata;
+        /// <summary>
+        /// 재화의 삭제 딜레이 시간
+        /// </summary>
+        [SerializeField] public float DestroyTime;
+        /// <summary>
+        /// 재화의 삭제 딜레이 시간 랜덤 범위 (+- Random.Range)
+        /// </summary>
+        [SerializeField] public float DestroyTimeRange;
+        public GoodsData(GOODS_TPYE goods, int amount, int dropCount, float destroyTime, float destroyTimeRange)
+        {
+            Goods = goods;
+            Amount = amount;
+            DropCount = dropCount;
+            DestroyTime = destroyTime;
+            DestroyTimeRange = destroyTimeRange;
+        }
+    }
+
+    [Serializable]
     public struct WeaponSkillData
     {
         public WeaponAnimData GroundweaponData;
