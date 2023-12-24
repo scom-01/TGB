@@ -31,7 +31,10 @@ public class AnimationEventHandler : MonoBehaviour
     public event Action OnRushActionRectOn;
     public event Action OnRushActionRectOff;
     public event Action OnShootProjectile;
-    
+
+    //Buff
+    public event Action OnWeaponBuff;
+
     //Effect
     public event Action OnEffectSpawn;
 
@@ -77,6 +80,9 @@ public class AnimationEventHandler : MonoBehaviour
     public void StartRushActionRectTrigger() { if (isAction) OnRushActionRectOn?.Invoke(); }
     public void StopRushActionRectTrigger() { if (isAction) OnRushActionRectOff?.Invoke(); }
     public void ShootProjectileTrigger() { if (isAction) OnShootProjectile?.Invoke(); }
+
+    //Buff
+    public void WeaponBuffTrigger() { if (isAction) OnWeaponBuff?.Invoke(); }
 
     //Effect
     public void SpawnEffectTrigger() { if (isAction) OnEffectSpawn?.Invoke(); }
