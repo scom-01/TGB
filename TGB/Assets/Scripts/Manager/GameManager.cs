@@ -500,6 +500,10 @@ public class GameManager : MonoBehaviour
             return;
         ResetData();
 
+        MainUI.MainPanel.BuffPanelSystem.Reset();
+        MainUI.MainPanel.SkillPanelSystem.PrimarySkillPanel.Reset();
+        MainUI.MainPanel.SkillPanelSystem.SecondarySkillPanel.Reset();
+
         var skipCutScene = DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.SkipCutSceneList.ToList();
         if (skipCutScene.Contains(4))
         {

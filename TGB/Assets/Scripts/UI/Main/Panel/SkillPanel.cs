@@ -39,7 +39,7 @@ public class SkillPanel : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (Unit == null)
             return;
@@ -76,6 +76,14 @@ public class SkillPanel : MonoBehaviour
         StartTime = _startTime;
         CooldownTime = _skillCooldowmTime;        
         isUpdate = true;
+    }
+    public void Reset()
+    {
+        StartTime = 0f;
+        CooldownTime = 0f;
+        Skill_CooldownTime.text = "";
+        Skill_Img_Filled.fillAmount = 1f;
+        isUpdate = false;
     }
 
     public void Init(Sprite _SkillSprite)

@@ -15,7 +15,6 @@ public class BuffPanelSystem : MonoBehaviour
         }
     }
     //[SerializeField] private int MaxBuffPanelHorizontal;
-
     public bool BuffPanelAdd(Buff buff)
     {
         if (GameManager.Inst == null)
@@ -55,5 +54,14 @@ public class BuffPanelSystem : MonoBehaviour
             }
         }
         return true;
+    }
+
+    public void Reset()
+    {
+        foreach (var buffpanel in BuffPanelList)
+        {
+            Destroy(buffpanel.gameObject);
+        }
+        BuffPanelList.Clear();
     }
 }
