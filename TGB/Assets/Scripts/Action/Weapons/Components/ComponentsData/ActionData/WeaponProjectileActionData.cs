@@ -18,6 +18,10 @@ public struct ProjectileData
     /// 발사 각도
     /// </summary>
     public Vector3 Rot;
+    /// <summary>
+    /// Rot로 Speed값만큼 고정이동 여부
+    /// </summary>
+    public bool isFixedMovement;
     [Tooltip("투사체 속도")]
     /// <summary>
     /// 투사체 속도
@@ -51,12 +55,17 @@ public struct ProjectileData
     /// 온힛효과 발동여부
     /// </summary>
     public bool isOnHit;
-    [Header("- - - Attribute - - -")]
+    [Header("- - - Attribute - - -")]    
+    public bool isBox;
     [Tooltip("투사체 피격 판정 크기")]
     /// <summary>
     /// 발사체 피격 판정 크기
     /// </summary>
     public float Radius;
+    /// <summary>
+    /// Collider가 BoxCollider일때 size
+    /// </summary>
+    public Vector2 BCsize;
     [Tooltip("투사체 Offset")]
     /// <summary>
     /// 피격 판정 CircleCollider의 Offset
@@ -106,6 +115,7 @@ public struct ProjectileData
     /// 임팩트 이펙트 로컬 스케일
     /// </summary>
     public Vector3 ImpactScale;
+    public float ImpactRamdomPosRange;
     [Tooltip("투사체 임팩트 시 Camera Shake 여부")]
     public bool isShakeCam;
     [Tooltip("투사체 임팩트 시 Camera Shake Data(isShakeCam = true일 때 작동)")]

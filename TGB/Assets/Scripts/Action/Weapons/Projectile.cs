@@ -29,6 +29,7 @@ namespace TGB
                 return unit.Core.CoreMovement.FancingDirection;
             }
         }
+        private int FixedFancingDirection = 1;
         private float m_startTime;
         public Rigidbody2D RB2D
         {
@@ -55,7 +56,7 @@ namespace TGB
                     cc2d = this.GetComponent<CircleCollider2D>();
                     if (cc2d == null)
                         cc2d = this.AddComponent<CircleCollider2D>();
-                }
+                }                
                 if (ProjectileData.isBound)
                 {
                     cc2d.isTrigger = false;
@@ -69,6 +70,29 @@ namespace TGB
         }
 
         private CircleCollider2D cc2d;
+        private BoxCollider2D BC2D
+        {
+            get
+            {
+                if (bc2d == null)
+                {
+                    bc2d = this.GetComponent<BoxCollider2D>();
+                    if (bc2d == null)
+                        bc2d = this.AddComponent<BoxCollider2D>();
+                }
+                if (ProjectileData.isBound)
+                {
+                    bc2d.isTrigger = false;
+                }
+                else
+                {
+                    bc2d.isTrigger = true;
+                }
+                return bc2d;
+            }
+        }
+
+        private BoxCollider2D bc2d;
         public Projectile(Unit _unit, ProjectileData m_ProjectileData)
         {
             unit = _unit;
@@ -88,21 +112,25 @@ namespace TGB
                 this.transform.position = unit.Core.CoreCollisionSenses.UnitCenterPos + Vector3.right * ProjectileData.Pos.x * FancingDirection + Vector3.up * ProjectileData.Pos.y;
             }
             this.gameObject.layer = LayerMask.NameToLayer("Projectile");
-            this.transform.rotation = Quaternion.Euler(ProjectileData.Rot);
+            //this.transform.rotation = Quaternion.Euler(ProjectileData.Rot);
 
 
             CC2D.radius = ProjectileData.Radius;
+            BC2D.size = ProjectileData.BCsize;
             CC2D.offset = ProjectileData.Offset;
+            BC2D.offset = ProjectileData.Offset;
             CC2D.enabled = false;
+            BC2D.enabled = false;
             RB2D.gravityScale = ProjectileData.GravityScale;
             if (ProjectileData.isBound && ProjectileData.UnitCC2DMaterial != null)
             {
                 CC2D.sharedMaterial = ProjectileData.UnitCC2DMaterial;
+                BC2D.sharedMaterial = ProjectileData.UnitCC2DMaterial;
             }
 
             //set ProjectilPrefab
-            Spawned_ProjectileObject = Instantiate(ProjectileObject, this.transform);
-
+            if(Spawned_ProjectileObject == null)
+                Spawned_ProjectileObject = Instantiate(ProjectileObject, this.transform);
             if (ProjectileData.EffectScale == Vector3.zero)
                 Spawned_ProjectileObject.gameObject.transform.localScale = Vector3.one;
             else
@@ -143,14 +171,18 @@ namespace TGB
             //this.transform.rotation = Quaternion.Euler(ProjectileData.Rot);
 
             CC2D.radius = ProjectileData.Radius;
+            BC2D.size = ProjectileData.BCsize;
             CC2D.offset = ProjectileData.Offset;
+            BC2D.offset = ProjectileData.Offset;
             CC2D.enabled = false;
+            BC2D.enabled = false;
             RB2D.gravityScale = ProjectileData.GravityScale;
-
             if (ProjectileData.isBound && ProjectileData.UnitCC2DMaterial != null)
             {
                 CC2D.sharedMaterial = ProjectileData.UnitCC2DMaterial;
+                BC2D.sharedMaterial = ProjectileData.UnitCC2DMaterial;
             }
+
             if (Spawned_ProjectileObject != null)
             {
                 if (ProjectileData.EffectScale == Vector3.zero)
@@ -185,23 +217,25 @@ namespace TGB
             }
 
             RB2D.isKinematic = false;
-            CC2D.enabled = true;
 
+            BC2D.enabled = ProjectileData.isBox;
+            CC2D.enabled = !ProjectileData.isBox;
+            FixedFancingDirection = FancingDirection;
             if (unit != null)
             {
-                RB2D.rotation = 0f;
+                this.transform.rotation = Quaternion.Euler(Vector3.zero);
                 //Default가 0을 전제
                 if (FancingDirection < 0)
                 {
                     if (!isFixedRot)
-                        RB2D.rotation = 180f;
+                        this.transform.rotation = Quaternion.Euler(new Vector3(0, 180f, 0));
                 }
                 if (ProjectileData.homingType == HomingType.isToTarget_Direct && unit.TargetUnit != null
                     )
                 {
                     if (
-                        ((unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - this.transform.position).x < -0.001f && FancingDirection < 0) ||
-                        ((unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - this.transform.position).x > 0.001f && FancingDirection > 0)
+                        ((unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - this.transform.position).x < -0.001f && FixedFancingDirection < 0) ||
+                        ((unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - this.transform.position).x > 0.001f && FixedFancingDirection > 0)
                         )
                     {
                         Vector3 toTargetNormal = (unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - unit.Core.CoreCollisionSenses.GroundCenterPos);
@@ -222,11 +256,11 @@ namespace TGB
                     RB2D.velocity = new Vector2(toTargetNormal.x, toTargetNormal.y).normalized * ProjectileData.Speed;
                 }
                 else
-                    RB2D.velocity = new Vector2(ProjectileData.Rot.x * FancingDirection, ProjectileData.Rot.y).normalized * ProjectileData.Speed;
+                    RB2D.velocity = new Vector2(ProjectileData.Rot.x * FixedFancingDirection, ProjectileData.Rot.y).normalized * ProjectileData.Speed;
             }
             else
             {
-                RB2D.velocity = new Vector2(ProjectileData.Rot.x, ProjectileData.Rot.y).normalized * ProjectileData.Speed;
+                RB2D.velocity = new Vector2(ProjectileData.Rot.x * FixedFancingDirection, ProjectileData.Rot.y).normalized * ProjectileData.Speed;
             }
         }
         // Update is called once per frame
@@ -256,6 +290,11 @@ namespace TGB
                 RB2D.MovePosition(movePosition);
             }
 
+            if(ProjectileData.isFixedMovement)
+            {
+                RB2D.velocity = new Vector2(ProjectileData.Rot.x * FixedFancingDirection, ProjectileData.Rot.y).normalized * ProjectileData.Speed;
+            }
+
             if (GameManager.Inst.PlayTime >= m_startTime + ProjectileData.DurationTime)
             {
                 Impact();
@@ -276,7 +315,7 @@ namespace TGB
             //Impact            
             if (unit != null)
             {
-                var impact = unit.Core.CoreEffectManager.StartEffectsPos(ImpactObject, this.transform.position, ProjectileData.ImpactScale);
+                var impact = unit.Core.CoreEffectManager.StartEffectsWithRandomPos(ImpactObject, ProjectileData.ImpactRamdomPosRange, ProjectileData.ImpactScale, this.transform.position);
                 foreach (var _renderer in impact.GetComponentsInChildren<ParticleSystemRenderer>())
                 {
                     _renderer.sortingLayerName = "Effect";
@@ -427,7 +466,7 @@ namespace TGB
                 return;
             if (coll.TryGetComponent(out IKnockBackable knockbackables))
             {
-                knockbackables.KnockBack(ProjectileData.KnockbackAngle, ProjectileData.KnockbackAngle.magnitude, FancingDirection);
+                knockbackables.KnockBack(ProjectileData.KnockbackAngle, ProjectileData.KnockbackAngle.magnitude, FixedFancingDirection);
             }
             #endregion
         }

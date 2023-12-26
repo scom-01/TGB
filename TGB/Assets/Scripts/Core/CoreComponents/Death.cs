@@ -34,7 +34,7 @@ namespace TGB.CoreSystem
             isDead = true;
             foreach (var effect in deathChunk)
             {
-                var particleObject = EffectManager.StartEffectsWithRandomPos(effect, 0.5f);
+                var particleObject = EffectManager.StartEffectsWithRandomPos(effect, 0.5f, Vector3.one, core.Unit.transform.position);
                 particleObject.GetComponent<Animator>().speed = Random.Range(0.3f, 1f);
             }
             

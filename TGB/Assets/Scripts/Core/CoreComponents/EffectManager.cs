@@ -67,22 +67,22 @@ namespace TGB.CoreSystem
             return StartEffects(effectPrefab, transform.position, randomRotation, Vector3.zero);
         }
 
-        public GameObject StartEffectsWithRandomPos(GameObject effectPrefab, float Range)
+        public GameObject StartEffectsWithRandomPos(GameObject effectPrefab, float Range, Vector3 size, Vector2 pos)
         {
             if (core.CoreMovement.FancingDirection > 0)
             {
                 return StartEffects(effectPrefab, new Vector2(
-                                                    transform.position.x + Random.Range(-Range, Range),
-                                                    transform.position.y + Random.Range(-Range, Range)),
+                                                    pos.x + Random.Range(-Range, Range),
+                                                    pos.y + Random.Range(-Range, Range)),
                                                     Quaternion.Euler(effectPrefab.transform.eulerAngles),
-                                                    Vector3.zero);
+                                                    size);
             }
 
             return StartEffects(effectPrefab, new Vector2(
-                                                    transform.position.x + Random.Range(-Range, Range),
-                                                    transform.position.y + Random.Range(-Range, Range)),
+                                                    pos.x + Random.Range(-Range, Range),
+                                                    pos.y + Random.Range(-Range, Range)),
                                                     Quaternion.Euler(effectPrefab.transform.eulerAngles.x, effectPrefab.transform.eulerAngles.y + 180.0f, effectPrefab.transform.eulerAngles.z),
-                                                    Vector3.zero);            
+                                                    size);            
         }
         public GameObject StartEffectsWithRandomPos(GameObject effectPrefab, float Range, int FancingDirection, Vector3 size, bool _isFollow = false)
         {

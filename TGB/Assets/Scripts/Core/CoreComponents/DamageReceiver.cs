@@ -245,7 +245,7 @@ namespace TGB.CoreSystem
         /// <returns></returns>
         public GameObject HUD_DmgTxt(GameObject effectPrefab, float range, float damage, float fontSize, DAMAGE_ATT damageAttiribute, bool isCritical = false)
         {
-            var effect = effectManager.Comp?.StartEffectsWithRandomPos(effectPrefab, range);
+            var effect = effectManager.Comp?.StartEffectsWithRandomPos(effectPrefab, range, Vector3.one, effectManager.Comp.transform.position);
 
             return HUD_DmgTxt(range, damage, fontSize, damageAttiribute, isCritical);
         }
