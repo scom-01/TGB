@@ -12,13 +12,14 @@ GameObject:
   - component: {fileID: 2799054273659964813}
   - component: {fileID: 4584737888372909562}
   - component: {fileID: 8064462147720095501}
+  - component: {fileID: 5930832350698522541}
   m_Layer: 13
   m_Name: Slash_Projectile_Single_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3640218270444335685
 Transform:
   m_ObjectHideFlags: 0
@@ -62,7 +63,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2222910967692216358}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -70,7 +71,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 0.0001
 --- !u!114 &8064462147720095501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,23 +92,26 @@ MonoBehaviour:
     DurationTime: 0
     AdditionalDmg: 0
     isFixed: 0
+    KnockbackAngle: {x: 0, y: 0}
+    isOnHit: 0
+    isBox: 0
     Radius: 0
+    BCsize: {x: 0, y: 0}
     Offset: {x: 0, y: 0}
     GravityScale: 0
     isSingleShoot: 0
-    KnockbackAngle: {x: 0, y: 0}
     isCollisionGround: 0
     isCollisionPlatform: 0
     isBound: 0
     UnitCC2DMaterial: {fileID: 0}
     EffectScale: {x: 0, y: 0, z: 0}
-    isOnHit: 0
+    ImpactScale: {x: 0, y: 0, z: 0}
     isShakeCam: 0
-    homingType: 0
     camDatas:
       Duration: 0
       Range: 0
       RepeatRate: 0
+    homingType: 0
   ProjectileObject: {fileID: 1694483361078003942, guid: 691dfb29ecc6fe3449ac7da33ea74216, type: 3}
   ImpactObject: {fileID: 8867112169225384458, guid: c7192044afa1e474698d2bc7a0ee4011, type: 3}
   ProjectileShootClip:
@@ -117,3 +121,29 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: 180f35aef2ea2654086bcbb52d58ec0b, type: 3}
     Volume: 0.2
   isFixedRot: 0
+--- !u!61 &5930832350698522541
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2222910967692216358}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.0001, y: 0.0001}
+  m_EdgeRadius: 0

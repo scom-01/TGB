@@ -43,30 +43,7 @@ MonoBehaviour:
         name: ActionHitBoxData
         actionData:
         - name: Action 1
-          ActionHit:
-          - Debug: 1
-            ActionRect:
-              serializedVersion: 2
-              x: -1.36
-              y: -0.56
-              width: 4.06
-              height: 1.05
-            RepeatAction: 1
-            AdditionalDamage: 0
-            isFixed: 0
-            KnockbackAngle: {x: 0, y: 0}
-            EffectPrefab:
-            - isGround: 0
-              isHeader: 0
-              isTransformGlobal: 0
-              isRandomPosRot: 1
-              isRandomRange: 1.5
-              EffectOffset: {x: 0, y: 0}
-              EffectScale: {x: 0, y: 0, z: 0}
-              isFollowing: 0
-              Object: {fileID: 8867112169225384458, guid: f7f4dfc73dd2e0944a7dfab9f80538ce, type: 3}
-            audioClips: []
-            camDatas: []
+          ActionHit: []
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
           m_Bits: 2048
@@ -106,11 +83,7 @@ MonoBehaviour:
         name: MovementData
         actionData:
         - name: Action 1
-          <movements>k__BackingField:
-          - CanFlip: 0
-            CanMoveCtrl: 1
-            Direction: {x: 0, y: 1}
-            Velocity: 12
+          <movements>k__BackingField: []
     - rid: 2527592717927579866
       type: {class: ShakeCamData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -135,22 +108,24 @@ MonoBehaviour:
         - name: Action 1
           ProjectileActionData:
           - ProjectileData:
-              Pos: {x: 0, y: 0, z: 0}
-              Rot: {x: 0, y: 0, z: 0}
-              Speed: 0
-              DurationTime: 0
+              Pos: {x: 1, y: 0, z: 0}
+              Rot: {x: 1, y: 0, z: 0}
+              Speed: 20
+              DurationTime: 5
               AdditionalDmg: 0
               isFixed: 0
-              KnockbackAngle: {x: 0, y: 0}
+              KnockbackAngle: {x: 3, y: 3}
               isOnHit: 0
-              Radius: 0
-              Offset: {x: 0, y: 0}
-              GravityScale: 0
+              isBox: 1
+              Radius: 1
+              BCsize: {x: 2.75, y: 4}
+              Offset: {x: 0, y: 2}
+              GravityScale: 4
               isSingleShoot: 0
               isCollisionGround: 1
               isCollisionPlatform: 1
               isBound: 1
-              UnitCC2DMaterial: {fileID: 6200000, guid: c0d066c20b8db264badb7d747b043abb, type: 2}
+              UnitCC2DMaterial: {fileID: 6200000, guid: c02cd8fcaef49254982367ba2604c1e5, type: 2}
               EffectScale: {x: 1, y: 1, z: 1}
               ImpactScale: {x: 0.5, y: 0.5, z: 0.5}
               isShakeCam: 0
@@ -167,9 +142,8 @@ MonoBehaviour:
         actionData:
         - name: Action 1
           <WeaponSprites>k__BackingField:
-          - {fileID: 147069158, guid: c35d9502f2ada634592d079801c15dcb, type: 3}
-          - {fileID: -1186967906, guid: c35d9502f2ada634592d079801c15dcb, type: 3}
-          - {fileID: -282424880, guid: c35d9502f2ada634592d079801c15dcb, type: 3}
-          - {fileID: -941643198, guid: c35d9502f2ada634592d079801c15dcb, type: 3}
-          - {fileID: -132705281, guid: c35d9502f2ada634592d079801c15dcb, type: 3}
-          - {fileID: 1179441322, guid: c35d9502f2ada634592d079801c15dcb, type: 3}
+          - {fileID: 1160262986, guid: 1aedf463434bc634b8a44f6287510561, type: 3}
+          - {fileID: -1263844439, guid: 1aedf463434bc634b8a44f6287510561, type: 3}
+          - {fileID: 841741248, guid: 1aedf463434bc634b8a44f6287510561, type: 3}
+          - {fileID: -533870468, guid: 1aedf463434bc634b8a44f6287510561, type: 3}
+          - {fileID: 732951274, guid: 1aedf463434bc634b8a44f6287510561, type: 3}
