@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CutSceneManager : MonoBehaviour
 {
-    [SerializeField] private PlayableDirector PlayableDirector;    
+    [SerializeField] private PlayableDirector PlayableDirector;
     public string CurrStageName
     {
         get
@@ -17,7 +17,7 @@ public class CutSceneManager : MonoBehaviour
     {
         get
         {
-            if(GameManager.Inst.SceneNameList.Count > 0)
+            if (GameManager.Inst.SceneNameList.Count > 0)
             {
                 return GameManager.Inst.SceneNameList.FindIndex(str => str.Equals(SceneManager.GetActiveScene().name));
             }
@@ -64,15 +64,15 @@ public class CutSceneManager : MonoBehaviour
     {
         if (PlayableDirector != null)
         {
-            if(this.GetComponent<SkipCutSceneIndex>() != null)
+            if (this.GetComponent<SkipCutSceneIndex>() != null)
             {
                 this.GetComponent<SkipCutSceneIndex>().CheckSkipCutScene();
             }
         }
+        inputHandler.ChangeCurrentActionMap(InputEnum.CutScene, false);
     }
     private void Update()
     {
-        //DashInputStop으로 현재 
         if (!inputHandler.InteractionInputStop && !isDone)
         {
             if (FillImg != null)
@@ -80,9 +80,10 @@ public class CutSceneManager : MonoBehaviour
                 SkipObject.SetActive(true);
                 FillImg.fillAmount = (inputHandler.interactionInputStartTime + SkipDurationTime - Time.time) / SkipDurationTime;
             }
+
             if (Time.time >= inputHandler.interactionInputStartTime + SkipDurationTime)
             {
-                if (this.GetComponent<SkipCutSceneIndex>() != null) 
+                if (this.GetComponent<SkipCutSceneIndex>() != null)
                 {
                     this.GetComponent<SkipCutSceneIndex>().AddSkipCutScene();
                 }
