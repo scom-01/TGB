@@ -83,7 +83,11 @@ MonoBehaviour:
         name: MovementData
         actionData:
         - name: Action 1
-          <movements>k__BackingField: []
+          <movements>k__BackingField:
+          - CanFlip: 0
+            CanMoveCtrl: 0
+            Direction: {x: 0, y: 0}
+            Velocity: 0
     - rid: 2527592717927579866
       type: {class: ShakeCamData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -108,9 +112,10 @@ MonoBehaviour:
         - name: Action 1
           ProjectileActionData:
           - ProjectileData:
-              Pos: {x: 1, y: 0, z: 0}
+              Pos: {x: 1, y: -0.75, z: 0}
               Rot: {x: 1, y: 0, z: 0}
-              Speed: 20
+              isFixedMovement: 1
+              Speed: 8
               DurationTime: 5
               AdditionalDmg: 0
               isFixed: 0
@@ -120,14 +125,15 @@ MonoBehaviour:
               Radius: 1
               BCsize: {x: 2.75, y: 4}
               Offset: {x: 0, y: 2}
-              GravityScale: 4
+              GravityScale: 50
               isSingleShoot: 0
               isCollisionGround: 1
               isCollisionPlatform: 1
               isBound: 1
               UnitCC2DMaterial: {fileID: 6200000, guid: c02cd8fcaef49254982367ba2604c1e5, type: 2}
               EffectScale: {x: 1, y: 1, z: 1}
-              ImpactScale: {x: 0.5, y: 0.5, z: 0.5}
+              ImpactScale: {x: 0.75, y: 0.75, z: 0.75}
+              ImpactRamdomPosRange: 2
               isShakeCam: 0
               camDatas:
                 Duration: 0
