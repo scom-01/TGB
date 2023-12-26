@@ -270,10 +270,7 @@ MonoBehaviour:
         name: DamageData
         actionData:
         - name: 
-          <HitDamage>k__BackingField:
-          - AdditionalDamage: 1
-            RepeatAmount: 1
-            isFixed: 0
+          <HitDamage>k__BackingField: []
     - rid: 2527592717927579665
       type: {class: EffectSpawnData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -395,23 +392,23 @@ MonoBehaviour:
         - name: Action 1
           audioDataList:
           - Clip: {fileID: 8300000, guid: a90b7184fb02659469901edc3ceb6a19, type: 3}
-            Volume: 0.7
+            Volume: 0.4
           - Clip: {fileID: 8300000, guid: 7dfd8119742582c47832bf5ec01273db, type: 3}
-            Volume: 0.7
+            Volume: 0.4
           - Clip: {fileID: 8300000, guid: a43b3ed7a42c242489f8b5351bf08f67, type: 3}
-            Volume: 0.7
+            Volume: 0.4
           - Clip: {fileID: 8300000, guid: a90b7184fb02659469901edc3ceb6a19, type: 3}
-            Volume: 0.7
+            Volume: 0.4
           - Clip: {fileID: 8300000, guid: 7dfd8119742582c47832bf5ec01273db, type: 3}
-            Volume: 0.7
+            Volume: 0.4
           - Clip: {fileID: 8300000, guid: a43b3ed7a42c242489f8b5351bf08f67, type: 3}
-            Volume: 0.7
+            Volume: 0.4
           - Clip: {fileID: 8300000, guid: a90b7184fb02659469901edc3ceb6a19, type: 3}
-            Volume: 0.7
+            Volume: 0.4
           - Clip: {fileID: 8300000, guid: 7dfd8119742582c47832bf5ec01273db, type: 3}
-            Volume: 0.7
+            Volume: 0.4
           - Clip: {fileID: 8300000, guid: a43b3ed7a42c242489f8b5351bf08f67, type: 3}
-            Volume: 0.7
+            Volume: 0.4
     - rid: 2527592717927579670
       type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 829d099c869488a49a5f24ab18f0f054, type: 3}
   m_Name: Sword_0_2
   m_EditorClassIdentifier: 
+  WeaponSprite: {fileID: 0}
   <NumberOfActions>k__BackingField: 1
   <CanJump>k__BackingField: 1
   <CanAirAttack>k__BackingField: 1
@@ -119,7 +120,7 @@ MonoBehaviour:
         - name: Action 1
           audioDataList:
           - Clip: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
-            Volume: 1
+            Volume: 0.6
     - rid: 2527592717927579679
       type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
