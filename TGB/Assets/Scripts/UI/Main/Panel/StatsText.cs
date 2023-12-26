@@ -1,10 +1,8 @@
 using TGB.CoreSystem;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Localization.Components;
 using UnityEngine.U2D;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class StatsText : Stats
 {

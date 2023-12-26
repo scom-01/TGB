@@ -213,6 +213,7 @@ public class GoodsText : MonoBehaviour
             DataManager.Inst.JSON_DataParsing.OnChangeGoodsData -= UpdateGoodsTesxt;
             DataManager.Inst.JSON_DataParsing.OnChangeGoodsData += UpdateGoodsTesxt;
         }
+        UpdateGoodsTesxt();
     }
 
     private void OnDisable()
