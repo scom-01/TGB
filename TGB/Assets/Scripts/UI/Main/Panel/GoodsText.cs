@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GoodsText : MonoBehaviour
 {
+    [SerializeField] private Goods_UI_Type UI_Type = Goods_UI_Type.Curr;
     [SerializeField] private GOODS_TPYE Type;
     private GOODS_TPYE OldType = GOODS_TPYE.None;
 
@@ -162,22 +163,88 @@ public class GoodsText : MonoBehaviour
                 switch (Type)
                 {
                     case GOODS_TPYE.Gold:
-                        count = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Goods.Gold;
+                        switch (UI_Type)
+                        {
+                            case Goods_UI_Type.Curr:
+                                count = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Goods.Gold;
+                                break;
+                            case Goods_UI_Type.Cumulative:
+                                count = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Cumulative_Goods.Gold;
+                                break;
+                            case Goods_UI_Type.Usage:
+                                count = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Cumulative_Usage_Goods.Gold;
+                                break;
+                        }                        
                         return count;
                     case GOODS_TPYE.FireGoods:
-                        count = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Goods.FireGoods;
+                        switch (UI_Type)
+                        {
+                            case Goods_UI_Type.Curr:
+                                count = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Goods.FireGoods;
+                                break;
+                            case Goods_UI_Type.Cumulative:
+                                count = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Cumulative_Goods.FireGoods;
+                                break;
+                            case Goods_UI_Type.Usage:
+                                count = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Cumulative_Usage_Goods.FireGoods;
+                                break;
+                        }
                         return count;
                     case GOODS_TPYE.WaterGoods:
-                        count = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Goods.WaterGoods;
+                        switch (UI_Type)
+                        {
+                            case Goods_UI_Type.Curr:
+                                count = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Goods.WaterGoods;
+                                break;
+                            case Goods_UI_Type.Cumulative:
+                                count = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Cumulative_Goods.WaterGoods;
+                                break;
+                            case Goods_UI_Type.Usage:
+                                count = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Cumulative_Usage_Goods.WaterGoods;
+                                break;
+                        }
                         return count;
                     case GOODS_TPYE.EarthGoods:
-                        count = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Goods.EarthGoods;
+                        switch (UI_Type)
+                        {
+                            case Goods_UI_Type.Curr:
+                                count = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Goods.EarthGoods;
+                                break;
+                            case Goods_UI_Type.Cumulative:
+                                count = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Cumulative_Goods.EarthGoods;
+                                break;
+                            case Goods_UI_Type.Usage:
+                                count = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Cumulative_Usage_Goods.EarthGoods;
+                                break;
+                        }
                         return count;
                     case GOODS_TPYE.WindGoods:
-                        count = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Goods.WindGoods;
+                        switch (UI_Type)
+                        {
+                            case Goods_UI_Type.Curr:
+                                count = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Goods.WindGoods;
+                                break;
+                            case Goods_UI_Type.Cumulative:
+                                count = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Cumulative_Goods.WindGoods;
+                                break;
+                            case Goods_UI_Type.Usage:
+                                count = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Cumulative_Usage_Goods.WindGoods;
+                                break;
+                        }
                         return count;
                     case GOODS_TPYE.HammerShards:
-                        count = DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.hammer_piece;
+                        switch (UI_Type)
+                        {
+                            case Goods_UI_Type.Curr:
+                                count = DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.hammer_piece;
+                                break;
+                            case Goods_UI_Type.Cumulative:
+                                count = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Cumulative_Hammer_piece;
+                                break;
+                            case Goods_UI_Type.Usage:
+                                count = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.Cumulative_Usage_Hammer_piece;
+                                break;
+                        }
                         return count;
                 }
             }

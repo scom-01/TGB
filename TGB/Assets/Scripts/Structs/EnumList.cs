@@ -87,6 +87,13 @@ public enum GOODS_TPYE
     None,
 }
 
+public enum Goods_UI_Type
+{
+    Curr = 0,
+    Cumulative = 1,
+    Usage = 2,
+}
+
 #endregion
 
 #region Stats

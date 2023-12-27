@@ -559,21 +559,69 @@ public class DataManager : MonoBehaviour
         {
             case GOODS_TPYE.Gold:
                 JSON_DataParsing.m_JSON_SceneData.Goods.Gold += goodsAmount;
+                if(goodsAmount > 0)
+                {
+                    JSON_DataParsing.m_JSON_SceneData.Cumulative_Goods.Gold += goodsAmount;
+                }
+                else
+                {
+                    JSON_DataParsing.m_JSON_SceneData.Cumulative_Usage_Goods.Gold += -goodsAmount;
+                }
                 break;
             case GOODS_TPYE.FireGoods:
                 JSON_DataParsing.m_JSON_SceneData.Goods.FireGoods += goodsAmount;
+                if (goodsAmount > 0)
+                {
+                    JSON_DataParsing.m_JSON_SceneData.Cumulative_Goods.FireGoods += goodsAmount;
+                }
+                else
+                {
+                    JSON_DataParsing.m_JSON_SceneData.Cumulative_Usage_Goods.FireGoods += -goodsAmount;
+                }
                 break;
             case GOODS_TPYE.WaterGoods:
                 JSON_DataParsing.m_JSON_SceneData.Goods.WaterGoods += goodsAmount;
+                if (goodsAmount > 0)
+                {
+                    JSON_DataParsing.m_JSON_SceneData.Cumulative_Goods.WaterGoods += goodsAmount;
+                }
+                else
+                {
+                    JSON_DataParsing.m_JSON_SceneData.Cumulative_Usage_Goods.WaterGoods += -goodsAmount;
+                }
                 break;
             case GOODS_TPYE.EarthGoods:
                 JSON_DataParsing.m_JSON_SceneData.Goods.EarthGoods += goodsAmount;
+                if (goodsAmount > 0)
+                {
+                    JSON_DataParsing.m_JSON_SceneData.Cumulative_Goods.EarthGoods += goodsAmount;
+                }
+                else
+                {
+                    JSON_DataParsing.m_JSON_SceneData.Cumulative_Usage_Goods.EarthGoods += -goodsAmount;
+                }
                 break;
             case GOODS_TPYE.WindGoods:
                 JSON_DataParsing.m_JSON_SceneData.Goods.WindGoods += goodsAmount;
+                if (goodsAmount > 0)
+                {
+                    JSON_DataParsing.m_JSON_SceneData.Cumulative_Goods.WindGoods += goodsAmount;
+                }
+                else
+                {
+                    JSON_DataParsing.m_JSON_SceneData.Cumulative_Usage_Goods.WindGoods += -goodsAmount;
+                }
                 break;
             case GOODS_TPYE.HammerShards:
                 JSON_DataParsing.m_JSON_DefaultData.hammer_piece += goodsAmount;
+                if (goodsAmount > 0)
+                {
+                    JSON_DataParsing.m_JSON_SceneData.Cumulative_Hammer_piece += goodsAmount;
+                }
+                else
+                {
+                    JSON_DataParsing.m_JSON_SceneData.Cumulative_Usage_Hammer_piece += -goodsAmount;
+                }
                 break;
         }
         JSON_DataParsing.All_ActionInvoke();

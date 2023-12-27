@@ -218,6 +218,17 @@ public class DataParsing : MonoBehaviour
         public List<BuffData> PassiveBuffDataList = new List<BuffData>();
         public List<BuffData> Old_PassiveBuffDataList = new List<BuffData>();
 
+        /// <summary>
+        /// 누적 획득
+        /// </summary>
+        public Goods_Data Cumulative_Goods;
+        /// <summary>
+        /// 누적 사용
+        /// </summary>
+        public Goods_Data Cumulative_Usage_Goods;
+        public int Cumulative_Hammer_piece = 0;
+        public int Cumulative_Usage_Hammer_piece = 0;
+
         public float PrimarySkillStartTime = 0f;
         public float SecondarySkillStartTime = 0f;
         /// <summary>
@@ -242,6 +253,12 @@ public class DataParsing : MonoBehaviour
             ActiveBuffDataList = new List<BuffData>();
             PassiveBuffDataList = new List<BuffData>();
             Old_PassiveBuffDataList = new List<BuffData>();
+            PrimarySkillStartTime = 0;
+            SecondarySkillStartTime = 0;
+            Cumulative_Goods = new Goods_Data();
+            Cumulative_Usage_Goods = new Goods_Data();
+            Cumulative_Hammer_piece = 0;
+            Cumulative_Usage_Hammer_piece = 0;
             Goods = new Goods_Data();
             Items = new List<int>();
             Weapons = new List<int>() { 0 };
