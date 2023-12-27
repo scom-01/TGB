@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 829d099c869488a49a5f24ab18f0f054, type: 3}
   m_Name: Fire_0_Sword_2_4
   m_EditorClassIdentifier: 
+  WeaponSprite: {fileID: 0}
   <NumberOfActions>k__BackingField: 1
   <CanJump>k__BackingField: 1
   <CanAirAttack>k__BackingField: 1
@@ -45,16 +46,19 @@ MonoBehaviour:
             RepeatAction: 1
             AdditionalDamage: 0
             isFixed: 0
+            isOnHit: 1
             KnockbackAngle: {x: 0, y: 0}
             EffectPrefab:
             - isGround: 0
+              isHeader: 0
+              isTransformGlobal: 0
               isRandomPosRot: 1
               isRandomRange: 1.5
               EffectOffset: {x: 0, y: 0}
-              EffectScale: 0
+              EffectScale: {x: 0, y: 0, z: 0}
               isFollowing: 0
               Object: {fileID: 8867112169225384458, guid: f7f4dfc73dd2e0944a7dfab9f80538ce, type: 3}
-            audioClip: []
+            audioClips: []
             camDatas: []
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
@@ -74,10 +78,12 @@ MonoBehaviour:
         - name: Action 1
           <EffectParticles>k__BackingField:
           - isGround: 1
+            isHeader: 0
+            isTransformGlobal: 0
             isRandomPosRot: 0
             isRandomRange: 0
             EffectOffset: {x: 0, y: 0}
-            EffectScale: 0
+            EffectScale: {x: 0, y: 0, z: 0}
             isFollowing: 1
             Object: {fileID: 668831008311998851, guid: 661373794299a734a8c3cfe3bd10944e, type: 3}
     - rid: 2527592717927579855
@@ -107,22 +113,7 @@ MonoBehaviour:
         name: SoundClipData
         actionData:
         - name: Action 1
-          audioClips:
-          - {fileID: 8300000, guid: 400dcd41eb97e574face170e5bf56471, type: 3}
-          - {fileID: 8300000, guid: df6d6e6970d3ebc40a5ecbe1e1f21c1e, type: 3}
-          - {fileID: 8300000, guid: 3df5c9ffcef3cf741b6a9ebfec6dbf0b, type: 3}
-          - {fileID: 8300000, guid: 400dcd41eb97e574face170e5bf56471, type: 3}
-          - {fileID: 8300000, guid: df6d6e6970d3ebc40a5ecbe1e1f21c1e, type: 3}
-          - {fileID: 8300000, guid: 3df5c9ffcef3cf741b6a9ebfec6dbf0b, type: 3}
-          - {fileID: 8300000, guid: 400dcd41eb97e574face170e5bf56471, type: 3}
-          - {fileID: 8300000, guid: df6d6e6970d3ebc40a5ecbe1e1f21c1e, type: 3}
-          - {fileID: 8300000, guid: 3df5c9ffcef3cf741b6a9ebfec6dbf0b, type: 3}
-          - {fileID: 8300000, guid: 400dcd41eb97e574face170e5bf56471, type: 3}
-          - {fileID: 8300000, guid: df6d6e6970d3ebc40a5ecbe1e1f21c1e, type: 3}
-          - {fileID: 8300000, guid: 3df5c9ffcef3cf741b6a9ebfec6dbf0b, type: 3}
-          - {fileID: 8300000, guid: 400dcd41eb97e574face170e5bf56471, type: 3}
-          - {fileID: 8300000, guid: df6d6e6970d3ebc40a5ecbe1e1f21c1e, type: 3}
-          - {fileID: 8300000, guid: 3df5c9ffcef3cf741b6a9ebfec6dbf0b, type: 3}
+          audioDataList: []
     - rid: 2527592717927579859
       type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:

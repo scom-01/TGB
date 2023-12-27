@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 829d099c869488a49a5f24ab18f0f054, type: 3}
   m_Name: Fire_1_Sword_1_3
   m_EditorClassIdentifier: 
+  WeaponSprite: {fileID: 0}
   <NumberOfActions>k__BackingField: 1
   <CanJump>k__BackingField: 1
   <CanAirAttack>k__BackingField: 1
@@ -45,6 +46,7 @@ MonoBehaviour:
             RepeatAction: 1
             AdditionalDamage: 0
             isFixed: 0
+            isOnHit: 1
             KnockbackAngle: {x: 0, y: 0}
             EffectPrefab:
             - isGround: 0
@@ -56,8 +58,9 @@ MonoBehaviour:
               EffectScale: {x: 0, y: 0, z: 0}
               isFollowing: 0
               Object: {fileID: 8867112169225384458, guid: f7f4dfc73dd2e0944a7dfab9f80538ce, type: 3}
-            audioClip: []
-            audioClips: []
+            audioClips:
+            - Clip: {fileID: 8300000, guid: 2375dadc4293d3f4380b59887ce8416b, type: 3}
+              Volume: 0.7
             camDatas: []
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
@@ -116,8 +119,6 @@ MonoBehaviour:
         name: SoundClipData
         actionData:
         - name: Action 1
-          audioClips:
-          - {fileID: 8300000, guid: a43b3ed7a42c242489f8b5351bf08f67, type: 3}
           audioDataList:
           - Clip: {fileID: 8300000, guid: a43b3ed7a42c242489f8b5351bf08f67, type: 3}
             Volume: 1
@@ -131,27 +132,32 @@ MonoBehaviour:
           - ProjectileData:
               Pos: {x: 1, y: -1, z: 0}
               Rot: {x: 2, y: -1, z: 0}
+              isFixedMovement: 0
               Speed: 20
               DurationTime: 3
               AdditionalDmg: 0
               isFixed: 0
+              KnockbackAngle: {x: 0, y: 0}
+              isOnHit: 1
+              isBox: 0
               Radius: 0.5
+              BCsize: {x: 0, y: 0}
               Offset: {x: 0, y: 0}
               GravityScale: 0
               isSingleShoot: 1
-              KnockbackAngle: {x: 0, y: 0}
               isCollisionGround: 1
               isCollisionPlatform: 0
               isBound: 0
               UnitCC2DMaterial: {fileID: 0}
               EffectScale: {x: 0, y: 0, z: 0}
-              isOnHit: 1
+              ImpactScale: {x: 0, y: 0, z: 0}
+              ImpactRamdomPosRange: 0
               isShakeCam: 0
-              homingType: 0
               camDatas:
                 Duration: 0
                 Range: 0
                 RepeatRate: 0
+              homingType: 0
             Projectile: {fileID: 2222910967692216358, guid: ec259d96c89ebfa42a54fb67dc441e32, type: 3}
     - rid: 2527592717927579878
       type: {class: WeaponSpriteData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}

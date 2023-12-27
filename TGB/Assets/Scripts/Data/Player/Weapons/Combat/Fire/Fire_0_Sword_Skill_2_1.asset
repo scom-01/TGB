@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 829d099c869488a49a5f24ab18f0f054, type: 3}
-  m_Name: Fire_1_Sword_Skill_1_1
+  m_Name: Fire_0_Sword_Skill_2_1
   m_EditorClassIdentifier: 
   WeaponSprite: {fileID: 0}
   <NumberOfActions>k__BackingField: 1
@@ -36,14 +36,38 @@ MonoBehaviour:
         name: WeaponBuffData
         actionData:
         - name: Action 1
-          <BuffDataList>k__BackingField: []
+          <BuffDataList>k__BackingField:
+          - Buff: {fileID: 11400000, guid: 23cece4d091575f4fb642cfdbac2c73c, type: 2}
+            EquipAudio:
+              Clip: {fileID: 8300000, guid: 5543cefa2f8fc9e40bb3b5af6eac40ad, type: 3}
+              Volume: 0.6
     - rid: 2527592717927579861
       type: {class: ActionHitBoxData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: ActionHitBoxData
         actionData:
         - name: Action 1
-          ActionHit: []
+          ActionHit:
+          - Debug: 1
+            ActionRect:
+              serializedVersion: 2
+              x: -0.8
+              y: 0
+              width: 3.5
+              height: 1.86
+            RepeatAction: 1
+            AdditionalDamage: 5
+            isFixed: 0
+            isOnHit: 0
+            KnockbackAngle: {x: 5, y: 10}
+            EffectPrefab: []
+            audioClips:
+            - Clip: {fileID: 8300000, guid: c7865fd595be8a046a018f3e24771dd6, type: 3}
+              Volume: 0.5
+            camDatas:
+            - Duration: 0.1
+              Range: 0.01
+              RepeatRate: 0.001
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
           m_Bits: 2048
@@ -61,15 +85,24 @@ MonoBehaviour:
         actionData:
         - name: Action 1
           <EffectParticles>k__BackingField:
-          - isGround: 0
+          - isGround: 1
             isHeader: 0
             isTransformGlobal: 0
             isRandomPosRot: 0
             isRandomRange: 0
-            EffectOffset: {x: -0.2, y: 0}
+            EffectOffset: {x: -0.1, y: 0.3}
             EffectScale: {x: 0, y: 0, z: 0}
             isFollowing: 1
-            Object: {fileID: 668831008311998851, guid: ac963cc57d2788d46864a97e88d9d162, type: 3}
+            Object: {fileID: 668831008311998851, guid: e3af758bb13f34240bba9a8b26d3b98b, type: 3}
+          - isGround: 1
+            isHeader: 0
+            isTransformGlobal: 0
+            isRandomPosRot: 0
+            isRandomRange: 0
+            EffectOffset: {x: 3.25, y: 0}
+            EffectScale: {x: 0.5, y: 0.5, z: 0.5}
+            isFollowing: 1
+            Object: {fileID: 8482821253585752479, guid: b2d1a7e3c779c334183600eee56341df, type: 3}
     - rid: 2527592717927579864
       type: {class: KnockbackData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -103,44 +136,14 @@ MonoBehaviour:
         - name: Action 1
           audioDataList:
           - Clip: {fileID: 8300000, guid: a90b7184fb02659469901edc3ceb6a19, type: 3}
-            Volume: 1
+            Volume: 0.7
     - rid: 2527592717927579868
       type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: WeaponProjectileData
         actionData:
         - name: Action 1
-          ProjectileActionData:
-          - ProjectileData:
-              Pos: {x: 1, y: -0.75, z: 0}
-              Rot: {x: 1, y: 0, z: 0}
-              isFixedMovement: 1
-              Speed: 8
-              DurationTime: 5
-              AdditionalDmg: 0
-              isFixed: 0
-              KnockbackAngle: {x: 3, y: 3}
-              isOnHit: 0
-              isBox: 1
-              Radius: 1
-              BCsize: {x: 2.75, y: 4}
-              Offset: {x: 0, y: 2}
-              GravityScale: 50
-              isSingleShoot: 0
-              isCollisionGround: 1
-              isCollisionPlatform: 1
-              isBound: 1
-              UnitCC2DMaterial: {fileID: 6200000, guid: c02cd8fcaef49254982367ba2604c1e5, type: 2}
-              EffectScale: {x: 1, y: 1, z: 1}
-              ImpactScale: {x: 0.75, y: 0.75, z: 0.75}
-              ImpactRamdomPosRange: 2
-              isShakeCam: 0
-              camDatas:
-                Duration: 0
-                Range: 0
-                RepeatRate: 0
-              homingType: 0
-            Projectile: {fileID: 2222910967692216358, guid: 3b739cb767fbeb54fba7e0378ef467c1, type: 3}
+          ProjectileActionData: []
     - rid: 2527592717927579869
       type: {class: WeaponSpriteData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -148,8 +151,8 @@ MonoBehaviour:
         actionData:
         - name: Action 1
           <WeaponSprites>k__BackingField:
-          - {fileID: 1160262986, guid: 1aedf463434bc634b8a44f6287510561, type: 3}
-          - {fileID: -1263844439, guid: 1aedf463434bc634b8a44f6287510561, type: 3}
-          - {fileID: 841741248, guid: 1aedf463434bc634b8a44f6287510561, type: 3}
-          - {fileID: -533870468, guid: 1aedf463434bc634b8a44f6287510561, type: 3}
-          - {fileID: 732951274, guid: 1aedf463434bc634b8a44f6287510561, type: 3}
+          - {fileID: 1384342793, guid: 1aedf463434bc634b8a44f6287510561, type: 3}
+          - {fileID: 916677376, guid: 1aedf463434bc634b8a44f6287510561, type: 3}
+          - {fileID: -942968874, guid: 1aedf463434bc634b8a44f6287510561, type: 3}
+          - {fileID: 1209525265, guid: 1aedf463434bc634b8a44f6287510561, type: 3}
+          - {fileID: 124374751, guid: 1aedf463434bc634b8a44f6287510561, type: 3}

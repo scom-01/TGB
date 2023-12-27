@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 829d099c869488a49a5f24ab18f0f054, type: 3}
   m_Name: Fire_1_Sword_2_1
   m_EditorClassIdentifier: 
+  WeaponSprite: {fileID: 0}
   <NumberOfActions>k__BackingField: 1
   <CanJump>k__BackingField: 1
   <CanAirAttack>k__BackingField: 1
@@ -45,6 +46,7 @@ MonoBehaviour:
             RepeatAction: 1
             AdditionalDamage: 0
             isFixed: 0
+            isOnHit: 1
             KnockbackAngle: {x: 0, y: 0}
             EffectPrefab:
             - isGround: 0
@@ -56,7 +58,6 @@ MonoBehaviour:
               EffectScale: {x: 0, y: 0, z: 0}
               isFollowing: 0
               Object: {fileID: 8867112169225384458, guid: f7f4dfc73dd2e0944a7dfab9f80538ce, type: 3}
-            audioClip: []
             audioClips: []
             camDatas: []
         <DetectableLayers>k__BackingField:
@@ -116,8 +117,6 @@ MonoBehaviour:
         name: SoundClipData
         actionData:
         - name: Action 1
-          audioClips:
-          - {fileID: 8300000, guid: a90b7184fb02659469901edc3ceb6a19, type: 3}
           audioDataList:
           - Clip: {fileID: 8300000, guid: a90b7184fb02659469901edc3ceb6a19, type: 3}
             Volume: 1
