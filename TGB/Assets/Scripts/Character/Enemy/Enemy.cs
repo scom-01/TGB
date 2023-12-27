@@ -67,7 +67,7 @@ public class Enemy : Unit
         {
             foreach(var good in goods)
             {
-                good.DropGoods();
+                good.SpawnGoods();
             }
         }
 

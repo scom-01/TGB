@@ -41,6 +41,21 @@ public class GoodsItem : MonoBehaviour, ISpawn
         spawnPos = _pos;
         DropGoods();
     }
+    public void SpawnGoods()
+    {
+        if (GameManager.Inst?.StageManager == null)
+            return;
+
+        if (Core != null)
+        {
+            spawnPos = Core.transform.position;
+        }
+        else
+        {
+            spawnPos = this.transform.position;
+        }
+        DropGoods();
+    }
     public void DropGoods()
     {
         if (GameManager.Inst?.StageManager == null)
@@ -66,6 +81,7 @@ public class GoodsItem : MonoBehaviour, ISpawn
                     data.SOdata = GlobalValue.Goods_Wind;
                     break;
                 case GOODS_TPYE.HammerShards:
+                    data.SOdata = GlobalValue.Goods_Hammer;
                     break;
                 case GOODS_TPYE.None:
                     break;
