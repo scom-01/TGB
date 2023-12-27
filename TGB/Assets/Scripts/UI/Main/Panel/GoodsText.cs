@@ -122,6 +122,27 @@ public class GoodsText : MonoBehaviour
         }
     }
     private Sprite windIcon;
+    
+    private Sprite HammerIcon
+    {
+        get
+        {
+            if (hammerIcon == null)
+            {
+                foreach (var sprite in SpriteAtlas)
+                {
+                    if (sprite.name == GlobalValue.Symbol_Hammer_Path)
+                    {
+                        hammerIcon = sprite;
+                        return hammerIcon;
+                    }
+                }
+                hammerIcon = Resources.Load<Sprite>(GlobalValue.Sprites_UI_Path + "/" + GlobalValue.Symbol_Hammer_Path);
+            }
+            return hammerIcon;
+        }
+    }
+    private Sprite hammerIcon;
 
     private Sprite TypeIcon
     {
@@ -146,7 +167,7 @@ public class GoodsText : MonoBehaviour
                     img = WindIcon;
                     return img;
                 case GOODS_TPYE.HammerShards:
-                    img = WindIcon;
+                    img = HammerIcon;
                     return img;
             }
             return img;

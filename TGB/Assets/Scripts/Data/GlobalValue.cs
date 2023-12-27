@@ -33,6 +33,7 @@ public class GlobalValue : MonoBehaviour
     public static GoodsSO Goods_Water = Resources.Load<GoodsSO>("Prefabs/Item/Goods/WaterGoods");
     public static GoodsSO Goods_Wind = Resources.Load<GoodsSO>("Prefabs/Item/Goods/WindGoods");
     public static GoodsSO Goods_Earth = Resources.Load<GoodsSO>("Prefabs/Item/Goods/EarthGoods");
+    public static GoodsSO Goods_Hammer = Resources.Load<GoodsSO>("Prefabs/Item/Goods/HammerShards");
     /// <summary>
     /// AudioMixer의 SFX Parameter값과 일치해야함
     /// </summary>
@@ -73,11 +74,13 @@ public class GlobalValue : MonoBehaviour
     public const string Icon_WindGoods_Path = "WindGoods";
 
     public const string Sprites_UI_Path = "ScriptPath/UI/Sprites";
+    public const string Symbol_Normal_Path = "Symbol_Normal";
     public const string Symbol_Gold_Path = "Symbol_Gold";
     public const string Symbol_Fire_Path = "Symbol_Fire";
     public const string Symbol_Water_Path = "Symbol_Water";
     public const string Symbol_Earth_Path = "Symbol_Earth";
     public const string Symbol_Wind_Path = "Symbol_Wind";
+    public const string Symbol_Hammer_Path = "Symbol_Hammer";
 
     public const string StatsSprites_UI_Path = "Stats_Sheet";
     public static Sprite Box = Resources.Load<Sprite>("Sprites/Box");

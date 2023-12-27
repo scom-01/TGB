@@ -21,6 +21,29 @@ public class WeaponMiniPanel : MonoBehaviour
     }
 
     private Sprite[] spriteAtlas = { };
+
+    private Sprite NormalIcon
+    {
+        get
+        {
+            if (normalIcon == null)
+            {
+                foreach (var sprite in SpriteAtlas)
+                {
+                    if (sprite.name == GlobalValue.Symbol_Normal_Path)
+                    {
+                        normalIcon = sprite;
+                        return normalIcon;
+                    }
+                }
+                normalIcon = Resources.Load<Sprite>(GlobalValue.Sprites_UI_Path + "/" + GlobalValue.Symbol_Normal_Path);
+            }
+            return normalIcon;
+        }
+    }
+
+    private Sprite normalIcon;
+
     private Sprite FireIcon
     {
         get
@@ -188,7 +211,7 @@ public class WeaponMiniPanel : MonoBehaviour
             switch (e_power)
             {
                 case E_Power.Normal:
-                    //Symbol_Img.sprite = 
+                    Symbol_Img.sprite = NormalIcon;
                     break;
                 case E_Power.Water:
                     Symbol_Img.sprite = WaterIcon;
