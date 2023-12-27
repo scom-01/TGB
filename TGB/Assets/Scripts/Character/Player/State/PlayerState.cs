@@ -102,6 +102,7 @@ public class PlayerState : UnitState
                     return false;
             }
             unit.Inventory.Weapon.PrimarySkillStartTime = GameManager.Inst.PlayTime;
+            DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.PrimarySkillStartTime = unit.Inventory.Weapon.PrimarySkillStartTime;
             player.FSM.ChangeState(player.PrimarySkillState);
             GameManager.Inst?.MainUI?.MainPanel?.SkillPanelSystem?.PrimarySkillPanel?.UpdateSkillPanel(
                 unit.Inventory.Weapon.PrimarySkillStartTime,
@@ -128,6 +129,7 @@ public class PlayerState : UnitState
                     return false;
             }
             unit.Inventory.Weapon.SecondarySkillStartTime = GameManager.Inst.PlayTime;
+            DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.SecondarySkillStartTime = unit.Inventory.Weapon.SecondarySkillStartTime;
             player.FSM.ChangeState(player.SecondarySkillState);
             GameManager.Inst?.MainUI?.MainPanel?.SkillPanelSystem?.SecondarySkillPanel?.UpdateSkillPanel(
                 unit.Inventory.Weapon.SecondarySkillStartTime,

@@ -287,6 +287,8 @@ public class Inventory : MonoBehaviour
 
         this.Weapon.SetData(weaponObject.weaponDataSO);
         this.Weapon.SetCommandData(weaponObject.weaponCommandDataSO);
+        this.Weapon.InitSkillStartTime();
+
         weaponData = weaponObject;
 
         return true;

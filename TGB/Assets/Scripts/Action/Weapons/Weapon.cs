@@ -55,11 +55,11 @@ namespace TGB.Weapons
         /// <summary>
         /// Primary Skill StartTime
         /// </summary>
-        public float PrimarySkillStartTime;
+        public float PrimarySkillStartTime = 0f;
         /// <summary>
         /// Secondary Skill StartTime
         /// </summary>
-        public float SecondarySkillStartTime;
+        public float SecondarySkillStartTime = 0f;
 
         protected virtual void Awake()
         {
@@ -171,9 +171,6 @@ namespace TGB.Weapons
         {
             this.weaponData.weaponCommandDataSO = data;
 
-            //Weapon Command 변경 시 Primary, Secondary Start Time 초기화
-            PrimarySkillStartTime = 0f;
-            SecondarySkillStartTime = 0f;
             weaponGenerator.weaponData.weaponCommandDataSO = data;
             if(WeaponCore.Unit.GetType() == typeof(Player))
             {
@@ -182,6 +179,13 @@ namespace TGB.Weapons
                 GameManager.Inst?.MainUI?.MainPanel?.SkillPanelSystem?.SecondarySkillPanel?.Init(weaponGenerator.weaponData.weaponCommandDataSO.SecondarySkillData.SkillSprite);
             }
             weaponGenerator.GenerateWeapon(data.DefaultWeaponDataSO);
+        }
+
+        public void InitSkillStartTime()
+        {
+            //Weapon Command 변경 시 Primary, Secondary Start Time 초기화
+            PrimarySkillStartTime = 0f;
+            SecondarySkillStartTime = 0f;
         }
 
         public void ChangeActionCounter(int value)

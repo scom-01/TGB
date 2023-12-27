@@ -8,7 +8,7 @@ public class SkillPanel : MonoBehaviour
     {
         get
         {
-            if(unit == null)
+            if (unit == null)
             {
                 if (GameManager.Inst?.StageManager != null)
                 {
@@ -28,8 +28,8 @@ public class SkillPanel : MonoBehaviour
     private bool isUpdate = false;
 
     // Start is called before the first frame update
-    void Start()
-    {        
+    void Awake()
+    {
         if (Skill_Img_Filled != null)
             Skill_Img_Filled.fillAmount = 1f;
 
@@ -57,7 +57,7 @@ public class SkillPanel : MonoBehaviour
             {
                 Skill_CooldownTime.text = temp.ToString("F0") + "s";
             }
-            else if(temp >= 0.0f)
+            else if (temp >= 0.0f)
             {
                 Skill_CooldownTime.text = temp.ToString("F1") + "s";
             }
@@ -74,7 +74,7 @@ public class SkillPanel : MonoBehaviour
     public void UpdateSkillPanel(float _startTime, float _skillCooldowmTime)
     {
         StartTime = _startTime;
-        CooldownTime = _skillCooldowmTime;        
+        CooldownTime = _skillCooldowmTime;
         isUpdate = true;
     }
     public void Reset()

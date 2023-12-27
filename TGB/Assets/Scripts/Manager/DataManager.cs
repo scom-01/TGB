@@ -319,6 +319,19 @@ public class DataManager : MonoBehaviour
                 inventory.Weapon.SetCommandData(All_WeaponDB.WeaponDBList[inventory_Weaponlist[0]]);
                 inventory.Weapon.PrimarySkillStartTime = JSON_DataParsing.m_JSON_SceneData.PrimarySkillStartTime;
                 inventory.Weapon.SecondarySkillStartTime = JSON_DataParsing.m_JSON_SceneData.SecondarySkillStartTime;
+                if (inventory.Weapon.PrimarySkillStartTime != 0)
+                {
+                    GameManager.Inst?.MainUI?.MainPanel?.SkillPanelSystem?.PrimarySkillPanel?.UpdateSkillPanel(
+                    inventory.Weapon.PrimarySkillStartTime,
+                    inventory.Weapon.weaponData.weaponCommandDataSO.PrimarySkillData.SkillCoolTime);
+                }
+
+                if (inventory.Weapon.SecondarySkillStartTime != 0)
+                {
+                    GameManager.Inst?.MainUI?.MainPanel?.SkillPanelSystem?.SecondarySkillPanel?.UpdateSkillPanel(
+                    inventory.Weapon.SecondarySkillStartTime,
+                    inventory.Weapon.weaponData.weaponCommandDataSO.SecondarySkillData.SkillCoolTime);
+                }
             }
             else
             {
@@ -420,8 +433,8 @@ public class DataManager : MonoBehaviour
 #endif
         }
 #if UNITY_EDITOR
-        AssetDatabase.SaveAssets();            
-        AssetDatabase.Refresh();            
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
 #endif
     }
     public void SaveBuffs(BuffSystem _buffsystem)
@@ -476,7 +489,7 @@ public class DataManager : MonoBehaviour
             int temp = 0;
             for (int i = 0; i < All_BuffDB.Length; i++)
             {
-                if(All_BuffDB[i].ItemIdx == data.BuffItemIdx)
+                if (All_BuffDB[i].ItemIdx == data.BuffItemIdx)
                 {
                     temp = i;
                     break;
@@ -515,7 +528,7 @@ public class DataManager : MonoBehaviour
             var item = new Buff(All_BuffDB[temp], data.CurrBuffCount, data.startTime);
             old_PassivebuffList.Add(item);
         }
-        
+
         //Buff시스템의 Buff리스트에 적용
         buffSystem.ActiveBuffList = ActivebuffList.ToList();
         buffSystem.PassiveBuffList = PassivebuffList.ToList();
@@ -559,7 +572,7 @@ public class DataManager : MonoBehaviour
         {
             case GOODS_TPYE.Gold:
                 JSON_DataParsing.m_JSON_SceneData.Goods.Gold += goodsAmount;
-                if(goodsAmount > 0)
+                if (goodsAmount > 0)
                 {
                     JSON_DataParsing.m_JSON_SceneData.Cumulative_Goods.Gold += goodsAmount;
                 }
@@ -772,7 +785,7 @@ public class DataManager : MonoBehaviour
                 SpawnItemList.Add(All_UnlockItemIdxs[idx]);
                 Debug.Log($"SpawnItem {itemData_1.name}");
                 continue;
-            }   
+            }
         }
 
         //아이템 감지 범위 On
