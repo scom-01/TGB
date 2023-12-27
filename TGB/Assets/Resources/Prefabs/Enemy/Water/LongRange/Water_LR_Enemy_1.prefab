@@ -1003,13 +1003,13 @@ MonoBehaviour:
   Test_Distance: 1.5
   Pattern_Idx:
   - Used: 0
-    Detected_Distance: 6
-    Boundary: 0
-    DetectedType: 0
-  - Used: 0
     Detected_Distance: 12.5
     Boundary: 0
     DetectedType: 1
+  - Used: 0
+    Detected_Distance: 6
+    Boundary: 0
+    DetectedType: 0
 --- !u!1 &3640253522240484911
 GameObject:
   m_ObjectHideFlags: 0
@@ -1735,25 +1735,13 @@ MonoBehaviour:
   - Goods: 0
     Amount: 10
     DropCount: 4
-    GoodsPrefab: {fileID: 1952279293685994997, guid: cb4cccd4b8f68bc48a25aac822abd0d2, type: 3}
-    GoodsSprite: {fileID: 218339756, guid: f7bf72b4be9086e4c9eef46270d4a8f3, type: 3}
-    EquipSoundClip:
-      Clip: {fileID: 8300000, guid: 0e89b476d4715fd42935e9900eedb033, type: 3}
-      Volume: 0.2
-    EquipEffect: {fileID: 1380205584940949931, guid: 07623d638bfe48c4bbf7a6dc202419de, type: 3}
-    CircleSize: 0.3125
+    SOdata: {fileID: 0}
     DestroyTime: 2.5
     DestroyTimeRange: 0.5
   - Goods: 1
     Amount: 10
     DropCount: 4
-    GoodsPrefab: {fileID: 1952279293685994997, guid: cb4cccd4b8f68bc48a25aac822abd0d2, type: 3}
-    GoodsSprite: {fileID: 218339756, guid: f7bf72b4be9086e4c9eef46270d4a8f3, type: 3}
-    EquipSoundClip:
-      Clip: {fileID: 8300000, guid: 0e89b476d4715fd42935e9900eedb033, type: 3}
-      Volume: 0.2
-    EquipEffect: {fileID: 1380205584940949931, guid: 07623d638bfe48c4bbf7a6dc202419de, type: 3}
-    CircleSize: 0.3125
+    SOdata: {fileID: 0}
     DestroyTime: 2.5
     DestroyTimeRange: 0.5
 --- !u!1001 &6386328288435780554

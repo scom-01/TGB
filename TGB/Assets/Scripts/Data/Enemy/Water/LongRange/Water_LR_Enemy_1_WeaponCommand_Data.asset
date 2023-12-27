@@ -29,7 +29,8 @@ MonoBehaviour:
   <WeaponClassLevel>k__BackingField: 0
   DefaultAnimator: {fileID: 22100000, guid: f05218d9ac9359f44bb594e6418bc0ec, type: 2}
   DefaultWeaponDataSO: {fileID: 11400000, guid: 3c034d038a663604783ca7601b7ccc0b, type: 2}
-  elementalgoods:
+  GoodsCost:
+    Gold: 0
     FireGoods: 0
     WaterGoods: 0
     EarthGoods: 0
@@ -38,13 +39,31 @@ MonoBehaviour:
   GroundedCommandList:
   - commands:
     - command: 0
-      animOC: {fileID: 22100000, guid: 15e92af9d5e53bd449429911ee9775f6, type: 2}
-      data: {fileID: 11400000, guid: 35870fa06b55ce548b525c09ead55fdc, type: 2}
-  - commands:
-    - command: 0
       animOC: {fileID: 22100000, guid: f05218d9ac9359f44bb594e6418bc0ec, type: 2}
       data: {fileID: 11400000, guid: 3c034d038a663604783ca7601b7ccc0b, type: 2}
+  - commands:
+    - command: 0
+      animOC: {fileID: 22100000, guid: 15e92af9d5e53bd449429911ee9775f6, type: 2}
+      data: {fileID: 11400000, guid: 35870fa06b55ce548b525c09ead55fdc, type: 2}
   AirCommandList: []
+  PrimarySkillData:
+    GroundweaponData:
+      AnimOC: {fileID: 0}
+      WeaponDataSO: {fileID: 0}
+    AirweaponData:
+      AnimOC: {fileID: 0}
+      WeaponDataSO: {fileID: 0}
+    SkillCoolTime: 0
+    SkillSprite: {fileID: 0}
+  SecondarySkillData:
+    GroundweaponData:
+      AnimOC: {fileID: 0}
+      WeaponDataSO: {fileID: 0}
+    AirweaponData:
+      AnimOC: {fileID: 0}
+      WeaponDataSO: {fileID: 0}
+    SkillCoolTime: 0
+    SkillSprite: {fileID: 0}
   references:
     version: 2
     RefIds: []
