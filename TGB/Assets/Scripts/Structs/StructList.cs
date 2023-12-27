@@ -207,6 +207,10 @@ namespace TGB
         [field: Tooltip("고정 데미지 | AdditionalDamage로 고정데미지 피해")]
         public bool isFixed;
         /// <summary>
+        /// 온힛판정
+        /// </summary>
+        public bool isOnHit;
+        /// <summary>
         /// Knockback Angle
         /// </summary>
         [field: Tooltip("넉백 Angle, 벡터 크기에 따라 넉백 증가")]

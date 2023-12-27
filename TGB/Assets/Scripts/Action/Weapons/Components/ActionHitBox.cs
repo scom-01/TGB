@@ -90,7 +90,10 @@ namespace TGB.Weapons.Components
                 {
                     for (int j = 0; j < currHitBox[currentHitBoxIndex].RepeatAction; j++)
                     {
-                        core.Unit.Inventory.ItemOnHitExecute(core.Unit, coll.GetComponentInParent<Unit>());
+                        if (currHitBox[currentHitBoxIndex].isOnHit)
+                        {
+                            core.Unit.Inventory.ItemOnHitExecute(core.Unit, coll.GetComponentInParent<Unit>());
+                        }
 
                         //EffectPrefab
                         #region EffectPrefab

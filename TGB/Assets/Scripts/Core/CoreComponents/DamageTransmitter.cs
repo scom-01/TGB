@@ -192,7 +192,10 @@ namespace TGB.CoreSystem
                     {
                         for (int j = 0; j < HitAction.RepeatAction; j++)
                         {
-                            core.Unit.Inventory.ItemOnHitExecute(core.Unit, coll.GetComponentInParent<Unit>());
+                            if(HitAction.isOnHit)
+                            {
+                                core.Unit.Inventory.ItemOnHitExecute(core.Unit, coll.GetComponentInParent<Unit>());
+                            }
 
                             //EffectPrefab
                             #region EffectPrefab
@@ -293,7 +296,10 @@ namespace TGB.CoreSystem
                     {
                         for (int j = 0; j < HitAction.RepeatAction; j++)
                         {
-                            core.Unit.Inventory.ItemOnHitExecute(core.Unit, coll.GetComponentInParent<Unit>());
+                            if(HitAction.isOnHit)
+                            {
+                                core.Unit.Inventory.ItemOnHitExecute(core.Unit, coll.GetComponentInParent<Unit>());
+                            }
 
                             //EffectPrefab
                             #region EffectPrefab
