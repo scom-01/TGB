@@ -2,15 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using TGB;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class GoodsItem : MonoBehaviour, ISpawn
 {
     public List<GoodsData> DataList = new List<GoodsData>();
-    private Vector3 spawnPos;
+    [HideInInspector] public Vector3 spawnPos;
     private GameObject Core;
     private void Start()
     {
         Core = gameObject.GetComponentInParent<Unit>()?.Core.gameObject;
+        if (Core != null)
+        {
+            spawnPos = Core.transform.position;
+        }
+        else
+        {
+            spawnPos = this.transform.position;
+        }
     }
     public bool Set(GoodsData data, Vector3 pos)
     {
@@ -18,18 +27,24 @@ public class GoodsItem : MonoBehaviour, ISpawn
             return false;
         DataList.Add(data);
         spawnPos = pos;
-        DropGoods();
         return true;
+    }
+    public bool Add(GoodsData data)
+    {
+        if (DataList == null)
+            return false;
+        DataList.Add(data);
+        return true;
+    }
+    public void SetPos(Vector3 _pos)
+    {
+        spawnPos = _pos;
+        DropGoods();
     }
     public void DropGoods()
     {
         if (GameManager.Inst?.StageManager == null)
             return;
-
-        if (Core != null)
-        {
-            spawnPos = Core.transform.position;
-        }
 
         foreach (var data in DataList)
         {
@@ -89,6 +104,7 @@ public class GoodsItem : MonoBehaviour, ISpawn
             goodsData.RB2D.AddForce(vec);
             goodsData.isInit = true;
         }
+        Destroy(gameObject);
         yield return null;
     }
 

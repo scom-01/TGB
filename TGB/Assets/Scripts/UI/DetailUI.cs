@@ -141,9 +141,10 @@ public class DetailUI : MonoBehaviour
                 if (player.InputHandler.interactionperformed)
                 {
                     Debug.Log("Sell Item");
-                    var item = Instantiate(GlobalValue.Base_SpawnGoodsItem);
+                    var item = Instantiate(GlobalValue.Base_SpawnGoodsItem, GO.transform.position, Quaternion.identity);
                     GoodsData goodsData = new GoodsData(GOODS_TPYE.Gold, 50, ((int)this.item.itemData.ItemLevel * GlobalValue.Gold_Inflation * GameManager.Inst.StageManager.StageLevel) * 3 / 250, 2.5f, 0.5f);
-                    item.GetComponent<GoodsItem>().Set(goodsData, GO.transform.position);
+                    item.GetComponent<GoodsItem>().Add(goodsData);
+                    item.GetComponent<GoodsItem>().DropGoods();
                     player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
                     player.InputHandler.UseInput(ref player.InputHandler.interactionperformed);
                     Destroy(GO);
