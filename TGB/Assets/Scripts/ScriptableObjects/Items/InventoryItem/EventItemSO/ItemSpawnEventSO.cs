@@ -18,7 +18,8 @@ public class ItemSpawnEventSO : ItemEventSO
         SpawnSFX(unit);
 
         var obj = Instantiate(Object);
-        if(obj.TryGetComponent(out ISpawn _SpawnObj))
+        obj.transform.position = unit.Core.CoreCollisionSenses.UnitCenterPos;
+        if (obj.TryGetComponent(out ISpawn _SpawnObj))
         {
             _SpawnObj.Spawn();
         }
