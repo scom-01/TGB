@@ -529,6 +529,7 @@ public class GameManager : MonoBehaviour
     }
     public void GoTitleScene()
     {
+        ChangeUI(UI_State.Loading);
         Time.timeScale = 1f;
         isPause = false;
         var FadeOut = Resources.Load<GameObject>(GlobalValue.TitleFadeOutCutScene);
