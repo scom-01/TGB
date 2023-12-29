@@ -1,5 +1,3 @@
-using System;
-using TGB.CoreSystem;
 using UnityEngine;
 
 namespace TGB.Weapons.Components
@@ -58,13 +56,13 @@ namespace TGB.Weapons.Components
             if (currentActionData?.movements == null)
                 return;
 
-            Debug.Log("HandleFixedStart");
-            if (currentActionData.movements.Length == 0)
+            if (currentActionData.movements.Length == 0 || currentActionData.movements.Length < currentMovementIndex - 1)
             {
                 Debug.Log("Movement Length zero");
                 return;
             }
 
+            Debug.Log("HandleFixedStart");
             CoreMovement.CanMovement = currentActionData.movements[currentMovementIndex].CanMoveCtrl;
             if (currentActionData?.movements != null)
             {
@@ -219,6 +217,10 @@ namespace TGB.Weapons.Components
         private void HandleStartFlip()
         {
             CoreMovement.CanFlip = true;
+            if (unit.GetType() != typeof(Player) &&  unit.TargetUnit?.GetType() == typeof(Player))
+            {                
+                CoreMovement.FlipToTarget();
+            }
         }
         private void HandleStopFlip()
         {

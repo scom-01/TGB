@@ -390,8 +390,6 @@ namespace TGB.Weapons.Components
 
             eventHandler.OnMultipleActionRectOn -= HandleMultipleActionRectOn;
             eventHandler.OnMultipleActionRectOff += HandleMultipleActionRectOff;
-            eventHandler.OnActionRectOn -= HandleAction;
-            eventHandler.OnActionRectOn += HandleAction;
 
             eventHandler.OnActionRectOff -= HandleActionRectOff;
             eventHandler.OnActionRectOff += HandleActionRectOff;
