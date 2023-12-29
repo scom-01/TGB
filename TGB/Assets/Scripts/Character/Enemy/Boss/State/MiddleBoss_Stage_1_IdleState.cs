@@ -27,12 +27,52 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
         MiddleBoss_Stage_1.AttackState.SetWeapon(unit.Inventory.Weapon);
         unit.Inventory.Weapon.weaponGenerator.Init();
 
-        PatternPair_1.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[3].commands[0], false));
+        //직선형 돌진
+        PatternPair_1.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[0].commands[0], false));
         PatternPair_1.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[1].commands[0], false));
+        PatternPair_1.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[0].commands[0], false));
+        //직선형 투사체 발사
 
-        PatternPair_2.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[1].commands[1], false));
+        //타겟형 돌진
+        PatternPair_2.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[2].commands[0], false));
+        //직선형 투사체 발사
+        PatternPair_2.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[1].commands[0], false));
+        //타겟형 돌진
+        PatternPair_2.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[2].commands[0], false));
+        //5개의 직선형 투사체
+        PatternPair_2.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[3].commands[0], false));
+        //타겟형 돌진
+        PatternPair_2.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[2].commands[0], false));
+        //직선형 투사체 발사
+        PatternPair_2.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[1].commands[0], false));
+        //타겟형 돌진
+        PatternPair_2.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[2].commands[0], false));
+        //5개의 직선형 투사체
+        PatternPair_2.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[3].commands[0], false));
+        //랜덤위치로 텔레포트
+        PatternPair_2.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.AirCommandList[0].commands[4], false));
+        //범위 공격형
+        PatternPair_2.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.AirCommandList[0].commands[2], false));
 
+        //타겟형 투사체
         PatternPair_3.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[1].commands[1], false));
+        //타겟형 돌진3회
+        PatternPair_3.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[2].commands[1], false));        
+        //직선형 투사체
+        PatternPair_3.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[3].commands[0], false));
+        //타겟형 투사체
+        PatternPair_3.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[1].commands[1], false));
+        //타겟형 돌진3회
+        PatternPair_3.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[2].commands[1], false));        
+        //직선형 투사체
+        PatternPair_3.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[3].commands[0], false));
+        //랜덤위치로 텔레포트
+        PatternPair_3.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.AirCommandList[0].commands[4], false));
+        //범위 공격형
+        PatternPair_3.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.AirCommandList[0].commands[2], false));
+        PatternPair_3.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[1].commands[1], false));        
+        //범위 공격형 2
+        PatternPair_3.Add(new AnimPattern(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.AirCommandList[0].commands[3], false));
     }
 
     private void Phase_Pattern(List<AnimPattern> animPatterns)
@@ -149,9 +189,9 @@ public class MiddleBoss_Stage_1_IdleState : EnemyIdleState
             }
             else
             {
-                //돌진기
-                unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[2].commands[0]);
-                unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
+                ////돌진기
+                //unit.Inventory.Weapon.weaponGenerator.GenerateWeapon(unit.Inventory.Weapon.weaponData.weaponCommandDataSO.GroundedCommandList[2].commands[0]);
+                //unit.FSM.ChangeState(MiddleBoss_Stage_1.AttackState);
             }
             return;
         }
