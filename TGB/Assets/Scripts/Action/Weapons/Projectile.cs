@@ -56,7 +56,7 @@ namespace TGB
                     cc2d = this.GetComponent<CircleCollider2D>();
                     if (cc2d == null)
                         cc2d = this.AddComponent<CircleCollider2D>();
-                }                
+                }
                 if (ProjectileData.isBound)
                 {
                     cc2d.isTrigger = false;
@@ -129,7 +129,7 @@ namespace TGB
             }
 
             //set ProjectilPrefab
-            if(Spawned_ProjectileObject == null)
+            if (Spawned_ProjectileObject == null)
                 Spawned_ProjectileObject = Instantiate(ProjectileObject, this.transform);
             if (ProjectileData.EffectScale == Vector3.zero)
                 Spawned_ProjectileObject.gameObject.transform.localScale = Vector3.one;
@@ -225,13 +225,12 @@ namespace TGB
             {
                 this.transform.rotation = Quaternion.Euler(Vector3.zero);
                 //Default가 0을 전제
-                if (FancingDirection < 0)
+                if (ProjectileData.homingType != HomingType.isHoming && FancingDirection < 0)
                 {
                     if (!isFixedRot)
                         this.transform.rotation = Quaternion.Euler(new Vector3(0, 180f, 0));
                 }
-                if (ProjectileData.homingType == HomingType.isToTarget_Direct && unit.TargetUnit != null
-                    )
+                if (ProjectileData.homingType == HomingType.isToTarget_Direct && unit.TargetUnit != null)
                 {
                     if (
                         ((unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - this.transform.position).x < -0.001f && FixedFancingDirection < 0) ||
@@ -248,8 +247,7 @@ namespace TGB
                     }
                 }
                 else if (
-                    ProjectileData.homingType == HomingType.isToTarget && unit.TargetUnit != null
-                    )
+                    ProjectileData.homingType == HomingType.isToTarget || ProjectileData.homingType == HomingType.isHoming && unit.TargetUnit != null)
                 {
                     Vector3 toTargetNormal = (unit.TargetUnit.Core.CoreCollisionSenses.GroundCenterPos - this.transform.position);
                     this.transform.rotation = Quaternion.FromToRotation(ProjectileData.Rot, toTargetNormal);
@@ -271,7 +269,7 @@ namespace TGB
 
             if (target != null && ProjectileData.homingType == HomingType.isHoming)
             {
-                Vector2 dir = transform.right;
+                Vector3 dir = transform.right;
                 Vector3 targetDir = (target.gameObject.transform.position - transform.position).normalized;
 
                 // 바라보는 방향과 타겟 방향 외적
@@ -281,7 +279,7 @@ namespace TGB
                 // 내적이 0보다 크면 오른쪽 0보다 작으면 왼쪽으로 회전
                 float addAngle = inner > 0 ? 500 * Time.fixedDeltaTime : -500 * Time.fixedDeltaTime;
                 float saveAngle = addAngle + transform.rotation.eulerAngles.z;
-                //transform.rotation = Quaternion.Euler(0, 0, saveAngle);
+                transform.rotation = Quaternion.Euler(0, 0, saveAngle);
                 RB2D.rotation += addAngle;
                 float moveDirAngle = transform.rotation.eulerAngles.z * Mathf.Deg2Rad;
                 var moveDir = new Vector2(Mathf.Cos(moveDirAngle), Mathf.Sin(moveDirAngle));
@@ -290,7 +288,7 @@ namespace TGB
                 RB2D.MovePosition(movePosition);
             }
 
-            if(ProjectileData.isFixedMovement)
+            if (ProjectileData.isFixedMovement)
             {
                 RB2D.velocity = new Vector2(ProjectileData.Rot.x * FixedFancingDirection, ProjectileData.Rot.y).normalized * ProjectileData.Speed;
             }
