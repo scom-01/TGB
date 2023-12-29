@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 829d099c869488a49a5f24ab18f0f054, type: 3}
-  m_Name: Water_MiddleBoss_Melee_Weapon_Data_2_1
+  m_Name: Water_MiddleBoss_Melee_Weapon_Data_1_1
   m_EditorClassIdentifier: 
   WeaponSprite: {fileID: 0}
   <NumberOfActions>k__BackingField: 1
@@ -26,9 +26,17 @@ MonoBehaviour:
   - rid: 2527592717927579795
   - rid: 2527592717927579796
   - rid: 2527592717927579797
+  - rid: 2266086437283692551
   references:
     version: 2
     RefIds:
+    - rid: 2266086437283692551
+      type: {class: WeaponBuffData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: WeaponBuffData
+        actionData:
+        - name: Action 1
+          <BuffDataList>k__BackingField: []
     - rid: 2527592717927579789
       type: {class: ActionHitBoxData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -39,15 +47,15 @@ MonoBehaviour:
           - Debug: 1
             ActionRect:
               serializedVersion: 2
-              x: -0.73
+              x: -0.56
               y: 0
-              width: 1.82
-              height: 1.69
-            RepeatAction: 0
+              width: 2.44
+              height: 1.21
+            RepeatAction: 1
             AdditionalDamage: 0
             isFixed: 0
             isOnHit: 0
-            KnockbackAngle: {x: 0, y: 0}
+            KnockbackAngle: {x: 5, y: 2}
             EffectPrefab:
             - isGround: 0
               isHeader: 0
@@ -65,11 +73,11 @@ MonoBehaviour:
           - Debug: 1
             ActionRect:
               serializedVersion: 2
-              x: -0.73
+              x: -1.63
               y: 0
-              width: 1.82
-              height: 1.69
-            RepeatAction: 0
+              width: 2.67
+              height: 1.37
+            RepeatAction: 1
             AdditionalDamage: 0
             isFixed: 0
             isOnHit: 0
@@ -113,16 +121,7 @@ MonoBehaviour:
             EffectOffset: {x: 0, y: 0}
             EffectScale: {x: 1, y: 1, z: 1}
             isFollowing: 1
-            Object: {fileID: 7864041025692017803, guid: 3daada8e664a646438b319d4a6ad9046, type: 3}
-          - isGround: 0
-            isHeader: 0
-            isTransformGlobal: 0
-            isRandomPosRot: 0
-            isRandomRange: 0
-            EffectOffset: {x: 0, y: 0}
-            EffectScale: {x: 1, y: 1, z: 1}
-            isFollowing: 1
-            Object: {fileID: 7864041025692017803, guid: b7016701e0a66d547a202bb24b4f09d8, type: 3}
+            Object: {fileID: 7864041025692017803, guid: 40442bd622f56234b85f21c0ea644f1a, type: 3}
     - rid: 2527592717927579792
       type: {class: KnockbackData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -140,11 +139,7 @@ MonoBehaviour:
           - CanFlip: 0
             CanMoveCtrl: 0
             Direction: {x: 1, y: 0}
-            Velocity: 5
-          - CanFlip: 0
-            CanMoveCtrl: 0
-            Direction: {x: 1, y: 0}
-            Velocity: 5
+            Velocity: 30
     - rid: 2527592717927579794
       type: {class: ShakeCamData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -159,9 +154,9 @@ MonoBehaviour:
         actionData:
         - name: Action 1
           audioDataList:
-          - Clip: {fileID: 8300000, guid: 6dfdde66f5d9f9548ac309d88341d887, type: 3}
-            Volume: 0.4
-          - Clip: {fileID: 8300000, guid: d773d355b4317e34ea9eb1a4573655f9, type: 3}
+          - Clip: {fileID: 8300000, guid: d8e865377b1b0834bb90a8e1697b04a4, type: 3}
+            Volume: 0.7
+          - Clip: {fileID: 8300000, guid: 088ef780a852393419f0e364fd92eb31, type: 3}
             Volume: 0.4
     - rid: 2527592717927579796
       type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
@@ -174,7 +169,7 @@ MonoBehaviour:
               Pos: {x: 1, y: 1, z: 0}
               Rot: {x: 1, y: 0, z: 0}
               isFixedMovement: 0
-              Speed: 15
+              Speed: 25
               DurationTime: 3
               AdditionalDmg: 0
               isFixed: 0
@@ -190,7 +185,7 @@ MonoBehaviour:
               isCollisionPlatform: 0
               isBound: 0
               UnitCC2DMaterial: {fileID: 0}
-              EffectScale: {x: 1, y: 1, z: 1}
+              EffectScale: {x: 0, y: 0, z: 0}
               ImpactScale: {x: 0, y: 0, z: 0}
               ImpactRamdomPosRange: 0
               isShakeCam: 0
@@ -204,7 +199,7 @@ MonoBehaviour:
               Pos: {x: 1, y: 1, z: 0}
               Rot: {x: 1, y: 0, z: 0}
               isFixedMovement: 0
-              Speed: 15
+              Speed: 25
               DurationTime: 3
               AdditionalDmg: 0
               isFixed: 0
@@ -213,14 +208,14 @@ MonoBehaviour:
               isBox: 0
               Radius: 0.5
               BCsize: {x: 0, y: 0}
-              Offset: {x: -0.5, y: 0}
+              Offset: {x: 0, y: 0}
               GravityScale: 0
               isSingleShoot: 1
               isCollisionGround: 1
               isCollisionPlatform: 0
               isBound: 0
               UnitCC2DMaterial: {fileID: 0}
-              EffectScale: {x: 1, y: 1, z: 1}
+              EffectScale: {x: 0, y: 0, z: 0}
               ImpactScale: {x: 0, y: 0, z: 0}
               ImpactRamdomPosRange: 0
               isShakeCam: 0

@@ -9775,9 +9775,8 @@ GameObject:
   - component: {fileID: 1665342181930175629}
   - component: {fileID: 4237568806749004884}
   - component: {fileID: 6074111397971087693}
-  - component: {fileID: -6189035315058039691}
   m_Layer: 0
-  m_Name: Fire Slash v1_Lower
+  m_Name: Fire Slash v1 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9790,8 +9789,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 668831008311998851}
-  m_LocalRotation: {x: 0, y: 0, z: 0.54463905, w: 0.8386706}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.2795998, y: 0.40556416, z: -0.4845892, w: 0.722852}
+  m_LocalPosition: {x: 1.1722254, y: 0.22787309, z: 0.86707884}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9805,7 +9804,7 @@ Transform:
   - {fileID: 1178368431761940937}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 66}
+  m_LocalEulerAnglesHint: {x: 52.871, y: 31.496, z: -51.713}
 --- !u!198 &4237568806749004884
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -14597,24 +14596,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &-6189035315058039691
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 668831008311998851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650768dbc266aa34fb82269cccf75184, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDestroy: 0
-  parent: {fileID: 0}
-  isFixedRotY: 0
-  isLoopDurationTime: 0
-  isInit: 0
-  isDrawModeTiled: 0
 --- !u!1 &993493490739146913
 GameObject:
   m_ObjectHideFlags: 0

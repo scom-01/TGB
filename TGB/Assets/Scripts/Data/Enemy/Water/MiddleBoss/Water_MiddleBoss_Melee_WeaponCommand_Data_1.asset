@@ -40,7 +40,7 @@ MonoBehaviour:
   - commands:
     - command: 0
       animOC: {fileID: 22100000, guid: 2f82af94d7b0ae7458aafe1b019d34da, type: 2}
-      data: {fileID: 11400000, guid: 4319cff07b5b5d04e9910cba7a5b4843, type: 2}
+      data: {fileID: 11400000, guid: ce4c1c30d72457040b1d6b6e317d25f2, type: 2}
   - commands:
     - command: 0
       animOC: {fileID: 22100000, guid: bf3b7e5a371924941837da1f74be869a, type: 2}
@@ -49,6 +49,9 @@ MonoBehaviour:
       animOC: {fileID: 22100000, guid: 74e9c893c860ee74ebbb3521ccac6d71, type: 2}
       data: {fileID: 11400000, guid: c15299fcd907fc340b5cd04c6cd465b5, type: 2}
   - commands:
+    - command: 0
+      animOC: {fileID: 22100000, guid: ba03097bbacbb3e45829848e70c58b07, type: 2}
+      data: {fileID: 11400000, guid: 6bf6647384e3c0644a05cb647c9a8bb9, type: 2}
     - command: 0
       animOC: {fileID: 22100000, guid: bce4af6a07d7b1b43ae3f86a4acdf8c2, type: 2}
       data: {fileID: 11400000, guid: 095bd28a156e2ca46beb6de9e4978347, type: 2}
@@ -59,8 +62,8 @@ MonoBehaviour:
   AirCommandList:
   - commands:
     - command: 0
-      animOC: {fileID: 22100000, guid: 95a0aa9618c50b5428daa4fe32f745b7, type: 2}
-      data: {fileID: 11400000, guid: 4319cff07b5b5d04e9910cba7a5b4843, type: 2}
+      animOC: {fileID: 22100000, guid: 20f2333f1d83b8f429e4fda438814d80, type: 2}
+      data: {fileID: 11400000, guid: c49b347305f081748a39f21a0f4f7ff5, type: 2}
     - command: 0
       animOC: {fileID: 22100000, guid: 79ad252e9ee7d1549b3bf59f314b899b, type: 2}
       data: {fileID: 11400000, guid: 0b15036464023cf4d94d416f4c3f5ded, type: 2}
@@ -70,10 +73,31 @@ MonoBehaviour:
     - command: 0
       animOC: {fileID: 22100000, guid: 9806c8327160cbd4aab539ed797c56d2, type: 2}
       data: {fileID: 11400000, guid: ada30cc9caacb72418de42c1ab575ca3, type: 2}
+    - command: 0
+      animOC: {fileID: 22100000, guid: 95a0aa9618c50b5428daa4fe32f745b7, type: 2}
+      data: {fileID: 11400000, guid: 4319cff07b5b5d04e9910cba7a5b4843, type: 2}
   - commands:
     - command: 0
       animOC: {fileID: 22100000, guid: 655190aab1313dd488c6fa7397515ec4, type: 2}
       data: {fileID: 11400000, guid: 2fbf7f63dd7d0b14b9adb1ad9581dd9a, type: 2}
+  PrimarySkillData:
+    GroundweaponData:
+      AnimOC: {fileID: 0}
+      WeaponDataSO: {fileID: 0}
+    AirweaponData:
+      AnimOC: {fileID: 0}
+      WeaponDataSO: {fileID: 0}
+    SkillCoolTime: 0
+    SkillSprite: {fileID: 0}
+  SecondarySkillData:
+    GroundweaponData:
+      AnimOC: {fileID: 0}
+      WeaponDataSO: {fileID: 0}
+    AirweaponData:
+      AnimOC: {fileID: 0}
+      WeaponDataSO: {fileID: 0}
+    SkillCoolTime: 0
+    SkillSprite: {fileID: 0}
   references:
     version: 2
     RefIds: []

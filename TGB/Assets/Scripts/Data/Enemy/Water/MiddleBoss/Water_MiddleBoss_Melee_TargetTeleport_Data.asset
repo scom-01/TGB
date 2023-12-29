@@ -10,106 +10,88 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 829d099c869488a49a5f24ab18f0f054, type: 3}
-  m_Name: Water_MiddleBoss_Melee_Weapon_Data_3
+  m_Name: Water_MiddleBoss_Melee_TargetTeleport_Data
   m_EditorClassIdentifier: 
   <NumberOfActions>k__BackingField: 1
   <CanJump>k__BackingField: 0
   <CanAirAttack>k__BackingField: 0
   <ComponentData>k__BackingField:
-  - rid: 2527592717927579807
-  - rid: 2527592717927579808
-  - rid: 2527592717927579809
-  - rid: 2527592717927579810
-  - rid: 2527592717927579811
-  - rid: 2527592717927579812
-  - rid: 2527592717927579813
-  - rid: 2527592717927579814
-  - rid: 2527592717927579815
+  - rid: 2527592717927579780
+  - rid: 2527592717927579781
+  - rid: 2527592717927579782
+  - rid: 2527592717927579783
+  - rid: 2527592717927579784
+  - rid: 2527592717927579785
+  - rid: 2527592717927579786
+  - rid: 2527592717927579787
+  - rid: 2527592717927579788
   references:
     version: 2
     RefIds:
-    - rid: 2527592717927579807
+    - rid: 2527592717927579780
       type: {class: ActionHitBoxData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: ActionHitBoxData
         actionData:
         - name: Action 1
-          ActionHit:
-          - Debug: 1
-            ActionRect:
-              serializedVersion: 2
-              x: -1.4
-              y: 0
-              width: 2.26
-              height: 1.3
-            RepeatAction: 1
-            AdditionalDamage: 0
-            isFixed: 0
-            KnockbackAngle: {x: 0, y: 0}
-            EffectPrefab: []
-            audioClips: []
-            camDatas: []
+          ActionHit: []
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
           m_Bits: 2048
-    - rid: 2527592717927579808
+    - rid: 2527592717927579781
       type: {class: DamageData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: DamageData
         actionData:
         - name: Action 1
           <HitDamage>k__BackingField: []
-    - rid: 2527592717927579809
+    - rid: 2527592717927579782
       type: {class: EffectSpawnData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: EffectSpawnData
         actionData:
         - name: Action 1
           <EffectParticles>k__BackingField: []
-    - rid: 2527592717927579810
+    - rid: 2527592717927579783
       type: {class: KnockbackData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: KnockbackData
         actionData:
         - name: Action 1
           <KnockbackAngle>k__BackingField: []
-    - rid: 2527592717927579811
+    - rid: 2527592717927579784
       type: {class: MovementData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: MovementData
         actionData:
         - name: Action 1
-          <movements>k__BackingField:
-          - CanFlip: 0
-            CanMoveCtrl: 0
-            Direction: {x: 1, y: 0}
-            Velocity: 30
-    - rid: 2527592717927579812
+          <movements>k__BackingField: []
+    - rid: 2527592717927579785
       type: {class: ShakeCamData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: ShakeCamData
         actionData:
         - name: Action 1
           <ShakeCamData>k__BackingField: []
-    - rid: 2527592717927579813
+    - rid: 2527592717927579786
       type: {class: SoundClipData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: SoundClipData
         actionData:
         - name: Action 1
           audioDataList:
-          - Clip: {fileID: 8300000, guid: d5a2457a6ba7bc446897cca3a9f80769, type: 3}
-            Volume: 0.5
-          - Clip: {fileID: 8300000, guid: 088ef780a852393419f0e364fd92eb31, type: 3}
-            Volume: 0.45
-    - rid: 2527592717927579814
+          - Clip: {fileID: 8300000, guid: 009c5e1ffd6fe46579f37e3c794e8583, type: 3}
+            Volume: 1
+          - Clip: {fileID: 8300000, guid: eaf1a42b42df14ca98549c886399e8cb, type: 3}
+            Volume: 1
+    - rid: 2527592717927579787
       type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: WeaponProjectileData
         actionData:
         - name: Action 1
           ProjectileActionData: []
-    - rid: 2527592717927579815
+    - rid: 2527592717927579788
       type: {class: WeaponSpriteData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: WeaponSpriteData

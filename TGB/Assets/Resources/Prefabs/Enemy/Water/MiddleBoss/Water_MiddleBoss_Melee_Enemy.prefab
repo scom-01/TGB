@@ -310,6 +310,7 @@ GameObject:
   - component: {fileID: 6612775408920035203}
   - component: {fileID: 5843352429910835721}
   - component: {fileID: 3104442148126663337}
+  - component: {fileID: 1977856088434398315}
   m_Layer: 18
   m_Name: Weapons
   m_TagString: SmallEnemy
@@ -349,7 +350,7 @@ MonoBehaviour:
   CommandList: 
   weaponData:
     weaponCommandDataSO: {fileID: 11400000, guid: ace31054136ad2940bb7a9ced63539e5, type: 2}
-    weaponDataSO: {fileID: 11400000, guid: 0b15036464023cf4d94d416f4c3f5ded, type: 2}
+    weaponDataSO: {fileID: 11400000, guid: ce4c1c30d72457040b1d6b6e317d25f2, type: 2}
   Command: 0
   oc: {fileID: 0}
   InAir: 0
@@ -370,7 +371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData:
     weaponCommandDataSO: {fileID: 11400000, guid: ace31054136ad2940bb7a9ced63539e5, type: 2}
-    weaponDataSO: {fileID: 11400000, guid: 095bd28a156e2ca46beb6de9e4978347, type: 2}
+    weaponDataSO: {fileID: 11400000, guid: 4319cff07b5b5d04e9910cba7a5b4843, type: 2}
 --- !u!114 &3601876560583835278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,6 +482,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb803558d86c29f40a6891b1ff3cb548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1977856088434398315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649730510779115559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56cd4576f8f844f4587f8c28566db916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWeaponBuffIndex: 0
 --- !u!1 &2509519018235985345
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,15 +837,7 @@ MonoBehaviour:
   isFixedMovement: 0
   enemyData: {fileID: 0}
   Test_Distance: 0
-  Pattern_Idx:
-  - Used: 0
-    Detected_Distance: 0
-    Boundary: 0
-    DetectedType: 0
-  - Used: 0
-    Detected_Distance: 0
-    Boundary: 0
-    DetectedType: 0
+  Pattern_Idx: []
 --- !u!1 &3640253522240484911
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,7 +1295,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3640253523737029721
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1503,7 +1509,7 @@ Animator:
   m_GameObject: {fileID: 4242634074962048764}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: bce4af6a07d7b1b43ae3f86a4acdf8c2, type: 2}
+  m_Controller: {fileID: 22100000, guid: 20f2333f1d83b8f429e4fda438814d80, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
