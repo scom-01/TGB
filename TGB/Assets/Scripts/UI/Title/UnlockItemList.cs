@@ -35,7 +35,7 @@ public class UnlockItemList : MonoBehaviour
         #endregion
 
         //모든 아이템 추가
-        for (int i = 0; i < GlobalValue.All_ItemDB.ItemDBList.Count; i++)
+        for (int i = 0; i < DataManager.Inst.All_ItemDB.Length; i++)
         {
             var item = Instantiate(UnlockItemPrefab, this.transform);
             item.GetComponent<UnlockItemData>().SetData(i);
@@ -43,7 +43,7 @@ public class UnlockItemList : MonoBehaviour
         }
 
         //각 Item Nav 설정
-        for (int i = 0; i < GlobalValue.All_ItemDB.ItemDBList.Count; i++)
+        for (int i = 0; i < DataManager.Inst.All_ItemDB.Length; i++)
         {
             Navigation nav = UnlockItems[i].GetComponent<Button>().navigation;
             if (i > 0)
@@ -51,7 +51,7 @@ public class UnlockItemList : MonoBehaviour
                 nav.selectOnLeft = UnlockItems[i - 1].GetComponent<Button>();
             }
 
-            if (i + 1 < GlobalValue.All_ItemDB.ItemDBList.Count)
+            if (i + 1 < DataManager.Inst.All_ItemDB.Length)
             {
                 nav.selectOnRight = UnlockItems[i + 1].GetComponent<Button>();
             }
@@ -60,7 +60,7 @@ public class UnlockItemList : MonoBehaviour
             {
                 nav.selectOnUp = UnlockItems[i - 8].GetComponent<Button>();
             }
-            if (i + 8 < GlobalValue.All_ItemDB.ItemDBList.Count)
+            if (i + 8 < DataManager.Inst.All_ItemDB.Length)
             {
                 nav.selectOnDown = UnlockItems[i + 8].GetComponent<Button>();
             }

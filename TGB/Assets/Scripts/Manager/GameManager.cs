@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            if(m_sceneNameList.Count < SceneManager.sceneCountInBuildSettings)
+            if (m_sceneNameList.Count < SceneManager.sceneCountInBuildSettings)
             {
                 for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
                 {
@@ -108,9 +108,9 @@ public class GameManager : MonoBehaviour
     }
     private List<string> m_sceneNameList = new List<string>();
     public event Action SaveAction;
-    
+
     private void Awake()
-    {        
+    {
         if (_Inst)
         {
             var managers = Resources.FindObjectsOfTypeAll(typeof(GameManager));
@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviour
         LocalizationSettings.StringDatabase.MissingTranslationState = MissingTranslationBehavior.PrintWarning;
 
         _Inst = this;
-        DontDestroyOnLoad(this.gameObject);        
+        DontDestroyOnLoad(this.gameObject);
         GraphicsSettings.useScriptableRenderPipelineBatching = true;
         if (MainUI == null)
             MainUI = this.GetComponentInChildren<MainUIManager>();
@@ -150,7 +150,7 @@ public class GameManager : MonoBehaviour
 
         if (CutSceneUI == null)
             CutSceneUI = this.GetComponentInChildren<CutSceneManagerUI>();
-        
+
         if (EffectTextUI == null)
             EffectTextUI = this.GetComponentInChildren<EffectTextUI>();
 
@@ -158,9 +158,9 @@ public class GameManager : MonoBehaviour
             PlayTimeUI = this.GetComponentInChildren<PlayTimeManagerUI>();
 
         if (PlayerDieCutScene == null)
-            PlayerDieCutScene = this.GetComponentInChildren<PlayableDirector>();        
+            PlayerDieCutScene = this.GetComponentInChildren<PlayableDirector>();
     }
-    
+
     private void Update()
     {
         if (StageManager != null && InputHandler.playerInput.currentActionMap == InputHandler.playerInput.actions.FindActionMap("GamePlay"))
@@ -168,6 +168,7 @@ public class GameManager : MonoBehaviour
             PlayTime += Time.deltaTime;
         }
 
+#if UNITY_EDITOR
         if (InputHandler.ESCInput)
         {
             //사망 시엔 ResultUI의 Title누르는 것 외엔 작동하지않도록
@@ -181,6 +182,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("CurrentSelectedGameObject = null");
         }
+#endif
     }
     private void Start()
     {
@@ -238,7 +240,7 @@ public class GameManager : MonoBehaviour
     {
         if (!isPause)
             return;
-                
+
         Time.timeScale = 1f;
         ChangeUI(UI_State.GamePlay);
         var _TitleManager = FindObjectOfType(typeof(TitleManager)) as TitleManager;
@@ -260,12 +262,12 @@ public class GameManager : MonoBehaviour
         var _TitleManager = FindObjectOfType(typeof(TitleManager)) as TitleManager;
         if (_TitleManager != null)
         {
-            if(_TitleManager.buttons.Count > 0)
+            if (_TitleManager.buttons.Count > 0)
                 GameManager.Inst.SetSelectedObject(_TitleManager.buttons[0].gameObject);
         }
         if (StageManager != null)
             InputHandler.playerInput.currentActionMap = InputHandler.playerInput.actions.FindActionMap(InputEnum.GamePlay.ToString());
-        
+
         isPause = false;
     }
 
@@ -284,12 +286,12 @@ public class GameManager : MonoBehaviour
 
         if (Init)
             return;
-                
+
         Curr_UIState = ui;
         Application.targetFrameRate = 144;
         CursorUnLock();
         switch (_ui)
-        {            
+        {
             case UI_State.GamePlay:
                 CursorLock();
                 InputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, false);
@@ -410,7 +412,7 @@ public class GameManager : MonoBehaviour
         if (obj != null)
         {
             LastSelectedObject = EventSystem.current.currentSelectedGameObject;
-            EventSystem.current.SetSelectedGameObject(obj);            
+            EventSystem.current.SetSelectedGameObject(obj);
         }
         else
         {
@@ -431,13 +433,13 @@ public class GameManager : MonoBehaviour
         }
 
         if (DataManager.Inst.JSON_DataParsing.Json_Parsing())
-        {             
+        {
             DataManager.Inst?.SetLockItemList();
             DataManager.Inst?.LoadPlayTime();
             DataManager.Inst?.LoadBuffs(StageManager.player.GetComponent<BuffSystem>());
             DataManager.Inst?.PlayerInventoryDataLoad(StageManager.player.Inventory);
             DataManager.Inst?.PlayerCurrHealthLoad(StageManager.player.Core.CoreUnitStats);
-        }        
+        }
     }
     public void SaveData()
     {
@@ -453,7 +455,7 @@ public class GameManager : MonoBehaviour
         if (StageManager == null)
         {
             return;
-        }                
+        }
         DataManager.Inst.PlayerInventoryDataSave(
             GameManager.Inst.StageManager.player.Inventory.Weapon,
             GameManager.Inst.StageManager.player.Inventory.Items);
@@ -520,7 +522,7 @@ public class GameManager : MonoBehaviour
         ClearScene();
     }
     public void ClearScene()
-    {        
+    {
         var FadeOut = Resources.Load<GameObject>(GlobalValue.FadeOutCutScene);
         if (FadeOut != null)
         {

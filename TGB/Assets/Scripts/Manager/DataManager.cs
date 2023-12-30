@@ -6,7 +6,9 @@ using System.Linq;
 using TGB.CoreSystem;
 using TGB.Weapons;
 using Unity.VisualScripting;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
@@ -49,25 +51,9 @@ public class DataManager : MonoBehaviour
 
     #region GameData Value
     [Header("DB")]
-    public ItemDB All_ItemDB;
-    public List<int> All_ItemDB_Idxs
-    {
-        get
-        {
-            if (all_ItemDB_Idxs.Count != All_ItemDB.ItemDBList.Count)
-            {
-                all_ItemDB_Idxs.Clear();
-                for (int i = 0; i < All_ItemDB.ItemDBList.Count; i++)
-                {
-                    all_ItemDB_Idxs.Add(All_ItemDB.ItemDBList[i].ItemIdx);
-                }
-            }
-            return all_ItemDB_Idxs;
-        }
-    }
-    private List<int> all_ItemDB_Idxs = new List<int>();
+    public StatsItemSO[] All_ItemDB;
     public WeaponDB All_WeaponDB;
-    [HideInInspector] public BuffItemSO[] All_BuffDB;
+    public BuffItemSO[] All_BuffDB;
 
     [HideInInspector] public List<StatsItemSO> UnlockItemList = new List<StatsItemSO>();
     [HideInInspector] public List<int> UnlockItemListidx = new List<int>();
@@ -86,7 +72,6 @@ public class DataManager : MonoBehaviour
 
     private void Awake()
     {
-        All_BuffDB = Resources.LoadAll<BuffItemSO>("DB/Buff");
         if (_Inst)
         {
             var managers = Resources.FindObjectsOfTypeAll(typeof(DataManager));
@@ -303,11 +288,11 @@ public class DataManager : MonoBehaviour
 
         for (int i = 0; i < inventory_Itemlist.Count; i++)
         {
-            if (All_ItemDB.ItemDBList[inventory_Itemlist[i]] == null)
+            if (All_ItemDB[inventory_Itemlist[i]] == null)
             {
                 continue;
             }
-            inventory.AddInventoryItem(All_ItemDB.ItemDBList[inventory_Itemlist[i]]);
+            inventory.AddInventoryItem(All_ItemDB[inventory_Itemlist[i]]);
         }
 
         var inventory_Weaponlist = JSON_DataParsing.m_JSON_SceneData.Weapons;
@@ -383,10 +368,10 @@ public class DataManager : MonoBehaviour
                 JSON_DataParsing.m_JSON_DefaultData.UnlockItemIdxs.Add(JSON_DataParsing.m_JSON_DefaultData.WaitUnlockItemIdxs[i]);
             }
 
-            if (!GameManager.Inst.EffectTextUI.UnlockitemNames.Contains(All_ItemDB.ItemDBList[JSON_DataParsing.m_JSON_DefaultData.WaitUnlockItemIdxs[i]].itemData.ItemNameLocal))
+            if (!GameManager.Inst.EffectTextUI.UnlockitemNames.Contains(All_ItemDB[JSON_DataParsing.m_JSON_DefaultData.WaitUnlockItemIdxs[i]].itemData.ItemNameLocal))
             {
                 //Title 해금 이펙트 리스트에 추가
-                GameManager.Inst.EffectTextUI.UnlockitemNames.Add(All_ItemDB.ItemDBList[JSON_DataParsing.m_JSON_DefaultData.WaitUnlockItemIdxs[i]].itemData.ItemNameLocal);
+                GameManager.Inst.EffectTextUI.UnlockitemNames.Add(All_ItemDB[JSON_DataParsing.m_JSON_DefaultData.WaitUnlockItemIdxs[i]].itemData.ItemNameLocal);
             }
         }
     }
@@ -421,18 +406,30 @@ public class DataManager : MonoBehaviour
         Debug.LogWarning("Success SceneName Save");
     }
 
-    [ContextMenu("Set BuffData Idx")]
-    private void SetBuffDataIdx()
+    [ContextMenu("Set All Data Idx")]
+    private void SetDataIdx()
     {
-        All_BuffDB = Resources.LoadAll<BuffItemSO>("DB/Buff");
+#if UNITY_EDITOR
+        var All_TempBuffDB = Resources.LoadAll<BuffItemSO>("DB/Buff");
+        All_BuffDB = All_TempBuffDB.OrderBy(obj => obj.ItemIdx).ToArray();
         for (int i = 0; i < All_BuffDB.Length; i++)
         {
             All_BuffDB[i].ItemIdx = i;
-#if UNITY_EDITOR
+
             EditorUtility.SetDirty(All_BuffDB[i]);
-#endif
         }
-#if UNITY_EDITOR
+
+        var All_TempItemDB = Resources.LoadAll<StatsItemSO>("DB/Item");
+        All_ItemDB = All_TempItemDB.OrderBy(obj => obj.ItemIdx).ToArray();
+
+        for (int i = 0; i < All_ItemDB.Length; i++)
+        {
+            var path = AssetDatabase.GetAssetPath(All_ItemDB[i]);
+            var extension = System.IO.Path.GetExtension(path);
+            var item = (All_ItemDB[i].name).Split("_");
+            AssetDatabase.RenameAsset(path, item[0] + "_" + All_ItemDB[i].ItemIdx + extension);
+        }
+
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
 #endif
@@ -648,15 +645,15 @@ public class DataManager : MonoBehaviour
     {
         JSON_DataParsing.LockItemList.Clear();
         //전체 아이템 인덱스 리스트 스캔
-        for (int i = 0; i < All_ItemDB.ItemDBList.Count; i++)
+        for (int i = 0; i < All_ItemDB.Length; i++)
         {
             //해금 아이템 인덱스 리스트 중 All_ItemDB.ItemDBList[i].ItemIdx의 인덱스가 있으면 continue;
-            if (JSON_DataParsing.m_JSON_DefaultData.UnlockItemIdxs.Contains(All_ItemDB.ItemDBList[i].ItemIdx))
+            if (JSON_DataParsing.m_JSON_DefaultData.UnlockItemIdxs.Contains(All_ItemDB[i].ItemIdx))
             {
                 continue;
             }
             //미해금 아이템 인덱스 리스트에 해금된 아이템을 제외한 아이템 인덱스 추가
-            JSON_DataParsing.LockItemList.Add(All_ItemDB.ItemDBList[i].ItemIdx);
+            JSON_DataParsing.LockItemList.Add(All_ItemDB[i].ItemIdx);
         }
     }
 
@@ -701,7 +698,7 @@ public class DataManager : MonoBehaviour
                 //필드 드랍아이템이 아닐 시 제외
                 for (int j = 0; j < All_LockItemIdxs.Count; j++)
                 {
-                    if (All_ItemDB.ItemDBList[All_LockItemIdxs[j]].isFieldSpawn == false)
+                    if (All_ItemDB[All_LockItemIdxs[j]].isFieldSpawn == false)
                     {
                         All_LockItemIdxs.RemoveAt(j);
                     }
@@ -711,7 +708,7 @@ public class DataManager : MonoBehaviour
                 {
                     idx = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.SceneDataIdxs[i] % ((All_LockItemIdxs.Count > 0) ? All_LockItemIdxs.Count : 1);
                     //itemData = 전체 해금 아이템 중 보유하고 있지 않은 아이템 리스트 중 일부
-                    var itemData = All_ItemDB.ItemDBList[All_LockItemIdxs[idx]];
+                    var itemData = All_ItemDB[All_LockItemIdxs[idx]];
 
                     if (itemData == null)
                         return;
@@ -764,7 +761,7 @@ public class DataManager : MonoBehaviour
             //필드 드랍아이템이 아닐 시 제외
             for (int j = 0; j < All_UnlockItemIdxs.Count; j++)
             {
-                if (All_ItemDB.ItemDBList[All_UnlockItemIdxs[j]].isFieldSpawn == false)
+                if (All_ItemDB[All_UnlockItemIdxs[j]].isFieldSpawn == false)
                 {
                     All_UnlockItemIdxs.RemoveAt(j);
                 }
@@ -774,7 +771,7 @@ public class DataManager : MonoBehaviour
             //idx = 랜덤인덱스 % AllItemIdx.Count;
             idx = DataManager.Inst.JSON_DataParsing.m_JSON_SceneData.SceneDataIdxs[i] % ((All_UnlockItemIdxs.Count > 0) ? All_UnlockItemIdxs.Count : 0);
             //itemData = 전체 해금 아이템 중 보유하고 있지 않은 아이템 리스트 중 일부
-            var itemData_1 = All_ItemDB.ItemDBList[All_UnlockItemIdxs[idx]];
+            var itemData_1 = All_ItemDB[All_UnlockItemIdxs[idx]];
             if (itemData_1 == null)
                 return;
 

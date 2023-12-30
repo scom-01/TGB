@@ -111,7 +111,7 @@ public class Shop_Items : InventoryItems, IUI_Select
         //필드 드랍아이템이 아닐 시 제외
         for (int j = 0; j < list.Count; j++)
         {
-            if (DataManager.Inst.All_ItemDB.ItemDBList[list[j]].isFieldSpawn == false)
+            if (DataManager.Inst.All_ItemDB[list[j]].isFieldSpawn == false)
             {
                 list.RemoveAt(j);
             }
@@ -136,7 +136,7 @@ public class Shop_Items : InventoryItems, IUI_Select
                 continue;
             }
 
-            if (Items[i].StatsItemData == DataManager.Inst.All_ItemDB.ItemDBList[ItemNum])
+            if (Items[i].StatsItemData == DataManager.Inst.All_ItemDB[ItemNum])
             {                
                 list.Remove(ItemNum);
                 if(list.Count == 0)
@@ -151,7 +151,7 @@ public class Shop_Items : InventoryItems, IUI_Select
             }
             i++;
         }
-        Items[idx].StatsItemData = DataManager.Inst.All_ItemDB.ItemDBList[ItemNum];
+        Items[idx].StatsItemData = DataManager.Inst.All_ItemDB[ItemNum];
         return true;
     }
 

@@ -237,6 +237,7 @@ namespace TGB.Weapons
             this.state = state;
             this.WeaponCore = core;
         }
+#if UNITY_EDITOR
         public void OnGUI()
         {
             if(CommandList.Count > 0)
@@ -247,5 +248,6 @@ namespace TGB.Weapons
                 }
             }
         }
+#endif
     }
 }

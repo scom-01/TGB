@@ -93,7 +93,6 @@ public class GlobalValue : MonoBehaviour
     #endregion
 
     #region DB_Path
-    public static ItemDB All_ItemDB = Resources.Load<ItemDB>("DB/All_ItemDB");
     public const int MaxSceneIdx = 50;
     public static int[] DefaultUnlockItem = { 0, 1, 2, 3, 4, 5, 6, };
     #endregion

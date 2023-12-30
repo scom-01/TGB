@@ -45,9 +45,9 @@ public class UnlockItemData : MonoBehaviour
 
         if (ItemImg != null)
         {
-            if(m_Index < GlobalValue.All_ItemDB.ItemDBList.Count)
+            if(m_Index < DataManager.Inst.All_ItemDB.Length)
             {
-                ItemImg.sprite = GlobalValue.All_ItemDB.ItemDBList[m_Index].itemData.ItemSprite;            
+                ItemImg.sprite = DataManager.Inst.All_ItemDB[m_Index].itemData.ItemSprite;            
             }
         }
     }
@@ -56,7 +56,7 @@ public class UnlockItemData : MonoBehaviour
         m_Index = _idx;
 
         //UnlockItemList안에 해당 Item이 있다면
-        if (DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.UnlockItemIdxs.Contains(GlobalValue.All_ItemDB.ItemDBList[m_Index].ItemIdx))
+        if (DataManager.Inst.JSON_DataParsing.m_JSON_DefaultData.UnlockItemIdxs.Contains(DataManager.Inst.All_ItemDB[m_Index].ItemIdx))
         {
             m_locked = false;
         }
@@ -69,9 +69,9 @@ public class UnlockItemData : MonoBehaviour
 
         if (ItemImg != null)
         {
-            if (m_Index < GlobalValue.All_ItemDB.ItemDBList.Count)
+            if (m_Index < DataManager.Inst.All_ItemDB.Length)
             {
-                ItemImg.sprite = GlobalValue.All_ItemDB.ItemDBList[m_Index].itemData.ItemSprite;
+                ItemImg.sprite = DataManager.Inst.All_ItemDB[m_Index].itemData.ItemSprite;
             }
         }
     }

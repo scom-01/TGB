@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TGB;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class GoodsItem : MonoBehaviour, ISpawn
 {
