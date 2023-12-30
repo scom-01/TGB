@@ -16010,7 +16010,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.1
+  m_fontSize: 22.15
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -26236,6 +26236,7 @@ GameObject:
   - component: {fileID: 938190823}
   - component: {fileID: 938190822}
   - component: {fileID: 938190824}
+  - component: {fileID: 938190825}
   m_Layer: 0
   m_Name: DataManager
   m_TagString: Untagged
@@ -26255,7 +26256,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3455e2e95e29d1f41ac1c02948087451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  All_ItemDB: {fileID: 11400000, guid: 48eeecaa05ed4694d82a80cd99463d62, type: 2}
+  All_ItemDB:
+  - {fileID: 11400000, guid: 6ba58d4935640774fa862bb3a58504c9, type: 2}
+  - {fileID: 11400000, guid: 95208878e233e92409560005b58d7636, type: 2}
+  - {fileID: 11400000, guid: 663eb6a80076d5a4fb476d360584589e, type: 2}
+  - {fileID: 11400000, guid: 713338e6b91ddc84a9beb41a3b67b570, type: 2}
+  - {fileID: 11400000, guid: e62b3b3537581f9489e40b34bdbddf1c, type: 2}
+  - {fileID: 11400000, guid: 7d367b0856715384694226068ff1b275, type: 2}
+  - {fileID: 11400000, guid: 8d7d4022d5cc5f143b28ef1fefab337c, type: 2}
+  - {fileID: 11400000, guid: 82a9605be325e044bab8048216a5f204, type: 2}
+  - {fileID: 11400000, guid: 7be42284a95baa545bf8f0a1592a4fb0, type: 2}
+  - {fileID: 11400000, guid: 66f758c9342e1c04a82ed0f7312f3024, type: 2}
+  - {fileID: 11400000, guid: 3a774b6d43b07b144ab092af018867ee, type: 2}
+  - {fileID: 11400000, guid: 1c5c421e7b5e658448c20a2c657c7c59, type: 2}
+  - {fileID: 11400000, guid: 48adb9cadd16a6d45943caf2e80e2960, type: 2}
+  - {fileID: 11400000, guid: 4a41af9f64dae3d49b93ad4522bab4de, type: 2}
+  - {fileID: 11400000, guid: ff3da6d8cdb95294a87e1c620c3950fe, type: 2}
+  - {fileID: 11400000, guid: c83166fe225a4ac4bac7ffc50ad2264e, type: 2}
+  - {fileID: 11400000, guid: 68e45d7758ce0d54f84d756b289f7257, type: 2}
+  - {fileID: 11400000, guid: 8f647f9ba8289ba4f80e455bde1ba02b, type: 2}
+  - {fileID: 11400000, guid: 18d619a83b963414da6d4b5f6c30bdfb, type: 2}
+  - {fileID: 11400000, guid: 4a00a41d5b64dd945a07f3833027bb8f, type: 2}
+  - {fileID: 11400000, guid: 9db20156ba1809b4d86fd6f86072a643, type: 2}
+  - {fileID: 11400000, guid: a2c21fe89cf9cad468b657fec2341ba2, type: 2}
+  - {fileID: 11400000, guid: 611db1dfcb109274891b2d8a246fed54, type: 2}
+  - {fileID: 11400000, guid: 274b109fa46c3034798cc8653c4381c9, type: 2}
+  - {fileID: 11400000, guid: bedc56c07eb8c0f46ba61b4550792ab3, type: 2}
+  - {fileID: 11400000, guid: ba9f45e1b898c51468d7f64f6dd0dcda, type: 2}
+  - {fileID: 11400000, guid: 16fed219b2f5c014d83f2100c0d3d2c8, type: 2}
+  - {fileID: 11400000, guid: ed061ddabbad9884dbc69ec648b4ac7d, type: 2}
+  - {fileID: 11400000, guid: ad3dbb04f4458a843b7618ac24cf5ab7, type: 2}
   All_WeaponDB: {fileID: 11400000, guid: f7e1ee73251e4e740bde3e2ec6f15d22, type: 2}
   All_BuffDB:
   - {fileID: 11400000, guid: 86035df67fed69e47844452b5a8289f9, type: 2}
@@ -26328,6 +26358,18 @@ MonoBehaviour:
   SceneData_FileName: SceneData
   DefaultData_FileName: DefaultData
   LockItemList: 
+--- !u!114 &938190825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938190821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3fcf35a8f0b520439eabc62b435edb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &939601462
 GameObject:
   m_ObjectHideFlags: 0
@@ -37401,7 +37443,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: 1197396.4}
+  m_AnchoredPosition: {x: 7, y: 1335663}
   m_SizeDelta: {x: 21.1497, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1368125264
@@ -58992,7 +59034,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: -292232.97}
+  m_AnchoredPosition: {x: 7, y: -326906.2}
   m_SizeDelta: {x: 21.1497, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2125587133

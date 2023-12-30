@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 836f02ead74e6a24db24927dd939c743, type: 3}
+  m_Name: StatsItem_12
+  m_EditorClassIdentifier: 
+  ItemIdx: 12
+  itemData:
+    <ItemNameLocal>k__BackingField:
+      m_TableReference:
+        m_TableCollectionName: GUID:0e85b71e0680fc942b5295e72ff4ba37
+      m_TableEntryReference:
+        m_KeyId: 57534894287773696
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    <ItemDescriptionLocal>k__BackingField:
+      m_TableReference:
+        m_TableCollectionName: GUID:0e85b71e0680fc942b5295e72ff4ba37
+      m_TableEntryReference:
+        m_KeyId: 57534896716275712
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    ItemSprite: {fileID: 21300000, guid: 7f06e8376f57f28418f0e928a5bb440a, type: 3}
+    ItemLevel: 1
+  CompositeItems:
+  - MaterialItem: {fileID: 11400000, guid: 1c5c421e7b5e658448c20a2c657c7c59, type: 2}
+    ResultItem: {fileID: 11400000, guid: 4a41af9f64dae3d49b93ad4522bab4de, type: 2}
+    EditSFX:
+      Clip: {fileID: 0}
+      Volume: 0
+    EditVFX: {fileID: 0}
+  isFieldSpawn: 1
+  StatsData:
+    MaxHealth: 10
+    DefaultPower: 0
+    DefaultMoveSpeed: 0
+    DefaultJumpVelocity: 0
+    DefaultAttSpeed: 0
+    MovementVEL_Per: 0
+    JumpVEL_Per: 0
+    AttackSpeedPer: 0
+    PhysicsDefensivePer: 0
+    MagicDefensivePer: 0
+    PhysicsAggressivePer: 0
+    MagicAggressivePer: 20
+    CriticalPer: 0
+    CriticalDmgPer: 0
+    DamageAttiribute: 1
+    Elemental: 3
+    ElementalDefensivePer: 0
+    ElementalAggressivePer: 20
+  StatsItems:
+  - type: 9
+    StatsLocalizeString:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    variable: 0
+    value: 10
+    ShowPercent: 0
+    HideMark: 0
+  - type: 1
+    StatsLocalizeString:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    variable: 0
+    value: 20
+    ShowPercent: 1
+    HideMark: 0
+  - type: 4
+    StatsLocalizeString:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    variable: 0
+    value: 20
+    ShowPercent: 1
+    HideMark: 0
+  Health: 0
+  buffItems: []
+  InitEffectData:
+    <AcquiredEffectPrefab>k__BackingField: {fileID: 0}
+    <AcquiredSFX>k__BackingField:
+      Clip: {fileID: 0}
+      Volume: 0
+    <isEquipment>k__BackingField: 1
+  InfinityEffectObjects: []
+  ItemEvents: []
+  <EventNameLocal>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <EventDescriptionLocal>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
