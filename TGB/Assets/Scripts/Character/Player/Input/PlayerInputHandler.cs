@@ -48,9 +48,11 @@ public class PlayerInputHandler : MonoBehaviour
 
     [HideInInspector]
     public float interactionMaxHoldDuration = -1;
-    public float interactionMaxTapDuration = -1;
+    public float interactionTapDuration = -1;
 
-    public bool interactionperformed = false;
+    [HideInInspector]
+    public bool interactionTap,
+                interactionHold = false;
 
     private float[] ActionInputsStartTime;
     private float[] ActionInputsStopTime;
@@ -268,7 +270,7 @@ public class PlayerInputHandler : MonoBehaviour
             var tap = context.interaction as TapInteraction;
             if (tap != null)
             {
-                interactionMaxTapDuration = tap.duration;
+                interactionTapDuration = tap.duration;
             }
 
             var hold = context.interaction as HoldInteraction;
@@ -283,16 +285,21 @@ public class PlayerInputHandler : MonoBehaviour
 
         if (context.performed)
         {
-            interactionperformed = true;
+            if (interactionTapDuration != -1)
+                interactionTap = true;
+
+            if (interactionMaxHoldDuration != -1)
+                interactionHold = true;
         }
 
         if (context.canceled)
         {
             InteractionInputStop = true;
             InteractionInput = false;
-            interactionperformed = false;
+            interactionTap = false;
+            interactionHold = false;
             interactionMaxHoldDuration = -1f;
-            interactionMaxTapDuration = -1f;
+            interactionTapDuration = -1f;
         }
     }
     #endregion

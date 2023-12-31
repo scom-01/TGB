@@ -138,10 +138,12 @@ namespace TGB.Manager
             {
                 return;
             }
-            if (inputHandler.InteractionInput)
+            if (inputHandler.InteractionInput && inputHandler.interactionTap)
             {
                 ChangeInventoryState(State);
                 OnInteractionInput?.Invoke();
+                inputHandler.UseInput(ref inputHandler.InteractionInput);
+                inputHandler.UseInput(ref inputHandler.interactionTap);
             }
         }
 

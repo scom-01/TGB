@@ -54,12 +54,17 @@ public class DetailUI : MonoBehaviour
 
     public Player player => GameManager.Inst?.StageManager?.player;
 
-    public void SetInit(StatsItemSO _item, GameObject gameObject)
+    public void SetInit(StatsItemSO _item, GameObject GO)
     {
-        this.item = _item;
-        if (SetUI(item))
+        if (GO == null)
         {
-            this.GO = gameObject;
+            this.GO = null;
+            return;
+        }
+
+        if (SetUI(_item))
+        {
+            this.GO = GO;
         }
     }
 
@@ -113,7 +118,12 @@ public class DetailUI : MonoBehaviour
 
         if (ItemCost_Txt != null)
         {
-            ItemCost_Txt.text = string.Format("{0:#,##0}", ((int)this.item.itemData.ItemLevel * GlobalValue.Gold_Inflation * GameManager.Inst.StageManager.StageLevel) * 3 / 5);
+            ItemCost_Txt.text = string.Format("{0:#,##0}", ((int)_item.itemData.ItemLevel * GlobalValue.Gold_Inflation * GameManager.Inst.StageManager.StageLevel) * 3 / 5);
+        }
+        this.item = _item;
+        if(player.InputHandler!=null)
+        {
+            player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
         }
         return true;
     }
@@ -128,7 +138,7 @@ public class DetailUI : MonoBehaviour
 
         if (player.InputHandler.InteractionInput)
         {
-            Debug.Log($"interactionMaxTapDuration = {player.InputHandler.interactionMaxTapDuration},  " +
+            Debug.Log($"interactionMaxTapDuration = {player.InputHandler.interactionTapDuration},  " +
                 $"interactionMaxHoldDuration = {player.InputHandler.interactionMaxHoldDuration},  " +
                 $"filledImg = {(Time.time - player.InputHandler.interactionInputStartTime) / (player.InputHandler.interactionMaxHoldDuration - InputSystem.settings.defaultTapTime)}");
             //Tap Duration보단 길게
@@ -138,7 +148,7 @@ public class DetailUI : MonoBehaviour
                 {
                     HoldFilledImg.fillAmount = (Time.time - player.InputHandler.interactionInputStartTime) / (player.InputHandler.interactionMaxHoldDuration - InputSystem.settings.defaultTapTime);
                 }
-                if (player.InputHandler.interactionperformed)
+                if (player.InputHandler.interactionHold)
                 {
                     Debug.Log("Sell Item");
                     var item = Instantiate(GlobalValue.Base_SpawnGoodsItem, GO.transform.position, Quaternion.identity);
@@ -146,15 +156,15 @@ public class DetailUI : MonoBehaviour
                     item.GetComponent<GoodsItem>().Add(goodsData);
                     item.GetComponent<GoodsItem>().DropGoods();
                     player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
-                    player.InputHandler.UseInput(ref player.InputHandler.interactionperformed);
+                    player.InputHandler.UseInput(ref player.InputHandler.interactionHold);
                     Destroy(GO);
                     return;
                 }
-            }            
-            if (player.InputHandler.interactionperformed)
+            }
+            if (player.InputHandler.interactionTap)
             {
                 player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
-                player.InputHandler.UseInput(ref player.InputHandler.interactionperformed);
+                player.InputHandler.UseInput(ref player.InputHandler.interactionTap);
                 if (HoldFilledImg != null)
                 {
                     HoldFilledImg.fillAmount = 0f;
@@ -163,7 +173,7 @@ public class DetailUI : MonoBehaviour
                 {
                     Destroy(GO);
                     return;
-                }
+                }          
             }
         }
         else

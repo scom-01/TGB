@@ -129,6 +129,7 @@ namespace TGB.Item
         public void UnDetected()
         {
             GameManager.Inst.SubUI.SetSubUI(false);
+            GameManager.Inst.SubUI.DetailSubUI.SetInit(null, null);
         }
 
         private void OnDrawGizmos()

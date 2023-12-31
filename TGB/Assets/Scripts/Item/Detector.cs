@@ -31,7 +31,7 @@ public class Detector : MonoBehaviour
             }
             if (currentGO.tag == "Item")
             {
-                var item = currentGO.GetComponentInParent<SOB_Item>();
+                //var item = currentGO.GetComponentInParent<SOB_Item>();
                 //if (player.InputHandler.InteractionInput && player.InputHandler.interactionInputDuration > player.InputHandler.interactionMaxHoldItme)
                 //{
                 //    Debug.Log($"{item.name} is Add Inventory");
@@ -45,9 +45,10 @@ public class Detector : MonoBehaviour
             else if (currentGO.tag == "Interaction")
             {
                 currentGO.GetComponent<InteractiveObject>().SetActiveBtnObj(true);
-                if (player.InputHandler.InteractionInput && player.InputHandler.interactionperformed)
+                if (player.InputHandler.InteractionInput && player.InputHandler.interactionTap)
                 {
                     player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
+                    player.InputHandler.UseInput(ref player.InputHandler.interactionTap);
                     Debug.Log($"{currentGO} interactive");
                     currentGO.GetComponent<InteractiveObject>()?.Interactive();
                 }
@@ -74,9 +75,10 @@ public class Detector : MonoBehaviour
                     else if (go.tag == "Interaction")
                     {
                         currentGO.GetComponent<InteractiveObject>().SetActiveBtnObj(true);
-                        if (player.InputHandler.InteractionInput && player.InputHandler.interactionperformed)
+                        if (player.InputHandler.InteractionInput && player.InputHandler.interactionTap)
                         {
                             player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
+                            player.InputHandler.UseInput(ref player.InputHandler.interactionTap);
                             Debug.Log($"{currentGO} interactive");
                             currentGO.GetComponent<InteractiveObject>()?.Interactive();
                         }
@@ -111,9 +113,10 @@ public class Detector : MonoBehaviour
                     else if (go.tag == "Interaction")
                     {
                         currentGO.GetComponent<InteractiveObject>().SetActiveBtnObj(true);
-                        if (player.InputHandler.InteractionInput && player.InputHandler.interactionperformed)
+                        if (player.InputHandler.InteractionInput && player.InputHandler.interactionTap)
                         {
                             player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
+                            player.InputHandler.UseInput(ref player.InputHandler.interactionTap);
                             Debug.Log($"{currentGO} interactive");
                             currentGO.GetComponent<InteractiveObject>()?.Interactive();
                         }
