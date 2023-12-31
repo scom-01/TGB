@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12c7189b5730eb047911b8d6ef4727da, type: 3}
-  m_Name: 19_OnDash_MoveSpeed_Up_BuffEventData
+  m_Name: 15_OnDamaged_MagicDef_Down_BuffEventData
   m_EditorClassIdentifier: 
-  Item_Type: 5
+  Item_Type: 7
   itemEventData:
     MaxCount: 1
-    CooldownTime: 0
+    CooldownTime: 12
     Percent: 100
     VFX:
       isGround: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
     m_WaitForCompletion: 0
     m_LocalVariables: []
   buffItems:
-  - {fileID: 11400000, guid: a9a071caa9960a14ab86992d7a5cc653, type: 2}
+  - {fileID: 11400000, guid: bd309093ad3143549b695d338bfefdbc, type: 2}
   isSelf: 1
   references:
     version: 2

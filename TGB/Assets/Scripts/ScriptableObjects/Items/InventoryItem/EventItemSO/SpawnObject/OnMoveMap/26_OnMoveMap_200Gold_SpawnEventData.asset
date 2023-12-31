@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b57ec8d921dcf648921c41da219a6e1, type: 3}
-  m_Name: 26_OnHit_FixedAddtionalAttack_AttackEventData
+  m_Script: {fileID: 11500000, guid: 39af52f161290fe458c39a604479cbf9, type: 3}
+  m_Name: 26_OnMoveMap_200Gold_SpawnEventData
   m_EditorClassIdentifier: 
-  Item_Type: 2
+  Item_Type: 6
   itemEventData:
     MaxCount: 1
     CooldownTime: 0
@@ -24,16 +24,10 @@ MonoBehaviour:
       isRandomPosRot: 0
       isRandomRange: 0
       EffectOffset: {x: 0, y: 0}
-      EffectScale: {x: 0.5, y: 0.5, z: 0.5}
+      EffectScale: {x: 0, y: 0, z: 0}
       isFollowing: 0
-      Object: {fileID: 2050967202763056129, guid: b80407ae74dc7e9499a6d2a7553d0eef, type: 3}
+      Object: {fileID: 0}
     SFX:
-      Clip: {fileID: 8300000, guid: 7bef0064f8567430cac22499c6b93d4f, type: 3}
-      Volume: 0.4
-  AdditionalDamage: 0
-  isCalFixedDamage: 1
-  DAMAGE_ATT: 2
-  isOnHit: 0
-  CanCritical: 1
-  isSelf_harm: 0
-  isBloodsucking: 0
+      Clip: {fileID: 0}
+      Volume: 0
+  Object: {fileID: 2854767203050020874, guid: 901940214345bde439ee82862c5ce2cd, type: 3}

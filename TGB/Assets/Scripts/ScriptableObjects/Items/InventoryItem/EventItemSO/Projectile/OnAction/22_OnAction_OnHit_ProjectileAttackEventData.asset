@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed8ea68a9bdcff84ab444f378220bdab, type: 3}
-  m_Name: 19)_OnDash_ProjectileAttackEventData
+  m_Name: 22_OnAction_OnHit_ProjectileAttackEventData
   m_EditorClassIdentifier: 
-  Item_Type: 5
+  Item_Type: 1
   itemEventData:
     MaxCount: 1
     CooldownTime: 0
@@ -39,8 +39,8 @@ MonoBehaviour:
       AdditionalDmg: 5
       isFixed: 1
       KnockbackAngle: {x: 0, y: 0}
-      isOnHit: 0
-      Radius: 0.2
+      isOnHit: 1
+      Radius: 0.3
       Offset: {x: 0, y: 0}
       GravityScale: 0
       isSingleShoot: 1
@@ -48,12 +48,12 @@ MonoBehaviour:
       isCollisionPlatform: 0
       isBound: 0
       UnitCC2DMaterial: {fileID: 0}
-      EffectScale: {x: 0.2, y: 0.2, z: 0.2}
-      ImpactScale: {x: 0, y: 0, z: 0}
+      EffectScale: {x: 0.1, y: 0.1, z: 0.1}
+      ImpactScale: {x: 0.3, y: 0.3, z: 0.3}
       isShakeCam: 0
       camDatas:
         Duration: 0
         Range: 0
         RepeatRate: 0
       homingType: 0
-    Projectile: {fileID: 2222910967692216358, guid: 1af7a89b518ecd141b7b6da807692a50, type: 3}
+    Projectile: {fileID: 2222910967692216358, guid: ed31d3e0176929e46bd7228821b77cd9, type: 3}
