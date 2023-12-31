@@ -85,7 +85,6 @@ public class StageManager : MonoBehaviour
         }
     }
     private EffectContainer effectContainer;
-    [field: SerializeField] private string SFXContainerTagName = "SoundContainer";
     public SoundContainer SFXContainer
     {
         get

@@ -55,4 +55,9 @@ public struct AnimCommand
         }
         return true;
     }
+    public override bool Equals(object obj)
+    {
+        if (obj is null) /*ReferenceEquals(null, obj))*/ return false;
+        return obj is AnimCommand && Equals((AnimCommand)obj);
+    }
 }

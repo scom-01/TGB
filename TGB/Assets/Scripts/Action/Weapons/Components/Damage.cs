@@ -61,15 +61,15 @@ namespace TGB.Weapons.Components
             base.Awake();
 
             hitBox = GetComponent<ActionHitBox>();
-            hitBox.OnDetectedCollider2D -= HandleDetectedCollider2D;
-            hitBox.OnDetectedCollider2D += HandleDetectedCollider2D;
+            //hitBox.OnDetectedCollider2D -= HandleDetectedCollider2D;
+            //hitBox.OnDetectedCollider2D += HandleDetectedCollider2D;
         }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
 
-            hitBox.OnDetectedCollider2D -= HandleDetectedCollider2D;
+            //hitBox.OnDetectedCollider2D -= HandleDetectedCollider2D;
         }
     }
 }

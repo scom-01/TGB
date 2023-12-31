@@ -63,6 +63,10 @@ public struct Goods_Data
     {
         int count = 0;
 
+        if (Gold > 0)
+        {
+            count++;
+        }
         if (FireGoods > 0)
         {
             count++;
@@ -84,6 +88,10 @@ public struct Goods_Data
 
     public static bool operator ==(Goods_Data s1, Goods_Data s2)
     {
+        if (s1.Gold != s2.Gold)
+        {
+            return false;
+        }
         if (s1.FireGoods != s2.FireGoods)
         {
             return false;
@@ -104,6 +112,10 @@ public struct Goods_Data
     }
     public static bool operator !=(Goods_Data s1, Goods_Data s2)
     {
+        if (s1.Gold == s2.Gold)
+        {
+            return false;
+        }
         if (s1.FireGoods == s2.FireGoods)
         {
             return false;
@@ -129,7 +141,7 @@ public struct Goods_Data
     }
     public bool Equals(Goods_Data s1)
     {
-        return FireGoods == s1.FireGoods && WaterGoods == s1.WaterGoods && EarthGoods == s1.EarthGoods && WindGoods == s1.WindGoods;
+        return Gold == s1.Gold && FireGoods == s1.FireGoods && WaterGoods == s1.WaterGoods && EarthGoods == s1.EarthGoods && WindGoods == s1.WindGoods;
     }
     public override int GetHashCode()
     {

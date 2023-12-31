@@ -57,8 +57,8 @@ namespace TGB.Weapons.Components
         {
             base.Awake();
             hitBox = GetComponent<ActionHitBox>();
-            hitBox.OnDetectedCollider2D -= DetectedSoundClip;
-            hitBox.OnDetectedCollider2D += DetectedSoundClip;
+            //hitBox.OnDetectedCollider2D -= DetectedSoundClip;
+            //hitBox.OnDetectedCollider2D += DetectedSoundClip;
         }
 
         protected override void Start()
@@ -70,7 +70,7 @@ namespace TGB.Weapons.Components
         protected override void OnDestroy()
         {
             base.OnDestroy();
-            hitBox.OnDetectedCollider2D -= DetectedSoundClip;
+            //hitBox.OnDetectedCollider2D -= DetectedSoundClip;
             eventHandler.OnSoundClip -= HandleSoundClip;
         }
     }

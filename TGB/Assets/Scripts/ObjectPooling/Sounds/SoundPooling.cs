@@ -24,7 +24,7 @@ namespace TGB
                 return audio;
             }
         }
-        private AudioSource audio;
+        private AudioSource audio = new();
 
         public AudioSource CreateObject(AudioPrefab _SFX)
         {

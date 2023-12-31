@@ -7,9 +7,6 @@ using UnityEngine;
 public class PlayerSkillState : PlayerAbilityState
 {
     private Skill skill;
-
-    private int xInput;
-    private bool JumpInput;
     public PlayerSkillState(Unit unit, string animBoolName, Skill skill) : base(unit, animBoolName)
     {
 

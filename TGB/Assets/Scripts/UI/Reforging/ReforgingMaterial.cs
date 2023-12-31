@@ -39,7 +39,7 @@ public class ReforgingMaterial : MonoBehaviour
     [SerializeField] private LocalizeStringEvent NotEnoughMessage_Local;
     [SerializeField] private Animator NotEnoughMessage_Anim;
 
-    public AudioSource audio;
+    public AudioSource audio = new AudioSource();
     private AudioClip ReforgingSuccessClip
     {
         get

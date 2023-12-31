@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class GlobalValue : MonoBehaviour
 {
-    private static GlobalValue Inst = null;
-
     /*Param*/
     public static float GravityPower = 5f;
 

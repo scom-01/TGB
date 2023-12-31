@@ -6,7 +6,7 @@ namespace TGB.Weapons.Components
 {
     public class ActionHitBox : WeaponComponent<ActionHitBoxData, AttackActionHitBox>
     {
-        public event Action<Collider2D[]> OnDetectedCollider2D;
+        //public event Action<Collider2D[]> OnDetectedCollider2D;
 
         private Vector2 offset;
         private Collider2D[] detected;
@@ -14,7 +14,7 @@ namespace TGB.Weapons.Components
 
         private bool isTriggerOn;
         private List<Collider2D> actionHitObjects = new List<Collider2D>();
-        private HitAction[] hitActions = null;
+        //private HitAction[] hitActions = null;
 
         private Vector2 PosOffset;
 
