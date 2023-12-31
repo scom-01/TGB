@@ -21,9 +21,11 @@ public class HealthBar : MonoBehaviour
                 else
                 {
                     unit = this.GetComponentInParent<Unit>();
+                    
                 }
                 if (unit != null)
                 {
+                    m_Canvas.worldCamera = m_Camera;
                     Stats.OnChangeHealth -= UpdateBar;
                     Stats.OnChangeHealth += UpdateBar;
                     UpdateBar();
@@ -112,8 +114,7 @@ public class HealthBar : MonoBehaviour
         if (!m_IsFollow)
             return;
 
-        if (m_Slider != null && Cam != null && Unit != null)
-            m_Slider.transform.position = Cam.WorldToScreenPoint(Unit.Core.CoreCollisionSenses.GroundCenterPos + new Vector3(0.0f, -0.5f, 0.0f));
+        m_Canvas.transform.localRotation = unit.transform.rotation;
     }
     private void OnEnable()
     {
