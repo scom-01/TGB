@@ -3355,7 +3355,7 @@ MonoBehaviour:
   escInputStartTime: 0
   interactionInputStartTime: 0
   interactionMaxHoldDuration: -1
-  interactionMaxTapDuration: -1
+  interactionTapDuration: -1
   interactionperformed: 0
 --- !u!114 &109329984
 MonoBehaviour:
@@ -20781,8 +20781,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1719673692}
   m_HandleRect: {fileID: 866249035}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0
+  m_Size: 0.7644152
   m_NumberOfSteps: 3
   m_OnValueChanged:
     m_PersistentCalls:
@@ -37443,7 +37443,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: 0}
+  m_AnchoredPosition: {x: 7, y: 43303.305}
   m_SizeDelta: {x: 21.1497, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1368125264
@@ -37569,8 +37569,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 21968101}
   m_HandleRect: {fileID: 1712788832}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0
   m_NumberOfSteps: 3
   m_OnValueChanged:
     m_PersistentCalls:
@@ -59034,7 +59034,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: -0.00024414062}
+  m_AnchoredPosition: {x: 7, y: -18301.576}
   m_SizeDelta: {x: 21.1497, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2125587133
