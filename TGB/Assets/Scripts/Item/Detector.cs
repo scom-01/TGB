@@ -45,7 +45,7 @@ public class Detector : MonoBehaviour
             else if (currentGO.tag == "Interaction")
             {
                 currentGO.GetComponent<InteractiveObject>().SetActiveBtnObj(true);
-                if (player.InputHandler.InteractionInput)
+                if (player.InputHandler.InteractionInput && player.InputHandler.interactionperformed)
                 {
                     player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
                     Debug.Log($"{currentGO} interactive");
@@ -74,7 +74,7 @@ public class Detector : MonoBehaviour
                     else if (go.tag == "Interaction")
                     {
                         currentGO.GetComponent<InteractiveObject>().SetActiveBtnObj(true);
-                        if (player.InputHandler.InteractionInput)
+                        if (player.InputHandler.InteractionInput && player.InputHandler.interactionperformed)
                         {
                             player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
                             Debug.Log($"{currentGO} interactive");
@@ -111,7 +111,7 @@ public class Detector : MonoBehaviour
                     else if (go.tag == "Interaction")
                     {
                         currentGO.GetComponent<InteractiveObject>().SetActiveBtnObj(true);
-                        if (player.InputHandler.InteractionInput)
+                        if (player.InputHandler.InteractionInput && player.InputHandler.interactionperformed)
                         {
                             player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
                             Debug.Log($"{currentGO} interactive");
