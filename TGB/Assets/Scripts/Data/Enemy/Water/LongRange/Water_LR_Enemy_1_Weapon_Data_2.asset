@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 829d099c869488a49a5f24ab18f0f054, type: 3}
   m_Name: Water_LR_Enemy_1_Weapon_Data_2
   m_EditorClassIdentifier: 
+  WeaponSprite: {fileID: 0}
   <NumberOfActions>k__BackingField: 1
   <CanJump>k__BackingField: 0
   <CanAirAttack>k__BackingField: 0
@@ -45,6 +46,7 @@ MonoBehaviour:
             RepeatAction: 1
             AdditionalDamage: 0
             isFixed: 0
+            isOnHit: 0
             KnockbackAngle: {x: 10, y: 5}
             EffectPrefab:
             - isGround: 0
@@ -73,6 +75,7 @@ MonoBehaviour:
             RepeatAction: 1
             AdditionalDamage: 0
             isFixed: 0
+            isOnHit: 0
             KnockbackAngle: {x: 0, y: 10}
             EffectPrefab:
             - isGround: 0
@@ -101,6 +104,7 @@ MonoBehaviour:
             RepeatAction: 1
             AdditionalDamage: 0
             isFixed: 0
+            isOnHit: 0
             KnockbackAngle: {x: 0, y: 10}
             EffectPrefab:
             - isGround: 0
@@ -182,12 +186,12 @@ MonoBehaviour:
         actionData:
         - name: Action 1
           audioDataList:
-          - Clip: {fileID: 0}
-            Volume: 0
-          - Clip: {fileID: 0}
-            Volume: 0
-          - Clip: {fileID: 0}
-            Volume: 0
+          - Clip: {fileID: 8300000, guid: 7734f64dc6ccdd94dbf80bd30a78fffd, type: 3}
+            Volume: 0.4
+          - Clip: {fileID: 8300000, guid: 7734f64dc6ccdd94dbf80bd30a78fffd, type: 3}
+            Volume: 0.4
+          - Clip: {fileID: 8300000, guid: 7734f64dc6ccdd94dbf80bd30a78fffd, type: 3}
+            Volume: 0.4
     - rid: 2527592717927579715
       type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:

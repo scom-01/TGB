@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 829d099c869488a49a5f24ab18f0f054, type: 3}
   m_Name: Water_Melee_Enemy_2_Weapon_Data_1
   m_EditorClassIdentifier: 
+  WeaponSprite: {fileID: 0}
   <NumberOfActions>k__BackingField: 1
   <CanJump>k__BackingField: 0
   <CanAirAttack>k__BackingField: 0
@@ -45,6 +46,7 @@ MonoBehaviour:
             RepeatAction: 1
             AdditionalDamage: 0
             isFixed: 0
+            isOnHit: 0
             KnockbackAngle: {x: 0, y: 15}
             EffectPrefab:
             - isGround: 0
@@ -70,6 +72,7 @@ MonoBehaviour:
             RepeatAction: 1
             AdditionalDamage: 0
             isFixed: 0
+            isOnHit: 0
             KnockbackAngle: {x: 0, y: 20}
             EffectPrefab:
             - isGround: 0
@@ -95,6 +98,7 @@ MonoBehaviour:
             RepeatAction: 1
             AdditionalDamage: 0
             isFixed: 0
+            isOnHit: 0
             KnockbackAngle: {x: 0, y: 20}
             EffectPrefab:
             - isGround: 0
@@ -120,6 +124,7 @@ MonoBehaviour:
             RepeatAction: 1
             AdditionalDamage: 0
             isFixed: 0
+            isOnHit: 0
             KnockbackAngle: {x: 0, y: 20}
             EffectPrefab:
             - isGround: 0
@@ -221,11 +226,11 @@ MonoBehaviour:
           audioDataList:
           - Clip: {fileID: 8300000, guid: e3c800e48d5aae24dbd61d414b77f2ba, type: 3}
             Volume: 0.4
-          - Clip: {fileID: 8300000, guid: 4322976517a5c2f42a68209b86e38ca1, type: 3}
+          - Clip: {fileID: 8300000, guid: 7734f64dc6ccdd94dbf80bd30a78fffd, type: 3}
             Volume: 0.5
-          - Clip: {fileID: 8300000, guid: 4322976517a5c2f42a68209b86e38ca1, type: 3}
+          - Clip: {fileID: 8300000, guid: 7734f64dc6ccdd94dbf80bd30a78fffd, type: 3}
             Volume: 0.5
-          - Clip: {fileID: 8300000, guid: 4322976517a5c2f42a68209b86e38ca1, type: 3}
+          - Clip: {fileID: 8300000, guid: 7734f64dc6ccdd94dbf80bd30a78fffd, type: 3}
             Volume: 0.5
     - rid: 2527592717927579742
       type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}

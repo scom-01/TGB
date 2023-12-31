@@ -46,6 +46,7 @@ MonoBehaviour:
             RepeatAction: 1
             AdditionalDamage: 0
             isFixed: 0
+            isOnHit: 0
             KnockbackAngle: {x: 10, y: 5}
             EffectPrefab:
             - isGround: 0
@@ -57,7 +58,9 @@ MonoBehaviour:
               EffectScale: {x: 1, y: 1, z: 1}
               isFollowing: 0
               Object: {fileID: 134407622609432275, guid: 900c6149c7efc95428bed00f405b4f25, type: 3}
-            audioClips: []
+            audioClips:
+            - Clip: {fileID: 8300000, guid: 40cda279da2faea43ad6582184440a70, type: 3}
+              Volume: 0.7
             camDatas:
             - Duration: 0.2
               Range: 0.01
@@ -110,7 +113,9 @@ MonoBehaviour:
         name: SoundClipData
         actionData:
         - name: Action 1
-          audioDataList: []
+          audioDataList:
+          - Clip: {fileID: 8300000, guid: 28406bf68add30e4e89d6cd063fb84e6, type: 3}
+            Volume: 0.65
     - rid: 2527592717927579895
       type: {class: WeaponProjectileData, ns: TGB.Weapons.Components, asm: Assembly-CSharp}
       data:

@@ -41,11 +41,25 @@ MonoBehaviour:
     - command: 0
       animOC: {fileID: 22100000, guid: c183dfaea95393c469ffa09fece3712b, type: 2}
       data: {fileID: 11400000, guid: 10f3c261301851d48947ea9d60230de7, type: 2}
-  - commands:
-    - command: 0
-      animOC: {fileID: 22100000, guid: 13c55c5b3c00a444c92f4af0115c7037, type: 2}
-      data: {fileID: 11400000, guid: 3016fe3524ff1da458177d88710bc8cf, type: 2}
   AirCommandList: []
+  PrimarySkillData:
+    GroundweaponData:
+      AnimOC: {fileID: 0}
+      WeaponDataSO: {fileID: 0}
+    AirweaponData:
+      AnimOC: {fileID: 0}
+      WeaponDataSO: {fileID: 0}
+    SkillCoolTime: 0
+    SkillSprite: {fileID: 0}
+  SecondarySkillData:
+    GroundweaponData:
+      AnimOC: {fileID: 0}
+      WeaponDataSO: {fileID: 0}
+    AirweaponData:
+      AnimOC: {fileID: 0}
+      WeaponDataSO: {fileID: 0}
+    SkillCoolTime: 0
+    SkillSprite: {fileID: 0}
   references:
     version: 2
     RefIds: []
