@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using TGB.Manager;
 using TMPro;
 using UnityEngine;
@@ -125,32 +126,32 @@ public class KeySetting : MonoBehaviour
             if (isHold) CurrentKeyBtnNameTxt_3D.text += "(Hold)";
         }
     }
-
-    private void Awake()
-    {
-    }
-
     public void OnClickChange()
     {
         Debug.Log("OnClick = " + keyName);
+        Debug.Log($"Press a {m_Action.action.expectedControlType}");
+        m_Action.action.Dispose();
         m_PlayerInputHandler.SwitchActionMap(InputEnum.UI.ToString());
         m_Rebind = m_Action.action.PerformInteractiveRebinding()
         .WithTargetBinding(m_BindingIndex)
         .WithControlsExcluding("Mouse")
-        .WithControlsExcluding("<Keyboard>/enter")      //enter => cancle
-        .WithControlsExcluding("<Keyboard>/numpadEnter")      //enter => cancle
+        .WithControlsExcluding("<Keyboard>/enter")      //enter => cancel
+        .WithControlsExcluding("<Keyboard>/numpadEnter")      //enter => cancel
         .WithCancelingThrough("<Keyboard>/anyKey")
-        .WithCancelingThrough("<Keyboard>/escape")      //ESC => cancle
+        .WithCancelingThrough("<Keyboard>/escape")      //ESC => cancel
         .OnMatchWaitForAnother(0.1f)
-        .OnCancel(_ =>
+        .OnCancel(operaction =>
         {
             if (WaitforInputCanvas != null)
             {
                 WaitforInputCanvas.enabled = false;
             }
+            m_Action.action.Enable();
+            operaction.Dispose();
         })
-        .OnComplete(_ =>
+        .OnComplete(operaction =>
         {
+            Debug.Log($"newbindKey = {operaction.action}");
             if (m_Action.action.bindings[m_BindingIndex].effectivePath == "<Keyboard>/anyKey")
             {
                 Debug.Log("<keyboard>/anyKey");
@@ -158,9 +159,12 @@ public class KeySetting : MonoBehaviour
                 {
                     WaitforInputCanvas.enabled = false;
                 }
+                m_Action.action.Enable();
+                operaction.Dispose();
                 return;
             }
-            if(CheckDuplicateBinds(m_Action, m_BindingIndex, allCompositeParts))
+            //DoRebind():중복 시 false
+            if (!DoRebind(m_Action, m_BindingIndex, allCompositeParts))
             {
                 m_Action.action.RemoveBindingOverride(m_BindingIndex);                
                 CleanUp();
@@ -168,6 +172,8 @@ public class KeySetting : MonoBehaviour
                 {
                     WaitforInputCanvas.enabled = false;
                 }
+                m_Action.action.Enable();
+                operaction.Dispose();
                 return;
             }
             UpdateDisplayText();
@@ -177,24 +183,32 @@ public class KeySetting : MonoBehaviour
                 m_Actions[i].action.ChangeBinding(0).WithPath($"<{m_Action.action.controls[m_BindingIndex].parent.name}>/{m_Action.action.controls[m_BindingIndex].name}");
             }
             GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.Cfg, false);
+            m_Action.action.Enable();
+            operaction.Dispose();
         })
         .Start();
     }
 
-    private bool CheckDuplicateBinds(InputAction action, int bindingIndex, bool allCompositeParts = false)
+    private bool DoRebind(InputAction action, int bindingIndex, bool allCompositeParts = false)
     {
         InputBinding newBinding = action.bindings[bindingIndex];
-        foreach (InputBinding binding in action.actionMap.bindings)
+
+        //액션 리스트에서 현재 입력한 액션은 제외
+        var checkbindinglist = action.actionMap.bindings.ToList();
+        checkbindinglist.Remove(newBinding);
+
+        //액션리스트에서 중복확인
+        foreach (InputBinding binding in checkbindinglist)
         {
             if(binding.action == newBinding.action)
             {
                 Debug.Log("Duplicate binding found : " + newBinding.effectivePath);
-                return true;
+                return false;
             }
             if(binding.effectivePath == newBinding.effectivePath)
             {
                 Debug.Log("Duplicate binding found : " + newBinding.effectivePath);
-                return true;
+                return false;
             }
 
             if(allCompositeParts)
@@ -204,12 +218,12 @@ public class KeySetting : MonoBehaviour
                     if (action.bindings[i].effectivePath == newBinding.effectivePath)
                     {
                         Debug.Log("Duplicate binding found : " + newBinding.effectivePath);
-                        return true;
+                        return false;
                     }
                 }
             }
         }
-        return false;
+        return true;
     }    
 
     private void CleanUp()
