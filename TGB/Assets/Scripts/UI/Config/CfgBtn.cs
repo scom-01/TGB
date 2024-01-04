@@ -4,7 +4,13 @@ using UnityEngine;
 public class CfgBtn : MonoBehaviour
 {
     public GameObject ActiveUI;
-    public void OnClickActiveUI(bool _isShow)
+
+    public void ActiveUIOn()
+    {
+        ActiveUI.GetComponent<Canvas>().enabled = true;
+        GameManager.Inst.InputHandler.OnESCInput_MultiAction.Add(() => OnClickActiveUI(false));
+    }
+    public void OnClickActiveUI(bool _isShow = false)
     {
         if(ActiveUI == null)
         {

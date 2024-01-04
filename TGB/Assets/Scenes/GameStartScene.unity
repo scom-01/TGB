@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb7865b0198716b459a76644532b57c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ActiveUI: {fileID: 0}
+  ActiveUI: {fileID: 1365549500}
 --- !u!114 &5208948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,9 +258,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1365549502}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
+      - m_Target: {fileID: 5208947}
+        m_TargetAssemblyTypeName: UnityEngine.MonoBehaviour, UnityEngine
+        m_MethodName: set_useGUILayout
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2462,6 +2462,7 @@ GameObject:
   - component: {fileID: 99663426}
   - component: {fileID: 99663425}
   - component: {fileID: 99663428}
+  - component: {fileID: 99663429}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -2546,17 +2547,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
-      - m_Target: {fileID: 1819588352}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
+      - m_Target: {fileID: 99663429}
+        m_TargetAssemblyTypeName: CfgBtn, Assembly-CSharp
+        m_MethodName: ActiveUIOn
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 1
       - m_Target: {fileID: 1675675371}
         m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
@@ -2665,6 +2666,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 1
+--- !u!114 &99663429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99663423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb7865b0198716b459a76644532b57c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActiveUI: {fileID: 1819588346}
 --- !u!1 &101256404
 GameObject:
   m_ObjectHideFlags: 0
@@ -2786,6 +2800,7 @@ GameObject:
   - component: {fileID: 103538151}
   - component: {fileID: 103538150}
   - component: {fileID: 103538153}
+  - component: {fileID: 103538154}
   m_Layer: 0
   m_Name: ResetButton
   m_TagString: Untagged
@@ -2858,10 +2873,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 326162823}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
+      - m_Target: {fileID: 103538154}
+        m_TargetAssemblyTypeName: CfgBtn, Assembly-CSharp
+        m_MethodName: ActiveUIOn
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2989,6 +3004,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 1
+--- !u!114 &103538154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103538148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb7865b0198716b459a76644532b57c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActiveUI: {fileID: 326162818}
 --- !u!1 &103806528
 GameObject:
   m_ObjectHideFlags: 0
@@ -37444,7 +37472,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: 1471532.8}
+  m_AnchoredPosition: {x: 7, y: 1007072.7}
   m_SizeDelta: {x: 21.1497, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1368125264
@@ -53499,10 +53527,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 192539161}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
+      - m_Target: {fileID: 1939917743}
+        m_TargetAssemblyTypeName: CfgBtn, Assembly-CSharp
+        m_MethodName: ActiveUIOn
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -56891,10 +56919,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1804273385}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
+      - m_Target: {fileID: 2045664420}
+        m_TargetAssemblyTypeName: CfgBtn, Assembly-CSharp
+        m_MethodName: ActiveUIOn
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -59035,7 +59063,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: -358372.25}
+  m_AnchoredPosition: {x: 7, y: -241393.94}
   m_SizeDelta: {x: 21.1497, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2125587133
@@ -62291,7 +62319,7 @@ MonoBehaviour:
     m_SelectOnUp: {fileID: 103538150}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 3450347899445938341}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnRight: {fileID: 3450347899076685785}
   m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -64243,7 +64271,7 @@ MonoBehaviour:
     m_SelectOnUp: {fileID: 3450347899097292901}
     m_SelectOnDown: {fileID: 3450347898351089038}
     m_SelectOnLeft: {fileID: 3450347898447324042}
-    m_SelectOnRight: {fileID: 3450347898447324042}
+    m_SelectOnRight: {fileID: 103538150}
   m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -65843,10 +65871,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3450347898743114448}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
+      - m_Target: {fileID: 3450347899649907716}
+        m_TargetAssemblyTypeName: CfgBtn, Assembly-CSharp
+        m_MethodName: ActiveUIOn
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

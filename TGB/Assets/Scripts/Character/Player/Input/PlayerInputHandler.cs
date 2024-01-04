@@ -57,8 +57,14 @@ public class PlayerInputHandler : MonoBehaviour
     private float[] ActionInputsStartTime;
     private float[] ActionInputsStopTime;
 
-
+    /// <summary>
+    /// Invoke() 후에 기본 EscInput의 함수호출 x
+    /// </summary>
     public Command OnESCInput_Action = new Command();
+    /// <summary>
+    /// Invoke() 후에 기본 ESCInput 함수호출 o
+    /// </summary>
+    public Command OnESCInput_MultiAction = new Command();
     private void Awake()
     {
         Init();
@@ -344,6 +350,11 @@ public class PlayerInputHandler : MonoBehaviour
             {
                 OnESCInput_Action.Clear();
                 return;
+            }
+
+            if(OnESCInput_MultiAction.Excute())
+            {
+                OnESCInput_MultiAction.Clear();
             }
 
             ESCInput = true;
