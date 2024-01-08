@@ -71789,7 +71789,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1679714830}
   - component: {fileID: 1679714829}
-  - component: {fileID: 1679714828}
   m_Layer: 0
   m_Name: StageManager
   m_TagString: Untagged
@@ -71797,22 +71796,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1679714828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1679714827}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8042d2fc6943ce54eaa5cb7a4e92496e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UnitData_DirectoryPath: /Resources/json/
-  SceneData_FileName: 
-  DefaultData_FileName: 
-  LockItemList: 
 --- !u!114 &1679714829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71841,7 +71824,6 @@ MonoBehaviour:
   Cam: {fileID: 0}
   CVC: {fileID: 0}
   Cam_Distance: 8.5
-  SFXContainerTagName: SoundContainer
   PlayerPrefab: {fileID: 840319699589423306, guid: 842ba7b90e3d58f4baa7c0b00def52ec, type: 3}
   player: {fileID: 0}
   SpawnPoint: {fileID: 1814375134}
@@ -78357,11 +78339,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efa141776ec86549ba0d0cab4997b7a, type: 3}
---- !u!4 &3443429006720797063 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8931458444314542160, guid: 1efa141776ec86549ba0d0cab4997b7a, type: 3}
-  m_PrefabInstance: {fileID: 3443429006720797062}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3443429006774547490
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -78807,11 +78784,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efa141776ec86549ba0d0cab4997b7a, type: 3}
---- !u!4 &3443429007260630891 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8931458444314542160, guid: 1efa141776ec86549ba0d0cab4997b7a, type: 3}
-  m_PrefabInstance: {fileID: 3443429007260630890}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3443429007978961526
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79449,8 +79421,7 @@ Transform:
   m_LocalPosition: {x: 64.32, y: -11.64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3443429007260630891}
+  m_Children: []
   m_Father: {fileID: 895799230}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -79607,8 +79578,7 @@ Transform:
   m_LocalPosition: {x: 32.7, y: -14.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3443429006720797063}
+  m_Children: []
   m_Father: {fileID: 895799230}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

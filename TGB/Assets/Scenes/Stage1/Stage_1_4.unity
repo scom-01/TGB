@@ -126724,7 +126724,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1679714830}
   - component: {fileID: 1679714829}
-  - component: {fileID: 1679714828}
   m_Layer: 0
   m_Name: StageManager
   m_TagString: Untagged
@@ -126732,22 +126731,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1679714828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1679714827}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8042d2fc6943ce54eaa5cb7a4e92496e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UnitData_DirectoryPath: /Resources/json/
-  SceneData_FileName: 
-  DefaultData_FileName: 
-  LockItemList: 
 --- !u!114 &1679714829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126776,7 +126759,6 @@ MonoBehaviour:
   Cam: {fileID: 0}
   CVC: {fileID: 0}
   Cam_Distance: 8.5
-  SFXContainerTagName: SoundContainer
   PlayerPrefab: {fileID: 840319699589423306, guid: 842ba7b90e3d58f4baa7c0b00def52ec, type: 3}
   player: {fileID: 0}
   SpawnPoint: {fileID: 3403605677196648677}
