@@ -8,6 +8,9 @@ public class ReforgingAnvil : InteractiveObject
 {
     public override void Interactive()
     {
+        if (isInteractive)
+            return;
+
         if (GameManager.Inst == null)
             return;
 
@@ -25,5 +28,10 @@ public class ReforgingAnvil : InteractiveObject
         //GameManager.Inst.SubUI.InventorySubUI.NullCheckInput();
         //GameManager.Inst.inputHandler.ChangeCurrentActionMap(InputEnum.UI, true);
         GameManager.Inst.ReforgingUI.Canvas.enabled = true;
+        isInteractive = true;
+    }
+    public override void UnInteractive()
+    {
+        isInteractive = false;
     }
 }

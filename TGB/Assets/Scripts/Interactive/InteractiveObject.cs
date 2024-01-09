@@ -7,7 +7,7 @@ public class InteractiveObject : MonoBehaviour, IInteractive
 {
     public LayerMask Interactive_Layer;
     public GameObject BtnObj;
-
+    [HideInInspector]public bool isInteractive =false;
     protected virtual void Start()
     {
         SetActiveBtnObj(false);

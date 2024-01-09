@@ -308,6 +308,7 @@ public class GameManager : MonoBehaviour
                 break;
             case UI_State.Inventory:
                 PlayTimeUI.Canvas.enabled = true;
+                SubUI.InventorySubUI.animator?.GetCurrentAnimatorClipInfo(0)[0].clip.SampleAnimation(ResultUI.animator.gameObject, 0);
                 SubUI.InventorySubUI.animator?.Play("Action", -1, 0f);
                 SubUI.InventorySubUI.Canvas.enabled = true;
 

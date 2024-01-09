@@ -46,6 +46,9 @@ public class Blessing : InteractiveObject
 
     public override void Interactive()
     {
+        if (isInteractive)
+            return;
+
         if (GlobalValue.ContainParam(animator, "Action"))
         {
             Debug.Log("Open");
@@ -54,11 +57,13 @@ public class Blessing : InteractiveObject
         GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.UI, true, true);
         canvas.enabled = true;
         GameManager.Inst.InputHandler.OnESCInput_Action.Add(End_Action);
+        isInteractive = true;
     }
 
     public override void UnInteractive()
     {
         GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.GamePlay, true);
         canvas.enabled = false;
+        isInteractive = false;
     }
 }
