@@ -1,9 +1,8 @@
+using SCOM.UI;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
-
 
 public class TitleManager : MonoBehaviour
 {
@@ -36,7 +35,7 @@ public class TitleManager : MonoBehaviour
         GameManager.Inst.InputHandler.ChangeCurrentActionMap(InputEnum.Cfg, false);
         GameManager.Inst.ChangeUI(UI_State.GamePlay, false);
 
-        
+
         //이어하기
         if (DataManager.Inst.CheckJSONFile())
         {
@@ -56,13 +55,13 @@ public class TitleManager : MonoBehaviour
                 btns[i].navigation = nav;
             }
         }
-        
+
         //CheckUnlockItem
         //if(DataManager.Inst.(DataManager.Inst.JSON_DataParsing.Json_Read_DefaultData().UnlockItemIdxs))
 
         if (GameManager.Inst.EffectTextUI.UnlockitemNames.Count > 0)
         {
-            GameManager.Inst.EffectTextUI.EffectTextOn();            
+            GameManager.Inst.EffectTextUI.EffectTextOn();
         }
 
         if (DataManager.Inst != null)
@@ -88,8 +87,8 @@ public class TitleManager : MonoBehaviour
             return;
 
         if (DataManager.Inst == null)
-            return;        
-        GameManager.Inst.NewGame();        
+            return;
+        GameManager.Inst.NewGame();
         isDone = true;
     }
 
@@ -102,7 +101,7 @@ public class TitleManager : MonoBehaviour
         }
         //New Game
         else
-        {            
+        {
             _CurrCanvas = go.GetComponent<Canvas>();
             GameManager.Inst.InputHandler.OnESCInput_Action.Add(HideUI);
             if (go != null && go.GetComponent<Canvas>() != null)
@@ -150,7 +149,7 @@ public class TitleManager : MonoBehaviour
             GameManager.Inst.InputHandler.OnESCInput_Action.Add(HideUnlockItemCanvas);
             UnlockItem_Canvas.GetComponentInChildren<UnlockItemList>()?.SetInit();
 
-            if(UnlockItem_Canvas.GetComponentInChildren<UnlockItemList>()?.UnlockItems.Count > 0)
+            if (UnlockItem_Canvas.GetComponentInChildren<UnlockItemList>()?.UnlockItems.Count > 0)
             {
                 GameManager.Inst.SetSelectedObject(UnlockItem_Canvas.GetComponentInChildren<UnlockItemList>()?.UnlockItems[0].gameObject);
             }

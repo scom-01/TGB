@@ -1,13 +1,13 @@
-using TGB.Weapons.Components;
-using TGB.Weapons;
+using SCOM.Weapons.Components;
+using SCOM.Weapons;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using System;
-using TGB.Skills.Component;
+using SCOM.Skills.Component;
 
-namespace TGB.Skills
+namespace SCOM.Skills
 {
     public class SkillGenerator : MonoBehaviour
     {

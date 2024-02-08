@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 
-namespace TGB.CfgSetting
+namespace SCOM.CfgSetting
 {
     public class LanguageSetting : MonoBehaviour
     {

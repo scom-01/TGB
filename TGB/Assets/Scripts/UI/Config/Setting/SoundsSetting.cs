@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-namespace TGB.CfgSetting
+namespace SCOM.CfgSetting
 {
     public class SoundsSetting : MonoBehaviour
     {

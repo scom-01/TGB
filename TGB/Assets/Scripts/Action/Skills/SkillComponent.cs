@@ -1,11 +1,11 @@
-using TGB.CoreSystem;
-using TGB.Weapons;
-using TGB.Weapons.Components;
+using SCOM.CoreSystem;
+using SCOM.Weapons;
+using SCOM.Weapons.Components;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TGB.Skills.Component
+namespace SCOM.Skills.Component
 {
     public class SkillComponent : MonoBehaviour
     {

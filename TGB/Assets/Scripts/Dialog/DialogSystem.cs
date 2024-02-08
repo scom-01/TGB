@@ -24,7 +24,7 @@ public struct DialogData
 }
 
 
-namespace TGB.Dialog
+namespace SCOM.Dialog
 {
     public class DialogSystem : MonoBehaviour
     {

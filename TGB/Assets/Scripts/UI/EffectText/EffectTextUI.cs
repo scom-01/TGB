@@ -1,11 +1,10 @@
+using SCOM.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Components;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
-
 public class EffectTextUI : UIManager
 {
     private Image BackImg

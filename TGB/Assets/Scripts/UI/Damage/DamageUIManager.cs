@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TGB.Manager
+namespace SCOM.Manager
 {
-    public class DamageUIManager : UIManager
+    public class DamageUIManager : UI.UIManager
     {
         
     }

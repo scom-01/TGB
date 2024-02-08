@@ -1,13 +1,6 @@
-using TGB.CoreSystem;
-using System.Collections;
-using TMPro;
-using Unity.VisualScripting;
-using UnityEngine;
-using UnityEngine.UI;
-
-namespace TGB.Manager
+namespace SCOM.Manager
 {
-    public class MainUIManager : UIManager
+    public class MainUIManager : UI.UIManager
     {
         public MainPanelUI MainPanel;        
     }

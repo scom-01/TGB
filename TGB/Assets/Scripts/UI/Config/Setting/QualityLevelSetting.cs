@@ -6,7 +6,7 @@ using UnityEngine.Localization;
 using UnityEngine.Localization.Components;
 using UnityEngine.Localization.Settings;
 
-namespace TGB.CfgSetting
+namespace SCOM.CfgSetting
 {
     public class QualityLevelSetting : MonoBehaviour
     {

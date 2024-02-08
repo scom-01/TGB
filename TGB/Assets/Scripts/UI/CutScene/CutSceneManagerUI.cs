@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-namespace TGB.Manager
+namespace SCOM.Manager
 {
     public class CutSceneManagerUI : MonoBehaviour
     {

@@ -1,4 +1,4 @@
-using TGB.CoreSystem;
+using SCOM.CoreSystem;
 using TMPro;
 using UnityEngine;
 using UnityEngine.U2D;

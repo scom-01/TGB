@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-namespace TGB.Manager
+namespace SCOM.Manager
 {
-    public class SubUIManager : UIManager
+    public class SubUIManager : UI.UIManager
     {        
-        public DetailUI DetailSubUI;
+        public UI.ItemDetailUI DetailSubUI;
         public InventoryUI InventorySubUI;
 
         public void isRight(bool isright)

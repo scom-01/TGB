@@ -1,11 +1,11 @@
 using Microsoft.Cci;
-using TGB.CoreSystem;
+using SCOM.CoreSystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TGB.Skills
+namespace SCOM.Skills
 {
     public class Skill : MonoBehaviour
     {

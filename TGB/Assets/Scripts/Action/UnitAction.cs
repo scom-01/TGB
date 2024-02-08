@@ -1,4 +1,4 @@
-using TGB.CoreSystem;
+using SCOM.CoreSystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;

@@ -1,7 +1,7 @@
 using Cinemachine;
 using System.Collections.Generic;
-using TGB;
-using TGB.Manager;
+using SCOM;
+using SCOM.Manager;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace TGB.Manager
+namespace SCOM.Manager
 {
     public class AsyncLoadingManager : MonoBehaviour
     {

@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using TGB.CoreSystem;
-using TGB.Weapons;
+using SCOM.CoreSystem;
+using SCOM.Weapons;
 using Unity.VisualScripting;
 #if UNITY_EDITOR
 using UnityEditor;

@@ -1,4 +1,4 @@
-using TGB.CoreSystem;
+using SCOM.CoreSystem;
 using UnityEngine;
 
 public class StatsPanel : MonoBehaviour

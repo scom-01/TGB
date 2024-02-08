@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace TGB
+namespace SCOM
 {
     public class UI_BackPanel : MonoBehaviour,IPointerDownHandler
     {
