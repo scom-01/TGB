@@ -1,13 +1,15 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace SCOM
+namespace TGB
 {
     public class UIEvent : MonoBehaviour
     {
-        protected UI.UIManager manager;
+        protected UIManager manager;
         protected virtual void Awake()
         {
-            manager = this.GetComponentInParent<UI.UIManager>();
+            manager = this.GetComponentInParent<UIManager>();
         }
     }
 }

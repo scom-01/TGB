@@ -1,7 +1,7 @@
-using SCOM.Item;
+using TGB.Item;
 using UnityEngine;
 
-namespace SCOM.Manager
+namespace TGB.Manager
 {
     public class SpawnManager : MonoBehaviour
     {

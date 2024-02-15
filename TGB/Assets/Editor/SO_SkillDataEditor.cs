@@ -1,4 +1,4 @@
-using SCOM.Weapons.Components;
+using TGB.Weapons.Components;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEngine;
 
-namespace SCOM.Skills
+namespace TGB.Skills
 {
     [CustomEditor(typeof(SkillDataSO))]
     public class SO_SkillDataEditor : Editor

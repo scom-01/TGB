@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using SCOM.Weapons.Components;
+using TGB.Weapons.Components;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEngine;
 
-namespace SCOM.Weapons
+namespace TGB.Weapons
 {
     [CustomEditor(typeof(WeaponDataSO))]
     public class SO_WeaponDataEditor : Editor

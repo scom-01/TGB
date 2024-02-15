@@ -1,8 +1,11 @@
+using TGB.Manager;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace SCOM.Manager
+namespace TGB.Manager
 {
-    public class ReforgingUIManager : UI.UIManager
+    public class ReforgingUIManager : UIManager
     {
         public Canvas[] ChildrensCanvas
         {

@@ -1,8 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
-namespace SCOM.Manager
+namespace TGB.Manager
 {
-    public class ResultUIManager : UI.UIManager
+    public class ResultUIManager : UIManager
     {
         public ResultPanelUI resultPanel
         {

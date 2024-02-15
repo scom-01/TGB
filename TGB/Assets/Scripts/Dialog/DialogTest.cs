@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-namespace SCOM.Dialog
+namespace TGB.Dialog
 {
     public class DialogTest : MonoBehaviour
     {

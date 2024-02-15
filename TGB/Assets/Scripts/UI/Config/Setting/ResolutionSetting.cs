@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SCOM.CfgSetting
+namespace TGB.CfgSetting
 {
     public class ResolutionSetting : MonoBehaviour
     {

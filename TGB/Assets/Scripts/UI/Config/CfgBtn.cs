@@ -1,4 +1,4 @@
-using SCOM.Manager;
+using TGB.Manager;
 using UnityEngine;
 
 public class CfgBtn : MonoBehaviour

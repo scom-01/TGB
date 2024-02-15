@@ -9,7 +9,7 @@ public enum InventoryUI_State
     Change,
 }
 
-namespace SCOM.Manager
+namespace TGB.Manager
 {
     public class InventoryUI : MonoBehaviour
     {

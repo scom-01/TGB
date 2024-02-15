@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SCOM.Manager
+namespace TGB.Manager
 {
-    public class CfgUIManager : UI.UIManager
+    public class CfgUIManager : UIManager
     {
         public ConfigPanelUI ConfigPanelUI;
     }

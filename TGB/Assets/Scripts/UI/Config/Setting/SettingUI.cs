@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace SCOM.Manager
+namespace TGB.Manager
 {
     public class SettingUI : MonoBehaviour
     {
