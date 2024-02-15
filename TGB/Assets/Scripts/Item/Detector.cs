@@ -31,6 +31,16 @@ public class Detector : MonoBehaviour
             }
             if (currentGO.tag == "Item")
             {
+                //var item = currentGO.GetComponentInParent<SOB_Item>();
+                //if (player.InputHandler.InteractionInput && player.InputHandler.interactionInputDuration > player.InputHandler.interactionMaxHoldItme)
+                //{
+                //    Debug.Log($"{item.name} is Add Inventory");
+                //    if (player.Inventory.AddInventoryItem(item.gameObject))
+                //    {
+                //        Destroy(currentGO.transform.parent.gameObject);
+                //        currentGO = null;
+                //    }
+                //}
             }
             else if (currentGO.tag == "Interaction")
             {
@@ -60,11 +70,23 @@ public class Detector : MonoBehaviour
                     player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
                     player.InputHandler.UseInput(ref player.InputHandler.interactionTap);
                     //Debug.Log($"제일 가까운 오브젝트 {currentGO.transform.parent.name}");
-                    if (currentGO.tag == "Item")
-                    {
-                        currentGO.GetComponentInParent<SOB_Item>().unit = unit;
-                        currentGO.GetComponentInParent<SOB_Item>().Detected(this.gameObject.transform.position.x < currentGO.transform.position.x);
-                    }
+                    //if (currentGO.tag == "Item")
+                    //{
+                    //    currentGO.GetComponentInParent<SOB_Item>().unit = unit;
+                    //    currentGO.GetComponentInParent<SOB_Item>().Detected(this.gameObject.transform.position.x < currentGO.transform.position.x);
+                    //}
+                    //else if (go.tag == "Interaction")
+                    //{
+                    //    currentGO.GetComponent<InteractiveObject>().SetActiveBtnObj(true);
+                    //    if (player.InputHandler.InteractionInput && player.InputHandler.interactionTap)
+                    //    {
+                    //        player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
+                    //        player.InputHandler.UseInput(ref player.InputHandler.interactionTap);
+                    //        Debug.Log($"{currentGO} interactive");
+                    //        currentGO.GetComponent<InteractiveObject>()?.Interactive();
+                    //    }
+                    //}
+
                     continue;
                 }
 
@@ -87,11 +109,22 @@ public class Detector : MonoBehaviour
                     currentGO = go;
                     player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
                     player.InputHandler.UseInput(ref player.InputHandler.interactionTap);
-                    if (currentGO.tag == "Item")
-                    {
-                        currentGO.GetComponentInParent<SOB_Item>().unit = unit;
-                        currentGO.GetComponentInParent<SOB_Item>().Detected(this.gameObject.transform.position.x < currentGO.transform.position.x);
-                    }
+                    //if (currentGO.tag == "Item")
+                    //{
+                    //    currentGO.GetComponentInParent<SOB_Item>().unit = unit;
+                    //    currentGO.GetComponentInParent<SOB_Item>().Detected(this.gameObject.transform.position.x < currentGO.transform.position.x);
+                    //}
+                    //else if (go.tag == "Interaction")
+                    //{
+                    //    currentGO.GetComponent<InteractiveObject>().SetActiveBtnObj(true);
+                    //    if (player.InputHandler.InteractionInput && player.InputHandler.interactionTap)
+                    //    {
+                    //        player.InputHandler.UseInput(ref player.InputHandler.InteractionInput);
+                    //        player.InputHandler.UseInput(ref player.InputHandler.interactionTap);
+                    //        Debug.Log($"{currentGO} interactive");
+                    //        currentGO.GetComponent<InteractiveObject>()?.Interactive();
+                    //    }
+                    //}
                     continue;
                 }
 
