@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -28,27 +27,4 @@ public class UIManager : MonoBehaviour
         }
     }
     private Animator anim;
-
-    private Action UIUpdate;
-
-    protected void Update()
-    {
-        InvokeAction(UIUpdate);
-    }
-
-    public void InvokeAction(Action action)
-    {
-        if (action == null)
-        {
-            Debug.Log("Action is Null");
-            return;
-        }
-        action.Invoke();
-    }
-
-    public void AddAction(Action action)
-    {
-        UIUpdate -= action;
-        UIUpdate += action;
-    }
 }
