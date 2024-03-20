@@ -4777,7 +4777,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4837,12 +4836,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1654740954783398791}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650768dbc266aa34fb82269cccf75184, type: 3}
+  m_Script: {fileID: 11500000, guid: b1fa85df48d6bd24098c980f138fc424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isDestroy: 0
   parent: {fileID: 0}
+  isFixedRotY: 0
   isLoopDurationTime: 0
+  isInit: 0
+  isDrawModeTiled: 0
 --- !u!1 &7568913909991395308
 GameObject:
   m_ObjectHideFlags: 0
@@ -9675,7 +9677,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: e2b758870473651458a2631c1a749339, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14567,7 +14568,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 5a9cc85bace36334b9be1b13fca233fc, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

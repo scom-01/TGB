@@ -80,40 +80,45 @@ MonoBehaviour:
   m_GameObject: {fileID: 2222910967692216358}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d719e62666217fd4abb365ca692805e5, type: 3}
+  m_Script: {fileID: 11500000, guid: a1c72e6751a0f1049a98f43b7e00a23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   unit: {fileID: 0}
   ProjectileData:
     Pos: {x: 0, y: 0, z: 0}
     Rot: {x: 0, y: 0, z: 0}
+    isFixedMovement: 0
     Speed: 0
     DurationTime: 0
     AdditionalDmg: 0
     isFixed: 0
+    KnockbackAngle: {x: 0, y: 0}
+    isOnHit: 0
+    isBox: 0
     Radius: 0
+    BCsize: {x: 0, y: 0}
     Offset: {x: 0, y: 0}
     GravityScale: 0
     isSingleShoot: 0
-    KnockbackAngle: {x: 0, y: 0}
     isCollisionGround: 0
     isCollisionPlatform: 0
     isBound: 0
     UnitCC2DMaterial: {fileID: 0}
     EffectScale: {x: 0, y: 0, z: 0}
-    isOnHit: 0
+    ImpactScale: {x: 0, y: 0, z: 0}
+    ImpactRamdomPosRange: 0
     isShakeCam: 0
-    homingType: 0
     camDatas:
       Duration: 0
       Range: 0
       RepeatRate: 0
-  ProjectileObject: {fileID: 7002854523104076756, guid: 59a90522d6b8633479880dd76997988e, type: 3}
-  ImpactObject: {fileID: 2783980465707459881, guid: 46f55cb942f845346a06e4d0562283c2, type: 3}
+    homingType: 0
+  ProjectileObject: {fileID: 0}
+  ImpactObject: {fileID: 0}
   ProjectileShootClip:
     Clip: {fileID: 0}
     Volume: 0
   ImpactClip:
-    Clip: {fileID: 8300000, guid: c7865fd595be8a046a018f3e24771dd6, type: 3}
-    Volume: 0.4
-  isFixedRot: 1
+    Clip: {fileID: 0}
+    Volume: 0
+  isFixedRot: 0
