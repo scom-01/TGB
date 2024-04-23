@@ -118,4 +118,10 @@ end
 >2D 플랫포머에 맞게 대쉬, 이단 점프, 벽 점프 등을 활용하여 이동하도록 레벨 디자인    
 >숨겨진 루트에서 숨겨진 아이템을 찾거나 빠르게 이동할 수 있음    
 
+* * * 
+<br /><br />
+
+## 플레이 영상   
+
+(https://www.youtube.com/watch?v=29iHaTucYw4&ab_channel=Dev_KDH)
 
